@@ -12,3 +12,55 @@
 %
 % The Current Maintainer of this work is Log Creative.
 %
+
+% Title and part pages.
+
+\pgfdeclareimage[height=1cm]{titlelogo}{vi/cnlogo.pdf}
+\titlegraphic{\pgfuseimage{titlelogo}}
+\defbeamertemplate*{title page}{SJTUBeamer}[1][]
+{
+  \vbox{}
+  \vfill
+  \begingroup
+    \centering
+    \usebeamercolor{title}
+    \begin{beamercolorbox}[sep=8pt]{logo}
+        \inserttitlegraphic
+    \end{beamercolorbox}
+    \begin{beamercolorbox}[sep=8pt,#1]{title}
+      \usebeamerfont{title}\inserttitle\par%
+      \ifx\insertsubtitle\@empty%
+      \else%
+        \vskip0.25em%
+        {\usebeamerfont{subtitle}\usebeamercolor{subtitle}\insertsubtitle\par}%
+      \fi%     
+    \end{beamercolorbox}%
+    \vskip1em\par
+    \begin{beamercolorbox}[sep=8pt,#1]{author}
+      \usebeamerfont{author}\insertauthor
+    \end{beamercolorbox}
+    \begin{beamercolorbox}[sep=8pt,#1]{institute}
+      \usebeamerfont{institute}\insertinstitute
+    \end{beamercolorbox}
+    \begin{beamercolorbox}[sep=8pt,#1]{date}
+      \usebeamerfont{date}\insertdate
+    \end{beamercolorbox}\vskip0.5em
+  \endgroup
+  \vfill
+  \setbeamercolor{background canvas}{bg=white}
+}
+% Itemize environments.
+
+% Enumerate environments.
+
+% Description environments.
+
+% Block environments.
+
+% Theorem and proof environments.
+
+% Figures and tables.
+
+% Footnotes.
+
+% Bibliography entries.

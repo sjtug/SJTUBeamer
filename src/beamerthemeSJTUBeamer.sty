@@ -15,8 +15,10 @@
 
 \mode<presentation>
 
-\usefonttheme{serif}
-\RequirePackage{CJKutf8}
+\usecolortheme{SJTUBeamer}
+\usefonttheme{SJTUBeamer}
+\useinnertheme{SJTUBeamer}
+\useoutertheme{SJTUBeamer}
 \hypersetup{unicode}
 \RequirePackage{bookmark}
 
@@ -31,7 +33,18 @@
     }\fi
 }
 
+% For ctex
+\def\Hy@WarnOptionDisabled#1{
+    \def\next{#1}%
+    \def\ignore{driverfallback}%
+    \ifx\next\ignore%
+    \else\Hy@Warning{%
+        Option `#1' has already been used,\MessageBreak 
+        setting the option has no effect%
+    }\fi
+}
 
+\RequirePackage[UTF8]{ctex}
 
 \mode
 <all>
