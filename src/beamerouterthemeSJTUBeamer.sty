@@ -17,13 +17,20 @@
 
 % The sidebars.
 
-\defbeamertemplate*{sidebar right}{SJTUBeamer}
-{
-  \vfill%
-  \llap{\insertlogo\hskip0.1cm}%
-  \vskip2pt%
-  %\llap{\usebeamertemplate***{navigation symbols}\hskip0.1cm}%
-  \vskip2pt%
+% \defbeamertemplate*{sidebar right}{SJTUBeamer}
+% {
+%   \vfill%
+%   \llap{\insertlogo\hskip0.1cm}%
+%   \vskip2pt%
+%   %\llap{\usebeamertemplate***{navigation symbols}\hskip0.1cm}%
+%   \vskip2pt%
+% }
+
+\addtobeamertemplate{navigation symbols}{}{%
+    \usebeamerfont{footline}%
+    \usebeamercolor[fg]{footline}%
+    \hspace{1em}%
+    \raisebox{1.2pt}[0pt][0pt]{\insertframenumber/\inserttotalframenumber}
 }
 
 % The logo.

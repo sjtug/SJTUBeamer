@@ -15,14 +15,15 @@
 
 \mode<presentation>
 
-\usecolortheme{SJTUBeamer}
 \usefonttheme{SJTUBeamer}
 \useinnertheme{SJTUBeamer}
 \useoutertheme{SJTUBeamer}
+\usecolortheme{SJTUBeamer}
 \hypersetup{unicode}
 \RequirePackage{bookmark}
 
 % To override the warning of "pdfauthor" reset.
+
 \def\Hy@WarnOptionDisabled#1{
     \def\next{#1}%
     \def\ignore{pdfauthor}%
@@ -33,7 +34,6 @@
     }\fi
 }
 
-% For ctex
 \def\Hy@WarnOptionDisabled#1{
     \def\next{#1}%
     \def\ignore{driverfallback}%
@@ -43,7 +43,6 @@
         setting the option has no effect%
     }\fi
 }
-
 \RequirePackage[UTF8]{ctex}
 
 \mode
