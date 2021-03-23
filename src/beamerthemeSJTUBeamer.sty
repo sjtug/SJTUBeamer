@@ -23,15 +23,15 @@
 \RequirePackage{bookmark}
 
 % To override the warning of "pdfauthor" reset.
-\def\Hy@WarnOptionDisabled#1{
-    \def\next{#1}%
-    \def\ignore{pdfauthor}%
-    \ifx\next\ignore%
-    \else\Hy@Warning{%
-        Option `#1' has already been used,\MessageBreak 
-        setting the option has no effect%
-    }\fi
-}
+% \def\Hy@WarnOptionDisabled#1{
+%     \def\next{#1}%
+%     \def\ignore{pdfauthor}%
+%     \ifx\next\ignore%
+%     \else\Hy@Warning{%
+%         Option `#1' has already been used,\MessageBreak 
+%         setting the option has no effect%
+%     }\fi
+% }
 
 \def\Hy@WarnOptionDisabled#1{
     \def\next{#1}%

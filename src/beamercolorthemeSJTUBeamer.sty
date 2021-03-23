@@ -14,9 +14,19 @@
 %
 
 \definecolor{problue}{HTML}{004098}
-
+\definecolor{lightblue}{HTML}{017FC6}
+\definecolor{lightgreen}{HTML}{298626}
+\definecolor{lightgray}{HTML}{004D4B}
 
 \setbeamercolor{normal text}{fg=black,bg=black!40}
 \setbeamercolor*{block title}{parent=structure}
 \setbeamercolor{titlelike}{fg=white,bg=problue}
 \setbeamercolor{subtitle}{fg=white}
+
+\setbeamercolor{block title}{fg=white,bg=lightblue}
+\setbeamercolor{block title alerted}{use=alerted text,fg=white,bg=lightgreen}
+\setbeamercolor{block title example}{use=example text,fg=white,bg=lightgray}
+
+\setbeamercolor{block body}{parent=normal text,use=block title,bg=lightblue!30}
+\setbeamercolor{block body alerted}{parent=normal text,use=block title alerted,bg=block title alerted.bg!30}
+\setbeamercolor{block body example}{parent=normal text,use=block title example,bg=block title example.bg!30}
