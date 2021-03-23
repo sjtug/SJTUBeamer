@@ -36,3 +36,32 @@
 % The logo.
 
 % The frame title.
+
+\pgfdeclareimage[height=0.7cm]{titlelogosmall}{vi/cnlogo.pdf}
+\defbeamertemplate*{frametitle}{SJTUBeamer}[1][left]
+{%
+  \ifbeamercolorempty[bg]{frametitle}{}{\nointerlineskip}%
+  \@tempdima=\textwidth%
+  \advance\@tempdima by\beamer@leftmargin%
+  \advance\@tempdima by\beamer@rightmargin%
+  \begin{beamercolorbox}[sep=0.3cm,#1,wd=\the\@tempdima]{frametitle}
+    \begingroup
+    \usebeamerfont{frametitle}%
+    \vbox{}\vskip-1ex%
+    \if@tempswa\else\csname beamer@fte#1\endcsname\fi%
+    \strut\insertframetitle\strut\par%
+    {%
+      \ifx\insertframesubtitle\@empty%
+      \else%
+      {\usebeamerfont{framesubtitle}\usebeamercolor[fg]{framesubtitle}\strut\insertframesubtitle\strut\par}%
+      \fi
+    }%
+    \vskip-1ex%
+    \endgroup%
+    \raggedleft%
+    \begingroup\hskip-5ex\vskip-5.5ex%
+    \pgfuseimage{titlelogosmall}%
+    \endgroup%
+    \if@tempswa\else\vskip-.3cm\fi% set inside beamercolorbox... evil here...
+  \end{beamercolorbox}%
+}
