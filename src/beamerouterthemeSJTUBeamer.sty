@@ -47,7 +47,9 @@
   \begin{beamercolorbox}[sep=0.3cm,#1,wd=\the\@tempdima]{frametitle}
     \begingroup
     \usebeamerfont{frametitle}%
-    \vbox{}\vskip-1ex%
+    \vbox{}
+    \ifx\insertframesubtitle\@empty\vskip-2px%
+    \else\vskip-1ex\fi%
     \if@tempswa\else\csname beamer@fte#1\endcsname\fi%
     \strut\insertframetitle\strut\par%
     {%
@@ -59,10 +61,13 @@
     \vskip-1ex%
     \endgroup%
     \raggedleft%
-    \begingroup\vskip-2ex%
+    \begingroup
+    \ifx\insertframesubtitle\@empty\vskip-2.5ex%
+    \else\vskip-3.5ex\fi%
     \pgfuseimage{titlelogosmall}\hspace*{2ex}%
     \endgroup%
-    \vskip0.5ex
+    \ifx\insertframesubtitle\@empty%
+    \else\vskip0.5ex\fi%
     \if@tempswa\else\vskip-.3cm\fi% set inside beamercolorbox... evil here...
   \end{beamercolorbox}%
 }
