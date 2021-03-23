@@ -17,21 +17,23 @@
 
 % The sidebars.
 
-% \defbeamertemplate*{sidebar right}{SJTUBeamer}
-% {
-%   \vfill%
-%   \llap{\insertlogo\hskip0.1cm}%
-%   \vskip2pt%
-%   %\llap{\usebeamertemplate***{navigation symbols}\hskip0.1cm}%
-%   \vskip2pt%
-% }
-
-\addtobeamertemplate{navigation symbols}{}{%
-    \usebeamerfont{footline}%
-    \usebeamercolor[fg]{footline}%
-    \hspace{1em}%
-    \raisebox{1.2pt}[0pt][0pt]{\insertframenumber/\inserttotalframenumber}
+\setbeamertemplate{navigation symbols}{
+    \hbox{
+        \usebeamerfont{footline}
+        \insertnavigation{0.63\paperwidth}
+        \raisebox{-6.5pt}[0pt][0pt]{\vbox{
+            \hbox{\usebeamerfont{footline}\inserttitle$~\cdot~$\insertauthor}
+            \hbox{\raisebox{-0.5pt}[0pt][0pt]{\usebeamerfont{footline}\insertframenumber/\inserttotalframenumber\hspace*{2pt}\raisebox{-1.2pt}[0pt][0pt]{\insertslidenavigationsymbol\insertframenavigationsymbol\insertsubsectionnavigationsymbol\insertsectionnavigationsymbol\insertdocnavigationsymbol\insertbackfindforwardnavigationsymbol}}}
+        }}
+    }
 }
+
+% \addtobeamertemplate{navigation symbols}{}{%
+%     \usebeamerfont{footline}%
+%     \usebeamercolor[fg]{footline}%
+%     \hspace{1em}%
+%     \raisebox{1.2pt}[0pt][0pt]{\insertframenumber/\inserttotalframenumber}
+% }
 
 % The logo.
 
