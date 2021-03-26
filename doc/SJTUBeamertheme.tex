@@ -31,7 +31,6 @@
 \renewcommand{\figurename}{图}
 \renewcommand{\tablename}{表}
 \renewcommand{\contentsname}{目录}
-\setlength{\marginparwidth}{150pt}
 \tcbuselibrary{raster}
 \tcbuselibrary{skins}
 
@@ -57,6 +56,17 @@
 为了编译出目录，你需要编译两次，或者直接使用 \verb"latexmk" 编译。
 
 使用 \href{https://github.com/LogCreative/SJTUBeamer/generate}{\texttt{Use This Template}} 按钮可以将本存储库附带的 Github Actions 自动编译设置同时拷贝，在提交修改 \verb"test.tex" 文件后会自动编译出 PDF 文件，置于 Github Actions 详情页面的 Artifacts 一栏。
+
+\section{选项}
+
+\texttt{navigation=tools|subsections}\\
+\indent 导航栏选项。默认为 \verb"tools"，即工具栏与页码组合；可以设置为 \verb"subsections"，将会产生子章节的跳转进度条。
+
+\texttt{lang=cn|en}\\
+\indent 语言选项，主要影响校徽是中文校徽，还是英文校徽。而启用该选项为英文将会导致中文包不会被加载，因为推荐使用英文徽标时，幻灯片内容为英文。
+
+\texttt{cjk=false|true}\\
+\indent 是否使用 \textsf{CJK} 宏包。如果开启此选项，请使用 \verb"\begin{CJK}{UTF8}{hei}" 和 \verb"\end{CJK}" 包裹 \verb"document" 环境中的内容。
 
 \section{样式}
 

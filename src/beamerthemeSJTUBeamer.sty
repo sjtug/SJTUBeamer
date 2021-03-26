@@ -19,9 +19,12 @@
     \PassOptionsToPackage{navigation=#1}{beamerouterthemeSJTUBeamer}
 }
 \DeclareOptionBeamer{lang}{
+    \def\beamer@SJTUBeamer@lang{#1}
     \PassOptionsToPackage{lang=#1}{beamerouterthemeSJTUBeamer}
     \PassOptionsToPackage{lang=#1}{beamerinnerthemeSJTUBeamer}
 }
+\def\beamer@SJTUBeamer@langcn{cn}%
+\def\beamer@SJTUBeamer@langen{en}%
 
 \DeclareOptionBeamer{cjk}{\def\beamer@SJTUBeamer@cjk{#1}}
 \def\beamer@SJTUBeamer@cjktrue{true}%
@@ -41,29 +44,31 @@
 \hypersetup{unicode}
 \RequirePackage{bookmark}
 
-% To override the warning of "pdfauthor" reset.
-\ifx\beamer@SJTUBeamer@cjk\beamer@SJTUBeamer@cjktrue%
-    \def\Hy@WarnOptionDisabled#1{
-        \def\next{#1}%
-        \def\ignore{pdfauthor}%
-        \ifx\next\ignore%
-        \else\Hy@Warning{%
-            Option `#1' has already been used,\MessageBreak 
-            setting the option has no effect%
-        }\fi
-    }
-    \RequirePackage{CJKutf8}
-\else%
-    \def\Hy@WarnOptionDisabled#1{
-        \def\next{#1}%
-        \def\ignore{driverfallback}%
-        \ifx\next\ignore%
-        \else\Hy@Warning{%
-            Option `#1' has already been used,\MessageBreak 
-            setting the option has no effect%
-        }\fi
-    }
-    \RequirePackage[UTF8]{ctex}
+\ifx\beamer@SJTUBeamer@lang\beamer@SJTUBeamer@langen%
+\else
+    \ifx\beamer@SJTUBeamer@cjk\beamer@SJTUBeamer@cjktrue%
+        \def\Hy@WarnOptionDisabled#1{
+            \def\next{#1}%
+            \def\ignore{pdfauthor}%
+            \ifx\next\ignore%
+            \else\Hy@Warning{%
+                Option `#1' has already been used,\MessageBreak 
+                setting the option has no effect%
+            }\fi
+        }
+        \RequirePackage{CJKutf8}
+    \else%
+        \def\Hy@WarnOptionDisabled#1{
+            \def\next{#1}%
+            \def\ignore{driverfallback}%
+            \ifx\next\ignore%
+            \else\Hy@Warning{%
+                Option `#1' has already been used,\MessageBreak 
+                setting the option has no effect%
+            }\fi
+        }
+        \RequirePackage[UTF8]{ctex}
+    \fi
 \fi
 
 \providecommand{\sjtutitle}{
