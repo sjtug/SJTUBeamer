@@ -48,11 +48,15 @@
 
 \textsf{SJTUBeamer} 样式为上海交通大学幻灯片模板的非官方实现版本，遵守\href{http://vi.sjtu.edu.cn/}{上海交通大学视觉形象识别系统}的相关规范，图标版权归上海交通大学所有，本项目仅供校内人员学习参考使用。
 
-目前该样式仍然处于开发者预览版本（$\alpha$-0.1），仍在做适应性修改并适当添加图案。欢迎通过拉取请求对本模板提出修改建议。
+目前该样式仍然处于开发者预览版本（$\alpha$-0.2），仍在做适应性修改并适当添加图案。欢迎通过拉取请求对本模板提出修改建议。
 
 \section{编译}
 
-该模板的使用范例代码请见 \href{https://github.com/LogCreative/SJTUBeamer/blob/main/src/test.tex}{测试文件}。需要使用副本时请直接拷贝 \verb"src" 文件夹修改测试文件，目前版本不要轻易删除样式文件。目前版本需要使用 \verb"\sjtutitle" 命令替代 \verb"\maketitle" 命令。为了编译出目录，你需要编译两次。
+该模板的使用范例代码请见 \href{https://github.com/LogCreative/SJTUBeamer/blob/main/src/test.tex}{测试文件}。需要使用副本时请直接拷贝 \verb"src" 文件夹修改测试文件，目前版本不要轻易删除样式文件。目前版本需要使用 \verb"\sjtutitle" 命令替代 \verb"\maketitle" 命令。
+
+为了编译出目录，你需要编译两次，或者直接使用 \verb"latexmk" 编译。
+
+使用 \href{https://github.com/LogCreative/SJTUBeamer/generate}{\texttt{Use This Template}} 按钮可以将本存储库附带的 Github Actions 自动编译设置同时拷贝，在提交修改 \verb"test.tex" 文件后会自动编译出 PDF 文件，置于 Github Actions 详情页面的 Artifacts 一栏。
 
 \section{样式}
 
