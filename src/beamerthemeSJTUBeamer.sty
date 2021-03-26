@@ -15,6 +15,12 @@
 
 \mode<presentation>
 
+\DeclareOptionBeamer{navigation}{
+    \PassOptionsToPackage{navigation=#1}{beamerouterthemeSJTUBeamer}
+}
+\ExecuteOptionsBeamer{navigation=tools}
+\ProcessOptionsBeamer
+
 \usefonttheme{SJTUBeamer}
 \useinnertheme{SJTUBeamer}
 \useoutertheme{SJTUBeamer}

@@ -30,12 +30,27 @@
 %     }
 % }
 
-\addtobeamertemplate{navigation symbols}{}{%
-    \usebeamerfont{footline}%
-    \usebeamercolor[fg]{footline}%
-    \hspace{1em}%
-    \raisebox{1.2pt}[0pt][0pt]{\insertframenumber/\inserttotalframenumber}
-}
+\DeclareOptionBeamer{navigation}{\def\beamer@SJTUBeamer@navigation{#1}}
+\ExecuteOptionsBeamer{navigation=tools} % tools will be default if nothing is given
+\ProcessOptionsBeamer
+
+\def\beamer@SJTUBeamer@navigationtools{tools}%
+\def\beamer@SJTUBeamer@navigationsubsections{subsections}%
+
+\ifx\beamer@SJTUBeamer@navigation\beamer@SJTUBeamer@navigationsubsections%
+  \setbeamertemplate{navigation symbols}{
+    \raggedleft%
+    \insertnavigation{0.25\paperwidth}%
+    \vspace{0.5em}%
+  }%
+\else%
+  \addtobeamertemplate{navigation symbols}{}{%
+  \usebeamerfont{footline}%
+  \usebeamercolor[fg]{footline}%
+  \hspace{1em}%
+  \raisebox{1.2pt}[0pt][0pt]{\insertframenumber/\inserttotalframenumber}%
+  }%
+\fi%
 
 % The logo.
 
