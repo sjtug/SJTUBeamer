@@ -33,11 +33,12 @@
 \renewcommand{\contentsname}{目录}
 \tcbuselibrary{raster}
 \tcbuselibrary{skins}
+\tcbuselibrary{documentation}
 
 \begin{document}
 \begin{CJK}{UTF8}{song}
 \title{\textsf{SJTUBeamer} 样式手册}
-\author{Log Creative\thanks{\href{github.com/LogCreative/SJTUThesis}{github.com/LogCreative/SJTUThesis}}}
+\author{Log Creative}
 \date{\today}
 \maketitle
 
@@ -59,14 +60,17 @@
 
 \section{选项}
 
-\texttt{navigation=tools|subsections}\\
-\indent 导航栏选项。默认为 \verb"tools"，即工具栏与页码组合；可以设置为 \verb"subsections"，将会产生子章节的跳转进度条。
+\begin{docKey}[SJTUBeamer]{navigation}{=tools|subsections}{default \texttt{tools}}
+    导航栏选项。默认为 \verb"tools"，即工具栏与页码组合。设置为 \verb"subsections"，将会产生子章节的跳转进度条。
+\end{docKey}
 
-\texttt{lang=cn|en}\\
-\indent 语言选项，主要影响校徽是中文校徽，还是英文校徽。而启用该选项为英文将会导致中文包不会被加载，因为推荐使用英文徽标时，幻灯片内容为英文。
+\begin{docKey}[SJTUBeamer]{lang}{=cn|en}{default \texttt{cn}}
+    语言选项，决定校徽是中文校徽，还是英文校徽。注意，启用 \texttt{en} 将会导致中文包不会被加载，因为使用英文徽标时，幻灯片内容推荐为英文。
+\end{docKey}
 
-\texttt{cjk=false|true}\\
-\indent 是否使用 \textsf{CJK} 宏包。如果开启此选项，请使用 \verb"\begin{CJK}{UTF8}{hei}" 和 \verb"\end{CJK}" 包裹 \verb"document" 环境中的内容。
+\begin{docKey}[SJTUBeamer]{cjk}{=false|true}{default \texttt{false}}
+    是否使用 \textsf{CJK} 宏包。如果开启此选项，请使用 \verb"\begin{CJK}{UTF8}{hei}" 和 \verb"\end{CJK}" 包裹 \verb"document" 环境中的内容。
+\end{docKey}
 
 \section{样式}
 
