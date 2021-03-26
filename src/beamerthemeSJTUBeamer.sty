@@ -18,12 +18,19 @@
 \DeclareOptionBeamer{navigation}{
     \PassOptionsToPackage{navigation=#1}{beamerouterthemeSJTUBeamer}
 }
+\DeclareOptionBeamer{lang}{
+    \PassOptionsToPackage{lang=#1}{beamerouterthemeSJTUBeamer}
+    \PassOptionsToPackage{lang=#1}{beamerinnerthemeSJTUBeamer}
+}
+
 \DeclareOptionBeamer{cjk}{\def\beamer@SJTUBeamer@cjk{#1}}
 \def\beamer@SJTUBeamer@cjktrue{true}%
 \def\beamer@SJTUBeamer@cjkfalse{false}%
+
 \ExecuteOptionsBeamer{
     navigation=tools,
-    cjk=false
+    cjk=false,
+    lang=cn,
 }
 \ProcessOptionsBeamer
 

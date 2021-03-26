@@ -49,6 +49,7 @@
   \usebeamercolor[fg]{footline}%
   \hspace{1em}%
   \raisebox{1.2pt}[0pt][0pt]{\insertframenumber/\inserttotalframenumber}%
+  \hspace*{0.5em}%
   }%
 \fi%
 
@@ -56,7 +57,20 @@
 
 % The frame title.
 
-\pgfdeclareimage[height=0.7cm]{titlelogosmall}{vi/cnlogo.pdf}
+
+\DeclareOptionBeamer{lang}{\def\beamer@SJTUBeamer@lang{#1}}
+\ExecuteOptionsBeamer{lang=cn} % cn will be default if nothing is given
+\ProcessOptionsBeamer
+
+\def\beamer@SJTUBeamer@langcn{cn}%
+\def\beamer@SJTUBeamer@langen{en}%
+
+\ifx\beamer@SJTUBeamer@lang\beamer@SJTUBeamer@langcn
+  \pgfdeclareimage[height=0.7cm]{titlelogosmall}{vi/cnlogo.pdf}
+\else
+  \pgfdeclareimage[height=0.7cm]{titlelogosmall}{vi/enlogo.pdf}
+\fi
+
 \defbeamertemplate*{frametitle}{SJTUBeamer}[1][left]
 {%
   \ifbeamercolorempty[bg]{frametitle}{}{\nointerlineskip}%

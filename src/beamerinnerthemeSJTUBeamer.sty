@@ -15,7 +15,19 @@
 
 % Title and part pages.
 
-\pgfdeclareimage[height=1cm]{titlelogo}{vi/cnlogo.pdf}
+\DeclareOptionBeamer{lang}{\def\beamer@SJTUBeamer@lang{#1}}
+\ExecuteOptionsBeamer{lang=cn} % cn will be default if nothing is given
+\ProcessOptionsBeamer
+
+\def\beamer@SJTUBeamer@langcn{cn}%
+\def\beamer@SJTUBeamer@langen{en}%
+
+\ifx\beamer@SJTUBeamer@lang\beamer@SJTUBeamer@langcn
+  \pgfdeclareimage[height=1cm]{titlelogo}{vi/cnlogo.pdf}
+\else
+  \pgfdeclareimage[height=1cm]{titlelogo}{vi/enlogo.pdf}
+\fi
+
 \titlegraphic{\pgfuseimage{titlelogo}}
 \defbeamertemplate*{title page}{SJTUBeamer}[1][]
 {
