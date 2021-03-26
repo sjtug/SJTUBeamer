@@ -18,7 +18,13 @@
 \DeclareOptionBeamer{navigation}{
     \PassOptionsToPackage{navigation=#1}{beamerouterthemeSJTUBeamer}
 }
-\ExecuteOptionsBeamer{navigation=tools}
+\DeclareOptionBeamer{cjk}{\def\beamer@SJTUBeamer@cjk{#1}}
+\def\beamer@SJTUBeamer@cjktrue{true}%
+\def\beamer@SJTUBeamer@cjkfalse{false}%
+\ExecuteOptionsBeamer{
+    navigation=tools,
+    cjk=false
+}
 \ProcessOptionsBeamer
 
 \usefonttheme{SJTUBeamer}
@@ -29,26 +35,29 @@
 \RequirePackage{bookmark}
 
 % To override the warning of "pdfauthor" reset.
-% \def\Hy@WarnOptionDisabled#1{
-%     \def\next{#1}%
-%     \def\ignore{pdfauthor}%
-%     \ifx\next\ignore%
-%     \else\Hy@Warning{%
-%         Option `#1' has already been used,\MessageBreak 
-%         setting the option has no effect%
-%     }\fi
-% }
-
-\def\Hy@WarnOptionDisabled#1{
-    \def\next{#1}%
-    \def\ignore{driverfallback}%
-    \ifx\next\ignore%
-    \else\Hy@Warning{%
-        Option `#1' has already been used,\MessageBreak 
-        setting the option has no effect%
-    }\fi
-}
-\RequirePackage[UTF8]{ctex}
+\ifx\beamer@SJTUBeamer@cjk\beamer@SJTUBeamer@cjktrue%
+    \def\Hy@WarnOptionDisabled#1{
+        \def\next{#1}%
+        \def\ignore{pdfauthor}%
+        \ifx\next\ignore%
+        \else\Hy@Warning{%
+            Option `#1' has already been used,\MessageBreak 
+            setting the option has no effect%
+        }\fi
+    }
+    \RequirePackage{CJKutf8}
+\else%
+    \def\Hy@WarnOptionDisabled#1{
+        \def\next{#1}%
+        \def\ignore{driverfallback}%
+        \ifx\next\ignore%
+        \else\Hy@Warning{%
+            Option `#1' has already been used,\MessageBreak 
+            setting the option has no effect%
+        }\fi
+    }
+    \RequirePackage[UTF8]{ctex}
+\fi
 
 \providecommand{\sjtutitle}{
     \setbeamercolor{background canvas}{bg=problue}%
