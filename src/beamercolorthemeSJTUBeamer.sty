@@ -13,23 +13,45 @@
 % The Current Maintainer of this work is Log Creative.
 %
 
-\definecolor{problue}{HTML}{004098}
-\definecolor{lightblue}{HTML}{017FC6}
-\definecolor{lightgreen}{HTML}{298626}
-\definecolor{lightgray}{HTML}{004D4B}
+\DeclareOptionBeamer{color}{\def\beamer@SJTUBeamer@color{#1}}
+\ExecuteOptionsBeamer{color=tools} % tools will be default if nothing is given
+\ProcessOptionsBeamer
+
+\def\beamer@SJTUBeamer@colorblue{blue}%
+\def\beamer@SJTUBeamer@colorred{red}%
+
+\ifx\beamer@SJTUBeamer@color\beamer@SJTUBeamer@colorblue%
+    \definecolor{cprimary}{HTML}{004098}        %problue 
+    \definecolor{csecondary}{HTML}{298626}      %lightblue
+    \definecolor{ctertiary}{HTML}{004D4B}       %lightgreen
+    \definecolor{cquanternary}{HTML}{FFFFFF}    %lightgray    
+\else%
+    \definecolor{cprimary}{HTML}{9E1F36}        %engred
+    \definecolor{csecondary}{HTML}{FED201}      %lightred
+    \definecolor{ctertiary}{HTML}{F28101}       %yellow
+    \definecolor{cquanternary}{HTML}{000000}    %orange
+\fi%
+
+\providecommand{\sjtutitle}{
+    \setbeamercolor{background canvas}{bg=cprimary}%
+    \setbeamercolor{structure}{fg=white}%
+    \maketitle%
+    \setbeamercolor{background canvas}{bg=white}%
+    \setbeamercolor{structure}{fg=cprimary}%
+}
 
 \setbeamercolor{background canvas}{bg=white}
-\setbeamercolor{structure}{fg=problue}
+\setbeamercolor{structure}{fg=cprimary}
 
 \setbeamercolor{normal text}{fg=black,bg=black!40}
 \setbeamercolor*{block title}{parent=structure}
-\setbeamercolor{titlelike}{fg=white,bg=problue}
+\setbeamercolor{titlelike}{fg=white,bg=cprimary}
 \setbeamercolor{subtitle}{fg=white}
 
-\setbeamercolor{block title}{fg=white,bg=lightblue}
-\setbeamercolor{block title alerted}{use=alerted text,fg=white,bg=lightgreen}
-\setbeamercolor{block title example}{use=example text,fg=white,bg=lightgray}
+\setbeamercolor{block title}{fg=white,bg=cprimary!90}
+\setbeamercolor{block title alerted}{use=alerted text,fg=cquanternary,bg=csecondary}
+\setbeamercolor{block title example}{use=example text,fg=white,bg=ctertiary}
 
-\setbeamercolor{block body}{parent=normal text,use=block title,bg=lightblue!30}
+\setbeamercolor{block body}{parent=normal text,use=block title,bg=block title.bg!30}
 \setbeamercolor{block body alerted}{parent=normal text,use=block title alerted,bg=block title alerted.bg!30}
 \setbeamercolor{block body example}{parent=normal text,use=block title example,bg=block title example.bg!30}

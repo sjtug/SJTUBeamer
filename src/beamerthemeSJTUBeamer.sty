@@ -30,10 +30,15 @@
 \def\beamer@SJTUBeamer@cjktrue{true}%
 \def\beamer@SJTUBeamer@cjkfalse{false}%
 
+\DeclareOptionBeamer{color}{
+    \PassOptionsToPackage{color=#1}{beamercolorthemeSJTUBeamer}
+}
+
 \ExecuteOptionsBeamer{
     navigation=tools,
     cjk=false,
     lang=cn,
+    color=blue,
 }
 \ProcessOptionsBeamer
 
@@ -70,14 +75,6 @@
         \RequirePackage[UTF8]{ctex}
     \fi
 \fi
-
-\providecommand{\sjtutitle}{
-    \setbeamercolor{background canvas}{bg=problue}%
-    \setbeamercolor{structure}{fg=white}%
-    \maketitle%
-    \setbeamercolor{background canvas}{bg=white}%
-    \setbeamercolor{structure}{fg=problue}%
-}
 
 \mode
 <all>
