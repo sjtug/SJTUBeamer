@@ -52,7 +52,7 @@
 
 \section{编译}
 
-该模板的使用范例代码请见 \href{https://github.com/LogCreative/SJTUBeamer/blob/main/src/test.tex}{测试文件}。需要使用副本时请直接拷贝 \verb"src" 文件夹修改测试文件，目前版本不要轻易删除样式文件。目前版本需要使用 \verb"\sjtutitle" 命令替代 \verb"\maketitle" 命令。
+该模板的使用范例代码请见 \href{https://github.com/LogCreative/SJTUBeamer/blob/main/src/test.tex}{测试文件}。需要使用副本时请直接拷贝 \verb"src" 文件夹修改测试文件，目前版本不要轻易删除样式文件。
 
 为了编译出目录，你需要编译两次，或者直接使用 \verb"latexmk" 编译。
 
@@ -72,6 +72,10 @@
     是否使用 \textsf{CJK} 宏包。如果开启此选项，请使用 \verb"\begin{CJK}{UTF8}{hei}" 和 \verb"\end{CJK}" 包裹 \verb"document" 环境中的内容。
 \end{docKey}
 
+\begin{docKey}[SJTUBeamer]{color}{=blue|red}{default \texttt{blue}}
+    使用蓝色或红色的颜色主题。根据官方学术版模板 \href{http://vi.sjtu.edu.cn/index.php/articles/app/8}{\textbf{B2-02-02}} 的相关说明，极简版式适合场合较为严肃、不适合题图复杂图片出现的情况，如需使用，建议所有内页均使用极简版式，以达到简洁、清爽的效果。故默认情况下本模板使用蓝色主题。
+\end{docKey}
+
 \section{样式}
 
 校标使用\href{http://vi.sjtu.edu.cn/index.php/articles/base/4}{\textbf{校标组合的最小使用规范 A4-11}}的 18mm
@@ -79,14 +83,26 @@
 
 \subsection{简约蓝}
 
-目前仅仅实现了简约蓝版本，配色方案满足\href{http://vi.sjtu.edu.cn/index.php/articles/base/3}{\textbf{辅助色彩规范 A3-02-02}}。
+简约蓝版本，配色方案满足\href{http://vi.sjtu.edu.cn/index.php/articles/base/3}{\textbf{辅助色彩规范 A3-02-02}}。\hfill \texttt{color=blue}
 
 \begin{tcbraster}[raster columns=2,colframe=blue,colback=white,
     colbacktitle=blue!50!white,fonttitle=\small\bfseries\ttfamily,
     left=0pt,right=0pt,top=0pt,bottom=0pt,boxsep=0pt,boxrule=0.6pt,
     toptitle=1mm,bottomtitle=1mm,drop lifted shadow,center title,
     graphics pages={1,...,5}]
-    \tcbincludepdf{../src/test.pdf}
+    \tcbincludepdf{pdf/blue.pdf}
+\end{tcbraster}
+
+\subsection{活力红}
+
+活力红版本，配色方案满足\href{http://vi.sjtu.edu.cn/index.php/articles/base/3}{\textbf{辅助色彩规范 A3-02-01}}\hfill\texttt{color=red}
+
+\begin{tcbraster}[raster columns=2,colframe=red,colback=white,
+    colbacktitle=red!50!white,fonttitle=\small\bfseries\ttfamily,
+    left=0pt,right=0pt,top=0pt,bottom=0pt,boxsep=0pt,boxrule=0.6pt,
+    toptitle=1mm,bottomtitle=1mm,drop lifted shadow,center title,
+    graphics pages={1,...,5}]
+    \tcbincludepdf{pdf/red.pdf}
 \end{tcbraster}
 
 \section{拓展阅读}

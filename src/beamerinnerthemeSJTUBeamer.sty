@@ -61,6 +61,18 @@
   \vfill
 }
 
+\def\maketitle{
+    \setbeamercolor{background canvas}{bg=cprimary}%
+    \setbeamercolor{structure}{fg=white}%
+    \ifbeamer@inframe%
+    \titlepage%
+    \else%
+    \frame{\titlepage}%
+    \fi%
+    \setbeamercolor{background canvas}{bg=white}%
+    \setbeamercolor{structure}{fg=cprimary}%
+}
+
 % Itemize environments.
 
 \setbeamertemplate{items}[circle]
