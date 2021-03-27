@@ -84,6 +84,41 @@
 
 % Block environments.
 
+\RequirePackage{tikz}
+\RequirePackage{tcolorbox}
+\tcbuselibrary{skins}
+\tcbuselibrary{listingsutf8}
+\newtcblisting{codeblock}[2]{listing only, 
+listing engine=listings,
+listing options={
+  language=#1,%
+  basicstyle=\ttfamily\small,
+  keywordstyle=\color{cprimary},%
+  stringstyle=\color{csecondary},%
+  commentstyle=\color{ctertiary!80!gray},%
+  numbers=left,
+  numberstyle=\color{cprimary!80}\ttfamily\scriptsize,
+  numbersep=5pt,
+  columns=flexible,
+  extendedchars=false,
+  showstringspaces=false,
+  showspaces=false,
+  breaklines
+},
+enhanced,
+sharp corners,
+top=0mm,
+bottom=0mm,
+title=#2,
+colback=cprimary!5,
+colframe=cprimary!80,
+overlay={
+    \begin{tcbclipinterior}\fill[cprimary!20]%
+        (frame.south west) rectangle ([xshift=5mm]frame.north west);
+    \end{tcbclipinterior}
+}
+}
+
 % Theorem and proof environments.
 
 % Figures and tables.

@@ -23,6 +23,7 @@
 \usepackage[colorlinks,linkcolor=blue,anchorcolor=blue,citecolor=blue]{hyperref}
 \hypersetup{unicode} % to display the unicode char in the bookmark correctly
 \usepackage{bookmark} % should be introduced after package hyperref
+\usepackage{listings}
 \setlength{\parskip}{1ex}
 \setenumerate[1]{itemsep=0pt,partopsep=0pt,parsep=\parskip,topsep=5pt}
 \setitemize[1]{itemsep=0pt,partopsep=0pt,parsep=\parskip,topsep=5pt}
@@ -48,7 +49,7 @@
 
 \textsf{SJTUBeamer} 样式为上海交通大学幻灯片模板的非官方实现版本，遵守\href{http://vi.sjtu.edu.cn/}{上海交通大学视觉形象识别系统}的相关规范，图标版权归上海交通大学所有，本项目仅供校内人员学习参考使用。
 
-目前该样式仍然处于开发者预览版本（$\alpha$-0.2），仍在做适应性修改并适当添加图案。欢迎通过拉取请求对本模板提出修改建议。
+目前该样式仍然处于开发者预览版本（$\alpha$-0.3），仍在做适应性修改并适当添加图案。欢迎通过拉取请求对本模板提出修改建议。
 
 \section{编译}
 
@@ -60,38 +61,31 @@
 
 \section{选项}
 
-\begin{docKey}[SJTUBeamer]{navigation}{=tools|subsections}{default \texttt{tools}}
+\begin{docKey*}[SJTUBeamer]{navigation}{=tools|subsections}{default \texttt{tools}}
     导航栏选项。默认为 \verb"tools"，即工具栏与页码组合。设置为 \verb"subsections"，将会产生子章节的跳转进度条。
-\end{docKey}
+\end{docKey*}
 
-\begin{docKey}[SJTUBeamer]{lang}{=cn|en}{default \texttt{cn}}
+\begin{docKey*}[SJTUBeamer]{lang}{=cn|en}{default \texttt{cn}}
     语言选项，决定校徽是中文校徽，还是英文校徽。注意，启用 \texttt{en} 将会导致中文包不会被加载，因为使用英文徽标时，幻灯片内容推荐为英文。
-\end{docKey}
+\end{docKey*}
 
-\begin{docKey}[SJTUBeamer]{cjk}{=false|true}{default \texttt{false}}
+\begin{docKey*}[SJTUBeamer]{cjk}{=false|true}{default \texttt{false}}
     是否使用 \textsf{CJK} 宏包。如果开启此选项，请使用 \verb"\begin{CJK}{UTF8}{hei}" 和 \verb"\end{CJK}" 包裹 \verb"document" 环境中的内容。
-\end{docKey}
+\end{docKey*}
 
-\begin{docKey}[SJTUBeamer]{color}{=blue|red}{default \texttt{blue}}
+\begin{docKey*}[SJTUBeamer]{color}{=blue|red}{default \texttt{blue}}
     使用蓝色或红色的颜色主题。根据官方学术版模板 \href{http://vi.sjtu.edu.cn/index.php/articles/app/8}{\textbf{B2-02-02}} 的相关说明，极简版式适合场合较为严肃、不适合题图复杂图片出现的情况，如需使用，建议所有内页均使用极简版式，以达到简洁、清爽的效果。故默认情况下本模板使用蓝色主题。
-\end{docKey}
+\end{docKey*}
 
+\begin{docEnvironment*}[doc parameter=\marg{language}\marg{title}, doclang/environment content=code]{codeblock}{}
+    代码块。第一个参数为代码语言，第二个参数为代码块的标题。参数可以用 \verb"{}" 留空，但不要省略大括号。需要清理代码的缩进。注意代码块所在的幻灯片需要添加 \verb"fragile" 参数，也就是 \verb"\begin{frame}[fragile]"。
+\end{docEnvironment*}
+
+\newpage
 \section{样式}
 
 校标使用\href{http://vi.sjtu.edu.cn/index.php/articles/base/4}{\textbf{校标组合的最小使用规范 A4-11}}的 18mm
  修正稿。安全空间满足\href{http://vi.sjtu.edu.cn/index.php/articles/base/4}{\textbf{校标组合的安全空间 A4-12}}的 $\frac{1}{5}$ 校标高度规定。
-
-\subsection{简约蓝}
-
-简约蓝版本，配色方案满足\href{http://vi.sjtu.edu.cn/index.php/articles/base/3}{\textbf{辅助色彩规范 A3-02-02}}。\hfill \texttt{color=blue}
-
-\begin{tcbraster}[raster columns=2,colframe=blue,colback=white,
-    colbacktitle=blue!50!white,fonttitle=\small\bfseries\ttfamily,
-    left=0pt,right=0pt,top=0pt,bottom=0pt,boxsep=0pt,boxrule=0.6pt,
-    toptitle=1mm,bottomtitle=1mm,drop lifted shadow,center title,
-    graphics pages={1,...,5}]
-    \tcbincludepdf{pdf/blue.pdf}
-\end{tcbraster}
 
 \subsection{活力红}
 
@@ -101,8 +95,20 @@
     colbacktitle=red!50!white,fonttitle=\small\bfseries\ttfamily,
     left=0pt,right=0pt,top=0pt,bottom=0pt,boxsep=0pt,boxrule=0.6pt,
     toptitle=1mm,bottomtitle=1mm,drop lifted shadow,center title,
-    graphics pages={1,...,5}]
+    graphics pages={1,...,6}]
     \tcbincludepdf{pdf/red.pdf}
+\end{tcbraster}
+
+\subsection{简约蓝}
+
+简约蓝版本，配色方案满足\href{http://vi.sjtu.edu.cn/index.php/articles/base/3}{\textbf{辅助色彩规范 A3-02-02}}。\hfill \texttt{color=blue}
+
+\begin{tcbraster}[raster columns=2,colframe=blue,colback=white,
+    colbacktitle=blue!50!white,fonttitle=\small\bfseries\ttfamily,
+    left=0pt,right=0pt,top=0pt,bottom=0pt,boxsep=0pt,boxrule=0.6pt,
+    toptitle=1mm,bottomtitle=1mm,drop lifted shadow,center title,
+    graphics pages={1,...,6}]
+    \tcbincludepdf{pdf/blue.pdf}
 \end{tcbraster}
 
 \section{拓展阅读}
@@ -112,6 +118,8 @@
 
 \newpage
 Copyright 2021 Log Creative \& \LaTeX{} Sparkle Project
+
+The copyright holder for the logo is SJTU. The template itself doesn't change the ownership of the related graphics in the guideline. The template is only available for non-commercial purposes.
 
 This work may be distributed and/or modified under the
 conditions of the \LaTeX{} Project Public License, either version 1.3 of this license or (at your option) any later version.
