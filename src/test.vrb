@@ -1,0 +1,12 @@
+\frametitle{代码块}
+        % 代码块参数：语言，标题
+        % 请减少代码初始的缩进
+        \begin{codeblock}{c++}{C++代码}
+#include<iostream>
+
+int main(){
+    // Console Output
+    std::cout << "Hello, SJTU!" << std::endl;
+    return 0;
+}
+        \end{codeblock}
