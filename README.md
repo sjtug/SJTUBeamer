@@ -9,10 +9,12 @@ SJTUBeamer 样式为上海交通大学幻灯片模板的非官方实现版本，
 
 [SJTUBeamer 样式文档](https://github.com/LogCreative/SJTUBeamer/blob/main/doc/SJTUBeamertheme.pdf)
 
-![](doc/img/test_页面_1.jpg)
-![](doc/img/test_页面_5.jpg)
+![](doc/img/poster_页面_1.jpg)
+![](doc/img/poster_页面_2.jpg)
 
 > Copyright 2021 Log Creative
+>
+> The copyright holder for the logo is SJTU. The template itself doesn't change the ownership of the related graphics in the guideline. The template is only available for non-commercial purposes.
 > 
 > This work may be distributed and/or modified under the
 conditions of the LaTeX Project Public License, either version 1.3

@@ -1,0 +1,29 @@
+\documentclass{article}
+\usepackage{tcolorbox}
+\usepackage{geometry}
+\usepackage[UTF8]{ctex}
+\geometry{left=1cm,right=1cm,top=2cm,bottom=0cm}
+\tcbuselibrary{skins}
+\tcbuselibrary{raster}
+\setlength{\parskip}{2em}
+\begin{document}
+\color[HTML]{9E1F36}\noindent \LARGE \textbf{活力红}
+\begin{tcbraster}[raster columns=2,colframe=red,colback=white,
+    colbacktitle=red!50!white,fonttitle=\small\bfseries\ttfamily,
+    left=0pt,right=0pt,top=0pt,bottom=0pt,boxsep=0pt,boxrule=0.6pt,
+    toptitle=1mm,bottomtitle=1mm,drop lifted shadow,center title,
+    graphics pages={1,...,6}]
+    \tcbincludepdf{../pdf/red.pdf}
+\end{tcbraster}
+\raggedleft \normalsize \texttt{color=red}
+\newpage
+\color[HTML]{004098}\LARGE \textbf{简约蓝}
+\begin{tcbraster}[raster columns=2,colframe=blue,colback=white,
+    colbacktitle=blue!50!white,fonttitle=\small\bfseries\ttfamily,
+    left=0pt,right=0pt,top=0pt,bottom=0pt,boxsep=0pt,boxrule=0.6pt,
+    toptitle=1mm,bottomtitle=1mm,drop lifted shadow,center title,
+    graphics pages={1,...,6}]
+    \tcbincludepdf{../pdf/blue.pdf}
+\end{tcbraster}
+\raggedright  \normalsize \texttt{color=blue}
+\end{document}
