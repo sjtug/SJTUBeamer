@@ -131,8 +131,10 @@ overlay={
     auto corner on length=\pgfdecorationsegmentlength]
   {
     \pgfpathlineto{\pgfpoint{0.25\pgfdecorationsegmentlength}{0pt}}
-    \pgfpathlineto{\pgfpoint{0.375\pgfdecorationsegmentlength}{0.125\pgfdecorationsegmentlength}}
-    \pgfpathlineto{\pgfpoint{0.625\pgfdecorationsegmentlength}{0.125\pgfdecorationsegmentlength}}
+    \pgfpathlineto{\pgfpoint{0.33\pgfdecorationsegmentlength}{0.06\pgfdecorationsegmentlength}}
+    \pgfpathlineto{\pgfpoint{0.33\pgfdecorationsegmentlength}{0.1\pgfdecorationsegmentlength}}
+    \pgfpathlineto{\pgfpoint{0.67\pgfdecorationsegmentlength}{0.1\pgfdecorationsegmentlength}}
+    \pgfpathlineto{\pgfpoint{0.67\pgfdecorationsegmentlength}{0.06\pgfdecorationsegmentlength}}
     \pgfpathlineto{\pgfpoint{0.75\pgfdecorationsegmentlength}{0pt}}
     \pgfpathlineto{\pgfpoint{\pgfdecorationsegmentlength}{0pt}}
   }
@@ -154,7 +156,7 @@ overlay={
     decoration={
       stamp,
       segment length=8pt,
-      path has corners=true
+      path has corners=true,
     },
     decorate
   }
