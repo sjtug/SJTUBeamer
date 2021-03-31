@@ -130,13 +130,14 @@ overlay={
     width=\pgfdecorationsegmentlength,
     auto corner on length=\pgfdecorationsegmentlength]
   {
-    \pgfpathlineto{\pgfpoint{0.25\pgfdecorationsegmentlength}{0pt}}
-    \pgfpathlineto{\pgfpoint{0.33\pgfdecorationsegmentlength}{0.06\pgfdecorationsegmentlength}}
-    \pgfpathlineto{\pgfpoint{0.33\pgfdecorationsegmentlength}{0.1\pgfdecorationsegmentlength}}
-    \pgfpathlineto{\pgfpoint{0.67\pgfdecorationsegmentlength}{0.1\pgfdecorationsegmentlength}}
-    \pgfpathlineto{\pgfpoint{0.67\pgfdecorationsegmentlength}{0.06\pgfdecorationsegmentlength}}
-    \pgfpathlineto{\pgfpoint{0.75\pgfdecorationsegmentlength}{0pt}}
-    \pgfpathlineto{\pgfpoint{\pgfdecorationsegmentlength}{0pt}}
+    \def\l{\pgfdecorationsegmentlength}%
+    \pgfpathlineto{\pgfpoint{0.25*\l}{0pt}}
+    \pgfpathlineto{\pgfpoint{0.33*\l}{0.06*\l}}
+    \pgfpathlineto{\pgfpoint{0.33*\l}{0.1*\l}}
+    \pgfpathlineto{\pgfpoint{0.67*\l}{0.1*\l}}
+    \pgfpathlineto{\pgfpoint{0.67*\l}{0.06*\l}}
+    \pgfpathlineto{\pgfpoint{0.75*\l}{0pt}}
+    \pgfpathlineto{\pgfpoint{\l}{0pt}}
   }
   \state{final}
   {
