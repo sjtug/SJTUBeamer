@@ -1,0 +1,62 @@
+\documentclass[tikz]{standalone}
+\usetikzlibrary{patterns.meta}
+\definecolor{cprimary}{HTML}{9E1F36}
+
+\tikzdeclarepattern{
+	name=stamp,
+	parameters={
+		\pgfkeysvalueof{/pgf/pattern keys/size},
+		\pgfkeysvalueof{/pgf/pattern keys/xshift},
+		\pgfkeysvalueof{/pgf/pattern keys/yshift},
+	},
+	defaults={
+		size/.initial = 5pt,
+		xshift/.initial = 0pt,
+		yshift/.initial = 0pt,
+	},
+	bottom left={(
+		-0.5*\pgfkeysvalueof{/pgf/pattern keys/size}+\pgfkeysvalueof{/pgf/pattern keys/xshift},
+		-0.4*\pgfkeysvalueof{/pgf/pattern keys/size}+\pgfkeysvalueof{/pgf/pattern keys/yshift})},
+	top right={(
+		0.5*\pgfkeysvalueof{/pgf/pattern keys/size}+\pgfkeysvalueof{/pgf/pattern keys/xshift},
+		0.4*\pgfkeysvalueof{/pgf/pattern keys/size}+\pgfkeysvalueof{/pgf/pattern keys/yshift})},
+	tile size={(
+		\pgfkeysvalueof{/pgf/pattern keys/size},
+		0.8*\pgfkeysvalueof{/pgf/pattern keys/size})},
+	code={
+		\tikzset{x=0.5*\pgfkeysvalueof{/pgf/pattern keys/size},y=0.2*\pgfkeysvalueof{/pgf/pattern keys/size}}
+		 \fill[
+			xshift=\pgfkeysvalueof{/pgf/pattern keys/xshift},
+		 	yshift=\pgfkeysvalueof{/pgf/pattern keys/yshift}
+			] (-0.25*\pgfkeysvalueof{/pgf/pattern keys/size},
+		 		0) 
+		 	-- (-0.17*\pgfkeysvalueof{/pgf/pattern keys/size},
+			 	0.06*\pgfkeysvalueof{/pgf/pattern keys/size}) 
+			-- (-0.17*\pgfkeysvalueof{/pgf/pattern keys/size},
+				0.1*\pgfkeysvalueof{/pgf/pattern keys/size}) 
+			-- (0.17*\pgfkeysvalueof{/pgf/pattern keys/size},
+				0.1*\pgfkeysvalueof{/pgf/pattern keys/size}) 
+			-- (0.17*\pgfkeysvalueof{/pgf/pattern keys/size},
+				0.06*\pgfkeysvalueof{/pgf/pattern keys/size})
+			-- (0.25*\pgfkeysvalueof{/pgf/pattern keys/size},
+				0) 
+ 			-- (0.17*\pgfkeysvalueof{/pgf/pattern keys/size},
+			 	-0.06*\pgfkeysvalueof{/pgf/pattern keys/size}) 
+			-- (0.17*\pgfkeysvalueof{/pgf/pattern keys/size},
+				-0.1*\pgfkeysvalueof{/pgf/pattern keys/size}) 
+			-- (-0.17*\pgfkeysvalueof{/pgf/pattern keys/size},
+				-0.1*\pgfkeysvalueof{/pgf/pattern keys/size}) 
+			-- (-0.17*\pgfkeysvalueof{/pgf/pattern keys/size},
+				-0.06*\pgfkeysvalueof{/pgf/pattern keys/size})
+			-- cycle;
+	}
+}
+\begin{document}
+
+\begin{tikzpicture}
+
+\fill [pattern={stamp[size=10pt]},pattern color=red] (-2.4,1.5) rectangle (2.4,-3);
+\fill [pattern={stamp[size=10pt,xshift=5pt,yshift=-4pt]},pattern color=red] (-2.4,1.5) rectangle (2.4,-3);
+\end{tikzpicture}
+
+\end{document}

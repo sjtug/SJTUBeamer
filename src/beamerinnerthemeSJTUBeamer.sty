@@ -124,7 +124,7 @@ overlay={
 % Figures and tables.
 
 \usetikzlibrary{decorations.pathmorphing}
-\pgfdeclaredecoration{stamp}{initial}
+\pgfdeclaredecoration{stampline}{initial}
 {
   \state{initial}[
     width=\pgfdecorationsegmentlength,
@@ -154,7 +154,7 @@ overlay={
     cprimary,
     line width=0.5pt,
     decoration={
-      stamp,
+      stampline,
       segment length=8pt,
       path has corners=true,
     },
