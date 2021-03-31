@@ -13,6 +13,9 @@
 % The Current Maintainer of this work is Log Creative.
 %
 
+\RequirePackage{tikz}
+\RequirePackage{tcolorbox}
+
 % Title and part pages.
 
 \DeclareOptionBeamer{lang}{\def\beamer@SJTUBeamer@lang{#1}}
@@ -28,11 +31,80 @@
   \pgfdeclareimage[height=1cm]{titlelogo}{vi/enlogo.pdf}
 \fi
 
+\usetikzlibrary{patterns.meta}
+\usetikzlibrary{fadings}
+\tikzdeclarepattern{
+	name=stamp,
+	parameters={
+		\pgfkeysvalueof{/pgf/pattern keys/size},
+		\pgfkeysvalueof{/pgf/pattern keys/xshift},
+		\pgfkeysvalueof{/pgf/pattern keys/yshift},
+	},
+	defaults={
+		size/.initial = 5pt,
+		xshift/.initial = 0pt,
+		yshift/.initial = 0pt,
+	},
+	bottom left={(
+		-0.5*\pgfkeysvalueof{/pgf/pattern keys/size}+\pgfkeysvalueof{/pgf/pattern keys/xshift},
+		-0.4*\pgfkeysvalueof{/pgf/pattern keys/size}+\pgfkeysvalueof{/pgf/pattern keys/yshift}
+	)},
+	top right={(
+		0.5*\pgfkeysvalueof{/pgf/pattern keys/size}+\pgfkeysvalueof{/pgf/pattern keys/xshift},
+		0.4*\pgfkeysvalueof{/pgf/pattern keys/size}+\pgfkeysvalueof{/pgf/pattern keys/yshift}
+	)},
+	tile size={(
+		\pgfkeysvalueof{/pgf/pattern keys/size},
+		0.8*\pgfkeysvalueof{/pgf/pattern keys/size}
+	)},
+	code={
+		\def\s{\pgfkeysvalueof{/pgf/pattern keys/size}}%
+		\tikzset{x=0.5*\s,y=0.2*\s}
+		\fill[xshift=\pgfkeysvalueof{/pgf/pattern keys/xshift},
+			yshift=\pgfkeysvalueof{/pgf/pattern keys/yshift}] 
+			(-0.25*\s,0) 
+			-- (-0.17*\s,0.06*\s) 
+			-- (-0.17*\s,0.1*\s) 
+			-- (0.17*\s,0.1*\s) 
+			-- (0.17*\s,0.06*\s)
+			-- (0.25*\s,0) 
+			-- (0.17*\s,-0.06*\s) 
+			-- (0.17*\s,-0.1*\s) 
+			-- (-0.17*\s,-0.1*\s) 
+			-- (-0.17*\s,-0.06*\s) -- cycle;
+	}
+}
+\tikzfading[
+  name=center fade,
+  inner color=transparent!0,
+  outer color=transparent!15
+]
+\tikzfading[
+  name=fade right,
+  left color=transparent!0,
+  right color=transparent!100
+]
+\providecommand{\stamparray}[3]{
+	% #1: pattern size
+	% #2: starting point
+	% #3: ending point
+		\fill [pattern={stamp[size=#1]},pattern color=cprimary!50] #2 rectangle #3;
+		\def\s{#1}%
+		\pgfmathparse{0.5*\s}\let\xs=\pgfmathresult%
+		\pgfmathparse{-0.4*\s}\let\ys=\pgfmathresult%
+		\fill [pattern={stamp[size=#1,xshift=\xs, yshift=\ys]},pattern color=cprimary!50] #2 rectangle #3;
+    \fill [cprimary,path fading=fade right] #2 rectangle #3;
+    \fill [cprimary,path fading=center fade,xshift=-10pt,yshift=-20pt] (0,0) circle [radius=\the\paperwidth];
+}
+
 \titlegraphic{\pgfuseimage{titlelogo}}
 \defbeamertemplate*{title page}{SJTUBeamer}[1][]
 {
   \vbox{}
   \vfill
+  \begin{tikzpicture}[overlay]
+    \stamparray{20pt}{(-0.5*\the\paperwidth,-0.9*\the\paperheight)}{(0.5*\the\paperwidth, 0.2*\the\paperheight)}
+  \end{tikzpicture}
   \begingroup
     \centering
     \usebeamercolor{title}
@@ -60,15 +132,16 @@
   \endgroup
   \vfill
 }
-
 \def\maketitle{
     \setbeamercolor{background canvas}{bg=cprimary}%
     \setbeamercolor{structure}{fg=white}%
+    \setbeamercolor{titlelike}{fg=white,bg=}%
     \ifbeamer@inframe%
     \titlepage%
     \else%
     \frame{\titlepage}%
     \fi%
+    \setbeamercolor{titlelike}{fg=white,bg=cprimary}%
     \setbeamercolor{background canvas}{bg=white}%
     \setbeamercolor{structure}{fg=cprimary}%
 }
@@ -84,8 +157,6 @@
 
 % Block environments.
 
-\RequirePackage{tikz}
-\RequirePackage{tcolorbox}
 \tcbuselibrary{skins}
 \tcbuselibrary{listingsutf8}
 \newtcblisting{codeblock}[2]{listing only, 
