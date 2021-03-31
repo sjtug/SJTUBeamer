@@ -1,12 +1,12 @@
 \documentclass[
-    aspectratio=169,                     % 使用 16:9 比例
+    % aspectratio=169,                   % 使用 16:9 比例
 ]{beamer}
 \mode<presentation>
 \usetheme[
     % navigation=subsections,            % 使用子章节进度导航
     % lang=en,                           % 使用英文logo
-    % cjk=true,                          % 使用CJK而不是ctex，上一个选项将会将此覆盖
-    color=red,                         % 使用红色主题
+    cjk=true,                          % 使用CJK而不是ctex
+    % color=red,                         % 使用红色主题
 ]{SJTUBeamer}
 
 \title{\textsf{SJTUBeamer} 幻灯片模板}  % 标题
@@ -16,6 +16,7 @@
 \date{\today}                          % 日期
 
 \begin{document}
+\begin{CJK}{UTF8}{hei}
 
     \maketitle                         % 创建标题页
 
@@ -31,7 +32,7 @@
 
         \begin{itemize}
             \item 第 1 项
-            \item 第 2 项
+            \item 第 2 项\footnote{这是一个脚注。}
             \item 第 3 项
         \end{itemize}
 
@@ -79,4 +80,24 @@ int main(){
         \end{codeblock}
     \end{frame}
 
+    \begin{frame}
+        \begin{figure}
+            \centering
+            \begin{tcolorbox}[capture=hbox,
+                enhanced,
+                frame empty,
+                interior empty,
+                sharp corners,
+                top=2pt,bottom=2pt,left=2pt,right=2pt,
+                borderline north={4pt}{0pt}{cprimary,line width=0.5pt,decoration={stamp,segment length=8pt},decorate},
+                borderline south={4pt}{0pt}{cprimary,line width=0.5pt,decoration={stamp,segment length=8pt},decorate},
+                borderline west={4pt}{0pt}{cprimary,line width=0.5pt,decoration={stamp,segment length=8pt},decorate},
+                borderline east={4pt}{0pt}{cprimary,line width=0.5pt,decoration={stamp,segment length=8pt},decorate}]
+            \includegraphics[height=0.3\textheight]{vi/plant.jpg}
+            \end{tcolorbox}
+            \caption{图片标题}
+        \end{figure}
+    \end{frame}
+
+\end{CJK}
 \end{document}

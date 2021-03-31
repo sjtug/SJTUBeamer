@@ -123,6 +123,32 @@ overlay={
 
 % Figures and tables.
 
+\usetikzlibrary{decorations.pathmorphing}
+\pgfdeclaredecoration{stamp}{initial}
+{
+  \state{initial}[width=8pt]
+  {
+    \pgfpathlineto{\pgfpoint{2pt}{0pt}}
+    \pgfpathlineto{\pgfpoint{3pt}{1pt}}
+    \pgfpathlineto{\pgfpoint{5pt}{1pt}}
+    \pgfpathlineto{\pgfpoint{6pt}{0pt}}
+    \pgfpathlineto{\pgfpoint{8pt}{0pt}}
+  }
+  \state{final}
+  {
+    \pgfpathlineto{\pgfpointdecoratedpathlast}
+  }
+}
+
+
 % Footnotes.
+
+\defbeamertemplate*{footnote}{SJTUBeamer}
+{
+  \footnotesize
+  \parindent 0.5em\noindent%
+  \raggedright
+  \hbox to 1.5em{\hfil\insertfootnotemark}\insertfootnotetext\par%
+}
 
 % Bibliography entries.
