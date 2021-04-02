@@ -47,9 +47,9 @@
 
 \section{简介}
 
-\textsf{SJTUBeamer} 样式为上海交通大学幻灯片模板的非官方实现版本，遵守\href{http://vi.sjtu.edu.cn/}{上海交通大学视觉形象识别系统}的相关规范，图标版权归上海交通大学所有，本项目仅供校内人员学习参考使用。
+\textsf{SJTUBeamer} 样式为上海交通大学幻灯片模板的 \LaTeX{} 非官方实现版本，遵守\href{http://vi.sjtu.edu.cn/}{上海交通大学视觉形象识别系统}的相关规范，图标版权归上海交通大学所有，本项目仅供校内人员学习参考使用。
 
-目前该样式仍然处于开发者预览版本（$\alpha$-0.3），仍在做适应性修改并适当添加图案。欢迎通过拉取请求对本模板提出修改建议。
+目前该样式仍然处于开发者预览版本（$\alpha$-0.4），仍在做适应性修改并适当添加图案。欢迎通过拉取请求对本模板提出修改建议。
 
 \section{编译}
 
@@ -77,9 +77,23 @@
     使用蓝色或红色的颜色主题。根据官方学术版模板 \href{http://vi.sjtu.edu.cn/index.php/articles/app/8}{\textbf{B2-02-02}} 的相关说明，极简版式适合场合较为严肃、不适合题图复杂图片出现的情况，如需使用，建议所有内页均使用极简版式，以达到简洁、清爽的效果。故默认情况下本模板使用蓝色主题。
 \end{docKey*}
 
+\begin{docKey*}[SJTUBeamer]{pattern}{=none|title|all}{default \texttt{title}}
+    使用印记矩阵底纹。默认为 \verb"title"，将会在标题页添加由 \href{http://vi.sjtu.edu.cn/index.php/articles/base/5}{\textbf{A5-03-01 辅助图形使用规范}} 规定的印记矩阵底纹，并采用了渐变底色的方式实现。如果选项为 \verb"none"，就不会产生底纹；如果选项为 \verb"all"，还会在每页的标题栏添加底纹，这可能会增加编译时间。
+\end{docKey*}
+
+\section{环境}
+
 \begin{docEnvironment*}[doc parameter=\marg{language}\marg{title}, doclang/environment content=code]{codeblock}{}
     代码块。第一个参数为代码语言，第二个参数为代码块的标题。参数可以用 \verb"{}" 留空，但不要省略大括号。需要清理代码的缩进。注意代码块所在的幻灯片需要添加 \verb"fragile" 参数，也就是 \verb"\begin{frame}[fragile]"。
 \end{docEnvironment*}
+
+\begin{docEnvironment*}[doclang/environment content=code]{stampbox}{}
+    图片印记边框盒。根据 \href{http://vi.sjtu.edu.cn/index.php/articles/base/5}{\textbf{A5-03-02 辅助图形使用规范}}，可以使用辅助图形添加辅助边。这里采用了单一的印记边框线条，而没有使用填充式，该样式符合官方学术版模板 \href{http://vi.sjtu.edu.cn/index.php/articles/app/8}{\textbf{B2-02-02}} 的示例。\meta{code} 为需要包裹的内容，该边框盒不是强制使用的，使用主要为了丰富视觉效果与统一视觉形象。本模板将会自动生成边栏样条而不需要如 PowerPoint 使用的缩放方式。
+\end{docEnvironment*}
+
+\begin{docCommand*}[]{stamparray}{\marg{size}\marg{starting point}\marg{ending point}}
+    印记矩阵。用于在 \docAuxEnvironment*[]{tikzpicture} 环境内手动生成 \href{http://vi.sjtu.edu.cn/index.php/articles/base/5}{\textbf{A5-05 辅助底纹制作}} 所规定的印记矩阵。\meta{size} 用于定义印记大小，\meta{starting point},\meta{ending point} 用于定义矩形对角顶点，均为二维坐标 \verb"(x,y)"。 
+\end{docCommand*}
 
 \newpage
 \section{样式}
@@ -95,7 +109,7 @@
     colbacktitle=red!50!white,fonttitle=\small\bfseries\ttfamily,
     left=0pt,right=0pt,top=0pt,bottom=0pt,boxsep=0pt,boxrule=0.6pt,
     toptitle=1mm,bottomtitle=1mm,drop lifted shadow,center title,
-    graphics pages={1,...,6}]
+    graphics pages={1,3,4,5,6,7}]
     \tcbincludepdf{pdf/red.pdf}
 \end{tcbraster}
 
@@ -107,7 +121,7 @@
     colbacktitle=blue!50!white,fonttitle=\small\bfseries\ttfamily,
     left=0pt,right=0pt,top=0pt,bottom=0pt,boxsep=0pt,boxrule=0.6pt,
     toptitle=1mm,bottomtitle=1mm,drop lifted shadow,center title,
-    graphics pages={1,...,6}]
+    graphics pages={1,3,4,5,6,7}]
     \tcbincludepdf{pdf/blue.pdf}
 \end{tcbraster}
 
