@@ -19,11 +19,19 @@
 % Title and part pages.
 
 \DeclareOptionBeamer{lang}{\def\beamer@SJTUBeamer@lang{#1}}
-\ExecuteOptionsBeamer{lang=cn} % cn will be default if nothing is given
-\ProcessOptionsBeamer
 
 \def\beamer@SJTUBeamer@langcn{cn}%
 \def\beamer@SJTUBeamer@langen{en}%
+
+\ExecuteOptionsBeamer{lang=cn} % cn will be default if nothing is given
+
+\DeclareOptionBeamer{pattern}{\def\beamer@SJTUBeamer@pattern{#1}}
+
+\def\beamer@SJTUBeamer@patternnone{none}%
+\def\beamer@SJTUBeamer@patterntitle{title}%
+\def\beamer@SJTUBeamer@patternall{all}%
+
+\ProcessOptionsBeamer
 
 \ifx\beamer@SJTUBeamer@lang\beamer@SJTUBeamer@langcn
   \pgfdeclareimage[height=1cm]{titlelogo}{vi/cnlogo.pdf}
@@ -93,18 +101,20 @@
 		\pgfmathparse{0.5*\s}\let\xs=\pgfmathresult%
 		\pgfmathparse{-0.4*\s}\let\ys=\pgfmathresult%
 		\fill [pattern={stamp[size=#1,xshift=\xs, yshift=\ys]},pattern color=cprimary!50] #2 rectangle #3;
-    \fill [cprimary,path fading=fade right] #2 rectangle #3;
-    \fill [cprimary,path fading=center fade,xshift=-10pt,yshift=-20pt] (0,0) circle [radius=\the\paperwidth];
 }
-
 \titlegraphic{\pgfuseimage{titlelogo}}
 \defbeamertemplate*{title page}{SJTUBeamer}[1][]
 {
   \vbox{}
   \vfill
+  \ifx\beamer@SJTUBeamer@pattern\beamer@SJTUBeamer@patternnone%
+  \else
   \begin{tikzpicture}[overlay]
     \stamparray{20pt}{(-0.5*\the\paperwidth,-0.9*\the\paperheight)}{(0.5*\the\paperwidth, 0.2*\the\paperheight)}
+    \fill [cprimary,path fading=fade right] (-0.5*\the\paperwidth,-0.9*\the\paperheight) rectangle (0.5*\the\paperwidth, 0.2*\the\paperheight);
+    \fill [cprimary,path fading=center fade,xshift=-10pt,yshift=-20pt] (0,0) circle [radius=\the\paperwidth];
   \end{tikzpicture}
+  \fi
   \begingroup
     \centering
     \usebeamercolor{title}

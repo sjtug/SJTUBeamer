@@ -34,11 +34,17 @@
     \PassOptionsToPackage{color=#1}{beamercolorthemeSJTUBeamer}
 }
 
+\DeclareOptionBeamer{pattern}{
+    \PassOptionsToPackage{pattern=#1}{beamerouterthemeSJTUBeamer}
+    \PassOptionsToPackage{pattern=#1}{beamerinnerthemeSJTUBeamer}
+}
+
 \ExecuteOptionsBeamer{
     navigation=tools,
     cjk=false,
     lang=cn,
     color=blue,
+    pattern=title,
 }
 \ProcessOptionsBeamer
 

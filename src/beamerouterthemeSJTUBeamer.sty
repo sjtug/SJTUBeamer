@@ -59,10 +59,17 @@
 
 \DeclareOptionBeamer{lang}{\def\beamer@SJTUBeamer@lang{#1}}
 \ExecuteOptionsBeamer{lang=cn} % cn will be default if nothing is given
-\ProcessOptionsBeamer
 
 \def\beamer@SJTUBeamer@langcn{cn}%
 \def\beamer@SJTUBeamer@langen{en}%
+
+\DeclareOptionBeamer{pattern}{\def\beamer@SJTUBeamer@pattern{#1}}
+
+\def\beamer@SJTUBeamer@patternnone{none}%
+\def\beamer@SJTUBeamer@patterntitle{title}%
+\def\beamer@SJTUBeamer@patternall{all}%
+
+\ProcessOptionsBeamer
 
 \ifx\beamer@SJTUBeamer@lang\beamer@SJTUBeamer@langcn
   \pgfdeclareimage[height=0.7cm]{titlelogosmall}{vi/cnlogo.pdf}
@@ -70,6 +77,11 @@
   \pgfdeclareimage[height=0.7cm]{titlelogosmall}{vi/enlogo.pdf}
 \fi
 
+\tikzfading[
+  name=fade right little,
+  left color=transparent!0,
+  right color=transparent!15
+]
 \defbeamertemplate*{frametitle}{SJTUBeamer}[1][left]
 {%
   \ifbeamercolorempty[bg]{frametitle}{}{\nointerlineskip}%
@@ -79,6 +91,13 @@
   \begin{beamercolorbox}[sep=0.3cm,#1,wd=\the\@tempdima]{frametitle}
     \begingroup
     \usebeamerfont{frametitle}%
+    \ifx\beamer@SJTUBeamer@pattern\beamer@SJTUBeamer@patternall%
+    \begin{tikzpicture}[overlay]
+      \stamparray{20pt}{(0.2*\the\paperwidth,-0.1*\the\paperheight)}{(\the\paperwidth,0.05*\the\paperheight)}
+      \fill [cprimary,path fading=fade right little] (0.2*\the\paperwidth,-0.1*\the\paperheight) rectangle (\the\paperwidth,0.05*\the\paperheight);
+    \end{tikzpicture}
+    \else%
+    \fi%
     \vbox{}
     \ifx\insertframesubtitle\@empty\vskip-2px%
     \else\vskip-1ex\fi%
