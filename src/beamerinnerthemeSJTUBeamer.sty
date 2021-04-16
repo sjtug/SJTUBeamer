@@ -255,3 +255,25 @@ overlay={
 }
 
 % Bibliography entries.
+
+% Bottom Page
+
+\def\bottompage{
+  \begin{tikzpicture}[overlay]
+    
+  \end{tikzpicture}
+}
+
+\def\makebottom{
+  \setbeamercolor{background canvas}{bg=cprimary}%
+    \setbeamercolor{structure}{fg=white}%
+    \setbeamercolor{titlelike}{fg=white,bg=}%
+    \ifbeamer@inframe%
+    \bottompage%
+    \else%
+    \frame{\bottompage}%
+    \fi%
+    \setbeamercolor{titlelike}{fg=white,bg=cprimary}%
+    \setbeamercolor{background canvas}{bg=white}%
+    \setbeamercolor{structure}{fg=cprimary}%
+}

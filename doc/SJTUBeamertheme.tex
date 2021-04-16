@@ -49,7 +49,7 @@
 
 \textsf{SJTUBeamer} 样式为上海交通大学幻灯片模板的 \LaTeX{} 非官方实现版本，遵守\href{http://vi.sjtu.edu.cn/}{上海交通大学视觉形象识别系统}的相关规范，图标版权归上海交通大学所有，本项目仅供校内人员学习参考使用。
 
-目前该样式仍然处于开发者预览版本（$\alpha$-0.4），仍在做适应性修改并适当添加图案。欢迎通过拉取请求对本模板提出修改建议。
+目前该样式仍然处于开发者预览版本（ $\alpha$-\input{../VERSION}），仍在做适应性修改并适当添加图案。欢迎通过拉取请求对本模板提出修改建议。
 
 \section{编译}
 
@@ -88,11 +88,11 @@
 \end{docEnvironment*}
 
 \begin{docEnvironment*}[doclang/environment content=code]{stampbox}{}
-    图片印记边框盒。根据 \href{http://vi.sjtu.edu.cn/index.php/articles/base/5}{\textbf{A5-03-02 辅助图形使用规范}}，可以使用辅助图形添加辅助边。这里采用了单一的印记边框线条，而没有使用填充式，该样式符合官方学术版模板 \href{http://vi.sjtu.edu.cn/index.php/articles/app/8}{\textbf{B2-02-02}} 的示例。\meta{code} 为需要包裹的内容，该边框盒不是强制使用的，使用主要为了丰富视觉效果与统一视觉形象。本模板将会自动生成边栏样条而不需要如 PowerPoint 使用的缩放方式。
+    图片印记边框盒。根据 \href{http://vi.sjtu.edu.cn/index.php/articles/base/5}{\textbf{A5-03-02 辅助图形使用规范}}，可以使用辅助图形添加辅助边。这里采用了单一的印记边框线条，而没有使用填充式。该样式符合官方学术版模板 \href{http://vi.sjtu.edu.cn/index.php/articles/app/8}{\textbf{B2-02-02}} 的示例。\meta{code} 为需要包裹的内容。该边框盒不是强制使用的，主要为了丰富视觉效果与统一视觉形象。本模板通过程序自动生成边栏样条，不需要通过缩放方式对提供的样条进行适配。
 \end{docEnvironment*}
 
 \begin{docCommand*}[]{stamparray}{\marg{size}\marg{starting point}\marg{ending point}}
-    印记矩阵。用于在 \docAuxEnvironment*[]{tikzpicture} 环境内手动生成 \href{http://vi.sjtu.edu.cn/index.php/articles/base/5}{\textbf{A5-05 辅助底纹制作}} 所规定的印记矩阵。\meta{size} 用于定义印记大小，\meta{starting point},\meta{ending point} 用于定义矩形对角顶点，均为二维坐标 \verb"(x,y)"。 
+    印记矩阵。用于在 \docAuxEnvironment*[]{tikzpicture} 环境内手动生成 \href{http://vi.sjtu.edu.cn/index.php/articles/base/5}{\textbf{A5-05 辅助底纹制作}} 规定的印记矩阵。其中，\meta{size} 用于定义印记大小，\meta{starting point},\meta{ending point} 用于定义矩形对角顶点，均为二维坐标 \verb"(x,y)"。 
 \end{docCommand*}
 
 \newpage
