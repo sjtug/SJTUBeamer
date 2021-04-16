@@ -17,6 +17,7 @@
 \RequirePackage{pgfplots}
 \RequirePackage{array}
 \RequirePackage{colortbl}
+\RequirePackage{tabu}
 \RequirePackage{booktabs}
 \RequirePackage{pgfplotstable}
 \RequirePackage{tcolorbox}
@@ -256,16 +257,30 @@ overlay={
     font=\small,
   }
 }
+
+\def\zapcolorreset{\let\reset@color\relax\ignorespaces}
+\def\colorrows#1{\noalign{\aftergroup\zapcolorreset#1}\ignorespaces}
 \pgfplotstableset{
   col sep=comma,
-  fixed zerofill,
+  %fixed zerofill,
+  column type=r,
+  every table/.style={
+    font=\small,
+  },
   every head row/.style={
-    before row=\toprule,
-    after row=\midrule,
+    before row={
+      \arrayrulecolor{cprimary}
+      \toprule
+      \colorrows{\color{cprimary}}
+    },
+    after row={
+      \midrule
+      \colorrows{\color{black}}
+    },
   },
   every last row/.style={
     after row=\bottomrule
-  }
+  },
 }
 
 % Footnotes.

@@ -92,12 +92,15 @@ int main(){
     \end{frame}
 
     \begin{frame}
-        \frametitle{表}
+        \frametitle{表与统计图}
 
         \begin{multicols}{2}
         \begin{table}
             \caption{表格标题}
-            \pgfplotstabletypeset{test.csv}
+            \pgfplotstabletypeset[
+                columns/Quick/.style={dec sep align},
+                columns/Cocktail/.style={dec sep align},
+            ]{test.csv}
         \end{table}
         
         \begin{figure}
@@ -108,7 +111,7 @@ int main(){
                 ylabel={Average Steps},
                 ymin={0},
                 xmax={9},
-                xmin={0},
+                xmin={1},
                 legend style={at={(0.5,-0.3)},anchor=north},
                 grid]
                  \pgfplotstableread {test.csv}{\foo};
