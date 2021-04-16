@@ -260,8 +260,28 @@ overlay={
 
 \def\bottompage{
   \begin{tikzpicture}[overlay]
-    
+    \begin{scope}[fill=cprimary!50!black,fill opacity=0.15]
+    \clip (4.5,10) ellipse (8.5 and 8.5);
+    \fill (-4.5,-8) ellipse (15 and 15);
+    \end{scope}
+    \begin{scope}[fill=csecondary!50!cprimary!70!white,fill opacity=0.15]
+    \clip (11.5,-5.5) ellipse (10.5 and 10.5);
+    \fill (-4.5,-8) ellipse (15 and 15)
+    (4.5,10) ellipse (8.5 and 8.5);
+    \end{scope}
   \end{tikzpicture}
+  \begingroup
+  \centering
+  \begin{beamercolorbox}[sep=8pt]{title}
+    \usebeamerfont{title}
+    \ifx\beamer@SJTUBeamer@lang\beamer@SJTUBeamer@langcn
+      谢谢！
+    \else
+      Thank You!
+    \fi
+    \par%
+  \end{beamercolorbox}%
+  \endgroup
 }
 
 \def\makebottom{
