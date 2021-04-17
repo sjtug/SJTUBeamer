@@ -11,7 +11,8 @@
     xmin={1},
     legend style={at={(0.5,1.03)},anchor=south},
     legend columns=2,
-    grid]
+    grid,
+    minor tick num=1]
      \pgfplotstableread {dat/test.csv}{\foo};           % read table
      \addplot+ [only marks] table[y=Quick] {\foo};
      \addplot+ [only marks] table[y=Cocktail] {\foo};
