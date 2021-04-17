@@ -1,0 +1,23 @@
+% !TeX root = ../test.tex
+% Made with PGFPlotsEdt:
+% https://logcreative.github.io/PGFPlotsEdt/
+\begin{tikzpicture}
+    \begin{axis}[
+    width=\columnwidth,
+    xlabel={$n$},
+    ylabel={Average Steps},
+    ymin={0},
+    xmax={9},
+    xmin={1},
+    legend style={at={(0.5,1.03)},anchor=south},
+    legend columns=2,
+    grid]
+     \pgfplotstableread {dat/test.csv}{\foo};           % read table
+     \addplot+ [only marks] table[y=Quick] {\foo};
+     \addplot+ [only marks] table[y=Cocktail] {\foo};
+     \pgfplotsset{cycle list shift=-2};                 % start the cycle list from beginning
+     \addplot+ [no markers,domain=1:9,] {1.502*x*ln(x)};
+     \addplot+ [no markers,domain=1:9,] {0.4453*x*x-0.1365*x-0.473};
+     \legend{Quick,CockTail,}                           % only mark the first two series
+    \end{axis}
+\end{tikzpicture}

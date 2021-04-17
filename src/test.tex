@@ -100,28 +100,12 @@ int main(){
             \pgfplotstabletypeset[
                 columns/Quick/.style={dec sep align},
                 columns/Cocktail/.style={dec sep align},
-            ]{test.csv}
+                column type=r,
+            ]{dat/test.csv}
         \end{table}
         
         \begin{figure}
-            \begin{tikzpicture}
-                \begin{axis}[
-                width=\columnwidth,
-                xlabel={$n$},
-                ylabel={Average Steps},
-                ymin={0},
-                xmax={9},
-                xmin={1},
-                legend style={at={(0.5,-0.3)},anchor=north},
-                grid]
-                 \pgfplotstableread {test.csv}{\foo};
-                 \addplot+ [only marks] table[y=Quick] {\foo};
-                 \addplot+ [only marks] table[y=Cocktail] {\foo};
-                 \addplot [no markers,domain=1:9,] {1.502*x*ln(x)};
-                 \addplot [no markers,domain=1:9,] {0.4453*x*x-0.1365*x-0.473};
-                 \legend{Quick $O(n\log n)$,CockTail $O(n^2)$,}
-                \end{axis}
-            \end{tikzpicture}
+            \input{img/testgraph.tex}
             \caption{统计图标题}
         \end{figure}
         \end{multicols}

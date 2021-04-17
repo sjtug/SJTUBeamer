@@ -255,6 +255,10 @@ overlay={
   compat=newest,
   every axis/.style={
     font=\small,
+    cycle multiindex list={
+      mark list\nextlist
+      cprimary,csecondary,ctertiary\nextlist
+    },
   }
 }
 
@@ -262,8 +266,6 @@ overlay={
 \def\colorrows#1{\noalign{\aftergroup\zapcolorreset#1}\ignorespaces}
 \pgfplotstableset{
   col sep=comma,
-  %fixed zerofill,
-  column type=r,
   every table/.style={
     font=\small,
   },
