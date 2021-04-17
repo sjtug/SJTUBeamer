@@ -14,8 +14,8 @@
     grid,
     minor tick num=1]
      \pgfplotstableread {dat/test.csv}{\foo};           % read table
-     \addplot+ [only marks,] table[y=Quick] {\foo};
-     \addplot+ [only marks,] table[y=Cocktail] {\foo};
+     \addplot+ [only marks,mark options={scale=0.8}] table[y=Quick] {\foo};
+     \addplot+ [only marks,mark options={scale=0.8}] table[y=Cocktail] {\foo};
      \pgfplotsset{cycle list shift=-2};                 % start the cycle list from beginning
      \addplot+ [no markers,domain=1:9,] {1.502*x*ln(x)};
      \addplot+ [no markers,domain=1:9,] {0.4453*x*x-0.1365*x-0.473};

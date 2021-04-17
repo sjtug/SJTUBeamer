@@ -47,7 +47,7 @@
 
 \section{简介}
 
-\textsf{SJTUBeamer} 样式为上海交通大学幻灯片模板的 \LaTeX{} 非官方实现版本，遵守\href{http://vi.sjtu.edu.cn/}{上海交通大学视觉形象识别系统}的相关规范，图标版权归上海交通大学所有，本项目仅供校内人员学习参考使用。
+\textsf{SJTUBeamer} 样式为上海交通大学幻灯片模板的 \LaTeX{} 非官方实现版本，旨在填补该类型模板上的空白，遵守\href{http://vi.sjtu.edu.cn/}{上海交通大学视觉形象识别系统}的相关规范，图标版权归上海交通大学所有，本项目仅供校内人员学习参考使用。
 
 目前该样式仍然处于开发者预览版本（ $\alpha$-\input{../VERSION}），仍在做适应性修改并适当添加图案。欢迎通过拉取请求对本模板提出修改建议。
 
@@ -91,6 +91,22 @@
     图片印记边框盒。根据 \href{http://vi.sjtu.edu.cn/index.php/articles/base/5}{\textbf{A5-03-02 辅助图形使用规范}}，可以使用辅助图形添加辅助边。这里采用了单一的印记边框线条，而没有使用填充式。该样式符合官方学术版模板 \href{http://vi.sjtu.edu.cn/index.php/articles/app/8}{\textbf{B2-02-02}} 的示例。\meta{code} 为需要包裹的内容。该边框盒不是强制使用的，主要为了丰富视觉效果与统一视觉形象。本模板通过程序自动生成边栏样条，不需要通过缩放方式对提供的样条进行适配。
 \end{docEnvironment*}
 
+\begin{docEnvironment*}[doclang/environment content=code]{axis}{}
+    插入原生统计图。该模板对于使用 \textsf{PGFPlots} 生成的统计图进行了样式统一，主要改变了配色方案为当前主题，适当改变了线宽设定。由于统计图一般需要通过一些说明文字进行解释，所以在使用双栏版式时统计图的宽度将会被自动设定为栏宽。作者也制作了一个 \href{https://logcreative.github.io/PGFPlotsEdt/}{\textbf{PGFPlots 统计绘图编辑器}}，便于自动生成产生该类型统计图的 \LaTeX{} 代码，关于 \textsf{PGFPlots} 宏包的使用提示也可以在 \href{https://logcreative.github.io/LaTeXSparkle/}{像模像样\LaTeX} 的 \href{https://logcreative.github.io/LaTeXSparkle/src/art/chapter06.html}{第六节} 找到。
+\end{docEnvironment*}
+
+\section{命令}
+
+\begin{docCommand*}[]{pgfplotstabletypeset}{\marg{file}}
+    通过文件插入表格。这里默认表格文件为逗号分隔符格式（\verb".csv"），这种格式的表格可以通过 Excel 等外部软件导出而不必在 \LaTeX{} 内手动排版。本模板对于该类型插入的表格进行了样式统一，使用通用的三线表格并对表头使用主题颜色，一定程度上参考了 \href{https://vi.sjtu.edu.cn/index.php/articles/app/7}{\textbf{B1-16-01 档案袋}} 的表格设定。
+\end{docCommand*}
+
+以下命令不是 \textsf{Beamer} 的通用命令，迁移套用其他模板时请注释掉。
+
+\begin{docCommand*}[]{makebottom}{}
+    制作封底。本模板提供了 \href{https://vi.sjtu.edu.cn/index.php/articles/app/7}{\textbf{B1-20-01 文件封套（封面封底）}} 样式的封底。中文时，提示语为“谢谢”，英文时，提示语为``Thank You''。并且紧跟该幻灯片的作者与标题。
+\end{docCommand*}
+
 \begin{docCommand*}[]{stamparray}{\marg{size}\marg{starting point}\marg{ending point}}
     印记矩阵。用于在 \docAuxEnvironment*[]{tikzpicture} 环境内手动生成 \href{http://vi.sjtu.edu.cn/index.php/articles/base/5}{\textbf{A5-05 辅助底纹制作}} 规定的印记矩阵。其中，\meta{size} 用于定义印记大小，\meta{starting point},\meta{ending point} 用于定义矩形对角顶点，均为二维坐标 \verb"(x,y)"。 
 \end{docCommand*}
@@ -105,23 +121,24 @@
 
 活力红版本，配色方案满足\href{http://vi.sjtu.edu.cn/index.php/articles/base/3}{\textbf{辅助色彩规范 A3-02-01}}。\hfill\texttt{color=red}
 
-\begin{tcbraster}[raster columns=2,colframe=red,colback=white,
+\begin{tcbraster}[raster columns=3,colframe=red,colback=white,
     colbacktitle=red!50!white,fonttitle=\small\bfseries\ttfamily,
     left=0pt,right=0pt,top=0pt,bottom=0pt,boxsep=0pt,boxrule=0.6pt,
     toptitle=1mm,bottomtitle=1mm,drop lifted shadow,center title,
-    graphics pages={1,3,4,5,6,7}]
+    graphics pages={1,...,9}]
     \tcbincludepdf{pdf/red.pdf}
 \end{tcbraster}
 
+\newpage
 \subsection{简约蓝}
 
 简约蓝版本，配色方案满足\href{http://vi.sjtu.edu.cn/index.php/articles/base/3}{\textbf{辅助色彩规范 A3-02-02}}。\hfill \texttt{color=blue}
 
-\begin{tcbraster}[raster columns=2,colframe=blue,colback=white,
+\begin{tcbraster}[raster columns=3,colframe=blue,colback=white,
     colbacktitle=blue!50!white,fonttitle=\small\bfseries\ttfamily,
     left=0pt,right=0pt,top=0pt,bottom=0pt,boxsep=0pt,boxrule=0.6pt,
     toptitle=1mm,bottomtitle=1mm,drop lifted shadow,center title,
-    graphics pages={1,3,4,5,6,7}]
+    graphics pages={1,...,9}]
     \tcbincludepdf{pdf/blue.pdf}
 \end{tcbraster}
 

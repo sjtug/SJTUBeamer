@@ -254,9 +254,9 @@ overlay={
 \pgfplotsset{
   compat=newest,
   every axis/.style={
-    font=\footnotesize\sffamily\sansmath,
+    font=\small\sffamily\sansmath,
     cycle multi list={
-      mark options={fill opacity=0,thick}\nextlist
+      mark options={thick}\nextlist
       mark list\nextlist
       cprimary,csecondary,ctertiary\nextlist
     },
@@ -271,7 +271,7 @@ overlay={
     },
     every tick label/.style={
       cprimary,
-      font=\scriptsize,
+      font=\small,
 			/pgf/number format/assume math mode=true
     },
     grid style={cprimary!10},
