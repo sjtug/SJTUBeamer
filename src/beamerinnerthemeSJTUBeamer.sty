@@ -255,7 +255,8 @@ overlay={
   compat=newest,
   every axis/.style={
     font=\footnotesize\sffamily\sansmath,
-    cycle multiindex list={
+    cycle multi list={
+      mark options={fill opacity=0,thick}\nextlist
       mark list\nextlist
       cprimary,csecondary,ctertiary\nextlist
     },
@@ -264,7 +265,10 @@ overlay={
     }{
       \columnwidth
     },
-    axis line style={cprimary},
+    axis line style={
+      cprimary,
+      thin
+    },
     every tick label/.style={
       cprimary,
       font=\scriptsize,
@@ -277,10 +281,12 @@ overlay={
     ylabel style={cprimary},
     zlabel style={cprimary},
     legend style={
-      draw=cprimary!90,
-      nodes={cprimary!90}
+      draw={cprimary},
+      thin,
+      nodes={cprimary}
     },
-  }
+    thick,
+  },
 }
 
 \def\zapcolorreset{\let\reset@color\relax\ignorespaces}
