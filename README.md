@@ -11,7 +11,7 @@ You can directly download the zip file from github and upload it to https://late
 * The SJTU logo is downloaded from https://vi.sjtu.edu.cn.
 
 ## Contribution
-I'm still a freshman in creating beamer template, so feel free to open an issue or contact me cascades@sjtu.edu.cn. Hoping this template could help many students as https://github.com/sjtug/SJTUThesis.
+I'm still a freshman in creating beamer template, so feel free to open an issue or contact me via cascades@sjtu.edu.cn. Hoping this template could help many students as https://github.com/sjtug/SJTUThesis.
 
 ## Appearence
 ![image](https://user-images.githubusercontent.com/46052474/115152501-e8c0e080-a0a3-11eb-8180-59267a540646.png)
