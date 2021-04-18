@@ -1,0 +1,197 @@
+\documentclass{beamer}
+\usepackage[utf8]{inputenc}
+\usepackage{listings}
+\usepackage{graphicx}
+\usepackage{hyperref}
+\usepackage[UTF8]{ctex}
+
+\usetheme{Szeged}
+\usecolortheme{beaver}
+\usefonttheme{structurebold}
+
+\definecolor{bgcolor}{rgb}{0.93 0.93 0.93}
+\setbeamertemplate{background canvas}[vertical shading][bottom=bgcolor, middle=bgcolor, top=bgcolor]
+\setbeamercolor{frametitle}{bg=bgcolor}
+
+%------------------------------------------------------------
+%This block of code defines the information to appear in the
+%Title page
+\setbeamercolor{title}{bg=bgcolor}
+\title[About Beamer] %optional
+{About the Beamer class in presentation making}
+
+% \subtitle{A short story}
+
+% \author[Arthur, Doe] % (optional)
+% {A.~B.~Arthur\inst{1} \and J.~Doe\inst{2}}
+\author[Anxue Chen]
+{Anxue Chen}
+
+% \institute[VFU] % (optional)
+% {
+%   \inst{1}%
+%   Faculty of Physics\\
+%   Very Famous University
+%   \and
+%   \inst{2}%
+%   Faculty of Chemistry\\
+%   Very Famous University
+% }
+\institute[SJTU]{Shanghai Jiao Tong University}
+
+% \date[VLC 2014] % (optional)
+% {Very Large Conference, April 2014}
+\date{April 2021}
+
+\logo{\includegraphics[height=1.5cm]{logo.png}}
+
+%End of title page configuration block
+%------------------------------------------------------------
+
+
+
+%------------------------------------------------------------
+%The next block of commands puts the table of contents at the 
+%beginning of each section and highlights the current section:
+%\AtBeginSection for each subsection
+
+\AtBeginSection[]
+{
+  \begin{frame}
+    \frametitle{Table of Contents}
+    \tableofcontents[currentsection]
+  \end{frame}
+}
+%------------------------------------------------------------
+
+
+\begin{document}
+
+%The next statement creates the title page.
+\frame{\titlepage}
+
+
+%---------------------------------------------------------
+%This block of code is for the table of contents after
+%the title page
+\begin{frame}
+\frametitle{Table of Contents}
+\tableofcontents
+\end{frame}
+%---------------------------------------------------------
+
+
+\section{First section}
+
+%---------------------------------------------------------
+%Changing visivility of the text
+\begin{frame}
+\frametitle{Sample frame title}
+This is a text in second frame. For the sake of showing an example.
+
+\begin{itemize}
+    \item<1-> Text visible on slide 1
+    \item<2-> Text visible on slide 2
+    \item<3> Text visible on slides 3
+    \item<4-> Text visible on slide 4
+\end{itemize}
+\end{frame}
+
+%---------------------------------------------------------
+
+
+%---------------------------------------------------------
+%Example of the \pause command
+\begin{frame}
+In this slide \pause
+
+the text will be partially visible \pause
+
+And finally everything will be there
+\end{frame}
+%---------------------------------------------------------
+
+\section{Second section}
+
+%---------------------------------------------------------
+%Highlighting text
+\begin{frame}
+\frametitle{Sample frame title}
+
+In this slide, some important text will be
+\alert{highlighted} because it's important.
+Please, don't abuse it.
+
+\begin{block}{Remark}
+Sample text
+\end{block}
+
+\begin{alertblock}{Important theorem}
+Sample text in red box
+\end{alertblock}
+
+\begin{examples}
+Sample text in green box. The title of the block is ``Examples".
+\end{examples}
+\end{frame}
+%---------------------------------------------------------
+
+
+%---------------------------------------------------------
+%Two columns
+\begin{frame}
+\frametitle{Two-column slide}
+
+\begin{columns}
+
+\column{0.5\textwidth}
+This is a text in first column.
+$$E=mc^2$$
+\begin{itemize}
+\item First item
+\item Second item
+\end{itemize}
+
+\column{0.5\textwidth}
+This text will be in the second column
+and on a second tought this is a nice looking
+layout in some cases.
+\end{columns}
+\end{frame}
+%---------------------------------------------------------
+
+\section{Third section}
+% \begin{frame}[fragile]
+% \frametitle{Code}
+%   \begin{lstlisting}[language=C,tabsize=2]
+%   #include <stdio.h>
+%   #include <unistd.h>
+%   #include <sys/types.h>
+%   #include <sys/wait.h>
+
+%   // This is a comment
+%   int main(int argc, char **argv)
+%   {
+%           while (--c > 1 && !fork());
+%           sleep(c = atoi(v[c]));
+%           printf("%d\n", c);
+%           wait(0);
+%           return 0;
+%   }
+%     \end{lstlisting}
+% \end{frame}
+
+% \begin{block}{Block 1}
+% This is Block 1.
+% \end{block}
+
+% \begin{figure}
+%     \centering
+%     \includegraphics[height=4cm]{logo.png}
+%     \caption{Caption}
+%     \label{fig:my_label}
+% \end{figure}
+
+%---------------------------------------------------------
+
+\end{document}
