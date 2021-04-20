@@ -272,7 +272,7 @@ overlay={
     every tick label/.style={
       cprimary,
       font=\small,
-			/pgf/number format/assume math mode=true
+      /pgf/number format/assume math mode=true
     },
     grid style={cprimary!10},
     tick style={cprimary!50},
@@ -333,14 +333,14 @@ overlay={
     \def\w{\the\paperwidth}%
     \def\h{\the\paperheight}%
     \begin{scope}[fill=cprimary!50!black,fill opacity=0.15]
-    \clip (0.7*\w,1.05*\h) circle (0.95*\h);
-    \fill (0.14*\w,-0.95*\h) circle (1.67*\h);
+      \clip (0.7*\w,1.05*\h) circle (0.95*\h);
+      \fill (0.14*\w,-0.95*\h) circle (1.67*\h);
     \end{scope}
     \begin{scope}[fill=csecondary!50!cprimary!70!white,fill opacity=0.15]
-    \clip (1.14*\w,-0.67*\h) circle (1.17*\h);
-    \fill 
-      (0.14*\w,-0.95*\h) circle (1.67*\h)
-      (0.7*\w,1.05*\h) circle (0.95*\h);
+      \clip (1.14*\w,-0.67*\h) circle (1.17*\h);
+      \fill 
+        (0.14*\w,-0.95*\h) circle (1.67*\h)
+        (0.7*\w,1.05*\h) circle (0.95*\h);
     \end{scope}
   \end{tikzpicture}
   \begingroup
