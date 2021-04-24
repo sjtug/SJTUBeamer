@@ -15,7 +15,7 @@ You can directly download the zip file from github and upload it to https://late
 I'm still a freshman in creating beamer template, so feel free to open an issue or contact me via cascades@sjtu.edu.cn. Hoping this template could help many students as https://github.com/sjtug/SJTUThesis.
 
 ## Appearence 🧐
-![image](https://user-images.githubusercontent.com/46052474/115152501-e8c0e080-a0a3-11eb-8180-59267a540646.png)
+![image](https://user-images.githubusercontent.com/46052474/115961010-1647d700-a547-11eb-9763-4735041afce1.png)
 
 ## Configuration 📓
 ![image](https://user-images.githubusercontent.com/46052474/115152339-44d73500-a0a3-11eb-9e30-91c46b045a4b.png)
