@@ -8,8 +8,8 @@ You can directly download the zip file from github and upload it to https://late
 ## Design Philosopy 💭
 * To design the template as simple as possible, since everyone can modify it according to their preferences with a little knowledge of latex syntax and beamer.
 * The theme is my favorate, you can change it to other [themes](https://deic-web.uab.cat/~iblanes/beamer_gallery/) or make a small modification.
-* The main color **SJTU-Red** is more often seen in official occasion.
-* The SJTU logo is downloaded from https://vi.sjtu.edu.cn.
+* The main color **beaver** is mostly like **SJTU-Red** which is more often seen in official occasion.
+* The SJTU logo and the background is downloaded from https://vi.sjtu.edu.cn.
 
 ## Contribution 👷
 I'm still a freshman in creating beamer template, so feel free to open an issue or contact me via cascades@sjtu.edu.cn. Hoping this template could help many students as https://github.com/sjtug/SJTUThesis.
