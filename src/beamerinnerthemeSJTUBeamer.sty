@@ -114,14 +114,29 @@
   \hbox{
     \hskip-3.5pt\pgfuseimage{titlelogo}
     \ifx\insertinstitute\@empty%
-    \else{\hskip7pt \vrule width0.5pt}\hskip-1pt\vbox{
-      \usebeamerfont{institute}
-      \insertinstitute
-      \par\noindent\vskip0.15em
-      \fontsize{4.8pt}{0pt}\selectfont
-      \textsc{\insertshortinstitute}
-      \vskip0.65em
-    }%
+    \else{\hskip7pt \vrule width0.5pt}\hskip-1pt
+      \ifx\beamer@SJTUBeamer@lang\beamer@SJTUBeamer@langcn%
+        \vbox{
+          \fontsize{13pt}{0pt}\selectfont
+          \insertinstitute
+          \par\noindent\vskip0.15em
+          \fontsize{4.8pt}{0pt}\selectfont
+          \textsc{\insertshortinstitute}
+          \vskip0.637em
+        }
+      \else%
+        \vbox to 1cm{
+          \vfill
+          \vbox{
+            \offinterlineskip
+            \noindent \strut
+            \baselineskip 0pt \lineskip -2pt
+            \scriptsize\textsc{\beamer@shortinstitute}
+            \strut
+          }
+          \vfill
+        }
+      \fi%
     \fi%
   }
 }
