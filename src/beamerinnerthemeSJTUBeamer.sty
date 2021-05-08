@@ -109,7 +109,22 @@
 		\pgfmathparse{-0.4*\s}\let\ys=\pgfmathresult%
 		\fill [pattern={stamp[size=#1,xshift=\xs, yshift=\ys]},pattern color=cprimary!50] #2 rectangle #3;
 }
-\titlegraphic{\pgfuseimage{titlelogo}}
+\titlegraphic{
+  \color{white}
+  \hbox{
+    \hskip-3.5pt\pgfuseimage{titlelogo}
+    \ifx\insertinstitute\@empty%
+    \else{\hskip7pt \vrule width0.5pt}\hskip-1pt\vbox{
+      \usebeamerfont{institute}
+      \insertinstitute
+      \par\noindent\vskip0.15em
+      \fontsize{4.8pt}{0pt}\selectfont
+      \textsc{\insertshortinstitute}
+      \vskip0.65em
+    }%
+    \fi%
+  }
+}
 \defbeamertemplate*{title page}{SJTUBeamer}[1][]
 {
   \vbox{}
@@ -126,7 +141,7 @@
     \centering
     \usebeamercolor{title}
     \begin{beamercolorbox}[sep=8pt]{logo}
-        \inserttitlegraphic
+      \inserttitlegraphic
     \end{beamercolorbox}
     \begin{beamercolorbox}[sep=8pt,#1]{title}
       \usebeamerfont{title}\inserttitle\par%
@@ -140,9 +155,9 @@
     \begin{beamercolorbox}[sep=8pt,#1]{author}
       \usebeamerfont{author}\insertauthor
     \end{beamercolorbox}
-    \begin{beamercolorbox}[sep=8pt,#1]{institute}
-      \usebeamerfont{institute}\insertinstitute
-    \end{beamercolorbox}
+    % \begin{beamercolorbox}[sep=8pt,#1]{institute}
+    %   \usebeamerfont{institute}\insertinstitute
+    % \end{beamercolorbox}
     \begin{beamercolorbox}[sep=8pt,#1]{date}
       \usebeamerfont{date}\insertdate
     \end{beamercolorbox}\vskip0.5em
