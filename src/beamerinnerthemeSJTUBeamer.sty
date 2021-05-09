@@ -45,6 +45,40 @@
 \else
   \pgfdeclareimage[height=1cm]{titlelogo}{vi/enlogo.pdf}
 \fi
+\titlegraphic{
+  \color{white}
+  \vskip8pt
+  \hbox{
+    \hskip4.5pt\pgfuseimage{titlelogo}
+    \ifx\insertinstitute\@empty%
+    \else{\hskip7pt \vrule width0.5pt}\hskip7pt
+      \ifx\beamer@SJTUBeamer@lang\beamer@SJTUBeamer@langcn%
+        \vbox{
+          \fontsize{13pt}{0pt}\selectfont
+          \insertinstitute
+          \par\noindent\vskip0.15em
+          \fontsize{5pt}{0pt}\selectfont
+          \textsc{\insertshortinstitute}
+          \baselineskip 3.2pt
+          \par~
+        }
+      \else%
+        \vbox to 1cm{
+          \vfill
+          \vbox{
+            \offinterlineskip
+            \noindent \strut
+            \baselineskip 0pt \lineskip -2pt
+            \scriptsize\textsc{\beamer@shortinstitute}
+            \strut
+          }
+          \vfill
+        }
+      \fi%
+    \fi%
+  }
+  \vskip8pt
+}
 
 \usetikzlibrary{patterns.meta}
 \usetikzlibrary{fadings}
@@ -109,37 +143,7 @@
 		\pgfmathparse{-0.4*\s}\let\ys=\pgfmathresult%
 		\fill [pattern={stamp[size=#1,xshift=\xs, yshift=\ys]},pattern color=cprimary!50] #2 rectangle #3;
 }
-\titlegraphic{
-  \color{white}
-  \hbox{
-    \hskip-3.5pt\pgfuseimage{titlelogo}
-    \ifx\insertinstitute\@empty%
-    \else{\hskip7pt \vrule width0.5pt}\hskip-1pt
-      \ifx\beamer@SJTUBeamer@lang\beamer@SJTUBeamer@langcn%
-        \vbox{
-          \fontsize{13pt}{0pt}\selectfont
-          \insertinstitute
-          \par\noindent\vskip0.15em
-          \fontsize{4.8pt}{0pt}\selectfont
-          \textsc{\insertshortinstitute}
-          \vskip0.637em
-        }
-      \else%
-        \vbox to 1cm{
-          \vfill
-          \vbox{
-            \offinterlineskip
-            \noindent \strut
-            \baselineskip 0pt \lineskip -2pt
-            \scriptsize\textsc{\beamer@shortinstitute}
-            \strut
-          }
-          \vfill
-        }
-      \fi%
-    \fi%
-  }
-}
+
 \defbeamertemplate*{title page}{SJTUBeamer}[1][]
 {
   \vbox{}
@@ -155,7 +159,7 @@
   \begingroup
     \centering
     \usebeamercolor{title}
-    \begin{beamercolorbox}[sep=8pt]{logo}
+    \begin{beamercolorbox}{logo}
       \inserttitlegraphic
     \end{beamercolorbox}
     \begin{beamercolorbox}[sep=8pt,#1]{title}
@@ -170,9 +174,6 @@
     \begin{beamercolorbox}[sep=8pt,#1]{author}
       \usebeamerfont{author}\insertauthor
     \end{beamercolorbox}
-    % \begin{beamercolorbox}[sep=8pt,#1]{institute}
-    %   \usebeamerfont{institute}\insertinstitute
-    % \end{beamercolorbox}
     \begin{beamercolorbox}[sep=8pt,#1]{date}
       \usebeamerfont{date}\insertdate
     \end{beamercolorbox}\vskip0.5em
@@ -358,33 +359,38 @@ overlay={
 
 \def\bottompage{
   \vbox{}
-  \vfill
-  \begin{tikzpicture}[overlay]
+  \begin{tikzpicture}[overlay,yshift=-80pt]
     \def\w{\the\paperwidth}%
     \def\h{\the\paperheight}%
     \begin{scope}[fill=cprimary!50!black,fill opacity=0.15]
-      \clip (0.7*\w,1.05*\h) circle (0.95*\h);
+      \clip (0.63*\w,1.05*\h) circle (1*\h);
       \fill (0.14*\w,-0.95*\h) circle (1.67*\h);
     \end{scope}
     \begin{scope}[fill=csecondary!50!cprimary!70!white,fill opacity=0.15]
-      \clip (1.14*\w,-0.67*\h) circle (1.17*\h);
+      \clip[xshift=26pt] (0.95*\w,-0.67*\h) circle (1.17*\h);
       \fill 
         (0.14*\w,-0.95*\h) circle (1.67*\h)
-        (0.7*\w,1.05*\h) circle (0.95*\h);
+        (0.63*\w,1.05*\h) circle (1*\h);
     \end{scope}
   \end{tikzpicture}
+  \vfill
   \begingroup
-  \vskip1em
-  \begin{beamercolorbox}[sep=8pt]{title}
-    \usebeamerfont{title}\noindent
-    \ifx\beamer@SJTUBeamer@lang\beamer@SJTUBeamer@langcn
-      谢谢
-    \else
-      Thank You
-    \fi
-    \vskip1em%
-    \usebeamerfont{subtitle}\usebeamercolor{subtitle!50!cprimary}\insertauthor~$\cdot$~\inserttitle
-  \end{beamercolorbox}%
+    \raggedleft
+    \pgfuseimage{titlelogo}
+    \vfill
+    \vskip6em
+    \begin{beamercolorbox}[sep=8pt]{title}
+      \usebeamerfont{title}\noindent
+      \ifx\beamer@SJTUBeamer@lang\beamer@SJTUBeamer@langcn
+        谢谢
+      \else
+        Thank You
+      \fi
+      \vskip1em%
+      \usebeamerfont{subtitle}\usebeamercolor{subtitle!50!cprimary}\insertauthor~$\cdot$~\inserttitle
+    \end{beamercolorbox}%
+    \vfill
+    \vskip3.5em
   \endgroup
 }
 

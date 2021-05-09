@@ -13,7 +13,7 @@
 % The Current Maintainer of this work is Log Creative.
 %
 
-\mode<presentation>
+\mode<all>
 
 \DeclareOptionBeamer{navigation}{
     \PassOptionsToPackage{navigation=#1}{beamerouterthemeSJTUBeamer}
@@ -48,15 +48,8 @@
 }
 \ProcessOptionsBeamer
 
-\usecolortheme{SJTUBeamer}
-\usefonttheme{SJTUBeamer}
-\useinnertheme{SJTUBeamer}
-\useoutertheme{SJTUBeamer}
-\hypersetup{unicode}
-\RequirePackage{bookmark}
-
-% \ifx\beamer@SJTUBeamer@lang\beamer@SJTUBeamer@langen%
-% \else
+\ifx\beamer@SJTUBeamer@lang\beamer@SJTUBeamer@langen%
+\else
     \ifx\beamer@SJTUBeamer@cjk\beamer@SJTUBeamer@cjktrue%
         \def\Hy@WarnOptionDisabled#1{
             \def\next{#1}%
@@ -83,7 +76,14 @@
         }
         \RequirePackage[UTF8]{ctex}
     \fi
-% \fi
+\fi
+\hypersetup{unicode}
+\RequirePackage{bookmark}
+\RequirePackage{silence}
+\WarningFilter{latexfont}{Font shape}
 
-\mode
-<all>
+\mode<presentation>
+\usecolortheme{SJTUBeamer}
+\usefonttheme{SJTUBeamer}
+\useinnertheme{SJTUBeamer}
+\useoutertheme{SJTUBeamer}
