@@ -10,8 +10,8 @@ $main = ($main[12..$main.length] -join "`r`n")
 
 # Preview files
 $preview = @(
-    @('red','','color=red','\institute[School of Biomedical Engineering]{生物医学工程学院}'),
-    @('redw','aspectratio=169','color=red','\institute[School of Biomedical Engineering]{生物医学工程学院}'),
+    @('red','','color=red','\institute[School of Mathematical Sciences]{数学科学学院}'),
+    @('redw','aspectratio=169','color=red','\institute[School of Mathematical Sciences]{数学科学学院}'),
     @('blue','','navigation=subsections','\institute[School of Electronic, \\Information and Electrical Engineering]{电子信息与电气工程学院}'),
     @('bluew','aspectratio=169','navigation=subsections','\institute[School of Electronic, \\Information and Electrical Engineering]{电子信息与电气工程学院}')
 )
