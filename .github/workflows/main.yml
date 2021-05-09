@@ -9,11 +9,11 @@ jobs:
       - name: Compile LaTeX document
         uses: xu-cheng/latex-action@v2
         with:
-          root_file: test.tex
+          root_file: main.tex
           working_directory: src/
           latexmk_use_lualatex: true
       - name: Upload PDF file
         uses: actions/upload-artifact@v2
         with:
           name: PDF
-          path: src/test.pdf
+          path: src/main.pdf

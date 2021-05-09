@@ -1,2 +1,5 @@
 standard/
 *.log
+*.aux
+*.listing
+*.vrb
