@@ -158,16 +158,17 @@
   \fi
   \begingroup
     \centering
-    \usebeamercolor{title}
+    \usebeamercolor{titlelike}
     \begin{beamercolorbox}{logo}
       \inserttitlegraphic
     \end{beamercolorbox}
     \begin{beamercolorbox}[sep=8pt,#1]{title}
+      \color{white}
       \usebeamerfont{title}\inserttitle\par%
       \ifx\insertsubtitle\@empty%
       \else%
         \vskip0.25em%
-        {\usebeamerfont{subtitle}\usebeamercolor{subtitle}\insertsubtitle\par}%
+        {\usebeamerfont{subtitle}\insertsubtitle\par}%
       \fi%     
     \end{beamercolorbox}%
     \vskip1em\par
@@ -182,16 +183,12 @@
 }
 \def\maketitle{
     \setbeamercolor{background canvas}{bg=cprimary}%
-    \setbeamercolor{structure}{fg=white}%
-    \setbeamercolor{titlelike}{fg=white,bg=}%
     \ifbeamer@inframe%
     \titlepage%
     \else%
     \frame{\titlepage}%
     \fi%
-    \setbeamercolor{titlelike}{fg=white,bg=cprimary}%
     \setbeamercolor{background canvas}{bg=white}%
-    \setbeamercolor{structure}{fg=cprimary}%
 }
 
 % Itemize environments.
@@ -380,6 +377,7 @@ overlay={
     \vfill
     \vskip6em
     \begin{beamercolorbox}[sep=8pt]{title}
+      \color{white}
       \usebeamerfont{title}\noindent
       \ifx\beamer@SJTUBeamer@lang\beamer@SJTUBeamer@langcn
         谢谢
@@ -396,14 +394,10 @@ overlay={
 
 \def\makebottom{
   \setbeamercolor{background canvas}{bg=cprimary}%
-  \setbeamercolor{structure}{fg=white}%
-  \setbeamercolor{titlelike}{fg=white,bg=}%
   \ifbeamer@inframe%i
   \bottompage%
   \else%
   \frame{\bottompage}%
   \fi%
-  \setbeamercolor{titlelike}{fg=white,bg=cprimary}%
   \setbeamercolor{background canvas}{bg=white}%
-  \setbeamercolor{structure}{fg=cprimary}%
 }

@@ -53,32 +53,31 @@
 
 \section{编译}
 
-该模板的使用范例代码请见 \href{https://github.com/LogCreative/SJTUBeamer/blob/main/src/test.tex}{测试文件}。需要使用副本时请直接拷贝 \verb"src" 文件夹修改测试文件，目前版本不要轻易删除样式文件。
+该模板的使用范例代码请见 \href{https://github.com/LogCreative/SJTUBeamer/blob/main/src/main.tex}{测试文件}。需要使用副本时请直接拷贝 \verb"src" 文件夹修改测试文件，目前版本不要轻易删除样式文件。
 
 为了编译出目录，你需要编译两次，或者直接使用 \verb"latexmk" 编译。
 
-使用 \href{https://github.com/LogCreative/SJTUBeamer/generate}{\texttt{Use This Template}} 按钮可以将本存储库附带的 Github Actions 自动编译设置同时拷贝，在提交修改 \verb"test.tex" 文件后会自动编译出 PDF 文件，置于 Github Actions 详情页面的 Artifacts 一栏。
+使用 \href{https://github.com/LogCreative/SJTUBeamer/generate}{\texttt{Use This Template}} 按钮可以将本存储库附带的 Github Actions 自动编译设置同时拷贝，在提交修改 \verb"main.tex" 文件后会自动编译出 PDF 文件，置于 Github Actions 详情页面的 Artifacts 一栏。
 
 \section{选项}
 
-\begin{docKey*}[SJTUBeamer]{navigation}{=tools|subsections}{default \texttt{tools}}
+\begin{docKey*}[SJTUBeamer]{navigation}{=tools|subsections}{默认 \texttt{tools}}
     导航栏选项。默认为 \verb"tools"，即工具栏与页码组合。设置为 \verb"subsections"，将会产生子章节的跳转进度条。
 \end{docKey*}
 
-\begin{docKey*}[SJTUBeamer]{lang}{=cn|en}{default \texttt{cn}}
-    决定校徽是中文校徽，还是英文校徽。
-    注意，启用 \texttt{en} 将会导致中文包不会被加载，因为使用英文徽标时，幻灯片内容推荐为英文。
+\begin{docKey*}[SJTUBeamer]{lang}{=cn|en}{默认 \texttt{cn}}
+    语言选项，并决定校徽是中文校徽，还是英文校徽。校标使用\href{http://vi.sjtu.edu.cn/index.php/articles/base/4}{\textbf{校标组合的最小使用规范 A4-11}}的 18mm修正稿。安全空间满足\href{http://vi.sjtu.edu.cn/index.php/articles/base/4}{\textbf{校标组合的安全空间 A4-12}}的 $\frac{1}{5}$ 校标高度规定。注意，启用 \texttt{en} 将会导致中文包不会被加载，因为使用英文徽标时，幻灯片内容推荐为英文。
 \end{docKey*}
 
-\begin{docKey*}[SJTUBeamer]{cjk}{=false|true}{default \texttt{false}}
+\begin{docKey*}[SJTUBeamer]{cjk}{=false|true}{默认 \texttt{false}}
     是否使用 \textsf{CJK} 宏包。如果开启此选项，请使用 \verb"\begin{CJK}{UTF8}{hei}" 和 \verb"\end{CJK}" 包裹 \verb"document" 环境中的内容。
 \end{docKey*}
 
-\begin{docKey*}[SJTUBeamer]{color}{=blue|red}{default \texttt{blue}}
+\begin{docKey*}[SJTUBeamer]{color}{=blue|red}{默认 \texttt{blue}}
     使用蓝色或红色的颜色主题。根据官方学术版模板 \href{http://vi.sjtu.edu.cn/index.php/articles/app/8}{\textbf{B2-02-02}} 的相关说明，极简版式适合场合较为严肃、不适合题图复杂图片出现的情况，如需使用，建议所有内页均使用极简版式，以达到简洁、清爽的效果。故默认情况下本模板使用蓝色主题。
 \end{docKey*}
 
-\begin{docKey*}[SJTUBeamer]{pattern}{=none|title|all}{default \texttt{title}}
+\begin{docKey*}[SJTUBeamer]{pattern}{=none|title|all}{默认 \texttt{title}}
     使用印记矩阵底纹。默认为 \verb"title"，将会在标题页添加由 \href{http://vi.sjtu.edu.cn/index.php/articles/base/5}{\textbf{A5-03-01 辅助图形使用规范}} 规定的印记矩阵底纹，并采用了渐变底色的方式实现。如果选项为 \verb"none"，就不会产生底纹；如果选项为 \verb"all"，还会在每页的标题栏添加底纹，这可能会增加编译时间。
 \end{docKey*}
 
@@ -119,9 +118,6 @@
 
 \newpage
 \section{样式}
-
-校标使用\href{http://vi.sjtu.edu.cn/index.php/articles/base/4}{\textbf{校标组合的最小使用规范 A4-11}}的 18mm
- 修正稿。安全空间满足\href{http://vi.sjtu.edu.cn/index.php/articles/base/4}{\textbf{校标组合的安全空间 A4-12}}的 $\frac{1}{5}$ 校标高度规定。
 
 \subsection{活力红}
 
