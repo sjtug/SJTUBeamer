@@ -48,8 +48,7 @@
   \usebeamerfont{footline}%
   \usebeamercolor[fg]{footline}%
   \hspace{1em}%
-  \raisebox{1.2pt}[0pt][0pt]{\insertframenumber/\inserttotalframenumber}%
-  \hspace*{0.5em}%
+  \raisebox{1.2pt}[0pt][0pt]{\insertframenumber/\inserttotalframenumber\hspace*{0.5em}}%
   }%
 \fi%
 
@@ -91,12 +90,15 @@
   \begin{beamercolorbox}[sep=0.3cm,#1,wd=\the\@tempdima]{frametitle}
     \begingroup
     \usebeamerfont{frametitle}%
-    \ifx\beamer@SJTUBeamer@pattern\beamer@SJTUBeamer@patternall%
-    \begin{tikzpicture}[overlay]
-      \stamparray{20pt}{(0.2*\the\paperwidth,-0.1*\the\paperheight)}{(\the\paperwidth,0.05*\the\paperheight)}
-      \fill [cprimary,path fading=fade right little] (0.2*\the\paperwidth,-0.1*\the\paperheight) rectangle (\the\paperwidth,0.05*\the\paperheight);
-    \end{tikzpicture}
+    \ifbeamer@draftmode%
     \else%
+      \ifx\beamer@SJTUBeamer@pattern\beamer@SJTUBeamer@patternall%
+      \begin{tikzpicture}[overlay]
+        \stamparray{20pt}{(0.2*\the\paperwidth,-0.1*\the\paperheight)}{(\the\paperwidth,0.05*\the\paperheight)}
+        \fill [cprimary,path fading=fade right little] (0.2*\the\paperwidth,-0.1*\the\paperheight) rectangle (\the\paperwidth,0.05*\the\paperheight);
+      \end{tikzpicture}
+      \else%
+      \fi%
     \fi%
     \vbox{}
     \ifx\insertframesubtitle\@empty\vskip-2px%

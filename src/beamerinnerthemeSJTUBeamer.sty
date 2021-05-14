@@ -148,14 +148,17 @@
 {
   \vbox{}
   \vfill
-  \ifx\beamer@SJTUBeamer@pattern\beamer@SJTUBeamer@patternnone%
-  \else
-  \begin{tikzpicture}[overlay]
-    \stamparray{20pt}{(-0.5*\the\paperwidth,-0.9*\the\paperheight)}{(0.5*\the\paperwidth, 0.2*\the\paperheight)}
-    \fill [cprimary,path fading=fade right] (-0.5*\the\paperwidth,-0.9*\the\paperheight) rectangle (0.5*\the\paperwidth, 0.2*\the\paperheight);
-    \fill [cprimary,path fading=center fade,xshift=-10pt,yshift=-20pt] (0,0) circle [radius=\the\paperwidth];
-  \end{tikzpicture}
-  \fi
+  \ifbeamer@draftmode%
+  \else%
+    \ifx\beamer@SJTUBeamer@pattern\beamer@SJTUBeamer@patternnone%
+    \else%
+    \begin{tikzpicture}[overlay]
+      \stamparray{20pt}{(-0.5*\the\paperwidth,-0.9*\the\paperheight)}{(0.5*\the\paperwidth, 0.2*\the\paperheight)}
+      \fill [cprimary,path fading=fade right] (-0.5*\the\paperwidth,-0.9*\the\paperheight) rectangle (0.5*\the\paperwidth, 0.2*\the\paperheight);
+      \fill [cprimary,path fading=center fade,xshift=-10pt,yshift=-20pt] (0,0) circle [radius=\the\paperwidth];
+    \end{tikzpicture}
+    \fi%
+  \fi%
   \begingroup
     \centering
     \usebeamercolor{titlelike}
