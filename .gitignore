@@ -3,3 +3,6 @@ standard/
 *.aux
 *.listing
 *.vrb
+*.toc
+*.nav
+*.snm

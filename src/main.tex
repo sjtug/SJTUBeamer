@@ -8,7 +8,7 @@
     % lang=en,                           % 使用英文logo
     % cjk=true,                          % 使用CJK而不是ctex
     color=red,                         % 使用红色主题
-    % pattern=none,                      % 不使用图案装饰
+    pattern=all,                       % 不使用图案装饰
 ]{SJTUBeamer}
 \institute[School of Mathematical Sciences]{数学科学学院}   % 组织
 \title{\textsf{SJTUBeamer} 幻灯片模板}  % 标题
@@ -19,6 +19,10 @@
 \begin{document}
 
     \maketitle                         % 创建标题页
+
+    \AtBeginPart{\frame{\partpage}}    % 部分开始页
+
+\part{第一部分}
 
     \begin{frame}
         \frametitle{提纲}
