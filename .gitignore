@@ -10,3 +10,5 @@ standard/
 *.blg
 *.bib.bak
 *.bib.sav
+*.run.xml
+*.bcf
