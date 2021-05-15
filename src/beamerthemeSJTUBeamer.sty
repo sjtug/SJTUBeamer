@@ -49,35 +49,30 @@
 \ProcessOptionsBeamer
 
 \RequirePackage{silence}
+\def\Hy@WarnOptionDisabled#1{
+    \def\next{#1}%
+    \ifx\beamer@SJTUBeamer@cjk\beamer@SJTUBeamer@cjktrue%
+        \def\ignore{pdfauthor}%
+    \else%
+        \def\ignore{driverfallback}%
+    \fi%
+    \ifx\next\ignore%
+    \else\Hy@Warning{%
+        Option `#1' has already been used,\MessageBreak 
+        setting the option has no effect%
+    }\fi
+}
 \ifx\beamer@SJTUBeamer@lang\beamer@SJTUBeamer@langen%
     \bibliographystyle{IEEEtran}
 \else
     \ifx\beamer@SJTUBeamer@cjk\beamer@SJTUBeamer@cjktrue%
-        \def\Hy@WarnOptionDisabled#1{
-            \def\next{#1}%
-            \def\ignore{pdfauthor}%
-            \ifx\next\ignore%
-            \else\Hy@Warning{%
-                Option `#1' has already been used,\MessageBreak 
-                setting the option has no effect%
-            }\fi
-        }
         \RequirePackage{CJKutf8}
         \renewcommand{\figurename}{图}
         \renewcommand{\tablename}{表}
         \renewcommand{\contentsname}{目录}
     \else%
-        \def\Hy@WarnOptionDisabled#1{
-            \def\next{#1}%
-            \def\ignore{driverfallback}%
-            \ifx\next\ignore%
-            \else\Hy@Warning{%
-                Option `#1' has already been used,\MessageBreak 
-                setting the option has no effect%
-            }\fi
-        }
         \RequirePackage[UTF8]{ctex}
-    \fi
+    \fi%
     \RequirePackage{gbt7714}
 \fi
 \hypersetup{unicode}
