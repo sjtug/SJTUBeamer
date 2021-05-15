@@ -195,7 +195,6 @@
 }
 
 % Part page
-
 \defbeamertemplate*{part page}{SJTUBeamer}[1][]
 {
   \begingroup
@@ -211,11 +210,14 @@
     \begin{beamercolorbox}[sep=16pt,center,#1]{part title}
       \usebeamerfont{part title}\insertpart\par
     \end{beamercolorbox}
+    \vskip1em\par{
+      \usebeamerfont{footline}%
+      \insertnavigation{0.33\paperwidth}
+    }
   \endgroup
 }
 
 % Section page
-
 \defbeamertemplate*{section page}{SJTUBeamer}[1][]
 {
   \begingroup
@@ -235,7 +237,6 @@
 }
 
 % Subection page
-
 \defbeamertemplate*{subsection page}{SJTUBeamer}[1][]
 {
   \begingroup

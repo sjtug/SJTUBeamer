@@ -8,7 +8,7 @@
     % lang=en,                           % 使用英文logo
     % cjk=true,                          % 使用CJK而不是ctex
     color=red,                         % 使用红色主题
-    pattern=all,                       % 不使用图案装饰
+    % pattern=none,                      % 不使用图案装饰
 ]{SJTUBeamer}
 \institute[School of Mathematical Sciences]{数学科学学院}   % 组织
 \title{\textsf{SJTUBeamer} 幻灯片模板}  % 标题
@@ -57,7 +57,7 @@
         \frametitle{一些盒子}
         
         \begin{block}{盒子}
-            这是一个盒子
+            这是一个盒子\cite{beamerman}
         \end{block}
 
         \begin{alertblock}{注意}
@@ -91,16 +91,15 @@ int main(){
             \begin{stampbox}
                 \includegraphics[height=0.3\textheight]{vi/plant.jpg}
             \end{stampbox}
-            \caption{图片标题}
+            \caption{图片标题\cite{viman}}
         \end{figure}
     \end{frame}
 
     \begin{frame}
         \frametitle{表与统计图}
-
         \begin{multicols}{2}
         \begin{table}
-            \caption{表格标题}
+            \caption{表格标题\cite{pgfplotstableman}}
             \pgfplotstabletypeset[
                 columns/Quick/.style={dec sep align},
                 columns/Cocktail/.style={dec sep align},
@@ -111,9 +110,16 @@ int main(){
         
         \begin{figure}
             \input{img/testgraph.tex}
-            % \caption{统计图标题}
+            \caption{统计图标题\cite{pgfplotsman}}
         \end{figure}
         \end{multicols}
+    \end{frame}
+
+\part{附录}
+
+    \begin{frame}
+        \frametitle{参考文献}
+        \bibliography{ref.bib}  % 推荐使用 JabRef 对文献进行管理
     \end{frame}
 
     \makebottom     % 创建尾页  % 非标准命令

@@ -6,3 +6,7 @@ standard/
 *.toc
 *.nav
 *.snm
+*.bbl
+*.blg
+*.bib.bak
+*.bib.sav
