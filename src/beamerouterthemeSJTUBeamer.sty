@@ -77,10 +77,16 @@
 \fi
 
 \tikzfading[
-  name=fade right little,
-  left color=transparent!0,
-  right color=transparent!15
+  name=fade left little,
+  right color=transparent!0,
+  left color=transparent!10
 ]
+\def\headerpattern{
+  \begin{tikzpicture}[overlay]
+    \stamparray{20pt}{(-0.05*\the\paperwidth,-0.12*\the\paperheight)}{(\the\paperwidth,0.05*\the\paperheight)}
+    \fill [cprimary,path fading=fade left little] (-0.05*\the\paperwidth,-0.12*\the\paperheight) rectangle (\the\paperwidth,0.05*\the\paperheight);
+  \end{tikzpicture}
+}
 \defbeamertemplate*{frametitle}{SJTUBeamer}[1][left]
 {%
   \ifbeamercolorempty[bg]{frametitle}{}{\nointerlineskip}%
@@ -92,12 +98,13 @@
     \usebeamerfont{frametitle}%
     \ifbeamer@draftmode%
     \else%
-      \ifx\beamer@SJTUBeamer@pattern\beamer@SJTUBeamer@patternall%
-      \begin{tikzpicture}[overlay]
-        \stamparray{20pt}{(0.2*\the\paperwidth,-0.1*\the\paperheight)}{(\the\paperwidth,0.05*\the\paperheight)}
-        \fill [cprimary,path fading=fade right little] (0.2*\the\paperwidth,-0.1*\the\paperheight) rectangle (\the\paperwidth,0.05*\the\paperheight);
-      \end{tikzpicture}
+      \ifx\beamer@SJTUBeamer@pattern\beamer@SJTUBeamer@patternall% For competability
+        \headerpattern
       \else%
+        \ifx\insertframesubtitle\@empty%
+        \else%
+          \headerpattern%
+        \fi%
       \fi%
     \fi%
     \vbox{}
