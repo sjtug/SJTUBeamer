@@ -15,12 +15,11 @@
 \subtitle{SJTUBeamer Template}         % 副标题
 \author{Log Creative}                  % 作者
 \date{\today}                          % 日期
+\addbibresource{ref.bib}  % 推荐使用 JabRef 对文献进行管理
 
 \begin{document}
 
     \maketitle                         % 创建标题页
-
-    \AtBeginPart{\frame{\partpage}}    % 部分开始页
 
 \part{第一部分}
 
@@ -36,7 +35,7 @@
 
         \begin{itemize}
             \item 第 1 项
-            \item 第 2 项\footnote{这是一个脚注。}
+            \item 第 2 项
             \item 第 3 项
         \end{itemize}
 
@@ -119,7 +118,7 @@ int main(){
 
     \begin{frame}
         \frametitle{参考文献}
-        \bibliography{ref.bib}  % 推荐使用 JabRef 对文献进行管理
+        \printbibliography
     \end{frame}
 
     \makebottom     % 创建尾页  % 非标准命令

@@ -31,12 +31,13 @@
 % }
 
 \DeclareOptionBeamer{navigation}{\def\beamer@SJTUBeamer@navigation{#1}}
-\ExecuteOptionsBeamer{navigation=tools} % tools will be default if nothing is given
+\ExecuteOptionsBeamer{navigation=tools}
 \ProcessOptionsBeamer
 
 \def\beamer@SJTUBeamer@navigationtools{tools}%
 \def\beamer@SJTUBeamer@navigationsubsections{subsections}%
 
+\setbeamertemplate{sidebar right}{}
 \ifx\beamer@SJTUBeamer@navigation\beamer@SJTUBeamer@navigationsubsections%
   \setbeamertemplate{navigation symbols}{
     \raggedleft%
@@ -51,6 +52,10 @@
   \raisebox{1.2pt}[0pt][0pt]{\insertframenumber/\inserttotalframenumber\hspace*{0.5em}}%
   }%
 \fi%
+\addtobeamertemplate{footline}{
+  \hfill\usebeamertemplate***{navigation symbols}%
+  \hspace*{0.1cm}\par\vskip 2pt
+}{}
 
 % The logo.
 

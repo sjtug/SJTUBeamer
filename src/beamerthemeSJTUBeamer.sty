@@ -49,6 +49,13 @@
 \ProcessOptionsBeamer
 
 \RequirePackage{silence}
+\usepackage[
+    style=authortitle-comp,
+    backend=bibtex
+]{biblatex}
+\def\cite#1{
+    \footcite{#1}
+}
 \def\Hy@WarnOptionDisabled#1{
     \def\next{#1}%
     \ifx\beamer@SJTUBeamer@cjk\beamer@SJTUBeamer@cjktrue%
@@ -63,7 +70,6 @@
     }\fi
 }
 \ifx\beamer@SJTUBeamer@lang\beamer@SJTUBeamer@langen%
-    \bibliographystyle{IEEEtran}
 \else
     \ifx\beamer@SJTUBeamer@cjk\beamer@SJTUBeamer@cjktrue%
         \RequirePackage{CJKutf8}
@@ -73,7 +79,6 @@
     \else%
         \RequirePackage[UTF8]{ctex}
     \fi%
-    \RequirePackage{gbt7714}
 \fi
 \hypersetup{unicode}
 \RequirePackage{bookmark}
