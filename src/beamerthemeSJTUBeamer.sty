@@ -39,20 +39,26 @@
     \PassOptionsToPackage{pattern=#1}{beamerinnerthemeSJTUBeamer}
 }
 
+\DeclareOptionBeamer{biber}{\def\beamer@SJTUBeamer@biber{#1}}
+\def\beamer@SJTUBeamer@bibertrue{true}%
+\def\beamer@SJTUBeamer@biberfalse{false}%
+
 \ExecuteOptionsBeamer{
     navigation=tools,
     cjk=false,
     lang=cn,
     color=blue,
     pattern=title,
+    biber=true,
 }
 \ProcessOptionsBeamer
 
 \RequirePackage{silence}
-\usepackage[
-    style=authortitle-comp,
-    backend=bibtex
-]{biblatex}
+\ifx\beamer@SJTUBeamer@biber\beamer@SJTUBeamer@bibertrue%
+    \usepackage[style=authortitle-comp]{biblatex}
+\else%
+    \usepackage[style=authortitle-comp,backend=bibtex]{biblatex}
+\fi%
 \def\cite#1{
     \footcite{#1}
 }

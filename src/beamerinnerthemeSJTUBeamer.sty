@@ -147,18 +147,19 @@
 \defbeamertemplate*{title page}{SJTUBeamer}[1][]
 {
   \vbox{}
-  \vfill
   \ifbeamer@draftmode%
   \else%
     \ifx\beamer@SJTUBeamer@pattern\beamer@SJTUBeamer@patternnone%
     \else%
     \begin{tikzpicture}[overlay]
-      \stamparray{20pt}{(-0.5*\the\paperwidth,-0.9*\the\paperheight)}{(0.5*\the\paperwidth, 0.2*\the\paperheight)}
-      \fill [cprimary,path fading=fade right] (-0.5*\the\paperwidth,-0.9*\the\paperheight) rectangle (0.5*\the\paperwidth, 0.2*\the\paperheight);
-      \fill [cprimary,path fading=center fade,xshift=-10pt,yshift=-20pt] (0,0) circle [radius=\the\paperwidth];
+      \fill [cprimary] (-0.2*\the\paperwidth,-1*\the\paperheight) rectangle (1*\the\paperwidth, 0.2*\the\paperheight);
+      \stamparray{20pt}{(-0.2*\the\paperwidth,-1*\the\paperheight)}{(1*\the\paperwidth, 0.2*\the\paperheight)}
+      \fill [cprimary,path fading=fade right] (-0.2*\the\paperwidth,-1*\the\paperheight) rectangle (1*\the\paperwidth, 0.2*\the\paperheight);
+      \fill [cprimary,path fading=center fade,xshift=-10pt,yshift=-20pt] (0.2*\the\paperwidth,0) circle [radius=\the\paperwidth];
     \end{tikzpicture}
     \fi%
   \fi%
+  \vfill
   \begingroup
     \centering
     \usebeamercolor{titlelike}
@@ -183,15 +184,6 @@
     \end{beamercolorbox}\vskip0.5em
   \endgroup
   \vfill
-}
-\def\maketitle{
-    \setbeamercolor{background canvas}{bg=cprimary}%
-    \ifbeamer@inframe%
-    \titlepage%
-    \else%
-    \frame{\titlepage}%
-    \fi%
-    \setbeamercolor{background canvas}{bg=white}%
 }
 
 % Part page
@@ -428,6 +420,7 @@ overlay={
   \begin{tikzpicture}[overlay,yshift=-80pt]
     \def\w{\the\paperwidth}%
     \def\h{\the\paperheight}%
+    \fill [cprimary] (-0.2*\w,-1*\h) rectangle (1*\w, 0.5*\h);
     \begin{scope}[fill=cprimary!50!black,fill opacity=0.15]
       \clip (0.63*\w,1.05*\h) circle (1*\h);
       \fill (0.14*\w,-0.95*\h) circle (1.67*\h);
@@ -462,11 +455,9 @@ overlay={
 }
 
 \def\makebottom{
-  \setbeamercolor{background canvas}{bg=cprimary}%
   \ifbeamer@inframe%i
   \bottompage%
   \else%
   \frame{\bottompage}%
   \fi%
-  \setbeamercolor{background canvas}{bg=white}%
 }
