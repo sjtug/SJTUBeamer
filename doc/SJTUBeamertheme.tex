@@ -94,7 +94,8 @@
     \begin{quotation}
         \LaTeX{} $\rightarrow$ \textsc{Bib\TeX{}} $\rightarrow$ \LaTeX{} $\rightarrow$ \LaTeX{}
     \end{quotation}
-    本模板已经使用 \verb"biblatex" 宏包作为参考文献的用户接口，所以不必使用老式 \textsc{Bib\TeX{}} 语法打印参考文献。修改 \verb"\addbibresource{ref.bib}" 更改参考文献目录，修改 \\\verb"\printbibliography[title=参考文献]" 中的 \verb"title" 属性可以更改参考文献的标题。推荐使用 \href{https://www.jabref.org/}{\textbf{JabRef}} 管理参考文献。
+    启用本选项也会导致 \verb"\cite" 命令不再被重定向到 \verb"footcite"（使用脚注的引用），并启用 \verb"authoryear" 引用样式。
+    本模板已经使用 \verb"biblatex" 宏包作为参考文献的用户接口，所以不必使用老式 \textsc{Bib\TeX{}} 语法打印参考文献。修改 \verb"\addbibresource{ref.bib}" 更改参考文献目录，修改 \verb"\printbibliography[title=参考文献]" 中的 \verb"title" 属性可以更改参考文献的标题。推荐使用 \href{https://www.jabref.org/}{\textbf{JabRef}} 管理参考文献。
 \end{docKey*}
 
 \section{环境}
