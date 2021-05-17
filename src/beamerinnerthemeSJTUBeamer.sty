@@ -147,12 +147,14 @@
 \defbeamertemplate*{title page}{SJTUBeamer}[1][]
 {
   \vbox{}
+  \begin{tikzpicture}[overlay]
+    \fill [cprimary] (-0.2*\the\paperwidth,-1*\the\paperheight) rectangle (1*\the\paperwidth, 0.2*\the\paperheight);
+  \end{tikzpicture}
   \ifbeamer@draftmode%
   \else%
     \ifx\beamer@SJTUBeamer@pattern\beamer@SJTUBeamer@patternnone%
     \else%
     \begin{tikzpicture}[overlay]
-      \fill [cprimary] (-0.2*\the\paperwidth,-1*\the\paperheight) rectangle (1*\the\paperwidth, 0.2*\the\paperheight);
       \stamparray{20pt}{(-0.2*\the\paperwidth,-1*\the\paperheight)}{(1*\the\paperwidth, 0.2*\the\paperheight)}
       \fill [cprimary,path fading=fade right] (-0.2*\the\paperwidth,-1*\the\paperheight) rectangle (1*\the\paperwidth, 0.2*\the\paperheight);
       \fill [cprimary,path fading=center fade,xshift=-10pt,yshift=-20pt] (0.2*\the\paperwidth,0) circle [radius=\the\paperwidth];
@@ -225,7 +227,7 @@
     \else%
       \sectionname~\insertsectionnumber
     \fi%
-    \hspace*{2pt}
+    \hspace*{6pt}
     }
     \vskip1em\par
     \begin{beamercolorbox}[sep=12pt,right,#1]{section title}
@@ -233,7 +235,6 @@
     \end{beamercolorbox}
   \endgroup
 }
-
 % Subection page
 \defbeamertemplate*{subsection page}{SJTUBeamer}[1][]
 {
@@ -245,7 +246,7 @@
     \else%
       \subsectionname~\insertsubsectionnumber
     \fi%
-    \hspace*{1pt}
+    \hspace*{2pt}
     }
     \vskip1em\par
     \begin{beamercolorbox}[sep=8pt,right,#1]{subsection title}
