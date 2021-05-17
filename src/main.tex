@@ -4,7 +4,7 @@
 ]{beamer}
 \mode<presentation>
 \usetheme[
-    % navigation=pages,                  % 仅显示页码
+    navigation=subsections,              % 仅显示页码
     % lang=en,                           % 使用英文logo
     % cjk=true,                          % 使用CJK而不是ctex
     color=red,                         % 使用红色主题
@@ -30,7 +30,13 @@
     \end{frame}
 
 \section{第 1 节}
+
+\frame{\sectionpage}
+
 \subsection{第 1 小节}
+
+\frame{\subsectionpage}
+
     \begin{frame}
         \frametitle{标题}
 
@@ -119,7 +125,7 @@ int main(){
 
     \begin{frame}
         \frametitle{参考文献}
-        \printbibliography
+        \printbibliography[title=参考文献]
     \end{frame}
 
     \makebottom     % 创建尾页  % 非标准命令

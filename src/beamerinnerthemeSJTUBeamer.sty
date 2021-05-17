@@ -218,16 +218,17 @@
 \defbeamertemplate*{section page}{SJTUBeamer}[1][]
 {
   \begingroup
-    \centering
+    \hfill
     {\usebeamerfont{section name}\usebeamercolor[fg]{section name}
     \ifx\beamer@SJTUBeamer@lang\beamer@SJTUBeamer@langcn%
       第~\insertsectionnumber~节
     \else%
       \sectionname~\insertsectionnumber
     \fi%
+    \hspace*{2pt}
     }
     \vskip1em\par
-    \begin{beamercolorbox}[sep=12pt,center,#1]{section title}
+    \begin{beamercolorbox}[sep=12pt,right,#1]{section title}
       \usebeamerfont{section title}\insertsection\par
     \end{beamercolorbox}
   \endgroup
@@ -237,16 +238,17 @@
 \defbeamertemplate*{subsection page}{SJTUBeamer}[1][]
 {
   \begingroup
-    \centering
+    \hfill
     {\usebeamerfont{subsection name}\usebeamercolor[fg]{subsection name}
     \ifx\beamer@SJTUBeamer@lang\beamer@SJTUBeamer@langcn%
       第~\insertsubsectionnumber~小节
     \else%
       \subsectionname~\insertsubsectionnumber
     \fi%
+    \hspace*{1pt}
     }
     \vskip1em\par
-    \begin{beamercolorbox}[sep=8pt,center,#1]{subsection title}
+    \begin{beamercolorbox}[sep=8pt,right,#1]{subsection title}
       \usebeamerfont{subsection title}\insertsubsection\par
     \end{beamercolorbox}
   \endgroup
