@@ -40,10 +40,21 @@
 \setbeamertemplate{sidebar right}{}
 \ifx\beamer@SJTUBeamer@navigation\beamer@SJTUBeamer@navigationsubsections%
   \setbeamertemplate{navigation symbols}{
-    \raggedleft%
+    \raggedleft
     \insertnavigation{0.35\paperwidth}%
-    \vspace{0.5em}%
+    \par~\vskip 2px 
   }%
+  \addtobeamertemplate{footline}{
+    \ifnum\beamer@partstartpage=\c@page %
+    \else%
+      \hfill%
+      {\usebeamertemplate***{navigation symbols}}%
+      \hspace*{0.1cm}
+    \fi%
+    \par
+    \vskip 10pt % FIXME: all spacer is not functional when meeting ifnum
+    % To avoid repeatation
+  }{}
 \else%
   \addtobeamertemplate{navigation symbols}{}{%
   \usebeamerfont{footline}%
@@ -51,11 +62,16 @@
   \hspace{1em}%
   \raisebox{1.2pt}[0pt][0pt]{\insertframenumber/\inserttotalframenumber\hspace*{0.5em}}%
   }%
+  \addtobeamertemplate{footline}{
+    % \ifnum\beamer@partstartpage=\c@page %
+    % \else%
+      \hfill%
+      \usebeamertemplate***{navigation symbols}%
+    % \fi%
+    \hspace*{0.1cm}\par
+    \vskip 2pt
+  }{}
 \fi%
-\addtobeamertemplate{footline}{
-  \hfill\usebeamertemplate***{navigation symbols}%
-  \hspace*{0.1cm}\par\vskip 2pt
-}{}
 
 % The logo.
 
@@ -88,8 +104,13 @@
 ]
 \def\headerpattern{
   \begin{tikzpicture}[overlay]
-    \stamparray{20pt}{(-0.05*\the\paperwidth,-0.12*\the\paperheight)}{(\the\paperwidth,0.05*\the\paperheight)}
-    \fill [cprimary,path fading=fade left little] (-0.05*\the\paperwidth,-0.12*\the\paperheight) rectangle (\the\paperwidth,0.05*\the\paperheight);
+    \ifx\insertframesubtitle\@empty%
+      \def\h{-0.1*\the\paperheight}
+    \else
+      \def\h{-0.125*\the\paperheight}
+    \fi
+    \stamparray{20pt}{(-0.05*\the\paperwidth,\h)}{(\the\paperwidth,0.05*\the\paperheight)}
+    \fill [cprimary,path fading=fade left little] (-0.05*\the\paperwidth,\h) rectangle (\the\paperwidth,0.05*\the\paperheight);
   \end{tikzpicture}
 }
 \defbeamertemplate*{frametitle}{SJTUBeamer}[1][left]
@@ -103,11 +124,10 @@
     \usebeamerfont{frametitle}%
     \ifbeamer@draftmode%
     \else%
-      \ifx\beamer@SJTUBeamer@pattern\beamer@SJTUBeamer@patternall% For competability
+      \ifx\beamer@SJTUBeamer@pattern\beamer@SJTUBeamer@patternall
         \headerpattern
       \else%
-        \ifx\insertframesubtitle\@empty%
-        \else%
+        \ifnum\beamer@sectionstartpage=\c@page %
           \headerpattern%
         \fi%
       \fi%
