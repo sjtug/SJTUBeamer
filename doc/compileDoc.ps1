@@ -6,7 +6,7 @@ New-Item tmp -Type directory
 
 # Get main part of the slide.
 $main = (Get-Content ../src/main.tex)
-$main = ($main[12..$main.length] -join "`r`n")
+$main = ($main[14..$main.length] -join "`r`n")
 
 # Preview files
 $preview = @(
@@ -24,8 +24,7 @@ $preview | ForEach-Object {
     $file = '\documentclass[' + $_[1] + ']{beamer}\mode<presentation>\usetheme[' + $_[2] + ']{SJTUBeamer}' + $_[3] + $main
     $file | Out-File tmp/src/$source
     Set-Location tmp/src
-    pdflatex $source -interaction=nonstopmode
-    pdflatex $source -interaction=nonstopmode
+    latexmk -pdf $source -interaction=nonstopmode
     Copy-Item -Path $target -Destination ../../pdf/$target
     Set-Location ../..
 } 

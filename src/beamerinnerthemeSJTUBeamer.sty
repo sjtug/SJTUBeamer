@@ -352,11 +352,12 @@ overlay={
       mark list\nextlist
       cprimary,csecondary,ctertiary\nextlist
     },
-    width=\ifdef{\mult@@cols}{
-      \axisdefaultwidth
-    }{
-      \columnwidth
-    },
+    % width=\ifdef{\mult@@cols}{
+    %   \axisdefaultwidth
+    % }{
+    %   \columnwidth
+    % },
+    height=0.5*\the\paperheight,
     axis line style={
       cprimary,
       thin

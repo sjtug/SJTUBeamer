@@ -45,24 +45,30 @@
 
 \tableofcontents    % generate contents
 
+\clearpage
+
 \section{简介}
 
 \textsf{SJTUBeamer} 样式为上海交通大学幻灯片模板的 \LaTeX{} 非官方实现版本，遵守\href{http://vi.sjtu.edu.cn/}{上海交通大学视觉形象识别系统}的相关规范，图标版权归上海交通大学所有，本项目仅供校内人员学习参考使用。
 
-目前该样式仍然处于开发者预览版本（ $\alpha$-\input{../VERSION}），仍在做适应性修改并适当添加图案。欢迎通过拉取请求对本模板提出修改建议。
+目前该样式处于测试版本（ $\beta$-\input{../VERSION}）, 欢迎通过拉取请求对本模板提出修改建议。
 
 \section{编译}
 
 该模板的使用范例代码请见 \href{https://github.com/LogCreative/SJTUBeamer/blob/main/src/main.tex}{测试文件}。需要使用副本时请直接拷贝 \verb"src" 文件夹修改测试文件，目前版本不要轻易删除样式文件。
 
-为了编译出目录，你需要编译两次，或者直接使用 \verb"latexmk" 编译。
+可以直接使用 \verb"latexmk" 编译。为了编译出目录，需要编译两次；如果需要编译出参考文献，则需要按照下面的顺序编译：
+\begin{quotation}
+    \LaTeX{} $\rightarrow$ \textsc{Biber} $\rightarrow$ \LaTeX{} $\rightarrow$ \LaTeX{}
+\end{quotation}
+如果使用 VS Code，可以右键总文件夹，选择 \textbf{通过 Code 打开} 加载配置。如果没有对参考文献做出更多的修改时，可以直接使用一次编译刷新即可。当然也可以使用草稿模式 \verb"draft" 快速预览内容。
 
 使用 \href{https://github.com/LogCreative/SJTUBeamer/generate}{\texttt{Use This Template}} 按钮可以将本存储库附带的 Github Actions 自动编译设置同时拷贝，在提交修改 \verb"main.tex" 文件后会自动编译出 PDF 文件，置于 Github Actions 详情页面的 Artifacts 一栏。
 
 \section{选项}
 
-\begin{docKey*}[SJTUBeamer]{navigation}{=tools|subsections}{默认 \texttt{tools}}
-    导航栏选项。默认为 \verb"tools"，即工具栏与页码组合。设置为 \verb"subsections"，将会产生子章节的跳转进度条。
+\begin{docKey*}[SJTUBeamer]{navigation}{=tools|subsections|pages}{默认 \texttt{tools}}
+    导航栏选项。默认为 \verb"tools"，即工具栏与页码组合。设置为 \verb"subsections"，将会产生子章节的跳转进度条。设置为 \verb"pages"，将仅显示页码信息。
 \end{docKey*}
 
 \begin{docKey*}[SJTUBeamer]{lang}{=cn|en}{默认 \texttt{cn}}
@@ -79,6 +85,16 @@
 
 \begin{docKey*}[SJTUBeamer]{pattern}{=none|title|all}{默认 \texttt{title}}
     使用印记矩阵底纹。默认为 \verb"title"，将会在标题页添加由 \href{http://vi.sjtu.edu.cn/index.php/articles/base/5}{\textbf{A5-03-01 辅助图形使用规范}} 规定的印记矩阵底纹，并采用了渐变底色的方式实现。如果选项为 \verb"none"，就不会产生底纹；如果选项为 \verb"all"，还会在每页的标题栏添加底纹，这可能会增加编译时间。
+
+    现在，每一节开始的页上都会自动添加底纹。
+\end{docKey*}
+
+\begin{docKey*}[SJTUBeamer]{biber}{=false|true}{默认 \texttt{false}}
+    如果需要使用老式的 \textsc{Bib\TeX{}} 编译参考文献，则需要打开 \verb"biber=true" 开关。并使用下面的编译顺序：
+    \begin{quotation}
+        \LaTeX{} $\rightarrow$ \textsc{Bib\TeX{}} $\rightarrow$ \LaTeX{} $\rightarrow$ \LaTeX{}
+    \end{quotation}
+    本模板已经使用 \verb"biblatex" 宏包作为参考文献的用户接口，所以不必使用老式 \textsc{Bib\TeX{}} 语法打印参考文献。修改 \verb"\addbibresource{ref.bib}" 更改参考文献目录，修改 \\\verb"\printbibliography[title=参考文献]" 中的 \verb"title" 属性可以更改参考文献的标题。推荐使用 \href{https://www.jabref.org/}{\textbf{JabRef}} 管理参考文献。
 \end{docKey*}
 
 \section{环境}
@@ -92,7 +108,9 @@
 \end{docEnvironment*}
 
 \begin{docEnvironment*}[doclang/environment content=code]{axis}{}
-    插入原生统计图。该模板对于使用 \textsf{PGFPlots} 生成的统计图进行了样式统一，主要改变了配色方案为当前主题，适当改变了线宽设定。由于统计图一般需要通过一些说明文字进行解释，所以在使用双栏版式时统计图的宽度将会被自动设定为栏宽。作者也制作了一个 \href{https://logcreative.github.io/PGFPlotsEdt/index.html?lang=cn}{\textbf{PGFPlots 统计绘图编辑器}}，便于自动生成产生该类型统计图的 \LaTeX{} 代码，关于 \textsf{PGFPlots} 宏包的使用提示也可以在 \href{https://logcreative.github.io/LaTeXSparkle/}{像模像样\LaTeX} 的 \href{https://logcreative.github.io/LaTeXSparkle/src/art/chapter06.html}{第六节} 找到。
+    插入原生统计图。该模板对于使用 \textsf{PGFPlots} 生成的统计图进行了样式统一，主要改变了配色方案为当前主题，适当改变了线宽设定。高度默认为 0.5 倍页高。
+    % 由于统计图一般需要通过一些说明文字进行解释，所以在使用双栏版式时统计图的宽度将会被自动设定为栏宽。
+    作者也制作了一个 \href{https://logcreative.github.io/PGFPlotsEdt/index.html?lang=cn}{\textbf{PGFPlots 统计绘图编辑器}}，便于自动生成产生该类型统计图的 \LaTeX{} 代码，关于 \textsf{PGFPlots} 宏包的使用提示也可以在 \href{https://logcreative.github.io/LaTeXSparkle/}{像模像样\LaTeX} 的 \href{https://logcreative.github.io/LaTeXSparkle/src/art/chapter06.html}{第六节} 找到。
 \end{docEnvironment*}
 
 \section{命令}
@@ -100,6 +118,10 @@
 \begin{docCommand*}[]{institute}{\oarg{shortname}\marg{name}}
     二级机构名称。添加本条命令将会按照 \href{https://vi.sjtu.edu.cn/index.php/articles/base/4}{\textbf{A4-08 二级机构中英文名称横式混合}} 对标题页的徽标与二级机构组合。其中\marg{name}为机构的中文全称，而\oarg{shortname}为机构的英文全称。当语言被设定为英文时，将会只显示英文全称并可以使用换行符号 \verb"\\" 对长名称换行。
     对于有自己徽标的二级机构，请直接修改 \verb"vi" 文件夹下的 \verb"cnlogo.pdf" 或者是 \verb"enlogo.pdf" 。
+\end{docCommand*}
+
+\begin{docCommand*}[]{part}{\marg{part name}}
+    部分名称。当一个幻灯片过长时，可以使用部分将幻灯片切割为多个部分，每一部分的小节信息是相互独立的。本模板提供了对应的部分页模板，并在插入部分信息后自动生成一个部分页。部分页将不会包含底端导航信息，而是在紧跟章节名后添加本部分内的小节导航条。
 \end{docCommand*}
 
 \begin{docCommand*}[]{pgfplotstabletypeset}{\marg{file}}
@@ -127,7 +149,7 @@
     colbacktitle=red!50!white,fonttitle=\small\bfseries\ttfamily,
     left=0pt,right=0pt,top=0pt,bottom=0pt,boxsep=0pt,boxrule=0.6pt,
     toptitle=1mm,bottomtitle=1mm,drop lifted shadow,center title,
-    graphics pages={1,...,9}]
+    graphics pages={1,...,12}]
     \tcbincludepdf{pdf/red.pdf}
 \end{tcbraster}
 
@@ -140,12 +162,14 @@
     colbacktitle=blue!50!white,fonttitle=\small\bfseries\ttfamily,
     left=0pt,right=0pt,top=0pt,bottom=0pt,boxsep=0pt,boxrule=0.6pt,
     toptitle=1mm,bottomtitle=1mm,drop lifted shadow,center title,
-    graphics pages={1,...,9}]
+    graphics pages={1,...,12}]
     \tcbincludepdf{pdf/blue.pdf}
 \end{tcbraster}
 
 \section{拓展阅读}
 可以前往 \href{https://logcreative.github.io/LaTeXSparkle/}{像模像样\LaTeX} 的 \href{https://logcreative.github.io/LaTeXSparkle/src/art/chapter07.html}{第七节} 阅读有关 \verb"Beamer" 宏包使用的相关信息。
+
+本模板与 \href{https://github.com/LogCreative/AutoBeamer/tree/pkg}{\textbf{内嵌版本的 \textsf{AutoBeamer}}} 幻灯片自动分割模块兼容。也可以使用 \href{https://logcreative.github.io/AutoBeamer/}{\textbf{\textsf{AutoBeamer} 在线版本}}，并通过 \verb"\usetheme{SJTUBeamer}" 使用本主题。
 
 \scriptsize  
 

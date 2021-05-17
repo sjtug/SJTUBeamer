@@ -56,12 +56,12 @@
 \RequirePackage{silence}
 \ifx\beamer@SJTUBeamer@biber\beamer@SJTUBeamer@bibertrue%
     \usepackage[style=authortitle-comp]{biblatex}
+    \def\cite#1{
+        \footcite{#1}
+    }
 \else%
     \usepackage[style=authortitle-comp,backend=bibtex]{biblatex}
 \fi%
-\def\cite#1{
-    \footcite{#1}
-}
 \def\Hy@WarnOptionDisabled#1{
     \def\next{#1}%
     \ifx\beamer@SJTUBeamer@cjk\beamer@SJTUBeamer@cjktrue%
