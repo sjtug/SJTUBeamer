@@ -36,26 +36,20 @@
 
 \def\beamer@SJTUBeamer@navigationtools{tools}%
 \def\beamer@SJTUBeamer@navigationsubsections{subsections}%
+\def\beamer@SJTUBeamer@navigationpages{pages}%
 
 \setbeamertemplate{sidebar right}{}
 \ifx\beamer@SJTUBeamer@navigation\beamer@SJTUBeamer@navigationsubsections%
-  \setbeamertemplate{navigation symbols}{
-    \raggedleft
-    \insertnavigation{0.35\paperwidth}%
-    \par~\vskip 2px 
-  }%
   \addtobeamertemplate{footline}{
     \ifnum\beamer@partstartpage=\c@page %
-    \else%
-      \hfill%
-      {\usebeamertemplate***{navigation symbols}}%
-      \hspace*{0.1cm}
-    \fi%
+    \else
+      \par\hfill\insertnavigation{0.35\paperwidth}\hspace*{0.1cm}
+    \fi
     \par
-    \vskip 10pt % FIXME: all spacer is not functional when meeting ifnum
-    % To avoid repeatation
+    \vskip 2pt
+    \vbox{}
   }{}
-\else%
+\else
   \addtobeamertemplate{navigation symbols}{}{%
   \usebeamerfont{footline}%
   \usebeamercolor[fg]{footline}%
@@ -63,13 +57,18 @@
   \raisebox{1.2pt}[0pt][0pt]{\insertframenumber/\inserttotalframenumber\hspace*{0.5em}}%
   }%
   \addtobeamertemplate{footline}{
-    % \ifnum\beamer@partstartpage=\c@page %
-    % \else%
+    \ifnum\beamer@partstartpage=\c@page %
+    \else%
       \hfill%
-      \usebeamertemplate***{navigation symbols}%
-    % \fi%
+      \ifx\beamer@SJTUBeamer@navigation\beamer@SJTUBeamer@navigationtools%
+        \usebeamertemplate***{navigation symbols}%
+      \else
+        \raisebox{1.2pt}[0pt][0pt]{\usebeamerfont{footline}%
+      \color{cprimary!90}\insertframenumber/\inserttotalframenumber\hspace*{0.5em}}%
+      \fi
+    \fi%
     \hspace*{0.1cm}\par
-    \vskip 2pt
+    \vskip 4pt
   }{}
 \fi%
 
