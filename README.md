@@ -1,4 +1,4 @@
-# SJTU-Beamer 🤓
+# SJTUBeamer 🤓
 Welcome! 🥳
 This is the beamer template exclusively for Shanghai Jiaotong University students to give a speech on group meeting or course project.
 
