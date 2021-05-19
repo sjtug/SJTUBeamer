@@ -1,99 +1,61 @@
 % !TeX encoding = UTF-8
 
-\documentclass{beamer}
+\documentclass[xcolor=table,dvipsnames,svgnames,aspectratio=169]{ctexbeamer}
+% 可以通过 fontset=macnew / fontset=ubuntu / fontset=windows 选项切换字体集
 
-\usepackage[utf8]{inputenc}
 \usepackage{listings}
 \usepackage{graphicx}
 \usepackage{hyperref}
-\usepackage{ctex}
 \usepackage{amsmath}
 
-
 \usetheme{Szeged}
-\usecolortheme{beaver}
+
 \usefonttheme{structurebold}
 \useinnertheme{circles}
 \setbeamertemplate{blocks}[rounded]
-\definecolor{blocktitlecolor}{rgb}{0.8 0 0}
-\setbeamercolor{block title}{fg=white,bg=blocktitlecolor}
+
+\definecolor{SJTUred}{rgb}{0.78125, 0.0859375, 0.1171875}
+\setbeamercolor{structure}{fg=SJTUred}
+\usecolortheme{beaver}
+\setbeamercolor{block title}{fg=white,bg=SJTUred}
 \setbeamertemplate{background}{\includegraphics[width=\paperwidth]{sjtu-miao.png}}
 \setbeamercolor{frametitle}{bg=}
-
-
-%------------------------------------------------------------
-%This block of code defines the information to appear in the
-%Title page
 \setbeamercolor{title}{bg=}
-\title[About Beamer] %optional
-{\textbf{About the Beamer class in presentation making}}
+
+\title[SJTU Beamer Template] % 页脚显示标题
+{\textbf{上海交通大学 Beamer 模版}} % 首页标题
 
 
 % \subtitle{A short story}
 
-% \author[Arthur, Doe] % (optional)
-% {A.~B.~Arthur\inst{1} \and J.~Doe\inst{2}}
 \author[Anxue Chen]
 {Anxue Chen}
 
-% \institute[VFU] % (optional)
-% {
-%   \inst{1}%
-%   Faculty of Physics\\
-%   Very Famous University
-%   \and
-%   \inst{2}%
-%   Faculty of Chemistry\\
-%   Very Famous University
-% }
 \institute[SJTU]{Shanghai Jiao Tong University}
 
-% \date[VLC 2014] % (optional)
-% {Very Large Conference, April 2014}
 \date{April 2021}
 
 \logo{\includegraphics[height=1.5cm]{vi/sjtu-vi-badge-red.pdf}}
 
-%End of title page configuration block
-%------------------------------------------------------------
-
-
-
-%------------------------------------------------------------
-%The next block of commands puts the table of contents at the 
-%beginning of each section and highlights the current section:
-%\AtBeginSection for each subsection
-
 \AtBeginSection[]
 {
   \begin{frame}
-    \frametitle{Table of Contents}
+    \frametitle{目录}
     \tableofcontents[currentsection]
   \end{frame}
 }
-%------------------------------------------------------------
-
 
 \begin{document}
 
-%The next statement creates the title page.
 \frame{\titlepage}
 
-
-%---------------------------------------------------------
-%This block of code is for the table of contents after
-%the title page
 \begin{frame}
-	\frametitle{Table of Contents}
+	\frametitle{目录}
 	\tableofcontents
 \end{frame}
-%---------------------------------------------------------
 
+\section{第一部分}
 
-\section{First section}
-
-%---------------------------------------------------------
-%Changing visivility of the text
 \begin{frame}
 	\frametitle{Sample frame title}
 	This is a text in second frame. For the sake of showing an example.
@@ -106,11 +68,6 @@
 	\end{itemize}
 \end{frame}
 
-%---------------------------------------------------------
-
-
-%---------------------------------------------------------
-%Example of the \pause command
 \begin{frame}
 	In this slide \pause
 
@@ -118,12 +75,9 @@
 
 	And finally everything will be there
 \end{frame}
-%---------------------------------------------------------
 
-\section{Second section}
+\section{第二部分}
 
-%---------------------------------------------------------
-%Highlighting text
 \begin{frame}
 	\frametitle{Sample frame title}
 
@@ -143,11 +97,7 @@
 		Sample text in green box. The title of the block is ``Examples".
 	\end{examples}
 \end{frame}
-%---------------------------------------------------------
 
-
-%---------------------------------------------------------
-%Two columns
 \begin{frame}
 	\frametitle{Two-column slide}
 
@@ -167,40 +117,5 @@
 		layout in some cases.
 	\end{columns}
 \end{frame}
-%---------------------------------------------------------
-
-\section{Third section}
-% \begin{frame}[fragile]
-% \frametitle{Code}
-%   \begin{lstlisting}[language=C,tabsize=2]
-%   #include <stdio.h>
-%   #include <unistd.h>
-%   #include <sys/types.h>
-%   #include <sys/wait.h>
-
-%   // This is a comment
-%   int main(int argc, char **argv)
-%   {
-%           while (--c > 1 && !fork());
-%           sleep(c = atoi(v[c]));
-%           printf("%d\n", c);
-%           wait(0);
-%           return 0;
-%   }
-%     \end{lstlisting}
-% \end{frame}
-
-% \begin{block}{Block 1}
-% This is Block 1.
-% \end{block}
-
-% \begin{figure}
-%     \centering
-%     \includegraphics[height=4cm]{logo.png}
-%     \caption{Caption}
-%     \label{fig:my_label}
-% \end{figure}
-
-%---------------------------------------------------------
 
 \end{document}
