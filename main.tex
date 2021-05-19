@@ -1,9 +1,12 @@
+% !TeX encoding = UTF-8
+
 \documentclass{beamer}
+
 \usepackage[utf8]{inputenc}
 \usepackage{listings}
 \usepackage{graphicx}
 \usepackage{hyperref}
-\usepackage[UTF8]{ctex}
+\usepackage{ctex}
 \usepackage{amsmath}
 
 
@@ -49,7 +52,7 @@
 % {Very Large Conference, April 2014}
 \date{April 2021}
 
-\logo{\includegraphics[height=1.5cm]{logo.png}}
+\logo{\includegraphics[height=1.5cm]{vi/sjtu-vi-badge-red.pdf}}
 
 %End of title page configuration block
 %------------------------------------------------------------
@@ -81,8 +84,8 @@
 %This block of code is for the table of contents after
 %the title page
 \begin{frame}
-\frametitle{Table of Contents}
-\tableofcontents
+	\frametitle{Table of Contents}
+	\tableofcontents
 \end{frame}
 %---------------------------------------------------------
 
@@ -92,15 +95,15 @@
 %---------------------------------------------------------
 %Changing visivility of the text
 \begin{frame}
-\frametitle{Sample frame title}
-This is a text in second frame. For the sake of showing an example.
+	\frametitle{Sample frame title}
+	This is a text in second frame. For the sake of showing an example.
 
-\begin{itemize}
-    \item<1-> Text visible on slide 1
-    \item<2-> Text visible on slide 2
-    \item<3> Text visible on slides 3
-    \item<4-> Text visible on slide 4
-\end{itemize}
+	\begin{itemize}
+		\item<1-> Text visible on slide 1
+		\item<2-> Text visible on slide 2
+		\item<3> Text visible on slides 3
+		\item<4-> Text visible on slide 4
+	\end{itemize}
 \end{frame}
 
 %---------------------------------------------------------
@@ -109,11 +112,11 @@ This is a text in second frame. For the sake of showing an example.
 %---------------------------------------------------------
 %Example of the \pause command
 \begin{frame}
-In this slide \pause
+	In this slide \pause
 
-the text will be partially visible \pause
+	the text will be partially visible \pause
 
-And finally everything will be there
+	And finally everything will be there
 \end{frame}
 %---------------------------------------------------------
 
@@ -122,23 +125,23 @@ And finally everything will be there
 %---------------------------------------------------------
 %Highlighting text
 \begin{frame}
-\frametitle{Sample frame title}
+	\frametitle{Sample frame title}
 
-In this slide, some important text will be
-\alert{highlighted} because it's important.
-Please, don't abuse it.
+	In this slide, some important text will be
+	\alert{highlighted} because it's important.
+	Please, don't abuse it.
 
-\begin{block}{Remark}
-Sample text
-\end{block}
+	\begin{block}{Remark}
+		Sample text
+	\end{block}
 
-\begin{alertblock}{Important theorem}
-Sample text in red box
-\end{alertblock}
+	\begin{alertblock}{Important theorem}
+		Sample text in red box
+	\end{alertblock}
 
-\begin{examples}
-Sample text in green box. The title of the block is ``Examples".
-\end{examples}
+	\begin{examples}
+		Sample text in green box. The title of the block is ``Examples".
+	\end{examples}
 \end{frame}
 %---------------------------------------------------------
 
@@ -146,23 +149,23 @@ Sample text in green box. The title of the block is ``Examples".
 %---------------------------------------------------------
 %Two columns
 \begin{frame}
-\frametitle{Two-column slide}
+	\frametitle{Two-column slide}
 
-\begin{columns}
+	\begin{columns}
 
-\column{0.5\textwidth}
-This is a text in first column.
-$$E=mc^2$$
-\begin{itemize}
-\item First item
-\item Second item
-\end{itemize}
+		\column{0.5\textwidth}
+		This is a text in first column.
+		$$E=mc^2$$
+		\begin{itemize}
+			\item First item
+			\item Second item
+		\end{itemize}
 
-\column{0.5\textwidth}
-This text will be in the second column
-and on a second tought this is a nice looking
-layout in some cases.
-\end{columns}
+		\column{0.5\textwidth}
+		This text will be in the second column
+		and on a second tought this is a nice looking
+		layout in some cases.
+	\end{columns}
 \end{frame}
 %---------------------------------------------------------
 
