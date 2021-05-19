@@ -20,6 +20,7 @@ jobs:
         with:
           root_file: main.tex
         name: build with latexmk
+      # - run: latexindent main.tex -w && git diff --exit-code
       - uses: actions/upload-artifact@v2
         with:
           path: main.pdf
