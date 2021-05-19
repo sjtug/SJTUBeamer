@@ -2,7 +2,7 @@
 Welcome! 🥳
 This is the beamer template exclusively for Shanghai Jiaotong University students to give a speech on group meeting or course project.
 
-## Usage🧰
+## Usage 🧰
 You can directly download the zip file from github and upload it to https://latex.sjtu.edu.cn to use this template. Latex snippets are listed as examples in the [main.tex](https://github.com/cascades-sjtu/SJTU-Beamer/main.tex). Both english and chinese are supported.
 
 ## Design Philosophy 💭
