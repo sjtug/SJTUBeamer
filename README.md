@@ -23,6 +23,7 @@ I'm still a freshman in creating beamer template, so feel free to open an issue 
 
 ## Appearance 🧐
 
-![main_1](https://user-images.githubusercontent.com/4198311/118809978-e4bff280-b8dd-11eb-8893-b550391586ac.png)
 
-![main_4](https://user-images.githubusercontent.com/4198311/118809997-eab5d380-b8dd-11eb-9a03-78cc42ba142c.png)
+![page001](https://user-images.githubusercontent.com/4198311/118810621-aa0a8a00-b8de-11eb-907e-6342c156ea53.png)
+
+![page004](https://user-images.githubusercontent.com/4198311/118810609-a70f9980-b8de-11eb-84b3-68918c905817.png)
