@@ -1,17 +1,17 @@
 on:
   push:
     branches:
-      - master
+      - main
       - develop
   pull_request:
     branches:
-      - master
+      - main
       - develop
 
 name: Build
 
 jobs:
-  build:
+  build-lualatex:
     runs-on: ubuntu-latest
     steps: 
       - uses: actions/checkout@v2
@@ -19,9 +19,25 @@ jobs:
       - uses: xu-cheng/latex-action@v2
         with:
           root_file: main.tex
-        name: build with latexmk
-      # - run: latexindent main.tex -w && git diff --exit-code
+          latexmk_use_lualatex: true
+        name: build with latexmk (lualatex)
       - uses: actions/upload-artifact@v2
         with:
           path: main.pdf
+          name: main-lualatex.pdf
+        name: upload build artifacts
+  build-xelatex:
+    runs-on: ubuntu-latest
+    steps: 
+      - uses: actions/checkout@v2
+        name: checkout code
+      - uses: xu-cheng/latex-action@v2
+        with:
+          root_file: main.tex
+          latexmk_use_xelatex: true
+        name: build with latexmk (xelatex)
+      - uses: actions/upload-artifact@v2
+        with:
+          path: main.pdf
+          name: main-xelatex.pdf
         name: upload build artifacts
