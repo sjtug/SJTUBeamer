@@ -76,8 +76,6 @@
 
 % The logo.
 
-% The frame title.
-
 \DeclareOptionBeamer{lang}{\def\beamer@SJTUBeamer@lang{#1}}
 \ExecuteOptionsBeamer{lang=cn} % cn will be default if nothing is given
 
@@ -97,6 +95,8 @@
 \else
   \pgfdeclareimage[height=0.7cm]{titlelogosmall}{vi/enlogo.pdf}
 \fi
+
+% The frame title.
 
 \tikzfading[
   name=fade left little,

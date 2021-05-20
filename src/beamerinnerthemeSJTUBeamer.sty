@@ -191,24 +191,25 @@
 % Part page
 \defbeamertemplate*{part page}{SJTUBeamer}[1][]
 {
+  \vfill
   \begingroup
-    {\hfill\usebeamerfont{part name}\usebeamercolor[fg]{part name}
-    \ifx\beamer@SJTUBeamer@lang\beamer@SJTUBeamer@langcn%
-      第~\insertromanpartnumber~部分
-    \else%
-      \partname~
-    \fi%
-    \hspace*{8pt}
-    }
-    \vskip1em\par
     \begin{beamercolorbox}[sep=16pt,right,#1]{part title}
+      \hfill\usebeamerfont{part name}
+      \ifx\beamer@SJTUBeamer@lang\beamer@SJTUBeamer@langcn%
+      第~\insertromanpartnumber~部分
+      \else%
+        \partname~
+      \fi%
+      \par\vskip4pt
       \usebeamerfont{part title}\insertpart\par
+      \hbox to \textwidth{
+        \usebeamerfont{footline}%
+        \setbeamercolor{section in head/foot}{fg=white,bg=}\hfill\insertnavigation{0.33\paperwidth}\hspace*{4pt}
+        \setbeamercolor{section in head/foot}{fg=cprimary,bg=}
+      }
     \end{beamercolorbox}
-    \vskip1em\par{
-      \usebeamerfont{footline}%
-      \hfill\insertnavigation{0.33\paperwidth}\hspace*{8pt}
-    }
   \endgroup
+  \vfill
 }
 \AtBeginPart{
   \begin{frame}
@@ -219,40 +220,38 @@
 % Section page
 \defbeamertemplate*{section page}{SJTUBeamer}[1][]
 {
+  \vfill
   \begingroup
-    \hfill
-    {\usebeamerfont{section name}\usebeamercolor[fg]{section name}
-    \ifx\beamer@SJTUBeamer@lang\beamer@SJTUBeamer@langcn%
-      第~\insertsectionnumber~节
-    \else%
-      \sectionname~\insertsectionnumber
-    \fi%
-    \hspace*{6pt}
-    }
-    \vskip1em\par
     \begin{beamercolorbox}[sep=12pt,right,#1]{section title}
+      \usebeamerfont{section name}
+      \ifx\beamer@SJTUBeamer@lang\beamer@SJTUBeamer@langcn%
+        第~\insertsectionnumber~节
+      \else%
+        \sectionname~\insertsectionnumber
+      \fi%
+      \par\vskip4pt
       \usebeamerfont{section title}\insertsection\par
     \end{beamercolorbox}
   \endgroup
+  \vfill
 }
 % Subection page
 \defbeamertemplate*{subsection page}{SJTUBeamer}[1][]
 {
+  \vfill
   \begingroup
-    \hfill
-    {\usebeamerfont{subsection name}\usebeamercolor[fg]{subsection name}
-    \ifx\beamer@SJTUBeamer@lang\beamer@SJTUBeamer@langcn%
-      第~\insertsubsectionnumber~小节
-    \else%
-      \subsectionname~\insertsubsectionnumber
-    \fi%
-    \hspace*{2pt}
-    }
-    \vskip1em\par
     \begin{beamercolorbox}[sep=8pt,right,#1]{subsection title}
+      \usebeamerfont{subsection name}
+      \ifx\beamer@SJTUBeamer@lang\beamer@SJTUBeamer@langcn%
+        第~\insertsubsectionnumber~小节
+      \else%
+        \subsectionname~\insertsubsectionnumber
+      \fi%
+      \par\vskip 4pt
       \usebeamerfont{subsection title}\insertsubsection\par
     \end{beamercolorbox}
   \endgroup
+  \vfill
 }
 
 % Itemize environments.
