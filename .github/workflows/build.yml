@@ -21,6 +21,9 @@ jobs:
           root_file: main.tex
           latexmk_use_lualatex: true
         name: build with latexmk (lualatex)
+      - run: cat main.log
+        name: display build log
+        if: ${{ failure() || success() }}
       - uses: actions/upload-artifact@v2
         with:
           path: main.pdf
@@ -36,6 +39,9 @@ jobs:
           root_file: main.tex
           latexmk_use_xelatex: true
         name: build with latexmk (xelatex)
+      - run: cat main.log
+        name: display build log
+        if: ${{ failure() || success() }}
       - uses: actions/upload-artifact@v2
         with:
           path: main.pdf
