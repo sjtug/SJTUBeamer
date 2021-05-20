@@ -240,6 +240,16 @@
 {
   \vfill
   \begingroup
+    \begin{beamercolorbox}[sep=12pt,right,#1]{section title}
+      \usebeamerfont{section name}
+      \ifx\beamer@SJTUBeamer@lang\beamer@SJTUBeamer@langcn%
+        第~\insertsectionnumber~节
+      \else%
+        \sectionname~\insertsectionnumber
+      \fi%
+      \par\vskip4pt
+      \usebeamerfont{section title}\insertsection\par
+    \end{beamercolorbox}
     \begin{beamercolorbox}[sep=8pt,right,#1]{subsection title}
       \usebeamerfont{subsection name}
       \ifx\beamer@SJTUBeamer@lang\beamer@SJTUBeamer@langcn%
