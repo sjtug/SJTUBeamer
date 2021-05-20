@@ -3,32 +3,52 @@
 \documentclass[xcolor=table,dvipsnames,svgnames,aspectratio=169]{ctexbeamer}
 % 可以通过 fontset=macnew / fontset=ubuntu / fontset=windows 选项切换字体集
 
-\usepackage{listings}
-\usepackage{graphicx}
-\usepackage{hyperref}
+\usepackage{tikz}
+\usetikzlibrary{arrows}
 \usepackage{amsmath}
+\usepackage{mflogo}
+\usepackage{graphicx}
+\usepackage{xspace}
+\usepackage{amsmath}
+\usepackage{unicode-math}
+\usepackage{fontspec}
+\usepackage{ccicons}
+\usepackage{hologo}
+\usepackage{colortbl}
+\usepackage{shapepar}
+\usepackage{hyperxmp}
+\usepackage{booktabs}
+\usepackage{qrcode}
+\usepackage{listings}
+\usepackage{tipa}
+\usepackage{multicol}
+\usepackage{datetime2}
+\usepackage{hyperref}
 
-% 可以在https://mpetroff.net/files/beamer-theme-matrix/上预览主题和颜色的搭配，修改{}内容即可
-\usetheme{Szeged}
-\usecolortheme{beaver}
+\usetheme{sjtured}
+% \usetheme{sjtublue}
 
-\usefonttheme{structurebold}
-\useinnertheme{circles}
-\setbeamertemplate{blocks}[rounded]
-
-\definecolor{SJTUred}{rgb}{0.78125, 0.0859375, 0.1171875}
-\setbeamercolor{structure}{fg=SJTUred}
-
-\setbeamercolor{block title}{fg=white,bg=SJTUred}
-\setbeamertemplate{background}{\includegraphics[width=\paperwidth]{sjtu-miao.png}}
-\setbeamercolor{frametitle}{bg=}
-\setbeamercolor{title}{bg=}
+\lstset{
+  language=[LaTeX]TeX,
+  basicstyle=\ttfamily\footnotesize,
+  tabsize=2,
+  keywordstyle=\bfseries\ttfamily\color{SJTUPrimary},
+  commentstyle=\sl\ttfamily\color[RGB]{100,100,100},
+  stringstyle=\ttfamily\color[RGB]{50,50,50},
+  extendedchars=true,
+  breaklines=true,
+}
+\lstdefinestyle{style@inline}{
+  basicstyle   = \ttfamily,
+  keepspaces   = true
+}
+\lstMakeShortInline[style=style@inline]|
 
 \title[SJTU Beamer Template] % 页脚显示标题
 {\textbf{上海交通大学 Beamer 模版}} % 首页标题
 
 
-% \subtitle{A short story}
+\subtitle{使用教程}
 
 \author[Anxue Chen]
 {Anxue Chen}
@@ -37,87 +57,14 @@
 
 \date{April 2021}
 
-\logo{\includegraphics[height=1.5cm]{vi/sjtu-vi-badge-red.pdf}}
-
-\AtBeginSection[]
-{
-  \begin{frame}
-    \frametitle{目录}
-    \tableofcontents[currentsection]
-  \end{frame}
-}
-
 \begin{document}
 
 \frame{\titlepage}
 
-\begin{frame}
-	\frametitle{目录}
+\begin{frame}{目录}
 	\tableofcontents
 \end{frame}
 
-\section{第一部分}
-
-\begin{frame}
-	\frametitle{Sample frame title}
-	This is a text in second frame. For the sake of showing an example.
-
-	\begin{itemize}
-		\item<1-> Text visible on slide 1
-		\item<2-> Text visible on slide 2
-		\item<3> Text visible on slides 3
-		\item<4-> Text visible on slide 4
-	\end{itemize}
-\end{frame}
-
-\begin{frame}
-	In this slide \pause
-
-	the text will be partially visible \pause
-
-	And finally everything will be there
-\end{frame}
-
-\section{第二部分}
-
-\begin{frame}
-	\frametitle{Sample frame title}
-
-	In this slide, some important text will be
-	\alert{highlighted} because it's important.
-	Please, don't abuse it.
-
-	\begin{block}{Remark}
-		Sample text
-	\end{block}
-
-	\begin{alertblock}{Important theorem}
-		Sample text in red box
-	\end{alertblock}
-
-	\begin{examples}
-		Sample text in green box. The title of the block is ``Examples".
-	\end{examples}
-\end{frame}
-
-\begin{frame}
-	\frametitle{Two-column slide}
-
-	\begin{columns}
-
-		\column{0.5\textwidth}
-		This is a text in first column.
-		$$E=mc^2$$
-		\begin{itemize}
-			\item First item
-			\item Second item
-		\end{itemize}
-
-		\column{0.5\textwidth}
-		This text will be in the second column
-		and on a second tought this is a nice looking
-		layout in some cases.
-	\end{columns}
-\end{frame}
+\include{contents/basis.tex}
 
 \end{document}
