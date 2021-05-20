@@ -94,7 +94,7 @@
     \begin{quotation}
         \LaTeX{} $\rightarrow$ \textsc{Bib\TeX{}} $\rightarrow$ \LaTeX{} $\rightarrow$ \LaTeX{}
     \end{quotation}
-    启用本选项也会导致 \verb"\cite" 命令不再被重定向到 \verb"footcite"（使用脚注的引用），并启用 \verb"authoryear" 引用样式。
+    启用本选项也会导致 \verb"\cite" 命令不再被重定向到 \verb"\footcite"（使用脚注的引用），并启用 \verb"authoryear" 引用样式。
     本模板已经使用 \verb"biblatex" 宏包作为参考文献的用户接口，所以不必使用老式 \textsc{Bib\TeX{}} 语法打印参考文献。修改 \verb"\addbibresource{ref.bib}" 更改参考文献目录，修改 \verb"\printbibliography[title=参考文献]" 中的 \verb"title" 属性可以更改参考文献的标题。推荐使用 \href{https://www.jabref.org/}{\textbf{JabRef}} 管理参考文献。
 \end{docKey*}
 
@@ -122,7 +122,29 @@
 \end{docCommand*}
 
 \begin{docCommand*}[]{part}{\marg{part name}}
-    部分名称。当一个幻灯片过长时，可以使用部分将幻灯片切割为多个部分，每一部分的小节信息是相互独立的。本模板提供了对应的部分页模板，并在插入部分信息后自动生成一个部分页。部分页将不会包含底端导航信息，而是在紧跟章节名后添加本部分内的小节导航条。
+    部分页。当一个幻灯片过长时，可以使用部分将幻灯片切割为多个部分，每一部分的小节信息是相互独立的。本模板提供了对应的部分页模板，并在插入部分信息后自动生成一个部分页。部分页将不会包含底端导航信息，而是在紧跟章节名后添加本部分内的小节导航条。
+\end{docCommand*}
+
+\begin{docCommand*}[]{sectionpage}{}
+    节页。可以通过手动添加 \verb"\frame{\sectionpage}" 的方式添加当前节的提示页。
+\end{docCommand*}
+
+\begin{docCommand*}[]{subsectionpage}{}
+    小节页。可以通过手动添加 \verb"\frame{\subsectionpage}" 的方式添加当前小节的提示页。本模板在小节页上既显示节的信息，也会显示小节的信息，因为小节作为节的组成部分，应当附属节的名称。如果希望在每一个小节前都添加一个小节页的话，可以在开始的部分添加如下的代码：
+    \begin{verbatim}
+\AtBeginSubsection[]{
+    \begin{frame}
+        \subsectionpage
+    \end{frame}
+}\end{verbatim}
+    可以作为新的目录形式。更为传统的方法是显示该节在整个部分的位置：
+    \begin{verbatim}
+\AtBeginSubsection[]{
+    \begin{frame}
+        \tableofcontents[currentsection,currentsubsection]
+    \end{frame}
+}\end{verbatim}
+    两者都是可行的。
 \end{docCommand*}
 
 \begin{docCommand*}[]{pgfplotstabletypeset}{\marg{file}}

@@ -27,7 +27,7 @@
 % 使用节目录
 % \AtBeginSection[]{
 %     \begin{frame}
-%         % \tableofcontents             % 传统节目录             
+%         % \tableofcontents[currentsection]           % 传统节目录             
 %         \sectionpage                   % 节页
 %     \end{frame}
 % }
@@ -35,7 +35,7 @@
 % 使用小节目录
 \AtBeginSubsection[]{                  % 在每小节开始
     \begin{frame}
-        % \tableofcontents             % 传统小节目录             
+        % \tableofcontents[currentsection,currentsubsection]             % 传统小节目录             
         \subsectionpage                % 小节页
     \end{frame}
 }
