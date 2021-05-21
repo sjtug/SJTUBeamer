@@ -58,7 +58,7 @@ jobs:
         with:
           root_file: main.tex
           latexmk_use_xelatex: true
-        name: build with latexmk (lualatex)
+        name: build with latexmk (xelatex)
       - run: cat main.log
         name: display build log
         if: ${{ failure() || success() }}
@@ -70,7 +70,7 @@ jobs:
         with:
           root_file: main.tex
           latexmk_use_xelatex: true
-        name: build with latexmk (lualatex)
+        name: build with latexmk (xelatex)
       - run: cat main.log
         name: display build log
         if: ${{ failure() || success() }}
