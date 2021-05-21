@@ -4,10 +4,6 @@
 Remove-Item -Path tmp/ -Recurse
 New-Item tmp -Type directory
 
-# Get main part of the slide.
-$main = (Get-Content ../src/main.tex)
-$main = ($main[14..$main.length] -join "`r`n")
-
 # Preview files
 $preview = @(
     @('red','','color=red','\institute[School of Mathematical Sciences]{数学科学学院}'),
@@ -18,7 +14,12 @@ $preview = @(
 
 Copy-Item -Path ../src -Destination tmp/ -Recurse
 
-$preview | ForEach-Object {
+# If PowerShell version < 7,
+# please delete -Parallel parameter.
+$preview | ForEach-Object -Parallel {
+    # Get main part of the slide.
+    $main = (Get-Content ../src/main.tex)
+    $main = ($main[14..$main.length] -join "`r`n")
     $source = $_[0] + '.tex'
     $target = $_[0] + '.pdf'
     $file = '\documentclass[' + $_[1] + ']{beamer}\mode<presentation>\usetheme[' + $_[2] + ']{SJTUBeamermin}' + $_[3] + $main
