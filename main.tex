@@ -25,7 +25,7 @@
 \usepackage{datetime2}
 \usepackage{hyperref}
 
-\usetheme[bannertitle,red]{sjtubeamer}
+\usetheme[bannertitle,blue]{sjtubeamer}
 % 颜色选项: red/blue。
 % bannertitle 启用时，标题页显示庙门横幅。否则只显示标题。
 
@@ -48,11 +48,10 @@
 \title[SJTU Beamer Template] % 页脚显示标题
 {\textbf{上海交通大学 Beamer 模版}} % 首页标题
 
-
 \subtitle{使用教程}
 
-\author[Anxue Chen]
-{Anxue Chen}
+\author[Anxue Chen, Alexara Wu]
+{Anxue Chen, Alexara Wu}
 
 \institute[SJTU]{Shanghai Jiao Tong University}
 
@@ -60,7 +59,10 @@
 
 \begin{document}
 
-\frame{\titlepage}
+% 关闭 plain 选项即可在标题页显示页眉页脚。
+\begin{frame}[plain]
+  \titlepage
+\end{frame}
 
 \begin{frame}{目录}
 	\tableofcontents

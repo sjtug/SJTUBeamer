@@ -2,11 +2,11 @@
 \RequirePackage{iftex}
 
 \SetupKeyvalOptions{
-  family=sjtubeamer,
-  prefix=sjtubeamer@
+	family=sjtubeamer,
+	prefix=sjtubeamer@
 }
 \DeclareBoolOption{bannertitle}
-\DeclareBoolOption[true]{red}
+\DeclareBoolOption{red}
 \DeclareBoolOption{blue}
 \ProcessKeyvalOptions*
 
@@ -18,54 +18,60 @@
 \setbeamertemplate{blocks}[rounded]
 
 \ifsjtubeamer@red
-  \definecolor{SJTUPrimary}{RGB}{200,22,30}
+	\definecolor{SJTUPrimary}{RGB}{200,22,30}
 \fi
 
 \ifsjtubeamer@blue
-  \definecolor{SJTUPrimary}{RGB}{0,64,152}
+	\definecolor{SJTUPrimary}{RGB}{0,64,152}
 \fi
 
 \setbeamercolor{structure}{fg=SJTUPrimary}
-
-\setbeamercolor{block title}{fg=white,bg=SJTUPrimary}
 \setbeamertemplate{background}{\includegraphics[width=\paperwidth]{sjtu-miao.png}}
-\setbeamercolor{frametitle}{bg=}
-\setbeamercolor{title}{bg=}
 
 \ifsjtubeamer@red
-  \logo{\includegraphics[height=1.5cm]{vi/sjtu-vi-badge-red.pdf}}
+	\logo{\includegraphics[height=1.5cm]{vi/sjtu-vi-badge-red.pdf}}
+  \setbeamercolor{banner title page}{fg=SJTUPrimary,bg=white}
 \fi
 
 \ifsjtubeamer@blue
-  \logo{\includegraphics[height=1.5cm]{vi/sjtu-vi-badge-blue.pdf}}
+	\logo{\includegraphics[height=1.5cm]{vi/sjtu-vi-badge-blue.pdf}}
+  \setbeamercolor{banner title page}{fg=white,bg=SJTUPrimary}
 \fi
 
 \ifsjtubeamer@bannertitle
-  \defbeamertemplate*{title page}{sjtured}[1][]
-  {
-    \nointerlineskip%
-    \begin{beamercolorbox}[wd=\paperwidth, ht=\paperheight]{empty}
-      \usebeamercolor{frametitle}% 
-      \begin{tikzpicture}
-        \pgfmathsetlengthmacro{\outslant}{\the\paperwidth - 0.8cm}
-        \node[anchor=north west, inner sep=0, outer sep=0] at (0,\the\paperheight){\includegraphics[height=\paperheight]{vi/title-background.jpg}};
-        \fill[color=white] (0,0) rectangle(\the\paperwidth,3.9);
-        \fill[color=bg]  (0,0) rectangle(\the\paperwidth,3.88);
-        \node[anchor=north west, text width=.8\paperwidth, fg] at (0.8,3.6){%
-        \ifx\insertsubtitle\@empty%
-          {\huge\bfseries\inserttitle}\\
-          \else%
-          {\Large\bfseries\inserttitle}\\
-          {\small\insertsubtitle}\\
-        \fi%
-        };
-        \node[anchor=south west, text width=.8\paperwidth, fg] at (0.8,0.45){%
-        {\small\insertauthor}\\
-        {\small\insertinstitute}\\
-        {\small\insertdate}%
-        };
-        \node[anchor=south east, inner sep=0, outer sep=0] at (\outslant,0.5){\includegraphics[height=1cm]{vi/sjtu-logo-white.pdf}};
-      \end{tikzpicture}
-    \end{beamercolorbox}
-  }
+	\defbeamertemplate*{title page}{sjtured}[1][]
+	{
+		\nointerlineskip%
+		\begin{beamercolorbox}[wd=\paperwidth, ht=\paperheight]{empty}
+			\usebeamercolor{banner title page}% 
+			\begin{tikzpicture}
+				\pgfmathsetlengthmacro{\outslant}{\the\paperwidth - 0.8cm}
+				\node[anchor=north west, inner sep=0, outer sep=0] at (0,\the\paperheight){\includegraphics[height=\paperheight]{vi/title-background.jpg}};
+				\fill[color=white] (0,0) rectangle(\the\paperwidth,3.9);
+				\fill[color=bg]  (0,0) rectangle(\the\paperwidth,3.88);
+				\node[anchor=north west, text width=.8\paperwidth, fg] at (0.8,3.6){%
+				\ifx\insertsubtitle\@empty%
+					{\huge\bfseries\inserttitle}\\
+					\else%
+					{\Large\bfseries\inserttitle}\\
+					{\small\insertsubtitle}\\
+				\fi%
+				};
+				\node[anchor=south west, text width=.8\paperwidth, fg] at (0.8,0.45){%
+				{\small\insertauthor}\\
+				{\small\insertinstitute}\\
+				{\small\insertdate}%
+				};
+				\node[anchor=south east, inner sep=0, outer sep=0] at (\outslant,0.5){
+					\ifsjtubeamer@red
+						\includegraphics[height=1cm]{vi/sjtu-vi-logo-red.pdf}
+					\fi
+
+					\ifsjtubeamer@blue
+						\includegraphics[height=1cm]{vi/sjtu-vi-logo-white.pdf}
+					\fi
+				};
+			\end{tikzpicture}
+		\end{beamercolorbox}
+	}
 \fi
