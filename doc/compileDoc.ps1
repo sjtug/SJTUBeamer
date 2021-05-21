@@ -21,7 +21,7 @@ Copy-Item -Path ../src -Destination tmp/ -Recurse
 $preview | ForEach-Object {
     $source = $_[0] + '.tex'
     $target = $_[0] + '.pdf'
-    $file = '\documentclass[' + $_[1] + ']{beamer}\mode<presentation>\usetheme[' + $_[2] + ']{SJTUBeamer}' + $_[3] + $main
+    $file = '\documentclass[' + $_[1] + ']{beamer}\mode<presentation>\usetheme[' + $_[2] + ']{SJTUBeamermin}' + $_[3] + $main
     $file | Out-File tmp/src/$source
     Set-Location tmp/src
     latexmk -pdf $source -interaction=nonstopmode

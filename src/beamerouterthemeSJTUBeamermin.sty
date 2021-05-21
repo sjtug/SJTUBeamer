@@ -1,4 +1,4 @@
-%% beamerouterthemeSJTUBeamer.sty
+%% beamerouterthemeSJTUBeamermin.sty
 %% Copyright 2021 Log Creative
 %% This work may be distributed and/or modified under the
 % conditions of the LaTeX Project Public License, either version 1.3
@@ -30,16 +30,16 @@
 %     }
 % }
 
-\DeclareOptionBeamer{navigation}{\def\beamer@SJTUBeamer@navigation{#1}}
+\DeclareOptionBeamer{navigation}{\def\beamer@SJTUBeamermin@navigation{#1}}
 \ExecuteOptionsBeamer{navigation=tools}
 \ProcessOptionsBeamer
 
-\def\beamer@SJTUBeamer@navigationtools{tools}%
-\def\beamer@SJTUBeamer@navigationsubsections{subsections}%
-\def\beamer@SJTUBeamer@navigationpages{pages}%
+\def\beamer@SJTUBeamermin@navigationtools{tools}%
+\def\beamer@SJTUBeamermin@navigationsubsections{subsections}%
+\def\beamer@SJTUBeamermin@navigationpages{pages}%
 
 \setbeamertemplate{sidebar right}{}
-\ifx\beamer@SJTUBeamer@navigation\beamer@SJTUBeamer@navigationsubsections%
+\ifx\beamer@SJTUBeamermin@navigation\beamer@SJTUBeamermin@navigationsubsections%
   \addtobeamertemplate{footline}{
     \vskip 4pt
     \vbox{}
@@ -62,7 +62,7 @@
     \ifnum\beamer@partstartpage=\c@page %
     \else%
       \hfill%
-      \ifx\beamer@SJTUBeamer@navigation\beamer@SJTUBeamer@navigationtools%
+      \ifx\beamer@SJTUBeamermin@navigation\beamer@SJTUBeamermin@navigationtools%
         \usebeamertemplate***{navigation symbols}%
       \else
         \raisebox{1.2pt}[0pt][0pt]{\usebeamerfont{footline}%
@@ -76,21 +76,21 @@
 
 % The logo.
 
-\DeclareOptionBeamer{lang}{\def\beamer@SJTUBeamer@lang{#1}}
+\DeclareOptionBeamer{lang}{\def\beamer@SJTUBeamermin@lang{#1}}
 \ExecuteOptionsBeamer{lang=cn} % cn will be default if nothing is given
 
-\def\beamer@SJTUBeamer@langcn{cn}%
-\def\beamer@SJTUBeamer@langen{en}%
+\def\beamer@SJTUBeamermin@langcn{cn}%
+\def\beamer@SJTUBeamermin@langen{en}%
 
-\DeclareOptionBeamer{pattern}{\def\beamer@SJTUBeamer@pattern{#1}}
+\DeclareOptionBeamer{pattern}{\def\beamer@SJTUBeamermin@pattern{#1}}
 
-\def\beamer@SJTUBeamer@patternnone{none}%
-\def\beamer@SJTUBeamer@patterntitle{title}%
-\def\beamer@SJTUBeamer@patternall{all}%
+\def\beamer@SJTUBeamermin@patternnone{none}%
+\def\beamer@SJTUBeamermin@patterntitle{title}%
+\def\beamer@SJTUBeamermin@patternall{all}%
 
 \ProcessOptionsBeamer
 
-\ifx\beamer@SJTUBeamer@lang\beamer@SJTUBeamer@langcn
+\ifx\beamer@SJTUBeamermin@lang\beamer@SJTUBeamermin@langcn
   \pgfdeclareimage[height=0.7cm]{titlelogosmall}{vi/cnlogo.pdf}
 \else
   \pgfdeclareimage[height=0.7cm]{titlelogosmall}{vi/enlogo.pdf}
@@ -114,7 +114,7 @@
     \fill [cprimary,path fading=fade left little] (-0.05*\the\paperwidth,\h) rectangle (\the\paperwidth,0.05*\the\paperheight);
   \end{tikzpicture}
 }
-\defbeamertemplate*{frametitle}{SJTUBeamer}[1][left]
+\defbeamertemplate*{frametitle}{SJTUBeamermin}[1][left]
 {%
   \ifbeamercolorempty[bg]{frametitle}{}{\nointerlineskip}%
   \@tempdima=\textwidth%
@@ -125,7 +125,7 @@
     \usebeamerfont{frametitle}%
     \ifbeamer@draftmode%
     \else%
-      \ifx\beamer@SJTUBeamer@pattern\beamer@SJTUBeamer@patternall
+      \ifx\beamer@SJTUBeamermin@pattern\beamer@SJTUBeamermin@patternall
         \headerpattern
       \else%
         \ifnum\beamer@sectionstartpage=\c@page %
