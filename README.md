@@ -23,7 +23,18 @@ I'm still a freshman in creating beamer template, so feel free to open an issue 
 
 ## Appearance 🧐
 
+**Blue theme cover page**
+
+![page001](https://user-images.githubusercontent.com/4198311/119085675-be619a80-ba36-11eb-878f-609b2882dc35.png)
+
+**Red theme cover page**
+
+![page001](https://user-images.githubusercontent.com/4198311/119085697-c7526c00-ba36-11eb-8a70-296f8f36c2d6.png)
+
+**Normal cover page**
 
 ![page001](https://user-images.githubusercontent.com/4198311/118810621-aa0a8a00-b8de-11eb-907e-6342c156ea53.png)
+
+**Red theme slides**
 
 ![page004](https://user-images.githubusercontent.com/4198311/118810609-a70f9980-b8de-11eb-84b3-68918c905817.png)
