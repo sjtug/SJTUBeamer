@@ -16,6 +16,8 @@ jobs:
     steps: 
       - uses: actions/checkout@v2
         name: checkout code
+      - run: sed -e "s|usetheme\[.*\]|usetheme\[red\]|g" main.tex -i
+        name: build theme "red"
       - uses: xu-cheng/latex-action@v2
         with:
           root_file: main.tex
@@ -24,16 +26,34 @@ jobs:
       - run: cat main.log
         name: display build log
         if: ${{ failure() || success() }}
+      - run: cp main.pdf main-red.pdf
+        name: save build result
+      - run: sed -e "s|usetheme\[.*\]|usetheme\[bannertitle,blue\]|g" main.tex -i
+        name: build theme "bannertitle, blue"
+      - uses: xu-cheng/latex-action@v2
+        with:
+          root_file: main.tex
+          latexmk_use_lualatex: true
+        name: build with latexmk (lualatex)
+      - run: cat main.log
+        name: display build log
+        if: ${{ failure() || success() }}
+      - run: cp main.pdf main-bannertitle-blue.pdf
+        name: save build result
       - uses: actions/upload-artifact@v2
         with:
-          path: main.pdf
-          name: main-lualatex.pdf
+          path: |
+            main-red.pdf
+            main-bannertitle-blue.pdf
+          name: build-lualatex
         name: upload build artifacts
   build-xelatex:
     runs-on: ubuntu-latest
     steps: 
       - uses: actions/checkout@v2
         name: checkout code
+      - run: sed -e "s|usetheme\[.*\]|usetheme\[red\]|g" main.tex -i
+        name: build theme "red"
       - uses: xu-cheng/latex-action@v2
         with:
           root_file: main.tex
@@ -42,8 +62,24 @@ jobs:
       - run: cat main.log
         name: display build log
         if: ${{ failure() || success() }}
+      - run: cp main.pdf main-red.pdf
+        name: save build result
+      - run: sed -e "s|usetheme\[.*\]|usetheme\[bannertitle,blue\]|g" main.tex -i
+        name: build theme "bannertitle, blue"
+      - uses: xu-cheng/latex-action@v2
+        with:
+          root_file: main.tex
+          latexmk_use_xelatex: true
+        name: build with latexmk (xelatex)
+      - run: cat main.log
+        name: display build log
+        if: ${{ failure() || success() }}
+      - run: cp main.pdf main-bannertitle-blue.pdf
+        name: save build result
       - uses: actions/upload-artifact@v2
         with:
-          path: main.pdf
-          name: main-xelatex.pdf
+          path: |
+            main-red.pdf
+            main-bannertitle-blue.pdf
+          name: build-xelatex
         name: upload build artifacts

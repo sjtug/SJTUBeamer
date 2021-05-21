@@ -252,3 +252,6 @@ ehthumbs_vista.db
 # Project specific
 main.pdf
 thesis-bot.yml
+
+*.bak*
+build/
