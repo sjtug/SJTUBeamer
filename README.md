@@ -1,13 +1,13 @@
 # SJTUBeamer
-上海交通大学 LaTeX Beamer 幻灯片模板
+上海交通大学 LaTeX Beamermin 幻灯片模板
 
 [![Build LaTeX document](https://github.com/LogCreative/SJTUBeamer/actions/workflows/main.yml/badge.svg)](https://github.com/LogCreative/SJTUBeamer/actions/workflows/main.yml)
 
-SJTUBeamer 样式为上海交通大学幻灯片模板的 LaTeX 非官方实现版本，遵守[上海交通大学视觉形象识别系统](http://vi.sjtu.edu.cn/)的相关规范，图标版权归上海交通大学所有，本项目仅供校内人员学习参考使用。
+SJTUBeamermin 样式为上海交通大学幻灯片模板的 LaTeX 非官方实现版本，遵守[上海交通大学视觉形象识别系统](http://vi.sjtu.edu.cn/)的相关规范，图标版权归上海交通大学所有，本项目仅供校内人员学习参考使用。
 
 目前该样式已经完成了规范中的基础部分，进入测试阶段。欢迎通过拉取请求对本模板提出修改建议。
 
-[SJTUBeamer 样式文档](https://github.com/LogCreative/SJTUBeamer/blob/main/doc/SJTUBeamertheme.pdf)
+[SJTUBeamermin 样式文档](https://github.com/LogCreative/SJTUBeamer/blob/main/doc/SJTUBeamerthememin.pdf)
 
 ![](doc/img/poster_页面_1.jpg)
 ![](doc/img/poster_页面_2.jpg)
