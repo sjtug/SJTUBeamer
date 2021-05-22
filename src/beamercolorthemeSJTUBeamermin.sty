@@ -32,12 +32,18 @@
     \definecolor{cquanternary}{HTML}{000000}    %black
 \fi%
 
-\setbeamercolor{background canvas}{bg=white}
+% Define Interface
+\setbeamercolor{palette primary}{bg=cprimary,fg=white}
+\setbeamercolor{palette secondary}{bg=csecondary,fg=white}
+\setbeamercolor{palette tertiary}{bg=ctertiary,fg=white}
+\setbeamercolor{palette quanternary}{bg=,fg=cquanternary}
 \setbeamercolor{structure}{fg=cprimary}
 
+\setbeamercolor{background canvas}{bg=white}
+\setbeamercolor{logo}{use={palette primary},bg=,fg=palette primary.fg}
 \setbeamercolor{normal text}{fg=black,bg=black!40}
 \setbeamercolor*{block title}{parent=structure}
-\setbeamercolor{titlelike}{fg=white,bg=cprimary}
+\setbeamercolor{titlelike}{parent={palette primary}}
 \setbeamercolor{title}{fg=cprimary,bg=}
 \setbeamercolor{subtitle}{fg=csecondary,bg=}
 
@@ -49,8 +55,8 @@
 \setbeamercolor{block body alerted}{parent=normal text,use=block title alerted,bg=block title alerted.bg!30}
 \setbeamercolor{block body example}{parent=normal text,use=block title example,bg=block title example.bg!30}
 
-\setbeamercolor{section in head/foot}{fg=cprimary,bg=}
+\setbeamercolor{section in head/foot}{use={palette primary},fg=palette primary.bg!50,bg=}
 
-\setbeamercolor{part title}{fg=white,bg=cprimary}
-\setbeamercolor{section title}{fg=white,bg=csecondary}
-\setbeamercolor{subsection title}{fg=white,bg=ctertiary}
+\setbeamercolor{part title}{parent={palette primary}}
+\setbeamercolor{section title}{parent={palette secondary}}
+\setbeamercolor{subsection title}{parent={palette tertiary}}

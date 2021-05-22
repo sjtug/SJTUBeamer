@@ -66,7 +66,7 @@
         \usebeamertemplate***{navigation symbols}%
       \else
         \raisebox{1.2pt}[0pt][0pt]{\usebeamerfont{footline}%
-      \color{cprimary!90}\insertframenumber/\inserttotalframenumber\hspace*{0.5em}}%
+      \insertframenumber/\inserttotalframenumber\hspace*{0.5em}}%
       \fi
     \fi%
     \hspace*{0.1cm}\par
@@ -103,15 +103,28 @@
   right color=transparent!0,
   left color=transparent!10
 ]
+% This is a copy of inner theme.
+\providecommand{\stamparray}[3]{
+	% #1: pattern size
+	% #2: starting point
+	% #3: ending point
+    \usebeamercolor{palette primary}
+		\fill [pattern={stamp[size=#1]},pattern color=bg!50!fg] #2 rectangle #3;
+		\def\s{#1}%
+		\pgfmathparse{0.5*\s}\let\xs=\pgfmathresult%
+		\pgfmathparse{-0.4*\s}\let\ys=\pgfmathresult%
+		\fill [pattern={stamp[size=#1,xshift=\xs, yshift=\ys]},pattern color=bg!50!fg] #2 rectangle #3;
+}
 \def\headerpattern{
   \begin{tikzpicture}[overlay]
     \ifx\insertframesubtitle\@empty%
-      \def\h{-0.1*\the\paperheight}
+      \def\h{-0.11*\the\paperheight}
     \else
       \def\h{-0.125*\the\paperheight}
     \fi
+    \usebeamercolor{palette primary}
     \stamparray{20pt}{(-0.05*\the\paperwidth,\h)}{(\the\paperwidth,0.05*\the\paperheight)}
-    \fill [cprimary,path fading=fade left little] (-0.05*\the\paperwidth,\h) rectangle (\the\paperwidth,0.05*\the\paperheight);
+    \fill [bg,path fading=fade left little] (-0.05*\the\paperwidth,\h) rectangle (\the\paperwidth,0.05*\the\paperheight);
   \end{tikzpicture}
 }
 \defbeamertemplate*{frametitle}{SJTUBeamermin}[1][left]
@@ -150,7 +163,7 @@
     \begingroup
     \ifx\insertframesubtitle\@empty\vskip-2.5ex%
     \else\vskip-3.5ex\fi%
-    {\color{cprimary}\pgfuseimage{titlelogosmall}}\hspace*{2ex}%
+    {\pgfuseimage{titlelogosmall}}\hspace*{2ex}%
     \endgroup%
     \ifx\insertframesubtitle\@empty%
     \else\vskip0.5ex\fi%
