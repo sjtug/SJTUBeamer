@@ -5,23 +5,21 @@
 \mode<presentation>
 \usetheme[
     navigation=subsections,            % 使用子章节进度显示
-    % lang=en,                           % 使用英文logo
+    % lang=en,                           % 使用英文
     % cjk=true,                          % 使用CJK而不是ctex
     color=red,                         % 使用红色主题
     logo=vi/cnlogored.pdf,             % 使用自定logo
-    pattern=all,                        % 使用全图案装饰
-    % biber=false,                       % 使用默认的 bibtex 引擎
+    % pattern=all,                        % 使用全图案装饰
+    gbt=bibtex,                        % 使用 gbt (使用 bibtex 编译)
 ]{SJTUBeamermin}
+\usecolortheme[]{beaver}                 % 使用其他颜色主题
 \institute[School of Mathematical Sciences]{数学科学学院}   % 组织
 \title{SJTUBeamer \fbox{\textsc{min}} 幻灯片模板}  % 标题
 \subtitle{SJTUBeamer \fbox{\textsc{min}} Template}         % 副标题
 \author{Log Creative}                  % 作者
-\date{\today}                          % 日期
-\addbibresource{ref.bib}  % 推荐使用 JabRef 对文献进行管理
+\date{\today}                          % 日期    
 
-% for decoupling test
-\usecolortheme[]{beaver}     
-%%%%%%%
+% \addbibresource{ref.bib}               % gbt!=bibtex
 
 \begin{document}
 
@@ -132,11 +130,12 @@ int main(){
         \end{multicols}
     \end{frame}
 
-\appendix
 
-    \begin{frame}
-        \frametitle{参考文献}
-        \printbibliography[title=参考文献]
+% gbt=bibtex
+\part{参考文献}
+    \begin{frame}[allowframebreaks]
+        % \printbibliography[title=参考文献]    % gbt!=bibtex
+        \bibliography{ref.bib}             % gbt=bibtex
     \end{frame}
 
     \makebottom     % 创建尾页  % 非标准命令

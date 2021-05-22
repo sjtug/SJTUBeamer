@@ -45,9 +45,10 @@
     \PassOptionsToPackage{pattern=#1}{beamerinnerthemeSJTUBeamermin}
 }
 
-\DeclareOptionBeamer{biber}{\def\beamer@SJTUBeamermin@biber{#1}}
-\def\beamer@SJTUBeamermin@bibertrue{true}%
-\def\beamer@SJTUBeamermin@biberfalse{false}%
+\DeclareOptionBeamer{gbt}{\def\beamer@SJTUBeamermin@gbt{#1}}
+\def\beamer@SJTUBeamermin@gbttrue{true}%
+\def\beamer@SJTUBeamermin@gbtfalse{false}%
+\def\beamer@SJTUBeamermin@gbtbibtex{bibtex}%
 
 \ExecuteOptionsBeamer{
     navigation=tools,
@@ -55,19 +56,11 @@
     lang=cn,
     color=blue,
     pattern=title,
-    biber=true,
+    gbt=false,
 }
 \ProcessOptionsBeamer
 
 \RequirePackage{silence}
-\ifx\beamer@SJTUBeamermin@biber\beamer@SJTUBeamermin@bibertrue%
-    \usepackage[style=authortitle-comp]{biblatex}
-    \def\cite#1{
-        \footcite{#1}
-    }
-\else%
-    \usepackage[style=authoryear,backend=bibtex]{biblatex}
-\fi%
 \def\Hy@WarnOptionDisabled#1{
     \def\next{#1}%
     \ifx\beamer@SJTUBeamermin@cjk\beamer@SJTUBeamermin@cjktrue%
@@ -92,6 +85,22 @@
         \RequirePackage[UTF8]{ctex}
     \fi%
 \fi
+\ifx\beamer@SJTUBeamermin@gbt\beamer@SJTUBeamermin@gbtbibtex%
+    \ifx\beamer@SJTUBeamermin@lang\beamer@SJTUBeamermin@langen% 
+        \bibliographystyle{IEEEtran}
+    \else
+        \RequirePackage{gbt7714}
+    \fi
+\else
+    \ifx\beamer@SJTUBeamermin@gbt\beamer@SJTUBeamermin@gbttrue%
+        \RequirePackage[style=gb7714-2015]{biblatex}
+    \else
+        \RequirePackage[style=authortitle-comp]{biblatex} % 
+    \fi
+    \def\cite#1{
+        \footfullcite{#1}
+    }
+\fi%
 \hypersetup{unicode}
 \RequirePackage{bookmark}
 \WarningFilter{latexfont}{Font shape}

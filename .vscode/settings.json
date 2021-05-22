@@ -45,9 +45,17 @@
             ],
             "env": {}
         },
-        { // This line has been modified to biber engine.
+        {
             "name": "biber",
             "command": "biber",
+            "args": [
+                "%DOCFILE%"
+            ],
+            "env": {}
+        },
+        {
+            "name": "bibtex",
+            "command": "bibtex",
             "args": [
                 "%DOCFILE%"
             ],
@@ -66,6 +74,15 @@
             "tools": [
                 "pdflatex",
                 "biber",
+                "pdflatex",
+                "pdflatex"
+            ]
+        },
+        {
+            "name": "pdflatex ➞ bibtex ➞ pdflatex × 2",
+            "tools": [
+                "pdflatex",
+                "bibtex",
                 "pdflatex",
                 "pdflatex"
             ]
