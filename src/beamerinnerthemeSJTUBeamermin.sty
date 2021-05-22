@@ -175,6 +175,9 @@
       \fill [bg,path fading=center fade,xshift=-10pt,yshift=-20pt] (0.2*\the\paperwidth,0) circle [radius=\the\paperwidth];
     \end{tikzpicture}
     \fi%
+    \begin{tikzpicture}[overlay]
+      \node [left] at (0.85*\the\paperwidth,-0.5*\the\paperheight) {\usebeamercolor[fg]{titlegraphic}\inserttitlegraphic};
+    \end{tikzpicture}
   \fi%
   \vfill
   \begingroup
@@ -207,6 +210,7 @@
 \defbeamertemplate*{part page}{SJTUBeamermin}[1][]
 {
   \vfill
+  \vskip 8pt
   \begingroup
     \begin{beamercolorbox}[sep=16pt,right,#1]{part title}
       \hfill\usebeamerfont{part name}
@@ -233,21 +237,24 @@
   \end{frame}
 }    
 
+\def\sectionblock#1{
+  \begin{beamercolorbox}[sep=12pt,right,#1]{section title}
+    \usebeamerfont{section name}
+    \ifx\beamer@SJTUBeamermin@lang\beamer@SJTUBeamermin@langcn%
+      第~\insertsectionnumber~节
+    \else%
+      \sectionname~\insertsectionnumber
+    \fi%
+    \par\vskip4pt
+    \usebeamerfont{section title}\insertsection\par
+  \end{beamercolorbox}
+}
 % Section page
 \defbeamertemplate*{section page}{SJTUBeamermin}[1][]
 {
   \vfill
   \begingroup
-    \begin{beamercolorbox}[sep=12pt,right,#1]{section title}
-      \usebeamerfont{section name}
-      \ifx\beamer@SJTUBeamermin@lang\beamer@SJTUBeamermin@langcn%
-        第~\insertsectionnumber~节
-      \else%
-        \sectionname~\insertsectionnumber
-      \fi%
-      \par\vskip4pt
-      \usebeamerfont{section title}\insertsection\par
-    \end{beamercolorbox}
+    \sectionblock{#1}
   \endgroup
   \vfill
 }
@@ -256,16 +263,7 @@
 {
   \vfill
   \begingroup
-    \begin{beamercolorbox}[sep=12pt,right,#1]{section title}
-      \usebeamerfont{section name}
-      \ifx\beamer@SJTUBeamermin@lang\beamer@SJTUBeamermin@langcn%
-        第~\insertsectionnumber~节
-      \else%
-        \sectionname~\insertsectionnumber
-      \fi%
-      \par\vskip4pt
-      \usebeamerfont{section title}\insertsection\par
-    \end{beamercolorbox}
+    \sectionblock{#1}
     \begin{beamercolorbox}[sep=8pt,right,#1]{subsection title}
       \usebeamerfont{subsection name}
       \ifx\beamer@SJTUBeamermin@lang\beamer@SJTUBeamermin@langcn%
