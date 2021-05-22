@@ -361,7 +361,7 @@ overlay={
     \pgfpathlineto{\pgfpointdecoratedpathlast}
   }
 }
-\newtcolorbox{stampbox}{%
+\newtcolorbox{stampbox}[1][cprimary]{%
   capture=hbox,
   enhanced,
   frame empty,
@@ -369,7 +369,7 @@ overlay={
   sharp corners,
   top=2pt,bottom=2pt,left=2pt,right=2pt,
   borderline={4pt}{0pt}{
-    cprimary,
+    #1,
     line width=0.5pt,
     decoration={
       stampline,

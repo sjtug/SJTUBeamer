@@ -10,20 +10,20 @@
     color=red,                         % 使用红色主题
     logo=vi/cnlogored.pdf,             % 使用自定logo
     % pattern=all,                        % 使用全图案装饰
-    gbt=bibtex,                        % 使用 gbt (使用 bibtex 编译)
+    % gbt=bibtex,                        % 使用 gbt (使用 bibtex 编译)
 ]{SJTUBeamermin}
 \usecolortheme[]{beaver}                 % 使用其他颜色主题
 \institute[School of Mathematical Sciences]{数学科学学院}   % 组织
+\titlegraphic{                         % 标题图像
+    \begin{stampbox}[red]
+        \includegraphics[width=0.3\textwidth]{vi/head.png}
+    \end{stampbox}
+}
 \title{SJTUBeamer \fbox{\textsc{min}} 幻灯片模板}  % 标题
 \subtitle{SJTUBeamer \fbox{\textsc{min}} Template}         % 副标题
 \author{Log Creative}                  % 作者
 \date{\today}                          % 日期    
-\titlegraphic{                         % 标题图像
-    \begin{stampbox}
-        \includegraphics[width=0.3\textwidth]{vi/head.png}
-    \end{stampbox}
-}
-% \addbibresource{ref.bib}               % gbt!=bibtex
+\addbibresource{ref.bib}               % gbt!=bibtex
 
 \begin{document}
 
@@ -138,8 +138,8 @@ int main(){
 % gbt=bibtex
 \part{参考文献}
     \begin{frame}[allowframebreaks]
-        % \printbibliography[title=参考文献]    % gbt!=bibtex
-        \bibliography{ref.bib}             % gbt=bibtex
+        \printbibliography[title=参考文献]    % gbt!=bibtex
+        % \bibliography{ref.bib}             % gbt=bibtex
     \end{frame}
 
     \makebottom     % 创建尾页  % 非标准命令

@@ -111,7 +111,7 @@
         % in document
         \bibliography{ref.bib}                 % gbt=bibtex
     \end{verbatim}
-    启用本选项也会导致 \verb"\cite" 命令不再被重定向到 \verb"\footcite"（使用脚注的引用）。
+    启用本选项也会导致 \verb"\cite" 命令不再被重定向到 \verb"\footfullcite"（使用脚注的引用）。
     \paragraph{\texttt{true}} 使用 \verb"biblatex-gbt7714-2015" 样式，但是需要采用 \textsc{Xe}\LaTeX{} 或 Lua\LaTeX{} 编译，采用与 \verb"false" 一样的语句（本引用样式暂时不支持 pdf\LaTeX{}）。本模板目前暂时没有为这两种引擎的编译做优化，字体会有差别。特别是 Lua\LaTeX{} 编译速度较慢，暂时不推荐使用。 
     % 本模板已经使用 \verb"biblatex" 宏包作为参考文献的用户接口，所以不必使用老式 \textsc{Bib\TeX{}} 语法打印参考文献。修改 \verb"\addbibresource{ref.bib}" 更改参考文献目录，修改 \verb"\printbibliography[title=参考文献]" 中的 \verb"title" 属性可以更改参考文献的标题。推荐使用 \href{https://www.jabref.org/}{\textbf{JabRef}} 管理参考文献。
 \end{docKey*}
@@ -122,8 +122,10 @@
     代码块。第一个参数为代码语言，第二个参数为代码块的标题。参数可以用 \verb"{}" 留空，但不要省略大括号。需要清理代码的缩进。注意代码块所在的幻灯片需要添加 \verb"fragile" 参数，也就是 \verb"\begin{frame}[fragile]"。
 \end{docEnvironment*}
 
-\begin{docEnvironment*}[doclang/environment content=code]{stampbox}{}
+\begin{docEnvironment*}[doclang/environment content=code]{stampbox}{\oarg{bordercolor}}
     图片印记边框盒。根据 \href{http://vi.sjtu.edu.cn/index.php/articles/base/5}{\textbf{A5-03-02 辅助图形使用规范}}，可以使用辅助图形添加辅助边。这里采用了单一的印记边框线条，而没有使用填充式。该样式符合官方学术版模板 \href{http://vi.sjtu.edu.cn/index.php/articles/app/8}{\textbf{B2-02-02}} 的示例。\meta{code} 为需要包裹的内容。该边框盒不是强制使用的，主要为了丰富视觉效果与统一视觉形象。本模板通过程序自动生成边栏样条，不需要通过缩放方式对提供的样条进行适配。
+
+    \oarg{bordercolor} 用于指定边框颜色。默认使用主题色，也可以指定一种颜色。
 \end{docEnvironment*}
 
 \begin{docEnvironment*}[doclang/environment content=code]{axis}{}
