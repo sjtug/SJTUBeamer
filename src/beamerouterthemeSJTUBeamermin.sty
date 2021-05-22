@@ -1,4 +1,4 @@
-%% beamerouterthemeSJTUBeamer.sty
+%% beamerouterthemeSJTUBeamermin.sty
 %% Copyright 2021 Log Creative
 %% This work may be distributed and/or modified under the
 % conditions of the LaTeX Project Public License, either version 1.3
@@ -17,29 +17,16 @@
 
 % The sidebars.
 
-% A complex bottombar
-% \setbeamertemplate{navigation symbols}{
-%     \hbox{
-%         \usebeamerfont{footline}
-%         \insertnavigation{0.63\paperwidth}
-%         \raisebox{-6.5pt}[0pt][0pt]
-%         {\vbox{
-%             \hbox{\usebeamerfont{footline}\inserttitle$~\cdot~$\insertauthor}
-%             \hbox{\raisebox{-0.5pt}[0pt][0pt]{\usebeamerfont{footline}\insertframenumber/\inserttotalframenumber\hspace*{2pt}\raisebox{-1.2pt}[0pt][0pt]{\insertslidenavigationsymbol\insertframenavigationsymbol\insertsubsectionnavigationsymbol\insertsectionnavigationsymbol\insertdocnavigationsymbol\insertbackfindforwardnavigationsymbol}}}
-%         }}
-%     }
-% }
-
-\DeclareOptionBeamer{navigation}{\def\beamer@SJTUBeamer@navigation{#1}}
+\DeclareOptionBeamer{navigation}{\def\beamer@SJTUBeamermin@navigation{#1}}
 \ExecuteOptionsBeamer{navigation=tools}
 \ProcessOptionsBeamer
 
-\def\beamer@SJTUBeamer@navigationtools{tools}%
-\def\beamer@SJTUBeamer@navigationsubsections{subsections}%
-\def\beamer@SJTUBeamer@navigationpages{pages}%
+\def\beamer@SJTUBeamermin@navigationtools{tools}%
+\def\beamer@SJTUBeamermin@navigationsubsections{subsections}%
+\def\beamer@SJTUBeamermin@navigationpages{pages}%
 
 \setbeamertemplate{sidebar right}{}
-\ifx\beamer@SJTUBeamer@navigation\beamer@SJTUBeamer@navigationsubsections%
+\ifx\beamer@SJTUBeamermin@navigation\beamer@SJTUBeamermin@navigationsubsections%
   \addtobeamertemplate{footline}{
     \vskip 4pt
     \vbox{}
@@ -62,11 +49,11 @@
     \ifnum\beamer@partstartpage=\c@page %
     \else%
       \hfill%
-      \ifx\beamer@SJTUBeamer@navigation\beamer@SJTUBeamer@navigationtools%
+      \ifx\beamer@SJTUBeamermin@navigation\beamer@SJTUBeamermin@navigationtools%
         \usebeamertemplate***{navigation symbols}%
       \else
         \raisebox{1.2pt}[0pt][0pt]{\usebeamerfont{footline}%
-      \color{cprimary!90}\insertframenumber/\inserttotalframenumber\hspace*{0.5em}}%
+      \insertframenumber/\inserttotalframenumber\hspace*{0.5em}}%
       \fi
     \fi%
     \hspace*{0.1cm}\par
@@ -76,24 +63,34 @@
 
 % The logo.
 
-\DeclareOptionBeamer{lang}{\def\beamer@SJTUBeamer@lang{#1}}
-\ExecuteOptionsBeamer{lang=cn} % cn will be default if nothing is given
+\DeclareOptionBeamer{lang}{\def\beamer@SJTUBeamermin@lang{#1}}
 
-\def\beamer@SJTUBeamer@langcn{cn}%
-\def\beamer@SJTUBeamer@langen{en}%
+\def\beamer@SJTUBeamermin@langcn{cn}%
+\def\beamer@SJTUBeamermin@langen{en}%
 
-\DeclareOptionBeamer{pattern}{\def\beamer@SJTUBeamer@pattern{#1}}
+\DeclareOptionBeamer{pattern}{\def\beamer@SJTUBeamermin@pattern{#1}}
 
-\def\beamer@SJTUBeamer@patternnone{none}%
-\def\beamer@SJTUBeamer@patterntitle{title}%
-\def\beamer@SJTUBeamer@patternall{all}%
+\def\beamer@SJTUBeamermin@patternnone{none}%
+\def\beamer@SJTUBeamermin@patterntitle{title}%
+\def\beamer@SJTUBeamermin@patternall{all}%
+
+\DeclareOptionBeamer{logo}{\def\beamer@SJTUBeamermin@logo{#1}}
+\ExecuteOptionsBeamer{
+  lang=cn,
+  pattern=all,
+  logo=,
+}
 
 \ProcessOptionsBeamer
 
-\ifx\beamer@SJTUBeamer@lang\beamer@SJTUBeamer@langcn
-  \pgfdeclareimage[height=0.7cm]{titlelogosmall}{vi/cnlogo.pdf}
+\ifx\beamer@SJTUBeamermin@logo\@empty
+  \ifx\beamer@SJTUBeamermin@lang\beamer@SJTUBeamermin@langcn
+    \pgfdeclareimage[height=0.7cm]{titlelogosmall}{vi/cnlogo.pdf}
+  \else
+    \pgfdeclareimage[height=0.7cm]{titlelogosmall}{vi/enlogo.pdf}
+  \fi
 \else
-  \pgfdeclareimage[height=0.7cm]{titlelogosmall}{vi/enlogo.pdf}
+  \pgfdeclareimage[height=0.7cm]{titlelogosmall}{\beamer@SJTUBeamermin@logo}
 \fi
 
 % The frame title.
@@ -103,18 +100,19 @@
   right color=transparent!0,
   left color=transparent!10
 ]
-\def\headerpattern{
-  \begin{tikzpicture}[overlay]
-    \ifx\insertframesubtitle\@empty%
-      \def\h{-0.1*\the\paperheight}
-    \else
-      \def\h{-0.125*\the\paperheight}
-    \fi
-    \stamparray{20pt}{(-0.05*\the\paperwidth,\h)}{(\the\paperwidth,0.05*\the\paperheight)}
-    \fill [cprimary,path fading=fade left little] (-0.05*\the\paperwidth,\h) rectangle (\the\paperwidth,0.05*\the\paperheight);
-  \end{tikzpicture}
+% This is a copy of inner theme.
+\providecommand{\stamparray}[3]{
+	% #1: pattern size
+	% #2: starting point
+	% #3: ending point
+    \usebeamercolor{palette primary}
+		\fill [pattern={stamp[size=#1]},pattern color=bg!50!fg] #2 rectangle #3;
+		\def\s{#1}%
+		\pgfmathparse{0.5*\s}\let\xs=\pgfmathresult%
+		\pgfmathparse{-0.4*\s}\let\ys=\pgfmathresult%
+		\fill [pattern={stamp[size=#1,xshift=\xs, yshift=\ys]},pattern color=bg!50!fg] #2 rectangle #3;
 }
-\defbeamertemplate*{frametitle}{SJTUBeamer}[1][left]
+\defbeamertemplate*{frametitle}{SJTUBeamermin}[1][left]
 {%
   \ifbeamercolorempty[bg]{frametitle}{}{\nointerlineskip}%
   \@tempdima=\textwidth%
@@ -125,13 +123,20 @@
     \usebeamerfont{frametitle}%
     \ifbeamer@draftmode%
     \else%
-      \ifx\beamer@SJTUBeamer@pattern\beamer@SJTUBeamer@patternall
-        \headerpattern
-      \else%
+      \ifx\beamer@SJTUBeamermin@pattern\beamer@SJTUBeamermin@patternall
         \ifnum\beamer@sectionstartpage=\c@page %
-          \headerpattern%
-        \fi%
-      \fi%
+          \begin{tikzpicture}[overlay]
+            \ifx\insertframesubtitle\@empty%
+              \def\h{-0.11*\the\paperheight}
+            \else
+              \def\h{-0.125*\the\paperheight}
+            \fi
+            \usebeamercolor{palette primary}
+            \stamparray{20pt}{(-0.05*\the\paperwidth,\h)}{(\the\paperwidth,0.05*\the\paperheight)}
+            \fill [bg,path fading=fade left little] (-0.05*\the\paperwidth,\h) rectangle (\the\paperwidth,0.05*\the\paperheight);
+          \end{tikzpicture}
+        \fi
+      \fi
     \fi%
     \vbox{}
     \ifx\insertframesubtitle\@empty\vskip-2px%
@@ -150,7 +155,7 @@
     \begingroup
     \ifx\insertframesubtitle\@empty\vskip-2.5ex%
     \else\vskip-3.5ex\fi%
-    {\color{cprimary}\pgfuseimage{titlelogosmall}}\hspace*{2ex}%
+    {\pgfuseimage{titlelogosmall}}\hspace*{2ex}%
     \endgroup%
     \ifx\insertframesubtitle\@empty%
     \else\vskip0.5ex\fi%

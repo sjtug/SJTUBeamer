@@ -1,4 +1,4 @@
-%% beamercolorthemeSJTUBeamer.sty
+%% beamercolorthemeSJTUBeamermin.sty
 %% Copyright 2021 Log Creative
 %% This work may be distributed and/or modified under the
 % conditions of the LaTeX Project Public License, either version 1.3
@@ -13,14 +13,14 @@
 % The Current Maintainer of this work is Log Creative.
 %
 
-\DeclareOptionBeamer{color}{\def\beamer@SJTUBeamer@color{#1}}
+\DeclareOptionBeamer{color}{\def\beamer@SJTUBeamermin@color{#1}}
 \ExecuteOptionsBeamer{color=blue} % blue will be default if nothing is given
 \ProcessOptionsBeamer
 
-\def\beamer@SJTUBeamer@colorblue{blue}%
-\def\beamer@SJTUBeamer@colorred{red}%
+\def\beamer@SJTUBeamermin@colorblue{blue}%
+\def\beamer@SJTUBeamermin@colorred{red}%
 
-\ifx\beamer@SJTUBeamer@color\beamer@SJTUBeamer@colorblue%
+\ifx\beamer@SJTUBeamermin@color\beamer@SJTUBeamermin@colorblue%
     \definecolor{cprimary}{HTML}{004098}        %problue 
     \definecolor{csecondary}{HTML}{298626}      %lightgreen
     \definecolor{ctertiary}{HTML}{004D4B}       %lightgray
@@ -32,12 +32,18 @@
     \definecolor{cquanternary}{HTML}{000000}    %black
 \fi%
 
-\setbeamercolor{background canvas}{bg=white}
+% Define Interface
+\setbeamercolor{palette primary}{bg=cprimary,fg=white}
+\setbeamercolor{palette secondary}{bg=csecondary,fg=white}
+\setbeamercolor{palette tertiary}{bg=ctertiary,fg=white}
+\setbeamercolor{palette quanternary}{bg=,fg=cquanternary}
 \setbeamercolor{structure}{fg=cprimary}
 
+\setbeamercolor{background canvas}{bg=white}
+\setbeamercolor{logo}{use={palette primary},bg=,fg=palette primary.fg}
 \setbeamercolor{normal text}{fg=black,bg=black!40}
 \setbeamercolor*{block title}{parent=structure}
-\setbeamercolor{titlelike}{fg=white,bg=cprimary}
+\setbeamercolor{titlelike}{parent={palette primary}}
 \setbeamercolor{title}{fg=cprimary,bg=}
 \setbeamercolor{subtitle}{fg=csecondary,bg=}
 
@@ -49,8 +55,8 @@
 \setbeamercolor{block body alerted}{parent=normal text,use=block title alerted,bg=block title alerted.bg!30}
 \setbeamercolor{block body example}{parent=normal text,use=block title example,bg=block title example.bg!30}
 
-\setbeamercolor{section in head/foot}{fg=cprimary,bg=}
+\setbeamercolor{section in head/foot}{use={palette primary},fg=palette primary.bg,bg=}
 
-\setbeamercolor{part title}{fg=white,bg=cprimary}
-\setbeamercolor{section title}{fg=white,bg=csecondary}
-\setbeamercolor{subsection title}{fg=white,bg=ctertiary}
+\setbeamercolor{part title}{parent={palette primary}}
+\setbeamercolor{section title}{parent={palette secondary}}
+\setbeamercolor{subsection title}{parent={palette tertiary}}

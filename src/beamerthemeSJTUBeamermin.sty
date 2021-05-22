@@ -1,0 +1,113 @@
+%% beamerthemeSJTUBeamermin.sty
+%% Copyright 2021 Log Creative
+%% This work may be distributed and/or modified under the
+% conditions of the LaTeX Project Public License, either version 1.3
+% of this license or (at your option) any later version.
+% The latest version of this license is in
+% https://www.latex-project.org/lppl.txt
+% and version 1.3 or later is part of all distributions of LaTeX
+% version 2005/12/01 or later.
+%
+% This work has the LPPL maintenance status ‘maintained’.
+%
+% The Current Maintainer of this work is Log Creative.
+%
+
+\mode<all>
+
+\DeclareOptionBeamer{navigation}{
+    \PassOptionsToPackage{navigation=#1}{beamerouterthemeSJTUBeamermin}
+}
+\DeclareOptionBeamer{lang}{
+    \def\beamer@SJTUBeamermin@lang{#1}
+    \PassOptionsToPackage{lang=#1}{beamerouterthemeSJTUBeamermin}
+    \PassOptionsToPackage{lang=#1}{beamerinnerthemeSJTUBeamermin}
+}
+\def\beamer@SJTUBeamermin@langcn{cn}%
+\def\beamer@SJTUBeamermin@langen{en}%
+
+\DeclareOptionBeamer{cjk}{\def\beamer@SJTUBeamermin@cjk{#1}}
+\def\beamer@SJTUBeamermin@cjktrue{true}%
+\def\beamer@SJTUBeamermin@cjkfalse{false}%
+
+\DeclareOptionBeamer{color}{
+    \PassOptionsToPackage{color=#1}{beamercolorthemeSJTUBeamermin}
+    \PassOptionsToPackage{color=#1}{beamerinnerthemeSJTUBeamermin}
+}
+
+\DeclareOptionBeamer{logo}{
+    \PassOptionsToPackage{logo=#1}{beamerinnerthemeSJTUBeamermin}
+    \PassOptionsToPackage{logo=#1}{beamerouterthemeSJTUBeamermin}
+}
+
+\DeclareOptionBeamer{pattern}{
+    \PassOptionsToPackage{pattern=#1}{beamerouterthemeSJTUBeamermin}
+    \PassOptionsToPackage{pattern=#1}{beamerinnerthemeSJTUBeamermin}
+}
+
+\DeclareOptionBeamer{gbt}{\def\beamer@SJTUBeamermin@gbt{#1}}
+\def\beamer@SJTUBeamermin@gbttrue{true}%
+\def\beamer@SJTUBeamermin@gbtfalse{false}%
+\def\beamer@SJTUBeamermin@gbtbibtex{bibtex}%
+
+\ExecuteOptionsBeamer{
+    navigation=tools,
+    cjk=false,
+    lang=cn,
+    color=blue,
+    pattern=title,
+    gbt=false,
+}
+\ProcessOptionsBeamer
+
+\RequirePackage{silence}
+\def\Hy@WarnOptionDisabled#1{
+    \def\next{#1}%
+    \ifx\beamer@SJTUBeamermin@cjk\beamer@SJTUBeamermin@cjktrue%
+        \def\ignore{pdfauthor}%
+    \else%
+        \def\ignore{driverfallback}%
+    \fi%
+    \ifx\next\ignore%
+    \else\Hy@Warning{%
+        Option `#1' has already been used,\MessageBreak 
+        setting the option has no effect%
+    }\fi
+}
+\ifx\beamer@SJTUBeamermin@lang\beamer@SJTUBeamermin@langen%
+\else
+    \ifx\beamer@SJTUBeamermin@cjk\beamer@SJTUBeamermin@cjktrue%
+        \RequirePackage{CJKutf8}
+        \renewcommand{\figurename}{图}
+        \renewcommand{\tablename}{表}
+        \renewcommand{\contentsname}{目录}
+    \else%
+        \RequirePackage[UTF8]{ctex}
+    \fi%
+\fi
+\ifx\beamer@SJTUBeamermin@gbt\beamer@SJTUBeamermin@gbtbibtex%
+    \ifx\beamer@SJTUBeamermin@lang\beamer@SJTUBeamermin@langen% 
+        \bibliographystyle{IEEEtran}
+    \else
+        \RequirePackage{gbt7714}
+    \fi
+\else
+    \ifx\beamer@SJTUBeamermin@gbt\beamer@SJTUBeamermin@gbttrue%
+        \RequirePackage[style=gb7714-2015]{biblatex}
+    \else
+        \RequirePackage[style=authortitle-comp]{biblatex} % 
+    \fi
+    \def\cite#1{
+        \footfullcite{#1}
+    }
+\fi%
+\hypersetup{unicode}
+\RequirePackage{bookmark}
+\WarningFilter{latexfont}{Font shape}
+
+\mode<presentation>
+\beamer@compresstrue
+\usecolortheme{SJTUBeamermin}
+\usefonttheme{SJTUBeamermin}
+\useinnertheme{SJTUBeamermin}
+\useoutertheme{SJTUBeamermin}

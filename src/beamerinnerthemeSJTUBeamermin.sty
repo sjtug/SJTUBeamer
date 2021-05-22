@@ -1,4 +1,4 @@
-%% beamerinnerthemeSJTUBeamer.sty
+%% beamerinnerthemeSJTUBeamermin.sty
 %% Copyright 2021 Log Creative
 %% This work may be distributed and/or modified under the
 % conditions of the LaTeX Project Public License, either version 1.3
@@ -24,34 +24,49 @@
 
 % Title and part pages.
 
-\DeclareOptionBeamer{lang}{\def\beamer@SJTUBeamer@lang{#1}}
+\DeclareOptionBeamer{lang}{\def\beamer@SJTUBeamermin@lang{#1}}
 
-\def\beamer@SJTUBeamer@langcn{cn}%
-\def\beamer@SJTUBeamer@langen{en}%
+\def\beamer@SJTUBeamermin@langcn{cn}%
+\def\beamer@SJTUBeamermin@langen{en}%
 
-\ExecuteOptionsBeamer{lang=cn} % cn will be default if nothing is given
+\DeclareOptionBeamer{pattern}{\def\beamer@SJTUBeamermin@pattern{#1}}
 
-\DeclareOptionBeamer{pattern}{\def\beamer@SJTUBeamer@pattern{#1}}
+\def\beamer@SJTUBeamermin@patternnone{none}%
+\def\beamer@SJTUBeamermin@patterntitle{title}%
+\def\beamer@SJTUBeamermin@patternall{all}%
 
-\def\beamer@SJTUBeamer@patternnone{none}%
-\def\beamer@SJTUBeamer@patterntitle{title}%
-\def\beamer@SJTUBeamer@patternall{all}%
+\DeclareOptionBeamer{color}{\def\beamer@SJTUBeamermin@color{#1}}
+\def\beamer@SJTUBeamermin@colorblue{blue}%
+\def\beamer@SJTUBeamermin@colorred{red}%
+
+\DeclareOptionBeamer{logo}{\def\beamer@SJTUBeamermin@logo{#1}}
+
+\ExecuteOptionsBeamer{
+  lang=cn,
+  color=blue,
+  pattern=all,
+  logo=,
+}
 
 \ProcessOptionsBeamer
 
-\ifx\beamer@SJTUBeamer@lang\beamer@SJTUBeamer@langcn
+\ifx\beamer@SJTUBeamermin@logo\@empty
+  \ifx\beamer@SJTUBeamermin@lang\beamer@SJTUBeamermin@langcn
   \pgfdeclareimage[height=1cm]{titlelogo}{vi/cnlogo.pdf}
-\else
+  \else
   \pgfdeclareimage[height=1cm]{titlelogo}{vi/enlogo.pdf}
+  \fi
+\else
+  \pgfdeclareimage[height=1cm]{titlelogo}{\beamer@SJTUBeamermin@logo}
 \fi
-\titlegraphic{
-  \color{white}
+\logo{
   \vskip8pt
   \hbox{
-    \hskip4.5pt{\color{cprimary}\pgfuseimage{titlelogo}}
+    \hskip4.5pt{\pgfuseimage{titlelogo}}
     \ifx\insertinstitute\@empty%
-    \else{\hskip7pt \vrule width0.5pt}\hskip7pt
-      \ifx\beamer@SJTUBeamer@lang\beamer@SJTUBeamer@langcn%
+    \else
+      {\hskip7pt \vrule width0.5pt}\hskip7pt
+      \ifx\beamer@SJTUBeamermin@lang\beamer@SJTUBeamermin@langcn%
         \vbox{
           \fontsize{13pt}{0pt}\selectfont
           \insertinstitute
@@ -136,39 +151,43 @@
 	% #1: pattern size
 	% #2: starting point
 	% #3: ending point
-		\fill [pattern={stamp[size=#1]},pattern color=cprimary!50] #2 rectangle #3;
+    \usebeamercolor{palette primary}
+		\fill [pattern={stamp[size=#1]},pattern color=bg!50!fg] #2 rectangle #3;
 		\def\s{#1}%
 		\pgfmathparse{0.5*\s}\let\xs=\pgfmathresult%
 		\pgfmathparse{-0.4*\s}\let\ys=\pgfmathresult%
-		\fill [pattern={stamp[size=#1,xshift=\xs, yshift=\ys]},pattern color=cprimary!50] #2 rectangle #3;
+		\fill [pattern={stamp[size=#1,xshift=\xs, yshift=\ys]},pattern color=bg!50!fg] #2 rectangle #3;
 }
-
-\defbeamertemplate*{title page}{SJTUBeamer}[1][]
+\defbeamertemplate*{title page}{SJTUBeamermin}[1][]
 {
   \vbox{}
+  \usebeamercolor{palette primary}
   \begin{tikzpicture}[overlay]
-    \fill [cprimary] (-0.2*\the\paperwidth,-1*\the\paperheight) rectangle (1*\the\paperwidth, 0.2*\the\paperheight);
+    \fill [bg] (-0.2*\the\paperwidth,-1*\the\paperheight) rectangle (1*\the\paperwidth, 0.2*\the\paperheight);
   \end{tikzpicture}
   \ifbeamer@draftmode%
   \else%
-    \ifx\beamer@SJTUBeamer@pattern\beamer@SJTUBeamer@patternnone%
+    \ifx\beamer@SJTUBeamermin@pattern\beamer@SJTUBeamermin@patternnone%
     \else%
     \begin{tikzpicture}[overlay]
       \stamparray{20pt}{(-0.2*\the\paperwidth,-1*\the\paperheight)}{(1*\the\paperwidth, 0.2*\the\paperheight)}
-      \fill [cprimary,path fading=fade right] (-0.2*\the\paperwidth,-1*\the\paperheight) rectangle (1*\the\paperwidth, 0.2*\the\paperheight);
-      \fill [cprimary,path fading=center fade,xshift=-10pt,yshift=-20pt] (0.2*\the\paperwidth,0) circle [radius=\the\paperwidth];
+      \fill [bg,path fading=fade right] (-0.2*\the\paperwidth,-1*\the\paperheight) rectangle (1*\the\paperwidth, 0.2*\the\paperheight);
+      \fill [bg,path fading=center fade,xshift=-10pt,yshift=-20pt] (0.2*\the\paperwidth,0) circle [radius=\the\paperwidth];
     \end{tikzpicture}
     \fi%
+    \begin{tikzpicture}[overlay]
+      \node [left] at (0.85*\the\paperwidth,-0.5*\the\paperheight) {\usebeamercolor[fg]{titlegraphic}\inserttitlegraphic};
+    \end{tikzpicture}
   \fi%
   \vfill
   \begingroup
     \centering
     \usebeamercolor{titlelike}
     \begin{beamercolorbox}{logo}
-      \inserttitlegraphic
+      \insertlogo
     \end{beamercolorbox}
     \begin{beamercolorbox}[sep=8pt,#1]{title}
-      \color{white}
+      \usebeamercolor[fg]{palette primary}
       \usebeamerfont{title}\inserttitle\par%
       \ifx\insertsubtitle\@empty%
       \else%
@@ -188,13 +207,14 @@
 }
 
 % Part page
-\defbeamertemplate*{part page}{SJTUBeamer}[1][]
+\defbeamertemplate*{part page}{SJTUBeamermin}[1][]
 {
   \vfill
+  \vskip 8pt
   \begingroup
     \begin{beamercolorbox}[sep=16pt,right,#1]{part title}
       \hfill\usebeamerfont{part name}
-      \ifx\beamer@SJTUBeamer@lang\beamer@SJTUBeamer@langcn%
+      \ifx\beamer@SJTUBeamermin@lang\beamer@SJTUBeamermin@langcn%
       第~\insertromanpartnumber~部分
       \else%
         \partname~
@@ -203,8 +223,9 @@
       \usebeamerfont{part title}\insertpart\par
       \hbox to \textwidth{
         \usebeamerfont{footline}%
-        \setbeamercolor{section in head/foot}{fg=white,bg=}\hfill\insertnavigation{0.33\paperwidth}\hspace*{4pt}
-        \setbeamercolor{section in head/foot}{fg=cprimary,bg=}
+        \setbeamercolor{temp}{fg=section in head/foot.fg}
+        \setbeamercolor{section in head/foot}{use=palette primary,fg=palette primary.fg,bg=}\hfill\insertnavigation{0.33\paperwidth}\hspace*{4pt}
+        \setbeamercolor{section in head/foot}{fg=temp.fg}
       }
     \end{beamercolorbox}
   \endgroup
@@ -216,42 +237,36 @@
   \end{frame}
 }    
 
+\def\sectionblock#1{
+  \begin{beamercolorbox}[sep=12pt,right,#1]{section title}
+    \usebeamerfont{section name}
+    \ifx\beamer@SJTUBeamermin@lang\beamer@SJTUBeamermin@langcn%
+      第~\insertsectionnumber~节
+    \else%
+      \sectionname~\insertsectionnumber
+    \fi%
+    \par\vskip4pt
+    \usebeamerfont{section title}\insertsection\par
+  \end{beamercolorbox}
+}
 % Section page
-\defbeamertemplate*{section page}{SJTUBeamer}[1][]
+\defbeamertemplate*{section page}{SJTUBeamermin}[1][]
 {
   \vfill
   \begingroup
-    \begin{beamercolorbox}[sep=12pt,right,#1]{section title}
-      \usebeamerfont{section name}
-      \ifx\beamer@SJTUBeamer@lang\beamer@SJTUBeamer@langcn%
-        第~\insertsectionnumber~节
-      \else%
-        \sectionname~\insertsectionnumber
-      \fi%
-      \par\vskip4pt
-      \usebeamerfont{section title}\insertsection\par
-    \end{beamercolorbox}
+    \sectionblock{#1}
   \endgroup
   \vfill
 }
 % Subection page
-\defbeamertemplate*{subsection page}{SJTUBeamer}[1][]
+\defbeamertemplate*{subsection page}{SJTUBeamermin}[1][]
 {
   \vfill
   \begingroup
-    \begin{beamercolorbox}[sep=12pt,right,#1]{section title}
-      \usebeamerfont{section name}
-      \ifx\beamer@SJTUBeamer@lang\beamer@SJTUBeamer@langcn%
-        第~\insertsectionnumber~节
-      \else%
-        \sectionname~\insertsectionnumber
-      \fi%
-      \par\vskip4pt
-      \usebeamerfont{section title}\insertsection\par
-    \end{beamercolorbox}
+    \sectionblock{#1}
     \begin{beamercolorbox}[sep=8pt,right,#1]{subsection title}
       \usebeamerfont{subsection name}
-      \ifx\beamer@SJTUBeamer@lang\beamer@SJTUBeamer@langcn%
+      \ifx\beamer@SJTUBeamermin@lang\beamer@SJTUBeamermin@langcn%
         第~\insertsubsectionnumber~小节
       \else%
         \subsectionname~\insertsubsectionnumber
@@ -273,6 +288,20 @@
 % Description environments.
 
 % Block environments.
+
+% The user-defined block environment should use the hard-coded color
+% otherwise it will have side effect on displaying.
+\ifx\beamer@SJTUBeamermin@color\beamer@SJTUBeamermin@colorblue%
+    \definecolor{cprimary}{HTML}{004098}        %problue 
+    \definecolor{csecondary}{HTML}{298626}      %lightgreen
+    \definecolor{ctertiary}{HTML}{004D4B}       %lightgray
+    \definecolor{cquanternary}{HTML}{FFFFFF}    %white  
+\else%
+    \definecolor{cprimary}{HTML}{9E1F36}        %engred
+    \definecolor{csecondary}{HTML}{F28101}      %orange
+    \definecolor{ctertiary}{HTML}{FED201}       %yellow
+    \definecolor{cquanternary}{HTML}{000000}    %black
+\fi%
 
 \tcbuselibrary{skins}
 \tcbuselibrary{listingsutf8}
@@ -332,7 +361,7 @@ overlay={
     \pgfpathlineto{\pgfpointdecoratedpathlast}
   }
 }
-\newtcolorbox{stampbox}{%
+\newtcolorbox{stampbox}[1][cprimary]{%
   capture=hbox,
   enhanced,
   frame empty,
@@ -340,7 +369,7 @@ overlay={
   sharp corners,
   top=2pt,bottom=2pt,left=2pt,right=2pt,
   borderline={4pt}{0pt}{
-    cprimary,
+    #1,
     line width=0.5pt,
     decoration={
       stampline,
@@ -415,7 +444,7 @@ overlay={
 
 % Footnotes.
 
-\defbeamertemplate*{footnote}{SJTUBeamer}
+\defbeamertemplate*{footnote}{SJTUBeamermin}
 {
   \footnotesize
   \parindent 0.5em\noindent%
@@ -429,15 +458,17 @@ overlay={
 
 \def\bottompage{
   \vbox{}
+  \usebeamercolor{palette primary}
+  \usebeamercolor{palette secondary}
   \begin{tikzpicture}[overlay,yshift=-80pt]
     \def\w{\the\paperwidth}%
     \def\h{\the\paperheight}%
-    \fill [cprimary] (-0.2*\w,-1*\h) rectangle (1*\w, 0.5*\h);
-    \begin{scope}[fill=cprimary!50!black,fill opacity=0.15]
+    \fill [palette primary.bg] (-0.2*\w,-1*\h) rectangle (1*\w, 0.5*\h);
+    \begin{scope}[fill=palette primary.bg!50!black,fill opacity=0.15]
       \clip (0.63*\w,1.05*\h) circle (1*\h);
       \fill (0.14*\w,-0.95*\h) circle (1.67*\h);
     \end{scope}
-    \begin{scope}[fill=csecondary!50!cprimary!70!white,fill opacity=0.15]
+    \begin{scope}[fill=palette secondary.bg!50!palette primary.bg!70!white,fill opacity=0.15]
       \clip[xshift=26pt] (0.95*\w,-0.67*\h) circle (1.17*\h);
       \fill 
         (0.14*\w,-0.95*\h) circle (1.67*\h)
@@ -451,21 +482,20 @@ overlay={
     \vfill
     \vskip6em
     \begin{beamercolorbox}[sep=8pt]{title}
-      \color{white}
+      \usebeamercolor[fg]{palette primary}
       \usebeamerfont{title}\noindent
-      \ifx\beamer@SJTUBeamer@lang\beamer@SJTUBeamer@langcn
+      \ifx\beamer@SJTUBeamermin@lang\beamer@SJTUBeamermin@langcn
         谢谢
       \else
         Thank You
       \fi
       \vskip1em%
-      \usebeamerfont{subtitle}\usebeamercolor{subtitle!50!cprimary}\insertauthor~$\cdot$~\inserttitle
+      \usebeamerfont{subtitle}\insertauthor~$\cdot$~\inserttitle
     \end{beamercolorbox}%
     \vfill
     \vskip3.5em
   \endgroup
 }
-
 \def\makebottom{
   \ifbeamer@inframe%i
   \bottompage%

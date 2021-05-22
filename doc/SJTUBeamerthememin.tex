@@ -38,7 +38,7 @@
 
 \begin{document}
 \begin{CJK}{UTF8}{song}
-\title{\textsf{SJTUBeamer} 样式手册}
+\title{\textsf{SJTUBeamer} \fbox{\textsc{min}} 样式手册}
 \author{Log Creative}
 \date{\today}
 \maketitle
@@ -49,7 +49,7 @@
 
 \section{简介}
 
-\textsf{SJTUBeamer} 样式为上海交通大学幻灯片模板的 \LaTeX{} 非官方实现版本，遵守\href{http://vi.sjtu.edu.cn/}{上海交通大学视觉形象识别系统}的相关规范，图标版权归上海交通大学所有，本项目仅供校内人员学习参考使用。
+\textsf{SJTUBeamer} \fbox{\textsc{min}} 样式为上海交通大学幻灯片模板的 \LaTeX{} 非官方实现版本，是符合\href{http://vi.sjtu.edu.cn/}{上海交通大学视觉形象识别系统}相关规范的最小工作集，图标版权归上海交通大学所有，本项目仅供校内人员学习参考使用。
 
 目前该样式处于测试版本（ $\beta$-\input{../VERSION}）, 欢迎通过拉取请求对本模板提出修改建议。
 
@@ -67,35 +67,53 @@
 
 \section{选项}
 
-\begin{docKey*}[SJTUBeamer]{navigation}{=tools|subsections|pages}{默认 \texttt{tools}}
+\begin{docKey*}[SJTUBeamermin]{navigation}{=tools|subsections|pages}{默认 \texttt{tools}}
     导航栏选项。默认为 \verb"tools"，即工具栏与页码组合。设置为 \verb"subsections"，将会产生子章节的跳转进度条。设置为 \verb"pages"，将仅显示页码信息。
 \end{docKey*}
 
-\begin{docKey*}[SJTUBeamer]{lang}{=cn|en}{默认 \texttt{cn}}
+\begin{docKey*}[SJTUBeamermin]{lang}{=cn|en}{默认 \texttt{cn}}
     语言选项，并决定校徽是中文校徽，还是英文校徽。校标使用\href{http://vi.sjtu.edu.cn/index.php/articles/base/4}{\textbf{校标组合的最小使用规范 A4-11}}的 18mm修正稿。安全空间满足\href{http://vi.sjtu.edu.cn/index.php/articles/base/4}{\textbf{校标组合的安全空间 A4-12}}的 $\frac{1}{5}$ 校标高度规定。注意，启用 \texttt{en} 将会导致中文包不会被加载，因为使用英文徽标时，幻灯片内容推荐为英文。
 \end{docKey*}
 
-\begin{docKey*}[SJTUBeamer]{cjk}{=false|true}{默认 \texttt{false}}
+\begin{docKey*}[SJTUBeamermin]{cjk}{=false|true}{默认 \texttt{false}}
     是否使用 \textsf{CJK} 宏包。如果开启此选项，请使用 \verb"\begin{CJK}{UTF8}{hei}" 和 \verb"\end{CJK}" 包裹 \verb"document" 环境中的内容。
 \end{docKey*}
 
-\begin{docKey*}[SJTUBeamer]{color}{=blue|red}{默认 \texttt{blue}}
+\begin{docKey*}[SJTUBeamermin]{color}{=blue|red}{默认 \texttt{blue}}
     使用蓝色或红色的颜色主题。根据官方学术版模板 \href{http://vi.sjtu.edu.cn/index.php/articles/app/8}{\textbf{B2-02-02}} 的相关说明，极简版式适合场合较为严肃、不适合题图复杂图片出现的情况，如需使用，建议所有内页均使用极简版式，以达到简洁、清爽的效果。故默认情况下本模板使用蓝色主题。
 \end{docKey*}
 
-\begin{docKey*}[SJTUBeamer]{pattern}{=none|title|all}{默认 \texttt{title}}
+\begin{docKey*}[SJTUBeamermin]{pattern}{=none|title|all}{默认 \texttt{title}}
     使用印记矩阵底纹。默认为 \verb"title"，将会在标题页添加由 \href{http://vi.sjtu.edu.cn/index.php/articles/base/5}{\textbf{A5-03-01 辅助图形使用规范}} 规定的印记矩阵底纹，并采用了渐变底色的方式实现。如果选项为 \verb"none"，就不会产生底纹；如果选项为 \verb"all"，还会在每页的标题栏添加底纹，这可能会增加编译时间。
 
     现在，每一节开始的页上都会自动添加底纹。
 \end{docKey*}
 
-\begin{docKey*}[SJTUBeamer]{biber}{=false|true}{默认 \texttt{false}}
-    如果需要使用老式的 \textsc{Bib\TeX{}} 编译参考文献，则需要打开 \verb"biber=true" 开关。并使用下面的编译顺序：
+\begin{docKey*}[SJTUBeamermin]{gbt}{=false|bibtex|true}{默认 \texttt{false}}
+    是否采用 GBT7714-2015 标准引用文献。
+    
+    \paragraph{\texttt{false}} 默认不采用，并使用 \verb"biblatex" 语法添加引用文件
+    \begin{verbatim}
+        % premable
+        \addbibresource{ref.bib}               % gbt!=bibtex
+    \end{verbatim}
+    并采用使用脚注的引用。此时不需要再另起参考文献的章节，当然，如果需要附上参考文献，使用下面的语句在正文插入：
+    \begin{verbatim}
+        % in document
+        \printbibliography[title=参考文献]      % gbt!=bibtex
+    \end{verbatim}
+    \paragraph{\texttt{bibtex}} 开启为 \verb"bibtex" 需要使用老式的 \textsc{Bib\TeX{}} 编译参考文献，并注释掉上述语句，使用下面的编译顺序：
     \begin{quotation}
         \LaTeX{} $\rightarrow$ \textsc{Bib\TeX{}} $\rightarrow$ \LaTeX{} $\rightarrow$ \LaTeX{}
     \end{quotation}
-    启用本选项也会导致 \verb"\cite" 命令不再被重定向到 \verb"\footcite"（使用脚注的引用），并启用 \verb"authoryear" 引用样式。
-    本模板已经使用 \verb"biblatex" 宏包作为参考文献的用户接口，所以不必使用老式 \textsc{Bib\TeX{}} 语法打印参考文献。修改 \verb"\addbibresource{ref.bib}" 更改参考文献目录，修改 \verb"\printbibliography[title=参考文献]" 中的 \verb"title" 属性可以更改参考文献的标题。推荐使用 \href{https://www.jabref.org/}{\textbf{JabRef}} 管理参考文献。
+    在正文中添加引用文件：
+    \begin{verbatim}
+        % in document
+        \bibliography{ref.bib}                 % gbt=bibtex
+    \end{verbatim}
+    启用本选项也会导致 \verb"\cite" 命令不再被重定向到 \verb"\footfullcite"（使用脚注的引用）。
+    \paragraph{\texttt{true}} 使用 \verb"biblatex-gbt7714-2015" 样式，但是需要采用 \textsc{Xe}\LaTeX{} 或 Lua\LaTeX{} 编译，采用与 \verb"false" 一样的语句（本引用样式暂时不支持 pdf\LaTeX{}）。本模板目前暂时没有为这两种引擎的编译做优化，字体会有差别。特别是 Lua\LaTeX{} 编译速度较慢，暂时不推荐使用。 
+    % 本模板已经使用 \verb"biblatex" 宏包作为参考文献的用户接口，所以不必使用老式 \textsc{Bib\TeX{}} 语法打印参考文献。修改 \verb"\addbibresource{ref.bib}" 更改参考文献目录，修改 \verb"\printbibliography[title=参考文献]" 中的 \verb"title" 属性可以更改参考文献的标题。推荐使用 \href{https://www.jabref.org/}{\textbf{JabRef}} 管理参考文献。
 \end{docKey*}
 
 \section{环境}
@@ -104,8 +122,10 @@
     代码块。第一个参数为代码语言，第二个参数为代码块的标题。参数可以用 \verb"{}" 留空，但不要省略大括号。需要清理代码的缩进。注意代码块所在的幻灯片需要添加 \verb"fragile" 参数，也就是 \verb"\begin{frame}[fragile]"。
 \end{docEnvironment*}
 
-\begin{docEnvironment*}[doclang/environment content=code]{stampbox}{}
+\begin{docEnvironment*}[doclang/environment content=code]{stampbox}{\oarg{bordercolor}}
     图片印记边框盒。根据 \href{http://vi.sjtu.edu.cn/index.php/articles/base/5}{\textbf{A5-03-02 辅助图形使用规范}}，可以使用辅助图形添加辅助边。这里采用了单一的印记边框线条，而没有使用填充式。该样式符合官方学术版模板 \href{http://vi.sjtu.edu.cn/index.php/articles/app/8}{\textbf{B2-02-02}} 的示例。\meta{code} 为需要包裹的内容。该边框盒不是强制使用的，主要为了丰富视觉效果与统一视觉形象。本模板通过程序自动生成边栏样条，不需要通过缩放方式对提供的样条进行适配。
+
+    \oarg{bordercolor} 用于指定边框颜色。默认使用主题色，也可以指定一种颜色。
 \end{docEnvironment*}
 
 \begin{docEnvironment*}[doclang/environment content=code]{axis}{}
@@ -119,6 +139,10 @@
 \begin{docCommand*}[]{institute}{\oarg{shortname}\marg{name}}
     二级机构名称。添加本条命令将会按照 \href{https://vi.sjtu.edu.cn/index.php/articles/base/4}{\textbf{A4-08 二级机构中英文名称横式混合}} 对标题页的徽标与二级机构组合。其中\marg{name}为机构的中文全称，而\oarg{shortname}为机构的英文全称。当语言被设定为英文时，将会只显示英文全称并可以使用换行符号 \verb"\\" 对长名称换行。
     对于有自己徽标的二级机构，请直接修改 \verb"vi" 文件夹下的 \verb"cnlogo.pdf" 或者是 \verb"enlogo.pdf" 。
+\end{docCommand*}
+
+\begin{docCommand*}[]{titlegraphic}{\marg{pictureenv}}
+    标题页的附加图片。添加本项让幻灯片标题页更加个性化，在标题页右下角会出现插入的图片，并可以采用 \verb"stampbox" 印记边框包裹起来。
 \end{docCommand*}
 
 \begin{docCommand*}[]{part}{\marg{part name}}
@@ -176,7 +200,7 @@
     \tcbincludepdf{pdf/red.pdf}
 \end{tcbraster}
 
-\newpage
+\clearpage
 \subsection{简约蓝}
 
 简约蓝版本，配色方案满足\href{http://vi.sjtu.edu.cn/index.php/articles/base/3}{\textbf{辅助色彩规范 A3-02-02}}。\hfill \texttt{color=blue}
@@ -189,14 +213,88 @@
     \tcbincludepdf{pdf/blue.pdf}
 \end{tcbraster}
 
+\clearpage
+\subsection{其他样式}
+
+本模板具有一定的颜色样式去耦合，并根据 \href{http://vi.sjtu.edu.cn/index.php/articles/base/3}{\textbf{品牌专用色彩搭配表 A3-05}}，通过在导言区再添加 \verb"\usecolortheme{beaver}"
+对 \textsf{beamer} 内置颜色样式进行了测试，结果如下。
+
+\begin{center}
+    \begin{tabular}{|>{\ttfamily}m{5em}|c|c|c|c|}
+        \hline
+        模板参数 & 蓝主红标(BR) & 蓝主白标(BW) & 红主红标(RR) & 红主白标(RW) \\
+        \hline
+        color=   & \scriptsize\ttfamily blue & \scriptsize\ttfamily blue & \scriptsize\ttfamily red           & \scriptsize\ttfamily red   \\
+        logo=    & \scriptsize\ttfamily vi/cnlogored.pdf & &\scriptsize\ttfamily  vi/cnlogored.pdf& \\
+        \hline
+    \end{tabular}
+
+    \begin{tabular}{|>{\ttfamily}m{5em}|c|c|c|c|}
+        \hline
+        颜色主题 & 蓝主红标(BR) & 蓝主白标(BW) & 红主红标(RR) & 红主白标(RW) \\
+        \hline
+        albatross   &           & $\cdot$ &          &   \\
+        beaver      & $\odot $  &         & $\boxdot $ &          \\
+        beetle      &           & $\cdot$  &          & $\cdot$  \\
+        crane       & $\odot $  & $\odot $ & $\odot $  & $\odot $ \\
+        default     & $\oslash$ & $\oslash$ & $\oslash$ & $\oslash$ \\
+        dolphin     & $\circ $  & $\odot $ & $\odot $  & $\cdot$ \\
+        dove        & $\circ$   &          & $\circ$   &  \\
+        fly         & $\cdot$   & $\cdot$ & $\cdot$ & $\cdot$  \\
+        lily        & $\circ$   &  $\circ$ & $\circ$ & \\
+        monarca     & $\circ$   &  $\circ$  &  $\circ$  &  $\circ$  \\
+        orchid      &           & $\odot $ & & $\odot $\\
+        rose    &  &$\circ$ & & $\circ$  \\
+        seagull & $\boxdot$ & $\odot $ & $\boxdot$ & $\odot $ \\
+        seahorse & $\boxdot$ & & $\boxdot$ & \\
+        sidebartab & & $\oslash  $ & & $\oslash  $ \\
+        spruce  & $\boxdot$ & & $\boxdot$ & \\
+        structure & & $\oslash  $ &  & $\oslash  $\\
+        whale & & $\odot $ & & $\boxdot $ \\
+        \hline
+    \end{tabular}
+
+    \begin{tabular}{|c|c|c|c|c|c|}
+        \hline
+                & $\cdot$ & $\circ$ & $\odot $ & $\oslash  $ & $\boxdot$ \\
+        \hline
+        不通过  &  仅标题页通过 & 仅内容页通过 & 通过 & 通过但无影响 & 推荐 \\
+        \hline 
+    \end{tabular}
+\end{center}
+
+更详细的信息参见 \verb"color" 文件夹。不通过的部分是违反规定的。即使是通过的部分也需要慎重使用，因为不再符合原本的规范。更为高级的方式是在行文过程中不断更换颜色主题，或者是手动添加对应的颜色配置。
+
 \section{拓展阅读}
 可以前往 \href{https://logcreative.github.io/LaTeXSparkle/}{像模像样\LaTeX} 的 \href{https://logcreative.github.io/LaTeXSparkle/src/art/chapter07.html}{第七节} 阅读有关 \verb"Beamer" 宏包使用的相关信息。
 
-本模板与 \href{https://github.com/LogCreative/AutoBeamer/tree/pkg}{\textbf{内嵌版本的 \textsf{AutoBeamer}}} 幻灯片自动分割模块兼容。也可以使用 \href{https://logcreative.github.io/AutoBeamer/}{\textbf{\textsf{AutoBeamer} 在线版本}}，并通过 \verb"\usetheme{SJTUBeamer}" 使用本主题。
+本模板与 \href{https://github.com/LogCreative/AutoBeamer/tree/pkg}{\textbf{内嵌版本的 \textsf{AutoBeamer}}} 幻灯片自动分割模块兼容。也可以使用 \href{https://logcreative.github.io/AutoBeamer/}{\textbf{\textsf{AutoBeamer} 在线版本}}，并通过 \verb"\usetheme{SJTUBeamermin}" 使用本主题。
+
+\clearpage
+
+\section*{更名公告}
+
+已经注意到本模板的呼号与 \href{https://github.com/sjtug/SJTUBeamer}{SJTUG 维护版本} 一致的问题，为了避免未来发布时的命名冲突，本模板将会自发布版本（$\beta$-0.8）更名为 \textsf{SJTUBeamer} \fbox{\textsc{min}}，届时需要使用新版本模板的用户烦劳将模板调用行做出如下更正：
+\begin{verbatim}
+    \usebeamertheme{SJTUBeamer} -> \usebeamertheme{SJTUBeamermin}
+\end{verbatim}
+
+给各位用户带来的不便深表歉意，也请期待 \href{https://logcreative.github.io/LaTeXSparkle/}{像模像样\LaTeX} 项目的更多内容，未来将视支持情况推出 max 版本。
+
+\begin{quotation}\itshape
+    min - minimal: minimal work set of SJTU VI.
+
+    min - minimalism: designed in the style of minimalism.
+
+    min - minimum: minimum shapes to show your content.
+\end{quotation}
+
+\noindent Log Creative\\敬上
+
+\vfill
 
 \scriptsize  
 
-\newpage
 Copyright 2021 Log Creative \& \LaTeX{} Sparkle Project
 
 The copyright holder for the logo is SJTU. The template itself doesn't change the ownership of the related graphics in the guideline. The template is only available for non-commercial purposes.
@@ -214,6 +312,8 @@ version 2005/12/01 or later.
 This work has the LPPL maintenance status `maintained'.
 
 The Current Maintainer of this work is Log Creative.
+
+\vfill
 
 % If this document has no reference,
 % please use pdfLaTeX compilation once.
