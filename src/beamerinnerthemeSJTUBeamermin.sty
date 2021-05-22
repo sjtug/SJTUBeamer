@@ -29,20 +29,35 @@
 \def\beamer@SJTUBeamermin@langcn{cn}%
 \def\beamer@SJTUBeamermin@langen{en}%
 
-\ExecuteOptionsBeamer{lang=cn} % cn will be default if nothing is given
-
 \DeclareOptionBeamer{pattern}{\def\beamer@SJTUBeamermin@pattern{#1}}
 
 \def\beamer@SJTUBeamermin@patternnone{none}%
 \def\beamer@SJTUBeamermin@patterntitle{title}%
 \def\beamer@SJTUBeamermin@patternall{all}%
 
+\DeclareOptionBeamer{color}{\def\beamer@SJTUBeamermin@color{#1}}
+\def\beamer@SJTUBeamermin@colorblue{blue}%
+\def\beamer@SJTUBeamermin@colorred{red}%
+
+\DeclareOptionBeamer{logo}{\def\beamer@SJTUBeamermin@logo{#1}}
+
+\ExecuteOptionsBeamer{
+  lang=cn,
+  color=blue,
+  pattern=all,
+  logo=,
+}
+
 \ProcessOptionsBeamer
 
-\ifx\beamer@SJTUBeamermin@lang\beamer@SJTUBeamermin@langcn
+\ifx\beamer@SJTUBeamermin@logo\@empty
+  \ifx\beamer@SJTUBeamermin@lang\beamer@SJTUBeamermin@langcn
   \pgfdeclareimage[height=1cm]{titlelogo}{vi/cnlogo.pdf}
-\else
+  \else
   \pgfdeclareimage[height=1cm]{titlelogo}{vi/enlogo.pdf}
+  \fi
+\else
+  \pgfdeclareimage[height=1cm]{titlelogo}{\beamer@SJTUBeamermin@logo}
 \fi
 \logo{
   \vskip8pt
@@ -275,6 +290,20 @@
 % Description environments.
 
 % Block environments.
+
+% The user-defined block environment should use the hard-coded color
+% otherwise it will have side effect on displaying.
+\ifx\beamer@SJTUBeamermin@color\beamer@SJTUBeamermin@colorblue%
+    \definecolor{cprimary}{HTML}{004098}        %problue 
+    \definecolor{csecondary}{HTML}{298626}      %lightgreen
+    \definecolor{ctertiary}{HTML}{004D4B}       %lightgray
+    \definecolor{cquanternary}{HTML}{FFFFFF}    %white  
+\else%
+    \definecolor{cprimary}{HTML}{9E1F36}        %engred
+    \definecolor{csecondary}{HTML}{F28101}      %orange
+    \definecolor{ctertiary}{HTML}{FED201}       %yellow
+    \definecolor{cquanternary}{HTML}{000000}    %black
+\fi%
 
 \tcbuselibrary{skins}
 \tcbuselibrary{listingsutf8}
