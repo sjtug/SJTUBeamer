@@ -90,7 +90,7 @@
 \end{docKey*}
 
 \begin{docKey*}[SJTUBeamermin]{gbt}{=false|bibtex|true}{默认 \texttt{false}}
-    是否采用 GBT7714-2015 标准引用文献。
+    是否采用 GBT7714-2015 标准引用文献。推荐使用 \href{https://www.jabref.org/}{\textbf{JabRef}} 管理参考文献。
     
     \paragraph{\texttt{false}} 默认不采用，并使用 \verb"biblatex" 语法添加引用文件
     \begin{verbatim}
@@ -113,7 +113,14 @@
     \end{verbatim}
     启用本选项也会导致 \verb"\cite" 命令不再被重定向到 \verb"\footfullcite"（使用脚注的引用）。
     \paragraph{\texttt{true}} 使用 \verb"biblatex-gbt7714-2015" 样式，但是需要采用 \textsc{Xe}\LaTeX{} 或 Lua\LaTeX{} 编译，采用与 \verb"false" 一样的语句（本引用样式暂时不支持 pdf\LaTeX{}）。本模板目前暂时没有为这两种引擎的编译做优化，字体会有差别。特别是 Lua\LaTeX{} 编译速度较慢，暂时不推荐使用。 
-    % 本模板已经使用 \verb"biblatex" 宏包作为参考文献的用户接口，所以不必使用老式 \textsc{Bib\TeX{}} 语法打印参考文献。修改 \verb"\addbibresource{ref.bib}" 更改参考文献目录，修改 \verb"\printbibliography[title=参考文献]" 中的 \verb"title" 属性可以更改参考文献的标题。推荐使用 \href{https://www.jabref.org/}{\textbf{JabRef}} 管理参考文献。
+    % 本模板已经使用 \verb"biblatex" 宏包作为参考文献的用户接口，所以不必使用老式 \textsc{Bib\TeX{}} 语法打印参考文献。修改 \verb"\addbibresource{ref.bib}" 更改参考文献目录，修改 \verb"\printbibliography[title=参考文献]" 中的 \verb"title" 属性可以更改参考文献的标题。
+\end{docKey*}
+
+\begin{docKey*}[SJTUBeamermin]{logo}{=\marg{logo path}}{默认留空}
+    自定义 logo 的路径。使用统一的接口以控制其在不同页面的大小（如果您执意要使用 \verb"\logo" 命令，推荐将高度设置为 0.7cm）。对于有自定义的二级机构 logo 时该命令比较有用，以及在试验其他的配色方案时可以采用高对比颜色的 logo，比如下面的选项设置即可载入红色 logo：
+    \begin{verbatim}
+        [logo=vi/cnlogored.pdf]
+    \end{verbatim}
 \end{docKey*}
 
 \section{环境}
