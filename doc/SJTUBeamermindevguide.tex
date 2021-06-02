@@ -1,6 +1,6 @@
 \documentclass{article}
 \usepackage{array}
-\usepackage{dtk-logos}
+\usepackage[colorlinks,breaklinks=true]{hyperref}
 \bibliographystyle{IEEEtrans}
 \def\tmin{\textsf{SJTUBeamer} \fbox{\textsc{min}}}
 \title{Developer's Guide on\\ \tmin}
@@ -10,7 +10,7 @@
     \tableofcontents
     \section{Preface}
 
-    \tmin{} is a presentation template based on \textsf{beamer} package in \LaTeX{}, to fullfill the ethusiasm of those SJTU users to present their content nicely benefiting from the technology of \TeX{} typesetting engine.
+    \tmin{} is a presentation template based on \textsf{beamer} package in \LaTeX{}, to fulfill the enthusiasm of those SJTU users to present their content nicely benefiting from the technology of \TeX{} typesetting engine.
     
     This is a Developer's Guide on \tmin{} . The document is written in English because the operation in this guidance could be dangerous. Be careful when playing with those macros.
 
@@ -29,7 +29,7 @@
 
     \section{Compliation}
 
-    Most problems come from \LaTeX{} compilation. The required packages is in the following list.
+    Most problems come from \LaTeX{} compilation. The required packages are in the following list.
     
     \begin{table}[h]
         \centering
@@ -44,15 +44,15 @@
 
     The detailed description is documented below.
     
-    \subsection{\MiKTeX{}}
+    \subsection{MiK\TeX{}}
 
-    All required packages will be automatically installed if you are using \MiKTeX{}\cite{miktex}. And if you want to use \verb"latexmk" command, please install Perl\cite{perl} first. And the compilation command for \tmin{} is as follows:
+    All required packages will be automatically installed if you are using MiK\TeX{}\cite{miktex}. And if you want to use \verb"latexmk" command, please install Perl\cite{perl} first. And the compilation command for \tmin{} is as follows:
     \begin{verbatim}
         latexmk -pdf main -interaction=nonstopmode
     \end{verbatim}
 
     \subsection{\TeX{} Live}
-    Since some pacakges are not defaultly installed in the full release of \TeX{} Live, you have to install the packages maually.
+    Since some packages are not default installed in the full release of \TeX{} Live, you have to install the packages manually.
 
     On Ubuntu, you could install \verb"pgf" and \verb"xcolor" and other drawing command through the following command\cite{beamerman}:
 
@@ -60,7 +60,7 @@
         sudo apt install texlive-pictures
     \end{verbatim}
 
-    To typeset Chinese characters, you would better use \verb"CJKutf8" package (in \tmin{}, set \verb"[cjk=true]"), since it is compatible with all plateforms and multiple language support. By the corresponding \verb"CJK" environment to make it work and remember to move all the unicode characters in the premable to the \verb"CJK" environment\cite{lsp3}:
+    To typeset Chinese characters, you would better use \verb"CJKutf8" package (in \tmin{}, set \verb"[cjk=true]"), since it is compatible with all platforms and multiple language support. By the corresponding \verb"CJK" environment to make it work and remember to move all the Unicode characters in the permeable to the \verb"CJK" environment\cite{lsp3}:
 
     \begin{verbatim}
         \begin{document}
@@ -81,7 +81,7 @@
         sudo tlmgr install ctex
     \end{verbatim}
     
-    Sometimes, you installed an old \TeX{} Live, and you have upgrade the \verb"tlmgr" for the new version. And the process could be very buggy, since the following warning may be shown:
+    Sometimes, you installed an old \TeX{} Live, and you have to upgrade the \verb"tlmgr" for the new version. And the process could be very buggy, since the following warning may be shown:
 
     \begin{verbatim}
         unexpected return value from verify_checksum: -5
@@ -106,11 +106,23 @@
         unavailable in current(ctex) mode.
     \end{verbatim}
 
-    You have to modify your compiling program from pdf\LaTeX{} to \XeLaTeX{}  by adding the following magic command to the first line:
+    You have to modify your compiling program from pdf\LaTeX{} to Xe\LaTeX{}  by adding the following magic command to the first line:
 
     \begin{verbatim}
         % !TeX TS-program = xelatex
     \end{verbatim}
+
+    \subsection{Boost Up}
+
+    However, it has been tested that the compilation on \tmin{} is slow. Because the complex patterns have to be rendered in vector shapes and the bibliography requires multiple times of compilation, the time could be wasted on some repetitive works.
+
+    This could scenario could be improved by enable \verb"[pattern=none]" option on \tmin{} and enable \verb"[draft]" option on beamer. The former one will disable all the pattern rendering, and the latter one will ignore all the TOC (table of contents) and bibliography generating.
+
+    In the future, the project will be implanted to Overleaf. There are some technical errors to fix in the current version. And to make that work, the compilation on \TeX{} Live 2021 has to be implemented. Currently, CI is only available on Github Actions by compiling on Lua\LaTeX{}. See \verb".github\workflows\main.yml" for details.
+
+    At the same time, AutoBeamer\cite{ab} is making its own effort on generating beamer code automatically by some replacing strategies. You could preview your beamer code through conversion on Markdown or the article \LaTeX{} code.
+
+    Furthermore, there is a wider space for boosting up the beamer compilation time. Since it is a frame-based document, and the connection between each frame is loosely connected (only some page numbers and citations need to be calculated). The multi-threaded compilation is possible for the \textsf{beamer} class. You can glimpse the multi-threaded processing for \LaTeX{} at the package \textsf{animate}. In fact, the author created some batch compiling work\cite{pgfedt} together with the \verb"-Parallel" parameter in PowerShell 7 to make full use of the concurrent computer architecture.
 
     \bibliography{dev.bib}
 \end{document}
