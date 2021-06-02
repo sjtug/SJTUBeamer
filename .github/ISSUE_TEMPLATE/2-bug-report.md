@@ -1,6 +1,6 @@
 ---
 name: BUG 反馈
-about: 反馈 SJTUThesis 模版中的 Bug。
+about: 反馈 SJTUBeamer 模版中的 Bug。
 labels: 'type/bug'
 ---
 
