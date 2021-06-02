@@ -21,12 +21,12 @@ jobs:
           run: |
             .github/ci/build_test_variants.sh -halt-on-error -time -quiet -xelatex
         name: build with XeLaTeX
-      - run: cat build-*.log
+      - run: cat build/build-*.log
         name: display build log
         if: ${{ failure() || success() }}
       - uses: actions/upload-artifact@v2
         with:
-          path: build/
+          path: build/build-*.pdf
           name: build-xelatex
         name: upload build artifacts
   build-lualatex:
@@ -39,11 +39,11 @@ jobs:
           run: |
             .github/ci/build_test_variants.sh -halt-on-error -time -quiet -lualatex
         name: build with LuaLaTeX
-      - run: cat build-*.log
+      - run: cat build/build-*.log
         name: display build log
         if: ${{ failure() || success() }}
       - uses: actions/upload-artifact@v2
         with:
-          path: build/
+          path: build/build-*.pdf
           name: build-lualatex
         name: upload build artifacts
