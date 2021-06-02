@@ -13,15 +13,10 @@ jobs:
     steps: 
       - uses: actions/checkout@v2
         name: checkout code
-      - name: cache TeXLive installation
-        uses: actions/cache@v2
+      - uses: xu-cheng/texlive-action/full@v1
         with:
-          path: |
-            /tmp/texlive
-          key: ${{ runner.os }}-texlive
-      - run: .github/ci/install_texlive.sh
-        name: install TeXLive
-      - run: .github/ci/build_all_variants.sh -halt-on-error -time -xelatex
+          run: |
+            .github/ci/build_all_variants.sh -halt-on-error -time -quiet -xelatex
         name: build with XeLaTeX
       - run: cat build-*.log
         name: display build log
