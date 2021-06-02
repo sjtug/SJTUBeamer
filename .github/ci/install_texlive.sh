@@ -32,6 +32,7 @@ tlmgr install           \
   biblatex-gb7714-2015  \
   booktabs              \
   caption               \
+  ccicons               \
   chngcntr              \
   cjk                   \
   ctex                  \
