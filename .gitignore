@@ -254,4 +254,7 @@ main.pdf
 thesis-bot.yml
 
 *.bak*
+
 build/
+build-*.pdf
+build-*.tex
