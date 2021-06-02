@@ -2,7 +2,8 @@ build:
 	latexmk main.tex -halt-on-error -time -xelatex
 
 format:
-	latexindent -w -l main.tex
+	latexindent -w -l *.tex
+	latexindent -w -l *.sty
 
 clean:
 	latexmk -C
