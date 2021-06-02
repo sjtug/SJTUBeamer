@@ -25,7 +25,7 @@ jobs:
       - run: .github/ci/install_texlive.sh
         name: install TeXLive
       - run: .github/ci/build_all_variants.sh -halt-on-error -time -xelatex
-        name: build
+        name: build with XeLaTeX
       - run: cat build-*.log
         name: display build log
         if: ${{ failure() || success() }}
@@ -33,4 +33,27 @@ jobs:
         with:
           path: build/
           name: build-xelatex
+        name: upload build artifacts
+  build-lualatex:
+    runs-on: ubuntu-latest
+    steps: 
+      - uses: actions/checkout@v2
+        name: checkout code
+      - name: cache TeXLive installation
+        uses: actions/cache@v2
+        with:
+          path: |
+            /tmp/texlive
+          key: ${{ runner.os }}-texlive
+      - run: .github/ci/install_texlive.sh
+        name: install TeXLive
+      - run: .github/ci/build_all_variants.sh -halt-on-error -time -lualatex
+        name: build with LuaLaTeX
+      - run: cat build-*.log
+        name: display build log
+        if: ${{ failure() || success() }}
+      - uses: actions/upload-artifact@v2
+        with:
+          path: build/
+          name: build-lualatex
         name: upload build artifacts

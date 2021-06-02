@@ -69,6 +69,7 @@ tlmgr install           \
   trimspaces            \
   txfonts               \
   undolabl              \
+  unicode-math           \
   xcolor                \
   xecjk                 \
   xetex                 \
