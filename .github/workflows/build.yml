@@ -22,7 +22,7 @@ jobs:
           path: |
             /tmp/texlive
           key: ${{ runner.os }}-texlive
-      - run: .github/ci/install-ubuntu-texlive.sh
+      - run: .github/ci/install_texlive.sh
         name: install TeXLive
       - run: .github/ci/build_all_variants.sh -halt-on-error -time -xelatex
         name: build

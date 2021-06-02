@@ -12,4 +12,4 @@ latexmk $@ build-*.tex
 
 mkdir -p build
 mv build-*.pdf build/
-rm build-*.tex
+rm -f build-*.tex
