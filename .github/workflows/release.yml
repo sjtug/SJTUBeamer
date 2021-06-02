@@ -1,0 +1,69 @@
+on:
+  push:
+    branches:
+    - release
+    tags:
+    - "v*"
+
+name: Release
+
+jobs:
+  release-xelatex:
+    runs-on: ubuntu-latest
+    steps: 
+      - uses: actions/checkout@v2
+        name: checkout code
+      - uses: xu-cheng/texlive-action/full@v1
+        with:
+          run: |
+            .github/ci/build_all_variants.sh -halt-on-error -time -quiet -xelatex
+        name: build with XeLaTeX
+      - run: cat build-*.log
+        name: display build log
+        if: ${{ failure() || success() }}
+      - uses: actions/create-release@latest
+        id: create_release
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          tag_name: ${{ github.ref }}
+          release_name: Release ${{ github.ref }}
+          body: ${{ github.event.head_commit.message }}
+          draft: true
+          prerelease: true
+      - name: add build-bannertitle-red
+        uses: actions/upload-release-asset@v1.0.1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          upload_url: ${{ steps.create_release.outputs.upload_url }}
+          asset_path: build/build-bannertitle-blue.pdf
+          asset_name: build-bannertitle-blue.pdf
+          asset_content_type: application/pdf
+      - name: add build-bannertitle-red
+        uses: actions/upload-release-asset@v1.0.1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          upload_url: ${{ steps.create_release.outputs.upload_url }}
+          asset_path: build/build-bannertitle-red.pdf
+          asset_name: build-bannertitle-red.pdf
+          asset_content_type: application/pdf
+      - name: add build-blue
+        uses: actions/upload-release-asset@v1.0.1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          upload_url: ${{ steps.create_release.outputs.upload_url }}
+          asset_path: build/build-blue.pdf
+          asset_name: build-blue.pdf
+          asset_content_type: application/pdf
+      - name: add build-red
+        uses: actions/upload-release-asset@v1.0.1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          upload_url: ${{ steps.create_release.outputs.upload_url }}
+          asset_path: build/build-red.pdf
+          asset_name: build-red.pdf
+          asset_content_type: application/pdf
