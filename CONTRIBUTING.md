@@ -8,4 +8,4 @@ Long Term Support (LTS) hallmark means there will be no significant change on th
 
 This guide will tell you how the template is composed. If you meet some problems with the internal mechanism, you could refer to this guide for performing debugging actions. When getting familiar with this whole project, try to modify some definitions of the components or create your features by **forking this repo**. After implementing your great TeX code, **Pull Request** your repo back to this upstream to benefit more users. Reasonable contributions will be accepted into the next version of SJTUBeamermin.
 
-Follow [LPPL-1.3c LICENSE](LICENSE) to contribute your code (The license could get loosen after the final release). According to [the regulation of SJTU VI](https://vi.sjtu.edu.cn/index.php/articles/bulletin/16), the use admission to SJTU is required for commercial purposes.
+Follow [LPPL-1.3c LICENSE](LICENSE) to contribute your code (The license could get loosen after the final release). According to [the regulation of SJTU VI](https://vi.sjtu.edu.cn/index.php/articles/bulletin/16), the use permission to SJTU is required for commercial purposes.

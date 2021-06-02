@@ -1,11 +1,116 @@
-\documentclass[]{article}
-\title{Developer's Guide on\\ \textsf{SJTUBeamer} \fbox{\textsc{min}}}
+\documentclass{article}
+\usepackage{array}
+\usepackage{dtk-logos}
+\bibliographystyle{IEEEtrans}
+\def\tmin{\textsf{SJTUBeamer} \fbox{\textsc{min}}}
+\title{Developer's Guide on\\ \tmin}
 \author{Log Creative}
 \begin{document}
     \maketitle
     \tableofcontents
     \section{Preface}
-    This is a Developer's Guide on \textsf{SJTUBeamer} \fbox{\textsc{min}} . The document is written in English because the operation in this guidance could be dangerous. 
 
+    \tmin{} is a presentation template based on \textsf{beamer} package in \LaTeX{}, to fullfill the ethusiasm of those SJTU users to present their content nicely benefiting from the technology of \TeX{} typesetting engine.
     
+    This is a Developer's Guide on \tmin{} . The document is written in English because the operation in this guidance could be dangerous. Be careful when playing with those macros.
+
+    \begin{quotation}
+        \begin{center}
+            \tmin{} --- the minimal work set of SJTU VI
+        \end{center}
+        \vspace*{1em}
+
+        \fbox{\textsc{min}} - \emph{minimal}: \hfill minimal work set of SJTU VI.
+
+        \fbox{\textsc{min}} - \emph{minimalism}:\hfill  designed in the style of minimalism.
+
+        \fbox{\textsc{min}} - \emph{minimum}:\hfill  minimum shapes to show your content.
+    \end{quotation}
+
+    \section{Compliation}
+
+    Most problems come from \LaTeX{} compilation. The required packages is in the following list.
+    
+    \begin{table}[h]
+        \centering
+        \begin{tabular}{>{\sffamily}c>{\sffamily}c>{\sffamily}c}
+            \hline
+            pgfplots & tikz & xcolor \\
+            pgfplotstable & sansmath & tcolorbox \\
+            ctex & biblatex & beamer \\
+            \hline
+        \end{tabular}
+    \end{table}
+
+    The detailed description is documented below.
+    
+    \subsection{\MiKTeX{}}
+
+    All required packages will be automatically installed if you are using \MiKTeX{}\cite{miktex}. And if you want to use \verb"latexmk" command, please install Perl\cite{perl} first. And the compilation command for \tmin{} is as follows:
+    \begin{verbatim}
+        latexmk -pdf main -interaction=nonstopmode
+    \end{verbatim}
+
+    \subsection{\TeX{} Live}
+    Since some pacakges are not defaultly installed in the full release of \TeX{} Live, you have to install the packages maually.
+
+    On Ubuntu, you could install \verb"pgf" and \verb"xcolor" and other drawing command through the following command\cite{beamerman}:
+
+    \begin{verbatim}
+        sudo apt install texlive-pictures
+    \end{verbatim}
+
+    To typeset Chinese characters, you would better use \verb"CJKutf8" package (in \tmin{}, set \verb"[cjk=true]"), since it is compatible with all plateforms and multiple language support. By the corresponding \verb"CJK" environment to make it work and remember to move all the unicode characters in the premable to the \verb"CJK" environment\cite{lsp3}:
+
+    \begin{verbatim}
+        \begin{document}
+        \begin{CJK}{UTF8}{gbsn}
+            \institute[]{}
+            \title{}
+            \subtitle{}
+            \author{}
+            \date{}
+            % your content here ...
+        \end{CJK}
+        \end{document}
+    \end{verbatim}
+
+    However, if you are stick into \verb"ctex",  you can install through \verb"tlmgr". If that works, then we call it a day.
+    
+    \begin{verbatim}
+        sudo tlmgr install ctex
+    \end{verbatim}
+    
+    Sometimes, you installed an old \TeX{} Live, and you have upgrade the \verb"tlmgr" for the new version. And the process could be very buggy, since the following warning may be shown:
+
+    \begin{verbatim}
+        unexpected return value from verify_checksum: -5
+    \end{verbatim}
+
+    and to upgrade the \verb"tlmgr" is painful on Ubuntu. You should use the following add the following content to \verb"/etc/profile/", which will add the path when the system is booting up\cite{upgrade}:
+    \begin{verbatim}
+        export PATH=/usr/local/texlive/2021/bin/x86_64-linux:
+        /usr/local/texlive/:$PATH
+    \end{verbatim}
+
+    Reboot your computer if necessary. Then the compile system will be moved to the new version of \TeX{} Live. Try to install the corresponding packages through the GUI interface of \verb"tlmgr":
+
+    \begin{verbatim}
+        sudo tlmgr update --self
+        sudo tlmgr gui
+    \end{verbatim}
+
+    And if you encountered that
+    \begin{verbatim}
+        Critical Package ctex Error: CTeX fontset `fandol' is 
+        unavailable in current(ctex) mode.
+    \end{verbatim}
+
+    You have to modify your compiling program from pdf\LaTeX{} to \XeLaTeX{}  by adding the following magic command to the first line:
+
+    \begin{verbatim}
+        % !TeX TS-program = xelatex
+    \end{verbatim}
+
+    \bibliography{dev.bib}
 \end{document}
