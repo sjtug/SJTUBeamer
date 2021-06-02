@@ -46,7 +46,7 @@
     
     \subsection{MiK\TeX{}}
 
-    All required packages will be automatically installed if you are using MiK\TeX{}\cite{miktex}. And if you want to use \verb"latexmk" command, please install Perl\cite{perl} first. And the compilation command for \tmin{} is as follows:
+    All required packages will be automatically installed if you are using MiK\TeX{}\cite{miktex}. And if you want to use the \verb"latexmk" command, please install Perl\cite{perl} first. And the compilation command for \tmin{} is as follows:
     \begin{verbatim}
         latexmk -pdf main -interaction=nonstopmode
     \end{verbatim}
@@ -114,15 +114,15 @@
 
     \subsection{Boost Up}
 
-    However, it has been tested that the compilation on \tmin{} is slow. Because the complex patterns have to be rendered in vector shapes and the bibliography requires multiple times of compilation, the time could be wasted on some repetitive works.
+    However, it has been tested that the compilation on \tmin{} is slow. Since the complex patterns have to be rendered in vector shapes and the bibliography requires multiple times of compilation, the time could be wasted on some repetitive works.
 
     This could scenario could be improved by enable \verb"[pattern=none]" option on \tmin{} and enable \verb"[draft]" option on beamer. The former one will disable all the pattern rendering, and the latter one will ignore all the TOC (table of contents) and bibliography generating.
 
-    In the future, the project will be implanted to Overleaf. There are some technical errors to fix in the current version. And to make that work, the compilation on \TeX{} Live 2021 has to be implemented. Currently, CI is only available on Github Actions by compiling on Lua\LaTeX{}. See \verb".github\workflows\main.yml" for details.
+    In the future, the project will be implanted to Overleaf. There are some technical errors to fix in the current version. And to make that works, the compilation on \TeX{} Live 2021 has to be implemented. Currently, CI is only available on Github Actions by compiling on Lua\LaTeX{}. See \verb".github/workflows/main.yml" for details.
 
     At the same time, AutoBeamer\cite{ab} is making its own effort on generating beamer code automatically by some replacing strategies. You could preview your beamer code through conversion on Markdown or the article \LaTeX{} code.
 
-    Furthermore, there is a wider space for boosting up the beamer compilation time. Since it is a frame-based document, and the connection between each frame is loosely connected (only some page numbers and citations need to be calculated). The multi-threaded compilation is possible for the \textsf{beamer} class. You can glimpse the multi-threaded processing for \LaTeX{} at the package \textsf{animate}. In fact, the author created some batch compiling work\cite{pgfedt} together with the \verb"-Parallel" parameter in PowerShell 7 to make full use of the concurrent computer architecture.
+    Furthermore, there is a wider space for boosting up the beamer compilation time by making use of multi-core processors. Since it is a frame-based document, and the connection between each frame is loosely (only some page numbers and citations need to be calculated). The multi-threaded compilation is possible for the \textsf{beamer} class. You can glimpse the multi-threaded processing for \LaTeX{} at the package \textsf{animate}. In fact, the author created some batch compiling work\cite{pgfedt} together with the \verb"-Parallel" parameter in PowerShell 7 to make full use of the concurrent computer architecture.
 
     \bibliography{dev.bib}
 \end{document}
