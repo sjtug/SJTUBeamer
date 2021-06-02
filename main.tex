@@ -66,19 +66,19 @@
 % 在每一个section或subsection前都添加目录页，并高亮当前的标题
 \AtBeginSection[] % \AtBeginSubsection
 {
-  \begin{frame}
-    \frametitle{目录}
-    \tableofcontents[currentsection] % [currentsection,currentsubsection]
-  \end{frame}
+	\begin{frame}
+		\frametitle{目录}
+		\tableofcontents[currentsection] % [currentsection,currentsubsection]
+	\end{frame}
 }
 
 % 关闭 plain 选项即可在标题页显示页眉页脚。
 \begin{frame}[plain]
-  \titlepage
+	\titlepage
 \end{frame}
 
 \begin{frame}{目录}
-  \tableofcontents
+	\tableofcontents
 \end{frame}
 
 \include{contents/basis}

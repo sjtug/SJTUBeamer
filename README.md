@@ -1,40 +1,41 @@
 # SJTUBeamer 🤓
 
-Welcome! 🥳
+欢迎使用 SJTUBeamer! 🥳
 
-This is the beamer template exclusively for Shanghai Jiaotong University students to give a speech on group meeting or course project.
+SJTUBeamer 是上海交通大学的非官方 Beamer 模版。您可以使用 SJTUBeamer 制作幻灯片，展示您的成果。
 
-## Usage 🧰
+## 使用方法 🧰
 
-For Overleaf users, you can directly download the zip file from github and upload it to https://latex.sjtu.edu.cn to use this template.
+Overleaf 用户可以直接下载 [最新版](https://github.com/sjtug/SJTUBeamer/archive/refs/heads/main.zip) 或 
+[v1.0.0](https://github.com/sjtug/SJTUBeamer/releases/tag/v1.0.0) 的代码，上传至 Overleaf 使用。
 
-If you want to use this template locally, simply download zip file and run `latexmk -xelatex`.
+如果您希望在本地使用 SJTUBeamer 模版，请安装 TeXLive 套件，并通过 `latexmk -xelatex main.tex` 命令进行编译。
+VSCode 用户可以使用 LaTeX Workshop 中的“Recipe: latexmk (latexmkrc)”进行编译。
 
-## Design Philosophy 💭
+## 设计哲学 💭
 
-* To design the template as simple as possible, since everyone can modify it according to their preferences with a little knowledge of latex syntax and beamer.
-* The theme is my favorate, you can change it to other [themes](https://deic-web.uab.cat/~iblanes/beamer_gallery/) or make a small modification.
-* The main color **beaver** is mostly like **SJTU-Red** which is more often seen in official occasion.
-* The SJTU logo and the background is downloaded from https://vi.sjtu.edu.cn.
+简单易用，即使是 LaTeX 初学者也能轻松上手。
 
-## Contribution 👷
+## 使用反馈与贡献代码 👷
 
-I'm still a freshman in creating beamer template, so feel free to open an issue or contact me via cascades@sjtu.edu.cn. Hoping this template could help many students as https://github.com/sjtug/SJTUThesis.
+您可以通过 GitHub Issue 反馈使用时碰到的问题。同时，也欢迎您提交 PR 帮助我们改进。
 
-## Appearance 🧐
+## 展示 🧐
 
-**Blue theme cover page**
+您可以在 [v1.0.0](https://github.com/sjtug/SJTUBeamer/releases/tag/v1.0.0) 预览生成的四个主题的 pdf。
+
+**蓝色主题封面**
 
 ![page001](https://user-images.githubusercontent.com/4198311/119085675-be619a80-ba36-11eb-878f-609b2882dc35.png)
 
-**Red theme cover page**
+**红色主题封面**
 
 ![page001](https://user-images.githubusercontent.com/4198311/119085697-c7526c00-ba36-11eb-8a70-296f8f36c2d6.png)
 
-**Normal cover page**
+**普通封面**
 
 ![page001](https://user-images.githubusercontent.com/4198311/118810621-aa0a8a00-b8de-11eb-907e-6342c156ea53.png)
 
-**Red theme slides**
+**红色主题内页**
 
 ![page004](https://user-images.githubusercontent.com/4198311/118810609-a70f9980-b8de-11eb-84b3-68918c905817.png)
