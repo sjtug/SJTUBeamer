@@ -2,7 +2,7 @@
 上海交通大学 LaTeX Beamer 幻灯片模板 - min
 
 [![Build LaTeX document](https://github.com/LogCreative/SJTUBeamermin/actions/workflows/main.yml/badge.svg)](https://github.com/LogCreative/SJTUBeamermin/actions/workflows/main.yml)
-[![Overleaf](https://img.shields.io/badge/Overleaf-v0.9--Prev-green)](https://www.overleaf.com/read/pwjmbjqwjftv)
+[![Overleaf](https://img.shields.io/badge/Overleaf-v0.8-green)](https://www.overleaf.com/latex/templates/sjtubeamermin/shxnnnjjgqvp)
 
 SJTUBeamermin 样式为上海交通大学幻灯片模板的 LaTeX 非官方实现版本，是符合[上海交通大学视觉形象识别系统](http://vi.sjtu.edu.cn/)相关规范的最小工作集，图标版权归上海交通大学所有，本项目仅供校内人员学习参考使用。
 
