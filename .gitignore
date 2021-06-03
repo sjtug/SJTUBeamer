@@ -16,3 +16,4 @@ standard/
 *.out
 *.fls
 _latexmk
+*.synctex.gz

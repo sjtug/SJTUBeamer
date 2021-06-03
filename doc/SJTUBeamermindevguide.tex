@@ -1,7 +1,8 @@
 \documentclass{article}
 \usepackage{array}
 \usepackage[colorlinks,breaklinks=true]{hyperref}
-\bibliographystyle{IEEEtrans}
+\usepackage[numbers, sort&compress]{natbib}
+\bibliographystyle{IEEEtran}
 \def\tmin{\textsf{SJTUBeamer} \fbox{\textsc{min}}}
 \title{Developer's Guide on\\ \tmin}
 \author{Log Creative}
@@ -119,12 +120,30 @@
     This scenario could be improved by enable \verb"[pattern=none]" option on \tmin{} and enable \verb"[draft]" option on beamer. The former one will disable all the pattern rendering, and the latter one will ignore all the TOC (table of contents) generating.
 
     In the future, the project will be implanted to Overleaf. 
-    %Here is a link to the temporary template on overleaf. % TODO
-     And to make that works, the compilation on \TeX{} Live 2021 has to be implemented. Currently, CI is only available on Github Actions by compiling on Lua\LaTeX{}. See \verb".github/workflows/main.yml" for details.
+    Here is a link to the temporary address on Overleaf\cite{overleaf}. And to make that works, the compilation on \TeX{} Live 2021 has to be implemented. And it is discovered that setting the document infomation outside the \verb|document| environment will cause a significant longer compiling time, which may be caused by some inproper settings in C\TeX{} package. The workaround of that is to follow the set up mentioned in \verb|CJK| settings: put those infos into the body of document\cite{lsp3}.
+    
+    Currently, CI is available on Github Actions by compiling on Lua\LaTeX{}. \tmin{} use \verb|xu-cheng/latex-action@v2| for the compilation docker \cite{lact} and relocate the compiling folder to \verb"src/". After compiling, output the PDF artifact. See \verb".github/workflows/main.yml" for details.
 
     At the same time, AutoBeamer\cite{ab} is making its own effort on generating beamer code automatically by some replacing strategies. You could preview your beamer code through conversion on Markdown or the article \LaTeX{} code.
 
-    Furthermore, there is a wider space for boosting up the beamer compilation time by making use of multi-core processors. Since it is a frame-based document, and the connection between each frame is loose (only some page numbers and citations need to be calculated). The multi-threaded compilation is possible for the \textsf{beamer} class. You can glimpse the multi-threaded processing for \LaTeX{} at the package \textsf{animate}. In fact, the author created some batch compiling work\cite{pgfedt} together with the \verb"-Parallel" parameter in PowerShell 7 to make full use of the concurrent computer architecture.
+    Furthermore, there is a wider space for boosting up the beamer compilation time by making use of multi-core processors. Since it is a frame-based document, and the connection between each frame is loose (only some page numbers and citations need to be calculated), the multi-threaded compilation is possible for the \textsf{beamer} class. You can glimpse of the multi-threaded processing for \LaTeX{} from the package \textsf{animate}. In fact, the author created some batch compiling work\cite{pgfedt} together with the \verb"-Parallel" parameter in PowerShell 7 to make full use of the concurrent computer architecture.
+    
+    \section{Modular Architecture}
+    
+    By the recommendation from \textsf{beamer} package\cite{beamerman}, \tmin{} use the same modular architecture to build the template. Like it is in Java, to let the \textsf{beamer} template locate your theme, the style files have to be in the standard names.
+    
+    \begin{table}[h]
+   		\begin{tabular}{>{\ttfamily}ll}
+   			\bfseries .sty File & \bfseries Description \\
+   			beamercolorthemeSJTUBeamermin.sty & Define global color schemes. \\
+   			beamerfontthemeSJTUBeamermin.sty & Set the font format. \\
+   			beamerinnerthemeSJTUBeamermin.sty & Specifies all parts inside a frame. \\
+   			beamerouterthemeSJTUBeamermin.sty & Layout the frame header and bottom bar. \\
+   			beamerthemeSJTUBeamermin.sty & Entry point of the theme.
+    	\end{tabular}
+    \end{table}
+
+	Notice that there is some dependencies (logo files) in the \verb|vi/|. Copying \verb|vi| folder is necessary.
 
     \bibliography{dev.bib}
 \end{document}

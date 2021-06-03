@@ -1,3 +1,4 @@
+% !TeX TS-program = xelatex
 \documentclass[
     % draft,                             % 草稿模式
     aspectratio=169,                   % 使用 16:9 比例
@@ -13,20 +14,20 @@
     % gbt=bibtex,                        % 使用 gbt (使用 bibtex 编译)
 ]{SJTUBeamermin}
 \usecolortheme[]{beaver}                 % 使用其他颜色主题
+  
+\addbibresource{ref.bib}               % gbt!=bibtex
+
+\begin{document}
 \institute[School of Mathematical Sciences]{数学科学学院}   % 组织
 \titlegraphic{                         % 标题图像
-    \begin{stampbox}[white]
-        \includegraphics[width=0.3\textwidth]{vi/head.png}
-    \end{stampbox}
+	\begin{stampbox}[white]
+		\includegraphics[width=0.3\textwidth]{vi/head.png}
+	\end{stampbox}
 }
 \title{SJTUBeamer \fbox{\textsc{min}} 幻灯片模板}  % 标题
 \subtitle{SJTUBeamer \fbox{\textsc{min}} Template}         % 副标题
 \author{Log Creative}                  % 作者
-\date{\today}                          % 日期    
-\addbibresource{ref.bib}               % gbt!=bibtex
-
-\begin{document}
-
+\date{\today}                          % 日期  
     \maketitle                         % 创建标题页
 
 \part{第一部分}
