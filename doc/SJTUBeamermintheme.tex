@@ -112,7 +112,7 @@
         \bibliography{ref.bib}                 % gbt=bibtex
     \end{verbatim}
     启用本选项也会导致 \verb"\cite" 命令不再被重定向到 \verb"\footfullcite"（使用脚注的引用）。
-    \paragraph{\texttt{true}} 使用 \verb"biblatex-gbt7714-2015" 样式，但是需要采用 \textsc{Xe}\LaTeX{} 或 Lua\LaTeX{} 编译，采用与 \verb"false" 一样的语句（本引用样式暂时不支持 pdf\LaTeX{}）。本模板目前暂时没有为这两种引擎的编译做优化，字体会有差别。特别是 Lua\LaTeX{} 编译速度较慢，暂时不推荐使用。 
+    \paragraph{\texttt{true}} 使用 \verb"biblatex-gbt7714-2015" 样式，但是需要采用 \textsc{Xe}\LaTeX{} 或 Lua\LaTeX{} 编译，采用与 \verb"false" 一样的语句（本引用样式暂时不支持 pdf\LaTeX{}）。本模板目前暂时没有为这两种引擎的编译做优化，字体会有差别（*nix 系统上推荐使用\textsc{Xe}\LaTeX{}）。特别是 Lua\LaTeX{} 编译速度较慢，暂时不推荐使用。 
     % 本模板已经使用 \verb"biblatex" 宏包作为参考文献的用户接口，所以不必使用老式 \textsc{Bib\TeX{}} 语法打印参考文献。修改 \verb"\addbibresource{ref.bib}" 更改参考文献目录，修改 \verb"\printbibliography[title=参考文献]" 中的 \verb"title" 属性可以更改参考文献的标题。
 \end{docKey*}
 

@@ -13,3 +13,7 @@ standard/
 *-blx.bib
 *.run.xml
 *.bcf
+*.out
+*.fls
+_latexmk
+*.synctex.gz
