@@ -6,6 +6,7 @@
 \def\tmin{\textsf{SJTUBeamer} \fbox{\textsc{min}}}
 \title{Developer's Guide on\\ \tmin}
 \author{Log Creative}
+\date{\input{../VERSION}\today}
 \begin{document}
     \maketitle
     \tableofcontents
@@ -119,14 +120,14 @@
 
     This scenario could be improved by enable \verb"[pattern=none]" option on \tmin{} and enable \verb"[draft]" option on beamer. The former one will disable all the pattern rendering, and the latter one will ignore all the TOC (table of contents) generating.
 
-    In the future, the project will be implanted to Overleaf. 
-    Here is a link to the temporary address on Overleaf\cite{overleaf}. And to make that works, the compilation on \TeX{} Live 2021 has to be implemented. And it is discovered that setting the document infomation outside the \verb|document| environment will cause a significant longer compiling time, which may be caused by some inproper settings in C\TeX{} package. The workaround of that is to follow the set up mentioned in \verb|CJK| settings: put those infos into the body of document\cite{lsp3}.
+    The project has been implanted to Overleaf. 
+    Here is the link \cite{overleaf}. And to make that works, the compilation on \TeX{} Live 2021 has to be implemented. And it is discovered that setting the document information outside the \verb|document| environment will cause a significantly longer compiling time, which may be caused by some improper settings in C\TeX{} package. The workaround of that is to follow the setup mentioned in \verb|CJK| settings: put that info into the body of document\cite{lsp3}.
     
     Currently, CI is available on Github Actions by compiling on Lua\LaTeX{}. \tmin{} use \verb|xu-cheng/latex-action@v2| for the compilation docker \cite{lact} and relocate the compiling folder to \verb"src/". After compiling, output the PDF artifact. See \verb".github/workflows/main.yml" for details.
 
     At the same time, AutoBeamer\cite{ab} is making its own effort on generating beamer code automatically by some replacing strategies. You could preview your beamer code through conversion on Markdown or the article \LaTeX{} code.
 
-    Furthermore, there is a wider space for boosting up the beamer compilation time by making use of multi-core processors. Since it is a frame-based document, and the connection between each frame is loose (only some page numbers and citations need to be calculated), the multi-threaded compilation is possible for the \textsf{beamer} class. You can glimpse of the multi-threaded processing for \LaTeX{} from the package \textsf{animate}. In fact, the author created some batch compiling work\cite{pgfedt} together with the \verb"-Parallel" parameter in PowerShell 7 to make full use of the concurrent computer architecture.
+    Furthermore, there is a wider space for boosting up the beamer compilation time by making use of multi-core processors. Since it is a frame-based document, and the connection between each frame is loose (only some page numbers and citations need to be calculated), the multi-threaded compilation is possible for the \textsf{beamer} class. You can glimpse the multi-threaded processing for \LaTeX{} from the package \textsf{animate}. In fact, the author created some batch compiling work\cite{pgfedt} together with the \verb"-Parallel" parameter in PowerShell 7 to make full use of the concurrent computer architecture.
     
     \section{Modular Architecture}
     
@@ -138,12 +139,48 @@
    			beamercolorthemeSJTUBeamermin.sty & Define global color schemes. \\
    			beamerfontthemeSJTUBeamermin.sty & Set the font format. \\
    			beamerinnerthemeSJTUBeamermin.sty & Specifies all parts inside a frame. \\
-   			beamerouterthemeSJTUBeamermin.sty & Layout the frame header and bottom bar. \\
+   			beamerouterthemeSJTUBeamermin.sty & The frame header and bottom bar. \\
    			beamerthemeSJTUBeamermin.sty & Entry point of the theme.
     	\end{tabular}
     \end{table}
 
-	Notice that there is some dependencies (logo files) in the \verb|vi/|. Copying \verb|vi| folder is necessary.
+	Notice that there are some dependencies (logo files) in the \verb|vi/|. Copying the \verb|vi| folder is necessary. Or you could define the location of the logo file by the option \verb"[logo=]".
+
+    \begin{figure}[h]
+        \framebox[\textwidth]{\ttfamily main.tex}
+        
+        \framebox[\textwidth]{\ttfamily beamerthemeSJTUBeamermin.sty}
+        
+        \framebox[0.25\textwidth]{\ttfamily colortheme.sty}\framebox[0.25\textwidth]{\ttfamily fonttheme.sty}\framebox[0.25\textwidth]{\ttfamily innertheme.sty}\framebox[0.25\textwidth]{\ttfamily outertheme.sty}
+
+        \hfill\framebox[0.5\textwidth]{\ttfamily logo.pdf}
+    \end{figure}
+
+    \subsection{Theme}
+
+    The main theme file \texttt{beamerthemeSJTUBeamermin.sty} is the entry point of the theme template. For users, after acquiring the \textsf{beamer} package, \verb"\usetheme" command will serve as the caller of the theme.
+    \begin{verbatim}
+        \documentclass{beamer}
+        \mode<presentation>
+        \usetheme{SJTUBeamermin}
+    \end{verbatim}
+
+    And this file will preprocess the option passed to the theme. Some options will be affected immediately, while others will get processed in the sub-style files.
+
+    \begin{figure}[h]
+        \fbox{\parbox{0.4\textwidth}{\texttt{theme.sty}\par
+        \parbox{0.49\textwidth}{lang}\par
+        \parbox{0.49\textwidth}{cjk}\par
+        \parbox{0.49\textwidth}{gbt}\par
+        \parbox{0.49\textwidth}{\emph{other settings}}
+        }}
+        \parbox{0.6\textwidth}{
+            \fbox{\parbox{0.55\textwidth}{\texttt{colortheme.sty}\hfill color}}\par
+            \fbox{\parbox{0.55\textwidth}{\texttt{fonttheme.sty}}}\par
+            \fbox{\parbox{0.55\textwidth}{\texttt{innertheme.sty}\hfill pattern,color,logo}}\par
+            \fbox{\parbox{0.55\textwidth}{\texttt{outertheme.sty}\hfill pattern,navigation,logo}}
+        }
+    \end{figure}
 
     \bibliography{dev.bib}
 \end{document}
