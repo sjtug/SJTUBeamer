@@ -10,6 +10,8 @@ SJTUBeamermin 样式为上海交通大学幻灯片模板的 LaTeX 非官方实�
 
 [SJTUBeamermin 样式文档](https://github.com/LogCreative/SJTUBeamer/blob/main/doc/SJTUBeamerthememin.pdf)
 
+[向该项目贡献代码](CONTRIBUTING.md)
+
 ![](doc/img/poster_页面_1.jpg)
 ![](doc/img/poster_页面_2.jpg)
 ![](doc/img/poster_页面_3.jpg)
