@@ -123,7 +123,7 @@
     The project has been implanted to Overleaf. 
     Here is the link \cite{overleaf}. And to make that works, the compilation on \TeX{} Live 2021 has to be implemented. And it is discovered that setting the document information outside the \verb|document| environment will cause a significantly longer compiling time, which may be caused by some improper settings in C\TeX{} package. The workaround of that is to follow the setup mentioned in \verb|CJK| settings: put that info into the body of document\cite{lsp3}.
     
-    Currently, CI is available on Github Actions by compiling on Lua\LaTeX{}. \tmin{} use \verb|xu-cheng/latex-action@v2| for the compilation docker \cite{lact} and relocate the compiling folder to \verb"src/". After compiling, output the PDF artifact. See \verb".github/workflows/main.yml" for details.
+    Currently, CI is available on Github Actions by compiling on Lua\LaTeX{}. \tmin{} uses \verb|xu-cheng/latex-action@v2| for the compilation docker \cite{lact} and relocates the compiling folder to \verb"src/". After compiling, output the PDF artifact. See \verb".github/workflows/main.yml" for details.
 
     At the same time, AutoBeamer\cite{ab} is making its own effort on generating beamer code automatically by some replacing strategies. You could preview your beamer code through conversion on Markdown or the article \LaTeX{} code.
 
@@ -131,7 +131,7 @@
     
     \section{Modular Architecture}
     
-    By the recommendation from \textsf{beamer} package\cite{beamerman}, \tmin{} use the same modular architecture to build the template. Like it is in Java, to let the \textsf{beamer} template locate your theme, the style files have to be in the standard names.
+    By the recommendation from \textsf{beamer} package\cite{beamerman}, \tmin{} uses the same modular architecture to build the template. Like it is in Java, to let the \textsf{beamer} template locate your theme, the style file have to be in the standard name.
     
     \begin{table}[h]
    		\begin{tabular}{>{\ttfamily}ll}
@@ -181,6 +181,33 @@
             \fbox{\parbox{0.55\textwidth}{\texttt{outertheme.sty}\hfill pattern,navigation,logo}}
         }
     \end{figure}
+
+    \subsection{Color}
+
+    The color style file \verb"beamercolorthemeSJTUBeamermin" is the color setup of the template. Most color schemes are derived from the basic color of SJTU VI\cite{viman}. And to adapt the color definitions of \textsf{beamer}, the corresponding interface is mapped, see 17.2 in \cite{beamerman}.
+
+    \begin{table}[h]
+        \centering
+        \begin{tabular}{>{\ttfamily}l>{\ttfamily}l>{\ttfamily}c>{\ttfamily}c}
+             interface           & color=       & red       & blue \\
+             palette primary     & cprimary     &\#004098  & \#9E1F36 \\       
+             palette secondary   & csecondary   &\#298626  & \#F28101 \\     
+             palette tertiary    & ctertiary    &\#004D4B  & \#FED201 \\      
+             palette quanternary & cquanternary & \#FFFFFF  & \#000000 \\  
+        \end{tabular}
+    \end{table}
+
+    As it is mapped to those beamer interfaces, to use the color, you have to declare the color struct first by
+    \begin{verbatim}
+        \usebeamercolor{palette primary}
+        \color{palette primary.bg}
+    \end{verbatim}
+    or by simply
+    \begin{verbatim}
+        \usebeamercolor[bg]{palette primary}
+    \end{verbatim}
+
+    However, there are some scenarios that you cannot put temporary variables in some package options. In this complex case, the redefinition of those standard colors is required. And that's the reason why \verb"innertheme.sty" gets \verb"color".
 
     \bibliography{dev.bib}
 \end{document}
