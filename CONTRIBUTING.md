@@ -1,4 +1,4 @@
-# Constributing to SJTUBeamermin
+# Contributing to SJTUBeamermin
 
 SJTUBeamermin is now at 0.9-beta-LTS. Since it is final exam week in SJTU, the author himself won't have more time on this template until July 1st. And it is a good time for you to show your talent on TeXing! 🥰
 
