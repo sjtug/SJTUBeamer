@@ -128,9 +128,6 @@
       \fill [bg,path fading=center fade,xshift=-10pt,yshift=-20pt] (0.2*\the\paperwidth,0) circle [radius=\the\paperwidth];
     \end{tikzpicture}
     \fi%
-    \begin{tikzpicture}[overlay]
-      \node [left] at (0.85*\the\paperwidth,-0.5*\the\paperheight) {\usebeamercolor[fg]{titlegraphic}\inserttitlegraphic};
-    \end{tikzpicture}
   \fi%
   \vfill
   \begingroup
@@ -142,7 +139,7 @@
         \hskip4.5pt{\resizebox{!}{1cm}{\insertlogo}}
         \ifx\insertinstitute\@empty%
         \else
-          {\hskip4pt \vrule width0.5pt}\hskip7pt
+          {\hskip3pt \vrule width0.5pt}\hskip7pt
           \ifx\beamer@SJTUBeamermin@lang\beamer@SJTUBeamermin@langcn%
             \vbox{
               \fontsize{13pt}{0pt}\selectfont
@@ -185,8 +182,12 @@
     \end{beamercolorbox}
     \begin{beamercolorbox}[sep=8pt,#1]{date}
       \usebeamerfont{date}\insertdate
-    \end{beamercolorbox}\vskip0.5em
+    \end{beamercolorbox}
+    \begin{tikzpicture}[overlay,yshift=0.77em]
+      \node [above left] at (0.88*\the\paperwidth,0) {\usebeamercolor[fg]{titlegraphic}\inserttitlegraphic};
+    \end{tikzpicture}
   \endgroup
+  \vskip0.5em
   \vfill
 }
 

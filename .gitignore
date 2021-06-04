@@ -15,5 +15,5 @@ standard/
 *.bcf
 *.out
 *.fls
-_latexmk
+*_latexmk
 *.synctex.gz
