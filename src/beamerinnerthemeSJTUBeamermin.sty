@@ -289,22 +289,24 @@
 
 \tcbuselibrary{skins}
 \tcbuselibrary{listingsutf8}
-\newtcblisting{codeblock}[2]{listing only, 
-listing engine=listings,
-listing options={
-  language=#1,%
+\lstset{
   basicstyle=\ttfamily\small,
   keywordstyle=\color{cprimary},%
   stringstyle=\color{csecondary},%
   commentstyle=\color{ctertiary!80!gray},%
-  numbers=left,
-  numberstyle=\color{cprimary!80}\ttfamily\scriptsize,
-  numbersep=5pt,
   columns=flexible,
   extendedchars=false,
   showstringspaces=false,
   showspaces=false,
   breaklines
+}
+\newtcblisting{codeblock}[2]{listing only, 
+listing engine=listings,
+listing options={
+  language=#1,%
+  numbers=left,
+  numberstyle=\color{cprimary!80}\ttfamily\scriptsize,
+  numbersep=5pt,
 },
 enhanced,
 sharp corners,
