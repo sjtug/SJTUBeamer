@@ -8,7 +8,7 @@ SJTUBeamermin 样式为上海交通大学幻灯片模板的 LaTeX 非官方实�
 
 目前该样式已经完成了规范中的基础部分，进入测试阶段。欢迎通过拉取请求对本模板提出修改建议。
 
-[SJTUBeamermin 样式文档](https://github.com/LogCreative/SJTUBeamer/blob/main/doc/SJTUBeamerthememin.pdf)
+[SJTUBeamermin 样式文档](https://github.com/LogCreative/SJTUBeamer/blob/main/doc/SJTUBeamermintheme.pdf)
 
 [向该项目贡献代码](CONTRIBUTING.md)
 
