@@ -74,24 +74,12 @@
 \def\beamer@SJTUBeamermin@patterntitle{title}%
 \def\beamer@SJTUBeamermin@patternall{all}%
 
-\DeclareOptionBeamer{logo}{\def\beamer@SJTUBeamermin@logo{#1}}
 \ExecuteOptionsBeamer{
   lang=cn,
-  pattern=all,
-  logo=,
+  pattern=all
 }
 
 \ProcessOptionsBeamer
-
-\ifx\beamer@SJTUBeamermin@logo\@empty
-  \ifx\beamer@SJTUBeamermin@lang\beamer@SJTUBeamermin@langcn
-    \pgfdeclareimage[height=0.7cm]{titlelogosmall}{vi/cnlogo.pdf}
-  \else
-    \pgfdeclareimage[height=0.7cm]{titlelogosmall}{vi/enlogo.pdf}
-  \fi
-\else
-  \pgfdeclareimage[height=0.7cm]{titlelogosmall}{\beamer@SJTUBeamermin@logo}
-\fi
 
 % The frame title.
 
@@ -155,7 +143,7 @@
     \begingroup
     \ifx\insertframesubtitle\@empty\vskip-2.5ex%
     \else\vskip-3.5ex\fi%
-    {\pgfuseimage{titlelogosmall}}\hspace*{2ex}%
+    {\resizebox{!}{0.7cm}{\insertlogo}}\hspace*{2ex}%
     \endgroup%
     \ifx\insertframesubtitle\@empty%
     \else\vskip0.5ex\fi%

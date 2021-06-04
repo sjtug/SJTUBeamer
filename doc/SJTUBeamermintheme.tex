@@ -116,12 +116,12 @@
     % 本模板已经使用 \verb"biblatex" 宏包作为参考文献的用户接口，所以不必使用老式 \textsc{Bib\TeX{}} 语法打印参考文献。修改 \verb"\addbibresource{ref.bib}" 更改参考文献目录，修改 \verb"\printbibliography[title=参考文献]" 中的 \verb"title" 属性可以更改参考文献的标题。
 \end{docKey*}
 
-\begin{docKey*}[SJTUBeamermin]{logo}{=\marg{logo path}}{默认留空}
-    自定义 logo 的路径。使用统一的接口以控制其在不同页面的大小（如果您执意要使用 \verb"\logo" 命令，推荐将高度设置为 0.7cm）。对于有自定义的二级机构 logo 时该命令比较有用，以及在试验其他的配色方案时可以采用高对比颜色的 logo，比如下面的选项设置即可载入红色 logo：
-    \begin{verbatim}
-        [logo=vi/cnlogored.pdf]
-    \end{verbatim}
-\end{docKey*}
+% \begin{docKey*}[SJTUBeamermin]{logo}{=\marg{logo path}}{默认留空}
+%     自定义 logo 的路径。使用统一的接口以控制其在不同页面的大小（如果您执意要使用 \verb"\logo" 命令，推荐将高度设置为 0.7cm）。对于有自定义的二级机构 logo 时该命令比较有用，以及在试验其他的配色方案时可以采用高对比颜色的 logo，比如下面的选项设置即可载入红色 logo：
+%     \begin{verbatim}
+%         [logo=vi/cnlogored.pdf]
+%     \end{verbatim}
+% \end{docKey*}
 
 \section{环境}
 
@@ -145,7 +145,10 @@
 
 \begin{docCommand*}[]{institute}{\oarg{shortname}\marg{name}}
     二级机构名称。添加本条命令将会按照 \href{https://vi.sjtu.edu.cn/index.php/articles/base/4}{\textbf{A4-08 二级机构中英文名称横式混合}} 对标题页的徽标与二级机构组合。其中\marg{name}为机构的中文全称，而\oarg{shortname}为机构的英文全称。当语言被设定为英文时，将会只显示英文全称并可以使用换行符号 \verb"\\" 对长名称换行。
-    对于有自己徽标的二级机构，请直接修改 \verb"vi" 文件夹下的 \verb"cnlogo.pdf" 或者是 \verb"enlogo.pdf" 。
+\end{docCommand*}
+
+\begin{docCommand*}[]{logo}{\marg{pictureenv}}
+    logo 路径。添加本项可以自定义 logo 图片，在标题页中将会放置高度 1cm 的 logo，在页内将会放置高度 0.7cm 的 logo。对于有自己徽标的二级机构，可以参照 \href{https://vi.sjtu.edu.cn/index.php/articles/base/4}{\textbf{A4-10-01 衍生应用中英文标准字组合}} 设置成自定义徽标文件的路径，必要时关闭 \verb"\institute" 命令。
 \end{docCommand*}
 
 \begin{docCommand*}[]{titlegraphic}{\marg{pictureenv}}

@@ -39,59 +39,21 @@
 \def\beamer@SJTUBeamermin@colorblue{blue}%
 \def\beamer@SJTUBeamermin@colorred{red}%
 
-\DeclareOptionBeamer{logo}{\def\beamer@SJTUBeamermin@logo{#1}}
-
 \ExecuteOptionsBeamer{
   lang=cn,
   color=blue,
-  pattern=all,
-  logo=,
+  pattern=all
 }
 
 \ProcessOptionsBeamer
 
-\ifx\beamer@SJTUBeamermin@logo\@empty
-  \ifx\beamer@SJTUBeamermin@lang\beamer@SJTUBeamermin@langcn
-  \pgfdeclareimage[height=1cm]{titlelogo}{vi/cnlogo.pdf}
-  \else
-  \pgfdeclareimage[height=1cm]{titlelogo}{vi/enlogo.pdf}
-  \fi
-\else
-  \pgfdeclareimage[height=1cm]{titlelogo}{\beamer@SJTUBeamermin@logo}
-\fi
 \logo{
-  \vskip8pt
-  \hbox{
-    \hskip4.5pt{\pgfuseimage{titlelogo}}
-    \ifx\insertinstitute\@empty%
-    \else
-      {\hskip7pt \vrule width0.5pt}\hskip7pt
-      \ifx\beamer@SJTUBeamermin@lang\beamer@SJTUBeamermin@langcn%
-        \vbox{
-          \fontsize{13pt}{0pt}\selectfont
-          \insertinstitute
-          \par\noindent\vskip0.15em
-          \fontsize{5pt}{0pt}\selectfont
-          \textsc{\insertshortinstitute}
-          \baselineskip 3.2pt
-          \par~
-        }
-      \else%
-        \vbox to 1cm{
-          \vfill
-          \vbox{
-            \offinterlineskip
-            \noindent \strut
-            \baselineskip 0pt \lineskip -2pt
-            \scriptsize\textsc{\beamer@shortinstitute}
-            \strut
-          }
-          \vfill
-        }
-      \fi%
-    \fi%
-  }
-  \vskip8pt
+  % will make the default logo, can be customized by redefinition
+  \ifx\beamer@SJTUBeamermin@lang\beamer@SJTUBeamermin@langcn
+    \includegraphics{vi/cnlogo.pdf}
+  \else
+    \includegraphics{vi/enlogo.pdf}
+  \fi
 }
 
 \usetikzlibrary{patterns.meta}
@@ -184,7 +146,38 @@
     \centering
     \usebeamercolor{titlelike}
     \begin{beamercolorbox}{logo}
-      \insertlogo
+      \vskip8pt
+      \hbox{
+        \hskip4.5pt{\resizebox{!}{1cm}{\insertlogo}}
+        \ifx\insertinstitute\@empty%
+        \else
+          {\hskip7pt \vrule width0.5pt}\hskip7pt
+          \ifx\beamer@SJTUBeamermin@lang\beamer@SJTUBeamermin@langcn%
+            \vbox{
+              \fontsize{13pt}{0pt}\selectfont
+              \insertinstitute
+              \par\noindent\vskip0.15em
+              \fontsize{5pt}{0pt}\selectfont
+              \textsc{\insertshortinstitute}
+              \baselineskip 3.2pt
+              \par~
+            }
+          \else%
+            \vbox to 1cm{
+              \vfill
+              \vbox{
+                \offinterlineskip
+                \noindent \strut
+                \baselineskip 0pt \lineskip -2pt
+                \scriptsize\textsc{\beamer@shortinstitute}
+                \strut
+              }
+              \vfill
+            }
+          \fi%
+        \fi%
+      }
+      \vskip8pt
     \end{beamercolorbox}
     \begin{beamercolorbox}[sep=8pt,#1]{title}
       \usebeamercolor[fg]{palette primary}
@@ -478,7 +471,7 @@ overlay={
   \vfill
   \begingroup
     \raggedleft
-    \pgfuseimage{titlelogo}
+    \resizebox{!}{1cm}{\insertlogo}
     \vfill
     \vskip6em
     \begin{beamercolorbox}[sep=8pt]{title}
