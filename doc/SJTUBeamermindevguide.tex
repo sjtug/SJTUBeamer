@@ -10,6 +10,7 @@
 \begin{document}
     \maketitle
     \tableofcontents
+    \clearpage
     \section{Preface}
 
     \tmin{} is a presentation template based on \textsf{beamer} package in \LaTeX{}, to fulfill the enthusiasm of those SJTU users to present their content nicely benefiting from the technology of \TeX{} typesetting engine.
@@ -127,7 +128,7 @@
 
     At the same time, AutoBeamer\cite{ab} is making its own effort on generating beamer code automatically by some replacing strategies. You could preview your beamer code through conversion on Markdown or the article \LaTeX{} code.
 
-    Furthermore, there is a wider space for boosting up the beamer compilation time by making use of multi-core processors. Since it is a frame-based document, and the connection between each frame is loose (only some page numbers and citations need to be calculated), the multi-threaded compilation is possible for the \textsf{beamer} class. You can glimpse the multi-threaded processing for \LaTeX{} from the package \textsf{animate}. In fact, the author created some batch compiling work\cite{pgfedt} together with the \verb"-Parallel" parameter in PowerShell 7 to make full use of the concurrent computer architecture.
+    Furthermore, there is space for boosting up the beamer compilation time by making use of multi-core processors. Since it is a frame-based document, and the connection between each frame is loose (only some page numbers and citations need to be calculated), the multi-threaded compilation is possible for the \textsf{beamer} class. You can glimpse the multi-threaded processing for \LaTeX{} from the package \textsf{animate}. In fact, the author created some batch compiling work\cite{pgfedt} together with the \verb"-Parallel" parameter in PowerShell 7 to make full use of the concurrent computer architecture.
     
     \section{Modular Architecture}
     
@@ -202,12 +203,31 @@
         \usebeamercolor{palette primary}
         \color{palette primary.bg}
     \end{verbatim}
-    or by simply
+    or simply
     \begin{verbatim}
         \usebeamercolor[bg]{palette primary}
     \end{verbatim}
 
-    However, there are some scenarios that you cannot put temporary variables in some package options. In this complex case, the redefinition of those standard colors is required. And that's the reason why \verb"innertheme.sty" gets \verb"color".
+    However, there are scenarios where you cannot put temporary variables in some package options. In this complex case, the redefinition of those standard colors is required. And that's the reason why \verb"innertheme.sty" gets \verb"color".
+
+    \subsection{Font}
+
+    The font style file \verb"beamerfontthemeSJTUBeamermin.sty" provides the font style of the beamer. In \tmin{}, serif math font is used by 
+    \begin{verbatim}
+        \usefonttheme{professionalfonts}
+    \end{verbatim}
+    which will tell \textsf{beamer} not to meddle with the specific font (in this case, math font) to the sans serif one. 
+    
+    It is especially useful if you don't want to create more compilation errors on many engines since some engine doesn't support sans serif math font. The workaround for that is to introduce the package below:
+    \begin{verbatim}
+        \RequirePackage[eulergreek]{sansmath}
+    \end{verbatim}
+
+    And \tmin{} does both.
+
+    % \subsection{Inner}
+
+
 
     \bibliography{dev.bib}
 \end{document}
