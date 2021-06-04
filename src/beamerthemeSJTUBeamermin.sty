@@ -58,16 +58,14 @@
 \RequirePackage{silence}
 \def\Hy@WarnOptionDisabled#1{
     \def\next{#1}%
-    \ifx\beamer@SJTUBeamermin@cjk\beamer@SJTUBeamermin@cjktrue%
-        \def\ignore{pdfauthor}%
-    \else%
-        \def\ignore{driverfallback}%
+    \ifx\next pdfauthor %
+        \ifx\next driverfallback %
+        \else
+        \Hy@Warning{%
+            Option `#1' has already been used,\MessageBreak 
+            setting the option has no effect%
+        }
     \fi%
-    \ifx\next\ignore%
-    \else\Hy@Warning{%
-        Option `#1' has already been used,\MessageBreak 
-        setting the option has no effect%
-    }\fi
 }
 \ifx\beamer@SJTUBeamermin@lang\beamer@SJTUBeamermin@langen%
 \else
