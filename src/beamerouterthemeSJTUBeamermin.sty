@@ -13,6 +13,28 @@
 % The Current Maintainer of this work is Log Creative.
 %
 
+\DeclareOptionBeamer{lang}{\def\beamer@SJTUBeamermin@lang{#1}}
+
+\def\beamer@SJTUBeamermin@langcn{cn}%
+\def\beamer@SJTUBeamermin@langen{en}%
+
+\DeclareOptionBeamer{pattern}{\def\beamer@SJTUBeamermin@pattern{#1}}
+
+\def\beamer@SJTUBeamermin@patternnone{none}%
+\def\beamer@SJTUBeamermin@patterntitle{title}%
+\def\beamer@SJTUBeamermin@patternall{all}%
+
+\ExecuteOptionsBeamer{
+  lang=cn,
+  pattern=all
+}
+
+\ProcessOptionsBeamer
+
+\RequirePackage{tikz}
+\usetikzlibrary{patterns.meta}
+\usetikzlibrary{fadings}
+
 % The head- and footline.
 
 % The sidebars.
@@ -63,23 +85,14 @@
 
 % The logo.
 
-\DeclareOptionBeamer{lang}{\def\beamer@SJTUBeamermin@lang{#1}}
-
-\def\beamer@SJTUBeamermin@langcn{cn}%
-\def\beamer@SJTUBeamermin@langen{en}%
-
-\DeclareOptionBeamer{pattern}{\def\beamer@SJTUBeamermin@pattern{#1}}
-
-\def\beamer@SJTUBeamermin@patternnone{none}%
-\def\beamer@SJTUBeamermin@patterntitle{title}%
-\def\beamer@SJTUBeamermin@patternall{all}%
-
-\ExecuteOptionsBeamer{
-  lang=cn,
-  pattern=all
+\logo{
+  % will make the default logo, can be customized by redefinition
+  \ifx\beamer@SJTUBeamermin@lang\beamer@SJTUBeamermin@langcn
+    \includegraphics{vi/cnlogo.pdf}
+  \else
+    \includegraphics{vi/enlogo.pdf}
+  \fi
 }
-
-\ProcessOptionsBeamer
 
 % The frame title.
 
