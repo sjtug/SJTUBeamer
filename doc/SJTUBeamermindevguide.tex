@@ -13,7 +13,7 @@
     \clearpage
     \section{Preface}
 
-    \tmin{} is a presentation template based on \textsf{beamer} package in \LaTeX{}, to fulfill the enthusiasm of those SJTU users to present their content nicely benefiting from the technology of \TeX{} typesetting engine.
+    \tmin{} is a presentation template based on \textsf{beamer} package in \LaTeX{}, to fulfill the enthusiasm of those SJTU users to present their content nicely, benefiting from the technology of \TeX{} typesetting engine.
     
     This is a Developer's Guide on \tmin{} . The document is written in English because the operation in this guidance could be dangerous. Be careful when playing with those macros.
 
@@ -132,7 +132,7 @@
     
     \section{Modular Architecture}
     
-    By the recommendation from \textsf{beamer} package\cite{beamerman}, \tmin{} uses the same modular architecture to build the template. Like it is in Java, to let the \textsf{beamer} template locate your theme, the style file have to be in the standard name.
+    By the recommendation from \textsf{beamer} package\cite{beamerman}, \tmin{} uses the same modular architecture to build the template. Like it is in Java, to let the \textsf{beamer} template locate your theme, the style file has to be in the standard name.
     
     \begin{table}[h]
    		\begin{tabular}{>{\ttfamily}ll}
@@ -145,14 +145,14 @@
     	\end{tabular}
     \end{table}
 
-	Notice that there are some dependencies (logo files) in the \verb|vi/|. Copying the \verb|vi| folder is necessary. Or you could define the location of the logo file by the option \verb"[logo=]".
+	Notice that there are some dependencies (logo files) in the \verb|vi/|. Copying the \verb|vi| folder is necessary. Or you could define the location of the logo file by giving \verb"\logo{\includegraphics{logo.pdf}}".
 
     \begin{figure}[h]
         \framebox[\textwidth]{\ttfamily main.tex}
         
         \framebox[\textwidth]{\ttfamily beamerthemeSJTUBeamermin.sty}
         
-        \framebox[0.25\textwidth]{\ttfamily colortheme.sty}\framebox[0.25\textwidth]{\ttfamily fonttheme.sty}\framebox[0.25\textwidth]{\ttfamily innertheme.sty}\framebox[0.25\textwidth]{\ttfamily outertheme.sty}
+        \framebox[0.25\textwidth]{\ttfamily colortheme.sty}\framebox[0.25\textwidth]{\ttfamily fonttheme.sty}\framebox[0.25\textwidth]{\ttfamily outertheme.sty}\framebox[0.25\textwidth]{\ttfamily innertheme.sty}
 
         \hfill\framebox[0.5\textwidth]{\ttfamily logo.pdf}
     \end{figure}
@@ -178,14 +178,14 @@
         \parbox{0.6\textwidth}{
             \fbox{\parbox{0.55\textwidth}{\texttt{colortheme.sty}\hfill color}}\par
             \fbox{\parbox{0.55\textwidth}{\texttt{fonttheme.sty}}}\par
-            \fbox{\parbox{0.55\textwidth}{\texttt{innertheme.sty}\hfill pattern,color,logo}}\par
-            \fbox{\parbox{0.55\textwidth}{\texttt{outertheme.sty}\hfill pattern,navigation,logo}}
+            \fbox{\parbox{0.55\textwidth}{\texttt{outertheme.sty}\hfill pattern,navigation,lang}}\par
+            \fbox{\parbox{0.55\textwidth}{\texttt{innertheme.sty}\hfill pattern,color,lang}}
         }
     \end{figure}
 
     \subsection{Color}
 
-    The color style file \verb"beamercolorthemeSJTUBeamermin" is the color setup of the template. Most color schemes are derived from the basic color of SJTU VI\cite{viman}. And to adapt the color definitions of \textsf{beamer}, the corresponding interface is mapped, see 17.2 in \cite{beamerman}.
+    The color style file \verb"beamercolorthemeSJTUBeamermin.sty" is the color setup of the template. Most color schemes are derived from the basic color of SJTU VI\cite{viman}. And to adapt the color definitions of \textsf{beamer}, the corresponding interface is mapped, see 17.2 in \cite{beamerman}.
 
     \begin{table}[h]
         \centering
@@ -208,7 +208,7 @@
         \usebeamercolor[bg]{palette primary}
     \end{verbatim}
 
-    However, there are scenarios where you cannot put temporary variables in some package options. In this complex case, the redefinition of those standard colors is required. And that's the reason why \verb"innertheme.sty" gets \verb"color".
+    However, there are scenarios where you cannot put temporary variables in some package options since it expands to \verb"\color{\color{mycolor}}". In this complex case, the redefinition of those standard colors is required. And that's the reason why \verb"innertheme.sty" gets \verb"color".
 
     \subsection{Font}
 
@@ -225,9 +225,40 @@
 
     And \tmin{} does both.
 
-    % \subsection{Inner}
+    \subsection{Outer}
 
+    The outer style file \verb"beamerouterthemeSJTUBeamermin.sty" contains the layout of frames. The recommended setup is as follows:
+    \begin{table}[h]
+        \centering
+        \begin{tabular}{lc}
+            \bfseries Components & \tmin \\
+            head- and footline & $\bullet $ \\
+            sidebars & \\
+            logo & $\bullet$ \\
+            frame title & $\bullet$\\
+        \end{tabular}
+    \end{table}
 
+    \subsection{Inner}
+
+    The inner style file \verb"beamerinnerthemeSJTUBeamermin.sty" will customize the main components. 
+    \begin{table}[h]
+        \centering
+        \begin{tabular}{lc}
+            \bfseries Components & \tmin \\
+            Title and part pages & $\bullet $ \\
+            Itemize & $\bullet $ \\
+            Enumerate &  \\
+            Description & \\
+            Block & \\
+            Theorem and proof & \\
+            Figures and tables & $\bullet$ \\
+            Footnotes & $\bullet$ \\
+            Bibliography entries & \\
+        \end{tabular}
+    \end{table}
+
+    Outer theme and inner theme are the core files for \tmin{}, which will be discussed in the following content.
 
     \bibliography{dev.bib}
 \end{document}
