@@ -130,7 +130,7 @@
 
     Furthermore, there is space for boosting up the beamer compilation time by making use of multi-core processors. Since it is a frame-based document, and the connection between each frame is loose (only some page numbers and citations need to be calculated), the multi-threaded compilation is possible for the \textsf{beamer} class. You can glimpse the multi-threaded processing for \LaTeX{} from the package \textsf{animate}. In fact, the author created some batch compiling work\cite{pgfedt} together with the \verb"-Parallel" parameter in PowerShell 7 to make full use of the concurrent computer architecture.
     
-    \section{Modular Architecture}
+    \section{Modular Architecture}\label{sec:moarch}
     
     By the recommendation from \textsf{beamer} package\cite{beamerman}, \tmin{} uses the same modular architecture to build the template. Like it is in Java, to let the \textsf{beamer} template locate your theme, the style file has to be in the standard name.
     
@@ -218,7 +218,7 @@
     \end{verbatim}
     which will tell \textsf{beamer} not to meddle with the specific font (in this case, math font) to the sans serif one. 
     
-    It is especially useful if you don't want to create more compilation errors on many engines since some engine doesn't support sans serif math font. The workaround for that is to introduce the package below:
+    It is especially useful if you don't want to create more compilation errors since some engine doesn't support sans serif math font. The workaround for that is to introduce the package below:
     \begin{verbatim}
         \RequirePackage[eulergreek]{sansmath}
     \end{verbatim}
@@ -259,6 +259,33 @@
     \end{table}
 
     Outer theme and inner theme are the core files for \tmin{}, which will be discussed in the following content.
+
+    \section{Compatibility}
+
+    Since the vision of \LaTeX{} is to build an open-source typesetting system for multi-platforms and \textsf{beamer} is on top of that to create an easy-to-configure interface on building presentations, \tmin{} follows the footstep to make its best on compatibility.
+
+    \subsection{Beamer Interface}
+
+    \textsf{Beamer} has designed a system of modern interfaces for those theme creators. \tmin{} has already followed the modular architecture, as is shown in Section \ref{sec:moarch}.
+
+    And there are more APIs in \textsf{beamer} for each corresponding theme style. There are mainly three ways to modify a theme:
+    \begin{enumerate}
+        \item \textbf{Want to use presets.} Read Part \uppercase\expandafter{\romannumeral3} in the documentation of \textsf{beamer} package \cite{beamerman}. You can acquire the doc by the terminal command:
+        \begin{verbatim}
+            texdoc beamer
+        \end{verbatim}
+        Then, you could choose to use some preset theme, or call the macro to control the appearance of each component.
+        \item \textbf{Want a complete modification.} Read the source code of \textsf{beamer} package \cite{beamerman}. If no additional theme is used, \textsf{beamer} will assume you are creating a theme from \verb"default". And refer to the corresponding theme file suffixed by \verb"default" will give you the bottom mechanism to implement components.
+        \item \textbf{Want to solve difficult problems.} Go to \TeX{} Stack Exchange \cite{texsc} for help. Always search before you ask. Then you could probably find some patches and magical formulas to tackle the issue since \TeX{} is a Turing-complete language.
+    \end{enumerate}
+
+    \subsection{Mainstream Packages}
+
+    Mainstream \LaTeX{} packages are used to make sure the choice on Marcos is maintained currently. 
+
+    \subsection{Engine Support}
+
+    \section{Style Hierachy}
 
     \bibliography{dev.bib}
 \end{document}
