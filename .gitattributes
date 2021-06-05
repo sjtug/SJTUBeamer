@@ -1,0 +1,15 @@
+# Auto detect text files and perform LF normalization
+* text=auto
+
+# except .bat
+*.bat eol=crlf
+
+# Ignore binary or vendored files
+*.jpg binary
+*.pdf binary
+*.png binary
+
+# Excluding files and folders from export
+.github export-ignore
+.gitattributes export-ignore
+.gitignore export-ignore
