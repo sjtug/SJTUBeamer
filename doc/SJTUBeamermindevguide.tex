@@ -2,8 +2,25 @@
 \usepackage{array}
 \usepackage[colorlinks,breaklinks=true]{hyperref}
 \usepackage[numbers, sort&compress]{natbib}
+\usepackage{listings}
+\lstset{
+  basicstyle=\ttfamily\small,
+  columns=flexible,
+  showstringspaces=false,
+  showspaces=false,
+  numbers=left,
+  numberstyle=\ttfamily\scriptsize,
+  breaklines,
+  tabsize=2,
+  language=tex
+}
+\def\code#1#2#3{
+    \noindent\hfill\textsf{#1theme}\vskip2pt\hrule
+    \lstinputlisting[firstline=#2,lastline=#3,firstnumber=#2]{../src/beamer#1themeSJTUBeamermin.sty}
+}
 \bibliographystyle{IEEEtran}
 \def\tmin{\textsf{SJTUBeamer} \fbox{\textsc{min}}}
+
 \title{Developer's Guide on\\ \tmin}
 \author{Log Creative}
 \date{\input{../VERSION}\today}
@@ -315,8 +332,78 @@
         \item \textbf{Use old-fashioned \TeX{} code.} If there is a nice way to implement in \TeX{}, then go \TeX{}. \TeX{} is a box-based typesetting system, which may be mentioned in many Computer Science books. And \LaTeX{} is on top of that to provide clear-to-read macros. In some scenarios, the native \verb"\vbox" and \verb"\hbox" command could help calculate the position of characters in a more controllable way. But it is certainly painful to learn. The \TeX{} Book\cite{texbook} is the classic to learn that, but Notes On Programming in \TeX{}\cite{texnote} is more recommended in modern \LaTeX{}.
     \end{enumerate}
 
-    % \section{Hierachy}
+    \section{Principles}
 
-    \clearpage
+    Now, you may still be confused about how to create a beamer template. Here is a good material about it for a lead-in\cite{tex2017}, which provides a brief overview. And this part is only focusing on the implementation of \tmin{}.
+
+    \subsection{Entry}
+
+    Create an option by \verb"\DeclareOptionBeamer{}{}", then set the defualt setting before \verb"\ProcessOptionBeamer" by \verb"\ExcuteOptionsBeamer{}". Only add necessary options for wider use, since users don't like reading documentations.
+
+    \code{}{43}{56}
+
+    Disables a warning by redefining a package \textsf{hyperref} macro \cite{hyperref}, which package \textsf{silence} cannot handle.
+
+    \code{}{59}{69}
+
+    Redirect \verb"\cite" command when using \textsf{biblatex}.
+
+    \code{}{93}{94}
+
+    Specify presentation mode. Enable \verb"compress" option on \textsf{beamer} to avoid multiline navigation dots and process the sub-styles in order.
+
+    \code{}{101}{106}
+
+    \subsection{Pattern}
+
+    \paragraph{Mono-unit: stamp.} 
+    The newest version of Ti\emph{k}Z provides the interface to user-define a pattern\cite{tikzman}. Obeying Compatibility philosophy, use \verb"\pgfkeyvalueof" interface to get parameters in a standard way. The unit is first tested in a standalone file and previewed by Ti\emph{k}ZEdt.
+
+    \code{inner}{52}{92}
+
+    \paragraph{Array: stamparray.} Provide a marco to create an array of stamp mono-unit. Notice \TeX{} is not good at handling parameters. Always remember to store it into a temporary variable. Register \verb"\pgfmathresult" will store the result of \verb"\pgfmathparse".
+
+    \code{inner}{103}{113}
+
+    \paragraph{Line: stampline.} Declare a decoration to make a loop stampline. Notice that \verb"auto corner on length" is open to avoid spikes where the state hasn't meet \verb"final" yet.
+
+    \code{inner}{331}{350}
+
+    \paragraph{Fade and tile.} Use a composition fade of right and center to make a mask on the array, avoiding the collision on the text.
+
+    \code{inner}{93}{102}
+
+    \verb"\the\paperwidth" will give you the width of the paper, the same goes \verb"\the\paperheight". A \textsc{pgf} length could be calculated by \textsc{pgfmath}\cite{tikzman}.
+
+    \code{inner}{125}{129}
+
+    \paragraph{Bottom Page.} Ti\emph{k}Z provides \verb"\clip" to make clipping and \verb"scope" environment to make a local zone. It is handly on boolean calculation with the combination property. 
+
+    \code{inner}{443}{459}
+
+    \subsection{Gadgets}
+    
+    \paragraph{Logo and institute.} 
+
+    \verb"resizebox" is used to adapt to all size of logo into 1cm height one\cite{graphics}. And it is the same in outer theme to make a 0.7cm logo. The institute is in \TeX{} code for typesetting. \verb"\beamer@shortinstiture" meta is used to avoid compressing on \verb"\par". Super small font is indicated by \verb"fontsize".
+
+    \code{inner}{136}{169}
+
+    \paragraph{Codeblock.} Codeblock is created in tcolorbox. The color is redefined in the inner theme to avoid the bad displaying result.
+
+    \code{inner}{291}{324}
+
+    \paragraph{Navigation.} Clear the original definition first. Then append the page info to the footline, which could avoid collision on footnote. Hide the navigation info automatically when detecting that it is a part page, since there is a navigation bar in that page. 
+
+    \code{outer}{50}{84}
+
+    \paragraph{Frame title.} Use \verb"\ifbeamer@draftmode" to detect draft mode. And the cases for frame title only and with subtitle should have different calculations on the height.
+
+    \code{outer}{112}{129}
+
+    And affect the final closing. 
+
+    \code{outer}{145}{146}
+
     \bibliography{dev.bib}
 \end{document}

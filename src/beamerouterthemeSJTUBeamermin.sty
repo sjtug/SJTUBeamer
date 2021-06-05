@@ -101,18 +101,6 @@
   right color=transparent!0,
   left color=transparent!10
 ]
-% This is a copy of inner theme.
-\providecommand{\stamparray}[3]{
-	% #1: pattern size
-	% #2: starting point
-	% #3: ending point
-    \usebeamercolor{palette primary}
-		\fill [pattern={stamp[size=#1]},pattern color=bg!50!fg] #2 rectangle #3;
-		\def\s{#1}%
-		\pgfmathparse{0.5*\s}\let\xs=\pgfmathresult%
-		\pgfmathparse{-0.4*\s}\let\ys=\pgfmathresult%
-		\fill [pattern={stamp[size=#1,xshift=\xs, yshift=\ys]},pattern color=bg!50!fg] #2 rectangle #3;
-}
 \defbeamertemplate*{frametitle}{SJTUBeamermin}[1][left]
 {%
   \ifbeamercolorempty[bg]{frametitle}{}{\nointerlineskip}%
