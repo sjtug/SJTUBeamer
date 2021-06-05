@@ -4,21 +4,21 @@
 ]{beamer}
 \mode<presentation>
 \usetheme[
-    navigation=pages,            % 使用子章节进度显示
+    navigation=subsections,            % 使用子章节进度显示
     % lang=en,                           % 使用英文
     % cjk=true,                          % 使用CJK而不是ctex
     color=red,                         % 使用红色主题
     % pattern=all,                        % 使用全图案装饰
-    gbt=bibtex,                        % 使用 gbt (使用 bibtex 编译)
+    % gbt=bibtex,                        % 使用 gbt (使用 bibtex 编译)
 ]{SJTUBeamermin}
 % \usecolortheme[]{beaver}                 % 使用其他颜色主题
-% \addbibresource{ref.bib}               % gbt!=bibtex
+\addbibresource{ref.bib}               % gbt!=bibtex
 
 \begin{document}
     \institute[School of Mathematical Sciences]{数学科学学院}   % 组织
-    \logo{
-        \includegraphics{vi/cnlogo.pdf}  % 重定义 logo
-    }
+    % \logo{
+    %     \includegraphics{vi/cnlogored.pdf}  % 重定义 logo
+    % }
     \titlegraphic{                         % 标题图像
         \begin{stampbox}[white]
             \includegraphics[width=0.3\textwidth]{vi/head.png}
@@ -139,8 +139,8 @@ int main(){
 % gbt=bibtex
 \part{参考文献}
     \begin{frame}[allowframebreaks]
-        % \printbibliography[title=参考文献]    % gbt!=bibtex
-        \bibliography{ref.bib}             % gbt=bibtex
+        \printbibliography[title=参考文献]    % gbt!=bibtex
+        % \bibliography{ref.bib}             % gbt=bibtex
     \end{frame}
 
     \makebottom     % 创建尾页  % 非标准命令
