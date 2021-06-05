@@ -54,7 +54,7 @@
     \vbox{}
     \ifnum\beamer@partstartpage=\c@page %
     \else
-      \par\hfill\insertnavigation{0.5\paperwidth}\hspace*{0.1cm}
+      \par\hfill\insertnavigation{0.4\paperwidth}\hspace*{0.1cm}
     \fi
     \par
     \vskip 10pt
@@ -74,7 +74,7 @@
       \ifx\beamer@SJTUBeamermin@navigation\beamer@SJTUBeamermin@navigationtools%
         \usebeamertemplate***{navigation symbols}%
       \else
-        \raisebox{1.2pt}[0pt][0pt]{\usebeamerfont{footline}%
+        \raisebox{1.2pt}[0pt][0pt]{\usebeamerfont{footline}\usebeamercolor{palette primary}\color{palette primary.bg!50}%
       \insertframenumber/\inserttotalframenumber\hspace*{0.5em}}%
       \fi
     \fi%
@@ -151,3 +151,7 @@
     \if@tempswa\else\vskip-.3cm\fi% set inside beamercolorbox... evil here...
   \end{beamercolorbox}%
 }
+
+%%
+%% end of
+%% beamerouterthemeSJTUBeamermin.sty
