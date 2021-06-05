@@ -264,7 +264,7 @@
 
     Since the vision of \LaTeX{} is to build an open-source typesetting system for multi-platforms and \textsf{beamer} is on top of that to create an easy-to-configure interface on building presentations, \tmin{} follows the footstep to make its best on compatibility.
 
-    \subsection{Beamer Interface}
+    \subsection{Beamer Interface}\label{sec:beamer}
 
     \textsf{Beamer} has designed a system of modern interfaces for those theme creators. \tmin{} has already followed the modular architecture, as is shown in Section \ref{sec:moarch}.
 
@@ -279,7 +279,7 @@
         \item \textbf{Want to solve difficult problems.} Go to \TeX{} Stack Exchange \cite{texsc} for help. Always search before you ask. Then you could probably find some patches and magical formulas to tackle the issue since \TeX{} is a Turing-complete language.
     \end{enumerate}
 
-    \subsection{Mainstream Packages}
+    \subsection{Mainstream Packages}\label{sec:mainstream}
 
     Mainstream \LaTeX{} packages are used to make sure the choice on marcos is maintained currently. Since some engine doesn't support \textsf{GhostScript} well (\emph{e.g.} Xe\LaTeX{}), \tmin{} (as well as \textsf{beamer}) uses \textsc{pgf} as the backend for graphics in \textsf{PostScript}. And half of the jobs are done on graphics to implement the requirements of VI.
 
@@ -291,9 +291,32 @@
 
     Some of the packages have been studied by author in \LaTeX{} Sparkle Project\cite{lsp3}. You can find some lead-in materials to get familiar.
 
-    % \subsection{Engine Support}
+    \subsection{Engine Support}
+    To be clear, \tmin{} is not adapt to all kinds of compliers in the current \LaTeX{} world. 
+    \begin{table}[h]
+        \begin{center}
+            \begin{tabular}{ccc}
+                & Windows & Unix \\
+           pdf\LaTeX{}(C\TeX{}) & $\surd$ & \\
+           pdf\LaTeX{}(CJK) & $\surd$ & $\surd$ \\
+           Xe\LaTeX{} & $\diamondsuit$ & $\surd$ \\
+           Lua\LaTeX{} & $\diamondsuit$ & $\diamondsuit$\\
+       \end{tabular}
+           \vskip 3pt\moveright 1in\vbox{\hrule width3cm \vskip 3pt
+       \moveleft 0em \hbox{$^*\surd$ is fully available, while $\diamondsuit$ will have font issues.}
+           }
+        \end{center}
+    \end{table}
 
-    % \section{Style Hierachy}
+    \tmin{} make its effort on engine support in the following ways:
+    \begin{enumerate}
+        \item \textbf{Use \textsf{beamer} interface.} As is mentioned in Section \ref{sec:beamer}, \tmin{} will not create its macro unless there is no substitute in the current version of \textsf{beamer} or it is a common method to implement some features. A good example for this is to make a bottom page, \tmin{} mimicked \verb"\maketitle" command to implement \verb"\makebottom" command. A good outcome is that the style file could be separately used with low coupling. 
+        \item \textbf{Use mainstream packages.} Mentioned in Section \ref{sec:mainstream}, mainstream packages are widely accepted in many engines. Some top-level marcos are used to increase the readability of the source code, i.e., \textsc{pgf} is lengthy and hard to be maintained.
+        \item \textbf{Use old-fashioned \TeX{} code.} If there is a nice way to implement in \TeX{}, then go \TeX{}. \TeX{} is a box-based typesetting system, which may be mentioned in many Computer Science books. And \LaTeX{} is on top of that to provide clear-to-read macros. In some scenarios, the native \verb"\vbox" and \verb"\hbox" command could help calculate the position of characters in a more controllable way. But it is certainly painful to learn. The \TeX{} Book\cite{texbook} is the classic to learn that, but Notes On Programming in \TeX{}\cite{texnote} is more recommended in modern \LaTeX{}.
+    \end{enumerate}
 
+    % \section{Hierachy}
+
+    \clearpage
     \bibliography{dev.bib}
 \end{document}
