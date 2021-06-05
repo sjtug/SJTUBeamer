@@ -281,11 +281,19 @@
 
     \subsection{Mainstream Packages}
 
-    Mainstream \LaTeX{} packages are used to make sure the choice on Marcos is maintained currently. 
+    Mainstream \LaTeX{} packages are used to make sure the choice on marcos is maintained currently. Since some engine doesn't support \textsf{GhostScript} well (\emph{e.g.} Xe\LaTeX{}), \tmin{} (as well as \textsf{beamer}) uses \textsc{pgf} as the backend for graphics in \textsf{PostScript}. And half of the jobs are done on graphics to implement the requirements of VI.
 
-    \subsection{Engine Support}
+    \tmin{} doesn't use too many rasterized pictures, since they are not flexible. You could get the Adobe Illustrator files on VI website\cite{viman}. SJTU VI goes minimalism so that it could be implemented by package Ti\emph{k}Z (which is on top of \textsc{pgf}). You could almost draw any vectorized shapes by referring to Ti\emph{k}Z documentation \cite{tikzman}. In short, Ti\emph{k}Z uses node-edge system to create graphs and many Computer Science pictures can be drawn in such a system\cite{tikztuna}. And if you don't want to mess around with the thousand pages of documentation, Ti\emph{k}Z could help you create that in a WYSIWYG(what you see is what you get) way\cite{tikzedt}, which is a tool to make drafts on patterns.
 
-    \section{Style Hierachy}
+    \tmin{} also uses additional packages like \textsc{pgfplots} and \textsc{PgfplotsTable} to draw highly personalized statistic graphs and layout table from CSV (Comma-Seperated Values) respectively. As is mentioned, the author created a tool \textsc{PgfplotsEdt} to help such graphs in a interactive way\cite{pgfedt}.
+
+    Code blocks are drawn by package \textsf{tcolorbox}, which is also a powerful toolkit to make customized boxes\cite{tcolorbox}. This is almost the most elegant way to make colorful boxes in the current \LaTeX{} system.
+
+    Some of the packages have been studied by author in \LaTeX{} Sparkle Project\cite{lsp3}. You can find some lead-in materials to get familiar.
+
+    % \subsection{Engine Support}
+
+    % \section{Style Hierachy}
 
     \bibliography{dev.bib}
 \end{document}

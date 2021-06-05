@@ -1,12 +1,12 @@
 # Fdb version 3
-["bibtex SJTUBeamermindevguide"] 1622900043 "SJTUBeamermindevguide.aux" "SJTUBeamermindevguide.bbl" "SJTUBeamermindevguide" 1622900053
+["bibtex SJTUBeamermindevguide"] 1622903101 "SJTUBeamermindevguide.aux" "SJTUBeamermindevguide.bbl" "SJTUBeamermindevguide" 1622903105
   "C:/Program Files/MiKTeX/bibtex/bst/ieeetran/IEEEtran.bst" 1440622569 57748 7c8250ecf02814ce6ddc0cdbb63df1dd ""
-  "SJTUBeamermindevguide.aux" 1622900050 3315 4db199aa452102fbbf08941f6cd67398 "pdflatex"
-  "dev.bib" 1622900033 1722 46b2111500afa01069d3d643739e04e5 ""
+  "SJTUBeamermindevguide.aux" 1622903104 3584 bfac03853dbd1210bd250aec039695c5 "pdflatex"
+  "dev.bib" 1622903050 2708 64e09556b200bdfe8398677eb816083f ""
   (generated)
   "SJTUBeamermindevguide.bbl"
   "SJTUBeamermindevguide.blg"
-["pdflatex"] 1622900043 "c:/Users/lizil/Desktop/VMShared/project/SJTUBeamer/doc/SJTUBeamermindevguide.tex" "c:/Users/lizil/Desktop/VMShared/project/SJTUBeamer/doc/SJTUBeamermindevguide.pdf" "SJTUBeamermindevguide" 1622900053
+["pdflatex"] 1622903102 "c:/Users/lizil/Desktop/VMShared/project/SJTUBeamer/doc/SJTUBeamermindevguide.tex" "c:/Users/lizil/Desktop/VMShared/project/SJTUBeamer/doc/SJTUBeamermindevguide.pdf" "SJTUBeamermindevguide" 1622903105
   "../VERSION" 1622652108 7 7674702f65f39fcd6f442ef7cfc68ffc ""
   "C:/Program Files/MiKTeX/fonts/tfm/public/cm/cmbx10.tfm" 1136765053 1328 c834bbb027764024c09d3d2bf908b5f0 ""
   "C:/Program Files/MiKTeX/fonts/tfm/public/cm/cmbx12.tfm" 1136765053 1324 c910af8c371558dc20f2d7822f66fe64 ""
@@ -77,18 +77,18 @@
   "C:/Program Files/MiKTeX/tex/latex/url/url.sty" 1388490452 12796 8edb7d69a20b857904dd0ea757c14ec9 ""
   "C:/Users/lizil/AppData/Local/MiKTeX/miktex/data/le/pdftex/pdflatex.fmt" 1602941374 10249210 bd2eafbada2124be7dff9b1693a4703f ""
   "C:/Users/lizil/AppData/Local/MiKTeX/pdftex/config/pdftex.map" 1600518160 80909 eab91d9745dd2edfd62a31d53cd5fe15 ""
-  "SJTUBeamermindevguide.aux" 1622900050 3315 4db199aa452102fbbf08941f6cd67398 "pdflatex"
-  "SJTUBeamermindevguide.bbl" 1622900043 3059 61bc73ee6a59537b19d153558704a4c2 "bibtex SJTUBeamermindevguide"
-  "SJTUBeamermindevguide.out" 1622900050 881 e4381948e620891049e3380c9475f3f5 "pdflatex"
-  "SJTUBeamermindevguide.tex" 1622899977 15175 b6c12712ba6d73aa63dd7ef251644867 ""
-  "SJTUBeamermindevguide.toc" 1622900050 1174 edeb3576bdfb72fd73c436491161de98 "pdflatex"
-  "c:/Users/lizil/Desktop/VMShared/project/SJTUBeamer/doc/SJTUBeamermindevguide.aux" 1622900050 3315 4db199aa452102fbbf08941f6cd67398 ""
-  "c:/Users/lizil/Desktop/VMShared/project/SJTUBeamer/doc/SJTUBeamermindevguide.tex" 1622899977 15175 b6c12712ba6d73aa63dd7ef251644867 ""
+  "SJTUBeamermindevguide.aux" 1622903104 3584 bfac03853dbd1210bd250aec039695c5 "pdflatex"
+  "SJTUBeamermindevguide.bbl" 1622903101 4034 1141625da8af761ab50636193ce9d4d9 "bibtex SJTUBeamermindevguide"
+  "SJTUBeamermindevguide.out" 1622903104 881 e4381948e620891049e3380c9475f3f5 "pdflatex"
+  "SJTUBeamermindevguide.tex" 1622903088 16828 05a603e136d012b87821ad1e699dced8 ""
+  "SJTUBeamermindevguide.toc" 1622903104 1174 75c2b1b8ef4c750eea2297ccbecf1432 "pdflatex"
+  "c:/Users/lizil/Desktop/VMShared/project/SJTUBeamer/doc/SJTUBeamermindevguide.aux" 1622903104 3584 bfac03853dbd1210bd250aec039695c5 ""
+  "c:/Users/lizil/Desktop/VMShared/project/SJTUBeamer/doc/SJTUBeamermindevguide.tex" 1622903088 16828 05a603e136d012b87821ad1e699dced8 ""
   (generated)
-  "SJTUBeamermindevguide.aux"
-  "c:/Users/lizil/Desktop/VMShared/project/SJTUBeamer/doc/SJTUBeamermindevguide.pdf"
-  "SJTUBeamermindevguide.toc"
   "SJTUBeamermindevguide.out"
-  "SJTUBeamermindevguide.log"
-  "c:/Users/lizil/Desktop/VMShared/project/SJTUBeamer/doc/SJTUBeamermindevguide.log"
+  "SJTUBeamermindevguide.toc"
   "SJTUBeamermindevguide.pdf"
+  "c:/Users/lizil/Desktop/VMShared/project/SJTUBeamer/doc/SJTUBeamermindevguide.pdf"
+  "c:/Users/lizil/Desktop/VMShared/project/SJTUBeamer/doc/SJTUBeamermindevguide.log"
+  "SJTUBeamermindevguide.aux"
+  "SJTUBeamermindevguide.log"
