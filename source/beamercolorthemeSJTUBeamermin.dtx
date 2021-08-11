@@ -37,30 +37,14 @@
 \ProcessOptionsBeamer
 %       \end{macrocode}
 %
-%   \subsubsection{Color Definition}
-%   Color scheme is derived from four defined color.
-%   \begin{description}
-%       \item[cprimary] The primary color, which influences the color of title and the background of title page.
-%       \item[csecondary] The secondary color, which influences the color of subtitle.
-%       \item[ctertiary] The tertiary color, which provides the color for the blocks.
-%       \item[cquanternary] The quanternary color, which only influences the foreground of example blocks.
-%   \end{description}
+%   \subsubsection{Beamer Color Interface}
+%
+%   Load the common color library for SJTUBeamermin.
 %   \begin{macrocode}
-\ifx\beamer@SJTUBeamermin@color\beamer@SJTUBeamermin@colorblue%
-    \definecolor{cprimary}{HTML}{004098}        %problue 
-    \definecolor{csecondary}{HTML}{298626}      %lightgreen
-    \definecolor{ctertiary}{HTML}{004D4B}       %lightgray
-    \definecolor{cquanternary}{HTML}{FFFFFF}    %white  
-\else%
-    \definecolor{cprimary}{HTML}{9E1F36}        %engred
-    \definecolor{csecondary}{HTML}{F28101}      %orange
-    \definecolor{ctertiary}{HTML}{FED201}       %yellow
-    \definecolor{cquanternary}{HTML}{000000}    %black
-\fi%
+\RequirePackage{SJTUcolordef}
 %   \end{macrocode}
 %
-%   \subsubsection{Beamer Color Interface}
-%   Map the defined color to the interface of beamer color.
+%   Map the defined color in \verb"SJTUcolordef" to the interface of beamer color.
 %   Especially, the \verb"structure" interface could not derived from 
 %   the color palette.
 %   \begin{macrocode}

@@ -1,0 +1,20 @@
+% \subsection{Logo}
+%   Depend on the language definition, load the required logo by default.
+%   But the logo could be customized by redefinition from \verb"\logo" command.
+%   \begin{macrocode}
+\logo{
+  \ifx\beamer@SJTUBeamermin@lang\beamer@SJTUBeamermin@langen
+    \includegraphics{vi/enlogo.pdf}
+  \else
+    \includegraphics{vi/cnlogo.pdf}
+  \fi
+}
+%   \end{macrocode}
+%
+% \subsubsection{Load TikZ}
+% Load TikZ package and its related library: \verb"pattern.meta" provides the interface to define a pattern; \verb"fadings" provides the method to create a fading mask.
+%   \begin{macrocode}
+\RequirePackage{tikz}
+\usetikzlibrary{patterns.meta}
+\usetikzlibrary{fadings}
+%   \end{macrocode}
