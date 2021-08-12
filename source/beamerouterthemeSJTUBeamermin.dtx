@@ -110,11 +110,11 @@
 %
 %   Define the \verb"\pagenumbering" macro to insert both the current page number and the total page number. With the proper font and color setting from \verb"footline" and raise a little bit by a \verb"\raisebox".
 %   \begin{macrocode}
-\def\pagenumbering{
-  \raisebox{1.2pt}[0pt][0pt]{
-    \usebeamerfont{footline}\usebeamercolor{footline}\color{footline.fg!50}\insertframenumber/\inserttotalframenumber\hspace*{0.5em}
+  \def\pagenumbering{
+    \raisebox{1.2pt}[0pt][0pt]{
+      \usebeamerfont{footline}\usebeamercolor{footline}\color{footline.fg!50}\insertframenumber/\inserttotalframenumber\hspace*{0.5em}
+    }
   }
-}
 %   \end{macrocode}
 %
 %   Append the page number info into the navigation symbols, which will be called by the \verb"tools" option.
