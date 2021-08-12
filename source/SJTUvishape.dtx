@@ -68,11 +68,11 @@
 	% #2: starting point
 	% #3: ending point
     \usebeamercolor{palette primary}
-		\fill [pattern={stamp[size=#1]},pattern color=bg!50!fg] #2 rectangle #3;
-		\def\s{#1}%
-		\pgfmathparse{0.5*\s}\let\xs=\pgfmathresult%
-		\pgfmathparse{-0.4*\s}\let\ys=\pgfmathresult%
-		\fill [pattern={stamp[size=#1,xshift=\xs, yshift=\ys]},pattern color=bg!50!fg] #2 rectangle #3;
+	\fill [pattern={stamp[size=#1]},pattern color=bg!50!fg] #2 rectangle #3;
+	\def\s{#1}%
+	\pgfmathparse{0.5*\s}\let\xs=\pgfmathresult%
+	\pgfmathparse{-0.4*\s}\let\ys=\pgfmathresult%
+	\fill [pattern={stamp[size=#1,xshift=\xs, yshift=\ys]},pattern color=bg!50!fg] #2 rectangle #3;
 }
 
 \pgfdeclaredecoration{stampline}{initial}
@@ -93,24 +93,5 @@
   \state{final}
   {
     \pgfpathlineto{\pgfpointdecoratedpathlast}
-  }
-}
-
-\newtcolorbox{stampbox}[1][cprimary]{%
-  capture=hbox,
-  enhanced,
-  frame empty,
-  interior empty,
-  sharp corners,
-  top=2pt,bottom=2pt,left=2pt,right=2pt,
-  borderline={4pt}{0pt}{
-    #1,
-    line width=0.5pt,
-    decoration={
-      stampline,
-      segment length=8pt,
-      path has corners=true,
-    },
-    decorate
   }
 }
