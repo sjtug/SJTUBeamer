@@ -15,8 +15,8 @@
 % \iffalse
 %<*package>
 \NeedsTeXFormat{LaTeX2e}
-\ProvidesPackage{beamerthemeSJTUBeamermin}
-  [2021/08/06 v1.0 SJTUBeamermin Beamer Theme]
+\ProvidesPackage{beamerthemesjtubeamermin}
+  [2021/08/06 v1.0 sjtubeamermin Beamer Theme]
 %</package>
 % \fi
 % \CheckSum{0}
@@ -42,7 +42,7 @@
 %   Change the appearence of the navigation bar, which will affect in the outer theme.
 %    \begin{macrocode}
 \DeclareOptionBeamer{navigation}{
-    \PassOptionsToPackage{navigation=#1}{beamerouterthemeSJTUBeamermin}
+    \PassOptionsToPackage{navigation=#1}{beamerouterthemesjtubeamermin}
 }
 %    \end{macrocode}
 % \end{macro}
@@ -56,12 +56,12 @@
 %   This option will get passed to both inner and outer theme.
 %    \begin{macrocode}
 \DeclareOptionBeamer{lang}{
-    \def\beamer@SJTUBeamermin@lang{#1}
-    \PassOptionsToPackage{lang=#1}{beamerouterthemeSJTUBeamermin}
-    \PassOptionsToPackage{lang=#1}{beamerinnerthemeSJTUBeamermin}
+    \def\beamer@sjtubeamermin@lang{#1}
+    \PassOptionsToPackage{lang=#1}{beamerouterthemesjtubeamermin}
+    \PassOptionsToPackage{lang=#1}{beamerinnerthemesjtubeamermin}
 }
-\def\beamer@SJTUBeamermin@langcn{cn}%
-\def\beamer@SJTUBeamermin@langen{en}%
+\def\beamer@sjtubeamermin@langcn{cn}%
+\def\beamer@sjtubeamermin@langen{en}%
 %    \end{macrocode}
 % \end{macro}
 %
@@ -69,9 +69,9 @@
 % \begin{macro}{cjk}
 %   Choose to use `CJK' package. If this option is open, the document body should be covered by \verb"\begin{CJK}{UTF8}{hei}" and \verb"\end{CJK}".
 %    \begin{macrocode}
-\DeclareOptionBeamer{cjk}{\def\beamer@SJTUBeamermin@cjk{#1}}
-\def\beamer@SJTUBeamermin@cjktrue{true}%
-\def\beamer@SJTUBeamermin@cjkfalse{false}%
+\DeclareOptionBeamer{cjk}{\def\beamer@sjtubeamermin@cjk{#1}}
+\def\beamer@sjtubeamermin@cjktrue{true}%
+\def\beamer@sjtubeamermin@cjkfalse{false}%
 %    \end{macrocode}
 % \end{macro}
 % 
@@ -84,8 +84,8 @@
 %   This option will be passed to the color theme and inner theme.
 %    \begin{macrocode}
 \DeclareOptionBeamer{color}{
-    \PassOptionsToPackage{color=#1}{beamercolorthemeSJTUBeamermin}
-    \PassOptionsToPackage{color=#1}{beamerinnerthemeSJTUBeamermin}
+    \PassOptionsToPackage{color=#1}{beamercolorthemesjtubeamermin}
+    \PassOptionsToPackage{color=#1}{beamerinnerthemesjtubeamermin}
 }
 %    \end{macrocode}
 % \end{macro}
@@ -100,8 +100,8 @@
 %   This option will get passed to the outer theme and inner theme.
 %    \begin{macrocode}
 \DeclareOptionBeamer{pattern}{
-    \PassOptionsToPackage{pattern=#1}{beamerouterthemeSJTUBeamermin}
-    \PassOptionsToPackage{pattern=#1}{beamerinnerthemeSJTUBeamermin}
+    \PassOptionsToPackage{pattern=#1}{beamerouterthemesjtubeamermin}
+    \PassOptionsToPackage{pattern=#1}{beamerinnerthemesjtubeamermin}
 }
 %    \end{macrocode}
 % \end{macro}
@@ -114,10 +114,10 @@
 %     \item[true] Use \verb"biblatex-gbt7714-2015" to cite.
 %   \end{description}
 %    \begin{macrocode}
-\DeclareOptionBeamer{gbt}{\def\beamer@SJTUBeamermin@gbt{#1}}
-\def\beamer@SJTUBeamermin@gbttrue{true}%
-\def\beamer@SJTUBeamermin@gbtfalse{false}%
-\def\beamer@SJTUBeamermin@gbtbibtex{bibtex}%
+\DeclareOptionBeamer{gbt}{\def\beamer@sjtubeamermin@gbt{#1}}
+\def\beamer@sjtubeamermin@gbttrue{true}%
+\def\beamer@sjtubeamermin@gbtfalse{false}%
+\def\beamer@sjtubeamermin@gbtbibtex{bibtex}%
 %    \end{macrocode}
 % \end{macro}
 %
@@ -153,9 +153,9 @@
 %
 %   Process the option of \verb"lang" and \verb"cjk". For Chinese typesetting, some translations are needed for \verb"CJKutf8" package.
 %    \begin{macrocode}
-\ifx\beamer@SJTUBeamermin@lang\beamer@SJTUBeamermin@langen%
+\ifx\beamer@sjtubeamermin@lang\beamer@sjtubeamermin@langen%
 \else
-    \ifx\beamer@SJTUBeamermin@cjk\beamer@SJTUBeamermin@cjktrue%
+    \ifx\beamer@sjtubeamermin@cjk\beamer@sjtubeamermin@cjktrue%
         \RequirePackage{CJKutf8}
         \renewcommand{\figurename}{图}
         \renewcommand{\tablename}{表}
@@ -168,14 +168,14 @@
 %
 %   Process the option of \verb"gbt" to handle the behaviour of citing. If \verb"bibtex" is used, the corresponding bibliographystyle will get loaded according to \verb"lang" option. Otherwise, set the style of \verb"biblatex" and redirect \verb"\cite" to \verb"\footfullcite".
 %    \begin{macrocode}
-\ifx\beamer@SJTUBeamermin@gbt\beamer@SJTUBeamermin@gbtbibtex%
-    \ifx\beamer@SJTUBeamermin@lang\beamer@SJTUBeamermin@langen% 
+\ifx\beamer@sjtubeamermin@gbt\beamer@sjtubeamermin@gbtbibtex%
+    \ifx\beamer@sjtubeamermin@lang\beamer@sjtubeamermin@langen% 
         \bibliographystyle{IEEEtran}
     \else
         \RequirePackage{gbt7714}
     \fi
 \else
-    \ifx\beamer@SJTUBeamermin@gbt\beamer@SJTUBeamermin@gbttrue%
+    \ifx\beamer@sjtubeamermin@gbt\beamer@sjtubeamermin@gbttrue%
         \RequirePackage[style=gb7714-2015]{biblatex}
     \else
         \RequirePackage[style=authortitle-comp]{biblatex} % 
@@ -196,10 +196,10 @@
 %    \begin{macrocode}
 \mode<presentation>
 \beamer@compresstrue
-\usecolortheme{SJTUBeamermin}
-\usefonttheme{SJTUBeamermin}
-\useoutertheme{SJTUBeamermin}
-\useinnertheme{SJTUBeamermin}
+\usecolortheme{sjtubeamermin}
+\usefonttheme{sjtubeamermin}
+\useoutertheme{sjtubeamermin}
+\useinnertheme{sjtubeamermin}
 %    \end{macrocode}
 %
 % \iffalse

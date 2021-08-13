@@ -15,7 +15,7 @@
 % \iffalse
 %<*package>
 \NeedsTeXFormat{LaTeX2e}
-\ProvidesPackage{beamerouterthemeSJTUBeamermin}[2021/08/06 SJTUBeamermin Outer Theme]
+\ProvidesPackage{beamerouterthemesjtubeamermin}[2021/08/06 sjtubeamermin Outer Theme]
 %</package>
 % \fi
 % \CheckSum{0}
@@ -35,19 +35,19 @@
 % \begin{macro}{lang}
 %   Receive the language option.
 %    \begin{macrocode}
-\DeclareOptionBeamer{lang}{\def\beamer@SJTUBeamermin@lang{#1}}
-\def\beamer@SJTUBeamermin@langcn{cn}%
-\def\beamer@SJTUBeamermin@langen{en}%
+\DeclareOptionBeamer{lang}{\def\beamer@sjtubeamermin@lang{#1}}
+\def\beamer@sjtubeamermin@langcn{cn}%
+\def\beamer@sjtubeamermin@langen{en}%
 %    \end{macrocode}
 % \end{macro}
 %
 % \begin{macro}{pattern}
 %   Sets the pattern visibility in the title page and the header of each slide.
 %    \begin{macrocode}
-\DeclareOptionBeamer{pattern}{\def\beamer@SJTUBeamermin@pattern{#1}}
-\def\beamer@SJTUBeamermin@patternnone{none}%
-\def\beamer@SJTUBeamermin@patterntitle{title}%
-\def\beamer@SJTUBeamermin@patternall{all}%
+\DeclareOptionBeamer{pattern}{\def\beamer@sjtubeamermin@pattern{#1}}
+\def\beamer@sjtubeamermin@patternnone{none}%
+\def\beamer@sjtubeamermin@patterntitle{title}%
+\def\beamer@sjtubeamermin@patternall{all}%
 %    \end{macrocode}
 % \end{macro}
 %
@@ -59,10 +59,10 @@
 %     \item[pages] The page number and the total page number only.
 %   \end{itemize}
 %    \begin{macrocode}
-\DeclareOptionBeamer{navigation}{\def\beamer@SJTUBeamermin@navigation{#1}}
-\def\beamer@SJTUBeamermin@navigationtools{tools}%
-\def\beamer@SJTUBeamermin@navigationsubsections{subsections}%
-\def\beamer@SJTUBeamermin@navigationpages{pages}%
+\DeclareOptionBeamer{navigation}{\def\beamer@sjtubeamermin@navigation{#1}}
+\def\beamer@sjtubeamermin@navigationtools{tools}%
+\def\beamer@sjtubeamermin@navigationsubsections{subsections}%
+\def\beamer@sjtubeamermin@navigationpages{pages}%
 %    \end{macrocode}
 %
 %   Set up the default options of the outer theme. And then process the setting passed to the outer theme.
@@ -89,7 +89,7 @@
 %   However, \verb"\ifnum" may introduce some extra spacing, thus the top margin and the bottom margin could be a little bit different.
 %
 %    \begin{macrocode}
-\ifx\beamer@SJTUBeamermin@navigation\beamer@SJTUBeamermin@navigationsubsections%
+\ifx\beamer@sjtubeamermin@navigation\beamer@sjtubeamermin@navigationsubsections%
   \addtobeamertemplate{footline}{
     \vskip 4pt
     \vbox{}
@@ -133,7 +133,7 @@
     \ifnum\beamer@partstartpage=\c@page %
     \else%
       \hfill%
-      \ifx\beamer@SJTUBeamermin@navigation\beamer@SJTUBeamermin@navigationtools%
+      \ifx\beamer@sjtubeamermin@navigation\beamer@sjtubeamermin@navigationtools%
         \usebeamertemplate***{navigation symbols}%
       \else
         \pagenumbering%
@@ -165,7 +165,7 @@
 %
 %   Define the beamer template \verb"frametitle". Some code is from the original beamer definition on \verb"frametitle" (LPPL-1.3c).
 %    \begin{macrocode}
-\defbeamertemplate*{frametitle}{SJTUBeamermin}[1][left]
+\defbeamertemplate*{frametitle}{sjtubeamermin}[1][left]
 {%
   \ifbeamercolorempty[bg]{frametitle}{}{\nointerlineskip}%
   \@tempdima=\textwidth%
@@ -181,7 +181,7 @@
 %     Notice that it is not defined by the final calculation from LaTeX itself -- it is rather hard coded. 
 %     TODO: There is a potential risk that if the text is longer than one line, the height could be wrong. That's the reason why it is only rendered in the section start page -- to avoid such edge case as much as possible.
 %    \begin{macrocode}
-      \ifx\beamer@SJTUBeamermin@pattern\beamer@SJTUBeamermin@patternall
+      \ifx\beamer@sjtubeamermin@pattern\beamer@sjtubeamermin@patternall
         \ifnum\beamer@sectionstartpage=\c@page %
           \begin{tikzpicture}[overlay]
             \ifx\insertframesubtitle\@empty%

@@ -15,7 +15,7 @@
 % \iffalse
 %<*package>
 \NeedsTeXFormat{LaTeX2e}
-\ProvidesPackage{beamercolorthemeSJTUBeamermin}[2021/08/06 SJTUBeamermin Color Theme]
+\ProvidesPackage{beamercolorthemesjtubeamermin}[2021/08/06 sjtubeamermin Color Theme]
 %</package>
 % \fi
 % \CheckSum{0}
@@ -30,16 +30,16 @@
 %   \subsubsection{Option Declartion}
 %   Color theme gets the \verb"color" option only to select different color scheme.
 %    \begin{macrocode}
-\DeclareOptionBeamer{color}{\def\beamer@SJTUBeamermin@color{#1}}
-\def\beamer@SJTUBeamermin@colorblue{blue}%
-\def\beamer@SJTUBeamermin@colorred{red}%
+\DeclareOptionBeamer{color}{\def\beamer@sjtubeamermin@color{#1}}
+\def\beamer@sjtubeamermin@colorblue{blue}%
+\def\beamer@sjtubeamermin@colorred{red}%
 \ExecuteOptionsBeamer{color=blue}
 \ProcessOptionsBeamer
 %    \end{macrocode}
 %
 %   \subsubsection{Beamer Color Interface}
 %
-%   Load the common color library for SJTUBeamermin.
+%   Load the common color library for sjtubeamermin.
 %    \begin{macrocode}
 \RequirePackage{SJTUcolordef}
 %    \end{macrocode}
