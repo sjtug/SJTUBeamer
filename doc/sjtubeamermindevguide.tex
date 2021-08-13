@@ -4,27 +4,12 @@
 \usepackage[numbers, sort&compress]{natbib}
 \usepackage{listings}
 \usepackage{CJKutf8}
-\lstset{
-  basicstyle=\ttfamily\small,
-  columns=flexible,
-  showstringspaces=false,
-  showspaces=false,
-  numbers=left,
-  numberstyle=\ttfamily\scriptsize,
-  breaklines,
-  tabsize=2,
-  language=tex
-}
-\def\code#1#2#3{
-    \noindent\hfill\textsf{#1theme}\vskip2pt\hrule
-    \lstinputlisting[firstline=#2,lastline=#3,firstnumber=#2]{../src/beamer#1themeSJTUBeamermin.sty}
-}
 \bibliographystyle{IEEEtran}
 \def\themename{\textsf{SJTUBeamer} \fbox{\textsc{min}}}
 
 \title{Developer's Guide on\\ \themename}
 \author{Log Creative}
-\date{\input{../VERSION}\today}
+\date{1.0 \today}
 \begin{document}
     \maketitle
     \tableofcontents
@@ -346,11 +331,11 @@
     
         \DocInput{beamercolorthemesjtubeamermin.dtx}
         \DocInput{beamerfontthemesjtubeamermin.dtx}
-    \begin{CJK}{UTF8}{song}
+    \begin{CJK}{UTF8}{gbsn}
         \DocInput{beamerinnerthemesjtubeamermin.dtx}
     \end{CJK}
         \DocInput{beamerouterthemesjtubeamermin.dtx}
-    \begin{CJK}{UTF8}{song}
+    \begin{CJK}{UTF8}{gbsn}
         \DocInput{beamerthemesjtubeamermin.dtx}
     \end{CJK}
 

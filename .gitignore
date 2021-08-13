@@ -25,3 +25,4 @@ standard/
 utils/
 build/
 *-ctan.zip
+*.xdv
