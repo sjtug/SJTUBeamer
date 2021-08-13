@@ -10,7 +10,7 @@
     color=red,                         % 使用红色主题
     % pattern=all,                        % 使用全图案装饰
     % gbt=bibtex,                        % 使用 gbt (使用 bibtex 编译)
-]{SJTUBeamermin}
+]{sjtubeamermin}
 % \usecolortheme[]{beaver}                 % 使用其他颜色主题
 \addbibresource{ref.bib}               % gbt!=bibtex
 
@@ -21,7 +21,7 @@
     % }
     \titlegraphic{                         % 标题图像
         \begin{stampbox}[white]
-            \includegraphics[width=0.3\textwidth]{vi/head.png}
+            % \includegraphics[width=0.3\textwidth]{vi/head.png}
         \end{stampbox}
     }
     \title{SJTUBeamer \fbox{\textsc{min}} 幻灯片模板}  % 标题
@@ -93,7 +93,7 @@
         \frametitle{代码块}
         % 代码块参数：语言，标题
         % 请减少代码初始的缩进
-        \begin{codeblock}{c++}{C++代码}
+        \begin{codeblock}[language=c++]{C++代码}
 #include<iostream>
 
 int main(){
@@ -109,7 +109,7 @@ int main(){
         \begin{figure}
             \centering
             \begin{stampbox}
-                \includegraphics[height=0.3\textheight]{vi/plant.jpg}
+                % \includegraphics[height=0.3\textheight]{vi/plant.jpg}
             \end{stampbox}
             \caption{图片标题\cite{viman}}
         \end{figure}
@@ -120,16 +120,16 @@ int main(){
         \begin{multicols}{2}
         \begin{table}
             \caption{表格标题\cite{pgfplotstableman}}
-            \pgfplotstabletypeset[
-                columns/Quick/.style={dec sep align},
-                columns/Cocktail/.style={dec sep align},
-                column type=r,
-                % fixed zerofill,
-            ]{dat/test.csv}
+            % \pgfplotstabletypeset[
+            %     columns/Quick/.style={dec sep align},
+            %     columns/Cocktail/.style={dec sep align},
+            %     column type=r,
+            %     % fixed zerofill,
+            % ]{dat/test.csv}
         \end{table}
         
         \begin{figure}
-            \input{img/testgraph.tex}
+            % \input{img/testgraph.tex}
             \caption{统计图标题\cite{pgfplotsman}}
         \end{figure}
         \end{multicols}

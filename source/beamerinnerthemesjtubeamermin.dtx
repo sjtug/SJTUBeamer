@@ -93,9 +93,9 @@
 %    \end{macrocode}
 %
 %   \subsubsection{Shape Dependencies}
-%   Load the shape package from \verb"SJTIvishape". To provide the logo, stamp array, and stampline (stampbox is not included).
+%   Load the shape package from \verb"sjtuvishape". To provide the logo, stamp array, and stampline (stampbox is not included).
 %    \begin{macrocode}
-\RequirePackage{SJTUvishape}
+\RequirePackage{sjtuvishape}
 %    \end{macrocode}
 %
 % \subsubsection{Title Page}
@@ -171,7 +171,10 @@
         \hskip4.5pt{\resizebox{!}{1cm}{\insertlogo}}
         \ifx\insertinstitute\@empty%
         \else
-          {\hskip3pt \vrule width0.5pt}\hskip7pt
+          \ifx\insertlogo\@empty%
+          \else
+            {\hskip3pt \vrule width0.5pt}\hskip7pt
+          \fi
           \ifx\beamer@sjtubeamermin@lang\beamer@sjtubeamermin@langcn%
             \vbox{
               \fontsize{13pt}{0pt}\selectfont
@@ -340,11 +343,11 @@
 %
 % \subsubsection{Block Environments}
 %
-%   Introduce \verb"SJTUcolordef" package.
+%   Introduce \verb"sjtucolordef" package.
 %   The user-defined block environment should use the hard-coded color.
 %   Otherwise it will have side effect on displaying.
 %    \begin{macrocode}
-\RequirePackage{SJTUcolordef}
+\RequirePackage{sjtucolordef}
 %    \end{macrocode}
 %
 % \begin{macro}{\highlight}
@@ -426,7 +429,7 @@ overlay={
 % \subsubsection{Figures}
 %
 % \begin{macro}{stampbox}
-%   Make a stampbox border, which is a decoration advice from SJTU VI. It has the dependency on \verb"stampline" from \verb"SJTUvishape" package.
+%   Make a stampbox border, which is a decoration advice from SJTU VI. It has the dependency on \verb"stampline" from \verb"sjtuvishape" package.
 %    \begin{macrocode}
 \newtcolorbox{stampbox}[1][cprimary]{%
   capture=hbox,
