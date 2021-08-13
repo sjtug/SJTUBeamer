@@ -1,8 +1,9 @@
-\documentclass{article}
+\documentclass{ltxdoc}
 \usepackage{array}
 \usepackage[colorlinks,breaklinks=true]{hyperref}
 \usepackage[numbers, sort&compress]{natbib}
 \usepackage{listings}
+\usepackage{CJKutf8}
 \lstset{
   basicstyle=\ttfamily\small,
   columns=flexible,
@@ -19,9 +20,9 @@
     \lstinputlisting[firstline=#2,lastline=#3,firstnumber=#2]{../src/beamer#1themeSJTUBeamermin.sty}
 }
 \bibliographystyle{IEEEtran}
-\def\tmin{\textsf{SJTUBeamer} \fbox{\textsc{min}}}
+\def\themename{\textsf{SJTUBeamer} \fbox{\textsc{min}}}
 
-\title{Developer's Guide on\\ \tmin}
+\title{Developer's Guide on\\ \themename}
 \author{Log Creative}
 \date{\input{../VERSION}\today}
 \begin{document}
@@ -30,13 +31,13 @@
     \clearpage
     \section{Preface}
 
-    \tmin{} is a presentation template based on \textsf{beamer} package in \LaTeX{}, to fulfill the enthusiasm of those SJTU users to present their content nicely, benefiting from the technology of \TeX{} typesetting engine.
+    \themename{} is a presentation template based on \textsf{beamer} package in \LaTeX{}, to fulfill the enthusiasm of those SJTU users to present their content nicely, benefiting from the technology of \TeX{} typesetting engine.
     
-    This is a Developer's Guide on \tmin{} . The document is written in English because the operation in this guidance could be dangerous. Be careful when playing with those macros.
+    This is a Developer's Guide on \themename{} . The document is written in English because the operation in this guidance could be dangerous. Be careful when playing with those macros.
 
     \begin{quotation}
         \begin{center}
-            \tmin{} --- the minimal work set of SJTU VI
+            \themename{} --- the minimal work set of SJTU VI
         \end{center}
         \vspace*{1em}
 
@@ -66,7 +67,7 @@
     
     \subsection{MiK\TeX{}}
 
-    All required packages will be automatically installed if you are using MiK\TeX{}\cite{miktex}. And if you want to use the \verb"latexmk" command, please install Perl\cite{perl} first. And the compilation command for \tmin{} is as follows:
+    All required packages will be automatically installed if you are using MiK\TeX{}\cite{miktex}. And if you want to use the \verb"latexmk" command, please install Perl\cite{perl} first. And the compilation command for \themename{} is as follows:
     \begin{verbatim}
         latexmk -pdf main -interaction=nonstopmode
     \end{verbatim}
@@ -80,7 +81,7 @@
         sudo apt install texlive-pictures
     \end{verbatim}
 
-    To typeset Chinese characters, you would better use \verb"CJKutf8" package (in \tmin{}, set \verb"[cjk=true]"), since it is compatible with all platforms and multiple language support. Surround \verb"CJK" environment to make it work and remember to move all the Unicode characters in the permeable to the \verb"CJK" environment\cite{lsp3}:
+    To typeset Chinese characters, you would better use \verb"CJKutf8" package (in \themename{}, set \verb"[cjk=true]"), since it is compatible with all platforms and multiple language support. Surround \verb"CJK" environment to make it work and remember to move all the Unicode characters in the permeable to the \verb"CJK" environment\cite{lsp3}:
 
     \begin{verbatim}
         \begin{document}
@@ -134,14 +135,14 @@
 
     \subsection{Boost Up}
 
-    However, it has been tested that the compilation on \tmin{} is slow. Since the complex patterns have to be rendered in vector shapes and the bibliography requires multiple times of compilation, the time could be wasted on some repetitive works.
+    However, it has been tested that the compilation on \themename{} is slow. Since the complex patterns have to be rendered in vector shapes and the bibliography requires multiple times of compilation, the time could be wasted on some repetitive works.
 
-    This scenario could be improved by enable \verb"[pattern=none]" option on \tmin{} and enable \verb"[draft]" option on beamer. The former one will disable all the pattern rendering, and the latter one will ignore all the TOC (table of contents) generating.
+    This scenario could be improved by enable \verb"[pattern=none]" option on \themename{} and enable \verb"[draft]" option on beamer. The former one will disable all the pattern rendering, and the latter one will ignore all the TOC (table of contents) generating.
 
     The project has been implanted to Overleaf. 
     Here is the link \cite{overleaf}. And to make that works, the compilation on \TeX{} Live 2021 has to be implemented. And it is discovered that setting the document information outside the \verb|document| environment will cause a significantly longer compiling time, which may be caused by some improper settings in C\TeX{} package. The workaround of that is to follow the setup mentioned in \verb|CJK| settings: put that info into the body of document\cite{lsp3}.
     
-    Currently, CI is available on Github Actions by compiling on Lua\LaTeX{}. \tmin{} uses \verb|xu-cheng/latex-action@v2| for the compilation docker \cite{lact} and relocates the compiling folder to \verb"src/". After compiling, output the PDF artifact. See \verb".github/workflows/main.yml" for details.
+    Currently, CI is available on Github Actions by compiling on Lua\LaTeX{}. \themename{} uses \verb|xu-cheng/latex-action@v2| for the compilation docker \cite{lact} and relocates the compiling folder to \verb"src/". After compiling, output the PDF artifact. See \verb".github/workflows/main.yml" for details.
 
     At the same time, AutoBeamer\cite{ab} is making its own effort on generating beamer code automatically by some replacing strategies. You could preview your beamer code through conversion on Markdown or the article \LaTeX{} code.
 
@@ -149,7 +150,7 @@
     
     \section{Modular Architecture}\label{sec:moarch}
     
-    By the recommendation from \textsf{beamer} package\cite{beamerman}, \tmin{} uses the same modular architecture to build the template. Like it is in Java, to let the \textsf{beamer} template locate your theme, the style file has to be in the standard name.
+    By the recommendation from \textsf{beamer} package\cite{beamerman}, \themename{} uses the same modular architecture to build the template. Like it is in Java, to let the \textsf{beamer} template locate your theme, the style file has to be in the standard name.
     
     \begin{table}[h]
    		\begin{tabular}{>{\ttfamily}ll}
@@ -229,7 +230,7 @@
 
     \subsection{Font}
 
-    The font style file \verb"beamerfontthemeSJTUBeamermin.sty" provides the font style of the beamer. In \tmin{}, serif math font is used by 
+    The font style file \verb"beamerfontthemeSJTUBeamermin.sty" provides the font style of the beamer. In \themename{}, serif math font is used by 
     \begin{verbatim}
         \usefonttheme{professionalfonts}
     \end{verbatim}
@@ -240,7 +241,7 @@
         \RequirePackage[eulergreek]{sansmath}
     \end{verbatim}
 
-    And \tmin{} does both.
+    And \themename{} does both.
 
     \subsection{Outer}
 
@@ -248,7 +249,7 @@
     \begin{table}[h]
         \centering
         \begin{tabular}{lc}
-            \bfseries Components & \tmin \\
+            \bfseries Components & \themename \\
             head- and footline & $\bullet $ \\
             sidebars & \\
             logo & $\bullet$ \\
@@ -262,7 +263,7 @@
     \begin{table}[h]
         \centering
         \begin{tabular}{lc}
-            \bfseries Components & \tmin \\
+            \bfseries Components & \themename \\
             Title and part pages & $\bullet $ \\
             Itemize & $\bullet $ \\
             Enumerate &  \\
@@ -275,15 +276,15 @@
         \end{tabular}
     \end{table}
 
-    Outer theme and inner theme are the core files for \tmin{}, which will be discussed in the following content.
+    Outer theme and inner theme are the core files for \themename{}, which will be discussed in the following content.
 
     \section{Compatibility}
 
-    Since the vision of \LaTeX{} is to build an open-source typesetting system for multi-platforms and \textsf{beamer} is on top of that to create an easy-to-configure interface on building presentations, \tmin{} follows the footstep to make its best on compatibility.
+    Since the vision of \LaTeX{} is to build an open-source typesetting system for multi-platforms and \textsf{beamer} is on top of that to create an easy-to-configure interface on building presentations, \themename{} follows the footstep to make its best on compatibility.
 
     \subsection{Beamer Interface}\label{sec:beamer}
 
-    \textsf{Beamer} has designed a system of modern interfaces for those theme creators. \tmin{} has already followed the modular architecture, as is shown in Section \ref{sec:moarch}.
+    \textsf{Beamer} has designed a system of modern interfaces for those theme creators. \themename{} has already followed the modular architecture, as is shown in Section \ref{sec:moarch}.
 
     And there are more APIs in \textsf{beamer} for each corresponding theme style. There are mainly three ways to modify a theme:
     \begin{enumerate}
@@ -298,18 +299,18 @@
 
     \subsection{Mainstream Packages}\label{sec:mainstream}
 
-    Mainstream \LaTeX{} packages are used to make sure the choice on marcos is maintained currently. Since some engine doesn't support \textsf{GhostScript} well (\emph{e.g.} Xe\LaTeX{}), \tmin{} (as well as \textsf{beamer}) uses \textsc{pgf} as the backend for graphics in \textsf{PostScript}. And half of the jobs are done on graphics to implement the requirements of VI.
+    Mainstream \LaTeX{} packages are used to make sure the choice on marcos is maintained currently. Since some engine doesn't support \textsf{GhostScript} well (\emph{e.g.} Xe\LaTeX{}), \themename{} (as well as \textsf{beamer}) uses \textsc{pgf} as the backend for graphics in \textsf{PostScript}. And half of the jobs are done on graphics to implement the requirements of VI.
 
-    \tmin{} doesn't use too many rasterized pictures, since they are not flexible. You could get the Adobe Illustrator files on VI website\cite{viman}. SJTU VI goes minimalism so that it could be implemented by package Ti\emph{k}Z (which is on top of \textsc{pgf}). You could almost draw any vectorized shapes by referring to Ti\emph{k}Z documentation \cite{tikzman}. In short, Ti\emph{k}Z uses node-edge system to create graphs and many Computer Science pictures can be drawn in such a system\cite{tikztuna}. And if you don't want to mess around with the thousand pages of documentation, Ti\emph{k}ZEdt could help you create that in a WYSIWYG(what you see is what you get) way\cite{tikzedt}, which is a tool to make drafts on patterns.
+    \themename{} doesn't use too many rasterized pictures, since they are not flexible. You could get the Adobe Illustrator files on VI website\cite{viman}. SJTU VI goes minimalism so that it could be implemented by package Ti\emph{k}Z (which is on top of \textsc{pgf}). You could almost draw any vectorized shapes by referring to Ti\emph{k}Z documentation \cite{tikzman}. In short, Ti\emph{k}Z uses node-edge system to create graphs and many Computer Science pictures can be drawn in such a system\cite{tikztuna}. And if you don't want to mess around with the thousand pages of documentation, Ti\emph{k}ZEdt could help you create that in a WYSIWYG(what you see is what you get) way\cite{tikzedt}, which is a tool to make drafts on patterns.
 
-    \tmin{} also uses additional packages like \textsc{pgfplots} and \textsc{PgfplotsTable} to draw highly personalized statistic graphs and layout table from CSV (Comma-Seperated Values) respectively. As is mentioned, the author created a tool \textsc{PgfplotsEdt} to help such graphs in an interactive way\cite{pgfedt}.
+    \themename{} also uses additional packages like \textsc{pgfplots} and \textsc{PgfplotsTable} to draw highly personalized statistic graphs and layout table from CSV (Comma-Seperated Values) respectively. As is mentioned, the author created a tool \textsc{PgfplotsEdt} to help such graphs in an interactive way\cite{pgfedt}.
 
     Code blocks are drawn by package \textsf{tcolorbox}, which is also a powerful toolkit to make customized boxes\cite{tcolorbox}. This is almost the most elegant way to make colorful boxes in the current \LaTeX{} system.
 
     Some of the packages have been studied by author in \LaTeX{} Sparkle Project\cite{lsp3}. You can check that out to learn more.
 
     \subsection{Engine Support}
-    To be clear, \tmin{} is not adapt to all kinds of compilers in the current \LaTeX{} world. 
+    To be clear, \themename{} is not adapt to all kinds of compilers in the current \LaTeX{} world. 
     \begin{table}[h]
         \begin{center}
             \begin{tabular}{ccc}
@@ -325,90 +326,30 @@
         \end{center}
     \end{table}
 
-    \tmin{} make its effort on engine support in the following ways:
+    \themename{} make its effort on engine support in the following ways:
     \begin{enumerate}
-        \item \textbf{Use \textsf{beamer} interface.} As is mentioned in Section \ref{sec:beamer}, \tmin{} will not create its macro unless there is no substitute in the current version of \textsf{beamer} or it is a common method to implement some features. A good example for this is to make a bottom page, \tmin{} mimicked \verb"\maketitle" command to implement \verb"\makebottom" command. A good outcome is that the style file could be separately used with low coupling. 
+        \item \textbf{Use \textsf{beamer} interface.} As is mentioned in Section \ref{sec:beamer}, \themename{} will not create its macro unless there is no substitute in the current version of \textsf{beamer} or it is a common method to implement some features. A good example for this is to make a bottom page, \themename{} mimicked \verb"\maketitle" command to implement \verb"\makebottom" command. A good outcome is that the style file could be separately used with low coupling. 
         \item \textbf{Use mainstream packages.} Mentioned in Section \ref{sec:mainstream}, mainstream packages are widely accepted in many engines. Some top-level marcos are used to increase the readability of the source code, i.e., \textsc{pgf} is lengthy and hard to be maintained.
         \item \textbf{Use old-fashioned \TeX{} code.} If there is a nice way to implement in \TeX{}, then go \TeX{}. \TeX{} is a box-based typesetting system, which may be mentioned in many Computer Science books. And \LaTeX{} is on top of that to provide clear-to-read macros. In some scenarios, the native \verb"\vbox" and \verb"\hbox" command could help calculate the position of characters in a more controllable way. But it is certainly painful to learn. The \TeX{} Book\cite{texbook} is the classic to learn that, but Notes On Programming in \TeX{}\cite{texnote} is more recommended in modern \LaTeX{}.
     \end{enumerate}
 
-    \section{Principles}
+    \section{Implementation}
 
-    Now, you may still be confused about how to create a beamer template. Here is a good material about it for a lead-in\cite{tex2017}, which provides a brief overview. And this part is only focusing on the implementation of \tmin{}.
+    Now, you may still be confused about how to create a beamer template. Here is a good material about it for a lead-in\cite{tex2017}, which provides a brief overview. And this part is only focusing on the implementation of \themename{}.
 
-    \subsection{Entry}
-
-    Create an option by \verb"\DeclareOptionBeamer{}{}", then set the defualt setting before \verb"\ProcessOptionBeamer" by \verb"\ExcuteOptionsBeamer{}". Only add necessary options for wider use, since users don't like reading documentations.
-
-    \code{}{43}{56}
-
-    Disable a warning by redefining a package \textsf{hyperref} macro \cite{hyperref}, where package \textsf{silence} cannot handle.
-
-    \code{}{59}{69}
-
-    Redirect \verb"\cite" command when using \textsf{biblatex}.
-
-    \code{}{93}{94}
-
-    Specify presentation mode. Enable \verb"compress" option on \textsf{beamer} to avoid multiline navigation dots and process the sub-styles in order.
-
-    \code{}{101}{106}
-
-    \subsection{Pattern}
-
-    \paragraph{Mono-unit: stamp.} 
-    The newest version of Ti\emph{k}Z provides the interface to user-define a pattern\cite{tikzman}. Obeying Compatibility philosophy, use \verb"\pgfkeyvalueof" interface to get parameters in a standard way. The unit is first tested in a standalone file and previewed by Ti\emph{k}ZEdt.
-
-    \code{inner}{52}{92}
-
-    \paragraph{Array: stamparray.} Provide a marco to create an array of stamp mono-unit. Notice \TeX{} is not good at handling parameters. Always remember to store it into a temporary variable. Register \verb"\pgfmathresult" will store the result of \verb"\pgfmathparse".
-
-    \code{inner}{103}{113}
-
-    \paragraph{Line: stampline.} Declare a decoration to make a loop stampline. Notice that \verb"auto corner on length" is open to avoid spikes where the state hasn't meet \verb"final" yet.
-
-    \code{inner}{331}{350}
-
-    \paragraph{Fade and tile.} Use a composition fade of right and center to make a mask on the array, avoiding the collision on the text.
-
-    \code{inner}{93}{102}
-
-    \verb"\the\paperwidth" will give you the width of the paper, the same goes \verb"\the\paperheight". A \textsc{pgf} length could be calculated by \textsc{pgfmath}\cite{tikzman}.
-
-    \code{inner}{125}{129}
-
-    \paragraph{Bottom Page.} Ti\emph{k}Z provides \verb"\clip" to make clipping and \verb"scope" environment to make a local zone. It is handly on boolean calculation with the combination property. 
-
-    \code{inner}{443}{459}
-
-    \subsection{Gadgets}
-    
-    \paragraph{Logo and institute.} 
-
-    \verb"resizebox" is used to adapt to all size of logo into 1cm height one\cite{graphics}. And it is the same in outer theme to make a 0.7cm logo. The institute is in \TeX{} code for typesetting. \verb"\beamer@shortinstiture" meta is used to avoid compressing on \verb"\par". Super small font is indicated by \verb"fontsize".
-
-    \code{inner}{136}{169}
-
-    \paragraph{Code block.} Codeblock is created in tcolorbox. The color is redefined in the inner theme to avoid the bad displaying result.
-
-    \code{inner}{291}{324}
-
-    \paragraph{Navigation.} Clear the original definition first. Then append the page info to the footline, which could avoid collision on footnote. Hide the navigation info automatically when detecting that it is a part page, since there is a navigation bar in that page. 
-
-    \code{outer}{50}{84}
-
-    \paragraph{Frame title.} Use \verb"\ifbeamer@draftmode" to detect draft mode. And the cases for frame title only and with subtitle should have different calculations on the height.
-
-    \code{outer}{112}{129}
-
-    And affect the final closing. 
-
-    \code{outer}{145}{146}
-
+    \begin{CJK}{UTF8}{song}
+        \DocInput{sjtucolordef.dtx}
+        \DocInput{sjtuvishape.dtx}
+        \DocInput{beamerthemesjtubeamermin.dtx}
+        \DocInput{beamercolorthemesjtubeamermin.dtx}
+        \DocInput{beamerfontthemesjtubeamermin.dtx}
+        \DocInput{beamerinnerthemesjtubeamermin.dtx}
+        \DocInput{beamerouterthemesjtubeamermin.dtx}
+    \end{CJK}
     \vfill
 
     \begin{center}
-        \Large Good Luck with \tmin{} !
+        \Large Good Luck with \themename{} !
         \vskip 1em
 
         \normalsize\hskip5cm Developer
