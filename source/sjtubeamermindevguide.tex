@@ -1,4 +1,4 @@
-\documentclass{ltxdockit}
+\documentclass{ltxdoc}
 \usepackage{array}
 \usepackage[colorlinks,breaklinks=true]{hyperref}
 \usepackage[numbers, sort&compress]{natbib}
@@ -268,7 +268,7 @@
             Itemize & $\bullet $ \\
             Enumerate &  \\
             Description & \\
-            Block & \\
+            Block & $\bullet $ \\
             Theorem and proof & \\
             Figures and tables & $\bullet$ \\
             Footnotes & $\bullet$ \\
@@ -337,15 +337,21 @@
 
     Now, you may still be confused about how to create a beamer template. Here is a good material about it for a lead-in\cite{tex2017}, which provides a brief overview. And this part is only focusing on the implementation of \themename{}.
 
-        \DocInput{sjtucolordef.dtx}
-        \DocInput{sjtuvishape.dtx}
-    \begin{CJK}{UTF8}{song}
-        \DocInput{beamerthemesjtubeamermin.dtx}
+    
         \DocInput{beamercolorthemesjtubeamermin.dtx}
         \DocInput{beamerfontthemesjtubeamermin.dtx}
+    \begin{CJK}{UTF8}{song}
         \DocInput{beamerinnerthemesjtubeamermin.dtx}
     \end{CJK}
         \DocInput{beamerouterthemesjtubeamermin.dtx}
+    \begin{CJK}{UTF8}{song}
+        \DocInput{beamerthemesjtubeamermin.dtx}
+    \end{CJK}
+
+    The following code is merely an implementation of SJTU VI, which doesn't change the ownership of the design pattern. Any commercial usage should be acknowledged by the related administration of SJTU.
+        \DocInput{sjtucolordef.dtx}
+        \DocInput{sjtuvishape.dtx}
+
     \vfill
 
     \begin{center}
@@ -353,7 +359,7 @@
         \vskip 1em
 
         \normalsize\hskip5cm Developer
-        \vskip 3pt\moveright 1in\vbox{\hrule width6.8cm \vskip 3pt
+        \vskip 1pt\moveright 1in\vbox{\hrule width7cm \vskip 3pt
         \moveleft 0em \hbox{Log Creative}}
     \end{center}
 

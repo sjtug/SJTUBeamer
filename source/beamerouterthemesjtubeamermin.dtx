@@ -24,7 +24,7 @@
 %<*package>
 % ------------------------------------------------------------------- \fi
 %
-% \subsection{Outer theme}
+% \subsection{Outer Theme}
 %
 % A |beamer| outer theme dictates the style of the frame elements traditionally
 % set outside the body of each slide: the head, footline, and frame title.
@@ -113,7 +113,11 @@
 %    \begin{macrocode}
   \def\pagenumbering{
     \raisebox{1.2pt}[0pt][0pt]{
-      \usebeamerfont{footline}\usebeamercolor{footline}\color{footline.fg!50}\insertframenumber/\inserttotalframenumber\hspace*{0.5em}
+      \usebeamerfont{footline}
+      \usebeamercolor{footline}
+      \color{footline.fg!50}
+      \insertframenumber/\inserttotalframenumber
+      \hspace*{0.5em}
     }
   }
 %    \end{macrocode}
@@ -146,14 +150,14 @@
 \fi%
 %    \end{macrocode}
 %
-% \subsubsection{Shape dependencies}
+% \subsubsection{Shape Dependencies}
 %
 %   Load the shape package from \verb"SJTIvishape". To provide the logo and stamp array.
 %    \begin{macrocode}
 \RequirePackage{SJTUvishape}
 %    \end{macrocode}
 %
-% \subsubsection{Frame title}
+% \subsubsection{Frame Title}
 % 
 %   Define the fade left little fading for frame title. To create a mask on the stamp array pattern.
 %    \begin{macrocode}
@@ -179,7 +183,9 @@
     \else%
 %    \end{macrocode}
 %     If it is not in draft mode, then the pattern on the section start page will get rendered. And the pattern height is the same as that of background color block, depend on whether there is a subtitle on that page.
+%
 %     Notice that it is not defined by the final calculation from LaTeX itself -- it is rather hard coded. 
+%
 %     TODO: There is a potential risk that if the text is longer than one line, the height could be wrong. That's the reason why it is only rendered in the section start page -- to avoid such edge case as much as possible.
 %    \begin{macrocode}
       \ifx\beamer@sjtubeamermin@pattern\beamer@sjtubeamermin@patternall
@@ -191,8 +197,11 @@
               \def\h{-0.125*\the\paperheight}
             \fi
             \usebeamercolor{palette primary}
-            \stamparray{20pt}{(-0.05*\the\paperwidth,\h)}{(\the\paperwidth,0.05*\the\paperheight)}
-            \fill [bg,path fading=fade left little] (-0.05*\the\paperwidth,\h) rectangle (\the\paperwidth,0.05*\the\paperheight);
+            \stamparray{20pt}
+              {(-0.05*\the\paperwidth,\h)}
+              {(\the\paperwidth,0.05*\the\paperheight)}
+            \fill [bg,path fading=fade left little] (-0.05*\the\paperwidth,\h) 
+              rectangle (\the\paperwidth,0.05*\the\paperheight);
           \end{tikzpicture}
         \fi
       \fi
@@ -208,7 +217,11 @@
     {%
       \ifx\insertframesubtitle\@empty%
       \else%
-      {\usebeamerfont{framesubtitle}\usebeamercolor[fg]{framesubtitle}\strut\insertframesubtitle\strut\par}%
+      {
+        \usebeamerfont{framesubtitle}
+        \usebeamercolor[fg]{framesubtitle}
+        \strut\insertframesubtitle\strut\par
+      }%
       \fi
     }%
     \vskip-1ex%

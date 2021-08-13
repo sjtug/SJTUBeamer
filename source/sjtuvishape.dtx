@@ -24,6 +24,7 @@
 % ------------------------------------------------------------------- \fi
 %
 % \subsection{Logo}
+% \begin{macro}{\logo}
 %   Depend on the language definition, load the required logo by default. The logo is protected by the copyright from SJTU.
 %   The logo could be customized by redefinition from \verb"\logo" command.
 %    \begin{macrocode}
@@ -35,9 +36,10 @@
   \fi
 }
 %    \end{macrocode}
+% \end{macro}
 %
 % \subsubsection{Load TikZ}
-% Load TikZ package and its related library: \verb"pattern.meta" provides the interface to define a pattern; \verb"fadings" provides the method to create a fading mask.
+% Load TikZ package and its related library: \verb"pattern.meta" provides the interface to define a pattern; \verb"fadings" provides the method to create a fading mask; \verb"decoration.pathmorphing" provides the interface to user-define a decoration.
 %    \begin{macrocode}
 \RequirePackage{tikz}
 \usetikzlibrary{patterns.meta}
@@ -45,74 +47,84 @@
 \usetikzlibrary{decorations.pathmorphing}
 %    \end{macrocode}
 %
+% \subsubsection{Shape Declarations}
 % \begin{macro}{stamp}
 %	Declare stamp pattern to make a stamp array.
-%	The newest version of TikZ provides the interface to user-define a pattern. Obeying Compatibility philosophy, use \verb"\pgfkeyvalueof" interface to get parameters in a standard way. The unit is first tested in a standalone file and previewed by TikZEdt.
+%
+%	The newest version of TikZ provides the interface to user-define a pattern. Obeying compatibility philosophy, use \verb"\pgfkeyvalueof" interface to get parameters in a standard way. The unit is first tested in a standalone file and previewed by TikZEdt.
 %    \begin{macrocode}
 \tikzdeclarepattern{
-	name=stamp,
-	parameters={
-		\pgfkeysvalueof{/pgf/pattern keys/size},
-		\pgfkeysvalueof{/pgf/pattern keys/xshift},
-		\pgfkeysvalueof{/pgf/pattern keys/yshift},
-	},
-	defaults={
-		size/.initial = 5pt,
-		xshift/.initial = 0pt,
-		yshift/.initial = 0pt,
-	},
-	bottom left={(
-		-0.5*\pgfkeysvalueof{/pgf/pattern keys/size}+\pgfkeysvalueof{/pgf/pattern keys/xshift},
-		-0.4*\pgfkeysvalueof{/pgf/pattern keys/size}+\pgfkeysvalueof{/pgf/pattern keys/yshift}
-	)},
-	top right={(
-		0.5*\pgfkeysvalueof{/pgf/pattern keys/size}+\pgfkeysvalueof{/pgf/pattern keys/xshift},
-		0.4*\pgfkeysvalueof{/pgf/pattern keys/size}+\pgfkeysvalueof{/pgf/pattern keys/yshift}
-	)},
-	tile size={(
-		\pgfkeysvalueof{/pgf/pattern keys/size},
-		0.8*\pgfkeysvalueof{/pgf/pattern keys/size}
-	)},
-	code={
-		\def\s{\pgfkeysvalueof{/pgf/pattern keys/size}}%
-		\tikzset{x=0.5*\s,y=0.2*\s}
-		\fill[xshift=\pgfkeysvalueof{/pgf/pattern keys/xshift},
-			yshift=\pgfkeysvalueof{/pgf/pattern keys/yshift}] 
-			(-0.25*\s,0) 
-			-- (-0.17*\s,0.06*\s) 
-			-- (-0.17*\s,0.1*\s) 
-			-- (0.17*\s,0.1*\s) 
-			-- (0.17*\s,0.06*\s)
-			-- (0.25*\s,0) 
-			-- (0.17*\s,-0.06*\s) 
-			-- (0.17*\s,-0.1*\s) 
-			-- (-0.17*\s,-0.1*\s) 
-			-- (-0.17*\s,-0.06*\s) -- cycle;
-	}
+  name=stamp,
+  parameters={
+    \pgfkeysvalueof{/pgf/pattern keys/size},
+    \pgfkeysvalueof{/pgf/pattern keys/xshift},
+    \pgfkeysvalueof{/pgf/pattern keys/yshift},
+  },
+  defaults={
+    size/.initial = 5pt,
+    xshift/.initial = 0pt,
+    yshift/.initial = 0pt,
+  },
+  bottom left={(
+    -0.5*\pgfkeysvalueof{/pgf/pattern keys/size}
+      +\pgfkeysvalueof{/pgf/pattern keys/xshift},
+    -0.4*\pgfkeysvalueof{/pgf/pattern keys/size}
+      +\pgfkeysvalueof{/pgf/pattern keys/yshift}
+  )},
+  top right={(
+    0.5*\pgfkeysvalueof{/pgf/pattern keys/size}
+      +\pgfkeysvalueof{/pgf/pattern keys/xshift},
+    0.4*\pgfkeysvalueof{/pgf/pattern keys/size}
+      +\pgfkeysvalueof{/pgf/pattern keys/yshift}
+  )},
+  tile size={(
+    \pgfkeysvalueof{/pgf/pattern keys/size},
+    0.8*\pgfkeysvalueof{/pgf/pattern keys/size}
+  )},
+  code={
+    \def\s{\pgfkeysvalueof{/pgf/pattern keys/size}}%
+    \tikzset{x=0.5*\s,y=0.2*\s}
+    \fill[xshift=\pgfkeysvalueof{/pgf/pattern keys/xshift},
+      yshift=\pgfkeysvalueof{/pgf/pattern keys/yshift}] 
+      (-0.25*\s,0) 
+      -- (-0.17*\s,0.06*\s) 
+      -- (-0.17*\s,0.1*\s) 
+      -- (0.17*\s,0.1*\s) 
+      -- (0.17*\s,0.06*\s)
+      -- (0.25*\s,0) 
+      -- (0.17*\s,-0.06*\s) 
+      -- (0.17*\s,-0.1*\s) 
+      -- (-0.17*\s,-0.1*\s) 
+      -- (-0.17*\s,-0.06*\s) -- cycle;
+  }
 }
 %    \end{macrocode}
 % \end{macro}
 %
 % \begin{macro}{\stamparray}
 %	Create the stamp array in the TikZ environment.
+%
 %	Notice \TeX{} is not good at handling parameters. Always remember to store it into a temporary variable. Register \verb"\pgfmathresult" will store the result of \verb"\pgfmathparse".
 %    \begin{macrocode}
 \providecommand{\stamparray}[3]{
-%	% #1: pattern size
-%	% #2: starting point
-%	% #3: ending point
-    \usebeamercolor{palette primary}
-	\fill [pattern={stamp[size=#1]},pattern color=bg!50!fg] #2 rectangle #3;
-	\def\s{#1}%
-	\pgfmathparse{0.5*\s}\let\xs=\pgfmathresult%
-	\pgfmathparse{-0.4*\s}\let\ys=\pgfmathresult%
-	\fill [pattern={stamp[size=#1,xshift=\xs, yshift=\ys]},pattern color=bg!50!fg] #2 rectangle #3;
+  %#1: pattern size
+  %#2: starting point
+  %#3: ending point
+  \usebeamercolor{palette primary}
+  \fill [pattern={stamp[size=#1]},
+    pattern color=bg!50!fg] #2 rectangle #3;
+  \def\s{#1}%
+  \pgfmathparse{0.5*\s}\let\xs=\pgfmathresult%
+  \pgfmathparse{-0.4*\s}\let\ys=\pgfmathresult%
+  \fill [pattern={stamp[size=#1,xshift=\xs, yshift=\ys]},
+    pattern color=bg!50!fg] #2 rectangle #3;
 }
 %    \end{macrocode}
 % \end{macro}
 %
 % \begin{macro}{stampline}
 %	Declare a decoration to make a loop stampline.
+%
 %	Notice that \verb"auto corner on length" is open to avoid spikes where the state hasn't meet \verb"final" yet.
 %    \begin{macrocode}
 \pgfdeclaredecoration{stampline}{initial}
