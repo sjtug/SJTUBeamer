@@ -17,4 +17,9 @@ standard/
 *.fls
 *_latexmk
 *.synctex.gz
+*.glo
+*.hd
+*.idx
+*.ilg
+*.ind
 utils/

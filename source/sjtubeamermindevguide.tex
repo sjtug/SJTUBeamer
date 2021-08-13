@@ -1,4 +1,4 @@
-\documentclass{ltxdoc}
+\documentclass{ltxdockit}
 \usepackage{array}
 \usepackage[colorlinks,breaklinks=true]{hyperref}
 \usepackage[numbers, sort&compress]{natbib}
@@ -337,15 +337,15 @@
 
     Now, you may still be confused about how to create a beamer template. Here is a good material about it for a lead-in\cite{tex2017}, which provides a brief overview. And this part is only focusing on the implementation of \themename{}.
 
-    \begin{CJK}{UTF8}{song}
         \DocInput{sjtucolordef.dtx}
         \DocInput{sjtuvishape.dtx}
+    \begin{CJK}{UTF8}{song}
         \DocInput{beamerthemesjtubeamermin.dtx}
         \DocInput{beamercolorthemesjtubeamermin.dtx}
         \DocInput{beamerfontthemesjtubeamermin.dtx}
         \DocInput{beamerinnerthemesjtubeamermin.dtx}
-        \DocInput{beamerouterthemesjtubeamermin.dtx}
     \end{CJK}
+        \DocInput{beamerouterthemesjtubeamermin.dtx}
     \vfill
 
     \begin{center}

@@ -125,8 +125,8 @@
 
 \section{环境}
 
-\begin{docEnvironment*}[doc parameter=\marg{language}\marg{title}, doclang/environment content=code]{codeblock}{}
-    代码块。第一个参数为代码语言，第二个参数为代码块的标题。参数可以用 \verb"{}" 留空，但不要省略大括号。需要清理代码的缩进。注意代码块所在的幻灯片需要添加 \verb"fragile" 参数，也就是 \verb"\begin{frame}[fragile]"。
+\begin{docEnvironment*}[doc parameter=\oarg{listing options}\marg{title}, doclang/environment content=code]{codeblock}{}
+    代码块。第一个参数是向 \verb"listing" 宏包传递的参数，可以通过使用 \verb"[language=c++]"指定语言，第二个参数为代码块的标题。参数可以用 \verb"{}" 留空，但不要省略大括号。需要清理代码的缩进。注意代码块所在的幻灯片需要添加 \verb"fragile" 参数，也就是 \verb"\begin{frame}[fragile]"。
 \end{docEnvironment*}
 
 \begin{docEnvironment*}[doclang/environment content=code]{stampbox}{\oarg{bordercolor}}
@@ -300,14 +300,14 @@
 
 \clearpage
 
-\section*{更名公告}
+% \section*{更名公告}
 
-已经注意到本模板的呼号与 \href{https://github.com/sjtug/SJTUBeamer}{SJTUG 维护版本} 一致的问题，为了避免未来发布时的命名冲突，本模板将会自发布版本（$\beta$-0.8）更名为 \textsf{SJTUBeamer} \fbox{\textsc{min}}，届时需要使用新版本模板的用户烦劳将模板调用行做出如下更正：
-\begin{verbatim}
-    \usebeamertheme{SJTUBeamer} -> \usebeamertheme{SJTUBeamermin}
-\end{verbatim}
+% 已经注意到本模板的呼号与 \href{https://github.com/sjtug/SJTUBeamer}{SJTUG 维护版本} 一致的问题，为了避免未来发布时的命名冲突，本模板将会自发布版本（$\beta$-0.8）更名为 \textsf{SJTUBeamer} \fbox{\textsc{min}}，届时需要使用新版本模板的用户烦劳将模板调用行做出如下更正：
+% \begin{verbatim}
+%     \usebeamertheme{SJTUBeamer} -> \usebeamertheme{SJTUBeamermin}
+% \end{verbatim}
 
-给各位用户带来的不便深表歉意，也请期待 \href{https://logcreative.github.io/LaTeXSparkle/}{像模像样\LaTeX} 项目的更多内容，未来将视支持情况推出 max 版本。
+% 给各位用户带来的不便深表歉意，也请期待 \href{https://logcreative.github.io/LaTeXSparkle/}{像模像样\LaTeX} 项目的更多内容，未来将视支持情况推出 max 版本。
 
 \begin{quotation}\itshape
     min - minimal: minimal work set of SJTU VI.

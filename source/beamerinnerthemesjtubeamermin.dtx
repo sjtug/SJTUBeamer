@@ -61,6 +61,7 @@
 \def\beamer@sjtubeamermin@langcn{cn}%
 \def\beamer@sjtubeamermin@langen{en}%
 %    \end{macrocode}
+%   \end{macro}
 %
 %   \begin{macro}{pattern}
 %     The pattern mode, which will affect the pattern generation in the title page.
@@ -381,13 +382,13 @@
 %    \end{macrocode}
 %
 % \begin{macro}{codeblock}
-%   Code block environment is made for presenting code in an obvious way. Two parameters are required. The first parameter sets the language to highlight, see the \verb"listings" package for more details. And the second parameter receives the title to make.
+%   Code block environment is made for presenting code in an obvious way. Two parameters are required. The first parameter is passed to listing, which mostly sets the language to highlight, see the \verb"listings" package for more details. And the second parameter receives the title to make.
 %    \begin{macrocode}
-\newtcblisting{codeblock}[2]{
+\newtcblisting{codeblock}[2][]{
 listing only, 
 listing engine=listings,
 listing options={
-  language=#1,%
+  #1,%
   numbers=left,
   numberstyle=\color{cprimary!80}\ttfamily\scriptsize,
   numbersep=5pt,
