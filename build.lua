@@ -8,12 +8,13 @@ module           = "sjtubeamermin"
 sourcefiledir    = "source"
 docfiledir       = "doc"
 sourcefiles      = {"*.ins","*.dtx","sjtucnlogo.pdf","sjtuenlogo.pdf"}
-installfiles      = {"*.sty","sjtucnlogo.pdf","sjtuenlogo.pdf"}
+installfiles     = {"*.sty","sjtucnlogo.pdf","sjtuenlogo.pdf"}
 
+typesetexe       = "xelatex"
 typesetfiles     = {"sjtubeamermintheme.tex","sjtubeamermindevguide.tex"}
-packtdszip       = true -- recommended for "tree" layouts
 
 testfiledir      = "test"
 checkengines     = {"xetex"}
-stdengine        = "xetex"
-checkformat      = "latex"
+checkopts        = "-interaction=batchmode"
+
+packtdszip       = true -- recommended for "tree" layouts

@@ -2,8 +2,7 @@
 \usepackage{array}
 \usepackage[colorlinks,breaklinks=true]{hyperref}
 \usepackage[numbers, sort&compress]{natbib}
-\usepackage{listings}
-\usepackage{CJKutf8}
+% \usepackage{ctex}
 \bibliographystyle{IEEEtran}
 \def\themename{\textsf{SJTUBeamer} \fbox{\textsc{min}}}
 
@@ -328,16 +327,11 @@
 
     Now, you may still be confused about how to create a beamer template. Here is a good material about it for a lead-in\cite{tex2017}, which provides a brief overview. And this part is only focusing on the implementation of \themename{}.
 
-    
         \DocInput{beamercolorthemesjtubeamermin.dtx}
         \DocInput{beamerfontthemesjtubeamermin.dtx}
-    \begin{CJK}{UTF8}{gbsn}
         \DocInput{beamerinnerthemesjtubeamermin.dtx}
-    \end{CJK}
         \DocInput{beamerouterthemesjtubeamermin.dtx}
-    \begin{CJK}{UTF8}{gbsn}
         \DocInput{beamerthemesjtubeamermin.dtx}
-    \end{CJK}
 
     The following code is merely an implementation of SJTU VI, which doesn't change the ownership of the design pattern. Any commercial usage should be acknowledged by the related administration of SJTU.
         \DocInput{sjtucolordef.dtx}
@@ -356,7 +350,7 @@
 
     \vfill
 
-    \bibliography{dev.bib}
+    \bibliography{dev}
 
     \vfill
 
