@@ -51,7 +51,7 @@
 
 \textsf{SJTUBeamer} \fbox{\textsc{min}} 样式为上海交通大学幻灯片模板的 \LaTeX{} 非官方实现版本，是符合\href{http://vi.sjtu.edu.cn/}{上海交通大学视觉形象识别系统}相关规范的最小工作集，图标版权归上海交通大学所有，本项目仅供校内人员学习参考使用。
 
-目前该样式处于测试版本（ $\beta$-\input{../VERSION}）, 欢迎通过拉取请求对本模板提出修改建议。
+目前该样式处于正式发布版本（ \input{../VERSION}）, 欢迎通过拉取请求对本模板提出修改建议。
 
 \section{编译}
 
@@ -185,7 +185,23 @@
     通过文件插入表格。这里默认表格文件为逗号分隔符格式（\verb".csv"），这种格式的表格可以通过 Excel 等外部软件导出而不必在 \LaTeX{} 内手动排版。本模板对于该类型插入的表格进行了样式统一，使用通用的三线表格并对表头使用主题颜色，一定程度上参考了 \href{https://vi.sjtu.edu.cn/index.php/articles/app/7}{\textbf{B1-16-01 档案袋}} 的表格设定。
 \end{docCommand*}
 
+\begin{docCommand*}[]{alert}{\marg{text}}
+    强调文字，采用主色作为强调色。
+\end{docCommand*}
+
 以下命令不是 \textsf{Beamer} 的通用命令，迁移套用其他模板时请注释掉。
+
+\begin{docCommand*}[]{emph}{\marg{text}}
+    强调文字，采用主色与二级色的中间色作为强调色。作为从文档类迁移的兼容接口。
+\end{docCommand*}
+
+\begin{docCommand*}[]{highlight}{\marg{text}}
+    高亮文字，采用主色底矩形、白色文字以产生高亮的效果。
+\end{docCommand*}
+
+\begin{docCommand*}[]{paragraph}{\marg{text}}
+    段落开始，但这里被重定向到了 \verb"\highlight" 命令，用于生成主色底矩形的强调条目。作为从文档类迁移的兼容接口。
+\end{docCommand*}
 
 \begin{docCommand*}[]{makebottom}{}
     制作封底。本模板提供了 \href{https://vi.sjtu.edu.cn/index.php/articles/app/7}{\textbf{B1-20-01 文件封套（封面封底）}} 样式的封底。右上角为学校徽标。左下角中文时，提示语为“谢谢”，英文时，提示语为``Thank You''。并且紧跟该幻灯片的作者与标题。
