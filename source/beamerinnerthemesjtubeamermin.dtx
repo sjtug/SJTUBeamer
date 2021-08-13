@@ -171,7 +171,10 @@
         \hskip4.5pt{\resizebox{!}{1cm}{\insertlogo}}
         \ifx\insertinstitute\@empty%
         \else
-          {\hskip3pt \vrule width0.5pt}\hskip7pt
+          \ifx\insertlogo\@empty%
+          \else
+            {\hskip3pt \vrule width0.5pt}\hskip7pt
+          \fi
           \ifx\beamer@sjtubeamermin@lang\beamer@sjtubeamermin@langcn%
             \vbox{
               \fontsize{13pt}{0pt}\selectfont
