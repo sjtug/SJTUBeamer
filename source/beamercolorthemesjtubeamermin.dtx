@@ -41,10 +41,10 @@
 %
 %   Load the common color library for sjtubeamermin.
 %    \begin{macrocode}
-\RequirePackage{SJTUcolordef}
+\RequirePackage{sjtucolordef}
 %    \end{macrocode}
 %
-%   Map the defined color in \verb"SJTUcolordef" to the interface of beamer color.
+%   Map the defined color in \verb"sjtucolordef" to the interface of beamer color.
 %   Especially, the \verb"structure" interface could not derived from 
 %   the color palette.
 %    \begin{macrocode}
@@ -113,7 +113,7 @@
 %
 %   As is native to beamer, you could also use \verb"\alert" command to highlight the text. The color is redirected to the cprimary.
 %    \begin{macrocode}
-\setbeamercolor{alerted text}{fg=palette primary.bg}
+\setbeamercolor{alerted text}{use=palette primary,fg=palette primary.bg}
 %    \end{macrocode}
 %
 %
