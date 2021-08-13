@@ -34,21 +34,21 @@
 % 
 % \begin{macro}{lang}
 %   Receive the language option.
-%   \begin{macrocode}
+%    \begin{macrocode}
 \DeclareOptionBeamer{lang}{\def\beamer@SJTUBeamermin@lang{#1}}
 \def\beamer@SJTUBeamermin@langcn{cn}%
 \def\beamer@SJTUBeamermin@langen{en}%
-%   \end{macrocode}
+%    \end{macrocode}
 % \end{macro}
 %
 % \begin{macro}{pattern}
 %   Sets the pattern visibility in the title page and the header of each slide.
-%   \begin{macrocode}
+%    \begin{macrocode}
 \DeclareOptionBeamer{pattern}{\def\beamer@SJTUBeamermin@pattern{#1}}
 \def\beamer@SJTUBeamermin@patternnone{none}%
 \def\beamer@SJTUBeamermin@patterntitle{title}%
 \def\beamer@SJTUBeamermin@patternall{all}%
-%   \end{macrocode}
+%    \end{macrocode}
 % \end{macro}
 %
 % \begin{macro}{navigation}
@@ -58,29 +58,29 @@
 %     \item[subsections] The subsection progress bar, like the headline in \verb"miniframe" outer theme.
 %     \item[pages] The page number and the total page number only.
 %   \end{itemize}
-%   \begin{macrocode}
+%    \begin{macrocode}
 \DeclareOptionBeamer{navigation}{\def\beamer@SJTUBeamermin@navigation{#1}}
 \def\beamer@SJTUBeamermin@navigationtools{tools}%
 \def\beamer@SJTUBeamermin@navigationsubsections{subsections}%
 \def\beamer@SJTUBeamermin@navigationpages{pages}%
-%   \end{macrocode}
+%    \end{macrocode}
 %
 %   Set up the default options of the outer theme. And then process the setting passed to the outer theme.
-%   \begin{macrocode}
+%    \begin{macrocode}
 \ExecuteOptionsBeamer{
   lang=cn,
   pattern=all,
   navigation=tools
 }
 \ProcessOptionsBeamer
-%   \end{macrocode}
+%    \end{macrocode}
 %
 % \subsubsection{Sidebar}
 %
 %   Clear the original definition of sidebar first. Then append the page info to the footline, which could avoid collision on footnote.
-%   \begin{macrocode} 
+%    \begin{macrocode} 
 \setbeamertemplate{sidebar right}{}
-%   \end{macrocode}
+%    \end{macrocode}
 %
 %   If the \verb"navigation" option is set to \verb"subsections", then by calling \verb"\insertnavigation" method embeded in beamer class, a subsection navigation toolbar could be generated.
 %   You could change the width of the subsection navigation bar in the first parameter of \verb"\insernavigation" command.
@@ -88,7 +88,7 @@
 %   Hide the navigation info automatically when detecting that it is a part page, since there is a navigation bar in that page (defined in the inner theme).
 %   However, \verb"\ifnum" may introduce some extra spacing, thus the top margin and the bottom margin could be a little bit different.
 %
-%   \begin{macrocode}
+%    \begin{macrocode}
 \ifx\beamer@SJTUBeamermin@navigation\beamer@SJTUBeamermin@navigationsubsections%
   \addtobeamertemplate{footline}{
     \vskip 4pt
@@ -101,34 +101,34 @@
     \vskip 10pt
     \vbox{}
   }{}
-%   \end{macrocode}
+%    \end{macrocode}
 %
 %   Else, the option could be either \verb"tools" or \verb"pages".
-%   \begin{macrocode}
+%    \begin{macrocode}
 \else
-%   \end{macrocode}
+%    \end{macrocode}
 %
 %   Define the \verb"\pagenumbering" macro to insert both the current page number and the total page number. With the proper font and color setting from \verb"footline" and raise a little bit by a \verb"\raisebox".
-%   \begin{macrocode}
+%    \begin{macrocode}
   \def\pagenumbering{
     \raisebox{1.2pt}[0pt][0pt]{
       \usebeamerfont{footline}\usebeamercolor{footline}\color{footline.fg!50}\insertframenumber/\inserttotalframenumber\hspace*{0.5em}
     }
   }
-%   \end{macrocode}
+%    \end{macrocode}
 %
 %   Append the page number info into the navigation symbols, which will be called by the \verb"tools" option.
-%   \begin{macrocode}
+%    \begin{macrocode}
   \addtobeamertemplate{navigation symbols}{}{%
     \hspace{1em}%
     \pagenumbering
   }%
-%   \end{macrocode}
+%    \end{macrocode}
 %
 %   Then, for different option, the visual could be different. As always, the toolbar should be hidden if it is a part page.
 %   But for \verb"tools" option, use the \verb"navigation symbols" template defined above.
 %   For \verb"pages" option, use the \verb"\pagenumbering" macro only.
-%   \begin{macrocode}
+%    \begin{macrocode}
   \addtobeamertemplate{footline}{
     \ifnum\beamer@partstartpage=\c@page %
     \else%
@@ -143,28 +143,28 @@
     \vskip 4pt
   }{}
 \fi%
-%   \end{macrocode}
+%    \end{macrocode}
 %
 % \subsubsection{Shape dependencies}
 %
 %   Load the shape package from \verb"SJTIvishape". To provide the logo and stamp array.
-%   \begin{macrocode}
+%    \begin{macrocode}
 \RequirePackage{SJTUvishape}
-%   \end{macrocode}
+%    \end{macrocode}
 %
 % \subsubsection{Frame title}
 % 
 %   Define the fade left little fading for frame title. To create a mask on the stamp array pattern.
-%   \begin{macrocode}
+%    \begin{macrocode}
 \tikzfading[
   name=fade left little,
   right color=transparent!0,
   left color=transparent!10
 ]
-%   \end{macrocode}
+%    \end{macrocode}
 %
 %   Define the beamer template \verb"frametitle". Some code is from the original beamer definition on \verb"frametitle" (LPPL-1.3c).
-%   \begin{macrocode}
+%    \begin{macrocode}
 \defbeamertemplate*{frametitle}{SJTUBeamermin}[1][left]
 {%
   \ifbeamercolorempty[bg]{frametitle}{}{\nointerlineskip}%
@@ -176,12 +176,12 @@
     \usebeamerfont{frametitle}%
     \ifbeamer@draftmode%
     \else%
-%   \end{macrocode}
+%    \end{macrocode}
 %
 %     If it is not in draft mode, then the pattern on the section start page will get rendered. And the pattern height is the same as that of background color block, depend on whether there is a subtitle on that page.
 %     Notice that it is not defined by the final calculation from LaTeX itself -- it is rather hard coded. 
 %     TODO: There is a potential risk that if the text is longer than one line, the height could be wrong. That's the reason why it is only rendered in the section start page -- to avoid such edge case as much as possible.
-%   \begin{macrocode}
+%    \begin{macrocode}
       \ifx\beamer@SJTUBeamermin@pattern\beamer@SJTUBeamermin@patternall
         \ifnum\beamer@sectionstartpage=\c@page %
           \begin{tikzpicture}[overlay]
@@ -196,10 +196,10 @@
           \end{tikzpicture}
         \fi
       \fi
-%   \end{macrocode}
+%    \end{macrocode}
 %
 %   Insert title and subtitle and make spacing depend on the existence of subtitle.
-%   \begin{macrocode}
+%    \begin{macrocode}
     \fi%
     \vbox{}
     \ifx\insertframesubtitle\@empty\vskip-2pt%
@@ -214,10 +214,10 @@
     }%
     \vskip-1ex%
     \endgroup%
-%   \end{macrocode}
+%    \end{macrocode}
 %
 %   Finally, add the logo to the upper right corner. It will be scaled to a 0.7cm height one by using \verb"\resizebox".
-%   \begin{macrocode}
+%    \begin{macrocode}
     \raggedleft%
     \begingroup
     \ifx\insertframesubtitle\@empty\vskip-2.5ex%
@@ -229,7 +229,7 @@
     \if@tempswa\else\vskip-.3cm\fi%
   \end{beamercolorbox}%
 }
-%   \end{macrocode}
+%    \end{macrocode}
 %
 % \iffalse
 % </package>

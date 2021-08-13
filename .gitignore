@@ -17,3 +17,4 @@ standard/
 *.fls
 *_latexmk
 *.synctex.gz
+utils/

@@ -32,19 +32,19 @@
 % provides some custom commands and environments for the user.
 %
 %   This declares that the following setup is avaliable for all modes.
-%   \begin{macrocode}
+%    \begin{macrocode}
 \mode<all>
-%   \end{macrocode}
+%    \end{macrocode}
 %
 % \subsubsection{Option declaration}
 %
 % \begin{macro}{navigation}
 %   Change the appearence of the navigation bar, which will affect in the outer theme.
-%   \begin{macrocode}
+%    \begin{macrocode}
 \DeclareOptionBeamer{navigation}{
     \PassOptionsToPackage{navigation=#1}{beamerouterthemeSJTUBeamermin}
 }
-%   \end{macrocode}
+%    \end{macrocode}
 % \end{macro}
 %
 % \begin{macro}{lang}
@@ -54,7 +54,7 @@
 %    \item[en] English. The loaded logo will be the English one.
 %   \end{description}
 %   This option will get passed to both inner and outer theme.
-%   \begin{macrocode}
+%    \begin{macrocode}
 \DeclareOptionBeamer{lang}{
     \def\beamer@SJTUBeamermin@lang{#1}
     \PassOptionsToPackage{lang=#1}{beamerouterthemeSJTUBeamermin}
@@ -62,17 +62,17 @@
 }
 \def\beamer@SJTUBeamermin@langcn{cn}%
 \def\beamer@SJTUBeamermin@langen{en}%
-%   \end{macrocode}
+%    \end{macrocode}
 % \end{macro}
 %
 % 
 % \begin{macro}{cjk}
 %   Choose to use `CJK' package. If this option is open, the document body should be covered by \verb"\begin{CJK}{UTF8}{hei}" and \verb"\end{CJK}".
-%   \begin{macrocode}
+%    \begin{macrocode}
 \DeclareOptionBeamer{cjk}{\def\beamer@SJTUBeamermin@cjk{#1}}
 \def\beamer@SJTUBeamermin@cjktrue{true}%
 \def\beamer@SJTUBeamermin@cjkfalse{false}%
-%   \end{macrocode}
+%    \end{macrocode}
 % \end{macro}
 % 
 % \begin{macro}{color}
@@ -82,12 +82,12 @@
 %     \item[red] The recomended theme for non-scitific scenario. 
 %   \end{description}
 %   This option will be passed to the color theme and inner theme.
-%   \begin{macrocode}
+%    \begin{macrocode}
 \DeclareOptionBeamer{color}{
     \PassOptionsToPackage{color=#1}{beamercolorthemeSJTUBeamermin}
     \PassOptionsToPackage{color=#1}{beamerinnerthemeSJTUBeamermin}
 }
-%   \end{macrocode}
+%    \end{macrocode}
 % \end{macro}
 %
 % \begin{macro}{pattern}
@@ -98,12 +98,12 @@
 %     \item[all] Besides the title page, the frame title of section start page will get a stamp array pattern.
 %   \end{description}
 %   This option will get passed to the outer theme and inner theme.
-%   \begin{macrocode}
+%    \begin{macrocode}
 \DeclareOptionBeamer{pattern}{
     \PassOptionsToPackage{pattern=#1}{beamerouterthemeSJTUBeamermin}
     \PassOptionsToPackage{pattern=#1}{beamerinnerthemeSJTUBeamermin}
 }
-%   \end{macrocode}
+%    \end{macrocode}
 % \end{macro}
 %
 % \begin{macro}{gbt}
@@ -113,16 +113,16 @@
 %     \item[bibtex] Use \verb"bibtex" to cite.
 %     \item[true] Use \verb"biblatex-gbt7714-2015" to cite.
 %   \end{description}
-%   \begin{macrocode}
+%    \begin{macrocode}
 \DeclareOptionBeamer{gbt}{\def\beamer@SJTUBeamermin@gbt{#1}}
 \def\beamer@SJTUBeamermin@gbttrue{true}%
 \def\beamer@SJTUBeamermin@gbtfalse{false}%
 \def\beamer@SJTUBeamermin@gbtbibtex{bibtex}%
-%   \end{macrocode}
+%    \end{macrocode}
 % \end{macro}
 %
 % The default default setting will get executed here before the settings defined by the user got processed.
-%   \begin{macrocode}
+%    \begin{macrocode}
 \ExecuteOptionsBeamer{
     navigation=tools,
     cjk=false,
@@ -132,11 +132,11 @@
     gbt=false,
 }
 \ProcessOptionsBeamer
-%   \end{macrocode}
+%    \end{macrocode}
 %
 % \subsubsection{Option execution}
 % Disable the warning from \verb"hyperref" which conflicts the setting in C\TeX{} or CJK. It has to be manually disabled.
-%   \begin{macrocode}
+%    \begin{macrocode}
 \RequirePackage{silence}
 \def\Hy@WarnOptionDisabled#1{
     \def\next{#1}%
@@ -149,10 +149,10 @@
         }\fi%
     \fi%
 }
-%   \end{macrocode}
+%    \end{macrocode}
 %
 %   Process the option of \verb"lang" and \verb"cjk". For Chinese typesetting, some translations are needed for \verb"CJKutf8" package.
-%   \begin{macrocode}
+%    \begin{macrocode}
 \ifx\beamer@SJTUBeamermin@lang\beamer@SJTUBeamermin@langen%
 \else
     \ifx\beamer@SJTUBeamermin@cjk\beamer@SJTUBeamermin@cjktrue%
@@ -164,10 +164,10 @@
         \RequirePackage[UTF8]{ctex}
     \fi%
 \fi
-%   \end{macrocode}
+%    \end{macrocode}
 %
 %   Process the option of \verb"gbt" to handle the behaviour of citing. If \verb"bibtex" is used, the corresponding bibliographystyle will get loaded according to \verb"lang" option. Otherwise, set the style of \verb"biblatex" and redirect \verb"\cite" to \verb"\footfullcite".
-%   \begin{macrocode}
+%    \begin{macrocode}
 \ifx\beamer@SJTUBeamermin@gbt\beamer@SJTUBeamermin@gbtbibtex%
     \ifx\beamer@SJTUBeamermin@lang\beamer@SJTUBeamermin@langen% 
         \bibliographystyle{IEEEtran}
@@ -184,7 +184,7 @@
         \footfullcite{#1}
     }
 \fi%
-%   \end{macrocode}
+%    \end{macrocode}
 %
 % To avoid the messness of Chinese bookmarks.
 \hypersetup{unicode}
@@ -193,14 +193,14 @@
 %
 %
 % Specify presentation mode. Enable compress option on beamer to avoid multiline navigation dots and process the sub-styles in order.
-%   \begin{macrocode}
+%    \begin{macrocode}
 \mode<presentation>
 \beamer@compresstrue
 \usecolortheme{SJTUBeamermin}
 \usefonttheme{SJTUBeamermin}
 \useoutertheme{SJTUBeamermin}
 \useinnertheme{SJTUBeamermin}
-%   \end{macrocode}
+%    \end{macrocode}
 %
 % \iffalse
 % </package>
