@@ -23,3 +23,5 @@ standard/
 *.ilg
 *.ind
 utils/
+build/
+*-ctan.zip
