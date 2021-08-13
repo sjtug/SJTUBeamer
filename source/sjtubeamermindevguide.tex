@@ -155,11 +155,13 @@
     \begin{table}[h]
    		\begin{tabular}{>{\ttfamily}ll}
    			\bfseries .sty File & \bfseries Description \\
-   			beamercolorthemeSJTUBeamermin.sty & Define global color schemes. \\
-   			beamerfontthemeSJTUBeamermin.sty & Set the font format. \\
-   			beamerinnerthemeSJTUBeamermin.sty & Specifies all parts inside a frame. \\
-   			beamerouterthemeSJTUBeamermin.sty & The frame header and bottom bar. \\
-   			beamerthemeSJTUBeamermin.sty & Entry point of the theme.
+   			beamercolorthemesjtubeamermin.sty & Define global color schemes. \\
+   			beamerfontthemesjtubeamermin.sty & Set the font format. \\
+   			beamerinnerthemesjtubeamermin.sty & Specifies all parts inside a frame. \\
+   			beamerouterthemesjtubeamermin.sty & The frame header and bottom bar. \\
+   			beamerthemesjtubeamermin.sty & Entry point of the theme. \\
+            sjtucolordef.sty & Color definition from SJTU VI. \\
+            sjtuvishape.sty & VI Shape definition from SJTU VI.
     	\end{tabular}
     \end{table}
 
@@ -168,9 +170,13 @@
     \begin{figure}[h]
         \framebox[\textwidth]{\ttfamily main.tex}
         
-        \framebox[\textwidth]{\ttfamily beamerthemeSJTUBeamermin.sty}
+        \framebox[\textwidth]{\ttfamily beamerthemesjtubeamermin.sty}
         
-        \framebox[0.25\textwidth]{\ttfamily colortheme.sty}\framebox[0.25\textwidth]{\ttfamily fonttheme.sty}\framebox[0.25\textwidth]{\ttfamily outertheme.sty}\framebox[0.25\textwidth]{\ttfamily innertheme.sty}
+        \framebox[0.25\textwidth]{\ttfamily fonttheme.sty}\framebox[0.25\textwidth]{\ttfamily colortheme.sty}\framebox[0.25\textwidth]{\ttfamily innertheme.sty}\framebox[0.25\textwidth]{\ttfamily outertheme.sty}
+        
+        \hfill\framebox[0.5\textwidth]{\ttfamily sjtucolordef.sty}\hspace*{0.25\textwidth}
+
+        \hfill\framebox[0.5\textwidth]{\ttfamily sjtuvishape.sty}
 
         \hfill\framebox[0.5\textwidth]{\ttfamily logo.pdf}
     \end{figure}
