@@ -1,7 +1,32 @@
+
+% \iffalse meta-comment ---------------------------------------------
+% Copyright (c) Shanghai Jiao Tong University
+% The definition in this file is refered to the Visual Identity System
+% from Shanghai Jiao Tong University (SJTU). 
+% See https://vi.sjtu.edu.cn for more information.
+% The generation source is implemented by Log Creative.
+% The author himself doesn't change the ownership of the design pattern.
+% Any commercial usage in this file should be ackwoledged by the
+% administration in SJTU.
+% More infomation about the license for this file,
+% see https://vi.sjtu.edu.cn/index.php/articles/bulletin/16. 
+% ------------------------------------------------------------------- \fi
+% \iffalse
+%<*package>
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesPackage{SJTUvishape}[2021/08/13 Shape Pattern in Visual Identity System for SJTUBeamermin]
+%</package>
+% \fi
+% \CheckSum{0}
+% \StopEventually{}
+% \iffalse
+%<*package>
+% ------------------------------------------------------------------- \fi
+%
 % \subsection{Logo}
-%   Depend on the language definition, load the required logo by default.
-%   But the logo could be customized by redefinition from \verb"\logo" command.
-%   \begin{macrocode}
+%   Depend on the language definition, load the required logo by default. The logo is protected by the copyright from SJTU.
+%   The logo could be customized by redefinition from \verb"\logo" command.
+%    \begin{macrocode}
 \logo{
   \ifx\beamer@SJTUBeamermin@lang\beamer@SJTUBeamermin@langen
     \includegraphics{SJTUenlogo.pdf}
@@ -9,18 +34,21 @@
     \includegraphics{SJTUcnlogo.pdf}
   \fi
 }
-%   \end{macrocode}
+%    \end{macrocode}
 %
 % \subsubsection{Load TikZ}
 % Load TikZ package and its related library: \verb"pattern.meta" provides the interface to define a pattern; \verb"fadings" provides the method to create a fading mask.
-%   \begin{macrocode}
+%    \begin{macrocode}
 \RequirePackage{tikz}
 \usetikzlibrary{patterns.meta}
 \usetikzlibrary{fadings}
 \usetikzlibrary{decorations.pathmorphing}
-%   \end{macrocode}
-
-
+%    \end{macrocode}
+%
+% \begin{macro}{stamp}
+%	Declare stamp pattern to make a stamp array.
+%	The newest version of TikZ provides the interface to user-define a pattern. Obeying Compatibility philosophy, use \verb"\pgfkeyvalueof" interface to get parameters in a standard way. The unit is first tested in a standalone file and previewed by TikZEdt.
+%    \begin{macrocode}
 \tikzdeclarepattern{
 	name=stamp,
 	parameters={
@@ -62,11 +90,17 @@
 			-- (-0.17*\s,-0.06*\s) -- cycle;
 	}
 }
-
+%    \end{macrocode}
+% \end{macro}
+%
+% \begin{macro}{\stamparray}
+%	Create the stamp array in the TikZ environment.
+%	Notice \TeX{} is not good at handling parameters. Always remember to store it into a temporary variable. Register \verb"\pgfmathresult" will store the result of \verb"\pgfmathparse".
+%    \begin{macrocode}
 \providecommand{\stamparray}[3]{
-	% #1: pattern size
-	% #2: starting point
-	% #3: ending point
+%	% #1: pattern size
+%	% #2: starting point
+%	% #3: ending point
     \usebeamercolor{palette primary}
 	\fill [pattern={stamp[size=#1]},pattern color=bg!50!fg] #2 rectangle #3;
 	\def\s{#1}%
@@ -74,7 +108,13 @@
 	\pgfmathparse{-0.4*\s}\let\ys=\pgfmathresult%
 	\fill [pattern={stamp[size=#1,xshift=\xs, yshift=\ys]},pattern color=bg!50!fg] #2 rectangle #3;
 }
-
+%    \end{macrocode}
+% \end{macro}
+%
+% \begin{macro}{stampline}
+%	Declare a decoration to make a loop stampline.
+%	Notice that \verb"auto corner on length" is open to avoid spikes where the state hasn't meet \verb"final" yet.
+%    \begin{macrocode}
 \pgfdeclaredecoration{stampline}{initial}
 {
   \state{initial}[
@@ -95,3 +135,12 @@
     \pgfpathlineto{\pgfpointdecoratedpathlast}
   }
 }
+%    \end{macrocode}
+% \end{macro}
+%
+% \iffalse
+%</package>
+% \fi
+%
+% \Finale
+\endinput
