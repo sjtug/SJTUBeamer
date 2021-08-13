@@ -177,7 +177,6 @@
     \ifbeamer@draftmode%
     \else%
 %    \end{macrocode}
-%
 %     If it is not in draft mode, then the pattern on the section start page will get rendered. And the pattern height is the same as that of background color block, depend on whether there is a subtitle on that page.
 %     Notice that it is not defined by the final calculation from LaTeX itself -- it is rather hard coded. 
 %     TODO: There is a potential risk that if the text is longer than one line, the height could be wrong. That's the reason why it is only rendered in the section start page -- to avoid such edge case as much as possible.
@@ -197,7 +196,6 @@
         \fi
       \fi
 %    \end{macrocode}
-%
 %   Insert title and subtitle and make spacing depend on the existence of subtitle.
 %    \begin{macrocode}
     \fi%
@@ -215,7 +213,6 @@
     \vskip-1ex%
     \endgroup%
 %    \end{macrocode}
-%
 %   Finally, add the logo to the upper right corner. It will be scaled to a 0.7cm height one by using \verb"\resizebox".
 %    \begin{macrocode}
     \raggedleft%

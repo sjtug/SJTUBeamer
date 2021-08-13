@@ -316,7 +316,7 @@
 }
 %    \end{macrocode}
 %
-%   \subsubsection{Itemize environments}
+% \subsubsection{Itemize environments}
 %
 %   Set the item marker to circle and set the marker for section and subsection in TOC (Table of Contents) to circle.
 %    \begin{macrocode}
@@ -333,6 +333,9 @@
 \RequirePackage{SJTUcolordef}
 %    \end{macrocode}
 %
+% \begin{macro}{\highlight}
+%   Highlight the given text. Create a primary color background block with white as foreground.
+%    \begin{macrocode}
 \newtcbox{\highlight}[1][cprimary]{
     on line,
     arc=0pt,
@@ -345,10 +348,25 @@
     top=2pt,
     bottom=2pt
 }
+%    \end{macrocode}
+% \end{macro}
+%
+% \begin{macro}{\paragraph}
+%   Use \verb"\highlight" macro for making contrast.
+%   Since beamer has deleted \verb"\paragraph" macro in this class, this template defines a macro for that to indicate it is another point and more paragraph-like. It is useful for the migration from \verb"article" class.
+%    \begin{macrocode}
 \def\paragraph#1{\highlight{#1}~}
-
+%    \end{macrocode}
+% \end{macro}
+%
+%   Introduce the library from tcolorbox to make code blocks.
+%   \verb"listingsutf8" is used to receive UTF-8 input.
+%    \begin{macrocode}
 \tcbuselibrary{skins}
 \tcbuselibrary{listingsutf8}
+%    \end{macrocode}
+%   Declare the basic listing highlighter. \verb"columns" is set to \verb"flexible" to avoid ugly grid alignment. \verb"breaklines" is set to enable line wrapping.
+%    \begin{macrocode}
 \lstset{
   basicstyle=\ttfamily\small,
   keywordstyle=\color{cprimary},%
@@ -360,10 +378,16 @@
   showspaces=false,
   breaklines
 }
-\newtcblisting{codeblock}[2]{listing only, 
+%    \end{macrocode}
+%
+% \begin{macro}{codeblock}
+%   Code block environment is made for presenting code in an obvious way. Two parameters are required. The first parameter receives the option passed to listings and is mainly set the language to highlight, e.g., \verb"language=c++". And the second parameter receives the title to make.
+%    \begin{macrocode}
+\newtcblisting{codeblock}[2][]{
+listing only, 
 listing engine=listings,
 listing options={
-  language=#1,%
+  #1,%
   numbers=left,
   numberstyle=\color{cprimary!80}\ttfamily\scriptsize,
   numbersep=5pt,
@@ -381,11 +405,15 @@ overlay={
     \end{tcbclipinterior}
 }
 }
-
-% Theorem and proof environments.
-
-% Figures and tables.
-
+%    \end{macrocode}
+% \end{macro}
+%
+%
+% \subsubsection{Figures}
+%
+% \begin{macro}{stampbox}
+%   Make a stampbox border, which is a decoration advice from SJTU VI. It has the dependency on \verb"stampline" from \verb"SJTUvishape" package.
+%    \begin{macrocode}
 \newtcolorbox{stampbox}[1][cprimary]{%
   capture=hbox,
   enhanced,
@@ -404,6 +432,11 @@ overlay={
     decorate
   }
 }
+%    \end{macrocode}
+% \end{macro}
+%
+%   Set the default visual theme for \textsc{Pgfplots}. The cycle list is set to the current color theme. And lines on the graph is optimized to make it clear for presentation. The predefinition on the height is made to avoid the overfullbox on the vertical side.
+%    \begin{macrocode}
 \pgfplotsset{
   compat=newest,
   every axis/.style={
@@ -437,9 +470,16 @@ overlay={
     thick,
   },
 }
-
+%    \end{macrocode}
+%
+% \subsubsection{Tables}
+%   Two macros are defined to make the header colored.
+%    \begin{macrocode}
 \def\zapcolorreset{\let\reset@color\relax\ignorespaces}
 \def\colorrows#1{\noalign{\aftergroup\zapcolorreset#1}\ignorespaces}
+%    \end{macrocode}
+%   Set the style of \textsc{Pgfplotstable}. The \verb"\colorrows" macro here is used for making the header colored. The \verb"booktabs" line is used to create a professional look.
+%    \begin{macrocode}
 \pgfplotstableset{
   col sep=comma,
   every table/.style={
@@ -460,23 +500,33 @@ overlay={
     after row=\bottomrule
   },
 }
-
-% Footnotes.
-
+%    \end{macrocode}
+%
+% \subsubsection{Footnotes}
+%   Define the \verb"footline" beamer template. The format is slightly changed from the original beamer definition.
+%    \begin{macrocode}
 \defbeamertemplate*{footnote}{SJTUBeamermin}
 {
-  \footnotesize
+  \usebeamerfont{footnote}
   \parindent 0.5em\noindent%
   \raggedright
   \hbox to 1.5em{\hfil\insertfootnotemark}\insertfootnotetext\par%
 }
-
-% Bibliography entries.
-
-% Bottom Page
-
+%    \end{macrocode}
+%
+% \subsubsection{Bottom page}
+%
+% \begin{macro}{\bottompage}
+%   Define the macro \verb"\bottompage" to create the ending frame.
+%    \begin{macrocode}
 \def\bottompage{
+%    \end{macrocode}
+%   Enter vertical mode.
+%    \begin{macrocode}
   \vbox{}
+%    \end{macrocode}
+%   Create the background canvas and the three overlapping circles in the right. Use \verb"scope" to define the influence range. And use \verb"\clip" to make the clipping in the current range.
+%    \begin{macrocode}
   \usebeamercolor{palette primary}
   \usebeamercolor{palette secondary}
   \begin{tikzpicture}[overlay,yshift=-80pt]
@@ -494,10 +544,16 @@ overlay={
         (0.63*\w,1.05*\h) circle (1*\h);
     \end{scope}
   \end{tikzpicture}
+%    \end{macrocode}
+%   Insert the logo in the crossing center of the overlapping circles.
+%    \begin{macrocode}
   \vfill
   \begingroup
     \raggedleft
     \resizebox{!}{1cm}{\insertlogo}
+%    \end{macrocode}
+%   Inset the ``thank you'' quote and the title of this beamer. Notice that three \verb"\vfill" divide the frame into three portions with final adjust using \verb"\vskip".
+%    \begin{macrocode}
     \vfill
     \vskip6em
     \begin{beamercolorbox}[sep=8pt]{title}
@@ -515,6 +571,12 @@ overlay={
     \vskip3.5em
   \endgroup
 }
+%    \end{macrocode}
+% \end{macro}
+%
+% \begin{macro}{\makebottom}
+%   The standard interface for making the bottom page in this template. Since there is no standard interface in beamer, the macro mimicked \verb"\maketitle" macro to provide such an interface.
+%    \begin{macrocode}
 \def\makebottom{
   \ifbeamer@inframe%i
   \bottompage%
@@ -522,3 +584,12 @@ overlay={
   \frame{\bottompage}%
   \fi%
 }
+%    \end{macrocode}
+% \end{macro}
+%
+% \iffalse
+%</package>
+% \fi
+%
+% \Finale
+\endinput
