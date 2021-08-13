@@ -15,7 +15,7 @@
 % \iffalse
 %<*package>
 \NeedsTeXFormat{LaTeX2e}
-\ProvidesPackage{beamerinnerthemeSJTUBeamermin}[2021/08/06 SJTUBeamermin Inner Theme]
+\ProvidesPackage{beamerinnerthemesjtubeamermin}[2021/08/06 sjtubeamermin Inner Theme]
 %</package>
 % \fi
 % \CheckSum{0}
@@ -57,27 +57,27 @@
 %   \begin{macro}{lang}
 %     Specify the language of this beamer, which will affect the version of the loaded logo.
 %    \begin{macrocode}
-\DeclareOptionBeamer{lang}{\def\beamer@SJTUBeamermin@lang{#1}}
-\def\beamer@SJTUBeamermin@langcn{cn}%
-\def\beamer@SJTUBeamermin@langen{en}%
+\DeclareOptionBeamer{lang}{\def\beamer@sjtubeamermin@lang{#1}}
+\def\beamer@sjtubeamermin@langcn{cn}%
+\def\beamer@sjtubeamermin@langen{en}%
 %    \end{macrocode}
 %
 %   \begin{macro}{pattern}
 %     The pattern mode, which will affect the pattern generation in the title page.
 %    \begin{macrocode}
-\DeclareOptionBeamer{pattern}{\def\beamer@SJTUBeamermin@pattern{#1}}
-\def\beamer@SJTUBeamermin@patternnone{none}%
-\def\beamer@SJTUBeamermin@patterntitle{title}%
-\def\beamer@SJTUBeamermin@patternall{all}%
+\DeclareOptionBeamer{pattern}{\def\beamer@sjtubeamermin@pattern{#1}}
+\def\beamer@sjtubeamermin@patternnone{none}%
+\def\beamer@sjtubeamermin@patterntitle{title}%
+\def\beamer@sjtubeamermin@patternall{all}%
 %    \end{macrocode}
 %   \end{macro}
 %
 %   \begin{macro}{color}
 %     The selected color theme, which will affect the color in the title page, bottom page and the inner highlighter.
 %    \begin{macrocode}
-\DeclareOptionBeamer{color}{\def\beamer@SJTUBeamermin@color{#1}}
-\def\beamer@SJTUBeamermin@colorblue{blue}%
-\def\beamer@SJTUBeamermin@colorred{red}%
+\DeclareOptionBeamer{color}{\def\beamer@sjtubeamermin@color{#1}}
+\def\beamer@sjtubeamermin@colorblue{blue}%
+\def\beamer@sjtubeamermin@colorred{red}%
 %    \end{macrocode}
 %   \end{macro}
 %   
@@ -115,7 +115,7 @@
 %
 %   Define the \verb"title page" template. 
 %    \begin{macrocode}
-\defbeamertemplate*{title page}{SJTUBeamermin}[1][]
+\defbeamertemplate*{title page}{sjtubeamermin}[1][]
 {
   \vbox{}
 %    \end{macrocode}
@@ -136,7 +136,7 @@
 %   \verb"stamp array" is defined in \verb"SJTUvishape". Then, a fade right covers this array layer and a center fade covers the previous result.
 %    \begin{macrocode}
   \else%
-    \ifx\beamer@SJTUBeamermin@pattern\beamer@SJTUBeamermin@patternnone%
+    \ifx\beamer@sjtubeamermin@pattern\beamer@sjtubeamermin@patternnone%
     \else%
     \begin{tikzpicture}[overlay]
       \stamparray{20pt}{(-0.2*\the\paperwidth,-1*\the\paperheight)}{(1*\the\paperwidth, 0.2*\the\paperheight)}
@@ -163,7 +163,7 @@
         \ifx\insertinstitute\@empty%
         \else
           {\hskip3pt \vrule width0.5pt}\hskip7pt
-          \ifx\beamer@SJTUBeamermin@lang\beamer@SJTUBeamermin@langcn%
+          \ifx\beamer@sjtubeamermin@lang\beamer@sjtubeamermin@langcn%
             \vbox{
               \fontsize{13pt}{0pt}\selectfont
               \insertinstitute
@@ -224,7 +224,7 @@
 % \subsubsection{Part page}
 %   Define the \verb"part page" beamer template.
 %    \begin{macrocode}
-\defbeamertemplate*{part page}{SJTUBeamermin}[1][]
+\defbeamertemplate*{part page}{sjtubeamermin}[1][]
 {
   \vfill
   \vskip 8pt
@@ -234,7 +234,7 @@
 %    \begin{macrocode}
     \begin{beamercolorbox}[sep=16pt,right,#1]{part title}
       \hfill\usebeamerfont{part name}
-      \ifx\beamer@SJTUBeamermin@lang\beamer@SJTUBeamermin@langcn%
+      \ifx\beamer@sjtubeamermin@lang\beamer@sjtubeamermin@langcn%
       第~\insertromanpartnumber~部分
       \else%
         \partname~\insertromanpartnumber
@@ -271,7 +271,7 @@
 \def\sectionblock#1{
   \begin{beamercolorbox}[sep=12pt,right,#1]{section title}
     \usebeamerfont{section name}
-    \ifx\beamer@SJTUBeamermin@lang\beamer@SJTUBeamermin@langcn%
+    \ifx\beamer@sjtubeamermin@lang\beamer@sjtubeamermin@langcn%
       第~\insertsectionnumber~节
     \else%
       \sectionname~\insertsectionnumber
@@ -284,7 +284,7 @@
 %
 %   Define the \verb"section page" beamer template.
 %    \begin{macrocode}
-\defbeamertemplate*{section page}{SJTUBeamermin}[1][]
+\defbeamertemplate*{section page}{sjtubeamermin}[1][]
 {
   \vfill
   \begingroup
@@ -296,14 +296,14 @@
 %
 %   Define the \verb"subection page" beamer template.
 %    \begin{macrocode}
-\defbeamertemplate*{subsection page}{SJTUBeamermin}[1][]
+\defbeamertemplate*{subsection page}{sjtubeamermin}[1][]
 {
   \vfill
   \begingroup
     \sectionblock{#1}
     \begin{beamercolorbox}[sep=8pt,right,#1]{subsection title}
       \usebeamerfont{subsection name}
-      \ifx\beamer@SJTUBeamermin@lang\beamer@SJTUBeamermin@langcn%
+      \ifx\beamer@sjtubeamermin@lang\beamer@sjtubeamermin@langcn%
         第~\insertsubsectionnumber~小节
       \else%
         \subsectionname~\insertsubsectionnumber
@@ -505,7 +505,7 @@ overlay={
 % \subsubsection{Footnotes}
 %   Define the \verb"footline" beamer template. The format is slightly changed from the original beamer definition.
 %    \begin{macrocode}
-\defbeamertemplate*{footnote}{SJTUBeamermin}
+\defbeamertemplate*{footnote}{sjtubeamermin}
 {
   \usebeamerfont{footnote}
   \parindent 0.5em\noindent%
@@ -559,7 +559,7 @@ overlay={
     \begin{beamercolorbox}[sep=8pt]{title}
       \usebeamercolor[fg]{palette primary}
       \usebeamerfont{title}\noindent
-      \ifx\beamer@SJTUBeamermin@lang\beamer@SJTUBeamermin@langcn
+      \ifx\beamer@sjtubeamermin@lang\beamer@sjtubeamermin@langcn
         谢谢
       \else
         Thank You
