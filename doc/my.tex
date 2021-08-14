@@ -1,26 +1,26 @@
 \documentclass[
     % draft,                             % 草稿模式
-    % aspectratio=169,                   % 使用 16:9 比例
+    aspectratio=169,                   % 使用 16:9 比例
 ]{beamer}
 \mode<presentation>
 \usetheme[
-    navigation=subsections,            % 使用子章节进度显示
+    % navigation=subsections,            % 使用子章节进度显示
     % lang=en,                           % 使用英文
     % cjk=true,                          % 使用CJK而不是ctex
-    color=blue,                         % 使用红色主题
+    color=red,                         % 使用红色主题
     % pattern=all,                        % 使用全图案装饰
-    gbt=bibtex,                        % 使用 gbt (使用 bibtex 编译)
+    % gbt=bibtex,                        % 使用 gbt (使用 bibtex 编译)
 ]{sjtubeamermin}
-% \usecolortheme[]{beaver}                 % 使用其他颜色主题
-% \addbibresource{ref.bib}               % gbt!=bibtex
+\usecolortheme[]{beaver}                 % 使用其他颜色主题
+\addbibresource{ref.bib}               % gbt!=bibtex
 
 \begin{document}
-    \institute[School of Electronic, \\Information and Electrical Engineering]{电子信息与电气工程学院}   % 组织
-    % \logo{
-    %     \includegraphics{vi/cnlogored.pdf}  % 重定义 logo
-    % }
+    \institute[School of Mathematical Sciences]{数学科学学院}   % 组织
+    \logo{
+        \includegraphics{cnlogored.pdf}  % 重定义 logo
+    }
     \titlegraphic{                         % 标题图像
-        \begin{stampbox}[white]
+        \begin{stampbox}
             \includegraphics[width=0.3\textwidth]{head.png}
         \end{stampbox}
     }
@@ -54,7 +54,7 @@
     \begin{frame}
         \frametitle{标题}
 
-        \highlight{列表} 这个\emph{幻灯片}有下面几项：
+        \paragraph{列表} 这个\alert{幻灯片}有下面几项：
 
         \begin{itemize}
             \item 第 1 项
@@ -141,8 +141,8 @@ int main(){
 % gbt=bibtex
 \part{参考文献}
     \begin{frame}[allowframebreaks]
-        % \printbibliography[title=参考文献]    % gbt!=bibtex
-        \bibliography{ref}             % gbt=bibtex
+        \printbibliography[title=参考文献]    % gbt!=bibtex
+        % \bibliography{ref.bib}             % gbt=bibtex
     \end{frame}
 
     \makebottom     % 创建尾页  % 非标准命令
