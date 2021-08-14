@@ -32,6 +32,46 @@
         \fbox{\textsc{min}} - \emph{minimum}:\hfill  minimum shapes to show your content.
     \end{quotation}
 
+    \section{Build}
+
+    To make a CTAN package, a modern \verb"l3build" method is adopted for building the package. And all souce code has been refactored.
+
+    To build the package:
+    \begin{verbatim}
+        l3build ctan
+    \end{verbatim}
+
+    To install the package:
+    \begin{verbatim}
+        l3build install
+    \end{verbatim}
+    Sometimes, you have to indicate the install directory as follows:
+    \begin{verbatim}
+        l3build install --texmfhome path/to/install
+    \end{verbatim}
+
+    To bump version
+    \begin{verbatim}
+        l3build tag 1.0
+    \end{verbatim}
+
+    Since \verb"l3build" is still under development, the instability may be introduced to some operating systems like Windows. In this case, use
+    \begin{verbatim}
+        cd source
+        latex beamerthemesjtubeamermin.ins
+    \end{verbatim}
+    and move the output file to your installation directory or the directory contains your working file.
+
+    It is soon to have a CTAN distribution. At that time, if you are using TeX{} Live:
+    \begin{verbatim}
+        tlmgr install sjtubeamermin
+    \end{verbatim}
+    Or use MiK\TeX{}:
+    \begin{verbatim}
+        \usepackage{sjtubeamermin}      % trigger the installation
+    \end{verbatim}
+    and you are ready to go!
+
     \section{Compliation}
 
     Most problems come from \LaTeX{} compilation. The required packages are in the following list.
@@ -190,6 +230,8 @@
             \fbox{\parbox{0.55\textwidth}{\texttt{innertheme.sty}\hfill pattern,color,lang}}
         }
     \end{figure}
+
+    And this version meets the standingfree criteria. All source files could be used seperatly from version 1.0.
 
     \subsection{Color}
 

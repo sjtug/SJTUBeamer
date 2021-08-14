@@ -60,7 +60,7 @@ After [Use this template](https://github.com/LogCreative/SJTUBeamermin/generate)
 
 ## Local Installation
 
-可以在 [发布页](https://github.com/LogCreative/SJTUBeamermin/releases) 得到对应的发布包，使用发布包内的 `sty` 文件以及 `pdf` logo 文件附着于本地文件夹内即可使用。
+You could get the release package on the [release page](https://github.com/LogCreative/SJTUBeamermin/releases). Use the `.sty` files and `sjtucnlogo.pdf` and `sjtuenlogo.pdf` for your template.
 
 ## Build
 
