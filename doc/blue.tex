@@ -21,7 +21,7 @@
     % }
     \titlegraphic{                         % 标题图像
         \begin{stampbox}[white]
-            % \includegraphics[width=0.3\textwidth]{vi/head.png}
+            \includegraphics[width=0.3\textwidth]{head.png}
         \end{stampbox}
     }
     \title{SJTUBeamer \fbox{\textsc{min}} 幻灯片模板}  % 标题
@@ -109,7 +109,7 @@ int main(){
         \begin{figure}
             \centering
             \begin{stampbox}
-                % \includegraphics[height=0.3\textheight]{vi/plant.jpg}
+                \includegraphics[height=0.3\textheight]{plant.jpg}
             \end{stampbox}
             \caption{图片标题\cite{viman}}
         \end{figure}
@@ -120,16 +120,16 @@ int main(){
         \begin{multicols}{2}
         \begin{table}
             \caption{表格标题\cite{pgfplotstableman}}
-            % \pgfplotstabletypeset[
-            %     columns/Quick/.style={dec sep align},
-            %     columns/Cocktail/.style={dec sep align},
-            %     column type=r,
-            %     % fixed zerofill,
-            % ]{dat/test.csv}
+            \pgfplotstabletypeset[
+                columns/Quick/.style={dec sep align},
+                columns/Cocktail/.style={dec sep align},
+                column type=r,
+                % fixed zerofill,
+            ]{test.csv}
         \end{table}
         
         \begin{figure}
-            % \input{img/testgraph.tex}
+            \input{testgraph.tex}
             \caption{统计图标题\cite{pgfplotsman}}
         \end{figure}
         \end{multicols}
