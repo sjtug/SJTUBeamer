@@ -54,15 +54,28 @@
 
 \section{编译}
 
-该模板的使用范例代码请见 \href{https://github.com/LogCreative/SJTUBeamer/blob/main/src/main.tex}{测试文件}。需要使用副本时请直接拷贝 \verb"src" 文件夹修改测试文件，目前版本不要轻易删除样式文件。
+该模板的使用范例代码请见 \href{https://github.com/LogCreative/SJTUBeamer/blob/main/doc/red.tex}{测试文件}。您可以使用 \href{https://www.overleaf.com/latex/templates/sjtubeamermin/shxnnnjjgqvp}{在线版本} 。
+
+使用 \href{https://github.com/LogCreative/SJTUBeamer/generate}{\texttt{Use This Template}} 按钮可以将本存储库附带的 Github Actions 自动编译设置同时拷贝，在提交修改 \verb"main.tex" 文件后会自动编译出 PDF 文件，置于 Github Actions 详情页面的 Artifacts 一栏。
+
+如果需要本地运行，可以采用 \verb"l3build" 安装：
+\begin{verbatim}
+	l3build ctan
+	l3build install
+\end{verbatim}
+
+有些系统不支持上述方法，可以采用老版解包方法：
+\begin{verbatim}
+	cd source
+	latex beamerthemesjtubeamermin.ins
+\end{verbatim}
+按照提示将输出文件放置在需要调用的文件同一目录下。
 
 可以直接使用 \verb"latexmk" 编译。为了编译出目录，需要编译两次；如果需要编译出参考文献，则需要按照下面的顺序编译：
 \begin{quotation}
     \LaTeX{} $\rightarrow$ \textsc{Biber} $\rightarrow$ \LaTeX{} $\rightarrow$ \LaTeX{}
 \end{quotation}
 如果使用 VS Code，可以右键总文件夹，选择 \textbf{通过 Code 打开} 加载配置。如果没有对参考文献做出更多的修改时，可以直接使用一次编译刷新即可。当然也可以使用草稿模式 \verb"draft" 快速预览内容。
-
-使用 \href{https://github.com/LogCreative/SJTUBeamer/generate}{\texttt{Use This Template}} 按钮可以将本存储库附带的 Github Actions 自动编译设置同时拷贝，在提交修改 \verb"main.tex" 文件后会自动编译出 PDF 文件，置于 Github Actions 详情页面的 Artifacts 一栏。
 
 \section{选项}
 
