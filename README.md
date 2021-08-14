@@ -16,7 +16,7 @@ sjtubeamermin 样式为上海交通大学幻灯片模板的 LaTeX 非官方实�
 
 ## 局部安装
 
-可以在 发布页 得到对应的发布包，使用发布包内的 `sty` 文件以及 `pdf` logo 文件附着于本地文件夹内即可使用。
+可以在 [发布页](https://github.com/LogCreative/SJTUBeamermin/releases) 得到对应的发布包，使用发布包内的 `sty` 文件以及 `pdf` logo 文件附着于本地文件夹内即可使用。
 
 ## 构建
 
@@ -36,6 +36,50 @@ latex beamerthemesjtubeamermin.ins
 ## 示例
 
 详见 [示例文件](doc/red.tex) 。
+
+> (C) 2021 Log Creative
+>
+> 图标归 [上海交通大学](vi.sjtu.edu.cn) 所有，本模板不持有该版权。根据规定，任何校外人员用于商业用途均需要向学校申请。
+> 任何不当使用，Log Creative 免于相关责任。
+> 
+> 本作品遵守 [LPPL-1.3c](LICENSE) 协议。
+
+-----
+
+## Shanghai Jiao Tong University LaTeX Beamer Template - VI Minimal Workset (Unofficial)
+
+`sjtubeamermin` theme is an unofficial implementation of SJTU UI, as a beamer theme for making presentation. SJTU logo and its related graphics are owned by SJTU, which requires the permission from SJTU administration for any commercial purposes.
+
+[Documentation (Chinese)](doc/sjtubeamermintheme.pdf)
+
+[Developer's Guide](doc/sjtubeamermindevguide.pdf)
+
+## Quick Run
+
+After [Use this template](https://github.com/LogCreative/SJTUBeamermin/generate), modify `doc/my.tex`. You could see the produced document from GitHub Actions page.
+
+## Local Installation
+
+可以在 [发布页](https://github.com/LogCreative/SJTUBeamermin/releases) 得到对应的发布包，使用发布包内的 `sty` 文件以及 `pdf` logo 文件附着于本地文件夹内即可使用。
+
+## Build
+
+Local build through `l3build`:
+```
+l3build ctan
+l3build install
+```
+
+If it doesn't work, you could use the old method：
+```
+cd source
+latex beamerthemesjtubeamermin.ins
+```
+Copy the generated file to the required place.
+
+## Example
+
+See [example code](doc/red.tex) for details.
 
 > Copyright (C) 2021 Log Creative
 >
