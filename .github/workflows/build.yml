@@ -15,4 +15,7 @@ jobs:
         uses: actions/upload-artifact@v2
         with:
           name: package
-          path: sjtubeamermin-ctan.zip
+          path: |
+            sjtubeamermin-ctan.zip
+            doc/red.pdf
+            doc/blue.pdf
