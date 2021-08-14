@@ -1,0 +1,17 @@
+on: [push]
+jobs:
+  l3buid:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Set up Git repository
+        uses: actions/checkout@v2
+      - name: Build package
+      - uses: xu-cheng/texlive-action/full@v1
+        with:
+          run: |
+            l3build ctan
+      - name: Upload package
+        uses: actions/upload-artifact@v2
+        with:
+          name: package
+          path: sjtubeamermin-ctan.zip
