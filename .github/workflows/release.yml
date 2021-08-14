@@ -12,6 +12,7 @@ jobs:
       - name: Set up Git repository
         uses: actions/checkout@v2
       - name: Get Tag
+        id: tagName
         uses: olegtarasov/get-tag@v2.1
       - name: Build package
         uses: xu-cheng/texlive-action/full@v1
@@ -25,5 +26,7 @@ jobs:
         with:
           repo_token: "${{ secrets.GITHUB_TOKEN }}"
           automatic_release_tag: "latest"
+          draft: true
           prerelease: false
+          title: "sjtubeamermin v${{ steps.tagName.outputs.tag }}"
           files: sjtubeamermin-ctan.zip
