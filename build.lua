@@ -13,7 +13,7 @@ installfiles     = {"*.sty","sjtucnlogo.pdf","sjtuenlogo.pdf"}
 docfiledir       = "doc"
 typesetexe       = "xelatex"
 typesetfiles     = {"sjtubeamermintheme.tex","sjtubeamermindevguide.tex"}
-typesetdemofiles = {"red.tex","blue.tex"}
+typesetdemofiles = {"red.tex","blue.tex","my.tex"}
 typesetsuppfiles = {"head.png","plant.jpg","test.csv","testgraph.tex","ref.bib"}
 
 testfiledir      = "test"

@@ -19,3 +19,8 @@ jobs:
             sjtubeamermin-ctan.zip
             doc/red.pdf
             doc/blue.pdf
+      - name: Upload My PDF
+        uses: actions/upload-artifact@v2
+        with:
+          name: PDF
+          path: doc/my.pdf

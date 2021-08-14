@@ -1,6 +1,6 @@
 # sjtubeamermin
 
-
+上海交通大学 LaTeX Beamer 幻灯片模板 - VI 最小工作集
 
 > Copyright (C) 2021 Log Creative
 > 
