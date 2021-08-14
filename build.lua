@@ -14,7 +14,7 @@ docfiledir       = "doc"
 typesetexe       = "xelatex"
 typesetfiles     = {"sjtubeamermintheme.tex","sjtubeamermindevguide.tex"}
 typesetdemofiles = {"red.tex","blue.tex","my.tex"}
-typesetsuppfiles = {"head.png","plant.jpg","test.csv","testgraph.tex","ref.bib"}
+typesetsuppfiles = {"head.png","plant.jpg","test.csv","testgraph.tex","ref.bib","cnlogored.pdf","enlogored.pdf"}
 
 testfiledir      = "test"
 checkengines     = {"xetex"}
