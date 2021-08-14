@@ -26,3 +26,5 @@ utils/
 build/
 *-ctan.zip
 *.xdv
+doc/red.pdf
+doc/blue.pdf
