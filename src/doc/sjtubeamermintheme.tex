@@ -1,0 +1,360 @@
+\documentclass[a4paper,12pt]{article}
+\usepackage{ctex}
+\usepackage{amsthm}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{geometry}
+\usepackage{graphicx}
+\usepackage{array}
+\usepackage{subfigure}
+% \usepackage{gbt7714}
+\usepackage{appendix}
+\usepackage{listings}
+\usepackage{xcolor}
+\usepackage{tikz}
+\usepackage{float}
+\usepackage{tcolorbox}
+\usepackage[ruled,vlined,commentsnumbered]{algorithm2e}
+\usepackage{multicol}
+\usepackage{pgfplots}
+\pgfplotsset{compat=1.17}
+\usepackage{indentfirst}
+\usepackage{enumitem}
+\usepackage[colorlinks,linkcolor=blue,anchorcolor=blue,citecolor=blue]{hyperref}
+\hypersetup{unicode} % to display the unicode char in the bookmark correctly
+\usepackage{bookmark} % should be introduced after package hyperref
+\usepackage{listings}
+% \setlength{\parskip}{1ex}
+\setenumerate[1]{itemsep=0pt,partopsep=0pt,parsep=\parskip,topsep=5pt}
+\setitemize[1]{itemsep=0pt,partopsep=0pt,parsep=\parskip,topsep=5pt}
+\setdescription{itemsep=0pt,partopsep=0pt,parsep=\parskip,topsep=5pt}
+\geometry{left=2.0cm,right=2.0cm,top=2.0cm,bottom=2.0cm}
+\renewcommand{\figurename}{图}
+\renewcommand{\tablename}{表}
+\renewcommand{\contentsname}{目录}
+\tcbuselibrary{raster}
+\tcbuselibrary{skins}
+\tcbuselibrary{documentation}
+
+\begin{document}
+\title{\textsf{SJTUBeamer} \fbox{\textsc{min}} 样式手册}
+\author{Log Creative}
+\date{1.0 \today}
+\maketitle
+
+\tableofcontents    % generate contents
+
+\clearpage
+
+\section{简介}
+
+\textsf{SJTUBeamer} \fbox{\textsc{min}} 样式为上海交通大学幻灯片模板的 \LaTeX{} 非官方实现版本，是符合\href{http://vi.sjtu.edu.cn/}{上海交通大学视觉形象识别系统}相关规范的最小工作集，图标版权归上海交通大学所有，本项目仅供校内人员学习参考使用。
+
+目前该样式处于正式发布版本, 欢迎通过拉取请求对本模板提出修改建议。
+
+\section{编译}
+
+该模板的使用范例代码请见 \href{https://github.com/LogCreative/SJTUBeamer/blob/main/doc/red.tex}{测试文件}。您可以使用 \href{https://www.overleaf.com/latex/templates/sjtubeamermin/shxnnnjjgqvp}{在线版本} 。
+
+使用 \href{https://github.com/LogCreative/SJTUBeamer/generate}{\texttt{Use This Template}} 按钮可以将本存储库附带的 Github Actions 自动编译设置同时拷贝，在提交修改 \verb"main.tex" 文件后会自动编译出 PDF 文件，置于 Github Actions 详情页面的 Artifacts 一栏。
+
+如果需要本地运行，可以采用 \verb"l3build" 安装：
+\begin{verbatim}
+	l3build ctan
+	l3build install
+\end{verbatim}
+
+有些系统不支持上述方法，可以采用老版解包方法：
+\begin{verbatim}
+	cd source
+	latex beamerthemesjtubeamermin.ins
+\end{verbatim}
+按照提示将输出文件放置在需要调用的文件同一目录下。
+
+可以直接使用 \verb"latexmk" 编译。为了编译出目录，需要编译两次；如果需要编译出参考文献，则需要按照下面的顺序编译：
+\begin{quotation}
+    \LaTeX{} $\rightarrow$ \textsc{Biber} $\rightarrow$ \LaTeX{} $\rightarrow$ \LaTeX{}
+\end{quotation}
+如果使用 VS Code，可以右键总文件夹，选择 \textbf{通过 Code 打开} 加载配置。如果没有对参考文献做出更多的修改时，可以直接使用一次编译刷新即可。当然也可以使用草稿模式 \verb"draft" 快速预览内容。
+
+\section{选项}
+
+\begin{docKey*}[SJTUBeamermin]{navigation}{=tools|subsections|pages}{默认 \texttt{tools}}
+    导航栏选项。默认为 \verb"tools"，即工具栏与页码组合。设置为 \verb"subsections"，将会产生子章节的跳转进度条。设置为 \verb"pages"，将仅显示页码信息。
+\end{docKey*}
+
+\begin{docKey*}[SJTUBeamermin]{lang}{=cn|en}{默认 \texttt{cn}}
+    语言选项，并决定校徽是中文校徽，还是英文校徽。校标使用\href{http://vi.sjtu.edu.cn/index.php/articles/base/4}{\textbf{校标组合的最小使用规范 A4-11}}的 18mm修正稿。安全空间满足\href{http://vi.sjtu.edu.cn/index.php/articles/base/4}{\textbf{校标组合的安全空间 A4-12}}的 $\frac{1}{5}$ 校标高度规定。注意，启用 \texttt{en} 将会导致中文包不会被加载，因为使用英文徽标时，幻灯片内容推荐为英文。
+\end{docKey*}
+
+\begin{docKey*}[SJTUBeamermin]{cjk}{=false|true}{默认 \texttt{false}}
+    是否使用 \textsf{CJK} 宏包。如果开启此选项，请使用 \verb"\begin{CJK}{UTF8}{hei}" 和 \verb"\end{CJK}" 包裹 \verb"document" 环境中的内容。
+\end{docKey*}
+
+\begin{docKey*}[SJTUBeamermin]{color}{=blue|red}{默认 \texttt{blue}}
+    使用蓝色或红色的颜色主题。根据官方学术版模板 \href{http://vi.sjtu.edu.cn/index.php/articles/app/8}{\textbf{B2-02-02}} 的相关说明，极简版式适合场合较为严肃、不适合题图复杂图片出现的情况，如需使用，建议所有内页均使用极简版式，以达到简洁、清爽的效果。故默认情况下本模板使用蓝色主题。
+\end{docKey*}
+
+\begin{docKey*}[SJTUBeamermin]{pattern}{=none|title|all}{默认 \texttt{title}}
+    使用印记矩阵底纹。默认为 \verb"title"，将会在标题页添加由 \href{http://vi.sjtu.edu.cn/index.php/articles/base/5}{\textbf{A5-03-01 辅助图形使用规范}} 规定的印记矩阵底纹，并采用了渐变底色的方式实现。如果选项为 \verb"none"，就不会产生底纹；如果选项为 \verb"all"，还会在每页的标题栏添加底纹，这可能会增加编译时间。
+
+    现在，每一节开始的页上都会自动添加底纹。
+\end{docKey*}
+
+\begin{docKey*}[SJTUBeamermin]{gbt}{=false|bibtex|true}{默认 \texttt{false}}
+    是否采用 GBT7714-2015 标准引用文献。推荐使用 \href{https://www.jabref.org/}{\textbf{JabRef}} 管理参考文献。
+    
+    \paragraph{\texttt{false}} 默认不采用，并使用 \verb"biblatex" 语法添加引用文件
+    \begin{verbatim}
+        % premable
+        \addbibresource{ref.bib}               % gbt!=bibtex
+    \end{verbatim}
+    并采用使用脚注的引用。此时不需要再另起参考文献的章节，当然，如果需要附上参考文献，使用下面的语句在正文插入：
+    \begin{verbatim}
+        % in document
+        \printbibliography[title=参考文献]      % gbt!=bibtex
+    \end{verbatim}
+    \paragraph{\texttt{bibtex}} 开启为 \verb"bibtex" 需要使用老式的 \textsc{Bib\TeX{}} 编译参考文献，并注释掉上述语句，使用下面的编译顺序：
+    \begin{quotation}
+        \LaTeX{} $\rightarrow$ \textsc{Bib\TeX{}} $\rightarrow$ \LaTeX{} $\rightarrow$ \LaTeX{}
+    \end{quotation}
+    在正文中添加引用文件：
+    \begin{verbatim}
+        % in document
+        \bibliography{ref.bib}                 % gbt=bibtex
+    \end{verbatim}
+    启用本选项也会导致 \verb"\cite" 命令不再被重定向到 \verb"\footfullcite"（使用脚注的引用）。
+    \paragraph{\texttt{true}} 使用 \verb"biblatex-gbt7714-2015" 样式，但是需要采用 \textsc{Xe}\LaTeX{} 或 Lua\LaTeX{} 编译，采用与 \verb"false" 一样的语句（本引用样式暂时不支持 pdf\LaTeX{}）。本模板目前暂时没有为这两种引擎的编译做优化，字体会有差别（*nix 系统上推荐使用\textsc{Xe}\LaTeX{}）。特别是 Lua\LaTeX{} 编译速度较慢，暂时不推荐使用。 
+    % 本模板已经使用 \verb"biblatex" 宏包作为参考文献的用户接口，所以不必使用老式 \textsc{Bib\TeX{}} 语法打印参考文献。修改 \verb"\addbibresource{ref.bib}" 更改参考文献目录，修改 \verb"\printbibliography[title=参考文献]" 中的 \verb"title" 属性可以更改参考文献的标题。
+\end{docKey*}
+
+% \begin{docKey*}[SJTUBeamermin]{logo}{=\marg{logo path}}{默认留空}
+%     自定义 logo 的路径。使用统一的接口以控制其在不同页面的大小（如果您执意要使用 \verb"\logo" 命令，推荐将高度设置为 0.7cm）。对于有自定义的二级机构 logo 时该命令比较有用，以及在试验其他的配色方案时可以采用高对比颜色的 logo，比如下面的选项设置即可载入红色 logo：
+%     \begin{verbatim}
+%         [logo=vi/cnlogored.pdf]
+%     \end{verbatim}
+% \end{docKey*}
+
+\section{环境}
+
+\begin{docEnvironment*}[doc parameter=\oarg{listing options}\marg{title}, doclang/environment content=code]{codeblock}{}
+    代码块。第一个参数是向 \verb"listing" 宏包传递的参数，可以通过使用 \verb"[language=c++]"指定语言，第二个参数为代码块的标题。参数可以用 \verb"{}" 留空，但不要省略大括号。需要清理代码的缩进。注意代码块所在的幻灯片需要添加 \verb"fragile" 参数，也就是 \verb"\begin{frame}[fragile]"。
+\end{docEnvironment*}
+
+\begin{docEnvironment*}[doclang/environment content=code]{stampbox}{\oarg{bordercolor}}
+    图片印记边框盒。根据 \href{http://vi.sjtu.edu.cn/index.php/articles/base/5}{\textbf{A5-03-02 辅助图形使用规范}}，可以使用辅助图形添加辅助边。这里采用了单一的印记边框线条，而没有使用填充式。该样式符合官方学术版模板 \href{http://vi.sjtu.edu.cn/index.php/articles/app/8}{\textbf{B2-02-02}} 的示例。\meta{code} 为需要包裹的内容。该边框盒不是强制使用的，主要为了丰富视觉效果与统一视觉形象。本模板通过程序自动生成边栏样条，不需要通过缩放方式对提供的样条进行适配。
+
+    \oarg{bordercolor} 用于指定边框颜色。默认使用主题色，也可以指定一种颜色。
+\end{docEnvironment*}
+
+\begin{docEnvironment*}[doclang/environment content=code]{axis}{}
+    插入原生统计图。该模板对于使用 \textsf{PGFPlots} 生成的统计图进行了样式统一，主要改变了配色方案为当前主题，适当改变了线宽设定。高度默认为 0.5 倍页高。
+    % 由于统计图一般需要通过一些说明文字进行解释，所以在使用双栏版式时统计图的宽度将会被自动设定为栏宽。
+    作者也制作了一个 \href{https://logcreative.github.io/PGFPlotsEdt/index.html?lang=cn}{\textbf{PGFPlots 统计绘图编辑器}}，便于自动生成产生该类型统计图的 \LaTeX{} 代码，关于 \textsf{PGFPlots} 宏包的使用提示也可以在 \href{https://logcreative.github.io/LaTeXSparkle/}{像模像样\LaTeX} 的 \href{https://logcreative.github.io/LaTeXSparkle/src/art/chapter06.html}{第六节} 找到。
+\end{docEnvironment*}
+
+\section{命令}
+
+\begin{docCommand*}[]{institute}{\oarg{shortname}\marg{name}}
+    二级机构名称。添加本条命令将会按照 \href{https://vi.sjtu.edu.cn/index.php/articles/base/4}{\textbf{A4-08 二级机构中英文名称横式混合}} 对标题页的徽标与二级机构组合。其中\marg{name}为机构的中文全称，而\oarg{shortname}为机构的英文全称。当语言被设定为英文时，将会只显示英文全称并可以使用换行符号 \verb"\\" 对长名称换行。
+\end{docCommand*}
+
+\begin{docCommand*}[]{logo}{\marg{pictureenv}}
+    logo 路径。添加本项可以自定义 logo 图片，在标题页中将会放置高度 1cm 的 logo，在页内将会放置高度 0.7cm 的 logo。对于有自己徽标的二级机构，可以参照 \href{https://vi.sjtu.edu.cn/index.php/articles/base/4}{\textbf{A4-10-01 衍生应用中英文标准字组合}} 设置成自定义徽标文件的路径，必要时关闭 \verb"\institute" 命令。
+\end{docCommand*}
+
+\begin{docCommand*}[]{titlegraphic}{\marg{pictureenv}}
+    标题页的附加图片。添加本项让幻灯片标题页更加个性化，在标题页右下角会出现插入的图片，并可以采用 \verb"stampbox" 印记边框包裹起来。
+\end{docCommand*}
+
+\begin{docCommand*}[]{part}{\marg{part name}}
+    部分页。当一个幻灯片过长时，可以使用部分将幻灯片切割为多个部分，每一部分的小节信息是相互独立的。本模板提供了对应的部分页模板，并在插入部分信息后自动生成一个部分页。部分页将不会包含底端导航信息，而是在紧跟章节名后添加本部分内的小节导航条。
+\end{docCommand*}
+
+\begin{docCommand*}[]{sectionpage}{}
+    节页。可以通过手动添加 \verb"\frame{\sectionpage}" 的方式添加当前节的提示页。
+\end{docCommand*}
+
+\begin{docCommand*}[]{subsectionpage}{}
+    小节页。可以通过手动添加 \verb"\frame{\subsectionpage}" 的方式添加当前小节的提示页。本模板在小节页上既显示节的信息，也会显示小节的信息，因为小节作为节的组成部分，应当附属节的名称。如果希望在每一个小节前都添加一个小节页的话，可以在开始的部分添加如下的代码：
+    \begin{verbatim}
+\AtBeginSubsection[]{
+    \begin{frame}
+        \subsectionpage
+    \end{frame}
+}\end{verbatim}
+    可以作为新的目录形式。更为传统的方法是显示该节在整个部分的位置：
+    \begin{verbatim}
+\AtBeginSubsection[]{
+    \begin{frame}
+        \tableofcontents[currentsection,currentsubsection]
+    \end{frame}
+}\end{verbatim}
+    两者都是可行的。
+\end{docCommand*}
+
+\begin{docCommand*}[]{pgfplotstabletypeset}{\marg{file}}
+    通过文件插入表格。这里默认表格文件为逗号分隔符格式（\verb".csv"），这种格式的表格可以通过 Excel 等外部软件导出而不必在 \LaTeX{} 内手动排版。本模板对于该类型插入的表格进行了样式统一，使用通用的三线表格并对表头使用主题颜色，一定程度上参考了 \href{https://vi.sjtu.edu.cn/index.php/articles/app/7}{\textbf{B1-16-01 档案袋}} 的表格设定。
+\end{docCommand*}
+
+\begin{docCommand*}[]{alert}{\marg{text}}
+    强调文字，采用主色作为强调色。
+\end{docCommand*}
+
+以下命令不是 \textsf{Beamer} 的通用命令，迁移套用其他模板时请注释掉。
+
+\begin{docCommand*}[]{emph}{\marg{text}}
+    强调文字，采用主色与二级色的中间色作为强调色。作为从文档类迁移的兼容接口。
+\end{docCommand*}
+
+\begin{docCommand*}[]{highlight}{\marg{text}}
+    高亮文字，采用主色底矩形、白色文字以产生高亮的效果。
+\end{docCommand*}
+
+\begin{docCommand*}[]{paragraph}{\marg{text}}
+    段落开始，但这里被重定向到了 \verb"\highlight" 命令，用于生成主色底矩形的强调条目。作为从文档类迁移的兼容接口。
+\end{docCommand*}
+
+\begin{docCommand*}[]{makebottom}{}
+    制作封底。本模板提供了 \href{https://vi.sjtu.edu.cn/index.php/articles/app/7}{\textbf{B1-20-01 文件封套（封面封底）}} 样式的封底。右上角为学校徽标。左下角中文时，提示语为“谢谢”，英文时，提示语为``Thank You''。并且紧跟该幻灯片的作者与标题。
+\end{docCommand*}
+
+\begin{docCommand*}[]{stamparray}{\marg{size}\marg{starting point}\marg{ending point}}
+    印记矩阵。用于在 \docAuxEnvironment*[]{tikzpicture} 环境内手动生成 \href{http://vi.sjtu.edu.cn/index.php/articles/base/5}{\textbf{A5-05 辅助底纹制作}} 规定的印记矩阵。其中，\meta{size} 用于定义印记大小，\meta{starting point},\meta{ending point} 用于定义矩形对角顶点，均为二维坐标 \verb"(x,y)"。 
+\end{docCommand*}
+
+\newpage
+\section{样式}
+
+\subsection{活力红}
+
+活力红版本，配色方案满足\href{http://vi.sjtu.edu.cn/index.php/articles/base/3}{\textbf{辅助色彩规范 A3-02-01}}。\hfill\texttt{color=red}
+
+\begin{tcbraster}[raster columns=3,colframe=red,colback=white,
+    colbacktitle=red!50!white,fonttitle=\small\bfseries\ttfamily,
+    left=0pt,right=0pt,top=0pt,bottom=0pt,boxsep=0pt,boxrule=0.6pt,
+    toptitle=1mm,bottomtitle=1mm,drop lifted shadow,center title,
+    graphics pages={1,...,12}]
+    \tcbincludepdf{red.pdf}
+\end{tcbraster}
+
+\clearpage
+\subsection{简约蓝}
+
+简约蓝版本，配色方案满足\href{http://vi.sjtu.edu.cn/index.php/articles/base/3}{\textbf{辅助色彩规范 A3-02-02}}。\hfill \texttt{color=blue}
+
+\begin{tcbraster}[raster columns=3,colframe=blue,colback=white,
+    colbacktitle=blue!50!white,fonttitle=\small\bfseries\ttfamily,
+    left=0pt,right=0pt,top=0pt,bottom=0pt,boxsep=0pt,boxrule=0.6pt,
+    toptitle=1mm,bottomtitle=1mm,drop lifted shadow,center title,
+    graphics pages={1,...,12}]
+    \tcbincludepdf{blue.pdf}
+\end{tcbraster}
+
+\clearpage
+\subsection{其他样式}
+
+本模板具有一定的颜色样式去耦合，并根据 \href{http://vi.sjtu.edu.cn/index.php/articles/base/3}{\textbf{品牌专用色彩搭配表 A3-05}}，通过在导言区再添加 \verb"\usecolortheme{beaver}"
+对 \textsf{beamer} 内置颜色样式进行了测试，结果如下。
+
+\begin{center}
+    \begin{tabular}{|>{\ttfamily}m{5em}|c|c|c|c|}
+        \hline
+        模板参数 & 蓝主红标(BR) & 蓝主白标(BW) & 红主红标(RR) & 红主白标(RW) \\
+        \hline
+        color=   & \scriptsize\ttfamily blue & \scriptsize\ttfamily blue & \scriptsize\ttfamily red           & \scriptsize\ttfamily red   \\
+        logo=    & \scriptsize\ttfamily vi/cnlogored.pdf & &\scriptsize\ttfamily  vi/cnlogored.pdf& \\
+        \hline
+    \end{tabular}
+
+    \begin{tabular}{|>{\ttfamily}m{5em}|c|c|c|c|}
+        \hline
+        颜色主题 & 蓝主红标(BR) & 蓝主白标(BW) & 红主红标(RR) & 红主白标(RW) \\
+        \hline
+        albatross   &           & $\cdot$ &          &   \\
+        beaver      & $\odot $  &         & $\boxdot $ &          \\
+        beetle      &           & $\cdot$  &          & $\cdot$  \\
+        crane       & $\odot $  & $\odot $ & $\odot $  & $\odot $ \\
+        default     & & $\oslash$ &  & $\oslash$ \\
+        dolphin     & $\circ $  & $\odot $ & $\odot $  & $\cdot$ \\
+        dove        & $\circ$   &          & $\circ$   &  \\
+        fly         & $\cdot$   & $\cdot$ & $\cdot$ & $\cdot$  \\
+        lily        & $\circ$   &  $\circ$ & $\circ$ & \\
+        monarca     & $\circ$   &  $\circ$  &  $\circ$  &  $\circ$  \\
+        orchid      &           & $\odot $ & & $\odot $\\
+        rose    &  &$\circ$ & & $\circ$  \\
+        seagull & $\boxdot$ & $\odot $ & $\boxdot$ & $\odot $ \\
+        seahorse & $\boxdot$ & & $\boxdot$ & \\
+        sidebartab & & $\oslash  $ & & $\oslash  $ \\
+        spruce  & $\boxdot$ & & $\boxdot$ & \\
+        structure & & $\oslash  $ &  & $\oslash  $\\
+        whale & & $\odot $ & & $\boxdot $ \\
+        \hline
+    \end{tabular}
+
+    \begin{tabular}{|c|c|c|c|c|c|}
+        \hline
+                & $\cdot$ & $\circ$ & $\odot $ & $\oslash  $ & $\boxdot$ \\
+        \hline
+        不通过  &  仅标题页通过 & 仅内容页通过 & 通过 & 通过但无影响 & 推荐 \\
+        \hline 
+    \end{tabular}
+\end{center}
+
+更详细的信息参见 \verb"color" 文件夹。不通过的部分是违反规定的。即使是通过的部分也需要慎重使用，因为不再符合原本的规范。更为高级的方式是在行文过程中不断更换颜色主题，或者是手动添加对应的颜色配置。
+
+\section{拓展阅读}
+可以前往 \href{https://logcreative.github.io/LaTeXSparkle/}{像模像样\LaTeX} 的 \href{https://logcreative.github.io/LaTeXSparkle/src/art/chapter07.html}{第七节} 阅读有关 \verb"Beamer" 宏包使用的相关信息。
+
+本模板与 \href{https://github.com/LogCreative/AutoBeamer/tree/pkg}{\textbf{内嵌版本的 \textsf{AutoBeamer}}} 幻灯片自动分割模块兼容。也可以使用 \href{https://logcreative.github.io/AutoBeamer/}{\textbf{\textsf{AutoBeamer} 在线版本}}，并通过 \verb"\usetheme{SJTUBeamermin}" 使用本主题。
+
+如果您有兴趣帮助开发本模板，可以参见 \href{https://github.com/LogCreative/SJTUBeamermin/blob/main/CONTRIBUTING.md}{本文件} 试着贡献代码。欢迎提供任何建议！
+
+% \clearpage
+
+% \section*{更名公告}
+
+% 已经注意到本模板的呼号与 \href{https://github.com/sjtug/SJTUBeamer}{SJTUG 维护版本} 一致的问题，为了避免未来发布时的命名冲突，本模板将会自发布版本（$\beta$-0.8）更名为 \textsf{SJTUBeamer} \fbox{\textsc{min}}，届时需要使用新版本模板的用户烦劳将模板调用行做出如下更正：
+% \begin{verbatim}
+%     \usebeamertheme{SJTUBeamer} -> \usebeamertheme{SJTUBeamermin}
+% \end{verbatim}
+
+% 给各位用户带来的不便深表歉意，也请期待 \href{https://logcreative.github.io/LaTeXSparkle/}{像模像样\LaTeX} 项目的更多内容，未来将视支持情况推出 max 版本。
+
+% \begin{quotation}\itshape
+%     min - minimal: minimal work set of SJTU VI.
+
+%     min - minimalism: designed in the style of minimalism.
+
+%     min - minimum: minimum shapes to show your content.
+% \end{quotation}
+
+% \noindent Log Creative\\敬上
+
+\vfill
+
+\scriptsize  
+
+Copyright 2021 Log Creative \& \LaTeX{} Sparkle Project
+
+Licensed under the Apache License, Version 2.0 (the ``License'');
+you may not use this file except in compliance with the License.
+You may obtain a copy of the License at
+
+    \href{http://www.apache.org/licenses/LICENSE-2.0}{http://www.apache.org/licenses/LICENSE-2.0}
+
+Unless required by applicable law or agreed to in writing, software
+distributed under the License is distributed on an ``AS IS'' BASIS,
+WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+See the License for the specific language governing permissions and
+limitations under the License.
+
+The Current Maintainer of this work is Log Creative.
+
+\vfill
+
+% If this document has no reference,
+% please use pdfLaTeX compilation once.
+%\bibliography{ref}
+
+\end{document}

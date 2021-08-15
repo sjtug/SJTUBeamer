@@ -1,0 +1,150 @@
+\documentclass[
+    % draft,                             % 草稿模式
+    % aspectratio=169,                   % 使用 16:9 比例
+]{beamer}
+\mode<presentation>
+\usetheme[
+    % navigation=subsections,            % 使用子章节进度显示
+    % lang=en,                           % 使用英文
+    % cjk=true,                          % 使用CJK而不是ctex
+    color=red,                         % 使用红色主题
+    % pattern=all,                        % 使用全图案装饰
+    % gbt=bibtex,                        % 使用 gbt (使用 bibtex 编译)
+]{sjtubeamermin}
+% \usecolortheme[]{beaver}                 % 使用其他颜色主题
+\addbibresource{ref.bib}               % gbt!=bibtex
+
+\begin{document}
+    \institute[School of Mathematical Sciences]{数学科学学院}   % 组织
+    % \logo{
+    %     \includegraphics{vi/cnlogored.pdf}  % 重定义 logo
+    % }
+    \titlegraphic{                         % 标题图像
+        \begin{stampbox}[white]
+            \includegraphics[width=0.3\textwidth]{head.png}
+        \end{stampbox}
+    }
+    \title{SJTUBeamer \fbox{\textsc{min}} 幻灯片模板}  % 标题
+    \subtitle{SJTUBeamer \fbox{\textsc{min}} Template}         % 副标题
+    \author{Log Creative}                  % 作者
+    \date{\today}                          % 日期  
+    \maketitle                             % 创建标题页
+
+\part{第一部分}
+
+% 使用节目录
+% \AtBeginSection[]{
+%     \begin{frame}
+%         % \tableofcontents[currentsection]           % 传统节目录             
+%         \sectionpage                   % 节页
+%     \end{frame}
+% }
+
+% 使用小节目录
+\AtBeginSubsection[]{                  % 在每小节开始
+    \begin{frame}
+        % \tableofcontents[currentsection,currentsubsection]             % 传统小节目录             
+        \subsectionpage                % 小节页
+    \end{frame}
+}
+
+\section{第 1 节}
+\subsection{第 1 小节}
+
+    \begin{frame}
+        \frametitle{标题}
+
+        \paragraph{列表} 这个\alert{幻灯片}有下面几项：
+
+        \begin{itemize}
+            \item 第 1 项
+            \item 第 2 项
+            \item 第 3 项
+        \end{itemize}
+
+    \end{frame}
+
+    \begin{frame}
+        \frametitle{标题}
+        \framesubtitle{子标题}
+
+        \begin{equation}
+            x^2+2x+1=(x+1)^2
+        \end{equation}
+        
+    \end{frame}
+
+\section{第 2 节}
+    \begin{frame}
+        \frametitle{一些盒子}
+        
+        \begin{block}{盒子}
+            这是一个盒子\cite{beamerman}
+        \end{block}
+
+        \begin{alertblock}{注意}
+            注意内容
+        \end{alertblock}
+
+        \begin{exampleblock}{示例}
+            示例内容
+        \end{exampleblock}
+    \end{frame}
+
+    \begin{frame}[fragile]          % 注意添加 fragile 标记
+        \frametitle{代码块}
+        % 代码块参数：语言，标题
+        % 请减少代码初始的缩进
+        \begin{codeblock}[language=c++]{C++代码}
+#include<iostream>
+
+int main(){
+    // Console Output
+    std::cout << "Hello, SJTU!" << std::endl;
+    return 0;
+}
+        \end{codeblock}
+    \end{frame}
+
+    \begin{frame}
+        \frametitle{图}
+        \begin{figure}
+            \centering
+            \begin{stampbox}
+                \includegraphics[height=0.3\textheight]{plant.jpg}
+            \end{stampbox}
+            \caption{图片标题\cite{viman}}
+        \end{figure}
+    \end{frame}
+
+    \begin{frame}
+        \frametitle{表与统计图}
+        \begin{multicols}{2}
+        \begin{table}
+            \caption{表格标题\cite{pgfplotstableman}}
+            \pgfplotstabletypeset[
+                columns/Quick/.style={dec sep align},
+                columns/Cocktail/.style={dec sep align},
+                column type=r,
+                % fixed zerofill,
+            ]{test.csv}
+        \end{table}
+        
+        \begin{figure}
+            \input{testgraph.tex}
+            \caption{统计图标题\cite{pgfplotsman}}
+        \end{figure}
+        \end{multicols}
+    \end{frame}
+
+
+% gbt=bibtex
+\part{参考文献}
+    \begin{frame}[allowframebreaks]
+        \printbibliography[title=参考文献]    % gbt!=bibtex
+        % \bibliography{ref.bib}             % gbt=bibtex
+    \end{frame}
+
+    \makebottom     % 创建尾页  % 非标准命令
+
+\end{document}
