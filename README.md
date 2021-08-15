@@ -42,7 +42,7 @@ latex beamerthemesjtubeamermin.ins
 > 图标归 [上海交通大学](vi.sjtu.edu.cn) 所有，本模板不持有该版权。根据规定，任何校外人员用于商业用途均需要向学校申请。
 > 任何不当使用，Log Creative 免于相关责任。
 > 
-> 本作品遵守 [LPPL-1.3c](LICENSE) 协议。
+> 本作品遵守 [Apache-2.0](LICENSE) 协议。
 
 -----
 
@@ -86,6 +86,11 @@ See [example code](doc/red.tex) for details.
 > The copyright holder for the logo is SJTU. The template itself doesn't change the ownership of the related graphics in the guideline. 
 SJTU logo and related pattern are only available for non-commercial purposes.
 > 
-> This work may be distributed and/or modified under the
-conditions of the LaTeX Project Public License, either version 1.3
-of this license or (at your option) any later version.
+>    Copyright 2021 LogCreative
+
+>  Licensed under the Apache License, Version 2.0 (the "License");
+   you may not use this file except in compliance with the License.
+   You may obtain a copy of the License at
+>
+>       http://www.apache.org/licenses/LICENSE-2.0
+>
