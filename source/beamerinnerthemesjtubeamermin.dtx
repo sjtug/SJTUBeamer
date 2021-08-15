@@ -1,0 +1,616 @@
+% \iffalse meta-comment ---------------------------------------------
+% Copyright (C) 2021 LogCreative
+%
+% Licensed under the Apache License, Version 2.0 (the "License");
+% you may not use this file except in compliance with the License.
+% You may obtain a copy of the License at
+%
+%     http://www.apache.org/licenses/LICENSE-2.0
+%
+% Unless required by applicable law or agreed to in writing, software 
+% distributed under the License is distributed on an "AS IS" BASIS,
+% WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+% See the License for the specific language governing permissions and
+% limitations under the License.
+%
+% The Current Maintainer of this work is Log Creative.
+% ------------------------------------------------------------------- \fi
+% \iffalse
+%<*package>
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesPackage{beamerinnerthemesjtubeamermin}[2021-08-14 sjtubeamermin inner theme v1.0]
+%</package>
+% \fi
+% \CheckSum{0}
+% \StopEventually{}
+% \iffalse
+%<*package>
+% ------------------------------------------------------------------- \fi
+%
+%
+% \subsection{Inner Theme}
+%
+%
+% A |beamer| inner theme dictates the style of the frame elements traditionally
+% set in the ``body'' of each slide. These include:
+%
+% \begin{itemize}
+%   \item title, part, and section pages;
+%   \item itemize, enumerate, and description environments;
+%   \item block environments including theorems and proofs;
+%   \item figures and tables; and
+%   \item footnotes and plain text.
+% \end{itemize}
+%
+%
+%   \subsubsection{Package Dependencies}
+%
+%    \begin{macrocode}
+\RequirePackage{pgfplots}
+\RequirePackage{array}
+\RequirePackage{colortbl}
+\RequirePackage{booktabs}
+\RequirePackage{pgfplotstable}
+\RequirePackage{tcolorbox}
+\RequirePackage{multicol}
+%    \end{macrocode}
+%
+%   \subsubsection{Option Declaration}
+%
+%   \begin{macro}{lang}
+%     Specify the language of this beamer, which will affect the version of the loaded logo.
+%    \begin{macrocode}
+\DeclareOptionBeamer{lang}{\def\beamer@sjtubeamermin@lang{#1}}
+\def\beamer@sjtubeamermin@langcn{cn}%
+\def\beamer@sjtubeamermin@langen{en}%
+%    \end{macrocode}
+%   \end{macro}
+%
+%   \begin{macro}{pattern}
+%     The pattern mode, which will affect the pattern generation in the title page.
+%    \begin{macrocode}
+\DeclareOptionBeamer{pattern}{\def\beamer@sjtubeamermin@pattern{#1}}
+\def\beamer@sjtubeamermin@patternnone{none}%
+\def\beamer@sjtubeamermin@patterntitle{title}%
+\def\beamer@sjtubeamermin@patternall{all}%
+%    \end{macrocode}
+%   \end{macro}
+%
+%   \begin{macro}{color}
+%     The selected color theme, which will affect the color in the title page, bottom page and the inner highlighter.
+%    \begin{macrocode}
+\DeclareOptionBeamer{color}{\def\beamer@sjtubeamermin@color{#1}}
+\def\beamer@sjtubeamermin@colorblue{blue}%
+\def\beamer@sjtubeamermin@colorred{red}%
+%    \end{macrocode}
+%   \end{macro}
+%   
+%   The default default setting will get executed here before the settings defined by the user got processed.
+%    \begin{macrocode}
+\ExecuteOptionsBeamer{
+  lang=cn,
+  color=blue,
+  pattern=all
+}
+\ProcessOptionsBeamer
+%    \end{macrocode}
+%
+%   \subsubsection{Shape Dependencies}
+%   Load the shape package from \verb"sjtuvishape". To provide the logo, stamp array, and stampline (stampbox is not included).
+%    \begin{macrocode}
+\RequirePackage{sjtuvishape}
+%    \end{macrocode}
+%
+% \subsubsection{Title Page}
+%
+%   Declare two fadings: center fade and fade right. The center fade provides a radial fading on the right side of the title page. The fade right provides a linear fading to avoid the collision on the text in the left.
+%    \begin{macrocode}
+\tikzfading[
+  name=center fade,
+  inner color=transparent!0,
+  outer color=transparent!15
+]
+\tikzfading[
+  name=fade right,
+  left color=transparent!0,
+  right color=transparent!100
+]
+%    \end{macrocode}
+%
+%   Define the \verb"title page" template. 
+%    \begin{macrocode}
+\defbeamertemplate*{title page}{sjtubeamermin}[1][]
+{
+  \vbox{}
+%    \end{macrocode}
+%   The background of the title page is implemented by a TikZ rectangle, which avoids the changing on \verb"background canvas" beamer color. 
+%
+%   In this definition environment, you could not change the beamer color. The older version redefines \verb"maketitle" command and switches the \verb"background canvas" color, which is harmful for decoupling. 
+%
+%   Use TikZ rectangle also avoids the unexpected shift because the risk of redefining the internal command is avoided. If there is any text before the title page, the \verb"\maketitle" will start from a new page.
+%    \begin{macrocode}
+  \usebeamercolor{palette primary}
+  \begin{tikzpicture}[overlay]
+    \fill [palette primary.bg] (-0.2*\the\paperwidth,-1*\the\paperheight) 
+      rectangle (1*\the\paperwidth, 0.2*\the\paperheight);
+  \end{tikzpicture}
+%    \end{macrocode}
+%   If it is in draftmode, no pattern will get rendered.
+%    \begin{macrocode}
+  \ifbeamer@draftmode%
+%    \end{macrocode}
+%   Otherwise, the fade tile of stamp array will get covered on top of the background rectangle.
+%   \verb"stamp array" is defined in \verb"SJTUvishape". Then, a fade right covers this array layer and a center fade covers the previous result.
+%    \begin{macrocode}
+  \else%
+    \ifx\beamer@sjtubeamermin@pattern\beamer@sjtubeamermin@patternnone%
+    \else%
+    \begin{tikzpicture}[overlay]
+      \stamparray{20pt}
+        {(-0.2*\the\paperwidth,-1*\the\paperheight)}
+        {(1*\the\paperwidth, 0.2*\the\paperheight)}
+      \fill [bg,path fading=fade right] 
+        (-0.2*\the\paperwidth,-1*\the\paperheight) rectangle 
+        (1*\the\paperwidth, 0.2*\the\paperheight);
+      \fill [bg,path fading=center fade,xshift=-10pt,yshift=-20pt] 
+        (0.2*\the\paperwidth,0) circle [radius=\the\paperwidth];
+    \end{tikzpicture}
+    \fi%
+  \fi%
+%    \end{macrocode}
+%   Set a constraint in the vertical mode to make the following contents centered in the middle of the slide.
+%    \begin{macrocode}
+  \vfill
+  \begingroup
+    \centering
+%    \end{macrocode}
+%   \verb"resizebox" is used to adapt to all size of logo into 1cm height one. And it is the same in outer theme to make a 0.7cm logo. 
+%   The institute is in \TeX{} code for typesetting. \verb"\beamer@shortinstitute" meta is used to avoid compressing on \verb"\par", while \verb"\insertinstitute" will force the input to spread on one signle line. The mode to use is depended on the \verb"language" option. Super small font could be made by \verb"fontsize".
+%    \begin{macrocode}
+    \usebeamercolor{titlelike}
+    \begin{beamercolorbox}{logo}
+      \vskip8pt
+      \hbox{
+        \hskip4.5pt{\resizebox{!}{1cm}{\insertlogo}}
+        \ifx\insertinstitute\@empty%
+        \else
+          \ifx\insertlogo\@empty%
+          \else
+            {\hskip3pt \vrule width0.5pt}\hskip7pt
+          \fi
+          \ifx\beamer@sjtubeamermin@lang\beamer@sjtubeamermin@langcn%
+            \vbox{
+              \fontsize{13pt}{0pt}\selectfont
+              \insertinstitute
+              \par\noindent\vskip0.15em
+              \fontsize{5pt}{0pt}\selectfont
+              \textsc{\insertshortinstitute}
+              \baselineskip 3.2pt
+              \par~
+            }
+          \else%
+            \vbox to 1cm{
+              \vfill
+              \vbox{
+                \offinterlineskip
+                \noindent \strut
+                \baselineskip 0pt \lineskip -2pt
+                \scriptsize\textsc{\beamer@shortinstitute}
+                \strut
+              }
+              \vfill
+            }
+          \fi%
+        \fi%
+      }
+      \vskip8pt
+    \end{beamercolorbox}
+%    \end{macrocode}
+%   Insert title, subtitle, author, and date.
+%    \begin{macrocode}
+    \begin{beamercolorbox}[sep=8pt,#1]{title}
+      \usebeamercolor[fg]{palette primary}
+      \usebeamerfont{title}\inserttitle\par%
+      \ifx\insertsubtitle\@empty%
+      \else%
+        \vskip0.25em%
+        {\usebeamerfont{subtitle}\insertsubtitle\par}%
+      \fi%     
+    \end{beamercolorbox}%
+    \vskip1em\par
+    \begin{beamercolorbox}[sep=8pt,#1]{author}
+      \usebeamerfont{author}\insertauthor
+    \end{beamercolorbox}
+    \begin{beamercolorbox}[sep=8pt,#1]{date}
+      \usebeamerfont{date}\insertdate
+    \end{beamercolorbox}
+%    \end{macrocode}
+%   Here insert the titlegraphic. The node position is set to \verb"above left" to make sure the bottom of the picture is aligned to the bottom of the date line.
+%    \begin{macrocode}
+    \begin{tikzpicture}[overlay,yshift=0.77em]
+      \node [above left] at (0.88*\the\paperwidth,0) 
+        {\usebeamercolor[fg]{titlegraphic}\inserttitlegraphic};
+    \end{tikzpicture}
+  \endgroup
+  \vskip0.5em
+  \vfill
+}
+%    \end{macrocode}
+%
+% \subsubsection{Part Page}
+%   Define the \verb"part page" beamer template.
+%    \begin{macrocode}
+\defbeamertemplate*{part page}{sjtubeamermin}[1][]
+{
+  \vfill
+  \vskip 8pt
+  \begingroup
+%    \end{macrocode}
+%   Print the number of this part. If it is in Chinese, the translated version is printed.
+%    \begin{macrocode}
+    \begin{beamercolorbox}[sep=16pt,right,#1]{part title}
+      \hfill\usebeamerfont{part name}
+      \ifx\beamer@sjtubeamermin@lang\beamer@sjtubeamermin@langcn%
+      第~\insertromanpartnumber~部分
+      \else%
+        \partname~\insertromanpartnumber
+      \fi%
+      \par\vskip4pt
+      \usebeamerfont{part title}\insertpart\par
+%    \end{macrocode}
+%   Since navigation bar is packaged, to modify the color, you have to change the \verb"section in head/foot" beamer color. Here, the first move is to save the current color to a temporary variable. After the insertion, the previous color should be restored.
+%    \begin{macrocode}
+      \hbox to \textwidth{
+        \usebeamerfont{footline}%
+        \setbeamercolor{temp}{fg=section in head/foot.fg}
+        \setbeamercolor{section in head/foot}{use=palette primary,
+          fg=palette primary.fg,bg=}
+        \hfill
+        \insertnavigation{0.4\textwidth}
+        \hspace*{1cm}
+        \setbeamercolor{section in head/foot}{fg=temp.fg}
+      }
+    \end{beamercolorbox}
+  \endgroup
+  \vfill
+}
+%    \end{macrocode}
+%
+%   Redirect the part command to make a part page.
+%    \begin{macrocode}
+\AtBeginPart{
+  \begin{frame}
+    \partpage
+  \end{frame}
+}
+%    \end{macrocode}
+%
+% \subsubsection{Section Page and Subsection Page}
+%   Define the common \verb"\sectionblock" command to make the section block.
+%    \begin{macrocode}
+\def\sectionblock#1{
+  \begin{beamercolorbox}[sep=12pt,right,#1]{section title}
+    \usebeamerfont{section name}
+    \ifx\beamer@sjtubeamermin@lang\beamer@sjtubeamermin@langcn%
+      第~\insertsectionnumber~节
+    \else%
+      \sectionname~\insertsectionnumber
+    \fi%
+    \par\vskip4pt
+    \usebeamerfont{section title}\insertsection\par
+  \end{beamercolorbox}
+}
+%    \end{macrocode}
+%
+%   Define the \verb"section page" beamer template.
+%    \begin{macrocode}
+\defbeamertemplate*{section page}{sjtubeamermin}[1][]
+{
+  \vfill
+  \begingroup
+    \sectionblock{#1}
+  \endgroup
+  \vfill
+}
+%    \end{macrocode}
+%
+%   Define the \verb"subection page" beamer template.
+%    \begin{macrocode}
+\defbeamertemplate*{subsection page}{sjtubeamermin}[1][]
+{
+  \vfill
+  \begingroup
+    \sectionblock{#1}
+    \begin{beamercolorbox}[sep=8pt,right,#1]{subsection title}
+      \usebeamerfont{subsection name}
+      \ifx\beamer@sjtubeamermin@lang\beamer@sjtubeamermin@langcn%
+        第~\insertsubsectionnumber~小节
+      \else%
+        \subsectionname~\insertsubsectionnumber
+      \fi%
+      \par\vskip 4pt
+      \usebeamerfont{subsection title}\insertsubsection\par
+    \end{beamercolorbox}
+  \endgroup
+  \vfill
+}
+%    \end{macrocode}
+%
+% \subsubsection{Itemize Environments}
+%
+%   Set the item marker to circle and set the marker for section and subsection in TOC (Table of Contents) to circle.
+%    \begin{macrocode}
+\setbeamertemplate{items}[circle]
+\setbeamertemplate{sections/subsections in toc}[circle]
+%    \end{macrocode}
+%
+% \subsubsection{Block Environments}
+%
+%   Introduce \verb"sjtucolordef" package.
+%   The user-defined block environment should use the hard-coded color.
+%   Otherwise it will have side effect on displaying.
+%    \begin{macrocode}
+\RequirePackage{sjtucolordef}
+%    \end{macrocode}
+%
+% \begin{macro}{\highlight}
+%   Highlight the given text. Create a primary color background block with white as foreground.
+%    \begin{macrocode}
+\newtcbox{\highlight}[1][cprimary]{
+    on line,
+    arc=0pt,
+    colback=#1,
+    colupper=white,
+    boxrule=0pt,
+    boxsep=0pt,
+    left=4pt,
+    right=4pt,
+    top=2pt,
+    bottom=2pt
+}
+%    \end{macrocode}
+% \end{macro}
+%
+% \begin{macro}{\paragraph}
+%   Use \verb"\highlight" macro for making contrast.
+%   Since beamer has deleted \verb"\paragraph" macro in this class, this template defines a macro for that to indicate it is another point and more paragraph-like. It is useful for the migration from \verb"article" class.
+%    \begin{macrocode}
+\def\paragraph#1{\highlight{#1}~}
+%    \end{macrocode}
+% \end{macro}
+%
+%   Introduce the library from tcolorbox to make code blocks.
+%   \verb"listingsutf8" is used to receive UTF-8 input.
+%    \begin{macrocode}
+\tcbuselibrary{skins}
+\tcbuselibrary{listingsutf8}
+%    \end{macrocode}
+%   Declare the basic listing highlighter. \verb"columns" is set to \verb"flexible" to avoid ugly grid alignment. \verb"breaklines" is set to enable line wrapping.
+%    \begin{macrocode}
+\lstset{
+  basicstyle=\ttfamily\small,
+  keywordstyle=\color{cprimary},%
+  stringstyle=\color{csecondary},%
+  commentstyle=\color{ctertiary!80!gray},%
+  columns=flexible,
+  extendedchars=false,
+  showstringspaces=false,
+  showspaces=false,
+  breaklines
+}
+%    \end{macrocode}
+%
+% \begin{macro}{codeblock}
+%   Code block environment is made for presenting code in an obvious way. Two parameters are required. The first parameter is passed to listing, which mostly sets the language to highlight, see the \verb"listings" package for more details. And the second parameter receives the title to make.
+%    \begin{macrocode}
+\newtcblisting{codeblock}[2][]{
+listing only, 
+listing engine=listings,
+listing options={
+  #1,%
+  numbers=left,
+  numberstyle=\color{cprimary!80}\ttfamily\scriptsize,
+  numbersep=5pt,
+},
+enhanced,
+sharp corners,
+top=0mm,
+bottom=0mm,
+title=#2,
+colback=cprimary!5,
+colframe=cprimary!80,
+overlay={
+    \begin{tcbclipinterior}\fill[cprimary!20]%
+        (frame.south west) rectangle ([xshift=5mm]frame.north west);
+    \end{tcbclipinterior}
+}
+}
+%    \end{macrocode}
+% \end{macro}
+%
+%
+% \subsubsection{Figures}
+%
+% \begin{macro}{stampbox}
+%   Make a stampbox border, which is a decoration advice from SJTU VI. It has the dependency on \verb"stampline" from \verb"sjtuvishape" package.
+%    \begin{macrocode}
+\newtcolorbox{stampbox}[1][cprimary]{%
+  capture=hbox,
+  enhanced,
+  frame empty,
+  interior empty,
+  sharp corners,
+  top=2pt,bottom=2pt,left=2pt,right=2pt,
+  borderline={4pt}{0pt}{
+    #1,
+    line width=0.5pt,
+    decoration={
+      stampline,
+      segment length=8pt,
+      path has corners=true,
+    },
+    decorate
+  }
+}
+%    \end{macrocode}
+% \end{macro}
+%
+%   Set the default visual theme for \textsc{Pgfplots}. The cycle list is set to the current color theme. And lines on the graph is optimized to make it clear for presentation. The predefinition on the height is made to avoid the overfullbox on the vertical side.
+%    \begin{macrocode}
+\pgfplotsset{
+  compat=newest,
+  every axis/.style={
+    font=\small\sffamily\sansmath,
+    cycle multi list={
+      mark options={thick}\nextlist
+      mark list\nextlist
+      cprimary,csecondary,ctertiary\nextlist
+    },
+    height=0.5*\the\paperheight,
+    axis line style={
+      cprimary,
+      thin
+    },
+    every tick label/.style={
+      cprimary,
+      font=\small,
+      /pgf/number format/assume math mode=true
+    },
+    grid style={cprimary!10},
+    tick style={cprimary!50},
+    minor tick style={cprimary!30},
+    xlabel style={cprimary},
+    ylabel style={cprimary},
+    zlabel style={cprimary},
+    legend style={
+      draw={cprimary},
+      thin,
+      nodes={cprimary}
+    },
+    thick,
+  },
+}
+%    \end{macrocode}
+%
+% \subsubsection{Tables}
+%   Two macros are defined to make the header colored.
+%    \begin{macrocode}
+\def\zapcolorreset{\let\reset@color\relax\ignorespaces}
+\def\colorrows#1{\noalign{\aftergroup\zapcolorreset#1}\ignorespaces}
+%    \end{macrocode}
+%   Set the style of \textsc{Pgfplotstable}. The \verb"\colorrows" macro here is used for making the header colored. The \verb"booktabs" line is used to create a professional look.
+%    \begin{macrocode}
+\pgfplotstableset{
+  col sep=comma,
+  every table/.style={
+    font={\small\sffamily},
+  },
+  every head row/.style={
+    before row={
+      \arrayrulecolor{cprimary}
+      \toprule
+      \colorrows{\color{cprimary}}
+    },
+    after row={
+      \midrule
+      \colorrows{\color{black}}
+    },
+  },
+  every last row/.style={
+    after row=\bottomrule
+  },
+}
+%    \end{macrocode}
+%
+% \subsubsection{Footnotes}
+%   Define the \verb"footline" beamer template. The format is slightly changed from the original beamer definition.
+%    \begin{macrocode}
+\defbeamertemplate*{footnote}{sjtubeamermin}
+{
+  \usebeamerfont{footnote}
+  \parindent 0.5em\noindent%
+  \raggedright
+  \hbox to 1.5em{\hfil\insertfootnotemark}\insertfootnotetext\par%
+}
+%    \end{macrocode}
+%
+% \subsubsection{Bottom Page}
+%
+% \begin{macro}{\bottompage}
+%   Define the macro \verb"\bottompage" to create the ending frame.
+%    \begin{macrocode}
+\def\bottompage{
+%    \end{macrocode}
+%   Enter vertical mode.
+%    \begin{macrocode}
+  \vbox{}
+%    \end{macrocode}
+%   Create the background canvas and the three overlapping circles in the right. Use \verb"scope" to define the influence range. And use \verb"\clip" to make the clipping in the current range.
+%    \begin{macrocode}
+  \usebeamercolor{palette primary}
+  \usebeamercolor{palette secondary}
+  \begin{tikzpicture}[overlay,yshift=-80pt]
+    \def\w{\the\paperwidth}%
+    \def\h{\the\paperheight}%
+    \fill [palette primary.bg] (-0.2*\w,-1*\h) rectangle (1*\w, 0.5*\h);
+    \begin{scope}[fill=palette primary.bg!50!black,fill opacity=0.15]
+      \clip (0.63*\w,1.05*\h) circle (1*\h);
+      \fill (0.14*\w,-0.95*\h) circle (1.67*\h);
+    \end{scope}
+    \begin{scope}[fill=palette secondary.bg!50!palette primary.bg!70!white,
+      fill opacity=0.15]
+      \clip[xshift=26pt] (0.95*\w,-0.67*\h) circle (1.17*\h);
+      \fill 
+        (0.14*\w,-0.95*\h) circle (1.67*\h)
+        (0.63*\w,1.05*\h) circle (1*\h);
+    \end{scope}
+  \end{tikzpicture}
+%    \end{macrocode}
+%   Insert the logo in the crossing center of the overlapping circles.
+%    \begin{macrocode}
+  \vfill
+  \begingroup
+    \raggedleft
+    \resizebox{!}{1cm}{\insertlogo}
+%    \end{macrocode}
+%   Inset the ``thank you'' quote and the title of this beamer. Notice that three \verb"\vfill" divide the frame into three portions with final adjust using \verb"\vskip".
+%    \begin{macrocode}
+    \vfill
+    \vskip6em
+    \begin{beamercolorbox}[sep=8pt]{title}
+      \usebeamercolor[fg]{palette primary}
+      \usebeamerfont{title}\noindent
+      \ifx\beamer@sjtubeamermin@lang\beamer@sjtubeamermin@langcn
+        谢谢
+      \else
+        Thank You
+      \fi
+      \vskip1em%
+      \usebeamerfont{subtitle}\insertauthor~$\cdot$~\inserttitle
+    \end{beamercolorbox}%
+    \vfill
+    \vskip3.5em
+  \endgroup
+}
+%    \end{macrocode}
+% \end{macro}
+%
+% \begin{macro}{\makebottom}
+%   The standard interface for making the bottom page in this template. Since there is no standard interface in beamer, the macro mimicked \verb"\maketitle" macro to provide such an interface.
+%    \begin{macrocode}
+\def\makebottom{
+  \ifbeamer@inframe%i
+  \bottompage%
+  \else%
+  \frame{\bottompage}%
+  \fi%
+}
+%    \end{macrocode}
+% \end{macro}
+%
+% \iffalse
+%</package>
+% \fi
+%
+% \Finale
+\endinput

@@ -1,0 +1,57 @@
+% \iffalse meta-comment ---------------------------------------------
+% Copyright (C) 2021 LogCreative
+%
+% Licensed under the Apache License, Version 2.0 (the "License");
+% you may not use this file except in compliance with the License.
+% You may obtain a copy of the License at
+%
+%     http://www.apache.org/licenses/LICENSE-2.0
+%
+% Unless required by applicable law or agreed to in writing, software 
+% distributed under the License is distributed on an "AS IS" BASIS,
+% WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+% See the License for the specific language governing permissions and
+% limitations under the License.
+%
+% The Current Maintainer of this work is Log Creative.
+% ------------------------------------------------------------------- \fi
+% \iffalse
+%<*package>
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesPackage{beamerfontthemesjtubeamermin}[2021-08-14 sjtubeamermin font theme v1.0]
+%</package>
+% \fi
+% \CheckSum{0}
+% \StopEventually{}
+% \iffalse
+%<*package>
+% ------------------------------------------------------------------- \fi
+%
+% \subsection{Font Theme}
+%
+%   Use \verb"professionalfonts" font theme to compress all formula environments, which is in serif font style.
+%    \begin{macrocode}
+\usefonttheme{professionalfonts}
+%    \end{macrocode}
+%
+%   Use \verb"sansmath" package to support sans serif math font in some blocks, e.g., PGFPlots.
+%    \begin{macrocode}
+\RequirePackage[eulergreek]{sansmath}
+%    \end{macrocode}
+%
+%   Set the font size to normal size for the number indication in part page, section page, and subsection page.
+%    \begin{macrocode}
+\setbeamerfont{part name}{size=\normalsize}
+\setbeamerfont{section name}{size=\normalsize}
+\setbeamerfont{subsection name}{size=\normalsize}
+%    \end{macrocode}
+%
+%  Set the font size in the footnote to footnotesize.
+%    \begin{macrocode}
+\setbeamerfont{footnote}{size=\footnotesize}
+%    \end{macrocode}
+% \iffalse
+% </package>
+% \fi
+% \Finale
+\endinput

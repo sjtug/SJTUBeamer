@@ -1,0 +1,108 @@
+%% -------------------------------------------------------------------
+%% Copyright (C) 2021 LogCreative
+%%
+%% Licensed under the Apache License, Version 2.0 (the "License");
+%% you may not use this file except in compliance with the License.
+%% You may obtain a copy of the License at
+%%
+%%     http://www.apache.org/licenses/LICENSE-2.0
+%%
+%% Unless required by applicable law or agreed to in writing, software 
+%% distributed under the License is distributed on an "AS IS" BASIS,
+%% WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+%% See the License for the specific language governing permissions and
+%% limitations under the License.
+%%
+%% The Current Maintainer of this work is Log Creative.
+%% -------------------------------------------------------------------
+
+\input docstrip.tex %
+\keepsilent
+\askforoverwritefalse
+\usedir{tex/latex/mtheme}
+
+\preamble
+-------------------------------------------------------------------
+Copyright (C) 2021 Log Creative
+
+Licensed under the Apache License, Version 2.0 (the "License");
+you may not use this file except in compliance with the License.
+You may obtain a copy of the License at
+
+    http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing, software
+distributed under the License is distributed on an "AS IS" BASIS,
+WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+See the License for the specific language governing permissions and
+limitations under the License.
+
+The Current Maintainer of this work is Log Creative.
+-------------------------------------------------------------------
+\endpreamble
+
+\generate{\file{beamerthemesjtubeamermin.sty}{%
+          \from{beamerthemesjtubeamermin.dtx}{package}}
+         }
+\generate{\file{beamerinnerthemesjtubeamermin.sty}{%
+          \from{beamerinnerthemesjtubeamermin.dtx}{package}}
+         }
+\generate{\file{beamerouterthemesjtubeamermin.sty}{%
+          \from{beamerouterthemesjtubeamermin.dtx}{package}}
+         }
+\generate{\file{beamerfontthemesjtubeamermin.sty}{%
+          \from{beamerfontthemesjtubeamermin.dtx}{package}}
+         }
+\generate{\file{beamercolorthemesjtubeamermin.sty}{%
+          \from{beamercolorthemesjtubeamermin.dtx}{package}}
+         }
+
+\preamble
+-------------------------------------------------------------------
+Copyright (C) Shanghai Jiao Tong University
+The definition in this file is refered to the Visual Identity System
+from Shanghai Jiao Tong University (SJTU). 
+See https://vi.sjtu.edu.cn for more information.
+The generation source is implemented by Log Creative.
+The author himself doesn't change the ownership of the design pattern.
+Any commercial usage in this file should be ackwoledged by the
+administration in SJTU.
+More infomation about the license for this file,
+see https://vi.sjtu.edu.cn/index.php/articles/bulletin/16. 
+-------------------------------------------------------------------
+\endpreamble
+
+\generate{\file{sjtucolordef.sty}{%
+          \from{sjtucolordef.dtx}{package}}
+         }
+\generate{\file{sjtuvishape.sty}{%
+          \from{sjtuvishape.dtx}{package}}
+         }
+
+\obeyspaces
+\Msg{**************************************************************}
+\Msg{*                                                            *}
+\Msg{* To finish the installation you have to move the following  *}
+\Msg{* files into a directory searched by TeX:                    *}
+\Msg{*                                                            *}
+\Msg{*     beamerthemesjtubeamermin.sty                           *}
+\Msg{*     beamerinnerthemesjtubeamermin.sty                      *}
+\Msg{*     beamerouterthemesjtubeamermin.sty                      *}
+\Msg{*     beamerfontthemesjtubeamermin.sty                       *}
+\Msg{*     beamercolorthemesjtubeamermin.sty                      *}
+\Msg{*     sjtucnlogo.sty                                         *}
+\Msg{*     sjtucolordef.sty                                       *}
+\Msg{*     sjtuenlogo.sty                                         *}
+\Msg{*     sjtuvishape.sty                                        *}
+\Msg{*                                                            *}
+\Msg{* To produce the documentation run the file                  *}
+\Msg{*     SJTUBeamermintheme.tex                                 *}
+\Msg{* For Development documentation, run the file                *}
+\Msg{*     SJTUBeamermindevguide.tex                              *}
+\Msg{* through XeLaTeX.                                           *}
+\Msg{*                                                            *}
+\Msg{* Happy TeXing!                                              *}
+\Msg{*                                                            *}
+\Msg{**************************************************************}
+
+\endbatchfile

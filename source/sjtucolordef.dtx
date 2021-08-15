@@ -1,0 +1,52 @@
+% \iffalse meta-comment ---------------------------------------------
+% Copyright (C) Shanghai Jiao Tong University
+% The definition in this file is refered to the Visual Identity System
+% from Shanghai Jiao Tong University (SJTU). 
+% See https://vi.sjtu.edu.cn for more information.
+% The generation source is implemented by Log Creative.
+% The author himself doesn't change the ownership of the design pattern.
+% Any commercial usage in this file should be ackwoledged by the
+% administration in SJTU.
+% More infomation about the license for this file,
+% see https://vi.sjtu.edu.cn/index.php/articles/bulletin/16. 
+% ------------------------------------------------------------------- \fi
+% \iffalse
+%<*package>
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesPackage{sjtucolordef}[2021-08-14 Color Definition for sjtubeamermin v1.0]
+%</package>
+% \fi
+% \CheckSum{0}
+% \StopEventually{}
+% \iffalse
+%<*package>
+% ------------------------------------------------------------------- \fi
+%
+% \subsection{Color Definition}
+%   The following color is defined by SJTU VI.
+%   \begin{description}
+%       \item[cprimary] The primary color, which influences the color of title and the background of title page.
+%       \item[csecondary] The secondary color, which influences the color of subtitle.
+%       \item[ctertiary] The tertiary color, which provides the color for the blocks.
+%       \item[cquanternary] The quanternary color, which only influences the foreground of example blocks.
+%   \end{description}
+%    \begin{macrocode}
+\ifx\beamer@sjtubeamermin@color\beamer@sjtubeamermin@colorblue%
+    \definecolor{cprimary}{HTML}{004098}        %problue 
+    \definecolor{csecondary}{HTML}{298626}      %lightgreen
+    \definecolor{ctertiary}{HTML}{004D4B}       %lightgray
+    \definecolor{cquanternary}{HTML}{FFFFFF}    %white  
+\else%
+    \definecolor{cprimary}{HTML}{9E1F36}        %engred
+    \definecolor{csecondary}{HTML}{F28101}      %orange
+    \definecolor{ctertiary}{HTML}{FED201}       %yellow
+    \definecolor{cquanternary}{HTML}{000000}    %black
+\fi%
+%    \end{macrocode}
+%
+% \iffalse
+%</package>
+% \fi
+%
+% \Finale
+\endinput

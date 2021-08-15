@@ -1,0 +1,419 @@
+\documentclass{ltxdoc}
+\usepackage{array}
+\usepackage[colorlinks,breaklinks=true]{hyperref}
+\usepackage[numbers, sort&compress]{natbib}
+% \usepackage{ctex}
+\bibliographystyle{IEEEtran}
+\def\themename{\textsf{SJTUBeamer} \fbox{\textsc{min}}}
+
+\title{Developer's Guide on\\ \themename}
+\author{Log Creative}
+\date{1.0 \today}
+\begin{document}
+    \maketitle
+    \tableofcontents
+    \clearpage
+    \section{Preface}
+
+    \themename{} is a presentation template based on \textsf{beamer} package in \LaTeX{}, to fulfill the enthusiasm of those SJTU users to present their content nicely, benefiting from the technology of \TeX{} typesetting engine.
+    
+    This is a Developer's Guide on \themename{} . The document is written in English because the operation in this guidance could be dangerous. Be careful when playing with those macros.
+
+    \begin{quotation}
+        \begin{center}
+            \themename{} --- the minimal work set of SJTU VI
+        \end{center}
+        \vspace*{1em}
+
+        \fbox{\textsc{min}} - \emph{minimal}: \hfill minimal work set of SJTU VI.
+
+        \fbox{\textsc{min}} - \emph{minimalism}:\hfill  designed in the style of minimalism.
+
+        \fbox{\textsc{min}} - \emph{minimum}:\hfill  minimum shapes to show your content.
+    \end{quotation}
+
+    \section{Build}
+
+    To make a CTAN package, a modern \verb"l3build" method is adopted for building the package. And all souce code has been refactored.
+
+    To build the package:
+    \begin{verbatim}
+        l3build ctan
+    \end{verbatim}
+
+    To install the package:
+    \begin{verbatim}
+        l3build install
+    \end{verbatim}
+    Sometimes, you have to indicate the install directory as follows:
+    \begin{verbatim}
+        l3build install --texmfhome path/to/install
+    \end{verbatim}
+
+    To bump version
+    \begin{verbatim}
+        l3build tag 1.0
+    \end{verbatim}
+
+    Since \verb"l3build" is still under development, the instability may be introduced to some operating systems like Windows. In this case, use
+    \begin{verbatim}
+        cd source
+        latex beamerthemesjtubeamermin.ins
+    \end{verbatim}
+    and move the output file to your installation directory or the directory contains your working file.
+
+    It is soon to have a CTAN distribution. At that time, if you are using TeX{} Live:
+    \begin{verbatim}
+        tlmgr install sjtubeamermin
+    \end{verbatim}
+    Or use MiK\TeX{}:
+    \begin{verbatim}
+        \usepackage{sjtubeamermin}      % trigger the installation
+    \end{verbatim}
+    and you are ready to go!
+
+    \section{Compliation}
+
+    Most problems come from \LaTeX{} compilation. The required packages are in the following list.
+    
+    \begin{table}[h]
+        \centering
+        \begin{tabular}{>{\sffamily}c>{\sffamily}c>{\sffamily}c}
+            \hline
+            pgfplots & tikz & xcolor \\
+            pgfplotstable & sansmath & tcolorbox \\
+            ctex & biblatex & beamer \\
+            \hline
+        \end{tabular}
+    \end{table}
+
+    The detailed description is documented below.
+    
+    \subsection{MiK\TeX{}}
+
+    All required packages will be automatically installed if you are using MiK\TeX{}\cite{miktex}. And if you want to use the \verb"latexmk" command, please install Perl\cite{perl} first. And the compilation command for \themename{} is as follows:
+    \begin{verbatim}
+        latexmk -pdf main -interaction=nonstopmode
+    \end{verbatim}
+
+    \subsection{\TeX{} Live}
+    Since some packages are not default installed in the full release of \TeX{} Live, you have to install the packages manually.
+
+    On Ubuntu, you could install \verb"pgf" and \verb"xcolor" and other drawing packages through the following command\cite{beamerman}:
+
+    \begin{verbatim}
+        sudo apt install texlive-pictures
+    \end{verbatim}
+
+    To typeset Chinese characters, you would better use \verb"CJKutf8" package (in \themename{}, set \verb"[cjk=true]"), since it is compatible with all platforms and multiple language support. Surround \verb"CJK" environment to make it work and remember to move all the Unicode characters in the permeable to the \verb"CJK" environment\cite{lsp3}:
+
+    \begin{verbatim}
+        \begin{document}
+        \begin{CJK}{UTF8}{gbsn}
+            \institute[]{}
+            \title{}
+            \subtitle{}
+            \author{}
+            \date{}
+            % your content here ...
+        \end{CJK}
+        \end{document}
+    \end{verbatim}
+
+    However, if you stick into \verb"ctex",  you can install through \verb"tlmgr". If that works, then we call it a day.
+    
+    \begin{verbatim}
+        sudo tlmgr install ctex
+    \end{verbatim}
+    
+    Sometimes, you installed an old \TeX{} Live, and you have to upgrade the \verb"tlmgr" for the new version. And the process could be very buggy, since the following warning may be shown:
+
+    \begin{verbatim}
+        unexpected return value from verify_checksum: -5
+    \end{verbatim}
+
+    and to upgrade the \verb"tlmgr" is painful on Ubuntu. You should add the following content to \verb"/etc/profile/", which will add the newest path when the system is booting up\cite{upgrade}:
+    \begin{verbatim}
+        export PATH=/usr/local/texlive/2021/bin/x86_64-linux:
+        /usr/local/texlive/:$PATH
+    \end{verbatim}
+
+    Reboot your computer if necessary. Then the compile system will be moved to the newer version of \TeX{} Live. Try to install the corresponding packages through the GUI interface of \verb"tlmgr":
+
+    \begin{verbatim}
+        sudo tlmgr update --self
+        sudo tlmgr gui
+    \end{verbatim}
+
+    And if you encountered that
+    \begin{verbatim}
+        Critical Package ctex Error: CTeX fontset `fandol' is 
+        unavailable in current(ctex) mode.
+    \end{verbatim}
+
+    You have to modify your compiling program from pdf\LaTeX{} to Xe\LaTeX{}  by adding the following magic command on the first line:
+
+    \begin{verbatim}
+        % !TeX TS-program = xelatex
+    \end{verbatim}
+
+    \subsection{Boost Up}
+
+    However, it has been tested that the compilation on \themename{} is slow. Since the complex patterns have to be rendered in vector shapes and the bibliography requires multiple times of compilation, the time could be wasted on some repetitive works.
+
+    This scenario could be improved by enable \verb"[pattern=none]" option on \themename{} and enable \verb"[draft]" option on beamer. The former one will disable all the pattern rendering, and the latter one will ignore all the TOC (table of contents) generating.
+
+    The project has been implanted to Overleaf. 
+    Here is the link \cite{overleaf}. And to make that works, the compilation on \TeX{} Live 2021 has to be implemented. And it is discovered that setting the document information outside the \verb|document| environment will cause a significantly longer compiling time, which may be caused by some improper settings in C\TeX{} package. The workaround of that is to follow the setup mentioned in \verb|CJK| settings: put that info into the body of document\cite{lsp3}.
+    
+    Currently, CI is available on Github Actions by compiling on Lua\LaTeX{}. \themename{} uses \verb|xu-cheng/latex-action@v2| for the compilation docker \cite{lact} and relocates the compiling folder to \verb"src/". After compiling, output the PDF artifact. See \verb".github/workflows/main.yml" for details.
+
+    At the same time, AutoBeamer\cite{ab} is making its own effort on generating beamer code automatically by some replacing strategies. You could preview your beamer code through conversion on Markdown or the article \LaTeX{} code.
+
+    Furthermore, there is space for boosting up the beamer compilation time by making use of multi-core processors. Since it is a frame-based document, and the connection between each frame is loose (only some page numbers and citations need to be calculated), the multi-threaded compilation is possible for the \textsf{beamer} class. You can glimpse the multi-threaded processing for \LaTeX{} from the package \textsf{animate}. In fact, the author created some batch compiling work\cite{pgfedt} together with the \verb"-Parallel" parameter in PowerShell 7 to make full use of the concurrent computer architecture.
+    
+    \section{Modular Architecture}\label{sec:moarch}
+    
+    By the recommendation from \textsf{beamer} package\cite{beamerman}, \themename{} uses the same modular architecture to build the template. Like it is in Java, to let the \textsf{beamer} template locate your theme, the style file has to be in the standard name.
+    
+    \begin{table}[h]
+   		\begin{tabular}{>{\ttfamily}ll}
+   			\bfseries .sty File & \bfseries Description \\
+   			beamercolorthemesjtubeamermin.sty & Define global color schemes. \\
+   			beamerfontthemesjtubeamermin.sty & Set the font format. \\
+   			beamerinnerthemesjtubeamermin.sty & Specifies all parts inside a frame. \\
+   			beamerouterthemesjtubeamermin.sty & The frame header and bottom bar. \\
+   			beamerthemesjtubeamermin.sty & Entry point of the theme. \\
+            sjtucolordef.sty & Color definition from SJTU VI. \\
+            sjtuvishape.sty & VI Shape definition from SJTU VI.
+    	\end{tabular}
+    \end{table}
+
+	Notice that there are some dependencies (logo files) in the \verb|vi/|. Copying the \verb|vi| folder is necessary. Or you could define the location of the logo file by giving \verb"\logo{\includegraphics{logo.pdf}}".
+
+    \begin{figure}[h]
+        \framebox[\textwidth]{\ttfamily main.tex}
+        
+        \framebox[\textwidth]{\ttfamily beamerthemesjtubeamermin.sty}
+        
+        \framebox[0.25\textwidth]{\ttfamily fonttheme.sty}\framebox[0.25\textwidth]{\ttfamily colortheme.sty}\framebox[0.25\textwidth]{\ttfamily innertheme.sty}\framebox[0.25\textwidth]{\ttfamily outertheme.sty}
+        
+        \hfill\framebox[0.5\textwidth]{\ttfamily sjtucolordef.sty}\hspace*{0.25\textwidth}
+
+        \hfill\framebox[0.5\textwidth]{\ttfamily sjtuvishape.sty}
+
+        \hfill\framebox[0.5\textwidth]{\ttfamily logo.pdf}
+    \end{figure}
+
+    \subsection{Theme}
+
+    The main theme file \texttt{beamerthemeSJTUBeamermin.sty} is the entry point of the theme template. For users, after acquiring the \textsf{beamer} package, \verb"\usetheme" command will serve as the caller of the theme.
+    \begin{verbatim}
+        \documentclass{beamer}
+        \mode<presentation>
+        \usetheme{SJTUBeamermin}
+    \end{verbatim}
+
+    And this file will preprocess the option passed to the theme. Some options will be affected immediately, while others will get processed in the sub-style files.
+
+    \begin{figure}[h]
+        \fbox{\parbox{0.4\textwidth}{\vskip2pt\texttt{theme.sty}\par
+        \parbox{0.49\textwidth}{lang}\par
+        \parbox{0.49\textwidth}{cjk}\par
+        \parbox{0.49\textwidth}{gbt}\par
+        \parbox{0.49\textwidth}{\emph{other settings}}
+        \vskip2pt}}
+        \parbox{0.6\textwidth}{
+            \fbox{\parbox{0.55\textwidth}{\texttt{colortheme.sty}\hfill color}}\par
+            \fbox{\parbox{0.55\textwidth}{\texttt{fonttheme.sty}}}\par
+            \fbox{\parbox{0.55\textwidth}{\texttt{outertheme.sty}\hfill pattern,navigation,lang}}\par
+            \fbox{\parbox{0.55\textwidth}{\texttt{innertheme.sty}\hfill pattern,color,lang}}
+        }
+    \end{figure}
+
+    And this version meets the standingfree criteria. All source files could be used seperatly from version 1.0.
+
+    \subsection{Color}
+
+    The color style file \verb"beamercolorthemeSJTUBeamermin.sty" is the color setup of the template. Most color schemes are derived from the basic color of SJTU VI\cite{viman}. And to adapt the color definitions of \textsf{beamer}, the corresponding interface is mapped, see 17.2 in \cite{beamerman}.
+
+    \begin{table}[h]
+        \centering
+        \begin{tabular}{>{\ttfamily}l>{\ttfamily}l>{\ttfamily}c>{\ttfamily}c}
+             interface           & color=       & red       & blue \\
+             palette primary     & cprimary     &\#004098  & \#9E1F36 \\       
+             palette secondary   & csecondary   &\#298626  & \#F28101 \\     
+             palette tertiary    & ctertiary    &\#004D4B  & \#FED201 \\      
+             palette quanternary & cquanternary & \#FFFFFF  & \#000000 \\  
+        \end{tabular}
+    \end{table}
+
+    As it is mapped to those beamer interfaces, to use the color, you have to declare the color struct first by
+    \begin{verbatim}
+        \usebeamercolor{palette primary}
+        \color{palette primary.bg}
+    \end{verbatim}
+    or simply
+    \begin{verbatim}
+        \usebeamercolor[bg]{palette primary}
+    \end{verbatim}
+
+    However, there are scenarios where you cannot put temporary variables in some package options since it expands to \verb"\color{\color{mycolor}}". In this complex case, the redefinition of those standard colors is required. And that's the reason why \verb"innertheme.sty" gets \verb"color".
+
+    \subsection{Font}
+
+    The font style file \verb"beamerfontthemeSJTUBeamermin.sty" provides the font style of the beamer. In \themename{}, serif math font is used by 
+    \begin{verbatim}
+        \usefonttheme{professionalfonts}
+    \end{verbatim}
+    which will tell \textsf{beamer} not to meddle with the specific font (in this case, math font) to the sans serif one. 
+    
+    It is especially useful if you don't want to create more compilation errors since some engine doesn't support sans serif math font. The workaround for that is to introduce the package below:
+    \begin{verbatim}
+        \RequirePackage[eulergreek]{sansmath}
+    \end{verbatim}
+
+    And \themename{} does both.
+
+    \subsection{Outer}
+
+    The outer style file \verb"beamerouterthemeSJTUBeamermin.sty" contains the layout of frames. The recommended setup is as follows:
+    \begin{table}[h]
+        \centering
+        \begin{tabular}{lc}
+            \bfseries Components & \themename \\
+            head- and footline & $\bullet $ \\
+            sidebars & \\
+            logo & $\bullet$ \\
+            frame title & $\bullet$\\
+        \end{tabular}
+    \end{table}
+
+    \subsection{Inner}
+
+    The inner style file \verb"beamerinnerthemeSJTUBeamermin.sty" will customize the main components. 
+    \begin{table}[h]
+        \centering
+        \begin{tabular}{lc}
+            \bfseries Components & \themename \\
+            Title and part pages & $\bullet $ \\
+            Itemize & $\bullet $ \\
+            Enumerate &  \\
+            Description & \\
+            Block & $\bullet $ \\
+            Theorem and proof & \\
+            Figures and tables & $\bullet$ \\
+            Footnotes & $\bullet$ \\
+            Bibliography entries & \\
+        \end{tabular}
+    \end{table}
+
+    Outer theme and inner theme are the core files for \themename{}, which will be discussed in the following content.
+
+    \section{Compatibility}
+
+    Since the vision of \LaTeX{} is to build an open-source typesetting system for multi-platforms and \textsf{beamer} is on top of that to create an easy-to-configure interface on building presentations, \themename{} follows the footstep to make its best on compatibility.
+
+    \subsection{Beamer Interface}\label{sec:beamer}
+
+    \textsf{Beamer} has designed a system of modern interfaces for those theme creators. \themename{} has already followed the modular architecture, as is shown in Section \ref{sec:moarch}.
+
+    And there are more APIs in \textsf{beamer} for each corresponding theme style. There are mainly three ways to modify a theme:
+    \begin{enumerate}
+        \item \textbf{Want to use presets.} Read Part \uppercase\expandafter{\romannumeral3} in the documentation of \textsf{beamer} package \cite{beamerman}. You can acquire the doc by the terminal command:
+        \begin{verbatim}
+            texdoc beamer
+        \end{verbatim}
+        Then, you could choose to use some preset theme, or call the macro to control the appearance of each component.
+        \item \textbf{Want a complete modification.} Read the source code of \textsf{beamer} package \cite{beamerman}. If no additional theme is used, \textsf{beamer} will assume you are creating a theme from \verb"default". And refer to the corresponding theme file suffixed by \verb"default" will give you the bottom mechanism to implement components.
+        \item \textbf{Want to solve difficult problems.} Go to \TeX{} Stack Exchange \cite{texsc} for help. Always search before you ask. Then you could probably find some patches and magical formulas to tackle the issue since \TeX{} is a Turing-complete language.
+    \end{enumerate}
+
+    \subsection{Mainstream Packages}\label{sec:mainstream}
+
+    Mainstream \LaTeX{} packages are used to make sure the choice on marcos is maintained currently. Since some engine doesn't support \textsf{GhostScript} well (\emph{e.g.} Xe\LaTeX{}), \themename{} (as well as \textsf{beamer}) uses \textsc{pgf} as the backend for graphics in \textsf{PostScript}. And half of the jobs are done on graphics to implement the requirements of VI.
+
+    \themename{} doesn't use too many rasterized pictures, since they are not flexible. You could get the Adobe Illustrator files on VI website\cite{viman}. SJTU VI goes minimalism so that it could be implemented by package Ti\emph{k}Z (which is on top of \textsc{pgf}). You could almost draw any vectorized shapes by referring to Ti\emph{k}Z documentation \cite{tikzman}. In short, Ti\emph{k}Z uses node-edge system to create graphs and many Computer Science pictures can be drawn in such a system\cite{tikztuna}. And if you don't want to mess around with the thousand pages of documentation, Ti\emph{k}ZEdt could help you create that in a WYSIWYG(what you see is what you get) way\cite{tikzedt}, which is a tool to make drafts on patterns.
+
+    \themename{} also uses additional packages like \textsc{pgfplots} and \textsc{PgfplotsTable} to draw highly personalized statistic graphs and layout table from CSV (Comma-Seperated Values) respectively. As is mentioned, the author created a tool \textsc{PgfplotsEdt} to help such graphs in an interactive way\cite{pgfedt}.
+
+    Code blocks are drawn by package \textsf{tcolorbox}, which is also a powerful toolkit to make customized boxes\cite{tcolorbox}. This is almost the most elegant way to make colorful boxes in the current \LaTeX{} system.
+
+    Some of the packages have been studied by author in \LaTeX{} Sparkle Project\cite{lsp3}. You can check that out to learn more.
+
+    \subsection{Engine Support}
+    To be clear, \themename{} is not adapt to all kinds of compilers in the current \LaTeX{} world. 
+    \begin{table}[h]
+        \begin{center}
+            \begin{tabular}{ccc}
+                & Windows & Unix \\
+           pdf\LaTeX{}(C\TeX{}) & $\surd$ & \\
+           pdf\LaTeX{}(CJK) & $\surd$ & $\surd$ \\
+           Xe\LaTeX{} & $\diamondsuit$ & $\surd$ \\
+           Lua\LaTeX{} & $\diamondsuit$ & $\diamondsuit$\\
+       \end{tabular}
+           \vskip 3pt\moveright 1in\vbox{\hrule width3cm \vskip 3pt
+       \moveleft 0em \hbox{$^*\surd$ is fully available, while $\diamondsuit$ will have font issues.}
+           }
+        \end{center}
+    \end{table}
+
+    \themename{} make its effort on engine support in the following ways:
+    \begin{enumerate}
+        \item \textbf{Use \textsf{beamer} interface.} As is mentioned in Section \ref{sec:beamer}, \themename{} will not create its macro unless there is no substitute in the current version of \textsf{beamer} or it is a common method to implement some features. A good example for this is to make a bottom page, \themename{} mimicked \verb"\maketitle" command to implement \verb"\makebottom" command. A good outcome is that the style file could be separately used with low coupling. 
+        \item \textbf{Use mainstream packages.} Mentioned in Section \ref{sec:mainstream}, mainstream packages are widely accepted in many engines. Some top-level marcos are used to increase the readability of the source code, i.e., \textsc{pgf} is lengthy and hard to be maintained.
+        \item \textbf{Use old-fashioned \TeX{} code.} If there is a nice way to implement in \TeX{}, then go \TeX{}. \TeX{} is a box-based typesetting system, which may be mentioned in many Computer Science books. And \LaTeX{} is on top of that to provide clear-to-read macros. In some scenarios, the native \verb"\vbox" and \verb"\hbox" command could help calculate the position of characters in a more controllable way. But it is certainly painful to learn. The \TeX{} Book\cite{texbook} is the classic to learn that, but Notes On Programming in \TeX{}\cite{texnote} is more recommended in modern \LaTeX{}.
+    \end{enumerate}
+
+    \section{Implementation}
+
+    Now, you may still be confused about how to create a beamer template. Here is a good material about it for a lead-in\cite{tex2017}, which provides a brief overview. And this part is only focusing on the implementation of \themename{}.
+
+        \DocInput{beamercolorthemesjtubeamermin.dtx}
+        \DocInput{beamerfontthemesjtubeamermin.dtx}
+        \DocInput{beamerinnerthemesjtubeamermin.dtx}
+        \DocInput{beamerouterthemesjtubeamermin.dtx}
+        \DocInput{beamerthemesjtubeamermin.dtx}
+
+    The following code is merely an implementation of SJTU VI, which doesn't change the ownership of the design pattern. Any commercial usage should be acknowledged by the related administration of SJTU.
+        \DocInput{sjtucolordef.dtx}
+        \DocInput{sjtuvishape.dtx}
+
+    \vfill
+
+    \begin{center}
+        \Large Good Luck with \themename{} !
+        \vskip 1em
+
+        \normalsize\hskip5cm Developer
+        \vskip 1pt\moveright 1in\vbox{\hrule width7cm \vskip 3pt
+        \moveleft 0em \hbox{Log Creative}}
+    \end{center}
+
+    \vfill
+
+    \bibliography{dev}
+
+    \vfill
+
+    \scriptsize  
+
+    Copyright 2021 Log Creative \& \LaTeX{} Sparkle Project
+
+    Licensed under the Apache License, Version 2.0 (the ``License'');
+    you may not use this file except in compliance with the License.
+    You may obtain a copy of the License at
+
+        \href{http://www.apache.org/licenses/LICENSE-2.0}{http://www.apache.org/licenses/LICENSE-2.0}
+
+    Unless required by applicable law or agreed to in writing, software
+    distributed under the License is distributed on an ``AS IS'' BASIS,
+    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+    See the License for the specific language governing permissions and
+    limitations under the License.
+
+    The Current Maintainer of this work is Log Creative.
+
+    \vfill
+
+\end{document}
