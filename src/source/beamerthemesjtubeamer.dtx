@@ -23,9 +23,9 @@
 % \CheckSum{0}
 % \StopEventually{}
 % \iffalse
-%<*max>
+%<*root>
 % ------------------------------------------------------------------- \fi
-% A temporary move for max option.
+% Entry Point. The root style.
 %    \begin{macrocode}
 \RequirePackage{kvoptions}
 \RequirePackage{iftex}
@@ -34,10 +34,41 @@
   family=sjtubeamer,
   prefix=sjtubeamer@
 }
+\DeclareBoolOption{max}
+\DeclareBoolOption{min}
+\sjtubeamer@maxtrue
+\ProcessKeyvalOptions{sjtubeamer}
+
+\ifsjtubeamer@max
+  \usetheme{sjtubeamermax}
+\else
+  \ifsjtubeamer@min
+    \usetheme{sjtubeamermin}
+  \fi
+\fi
+%    \end{macrocode}
+%
+% \iffalse
+%</root>
+% ------------------------------------------------------------------- \fi
+% \iffalse
+%<*max>
+% ------------------------------------------------------------------- \fi
+% A temporary move for max option.
+%    \begin{macrocode}
+
+\RequirePackage{biblatex}
+
+\SetupKeyvalOptions{
+  family=sjtubeamermax,
+  prefix=sjtubeamermax@
+}
 \DeclareBoolOption{bannertitle}
 \DeclareBoolOption{red}
 \DeclareBoolOption{blue}
-\ProcessKeyvalOptions*
+\sjtubeamermax@redtrue
+\sjtubeamermax@bannertitletrue
+\ProcessKeyvalOptions{sjtubeamermax}
 
 \usetheme{Szeged}
 \usecolortheme{dolphin}
@@ -46,28 +77,28 @@
 \useinnertheme{circles}
 \setbeamertemplate{blocks}[rounded]
 
-\ifsjtubeamer@red
+\ifsjtubeamermax@red
   \definecolor{SJTUPrimary}{RGB}{200,22,30}
 \fi
 
-\ifsjtubeamer@blue
+\ifsjtubeamermax@blue
   \definecolor{SJTUPrimary}{RGB}{0,64,152}
 \fi
 
 \setbeamercolor{structure}{fg=SJTUPrimary}
 \setbeamertemplate{background}{\includegraphics[width=\paperwidth]{vi/sjtu-miao.png}}
 
-\ifsjtubeamer@red
+\ifsjtubeamermax@red
   \logo{\includegraphics[height=1.5cm]{vi/sjtu-vi-badge-red.pdf}}
   \setbeamercolor{banner title page}{fg=SJTUPrimary,bg=white}
 \fi
 
-\ifsjtubeamer@blue
+\ifsjtubeamermax@blue
   \logo{\includegraphics[height=1.5cm]{vi/sjtu-vi-badge-blue.pdf}}
   \setbeamercolor{banner title page}{fg=white,bg=SJTUPrimary}
 \fi
 
-\ifsjtubeamer@bannertitle
+\ifsjtubeamermax@bannertitle
   \defbeamertemplate*{title page}{sjtured}[1][]
   {
     \nointerlineskip%
@@ -92,11 +123,11 @@
         {\small\insertdate}%
         };
         \node[anchor=south east, inner sep=0, outer sep=0] at (\outslant,0.5){
-          \ifsjtubeamer@red
+          \ifsjtubeamermax@red
             \includegraphics[height=1cm]{vi/sjtu-vi-logo-red.pdf}
           \fi
 
-          \ifsjtubeamer@blue
+          \ifsjtubeamermax@blue
             \includegraphics[height=1cm]{vi/sjtu-vi-logo-white.pdf}
           \fi
         };
