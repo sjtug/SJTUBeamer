@@ -34,17 +34,42 @@
   family=sjtubeamer,
   prefix=sjtubeamer@
 }
+
+\DeclareBoolOption{maxplus}
 \DeclareBoolOption{max}
 \DeclareBoolOption{min}
-\sjtubeamer@maxtrue
+\sjtubeamer@maxplustrue
+
+\DeclareBoolOption{red}
+\DeclareBoolOption{blue}
+\sjtubeamer@redtrue
+
+\DeclareBoolOption{bannertitle}
+
 \ProcessKeyvalOptions{sjtubeamer}
 
-\ifsjtubeamer@max
-  \usetheme{sjtubeamermax}
-\else
-  \ifsjtubeamer@min
-    \usetheme{sjtubeamermin}
+\ifsjtubeamer@bannertitle
+  \sjtubeamer@DisableOption{warning}{bannertitle}
+  \sjtubeamer@maxplustrue
+\fi
+
+\ifsjtubeamer@min
+  \ifsjtubeamer@red
+    \PassOptionsToPackage{color=red}{sjtubeamermin}
+  \else
+    \PassOptionsToPackage{color=blue}{sjtubeamermin}
   \fi
+  \usetheme{sjtubeamermin}
+\else
+  \ifsjtubeamer@red
+    \PassOptionsToPackage{red}{sjtubeamermax}
+  \else
+    \PassOptionsToPackage{blue}{sjtubeamermax}
+  \fi
+  \ifsjtubeamer@maxplus
+    \PassOptionsToPackage{bannertitle}{sjtubeamermax}
+  \fi
+  \usetheme{sjtubeamermax}
 \fi
 %    \end{macrocode}
 %
