@@ -41,7 +41,7 @@ function update_tag(file,content,tagname,tagdate)
     if string.match(file,"%.dtx$") then
         content = string.gsub(content,
             "\n\\ProvidesPackage" .. "({%w+})%[" .. iso .. "([^%]]+) v%d%.%d%]",
-            "\n\\ProvidesPackage%1[" .. now .. "%2 v" .. tagname .. "]")
+            "\n\\ProvidesPackage%1[" .. now .. "%2 " .. tagname .. "]")
         return content
     elseif string.match(file,"%.tex$") then
         return string.gsub(content,

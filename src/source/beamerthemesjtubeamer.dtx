@@ -14,12 +14,6 @@
 % limitations under the License.
 %
 % ------------------------------------------------------------------- \fi
-% \iffalse
-%<*package>
-\NeedsTeXFormat{LaTeX2e}
-\ProvidesPackage{beamerthemesjtubeamermin}[2021-08-14 sjtubeamermin parent theme v1.0]
-%</package>
-% \fi
 % \CheckSum{0}
 % \StopEventually{}
 % \iffalse
@@ -27,6 +21,10 @@
 % ------------------------------------------------------------------- \fi
 % Entry Point. The root style.
 %    \begin{macrocode}
+
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesPackage{beamerthemesjtubeamer}[2021-08-16 sjtubeamer parent root v1.1]
+
 \RequirePackage{kvoptions}
 \RequirePackage{iftex}
 
@@ -81,8 +79,11 @@
 % \iffalse
 %<*max>
 % ------------------------------------------------------------------- \fi
-% A temporary move for max option.
+% \verb"max" and \verb"maxplus" option. Original \verb"SJTUBeamer" code.
 %    \begin{macrocode}
+
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesPackage{beamerthemesjtubeamermax}[2021-08-16 sjtubeamermax parent theme v1.1]
 
 \RequirePackage{biblatex}
 
@@ -170,6 +171,9 @@
 % \iffalse
 %<*min>
 % ------------------------------------------------------------------- \fi
+%
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesPackage{beamerthemesjtubeamermin}[2021-08-16 sjtubeamermin parent theme v1.1]
 %
 % \subsection{Parent Theme}
 %
