@@ -20,11 +20,11 @@
 %<*root>
 % ------------------------------------------------------------------- \fi
 % Entry Point. The root style.
-%    \begin{macrocode}
-
+% \iffalse
 \NeedsTeXFormat{LaTeX2e}
 \ProvidesPackage{beamerthemesjtubeamer}[2021-08-16 sjtubeamer parent root v1.1]
-
+% \fi
+%    \begin{macrocode}
 \RequirePackage{kvoptions}
 \RequirePackage{iftex}
 
@@ -81,9 +81,10 @@
 % ------------------------------------------------------------------- \fi
 % \verb"max" and \verb"maxplus" option. Original \verb"SJTUBeamer" code.
 %    \begin{macrocode}
-
+% \iffalse
 \NeedsTeXFormat{LaTeX2e}
 \ProvidesPackage{beamerthemesjtubeamermax}[2021-08-16 sjtubeamermax parent theme v1.1]
+% \fi
 
 \RequirePackage{biblatex}
 
@@ -172,8 +173,10 @@
 %<*min>
 % ------------------------------------------------------------------- \fi
 %
+% \iffalse
 \NeedsTeXFormat{LaTeX2e}
 \ProvidesPackage{beamerthemesjtubeamermin}[2021-08-16 sjtubeamermin parent theme v1.1]
+% \fi
 %
 % \subsection{Parent Theme}
 %
