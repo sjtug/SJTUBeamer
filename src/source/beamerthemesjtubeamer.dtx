@@ -259,6 +259,7 @@
 % \begin{macro}{gbt}
 %   Choose the behaviour of citing.
 %   \begin{description}
+%     \item[no] Don't use any citing package.
 %     \item[false] Use \verb"biblatex" to cite.
 %     \item[bibtex] Use \verb"bibtex" to cite.
 %     \item[true] Use \verb"biblatex-gbt7714-2015" to cite.
@@ -268,6 +269,7 @@
 \def\beamer@sjtubeamermin@gbttrue{true}%
 \def\beamer@sjtubeamermin@gbtfalse{false}%
 \def\beamer@sjtubeamermin@gbtbibtex{bibtex}%
+\def\beamer@sjtubeamermin@gbtno{no}%
 %    \end{macrocode}
 % \end{macro}
 %
@@ -279,7 +281,7 @@
     lang=cn,
     color=blue,
     pattern=title,
-    gbt=false,
+    gbt=no,
 }
 \ProcessOptionsBeamer
 %    \end{macrocode}
@@ -318,6 +320,8 @@
 %
 %   Process the option of \verb"gbt" to handle the behaviour of citing. If \verb"bibtex" is used, the corresponding bibliographystyle will get loaded according to \verb"lang" option. Otherwise, set the style of \verb"biblatex" and redirect \verb"\cite" to \verb"\footfullcite".
 %    \begin{macrocode}
+\ifx\beamer@sjtubeamermin@gbt\beamer@sjtubeamermin@gbtno%
+\else
 \ifx\beamer@sjtubeamermin@gbt\beamer@sjtubeamermin@gbtbibtex%
     \ifx\beamer@sjtubeamermin@lang\beamer@sjtubeamermin@langen% 
         \bibliographystyle{IEEEtran}
@@ -333,6 +337,7 @@
     \def\cite#1{
         \footfullcite{#1}
     }
+\fi%
 \fi%
 %    \end{macrocode}
 %
