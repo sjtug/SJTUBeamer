@@ -1,0 +1,8 @@
+#include<iostream>
+
+int main(){
+    // Console Output
+    std::cout << "Hello, SJTU!" << std::endl;
+    return 0;
+}
+        

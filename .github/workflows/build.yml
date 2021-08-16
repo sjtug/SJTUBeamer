@@ -19,6 +19,7 @@ jobs:
       - uses: xu-cheng/texlive-action/full@v1
         with:
           run: |
+            .github/ci/build_package.sh 
             .github/ci/build_test_variants.sh -halt-on-error -time -quiet -xelatex
         name: build with XeLaTeX
       - run: cat build/build-*.log
@@ -29,6 +30,11 @@ jobs:
           path: build/build-*.pdf
           name: build-xelatex
         name: upload build artifacts
+      - uses: actions/upload-artifact@v2
+        with:
+          path: src/build/distrib/tds/tex/latex/sjtubeamer
+          name: package
+        name: upload package
   build-lualatex:
     runs-on: ubuntu-latest
     steps: 
@@ -37,6 +43,7 @@ jobs:
       - uses: xu-cheng/texlive-action/full@v1
         with:
           run: |
+            .github/ci/build_package.sh
             .github/ci/build_test_variants.sh -halt-on-error -time -quiet -lualatex
         name: build with LuaLaTeX
       - run: cat build/build-*.log

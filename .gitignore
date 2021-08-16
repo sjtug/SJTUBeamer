@@ -258,3 +258,5 @@ thesis-bot.yml
 build/
 build-*.pdf
 build-*.tex
+
+*-ctan.zip

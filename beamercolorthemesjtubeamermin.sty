@@ -1,0 +1,67 @@
+%%
+%% This is file `beamercolorthemesjtubeamermin.sty',
+%% generated with the docstrip utility.
+%%
+%% The original source files were:
+%%
+%% beamercolorthemesjtubeamermin.dtx  (with options: `package')
+%% -------------------------------------------------------------------
+%% Copyright (C) 2021 SJTUG
+%% 
+%% Licensed under the Apache License, Version 2.0 (the "License");
+%% you may not use this file except in compliance with the License.
+%% You may obtain a copy of the License at
+%% 
+%%     http://www.apache.org/licenses/LICENSE-2.0
+%% 
+%% Unless required by applicable law or agreed to in writing, software
+%% distributed under the License is distributed on an "AS IS" BASIS,
+%% WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+%% See the License for the specific language governing permissions and
+%% limitations under the License.
+%% -------------------------------------------------------------------
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesPackage{beamercolorthemesjtubeamermin}[2021-08-16 sjtubeamermin color theme v1.1]
+\DeclareOptionBeamer{color}{\def\beamer@sjtubeamermin@color{#1}}
+\def\beamer@sjtubeamermin@colorblue{blue}%
+\def\beamer@sjtubeamermin@colorred{red}%
+\ExecuteOptionsBeamer{color=blue}
+\ProcessOptionsBeamer
+\RequirePackage{sjtucolordef}
+\setbeamercolor{palette primary}{bg=cprimary,fg=white}
+\setbeamercolor{palette secondary}{bg=csecondary,fg=white}
+\setbeamercolor{palette tertiary}{bg=ctertiary,fg=white}
+\setbeamercolor{palette quanternary}{bg=,fg=cquanternary}
+\setbeamercolor{structure}{fg=cprimary}
+\setbeamercolor{background canvas}{bg=white}
+\setbeamercolor{logo}{use={palette primary},bg=,fg=palette primary.fg}
+\setbeamercolor{normal text}{fg=black,bg=black!40}
+\setbeamercolor*{block title}{parent=structure}
+\setbeamercolor{titlelike}{parent={palette primary}}
+\setbeamercolor{title}{fg=cprimary,bg=}
+\setbeamercolor{subtitle}{fg=csecondary,bg=}
+\setbeamercolor{block title}{fg=white,bg=cprimary!90}
+\setbeamercolor{block title alerted}{use=alerted text,
+  fg=white,bg=csecondary}
+\setbeamercolor{block title example}{use=example text,
+  fg=cquanternary,bg=ctertiary}
+\setbeamercolor{block body}{parent=normal text,use=block title,
+  bg=block title.bg!30}
+\setbeamercolor{block body alerted}{parent=normal text,
+  use=block title alerted,bg=block title alerted.bg!30}
+\setbeamercolor{block body example}{parent=normal text,
+  use=block title example,bg=block title example.bg!30}
+\setbeamercolor{section in head/foot}{use={palette primary},
+  fg=palette primary.bg,bg=}
+\setbeamercolor{part title}{parent={palette primary}}
+\setbeamercolor{section title}{parent={palette secondary}}
+\setbeamercolor{subsection title}{parent={palette tertiary}}
+\setbeamercolor{emph}{use={palette primary,palette secondary},
+  fg=palette primary.bg!50!palette secondary.bg}
+\renewcommand<>{\emph}[1]{%
+  {\only#2{\usebeamercolor[fg]{emph}\itshape}#1}%
+}
+\setbeamercolor{alerted text}{use=palette primary,fg=palette primary.bg}
+\endinput
+%%
+%% End of file `beamercolorthemesjtubeamermin.sty'.

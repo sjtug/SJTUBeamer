@@ -1,0 +1,114 @@
+%%
+%% This is file `sjtuvishape.sty',
+%% generated with the docstrip utility.
+%%
+%% The original source files were:
+%%
+%% sjtuvishape.dtx  (with options: `package')
+%% -------------------------------------------------------------------
+%% Copyright (C) Shanghai Jiao Tong University
+%% The definition in this file is refered to the Visual Identity System
+%% from Shanghai Jiao Tong University (SJTU).
+%% See https://vi.sjtu.edu.cn for more information.
+%% 
+%% The generation source is implemented by Log Creative.
+%% The author himself doesn't change the ownership of the design pattern.
+%% Any commercial usage in this file should be ackwoledged by the
+%% administration in SJTU.
+%% More infomation about the license for this file,
+%% see https://vi.sjtu.edu.cn/index.php/articles/bulletin/16.
+%% -------------------------------------------------------------------
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesPackage{sjtuvishape}[2021-08-16 Shape Pattern in Visual Identity System for sjtubeamermin v1.1]
+\logo{
+  \ifx\beamer@sjtubeamermin@lang\beamer@sjtubeamermin@langen
+    \includegraphics{sjtuenlogo.pdf}
+  \else
+    \includegraphics{sjtucnlogo.pdf}
+  \fi
+}
+\RequirePackage{tikz}
+\usetikzlibrary{patterns.meta}
+\usetikzlibrary{fadings}
+\usetikzlibrary{decorations.pathmorphing}
+\tikzdeclarepattern{
+  name=stamp,
+  parameters={
+    \pgfkeysvalueof{/pgf/pattern keys/size},
+    \pgfkeysvalueof{/pgf/pattern keys/xshift},
+    \pgfkeysvalueof{/pgf/pattern keys/yshift},
+  },
+  defaults={
+    size/.initial = 5pt,
+    xshift/.initial = 0pt,
+    yshift/.initial = 0pt,
+  },
+  bottom left={(
+    -0.5*\pgfkeysvalueof{/pgf/pattern keys/size}
+      +\pgfkeysvalueof{/pgf/pattern keys/xshift},
+    -0.4*\pgfkeysvalueof{/pgf/pattern keys/size}
+      +\pgfkeysvalueof{/pgf/pattern keys/yshift}
+  )},
+  top right={(
+    0.5*\pgfkeysvalueof{/pgf/pattern keys/size}
+      +\pgfkeysvalueof{/pgf/pattern keys/xshift},
+    0.4*\pgfkeysvalueof{/pgf/pattern keys/size}
+      +\pgfkeysvalueof{/pgf/pattern keys/yshift}
+  )},
+  tile size={(
+    \pgfkeysvalueof{/pgf/pattern keys/size},
+    0.8*\pgfkeysvalueof{/pgf/pattern keys/size}
+  )},
+  code={
+    \def\s{\pgfkeysvalueof{/pgf/pattern keys/size}}%
+    \tikzset{x=0.5*\s,y=0.2*\s}
+    \fill[xshift=\pgfkeysvalueof{/pgf/pattern keys/xshift},
+      yshift=\pgfkeysvalueof{/pgf/pattern keys/yshift}]
+      (-0.25*\s,0)
+      -- (-0.17*\s,0.06*\s)
+      -- (-0.17*\s,0.1*\s)
+      -- (0.17*\s,0.1*\s)
+      -- (0.17*\s,0.06*\s)
+      -- (0.25*\s,0)
+      -- (0.17*\s,-0.06*\s)
+      -- (0.17*\s,-0.1*\s)
+      -- (-0.17*\s,-0.1*\s)
+      -- (-0.17*\s,-0.06*\s) -- cycle;
+  }
+}
+\providecommand{\stamparray}[3]{
+  %#1: pattern size
+  %#2: starting point
+  %#3: ending point
+  \usebeamercolor{palette primary}
+  \fill [pattern={stamp[size=#1]},
+    pattern color=bg!50!fg] #2 rectangle #3;
+  \def\s{#1}%
+  \pgfmathparse{0.5*\s}\let\xs=\pgfmathresult%
+  \pgfmathparse{-0.4*\s}\let\ys=\pgfmathresult%
+  \fill [pattern={stamp[size=#1,xshift=\xs, yshift=\ys]},
+    pattern color=bg!50!fg] #2 rectangle #3;
+}
+\pgfdeclaredecoration{stampline}{initial}
+{
+  \state{initial}[
+    width=\pgfdecorationsegmentlength,
+    auto corner on length=\pgfdecorationsegmentlength]
+  {
+    \def\l{\pgfdecorationsegmentlength}%
+    \pgfpathlineto{\pgfpoint{0.25*\l}{0pt}}
+    \pgfpathlineto{\pgfpoint{0.33*\l}{0.06*\l}}
+    \pgfpathlineto{\pgfpoint{0.33*\l}{0.1*\l}}
+    \pgfpathlineto{\pgfpoint{0.67*\l}{0.1*\l}}
+    \pgfpathlineto{\pgfpoint{0.67*\l}{0.06*\l}}
+    \pgfpathlineto{\pgfpoint{0.75*\l}{0pt}}
+    \pgfpathlineto{\pgfpoint{\l}{0pt}}
+  }
+  \state{final}
+  {
+    \pgfpathlineto{\pgfpointdecoratedpathlast}
+  }
+}
+\endinput
+%%
+%% End of file `sjtuvishape.sty'.
