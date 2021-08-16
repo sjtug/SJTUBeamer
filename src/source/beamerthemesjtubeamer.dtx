@@ -39,6 +39,8 @@
 \DeclareBoolOption{max}
 \DeclareBoolOption{min}
 \sjtubeamer@maxplustrue
+\sjtubeamer@maxfalse
+\sjtubeamer@minfalse
 
 \DeclareBoolOption{red}
 \DeclareBoolOption{blue}
@@ -48,6 +50,7 @@
 
 \ProcessKeyvalOptions{sjtubeamer}
 
+% Option DEPRECATED for \verb"bannertitle".
 \ifsjtubeamer@bannertitle
   \sjtubeamer@DisableOption{warning}{bannertitle}
   \sjtubeamer@maxplustrue
