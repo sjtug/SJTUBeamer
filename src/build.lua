@@ -15,7 +15,7 @@ docfiledir       = "doc"
 typesetexe       = "xelatex"
 typesetfiles     = {"sjtubeamermintheme.tex","sjtubeamermindevguide.tex"}
 typesetdemofiles = {"red.tex","blue.tex","my.tex","main.tex"}
-typesetsuppfiles = {"head.png","plant.jpg","test.csv","testgraph.tex","ref.bib","cnlogored.pdf","enlogored.pdf"}
+typesetsuppfiles = {"head.png","plant.jpg","test.csv","testgraph.tex","ref.bib","cnlogored.pdf","enlogored.pdf","contents/"}
 
 packtdszip       = true -- recommended for "tree" layouts
 

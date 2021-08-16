@@ -50,9 +50,8 @@
 
 \ProcessKeyvalOptions{sjtubeamer}
 
-% Option DEPRECATED for \verb"bannertitle".
 \ifsjtubeamer@bannertitle
-  \sjtubeamer@DisableOption{warning}{bannertitle}
+  \ClassWarning{sjtubeamer}{"bannertitle" is obsolete. Use "maxplus" option instead.}
   \sjtubeamer@maxplustrue
 \fi
 
