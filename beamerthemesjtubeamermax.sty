@@ -1,0 +1,105 @@
+%%
+%% This is file `beamerthemesjtubeamermax.sty',
+%% generated with the docstrip utility.
+%%
+%% The original source files were:
+%%
+%% beamerthemesjtubeamer.dtx  (with options: `max')
+%% -------------------------------------------------------------------
+%% Copyright (C) 2021 SJTUG
+%% 
+%% Licensed under the Apache License, Version 2.0 (the "License");
+%% you may not use this file except in compliance with the License.
+%% You may obtain a copy of the License at
+%% 
+%%     http://www.apache.org/licenses/LICENSE-2.0
+%% 
+%% Unless required by applicable law or agreed to in writing, software
+%% distributed under the License is distributed on an "AS IS" BASIS,
+%% WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+%% See the License for the specific language governing permissions and
+%% limitations under the License.
+%% -------------------------------------------------------------------
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesPackage{beamerthemesjtubeamermax}[2021-08-16 sjtubeamermax parent theme v1.1]
+\RequirePackage{biblatex}
+
+\SetupKeyvalOptions{
+  family=sjtubeamermax,
+  prefix=sjtubeamermax@
+}
+\DeclareBoolOption{bannertitle}
+\DeclareBoolOption{red}
+\DeclareBoolOption{blue}
+\sjtubeamermax@redtrue
+\sjtubeamermax@bannertitletrue
+\ProcessKeyvalOptions{sjtubeamermax}
+
+\usetheme{Szeged}
+\usecolortheme{dolphin}
+
+\usefonttheme{structurebold}
+\useinnertheme{circles}
+\setbeamertemplate{blocks}[rounded]
+
+\ifsjtubeamermax@red
+  \definecolor{SJTUPrimary}{RGB}{200,22,30}
+\fi
+
+\ifsjtubeamermax@blue
+  \definecolor{SJTUPrimary}{RGB}{0,64,152}
+\fi
+
+\setbeamercolor{structure}{fg=SJTUPrimary}
+\setbeamertemplate{background}{\includegraphics[width=\paperwidth]{vi/sjtu-miao.png}}
+
+\ifsjtubeamermax@red
+  \logo{\includegraphics[height=1.5cm]{vi/sjtu-vi-badge-red.pdf}}
+  \setbeamercolor{banner title page}{fg=SJTUPrimary,bg=white}
+\fi
+
+\ifsjtubeamermax@blue
+  \logo{\includegraphics[height=1.5cm]{vi/sjtu-vi-badge-blue.pdf}}
+  \setbeamercolor{banner title page}{fg=white,bg=SJTUPrimary}
+\fi
+
+\ifsjtubeamermax@bannertitle
+  \defbeamertemplate*{title page}{sjtured}[1][]
+  {
+    \nointerlineskip%
+    \begin{beamercolorbox}[wd=\paperwidth, ht=\paperheight]{empty}
+      \usebeamercolor{banner title page}%
+      \begin{tikzpicture}
+        \pgfmathsetlengthmacro{\outslant}{\the\paperwidth - 0.8cm}
+        \node[anchor=north west, inner sep=0, outer sep=0] at (0,\the\paperheight){\includegraphics[height=\paperheight]{vi/title-background.jpg}};
+        \fill[color=white] (0,0) rectangle(\the\paperwidth,3.9);
+        \fill[color=bg]  (0,0) rectangle(\the\paperwidth,3.88);
+        \node[anchor=north west, text width=.8\paperwidth, fg] at (0.8,3.6){%
+        \ifx\insertsubtitle\@empty%
+          {\huge\bfseries\inserttitle}\\
+          \else%
+          {\Large\bfseries\inserttitle}\\
+          {\small\insertsubtitle}\\
+        \fi%
+        };
+        \node[anchor=south west, text width=.8\paperwidth, fg] at (0.8,0.45){%
+        {\small\insertauthor}\\
+        {\small\insertinstitute}\\
+        {\small\insertdate}%
+        };
+        \node[anchor=south east, inner sep=0, outer sep=0] at (\outslant,0.5){
+          \ifsjtubeamermax@red
+            \includegraphics[height=1cm]{vi/sjtu-vi-logo-red.pdf}
+          \fi
+
+          \ifsjtubeamermax@blue
+            \includegraphics[height=1cm]{vi/sjtu-vi-logo-white.pdf}
+          \fi
+        };
+      \end{tikzpicture}
+    \end{beamercolorbox}
+  }
+\fi
+\endinput
+%%
+%% End of file `beamerthemesjtubeamermax.sty'.

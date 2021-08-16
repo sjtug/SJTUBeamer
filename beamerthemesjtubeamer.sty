@@ -1,0 +1,73 @@
+%%
+%% This is file `beamerthemesjtubeamer.sty',
+%% generated with the docstrip utility.
+%%
+%% The original source files were:
+%%
+%% beamerthemesjtubeamer.dtx  (with options: `root')
+%% -------------------------------------------------------------------
+%% Copyright (C) 2021 SJTUG
+%% 
+%% Licensed under the Apache License, Version 2.0 (the "License");
+%% you may not use this file except in compliance with the License.
+%% You may obtain a copy of the License at
+%% 
+%%     http://www.apache.org/licenses/LICENSE-2.0
+%% 
+%% Unless required by applicable law or agreed to in writing, software
+%% distributed under the License is distributed on an "AS IS" BASIS,
+%% WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+%% See the License for the specific language governing permissions and
+%% limitations under the License.
+%% -------------------------------------------------------------------
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesPackage{beamerthemesjtubeamer}[2021-08-16 sjtubeamer parent root v1.1]
+\RequirePackage{kvoptions}
+\RequirePackage{iftex}
+
+\SetupKeyvalOptions{
+  family=sjtubeamer,
+  prefix=sjtubeamer@
+}
+
+\DeclareBoolOption{maxplus}
+\DeclareBoolOption{max}
+\DeclareBoolOption{min}
+\sjtubeamer@maxfalse
+\sjtubeamer@maxtrue
+\sjtubeamer@minfalse
+
+\DeclareBoolOption{red}
+\DeclareBoolOption{blue}
+\sjtubeamer@redtrue
+
+\DeclareBoolOption{bannertitle}
+
+\ProcessKeyvalOptions{sjtubeamer}
+
+\ifsjtubeamer@bannertitle
+  \ClassWarning{sjtubeamer}{"bannertitle" is obsolete. Use "maxplus" option instead.}
+  \sjtubeamer@maxplustrue
+\fi
+
+\ifsjtubeamer@min
+  \ifsjtubeamer@red
+    \PassOptionsToPackage{color=red}{sjtubeamermin}
+  \else
+    \PassOptionsToPackage{color=blue}{sjtubeamermin}
+  \fi
+  \usetheme{sjtubeamermin}
+\else
+  \ifsjtubeamer@red
+    \PassOptionsToPackage{red}{sjtubeamermax}
+  \else
+    \PassOptionsToPackage{blue}{sjtubeamermax}
+  \fi
+  \ifsjtubeamer@maxplus
+    \PassOptionsToPackage{bannertitle}{sjtubeamermax}
+  \fi
+  \usetheme{sjtubeamermax}
+\fi
+\endinput
+%%
+%% End of file `beamerthemesjtubeamer.sty'.
