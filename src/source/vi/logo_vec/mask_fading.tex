@@ -1,0 +1,56 @@
+\documentclass{standalone}
+\usepackage{tikz}
+\usetikzlibrary{fadings}
+\usepackage{graphicx}
+
+\definecolor{SJTUred}{RGB}{200,22,30}
+\definecolor{SJTUblue}{RGB}{0,64,152}
+
+\begin{document}
+    \begin{tikzfadingfrompicture}[name=cn-badge]
+        \fill[black] (-1,-1) rectangle (1,1);
+        \node {\includegraphics[width=1.5cm]{cn-badge.pdf}};
+    \end{tikzfadingfrompicture}
+    \begin{tikzfadingfrompicture}[name=en-badge]
+        \fill[black] (-1,-1) rectangle (1,1);
+        \node {\includegraphics[width=1.5cm]{en-badge.pdf}};
+    \end{tikzfadingfrompicture}
+    \begin{tikzfadingfrompicture}[name=d-badge]
+        \fill[black] (-1,-1) rectangle (1,1);
+        \node {\includegraphics[width=1.5cm]{d-badge.pdf}};
+    \end{tikzfadingfrompicture}
+    \begin{tikzfadingfrompicture}[name=v-badge]
+        \fill[black] (-1,-1) rectangle (1,1);
+        \node {\includegraphics[height=1.5cm]{v-badge.pdf}};
+    \end{tikzfadingfrompicture}
+
+    \begin{tikzpicture}
+        \begin{scope}
+            \clip (0,3) rectangle (10,7);
+            % \fill [black] (0,0) rectangle (10,10);
+            \fill [SJTUred,path fading=cn-badge] (0,0) rectangle (10,10);
+        \end{scope}
+    \end{tikzpicture}
+
+    \begin{tikzpicture}
+        \begin{scope}
+            \clip (0,3) rectangle (10,7);
+            % \fill [black] (0,0) rectangle (10,10);
+            \fill [SJTUblue,path fading=en-badge] (0,0) rectangle (10,10);
+        \end{scope}
+    \end{tikzpicture}
+
+    \begin{tikzpicture}
+            % \fill [black] (0,0) rectangle (10,10);
+            \fill [black,path fading=d-badge] (0,0) rectangle (10,10);
+    \end{tikzpicture}
+
+    \begin{tikzpicture}
+        \begin{scope}
+            \clip (3,0) rectangle (7,10);
+            \fill [black] (0,0) rectangle (10,10);
+            \fill [white,path fading=v-badge] (0,0) rectangle (10,10);
+        \end{scope}
+    \end{tikzpicture}
+
+\end{document}
