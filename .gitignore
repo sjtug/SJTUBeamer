@@ -260,3 +260,5 @@ build-*.pdf
 build-*.tex
 
 *-ctan.zip
+*.pdf
+*.listing
