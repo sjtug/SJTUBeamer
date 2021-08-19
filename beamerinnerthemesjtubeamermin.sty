@@ -21,7 +21,7 @@
 %% limitations under the License.
 %% -------------------------------------------------------------------
 \NeedsTeXFormat{LaTeX2e}
-\ProvidesPackage{beamerinnerthemesjtubeamermin}[2021-08-16 sjtubeamermin inner theme v1.1]
+\ProvidesPackage{beamerinnerthemesjtubeamermin}[2021-08-19 sjtubeamermin inner theme 1.2]
 \RequirePackage{pgfplots}
 \RequirePackage{array}
 \RequirePackage{colortbl}
@@ -45,7 +45,7 @@
   pattern=all
 }
 \ProcessOptionsBeamer
-\RequirePackage{sjtuvishape}
+\RequirePackage{sjtuvi}
 \tikzfading[
   name=center fade,
   inner color=transparent!0,
@@ -218,7 +218,6 @@
 }
 \setbeamertemplate{items}[circle]
 \setbeamertemplate{sections/subsections in toc}[circle]
-\RequirePackage{sjtucolordef}
 \newtcbox{\highlight}[1][cprimary]{
     on line,
     arc=0pt,

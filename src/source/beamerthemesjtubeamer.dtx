@@ -22,7 +22,7 @@
 % Entry Point. The root style.
 % \iffalse
 \NeedsTeXFormat{LaTeX2e}
-\ProvidesPackage{beamerthemesjtubeamer}[2021-08-16 sjtubeamer parent root v1.1]
+\ProvidesPackage{beamerthemesjtubeamer}[2021-08-19 sjtubeamer parent root 1.2]
 % \fi
 %    \begin{macrocode}
 \RequirePackage{kvoptions}
@@ -82,7 +82,7 @@
 % \verb"max" and \verb"maxplus" option. Original \verb"SJTUBeamer" code.
 % \iffalse
 \NeedsTeXFormat{LaTeX2e}
-\ProvidesPackage{beamerthemesjtubeamermax}[2021-08-16 sjtubeamermax parent theme v1.1]
+\ProvidesPackage{beamerthemesjtubeamermax}[2021-08-19 sjtubeamermax parent theme 1.2]
 % \fi
 %    \begin{macrocode}
 \RequirePackage{biblatex}
@@ -105,6 +105,8 @@
 \useinnertheme{circles}
 \setbeamertemplate{blocks}[rounded]
 
+\RequirePackage{sjtuvi}
+
 \ifsjtubeamermax@red
   \definecolor{SJTUPrimary}{RGB}{200,22,30}
 \fi
@@ -114,15 +116,15 @@
 \fi
 
 \setbeamercolor{structure}{fg=SJTUPrimary}
-\setbeamertemplate{background}{\includegraphics[width=\paperwidth]{vi/sjtu-miao.png}}
+\setbeamertemplate{background}{\includegraphics[width=\paperwidth]{sjtubg.png}}
+
+\logo{\resizebox{!}{1.5cm}{\sjtubadge{SJTUPrimary}}}
 
 \ifsjtubeamermax@red
-  \logo{\includegraphics[height=1.5cm]{vi/sjtu-vi-badge-red.pdf}}
   \setbeamercolor{banner title page}{fg=SJTUPrimary,bg=white}
 \fi
 
 \ifsjtubeamermax@blue
-  \logo{\includegraphics[height=1.5cm]{vi/sjtu-vi-badge-blue.pdf}}
   \setbeamercolor{banner title page}{fg=white,bg=SJTUPrimary}
 \fi
 
@@ -134,7 +136,7 @@
       \usebeamercolor{banner title page}% 
       \begin{tikzpicture}
         \pgfmathsetlengthmacro{\outslant}{\the\paperwidth - 0.8cm}
-        \node[anchor=north west, inner sep=0, outer sep=0] at (0,\the\paperheight){\includegraphics[height=\paperheight]{vi/title-background.jpg}};
+        \node[anchor=north west, inner sep=0, outer sep=0] at (0,\the\paperheight){\includegraphics[height=\paperheight]{sjtuphoto.jpg}};
         \fill[color=white] (0,0) rectangle(\the\paperwidth,3.9);
         \fill[color=bg]  (0,0) rectangle(\the\paperwidth,3.88);
         \node[anchor=north west, text width=.8\paperwidth, fg] at (0.8,3.6){%
@@ -152,11 +154,11 @@
         };
         \node[anchor=south east, inner sep=0, outer sep=0] at (\outslant,0.5){
           \ifsjtubeamermax@red
-            \includegraphics[height=1cm]{vi/sjtu-vi-logo-red.pdf}
+            \resizebox{!}{1cm}{\cnlogo{SJTUPrimary}}
           \fi
 
           \ifsjtubeamermax@blue
-            \includegraphics[height=1cm]{vi/sjtu-vi-logo-white.pdf}
+            \resizebox{!}{1cm}{\cnlogo{white}}
           \fi
         };
       \end{tikzpicture}
@@ -172,7 +174,7 @@
 % ------------------------------------------------------------------- \fi
 % \iffalse
 \NeedsTeXFormat{LaTeX2e}
-\ProvidesPackage{beamerthemesjtubeamermin}[2021-08-16 sjtubeamermin parent theme v1.1]
+\ProvidesPackage{beamerthemesjtubeamermin}[2021-08-19 sjtubeamermin parent theme 1.2]
 % \fi
 %
 % \subsection{Parent Theme}

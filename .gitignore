@@ -260,3 +260,8 @@ build-*.pdf
 build-*.tex
 
 *-ctan.zip
+*.listing
+red.pdf
+blue.pdf
+my.pdf
+sjtubeamer*.pdf

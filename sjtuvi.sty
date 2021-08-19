@@ -1,36 +1,95 @@
 %%
-%% This is file `sjtuvishape.sty',
+%% This is file `sjtuvi.sty',
 %% generated with the docstrip utility.
 %%
 %% The original source files were:
 %%
-%% sjtuvishape.dtx  (with options: `package')
+%% sjtuvi.dtx  (with options: `package')
 %% -------------------------------------------------------------------
 %% Copyright (C) Shanghai Jiao Tong University
 %% The definition in this file is refered to the Visual Identity System
 %% from Shanghai Jiao Tong University (SJTU).
 %% See https://vi.sjtu.edu.cn for more information.
 %% 
-%% The generation source is implemented by Log Creative.
-%% The author himself doesn't change the ownership of the design pattern.
-%% Any commercial usage in this file should be ackwoledged by the
+%% The template itself doesn't change the ownership of the design pattern.
+%% Any commercial usage in this file should be acknowledged by the
 %% administration in SJTU.
-%% More infomation about the license for this file,
+%% For more information about the license for this file,
 %% see https://vi.sjtu.edu.cn/index.php/articles/bulletin/16.
 %% -------------------------------------------------------------------
 \NeedsTeXFormat{LaTeX2e}
-\ProvidesPackage{sjtuvishape}[2021-08-16 Shape Pattern in Visual Identity System for sjtubeamermin v1.1]
-\logo{
-  \ifx\beamer@sjtubeamermin@lang\beamer@sjtubeamermin@langen
-    \includegraphics{sjtuenlogo.pdf}
-  \else
-    \includegraphics{sjtucnlogo.pdf}
-  \fi
-}
+\ProvidesPackage{sjtuvi}[2021-08-19 Visual Identity System Implementation for sjtubeamer 1.2]
+\ifx\beamer@sjtubeamermin@color\beamer@sjtubeamermin@colorblue%
+    \definecolor{cprimary}{HTML}{004098}        %problue
+    \definecolor{csecondary}{HTML}{298626}      %lightgreen
+    \definecolor{ctertiary}{HTML}{004D4B}       %lightgray
+    \definecolor{cquanternary}{HTML}{FFFFFF}    %white
+
+    \definecolor{SJTUPrimary}{RGB}{0,64,152}    %adaptation to max
+\else%
+    \definecolor{cprimary}{HTML}{9E1F36}        %engred
+    \definecolor{csecondary}{HTML}{F28101}      %orange
+    \definecolor{ctertiary}{HTML}{FED201}       %yellow
+    \definecolor{cquanternary}{HTML}{000000}    %black
+
+    \definecolor{SJTUPrimary}{RGB}{200,22,30}   %adaptation to max
+\fi%
 \RequirePackage{tikz}
 \usetikzlibrary{patterns.meta}
 \usetikzlibrary{fadings}
 \usetikzlibrary{decorations.pathmorphing}
+\def\definelogo#1#2{
+  % #1: file name
+  % #2: mode: v|h|f
+  \def\tempmode{#2}
+  \if v\tempmode % vertical
+    \begin{tikzfadingfrompicture}[name=#1]
+      \fill[black] (-1,-1) rectangle (1,1);
+      \node {\includegraphics[height=1.5cm]{#1.pdf}};
+    \end{tikzfadingfrompicture}
+    \expandafter\gdef\csname#1\endcsname##1{
+      \begin{tikzpicture}
+        \begin{scope}
+          \clip (3.80,0.70) rectangle (6.25,9.30);
+          \fill [##1,path fading=#1] (0,0) rectangle (10,10);
+        \end{scope}
+      \end{tikzpicture}
+    }
+  \else
+    \begin{tikzfadingfrompicture}[name=#1]
+      \fill[black] (-1,-1) rectangle (1,1);
+      \node {\includegraphics[width=1.5cm]{#1.pdf}};
+    \end{tikzfadingfrompicture}
+    \if h\tempmode % horizontal
+      \expandafter\gdef\csname#1\endcsname##1{
+        \begin{tikzpicture}
+          \begin{scope}
+            \clip (0.70,3.80) rectangle (9.30,6.25);
+            \fill [##1,path fading=#1] (0,0) rectangle (10,10);
+          \end{scope}
+        \end{tikzpicture}
+      }
+    \else % full
+      \expandafter\gdef\csname#1\endcsname##1{
+        \begin{tikzpicture}
+            \fill [##1,path fading=#1] (0,0) rectangle (10,10);
+        \end{tikzpicture}
+      }
+    \fi
+  \fi
+}
+\definelogo{sjtubadge}{f}
+\definelogo{cnlogo}{h}
+\definelogo{enlogo}{h}
+\definelogo{dlogo}{f}
+\definelogo{vlogo}{v}
+\logo{
+  \ifx\beamer@sjtubeamermin@lang\beamer@sjtubeamermin@langen
+    \enlogo{white}
+  \else
+    \cnlogo{white}
+  \fi
+}
 \tikzdeclarepattern{
   name=stamp,
   parameters={
@@ -111,4 +170,4 @@
 }
 \endinput
 %%
-%% End of file `sjtuvishape.sty'.
+%% End of file `sjtuvi.sty'.

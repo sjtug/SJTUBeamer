@@ -3,8 +3,8 @@
 % The definition in this file is refered to the Visual Identity System
 % from Shanghai Jiao Tong University (SJTU). 
 % See https://vi.sjtu.edu.cn for more information.
-% The generation source is implemented by Log Creative.
-% The author himself doesn't change the ownership of the design pattern.
+%
+% The template itself doesn't change the ownership of the design pattern.
 % Any commercial usage in this file should be ackwoledged by the
 % administration in SJTU.
 % More infomation about the license for this file,
@@ -13,7 +13,7 @@
 % \iffalse
 %<*package>
 \NeedsTeXFormat{LaTeX2e}
-\ProvidesPackage{sjtuvishape}[2021-08-16 Shape Pattern in Visual Identity System for sjtubeamermin v1.1]
+\ProvidesPackage{sjtuvi}[2021-08-19 Visual Identity System Implementation for sjtubeamer 1.2]
 %</package>
 % \fi
 % \CheckSum{0}
@@ -22,21 +22,34 @@
 %<*package>
 % ------------------------------------------------------------------- \fi
 %
-% \subsection{Logo}
-% \begin{macro}{\logo}
-%   Depend on the language definition, load the required logo by default. The logo is protected by the copyright from SJTU.
-%   The logo could be customized by redefinition from \verb"\logo" command.
-%    \begin{macrocode}
-\logo{
-  \ifx\beamer@sjtubeamermin@lang\beamer@sjtubeamermin@langen
-    \includegraphics{sjtuenlogo.pdf}
-  \else
-    \includegraphics{sjtucnlogo.pdf}
-  \fi
-}
-%    \end{macrocode}
-% \end{macro}
 %
+% \subsection{Color Definition}
+%   The following color is defined by SJTU VI.
+%   \begin{description}
+%       \item[cprimary] The primary color, which influences the color of title and the background of title page.
+%       \item[csecondary] The secondary color, which influences the color of subtitle.
+%       \item[ctertiary] The tertiary color, which provides the color for the blocks.
+%       \item[cquanternary] The quanternary color, which only influences the foreground of example blocks.
+%   \end{description}
+%    \begin{macrocode}
+\ifx\beamer@sjtubeamermin@color\beamer@sjtubeamermin@colorblue%
+    \definecolor{cprimary}{HTML}{004098}        %problue 
+    \definecolor{csecondary}{HTML}{298626}      %lightgreen
+    \definecolor{ctertiary}{HTML}{004D4B}       %lightgray
+    \definecolor{cquanternary}{HTML}{FFFFFF}    %white
+    
+    \definecolor{SJTUPrimary}{RGB}{0,64,152}    %adaptation to max
+\else%
+    \definecolor{cprimary}{HTML}{9E1F36}        %engred
+    \definecolor{csecondary}{HTML}{F28101}      %orange
+    \definecolor{ctertiary}{HTML}{FED201}       %yellow
+    \definecolor{cquanternary}{HTML}{000000}    %black
+
+    \definecolor{SJTUPrimary}{RGB}{200,22,30}   %adaptation to max
+\fi%
+%    \end{macrocode}
+%
+% \subsection{Logo}
 % \subsubsection{Load TikZ}
 % Load TikZ package and its related library: \verb"pattern.meta" provides the interface to define a pattern; \verb"fadings" provides the method to create a fading mask; \verb"decoration.pathmorphing" provides the interface to user-define a decoration.
 %    \begin{macrocode}
@@ -45,6 +58,83 @@
 \usetikzlibrary{fadings}
 \usetikzlibrary{decorations.pathmorphing}
 %    \end{macrocode}
+%
+% \subsubsection{Declare Logo}
+% \begin{macro}{\definelogo}
+%    Define a masked logo to make its different color variants.
+%    The first argument assigned the file name and the second sets the cropping mode for the logo:
+%    \begin{itemize}
+%      \item[h] The horizontal mode. The mask will be cropped by a horizontal rectangle in the center.
+%      \item[v] The vertical mode. The mask will be cropped by a vertical rectangle.
+%      \item[f] The full mode. This is suitable for a square logo. 
+%    \end{itemize}
+%    You should define a logo \verb"\definelogo{mylogo}{f}" then use it in the contents like:
+%    \verb"\mylogo{white}", where the second parameter is the color you want.
+%    \begin{macrocode}
+\def\definelogo#1#2{
+  % #1: file name
+  % #2: mode: v|h|f
+  \def\tempmode{#2}
+  \if v\tempmode % vertical
+    \begin{tikzfadingfrompicture}[name=#1]
+      \fill[black] (-1,-1) rectangle (1,1);
+      \node {\includegraphics[height=1.5cm]{#1.pdf}};
+    \end{tikzfadingfrompicture}
+    \expandafter\gdef\csname#1\endcsname##1{
+      \begin{tikzpicture}
+        \begin{scope}
+          \clip (3.80,0.70) rectangle (6.25,9.30);
+          \fill [##1,path fading=#1] (0,0) rectangle (10,10);
+        \end{scope}
+      \end{tikzpicture}
+    }
+  \else
+    \begin{tikzfadingfrompicture}[name=#1]
+      \fill[black] (-1,-1) rectangle (1,1);
+      \node {\includegraphics[width=1.5cm]{#1.pdf}};
+    \end{tikzfadingfrompicture}
+    \if h\tempmode % horizontal
+      \expandafter\gdef\csname#1\endcsname##1{
+        \begin{tikzpicture}
+          \begin{scope}
+            \clip (0.70,3.80) rectangle (9.30,6.25);
+            \fill [##1,path fading=#1] (0,0) rectangle (10,10);
+          \end{scope}
+        \end{tikzpicture}
+      }
+    \else % full
+      \expandafter\gdef\csname#1\endcsname##1{
+        \begin{tikzpicture}
+            \fill [##1,path fading=#1] (0,0) rectangle (10,10);
+        \end{tikzpicture}
+      }
+    \fi
+  \fi
+}
+%    \end{macrocode}
+% \end{macro}
+%    Define the required logo.
+%    \begin{macrocode}
+\definelogo{sjtubadge}{f}
+\definelogo{cnlogo}{h}
+\definelogo{enlogo}{h}
+\definelogo{dlogo}{f}
+\definelogo{vlogo}{v}
+%    \end{macrocode}
+%
+% \begin{macro}{\logo}
+%   Depend on the language definition, load the required logo by default. The logo is protected by the copyright from SJTU.
+%   The logo could be customized by redefinition from \verb"\logo" command.
+%    \begin{macrocode}
+\logo{
+  \ifx\beamer@sjtubeamermin@lang\beamer@sjtubeamermin@langen
+    \enlogo{white}
+  \else
+    \cnlogo{white}
+  \fi
+}
+%    \end{macrocode}
+% \end{macro}
 %
 % \subsubsection{Shape Declarations}
 % \begin{macro}{stamp}
