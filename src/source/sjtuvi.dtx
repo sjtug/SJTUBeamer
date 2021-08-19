@@ -60,8 +60,20 @@
 %    \end{macrocode}
 %
 % \subsubsection{Declare Logo}
+% \begin{macro}{\definelogo}
+%    Define a masked logo to make its different color variants.
+%    The first argument assigned the file name and the second sets the cropping mode for the logo:
+%    \begin{itemize}
+%      \item[h] The horizontal mode. The mask will be cropped by a horizontal rectangle in the center.
+%      \item[v] The vertical mode. The mask will be cropped by a vertical rectangle.
+%      \item[f] The full mode. This is suitable for a square logo. 
+%    \end{itemize}
+%    You should define a logo \verb"\definelogo{mylogo}{f}" then use it in the contents like:
+%    \verb"\mylogo{white}", where the second parameter is the color you want.
 %    \begin{macrocode}
 \def\definelogo#1#2{
+  % #1: file name
+  % #2: mode: v|h|f
   \def\tempmode{#2}
   \if v\tempmode % vertical
     \begin{tikzfadingfrompicture}[name=#1]
@@ -99,6 +111,10 @@
     \fi
   \fi
 }
+%    \end{macrocode}
+% \end{macro}
+%    Define the required logo.
+%    \begin{macrocode}
 \definelogo{sjtubadge}{f}
 \definelogo{cnlogo}{h}
 \definelogo{enlogo}{h}

@@ -39,6 +39,8 @@
 \usetikzlibrary{fadings}
 \usetikzlibrary{decorations.pathmorphing}
 \def\definelogo#1#2{
+  % #1: file name
+  % #2: mode: v|h|f
   \def\tempmode{#2}
   \if v\tempmode % vertical
     \begin{tikzfadingfrompicture}[name=#1]
