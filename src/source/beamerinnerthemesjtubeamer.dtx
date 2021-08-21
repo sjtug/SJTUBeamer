@@ -39,6 +39,16 @@
 %   \item figures and tables; and
 %   \item footnotes and plain text.
 % \end{itemize}
+%   \subsubsection{Option Declaration}
+%    \begin{macrocode}
+\DeclareOptionBeamer{max}{\def\sjtubeamer@inner@cover{max}}
+\DeclareOptionBeamer{mid}[true]{\def\sjtubeamer@inner@cover{mid}}
+\DeclareOptionBeamer{min}{\def\sjtubeamer@inner@cover{min}}
+\DeclareOptionBeamer{my}{\def\sjtubeamer@inner@cover{my}} % reserved for customization
+\ExecuteOptionsBeamer{mid}
+\ProcessOptionsBeamer
+\PassOptionsToPackage{\sjtubeamer@inner@cover}{sjtucover}
+%    \end{macrocode}
 %
 %   Load SJTU VI Library to get the definition on color and shape.
 %    \begin{macrocode}
@@ -70,7 +80,6 @@
   }{}
 }
 %    \end{macrocode}
-%
 %
 %
 % \iffalse

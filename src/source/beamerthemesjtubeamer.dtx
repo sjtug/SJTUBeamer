@@ -46,14 +46,31 @@
 % \themename theme and route the theme options accordingly. It also
 % provides some custom commands and environments for the user.
 %
-%   \subsubsection{Load Packages}
-%   Option support and branch command support.
+%    \subsubsection{Option Declaration}
+%    To create an option, the variable should be first defined.
 %    \begin{macrocode}
-\RequirePackage{kvoptions}
-\RequirePackage{iftex}
+%    \end{macrocode}
+%   Next, use \verb"\DeclareOptionBeamer" to let beamer theme receive such an option and store the value into a variable.
+%    \begin{macrocode}
+\DeclareOptionBeamer{max}{\def\sjtubeamer@cover{max}}
+\DeclareOptionBeamer{mid}[true]{\def\sjtubeamer@cover{mid}}
+\DeclareOptionBeamer{min}{\def\sjtubeamer@cover{min}}
+\DeclareOptionBeamer{my}{\def\sjtubeamer@cover{my}} % reserved for customization
+%    \end{macrocode}
+%   Then, declare the initial configuration.
+%    \begin{macrocode}
+\ExecuteOptionsBeamer{mid}
+%    \end{macrocode}
+%   Finally, the user's option will be processed after this (at the end of this subsubsection).
+%    \begin{macrocode}
+\ProcessOptionsBeamer
+%    \end{macrocode}
+%   After processing, the option can only be one of above and pass it to the target package.
+%    \begin{macrocode}
+\PassOptionsToPackage{\sjtubeamer@cover}{beamerinnerthemesjtubeamer}
 %    \end{macrocode}
 %
-%   The following code is executerd when it is in <presentation> mode.
+%   The following code is executed when it is in <presentation> mode.
 %    \begin{macrocode}
 \mode<presentation>
 %    \end{macrocode}

@@ -25,6 +25,9 @@
 % \subsection{SJTU VI Library}
 %   This library provides the definition of basic elements in SJTU VI, including color, logo and some shapes. 
 %
+%    \begin{macrocode}
+\RequirePackage{ifthen}
+%    \end{macrocode}
 % \subsubsection{Load TikZ}
 %   Load TikZ package and its related library: \verb"pattern.meta" provides the interface to define a pattern; \verb"fadings" provides the method to create a fading mask; \verb"decoration.pathmorphing" provides the interface to user-define a decoration.
 %    \begin{macrocode}
@@ -113,20 +116,6 @@
 \definelogo{dlogo}{f}
 \definelogo{vlogo}{v}
 %    \end{macrocode}
-%
-% \begin{macro}{\logo}
-%   Depend on the language definition, load the required logo by default. The logo is protected by the copyright from SJTU.
-%   The logo could be customized by redefinition from \verb"\logo" command.
-%    \begin{macrocode}
-\logo{
-  \ifx\beamer@sjtubeamermin@lang\beamer@sjtubeamermin@langen
-    \enlogo{white}
-  \else
-    \cnlogo{white}
-  \fi
-}
-%    \end{macrocode}
-% \end{macro}
 %
 % \subsubsection{Shape Declarations}
 % \begin{macro}{stamp}

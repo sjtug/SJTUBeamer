@@ -13,7 +13,7 @@
 % \iffalse
 %<*package>
 \NeedsTeXFormat{LaTeX2e}
-\ProvidesPackage{sjtuvi}[2021-08-21 cover library for sjtubeamer 1.3]
+\ProvidesPackage{sjtucover}[2021-08-21 cover library for sjtubeamer 1.3]
 %</package>
 % \fi
 % \CheckSum{0}
@@ -25,9 +25,30 @@
 % \subsection{Cover Library}
 %   This library provides the template for the title page and the bottom page. Apart from inner theme, to provide more ability on extension.
 %
-%   Load SJTU VI Library to get the definition on shapes.
+%   Load SJTU VI Library to get the definition on shapes. (+\verb"ifthen" package)
 %    \begin{macrocode}
 \RequirePackage{sjtuvi}
+%    \end{macrocode}
+%
+%    \begin{macrocode}
+\DeclareOptionBeamer{max}{\def\sjtubeamer@sjtucover@cover{max}}
+\DeclareOptionBeamer{mid}[true]{\def\sjtubeamer@sjtucover@cover{mid}}
+\DeclareOptionBeamer{min}{\def\sjtubeamer@sjtucover@cover{min}}
+\DeclareOptionBeamer{my}{\def\sjtubeamer@sjtucover@cover{my}} % reserved for customization
+\ExecuteOptionsBeamer{mid}
+\ProcessOptionsBeamer
+%    \end{macrocode}
+%
+%    \begin{macrocode}
+\ifthenelse{\equal{\sjtubeamer@sjtucover@cover}{max}}{
+    \PackageWarning{sjtucover}{max}
+}{\ifthenelse{\equal{\sjtubeamer@sjtucover@cover}{mid}}{
+    \PackageWarning{sjtucover}{mid}
+}{\ifthenelse{\equal{\sjtubeamer@sjtucover@cover}{min}}{
+    \PackageWarning{sjtucover}{min}
+}{\ifthenelse{\equal{\sjtubeamer@sjtucover@cover}{my}}{
+    \PackageWarning{sjtucover}{my}
+}}}}
 %    \end{macrocode}
 %
 %

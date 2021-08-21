@@ -25,7 +25,7 @@ tagfiles = {"*.dtx","README.md","*.ins","sjtubeamermintheme.tex","sjtubeamermind
 
 -- Detail how to set the version automatically
 function update_tag(file,content,tagname,tagdate)
-    local iso = "%d%d%d%d%-%d%d%-%d%d"
+    local iso = "%d%d%d%d%%/%d%d%%/%d%d"
     if string.match(content,"%(C%)%s*[%d%-,]+") then
         local year = os.date("%Y")
         content = string.gsub(content,
@@ -39,7 +39,7 @@ function update_tag(file,content,tagname,tagdate)
         math.tointeger(year - 2) .. "," .. math.tointeger(year - 1) .. "," .. year,
         math.tointeger(year - 2) .. "-" .. year)
     end
-    local now = os.date("%Y-%m-%d")
+    local now = os.date("%Y/%m/%d")
     if string.match(file,"%.dtx$") then
         content = string.gsub(content,
             "\n\\ProvidesPackage" .. "({%w+})%[" .. iso .. "([^%]]+) v%d%.%d%]",
