@@ -25,30 +25,31 @@
 % \subsection{Cover Library}
 %   This library provides the template for the title page and the bottom page. Apart from inner theme, to provide more ability on extension.
 %
-%   Load SJTU VI Library to get the definition on shapes. (+\verb"ifthen" package)
+%   Load SJTU VI Library to get the definition on shapes.
 %    \begin{macrocode}
 \RequirePackage{sjtuvi}
 %    \end{macrocode}
 %
 %    \begin{macrocode}
-\DeclareOptionBeamer{max}{\def\sjtubeamer@sjtucover@cover{max}}
-\DeclareOptionBeamer{mid}[true]{\def\sjtubeamer@sjtucover@cover{mid}}
-\DeclareOptionBeamer{min}{\def\sjtubeamer@sjtucover@cover{min}}
-\DeclareOptionBeamer{my}{\def\sjtubeamer@sjtucover@cover{my}} % reserved for customization
+\DefineOption{sjtucover}{cover}{max}
+\DefineOption{sjtucover}{cover}{mid}
+\DefineOption{sjtucover}{cover}{min}
+\DefineOption{sjtucover}{cover}{my}  % reserved for customization
 \ExecuteOptionsBeamer{mid}
 \ProcessOptionsBeamer
 %    \end{macrocode}
 %
 %    \begin{macrocode}
-\ifthenelse{\equal{\sjtubeamer@sjtucover@cover}{max}}{
+\if\EqualOption{sjtucover}{cover}{max}
     \PackageWarning{sjtucover}{max}
-}{\ifthenelse{\equal{\sjtubeamer@sjtucover@cover}{mid}}{
+\else\if\EqualOption{sjtucover}{cover}{mid}
     \PackageWarning{sjtucover}{mid}
-}{\ifthenelse{\equal{\sjtubeamer@sjtucover@cover}{min}}{
+\else\if\EqualOption{sjtucover}{cover}{min}
     \PackageWarning{sjtucover}{min}
-}{\ifthenelse{\equal{\sjtubeamer@sjtucover@cover}{my}}{
+\else\if\EqualOption{sjtucover}{cover}{my}
     \PackageWarning{sjtucover}{my}
-}}}}
+\else\PackageWarning{sjtucover}{nothing}
+\fi\fi\fi\fi
 %    \end{macrocode}
 %
 %

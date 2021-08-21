@@ -32,9 +32,17 @@
 \RequirePackage{sjtuvi}
 %    \end{macrocode}
 %
+%  \begin{macro}{\sjtubeamer@color@color}
+%    \begin{macrocode}
+\DefineOption{color}{color}{red}
+\DefineOption{color}{color}{blue}
+\ExecuteOptionsBeamer{red}
+%    \end{macrocode}
+%  \end{macro}
 %
-%
-%
+%    \begin{macrocode}
+\ProcessOptionsBeamer
+%    \end{macrocode}
 %
 %
 % \iffalse

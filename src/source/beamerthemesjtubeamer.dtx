@@ -47,27 +47,58 @@
 % provides some custom commands and environments for the user.
 %
 %    \subsubsection{Option Declaration}
-%    To create an option, the variable should be first defined.
-%    \begin{macrocode}
-%    \end{macrocode}
-%   Next, use \verb"\DeclareOptionBeamer" to let beamer theme receive such an option and store the value into a variable.
+%   \begin{macro}{\sjtubeamer@cover}
+%   This macro selects the cover theme.
+%\begin{description}
+%    \item[max] The titlegraphic will be a photo.
+%    \item[mid] The background will be the photo.
+%    \item[min] The design will be minimalistic.
+%    \item[my]  Reserved interface for developers for customized title page and bottom page.
+%\end{description}
+%   
+%   $\rightarrow$ The following will demostrates how to pass options between files.
+%
+%   $\rightarrow$ To set up an option, use \verb"\DeclareOptionBeamer" to let beamer theme receive such an option and store the value into a variable.
+%
+%   $\rightarrow$ To make the variable easy to follow and avoid duplicates, the naming system is as follows:
+%   \begin{itemize}
+%    \item Start with the project name \verb"sjtubeamer".
+%    \item Split by \verb"@" symbol and move to the next level.
+%    \item The final level should be the variable name itself.
+%   \end{itemize}
 %    \begin{macrocode}
 \DeclareOptionBeamer{max}{\def\sjtubeamer@cover{max}}
-\DeclareOptionBeamer{mid}[true]{\def\sjtubeamer@cover{mid}}
+\DeclareOptionBeamer{mid}{\def\sjtubeamer@cover{mid}}
 \DeclareOptionBeamer{min}{\def\sjtubeamer@cover{min}}
 \DeclareOptionBeamer{my}{\def\sjtubeamer@cover{my}} % reserved for customization
 %    \end{macrocode}
-%   Then, declare the initial configuration.
+%   $\rightarrow$ Next, declare the initial configuration.
 %    \begin{macrocode}
 \ExecuteOptionsBeamer{mid}
 %    \end{macrocode}
-%   Finally, the user's option will be processed after this (at the end of this subsubsection).
+%
+%  \begin{macro}{\sjtubeamer@color}
+%   Choose the main color palette.
+%   \begin{description}
+%       \item[red] The red color palatte. \verb"sjtuRed*"
+%       \item[blue] The blue color palatte. \verb"sjtuBlue*"
+%   \end{description}
+%
+%    \begin{macrocode}
+\DeclareOptionBeamer{red}{\def\sjtubeamer@color{red}}
+\DeclareOptionBeamer{blue}{\def\sjtubeamer@color{blue}}
+\ExecuteOptionsBeamer{red}
+%    \end{macrocode}
+%  \end{macro}
+%
+%   $\rightarrow$ Then, the user's option will be processed after this (at the end of this subsubsection).
 %    \begin{macrocode}
 \ProcessOptionsBeamer
 %    \end{macrocode}
-%   After processing, the option can only be one of above and pass it to the target package.
+%   $\rightarrow$ Finally, the option can only be one of above and pass it to the target package.
 %    \begin{macrocode}
 \PassOptionsToPackage{\sjtubeamer@cover}{beamerinnerthemesjtubeamer}
+\PassOptionsToPackage{\sjtubeamer@color}{beamercolorthemesjtubeamer}
 %    \end{macrocode}
 %
 %   The following code is executed when it is in <presentation> mode.

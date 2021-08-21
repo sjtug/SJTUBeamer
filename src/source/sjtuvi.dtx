@@ -25,9 +25,41 @@
 % \subsection{SJTU VI Library}
 %   This library provides the definition of basic elements in SJTU VI, including color, logo and some shapes. 
 %
+%  \begin{macro}{\DefineOption}
+%   Define the beamer option on the corresponding package, key and value.
 %    \begin{macrocode}
-\RequirePackage{ifthen}
+\def\DefineOption#1#2#3{
+    % #1: package
+    % #2: key
+    % #3: value
+    \DeclareOptionBeamer{#3}{\expandafter\def\csname sjtubeamer@#1@#2\endcsname{#3}}
+}
 %    \end{macrocode}
+%  \end{macro}
+%
+%  \begin{macro}{\EqualOption}
+%   To check if the option on package, key is equal to value.
+%
+%   Here a dummy trick is used to pass the if condition.
+%   Since LaTeX handles \verb"\if" differently.
+%   \verb"\iftrue" will eliminate the nearest \verb"\else" and \verb"\fi" but remains other extra \verb"\fi" and throws errors.
+%   To avoid this, if the macro is expanded after \verb"\if", T=T, the condition holds and finish the current pair. And continues to process the real defined macro. This solution is somehow to combat with the LaTeX compiler. In modern LaTeX 3, may be it is not nasty to deal with neseted conditions. 
+%   \verb"\iffalse" doesn't need to be considered.
+%    \begin{macrocode}
+\def\EqualOption{TT\fi\ifEqualOption} % dummy trick to pass the condition test
+\def\ifEqualOption#1#2#3{
+    % #1: package
+    % #2: key
+    % #3: value
+    \newif\iftempif
+    \edef\tempvar{\csname sjtubeamer@#1@#2\endcsname}
+    \def\tempvalue{#3}
+    \ifx\tempvar\tempvalue\tempiftrue\else\tempiffalse\fi
+    \iftempif
+}
+%    \end{macrocode}
+%  \end{macro}
+%
 % \subsubsection{Load TikZ}
 %   Load TikZ package and its related library: \verb"pattern.meta" provides the interface to define a pattern; \verb"fadings" provides the method to create a fading mask; \verb"decoration.pathmorphing" provides the interface to user-define a decoration.
 %    \begin{macrocode}
