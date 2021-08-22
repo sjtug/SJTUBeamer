@@ -46,7 +46,6 @@
 % \themename theme and route the theme options accordingly. It also
 % provides some custom commands and environments for the user.
 %
-%    \subsubsection{Option Declaration}
 %   \begin{macro}{\sjtubeamer@cover}
 %   This macro selects the cover theme.
 %\begin{description}
@@ -91,6 +90,39 @@
 %    \end{macrocode}
 %  \end{macro}
 %
+%  \begin{macro}{\sjtubeamer@lum}
+%    Decide whether it is in light mode or dark mode. Switch the lumination.
+%    \begin{macrocode}
+\DeclareOptionBeamer{light}{\def\sjtubeamer@lum{light}}
+\DeclareOptionBeamer{dark}{\def\sjtubeamer@lum{dark}}
+\ExecuteOptionsBeamer{dark}
+%    \end{macrocode}
+%  \end{macro}
+%
+%  \begin{macro}{\sjtubeamer@lang}
+%    Set the main language of this beamer.
+%    \begin{macrocode}
+\DeclareOptionBeamer{cn}{\def\sjtubeamer@lang{cn}}
+\DeclareOptionBeamer{en}{\def\sjtubeamer@lang{en}}
+\ExecuteOptionsBeamer{cn}
+%    \end{macrocode}
+%  \end{macro}
+%
+%  \begin{macro}{\sjtubeamer@nav}
+%   Decide the type of the navigation bar.
+%   \begin{description}
+%       \item[miniframes] shows the progress on subsection.
+%       \item[infolines] shows the page number and the document info.
+%       \item[sidebar] make a sidebar to display the TOC. 
+%   \end{description}
+%    \begin{macrocode}
+\DeclareOptionBeamer{miniframes}{\def\sjtubeamer@nav{miniframes}}
+\DeclareOptionBeamer{infolines}{\def\sjtubeamer@nav{infolines}}
+\DeclareOptionBeamer{sidebar}{\def\sjtubeamer@nav{sidebar}}
+\ExecuteOptionsBeamer{miniframes}
+%    \end{macrocode}
+%  \end{macro}
+%
 %   $\rightarrow$ Then, the user's option will be processed after this (at the end of this subsubsection).
 %    \begin{macrocode}
 \ProcessOptionsBeamer
@@ -99,6 +131,10 @@
 %    \begin{macrocode}
 \PassOptionsToPackage{\sjtubeamer@cover}{beamerinnerthemesjtubeamer}
 \PassOptionsToPackage{\sjtubeamer@color}{beamercolorthemesjtubeamer}
+\PassOptionsToPackage{\sjtubeamer@lum}{beamercolorthemesjtubeamer}
+\PassOptionsToPackage{\sjtubeamer@lang}{beamerinnerthemesjtubeamer}
+\PassOptionsToPackage{\sjtubeamer@lang}{beamerouterthemesjtubeamer}
+\PassOptionsToPackage{\sjtubeamer@nav}{beamerouterthemesjtubeamer}
 %    \end{macrocode}
 %
 %   The following code is executed when it is in <presentation> mode.

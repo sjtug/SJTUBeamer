@@ -39,17 +39,8 @@
 %   \item figures and tables; and
 %   \item footnotes and plain text.
 % \end{itemize}
-%   \subsubsection{Option Declaration}
-%    \begin{macrocode}
-\DeclareOptionBeamer{max}{\def\sjtubeamer@inner@cover{max}}
-\DeclareOptionBeamer{mid}[true]{\def\sjtubeamer@inner@cover{mid}}
-\DeclareOptionBeamer{min}{\def\sjtubeamer@inner@cover{min}}
-\DeclareOptionBeamer{my}{\def\sjtubeamer@inner@cover{my}} % reserved for customization
-\ExecuteOptionsBeamer{mid}
-\ProcessOptionsBeamer
-\PassOptionsToPackage{\sjtubeamer@inner@cover}{sjtucover}
-%    \end{macrocode}
 %
+%  \subsubsection{Load Packages}
 %   Load SJTU VI Library to get the definition on color and shape.
 %    \begin{macrocode}
 \RequirePackage{sjtuvi}
@@ -68,6 +59,29 @@
 \RequirePackage{colortbl}
 \RequirePackage{booktabs}
 %    \end{macrocode}
+%
+%   \subsubsection{Option Declaration}
+%    \begin{macrocode}
+\DeclareOptionBeamer{max}{\def\sjtubeamer@inner@cover{max}}
+\DeclareOptionBeamer{mid}{\def\sjtubeamer@inner@cover{mid}}
+\DeclareOptionBeamer{min}{\def\sjtubeamer@inner@cover{min}}
+\DeclareOptionBeamer{my}{\def\sjtubeamer@inner@cover{my}} % reserved for customization
+\ExecuteOptionsBeamer{mid}
+%    \end{macrocode}
+%
+%  \begin{macro}{\sjtubeamer@inner@lang}
+%    \begin{macrocode}
+\DefineOption{inner}{lang}{cn}
+\DefineOption{inner}{lang}{en}
+\ExecuteOptionsBeamer{cn}
+%    \end{macrocode}
+%  \end{macro}
+%
+%    \begin{macrocode}
+\ProcessOptionsBeamer
+\PassOptionsToPackage{\sjtubeamer@inner@cover}{sjtucover}
+%    \end{macrocode}
+%
 %
 %   Extra Support for pgfplots and pgfplotstable (if loaded in the main file).
 %    \begin{macrocode}

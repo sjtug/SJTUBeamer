@@ -35,7 +35,26 @@
 \RequirePackage{sjtuvi}
 %    \end{macrocode}
 %
+%  \begin{macro}{\sjtubeamer@outer@lang}
+%    \begin{macrocode}
+\DefineOption{outer}{lang}{cn}
+\DefineOption{outer}{lang}{en}
+\ExecuteOptionsBeamer{cn}
+%    \end{macrocode}
+%  \end{macro}
 %
+%  \begin{macro}{\sjtubeamer@outer@nav}
+%    \begin{macrocode}
+\DefineOption{outer}{nav}{miniframes}
+\DefineOption{outer}{nav}{infolines}
+\DefineOption{outer}{nav}{sidebar}
+\ExecuteOptionsBeamer{miniframes}
+%    \end{macrocode}
+%  \end{macro}
+%
+%    \begin{macrocode}
+\ProcessOptionsBeamer
+%    \end{macrocode}
 %
 %
 % \iffalse
