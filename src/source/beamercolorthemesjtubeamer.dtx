@@ -52,6 +52,39 @@
 \ProcessOptionsBeamer
 %    \end{macrocode}
 %
+%   Intermediate color palette depending on the choice of color theme.
+%    \begin{macrocode}
+\if\EqualOption{color}{color}{red}
+  \colorlet{cprimary}{sjtuRedPrimary}
+  \colorlet{csecondary}{sjtuRedSecondary}
+  \colorlet{ctertiary}{sjtuRedTertiary}
+\else
+  \colorlet{cprimary}{sjtuBluePrimary}
+  \colorlet{csecondary}{sjtuBlueSecondary}
+  \colorlet{ctertiary}{sjtuBlueTertiary}
+\fi
+%    \end{macrocode}
+%
+%   Main color palatte depending on the choice of lumination.
+%   Especially, the \verb"structure" interface could not be derived from 
+%   any other color palette.
+%    \begin{macrocode}
+\setbeamercolor{structure}{fg=cprimary}
+\if\EqualOption{color}{lum}{light}
+  \setbeamercolor{palette primary}{bg=white,fg=cprimary}
+  \setbeamercolor{palette secondary}{bg=white,fg=csecondary}
+  \setbeamercolor{palette tertiary}{bg=white,fg=ctertiary}
+\else
+  \setbeamercolor{palette primary}{bg=cprimary,fg=white}
+  \setbeamercolor{palette secondary}{bg=csecondary,fg=white}
+  \setbeamercolor{palette tertiary}{bg=ctertiary,fg=white}
+\fi
+%    \end{macrocode}
+%
+%
+%    \begin{macrocode}
+\setbeamercolor{logo}{use={palette primary},fg=palette primary.fg,bg=}
+%    \end{macrocode}
 %
 % \iffalse
 %</package>

@@ -3,51 +3,12 @@
 \documentclass[xcolor=table,dvipsnames,svgnames,aspectratio=169]{ctexbeamer}
 % 可以通过 fontset=macnew / fontset=ubuntu / fontset=windows 选项切换字体集
 
-\usepackage{tikz}
-\usetikzlibrary{arrows}
-\usepackage{amsmath}
-\usepackage{mflogo}
-\usepackage{graphicx}
-\usepackage{xspace}
-\usepackage{amsmath}
-\usepackage{unicode-math}
-\usepackage{fontspec}
-\usepackage{ccicons}
-\usepackage{hologo}
-\usepackage{colortbl}
-\usepackage{shapepar}
-\usepackage{hyperxmp}
-\usepackage{booktabs}
-\usepackage{qrcode}
-\usepackage{listings}
-\usepackage{tipa}
-\usepackage{multicol}
-\usepackage{datetime2}
-\usepackage{hyperref}
-
-
 \usepackage{biblatex}
 \addbibresource{thesis.bib}
 \setbeamertemplate{bibliography item}[text]
 
 \usetheme[max]{sjtubeamer}
 % use min/max/maxplus to switch theme.
-
-\lstset{
-  language=[LaTeX]TeX,
-  basicstyle=\ttfamily\footnotesize,
-  tabsize=2,
-  keywordstyle=\bfseries\ttfamily\color{SJTUPrimary},
-  commentstyle=\sl\ttfamily\color[RGB]{100,100,100},
-  stringstyle=\ttfamily\color[RGB]{50,50,50},
-  extendedchars=true,
-  breaklines=true,
-}
-\lstdefinestyle{style@inline}{
-  basicstyle   = \ttfamily,
-  keepspaces   = true
-}
-\lstMakeShortInline[style=style@inline]|
 
 \title[SJTU Beamer Template] % 页脚显示标题
 {\textbf{上海交通大学 Beamer 模版}} % 首页标题

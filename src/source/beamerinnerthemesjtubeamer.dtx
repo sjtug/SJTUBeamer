@@ -45,10 +45,6 @@
 %    \begin{macrocode}
 \RequirePackage{sjtuvi}
 %    \end{macrocode}
-%   Load Cover Library to get the customized cover.
-%    \begin{macrocode}
-\RequirePackage{sjtucover}
-%    \end{macrocode}
 %   Load tcolorbox for creating delicate boxes.
 %    \begin{macrocode}
 \RequirePackage{tcolorbox}
@@ -62,26 +58,16 @@
 %
 %   \subsubsection{Option Declaration}
 %    \begin{macrocode}
+\DeclareOptionBeamer{maxplus}{\def\sjtubeamer@inner@cover{maxplus}}
 \DeclareOptionBeamer{max}{\def\sjtubeamer@inner@cover{max}}
-\DeclareOptionBeamer{mid}{\def\sjtubeamer@inner@cover{mid}}
 \DeclareOptionBeamer{min}{\def\sjtubeamer@inner@cover{min}}
 \DeclareOptionBeamer{my}{\def\sjtubeamer@inner@cover{my}} % reserved for customization
-\ExecuteOptionsBeamer{mid}
+\ExecuteOptionsBeamer{max}
 %    \end{macrocode}
-%
-%  \begin{macro}{\sjtubeamer@inner@lang}
-%    \begin{macrocode}
-\DefineOption{inner}{lang}{cn}
-\DefineOption{inner}{lang}{en}
-\ExecuteOptionsBeamer{cn}
-%    \end{macrocode}
-%  \end{macro}
-%
 %    \begin{macrocode}
 \ProcessOptionsBeamer
 \PassOptionsToPackage{\sjtubeamer@inner@cover}{sjtucover}
 %    \end{macrocode}
-%
 %
 %   Extra Support for pgfplots and pgfplotstable (if loaded in the main file).
 %    \begin{macrocode}
@@ -94,7 +80,45 @@
   }{}
 }
 %    \end{macrocode}
+
+% Define logo.
+%    \begin{macrocode}
+\usebeamercolor{palatte primary}
+\if\EqualOption{inner}{cover}{max}
+  \logo{\resizebox{!}{1cm}{\sjtubadge{fg}}}
+\else
+  \if\EqualOption{outer}{lang}{cn}
+    \logo{\resizebox{!}{1cm}{\cnlogo{fg}}}
+  \else
+    \logo{\resizebox{!}{1cm}{\enlogo{fg}}}
+  \fi
+\fi
+%    \end{macrocode}
 %
+% Define the title grahic image.
+%    \begin{macrocode}
+\if\EqualOption{inner}{cover}{maxplus}
+  \pgfdeclareimage[]{sjtutitlegraphic}{sjtuphoto.jpg}
+\else\if\EqualOption{inner}{cover}{max}
+  \pgfdeclareimage[]{sjtutitlegraphic}{sjtubg.png}
+\else\if\EqualOption{inner}{cover}{min}
+  \pgfdeclareimage[]{sjtutitlegraphic}{sjtuphoto.jpg}
+\else
+  \pgfdeclareimage[]{sjtutitlegraphic}{}
+%
+% Developer could define your title graphic here for "my"...
+%
+\fi\fi\fi
+%    \end{macrocode}
+% And then use the title graphic.
+%    \begin{macrocode}
+\titlegraphic{\pgfuseimage{sjtutitlegraphic}}
+%    \end{macrocode}
+%
+%   Load Cover Library to get the customized cover.
+%    \begin{macrocode}
+\RequirePackage{sjtucover}
+%    \end{macrocode}
 %
 % \iffalse
 %</package>
