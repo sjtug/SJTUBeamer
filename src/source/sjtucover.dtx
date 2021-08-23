@@ -55,10 +55,13 @@
       \usebeamercolor{palette primary}% 
       \begin{tikzpicture}
       \pgfmathsetlengthmacro{\outslant}{\the\paperwidth - 0.8cm}
-      \node[anchor=north west, inner sep=0, outer sep=0] at (0,\the\paperheight){\resizebox{!}{\the\paperheight}{\inserttitlegraphic}};
+      \node[anchor=north west, inner sep=0, outer sep=0]
+         at (0,\the\paperheight){
+           \resizebox{!}{\the\paperheight}{\inserttitlegraphic}};
       \fill[color=white] (0,0) rectangle(\the\paperwidth,3.9);
       \fill[color=bg]  (0,0) rectangle(\the\paperwidth,3.88);
-      \node[anchor=north west, text width=.8\paperwidth, fg] at (0.8,3.6){%
+      \node[anchor=north west, text width=.8\paperwidth, fg]
+       at (0.8,3.6){%
       \ifx\insertsubtitle\@empty%
           {\huge\bfseries\inserttitle}\\
           \else%
@@ -93,8 +96,7 @@
     \end{tikzpicture}
     \vfill
     \begingroup
-    \begin{beamercolorbox}[sep=8pt,#1,center]{empty}
-      \usebeamercolor[fg]{palette primary}
+    \begin{beamercolorbox}[sep=8pt,#1,center]{title}
       \usebeamerfont{title}\inserttitle\par%
       \ifx\insertsubtitle\@empty%
       \else%
@@ -103,15 +105,15 @@
       \fi%     
     \end{beamercolorbox}%
     \vskip1em\par
-    \begin{beamercolorbox}[sep=8pt,#1,center]{empty}
+    \begin{beamercolorbox}[sep=8pt,#1,center]{author}
       \usebeamercolor[fg]{palette primary}
       \usebeamerfont{author}\insertauthor
     \end{beamercolorbox}
-    \begin{beamercolorbox}[sep=8pt,#1,center]{empty}
+    \begin{beamercolorbox}[sep=8pt,#1,center]{institute}
       \usebeamercolor[fg]{palette primary}
       \usebeamerfont{institute}\insertinstitute
     \end{beamercolorbox}
-    \begin{beamercolorbox}[sep=8pt,#1,center]{empty}
+    \begin{beamercolorbox}[sep=8pt,#1,center]{date}
       \usebeamercolor[fg]{palette primary}
       \usebeamerfont{date}\insertdate
     \end{beamercolorbox}
@@ -225,8 +227,7 @@
 %    \end{macrocode}
 %   Insert title, subtitle, author, and date.
 %    \begin{macrocode}
-      \begin{beamercolorbox}[sep=8pt,#1]{empty}
-        \usebeamercolor[fg]{palette primary}
+      \begin{beamercolorbox}[sep=8pt,#1]{title}
         \usebeamerfont{title}\inserttitle\par%
         \ifx\insertsubtitle\@empty%
         \else%
@@ -235,12 +236,10 @@
         \fi%     
       \end{beamercolorbox}%
       \vskip1em\par
-      \begin{beamercolorbox}[sep=8pt,#1]{empty}
-        \usebeamercolor[fg]{palette primary}
+      \begin{beamercolorbox}[sep=8pt,#1]{author}
         \usebeamerfont{author}\insertauthor
       \end{beamercolorbox}
-      \begin{beamercolorbox}[sep=8pt,#1]{empty}
-        \usebeamercolor[fg]{palette primary}
+      \begin{beamercolorbox}[sep=8pt,#1]{date}
         \usebeamerfont{date}\insertdate
       \end{beamercolorbox}
 %    \end{macrocode}
@@ -251,15 +250,16 @@
         \else
           \begin{tikzpicture}[overlay,yshift=0.77em]
             \node (pic) [fg, above left] at (0.88*\the\paperwidth,0) 
-              {
-                \resizebox{0.3\paperwidth}{!}{\inserttitlegraphic}
-              };
+              {\resizebox{0.3\paperwidth}{!}{\inserttitlegraphic}};
             \draw[decoration={
                 stampline,
                 segment length=8pt,
                 path has corners=true,
-              },
-              decorate,fg] (pic.north west) -- (pic.north east) -- (pic.south east) -- (pic.south west) -- cycle;
+              },decorate,fg] 
+                (pic.north west) -- 
+                (pic.north east) -- 
+                (pic.south east) -- 
+                (pic.south west) -- cycle;
           \end{tikzpicture}
         \fi
     \endgroup
@@ -278,6 +278,64 @@
 \fi\fi\fi
 %    \end{macrocode}
 %
+% TODO: Since the implementation of bottom page is incomplete,
+% other options will be implemented in the future version.
+%    \begin{macrocode}
+\defbeamertemplate*{bottom page}{min}[1][]
+{
+%    \end{macrocode}
+%   Enter vertical mode.
+%    \begin{macrocode}
+  \vbox{}
+%    \end{macrocode}
+%   Create the background canvas and the three overlapping circles in the right. Use \verb"scope" to define the influence range. And use \verb"\clip" to make the clipping in the current range.
+%    \begin{macrocode}
+  \usebeamercolor{palette primary}
+  \usebeamercolor{palette secondary}
+  \begin{tikzpicture}[overlay,yshift=-80pt]
+    \def\w{\the\paperwidth}%
+    \def\h{\the\paperheight}%
+    \fill [palette primary.bg] (-0.2*\w,-1*\h) rectangle (1*\w, 0.5*\h);
+    \begin{scope}[fill=palette primary.bg!50!black,fill opacity=0.15]
+      \clip (0.63*\w,1.05*\h) circle (1*\h);
+      \fill (0.14*\w,-0.95*\h) circle (1.67*\h);
+    \end{scope}
+    \begin{scope}[fill=palette secondary.bg!50!palette primary.bg!70!white,
+      fill opacity=0.15]
+      \clip[xshift=26pt] (0.95*\w,-0.67*\h) circle (1.17*\h);
+      \fill 
+        (0.14*\w,-0.95*\h) circle (1.67*\h)
+        (0.63*\w,1.05*\h) circle (1*\h);
+    \end{scope}
+  \end{tikzpicture}
+%    \end{macrocode}
+%   Insert the logo in the crossing center of the overlapping circles.
+%    \begin{macrocode}
+  \vfill
+  \begingroup
+    \raggedleft
+    \resizebox{!}{1cm}{\insertlogo}
+%    \end{macrocode}
+%   Inset the ``thank you'' quote and the title of this beamer. Notice that three \verb"\vfill" divide the frame into three portions with final adjust using \verb"\vskip".
+%    \begin{macrocode}
+    \vfill
+    \vskip6em
+    \begin{beamercolorbox}[sep=8pt]{title}
+      \usebeamercolor[fg]{palette primary}
+      \usebeamerfont{title}\noindent
+      \ifx\beamer@sjtubeamermin@lang\beamer@sjtubeamermin@langcn
+        谢谢
+      \else
+        Thank You
+      \fi
+      \vskip1em%
+      \usebeamerfont{subtitle}\insertauthor~$\cdot$~\inserttitle
+    \end{beamercolorbox}%
+    \vfill
+    \vskip3.5em
+  \endgroup
+}
+%    \end{macrocode}
 %
 % \iffalse
 %</package>

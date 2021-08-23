@@ -16,7 +16,7 @@
 % \iffalse
 %<*package>
 \NeedsTeXFormat{LaTeX2e}
-\ProvidesPackage{beamerinnerthemesjtubeamer}[2021-08-21 sjtubeamer inner theme 1.3]
+\ProvidesPackage{beamerinnerthemesjtubeamer}[2021/08/21 sjtubeamer inner theme v1.3]
 %</package>
 % \fi
 % \CheckSum{0}
@@ -105,9 +105,9 @@
   \pgfdeclareimage[]{sjtutitlegraphic}{sjtuphoto.jpg}
 \else
   \pgfdeclareimage[]{sjtutitlegraphic}{}
-%
-% Developer could define your title graphic here for "my"...
-%
+  %
+  % Developer could define your title graphic here for "my"...
+  %
 \fi\fi\fi
 %    \end{macrocode}
 % And then use the title graphic.
@@ -119,6 +119,24 @@
 %    \begin{macrocode}
 \RequirePackage{sjtucover}
 %    \end{macrocode}
+%
+%  \begin{macro}{\makebottom}
+%   Make the bottom page. Not a built-in command.
+%    \begin{macrocode}
+\def\makebottom{
+  \ifbeamer@inframe\bottompage\else\frame{\bottompage}\fi
+}
+%    \end{macrocode}
+%  \end{macro}
+%
+%  \begin{macro}{\bottompage}
+%   Call the bottom page template to make a bottom page.
+%    \begin{macrocode}
+\def\bottompage{
+  \usebeamertemplate*{bottom page}
+}
+%    \end{macrocode}
+%  \end{macro}
 %
 % \iffalse
 %</package>
