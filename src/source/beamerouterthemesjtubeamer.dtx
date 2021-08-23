@@ -35,13 +35,6 @@
 \RequirePackage{sjtuvi}
 %    \end{macrocode}
 %
-%  \begin{macro}{\sjtubeamer@outer@lang}
-%    \begin{macrocode}
-\DefineOption{outer}{lang}{cn}
-\DefineOption{outer}{lang}{en}
-\ExecuteOptionsBeamer{cn}
-%    \end{macrocode}
-%  \end{macro}
 %
 %  \begin{macro}{\sjtubeamer@outer@nav}
 %    \begin{macrocode}
@@ -56,9 +49,18 @@
 \ProcessOptionsBeamer
 %    \end{macrocode}
 %
+% Enable compress option on beamer to avoid multiline navigation dots.
+%    \begin{macrocode}
+\beamer@compresstrue
+%    \end{macrocode}
 %
-%
-%
+%    \begin{macrocode}
+\if\EqualOption{outer}{nav}{miniframes}
+  \useoutertheme[footline=institutetitle]{miniframes}
+\else\if\EqualOption{outer}{nav}{infolines}
+  \useoutertheme{infolines}
+\fi\fi
+%    \end{macrocode}
 %
 % \iffalse
 % </package>

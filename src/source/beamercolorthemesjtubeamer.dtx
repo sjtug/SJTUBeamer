@@ -58,10 +58,12 @@
   \colorlet{cprimary}{sjtuRedPrimary}
   \colorlet{csecondary}{sjtuRedSecondary}
   \colorlet{ctertiary}{sjtuRedTertiary}
+  \colorlet{cquanternary}{black}
 \else
   \colorlet{cprimary}{sjtuBluePrimary}
   \colorlet{csecondary}{sjtuBlueSecondary}
   \colorlet{ctertiary}{sjtuBlueTertiary}
+  \colorlet{cquanternary}{white}
 \fi
 %    \end{macrocode}
 %
@@ -130,8 +132,7 @@
 %
 %   For ASCII character, the italic part dominates, as it is quite different from the normal roman font. As for chinese character, the color part dominates, since it is often in bolder shape and changing to other font will make the layout messy.
 %    \begin{macrocode}
-\setbeamercolor{emph}{use={palette primary,palette secondary},
-  fg=palette primary.bg!50!palette secondary.bg}
+\setbeamercolor{emph}{fg=cprimary!50!csecondary}
 \renewcommand<>{\emph}[1]{%
   {\only#2{\usebeamercolor[fg]{emph}\itshape}#1}%
 }
@@ -139,7 +140,89 @@
 %
 %   As is native to beamer, you could also use \verb"\alert" command to highlight the text. The color is redirected to the cprimary.
 %    \begin{macrocode}
-\setbeamercolor{alerted text}{use=palette primary,fg=palette primary.bg}
+\setbeamercolor{alerted text}{fg=cprimary}
+%    \end{macrocode}
+%
+%   Use \verb"sansmath" package to support sans serif math font in some blocks, e.g., PGFPlots.
+%    \begin{macrocode}
+\RequirePackage[eulergreek]{sansmath}
+%    \end{macrocode}
+%
+%   Extra Support for pgfplots and pgfplotstable (if loaded in the main file).
+%    \begin{macrocode}
+\AtEndPreamble{%
+%    \end{macrocode}
+%   Set the default visual theme for \textsc{Pgfplots}. The cycle list is set to the current color theme. And lines on the graph is optimized to make it clear for presentation. The predefinition on the height is made to avoid the overfullbox on the vertical side.
+%    \begin{macrocode}
+  \@ifpackageloaded{pgfplots}{%
+    \pgfplotsset{
+      compat=newest,
+      every axis/.style={
+        font=\small\sffamily\sansmath,
+        cycle multi list={
+          mark options={thick}\nextlist
+          mark list\nextlist
+          cprimary,csecondary,ctertiary\nextlist
+        },
+        height=0.5*\the\paperheight,
+        axis line style={
+          cprimary,
+          thin
+        },
+        every tick label/.style={
+          cprimary,
+          font=\small,
+          /pgf/number format/assume math mode=true
+        },
+        grid style={cprimary!10},
+        tick style={cprimary!50},
+        minor tick style={cprimary!30},
+        xlabel style={cprimary},
+        ylabel style={cprimary},
+        zlabel style={cprimary},
+        legend style={
+          draw={cprimary},
+          thin,
+          nodes={cprimary}
+        },
+        thick,
+      },
+    }
+  }{}
+%    \end{macrocode}
+%   Two macros are defined to make the header colored.
+%    \begin{macrocode}
+\def\zapcolorreset{\let\reset@color\relax\ignorespaces}
+\def\colorrows#1{\noalign{\aftergroup\zapcolorreset#1}\ignorespaces}
+%    \end{macrocode}
+%   Set the style of \textsc{Pgfplotstable}. The \verb"\colorrows" macro here is used for making the header colored. The \verb"booktabs" line is used to create a professional look.
+%    \begin{macrocode}
+  \@ifpackageloaded{pgfplotstable}{%
+    \RequirePackage{array}
+    \RequirePackage{colortbl}
+    \RequirePackage{booktabs}
+    \pgfplotstableset{
+      col sep=comma,
+      every table/.style={
+        font={\small\sffamily},
+      },
+      every head row/.style={
+        before row={
+          \arrayrulecolor{cprimary}
+          \toprule
+          \colorrows{\color{cprimary}}
+        },
+        after row={
+          \midrule
+          \colorrows{\color{black}}
+        },
+      },
+      every last row/.style={
+        after row=\bottomrule
+      },
+    }
+  }{}
+}
 %    \end{macrocode}
 %
 % \iffalse
