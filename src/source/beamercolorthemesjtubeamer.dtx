@@ -74,12 +74,12 @@
 \setbeamercolor{structure}{fg=cprimary}
 \if\EqualOption{color}{lum}{light}
   \setbeamercolor{palette primary}{bg=white,fg=cprimary}
-  \setbeamercolor{palette secondary}{bg=white,fg=csecondary}
-  \setbeamercolor{palette tertiary}{bg=white,fg=ctertiary}
+  \setbeamercolor{palette secondary}{bg=white,fg=cprimary!50!csecondary}
+  \setbeamercolor{palette tertiary}{bg=white,fg=csecondary}
 \else
   \setbeamercolor{palette primary}{bg=cprimary,fg=white}
-  \setbeamercolor{palette secondary}{bg=csecondary,fg=white}
-  \setbeamercolor{palette tertiary}{bg=ctertiary,fg=white}
+  \setbeamercolor{palette secondary}{bg=cprimary!50!csecondary,fg=white}
+  \setbeamercolor{palette tertiary}{bg=csecondary,fg=white}
 \fi
 %    \end{macrocode}
 %
@@ -89,7 +89,7 @@
 \setbeamercolor{logo}{use={palette primary},bg=,fg=palette primary.fg}
 \setbeamercolor{normal text}{fg=black,bg=black!40}
 \setbeamercolor*{block title}{parent=structure}
-\setbeamercolor{titlelike}{parent={palette primary}}
+\setbeamercolor{titlelike}{bg=,fg=cprimary}
 \setbeamercolor{title}{use={palette primary},fg=palette primary.fg,bg=}
 \setbeamercolor{subtitle}{use={palette secondary},fg=palette secondary.fg,bg=}
 %    \end{macrocode}
@@ -115,7 +115,7 @@
 %
 %   This part defines the color of footline.
 %    \begin{macrocode}
-\setbeamercolor{section in head/foot}{use={palette primary},
+\setbeamercolor{footnote}{use={palette primary},
   fg=palette primary.bg,bg=}
 %    \end{macrocode}
 %
@@ -125,6 +125,16 @@
 \setbeamercolor{section title}{parent={palette secondary}}
 \setbeamercolor{subsection title}{parent={palette tertiary}}
 %    \end{macrocode}
+%
+%   Set the footline color.
+%
+%    \begin{macrocode}
+\setbeamercolor{section in head/foot}{fg=white,bg=cprimary}
+\setbeamercolor{subsection in head/foot}{fg=cprimary,bg=cprimary!20}
+\setbeamercolor{institute in head/foot}{fg=white,bg=}
+\setbeamercolor{page number in head/foot}{fg=white,bg=}
+%    \end{macrocode}
+%
 %
 %   Set the emphasized color and redefine the emphasizing command to make the text both italic for ASCII character and colored in the middle color of cprimary and csecondary.
 %

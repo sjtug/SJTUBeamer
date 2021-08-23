@@ -275,10 +275,16 @@
 %   \paragraph{my.}
 %    \begin{macrocode}
 \else
-  \PackageWarning{sjtucover}{The title page template "my" is undefined}
+\defbeamertemplate*{title page}{my}[1][]{
   %
   % Developer could implement your own title page template here...
+  % or use "my" theme first, then implement your title page 
+  % in a different style file mycover.sty with:
+  %    \addtobeamertemplate{title page}{}{<Your implementation>}
+  % and in the main.tex:
+  %    \usetheme[my]{sjtubeamer}\usepackage{mycover}
   %
+}
 \fi\fi\fi
 %    \end{macrocode}
 %

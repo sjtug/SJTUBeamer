@@ -54,13 +54,37 @@
 \beamer@compresstrue
 %    \end{macrocode}
 %
+% Use the built-in outer templates.
 %    \begin{macrocode}
 \if\EqualOption{outer}{nav}{miniframes}
   \useoutertheme[footline=institutetitle]{miniframes}
 \else\if\EqualOption{outer}{nav}{infolines}
   \useoutertheme{infolines}
-\fi\fi
+\else\if\EqualOption{outer}{nav}{sidebar}
+  \useoutertheme{sidebar}
+\fi\fi\fi
 %    \end{macrocode}
+%
+% Add page number to the toolbox.
+%    \begin{macrocode}
+\addtobeamertemplate{navigation symbols}{}{
+  \hbox{
+    \raisebox{1.2pt}[0pt][0pt]{
+      \usebeamerfont{footline}
+      \usebeamercolor{footline}
+      \color{footline.fg!50}
+      \insertframenumber/\inserttotalframenumber
+      \hspace*{0.5em}
+    }
+  }
+}
+%    \end{macrocode}
+% And set the page number template to none.
+%    \begin{macrocode}
+\setbeamertemplate{page number in head/foot}{}
+%    \end{macrocode}
+%
+%
 %
 % \iffalse
 % </package>
