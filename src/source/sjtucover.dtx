@@ -60,8 +60,9 @@
            \resizebox{!}{\the\paperheight}{\inserttitlegraphic}};
       \fill[color=white] (0,0) rectangle(\the\paperwidth,3.9);
       \fill[color=bg]  (0,0) rectangle(\the\paperwidth,3.88);
-      \node[anchor=north west, text width=.8\paperwidth, fg]
+      \node[anchor=north west, text width=.8\paperwidth]
        at (0.8,3.6){%
+      \usebeamercolor[fg]{title}
       \ifx\insertsubtitle\@empty%
           {\huge\bfseries\inserttitle}\\
           \else%
@@ -69,10 +70,10 @@
           {\small\insertsubtitle}\\
       \fi%
       };
-      \node[anchor=south west, text width=.8\paperwidth, fg] at (0.8,0.45){%
-      {\small\insertauthor}\\
-      {\small\insertinstitute}\\
-      {\small\insertdate}%
+      \node[anchor=south west, text width=.8\paperwidth] at (0.8,0.45){%
+      {\usebeamercolor[fg]{author}\small\insertauthor}\\
+      {\usebeamercolor[fg]{institute}\small\insertinstitute}\\
+      {\usebeamercolor[fg]{date}\small\insertdate}%
       };
       \node[anchor=south east, inner sep=0, outer sep=0] at (\outslant,0.5){
           \insertlogo
