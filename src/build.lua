@@ -15,7 +15,7 @@ docfiledir       = "doc"
 typesetexe       = "xelatex"
 -- typesetfiles     = {"sjtubeamermintheme.tex","sjtubeamermindevguide.tex"}
 typesetfiles     = {}
--- typesetruns      = 1 -- for debug.
+typesetruns      = 1 -- for debug. Some reference may not be linked.
 typesetdemofiles = {"main.tex","min.tex","cover.tex"}
 typesetsuppfiles = {"head.png","plant.jpg","test.csv","testgraph.tex","ref.bib","contents/"}
 
