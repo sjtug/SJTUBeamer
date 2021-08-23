@@ -86,7 +86,7 @@
 %   \paragraph{max.}
 %    \begin{macrocode}
 \else\if\EqualOption{sjtucover}{cover}{max}
-  \setbeamertemplate{background}{\resizebox{!}{\the\paperheight}{\inserttitlegraphic}}
+  \setbeamertemplate{background}{\resizebox{\the\paperwidth}{!}{\sjtubg{black}}}
   \defbeamertemplate*{title page}{max}[1][]
   {
     \vbox{}
@@ -94,6 +94,9 @@
     \begin{tikzpicture}[overlay]
         \fill [palette primary.bg] (-0.2*\the\paperwidth,-1*\the\paperheight) 
         rectangle (1*\the\paperwidth, 0.2*\the\paperheight);
+        \node [anchor=center,inner sep=0pt] at (0.45*\the\paperwidth,-0.35*\the\paperheight) {
+          \resizebox{!}{1.2\paperheight}{\inserttitlegraphic}
+        };
     \end{tikzpicture}
     \vfill
     \begingroup

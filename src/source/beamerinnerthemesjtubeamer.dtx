@@ -98,22 +98,18 @@
 % Define the title grahic image.
 %    \begin{macrocode}
 \if\EqualOption{inner}{cover}{maxplus}
-  \pgfdeclareimage[]{sjtutitlegraphic}{sjtuphoto.jpg}
+  \titlegraphic{\includegraphics{sjtuphoto.jpg}}
 \else\if\EqualOption{inner}{cover}{max}
-  \pgfdeclareimage[]{sjtutitlegraphic}{sjtubg.png}
+  \usebeamercolor{palatte primary}
+  \titlegraphic{\sjtubg{fg}}
 \else\if\EqualOption{inner}{cover}{min}
-  \pgfdeclareimage[]{sjtutitlegraphic}{sjtuphoto.jpg}
+  \titlegraphic{\includegraphics{sjtuphoto.jpg}}
 \else
-  \pgfdeclareimage[]{sjtutitlegraphic}{}
+  \titlegraphic{}
   %
   % Developer could define your title graphic here for "my"...
   %
 \fi\fi\fi
-%    \end{macrocode}
-% And then use the title graphic.
-%    \begin{macrocode}
-\titlegraphic{\pgfuseimage{sjtutitlegraphic}}
-%    \end{macrocode}
 %
 %   Load Cover Library to get the customized cover.
 %    \begin{macrocode}

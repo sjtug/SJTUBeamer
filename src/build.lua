@@ -8,8 +8,8 @@
 module           = "sjtubeamer"
 
 sourcefiledir    = "source"
-sourcefiles      = {"*.ins","*.dtx","*logo.pdf","sjtubadge.pdf","sjtubg.png","sjtuphoto.jpg"}
-installfiles     = {"*.sty","*logo.pdf","sjtubadge.pdf","sjtubg.png","sjtuphoto.jpg"}
+sourcefiles      = {"*.ins","*.dtx","*logo.pdf","sjtubadge.pdf","sjtubg.pdf","sjtuphoto.jpg"}
+installfiles     = {"*.sty","*logo.pdf","sjtubadge.pdf","sjtubg.pdf","sjtuphoto.jpg"}
 
 docfiledir       = "doc"
 typesetexe       = "xelatex"

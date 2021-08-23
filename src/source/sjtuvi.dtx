@@ -149,6 +149,21 @@
 \definelogo{vlogo}{v}
 %    \end{macrocode}
 %
+% Specially designed for sjtubg.
+%    \begin{macrocode}
+\begin{tikzfadingfrompicture}[name=sjtubg]
+  \fill[black] (-1,-1) rectangle (1,1);
+  \node {\includegraphics[width=1.5cm]{sjtubg.pdf}};
+\end{tikzfadingfrompicture}
+\def\sjtubg#1{
+  \begin{tikzpicture}
+    \begin{scope}
+        \clip (0.9,3) rectangle (9.1,7.5);
+        \fill [opacity=0.1,#1,path fading=sjtubg] (0,0) rectangle (10,10);
+    \end{scope}
+  \end{tikzpicture}
+}
+%    \end{macrocode}
 % \subsubsection{Shape Declarations}
 % \begin{macro}{stamp}
 %	  Declare stamp pattern to make a stamp array.
