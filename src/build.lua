@@ -16,7 +16,7 @@ typesetexe       = "xelatex"
 -- typesetfiles     = {"sjtubeamermintheme.tex","sjtubeamermindevguide.tex"}
 typesetfiles     = {}
 typesetruns      = 1 -- for debug.
-typesetdemofiles = {"main.tex"}
+typesetdemofiles = {"main.tex","min.tex"}
 typesetsuppfiles = {"head.png","plant.jpg","test.csv","testgraph.tex","ref.bib","contents/"}
 
 packtdszip       = true -- recommended for "tree" layouts

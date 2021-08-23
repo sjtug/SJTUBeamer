@@ -127,6 +127,17 @@
 %    \begin{macrocode}
 \RequirePackage{sjtucover}
 %    \end{macrocode}
+%  \begin{macro}{\maketitle}
+%  Patch make title command.
+%    \begin{macrocode}
+\def\maketitle{
+  \ifbeamer@inframe\titlepage\else
+  \begin{frame}[plain]
+    \titlepage
+  \end{frame}\fi
+}
+%    \end{macrocode}
+%  \end{macro}
 %
 %  \begin{macro}{\bottompage}
 %   Call the bottom page template to make a bottom page.
