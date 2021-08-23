@@ -54,6 +54,9 @@ jobs:
         if: ${{ failure() || success() }}
       - uses: actions/upload-artifact@v2
         with:
-          path: build/build-*.pdf
+          path: |
+            build/build-*.pdf
+            src/doc/min.pdf
+            src/doc/cover.pdf
           name: build-lualatex
         name: upload build artifacts
