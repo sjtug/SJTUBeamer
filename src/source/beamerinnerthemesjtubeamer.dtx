@@ -96,7 +96,7 @@
 %    \begin{macrocode}
 \usebeamercolor{palatte primary}
 \if\EqualOption{inner}{cover}{max}
-  \logo{\resizebox{!}{1cm}{\sjtubadge{fg}}}
+  \logo{\resizebox{!}{1cm}{\sjtubadge{cprimary}}}
 \else
   \if\EqualOption{inner}{lang}{cn}
     \logo{\resizebox{!}{1cm}{\cnlogo{fg}}}
@@ -141,7 +141,10 @@
 %   Make the bottom page. Not a built-in command.
 %    \begin{macrocode}
 \def\makebottom{
-  \ifbeamer@inframe\bottompage\else\frame{\bottompage}\fi
+  \ifbeamer@inframe\bottompage\else
+  \begin{frame}[plain]
+    \bottompage
+  \end{frame}\fi
 }
 %    \end{macrocode}
 %  \end{macro}
