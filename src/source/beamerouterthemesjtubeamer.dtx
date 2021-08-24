@@ -61,7 +61,11 @@
 \else\if\EqualOption{outer}{nav}{infolines}
   \useoutertheme{infolines}
 \else\if\EqualOption{outer}{nav}{sidebar}
-  \useoutertheme{sidebar}
+  \PackageWarning{outer}{
+    Feature "sidebar" is not implemented yet.\MessageBreak
+    Fallback to the default setting.
+  }
+  \useoutertheme[footline=institutetitle]{miniframes}
 \fi\fi\fi
 %    \end{macrocode}
 %
