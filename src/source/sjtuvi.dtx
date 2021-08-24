@@ -1,19 +1,19 @@
 % \iffalse meta-comment ---------------------------------------------
 % Copyright (C) Shanghai Jiao Tong University
-% The definition in this file is refered to the Visual Identity System
+% The definition in this file is referred to the Visual Identity System
 % from Shanghai Jiao Tong University (SJTU). 
 % See https://vi.sjtu.edu.cn for more information.
-%
-% The template itself doesn't change the ownership of the design pattern.
-% Any commercial usage in this file should be ackwoledged by the
-% administration in SJTU.
-% More infomation about the license for this file,
+% 
+% SJTUG implements the design but doesn't hold the copyright.
+% Any commercial usage in this file should be acknowledged by
+% the administration of SJTU.
+% More information about the license,
 % see https://vi.sjtu.edu.cn/index.php/articles/bulletin/16. 
 % ------------------------------------------------------------------- \fi
 % \iffalse
 %<*package>
 \NeedsTeXFormat{LaTeX2e}
-\ProvidesPackage{sjtuvi}[2021-08-19 Visual Identity System Implementation for sjtubeamer 1.2]
+\ProvidesPackage{sjtuvi}[2021-08-21 Visual Identity System library for sjtubeamer 1.3]
 %</package>
 % \fi
 % \CheckSum{0}
@@ -22,36 +22,46 @@
 %<*package>
 % ------------------------------------------------------------------- \fi
 %
+% \subsection{SJTU VI Library}
+%   This library provides the definition of basic elements in SJTU VI, including color, logo and some shapes. 
 %
-% \subsection{Color Definition}
-%   The following color is defined by SJTU VI.
-%   \begin{description}
-%       \item[cprimary] The primary color, which influences the color of title and the background of title page.
-%       \item[csecondary] The secondary color, which influences the color of subtitle.
-%       \item[ctertiary] The tertiary color, which provides the color for the blocks.
-%       \item[cquanternary] The quanternary color, which only influences the foreground of example blocks.
-%   \end{description}
+%  \begin{macro}{\DefineOption}
+%   Define the beamer option on the corresponding package, key and value.
 %    \begin{macrocode}
-\ifx\beamer@sjtubeamermin@color\beamer@sjtubeamermin@colorblue%
-    \definecolor{cprimary}{HTML}{004098}        %problue 
-    \definecolor{csecondary}{HTML}{298626}      %lightgreen
-    \definecolor{ctertiary}{HTML}{004D4B}       %lightgray
-    \definecolor{cquanternary}{HTML}{FFFFFF}    %white
-    
-    \definecolor{SJTUPrimary}{RGB}{0,64,152}    %adaptation to max
-\else%
-    \definecolor{cprimary}{HTML}{9E1F36}        %engred
-    \definecolor{csecondary}{HTML}{F28101}      %orange
-    \definecolor{ctertiary}{HTML}{FED201}       %yellow
-    \definecolor{cquanternary}{HTML}{000000}    %black
-
-    \definecolor{SJTUPrimary}{RGB}{200,22,30}   %adaptation to max
-\fi%
+\def\DefineOption#1#2#3{
+    % #1: package
+    % #2: key
+    % #3: value
+    \DeclareOptionBeamer{#3}{\expandafter\def\csname sjtubeamer@#1@#2\endcsname{#3}}
+}
 %    \end{macrocode}
+%  \end{macro}
 %
-% \subsection{Logo}
+%  \begin{macro}{\EqualOption}
+%   To check if the option on package, key is equal to value.
+%
+%   Here, a dummy trick is used to pass the if condition.
+%   Since LaTeX handles \verb"\if" differently.
+%   \verb"\iftrue" will eliminate the nearest \verb"\else" and \verb"\fi" but remains other extra \verb"\fi" and throws errors.
+%   To avoid this, if the macro is expanded after \verb"\if", T=T, the condition holds and finish the current pair. And continues to process the real defined macro. This solution is somehow to combat against the LaTeX compiler. In modern LaTeX 3, it is not so nasty to deal with neseted conditions. 
+%   \verb"\iffalse" doesn't need to be considered.
+%    \begin{macrocode}
+\def\EqualOption{TT\fi\ifEqualOption} % dummy trick to pass the condition test
+\def\ifEqualOption#1#2#3{
+    % #1: package
+    % #2: key
+    % #3: value
+    \newif\iftempif
+    \edef\tempvar{\csname sjtubeamer@#1@#2\endcsname}
+    \def\tempvalue{#3}
+    \ifx\tempvar\tempvalue\tempiftrue\else\tempiffalse\fi
+    \iftempif
+}
+%    \end{macrocode}
+%  \end{macro}
+%
 % \subsubsection{Load TikZ}
-% Load TikZ package and its related library: \verb"pattern.meta" provides the interface to define a pattern; \verb"fadings" provides the method to create a fading mask; \verb"decoration.pathmorphing" provides the interface to user-define a decoration.
+%   Load TikZ package and its related library: \verb"pattern.meta" provides the interface to define a pattern; \verb"fadings" provides the method to create a fading mask; \verb"decoration.pathmorphing" provides the interface to user-define a decoration.
 %    \begin{macrocode}
 \RequirePackage{tikz}
 \usetikzlibrary{patterns.meta}
@@ -59,10 +69,26 @@
 \usetikzlibrary{decorations.pathmorphing}
 %    \end{macrocode}
 %
+% \subsubsection{Color Definition}
+%   The following color is defined by SJTU VI.
+%   \begin{description}
+%       \item[primary] The primary color, which influences the color of title and the background of title page.
+%       \item[secondary] The secondary color, which influences the color of subtitle.
+%       \item[tertiary] The tertiary color, which provides the color for the blocks.
+%   \end{description}
+%    \begin{macrocode}
+\definecolor{sjtuRedPrimary}{HTML}{9E1F36}         %engred
+\definecolor{sjtuRedSecondary}{HTML}{F28101}       %orange
+\definecolor{sjtuRedTertiary}{HTML}{FED201}        %yellow
+\definecolor{sjtuBluePrimary}{HTML}{004098}        %problue 
+\definecolor{sjtuBlueSecondary}{HTML}{298626}      %lightgreen
+\definecolor{sjtuBlueTertiary}{HTML}{004D4B}       %lightgray
+%    \end{macrocode}
+%
 % \subsubsection{Declare Logo}
 % \begin{macro}{\definelogo}
 %    Define a masked logo to make its different color variants.
-%    The first argument assigned the file name and the second sets the cropping mode for the logo:
+%    The first argument assigns the file name and the second sets the cropping mode for the logo:
 %    \begin{itemize}
 %      \item[h] The horizontal mode. The mask will be cropped by a horizontal rectangle in the center.
 %      \item[v] The vertical mode. The mask will be cropped by a vertical rectangle.
@@ -122,25 +148,26 @@
 \definelogo{vlogo}{v}
 %    \end{macrocode}
 %
-% \begin{macro}{\logo}
-%   Depend on the language definition, load the required logo by default. The logo is protected by the copyright from SJTU.
-%   The logo could be customized by redefinition from \verb"\logo" command.
+% Especially designed for sjtubg.
 %    \begin{macrocode}
-\logo{
-  \ifx\beamer@sjtubeamermin@lang\beamer@sjtubeamermin@langen
-    \enlogo{white}
-  \else
-    \cnlogo{white}
-  \fi
+\begin{tikzfadingfrompicture}[name=sjtubg]
+  \fill[black] (-1,-1) rectangle (1,1);
+  \node {\includegraphics[width=1.5cm]{sjtubg.pdf}};
+\end{tikzfadingfrompicture}
+\def\sjtubg#1{
+  \begin{tikzpicture}
+    \begin{scope}
+        \clip (0.9,3) rectangle (9.1,7.5);
+        \fill [opacity=0.03,#1,path fading=sjtubg] (0,0) rectangle (10,10);
+    \end{scope}
+  \end{tikzpicture}
 }
 %    \end{macrocode}
-% \end{macro}
-%
 % \subsubsection{Shape Declarations}
 % \begin{macro}{stamp}
-%	Declare stamp pattern to make a stamp array.
+%	  Declare stamp pattern to make a stamp array.
 %
-%	The newest version of TikZ provides the interface to user-define a pattern. Obeying compatibility philosophy, use \verb"\pgfkeyvalueof" interface to get parameters in a standard way. The unit is first tested in a standalone file and previewed by TikZEdt.
+%	  The newest version of TikZ provides the interface to user-define a pattern. Obeying compatibility philosophy, use \verb"\pgfkeyvalueof" interface to get parameters in a standard way. The unit is first tested in a standalone file and previewed by TikZEdt.
 %    \begin{macrocode}
 \tikzdeclarepattern{
   name=stamp,
@@ -191,9 +218,9 @@
 % \end{macro}
 %
 % \begin{macro}{\stamparray}
-%	Create the stamp array in the TikZ environment.
+%	  Create the stamp array in the TikZ environment.
 %
-%	Notice \TeX{} is not good at handling parameters. Always remember to store it into a temporary variable. Register \verb"\pgfmathresult" will store the result of \verb"\pgfmathparse".
+%	  Notice \TeX{} is not good at handling parameters. Always remember to store it into a temporary variable. Register \verb"\pgfmathresult" will store the result of \verb"\pgfmathparse".
 %    \begin{macrocode}
 \providecommand{\stamparray}[3]{
   %#1: pattern size
@@ -212,9 +239,9 @@
 % \end{macro}
 %
 % \begin{macro}{stampline}
-%	Declare a decoration to make a loop stampline.
+%	  Declare a decoration to make a loop stampline.
 %
-%	Notice that \verb"auto corner on length" is open to avoid spikes where the state hasn't meet \verb"final" yet.
+%	  Notice that \verb"auto corner on length" is open to avoid spikes where the state hasn't meet \verb"final" yet.
 %    \begin{macrocode}
 \pgfdeclaredecoration{stampline}{initial}
 {

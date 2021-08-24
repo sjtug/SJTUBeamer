@@ -1,0 +1,57 @@
+%%
+%% This is file `beamerouterthemesjtubeamer.sty',
+%% generated with the docstrip utility.
+%%
+%% The original source files were:
+%%
+%% beamerouterthemesjtubeamer.dtx  (with options: `package')
+%% -------------------------------------------------------------------
+%% Copyright (C) 2021 SJTUG
+%% 
+%% Licensed under the Apache License, Version 2.0 (the "License");
+%% you may not use this file except in compliance with the License.
+%% You may obtain a copy of the License at
+%% 
+%%     http://www.apache.org/licenses/LICENSE-2.0
+%% 
+%% Unless required by applicable law or agreed to in writing, software
+%% distributed under the License is distributed on an "AS IS" BASIS,
+%% WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+%% See the License for the specific language governing permissions and
+%% limitations under the License.
+%% -------------------------------------------------------------------
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesPackage{beamerouterthemesjtubeamer}[2021/08/21 sjtubeamer outer theme v1.3]
+\RequirePackage{sjtuvi}
+\DefineOption{outer}{nav}{miniframes}
+\DefineOption{outer}{nav}{infolines}
+\DefineOption{outer}{nav}{sidebar}
+\ExecuteOptionsBeamer{miniframes}
+\ProcessOptionsBeamer
+\beamer@compresstrue
+\if\EqualOption{outer}{nav}{miniframes}
+  \useoutertheme[footline=institutetitle]{miniframes}
+\else\if\EqualOption{outer}{nav}{infolines}
+  \useoutertheme{infolines}
+\else\if\EqualOption{outer}{nav}{sidebar}
+  \PackageWarning{outer}{
+    Feature "sidebar" is not implemented yet.\MessageBreak
+    Fallback to the default setting.
+  }
+  \useoutertheme[footline=institutetitle]{miniframes}
+\fi\fi\fi
+\addtobeamertemplate{navigation symbols}{}{
+  \hbox{
+    \raisebox{1.2pt}[0pt][0pt]{
+      \usebeamerfont{footline}
+      \usebeamercolor{footline}
+      \color{footline.fg!50}
+      \insertframenumber/\inserttotalframenumber
+      \hspace*{0.2em}
+    }
+  }
+}
+\setbeamertemplate{page number in head/foot}{}
+\endinput
+%%
+%% End of file `beamerouterthemesjtubeamer.sty'.

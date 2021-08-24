@@ -25,37 +25,22 @@
 \usepackage{datetime2}
 \usepackage{hyperref}
 
-
 \usepackage{biblatex}
 \addbibresource{thesis.bib}
 \setbeamertemplate{bibliography item}[text]
 
-\usetheme[maxplus]{sjtubeamer}
-% use min/max/maxplus to switch theme.
-
-\lstset{
-  language=[LaTeX]TeX,
-  basicstyle=\ttfamily\footnotesize,
-  tabsize=2,
-  keywordstyle=\bfseries\ttfamily\color{SJTUPrimary},
-  commentstyle=\sl\ttfamily\color[RGB]{100,100,100},
-  stringstyle=\ttfamily\color[RGB]{50,50,50},
-  extendedchars=true,
-  breaklines=true,
-}
-\lstdefinestyle{style@inline}{
-  basicstyle   = \ttfamily,
-  keepspaces   = true
-}
-\lstMakeShortInline[style=style@inline]|
+\usetheme[max]{sjtubeamer}
+% 使用 maxplus/max/min 切换标题页样式
+% 使用 red/blue 切换主色调
+% 使用 light/dark 切换亮/暗色模式
 
 \title[SJTU Beamer Template] % 页脚显示标题
 {\textbf{上海交通大学 Beamer 模版}} % 首页标题
 
 \subtitle{使用教程}
 
-\author[Anxue Chen, Alexara Wu]
-{Anxue Chen, Alexara Wu}
+\author[Anxue Chen, Alexara Wu, Log Creative]
+{Anxue Chen, Alexara Wu, Log Creative}
 
 \institute[SJTU]{Shanghai Jiao Tong University}
 
@@ -82,6 +67,8 @@
 \end{frame}
 
 \include{contents/basis}
-\include{contents/end}
+% \include{contents/end}
+
+\makebottom
 
 \end{document}

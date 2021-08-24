@@ -1,0 +1,492 @@
+% \iffalse meta-comment ---------------------------------------------
+% Copyright (C) 2021 SJTUG
+%
+% Licensed under the Apache License, Version 2.0 (the "License");
+% you may not use this file except in compliance with the License.
+% You may obtain a copy of the License at
+%
+%     http://www.apache.org/licenses/LICENSE-2.0
+%
+% Unless required by applicable law or agreed to in writing, software 
+% distributed under the License is distributed on an "AS IS" BASIS,
+% WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+% See the License for the specific language governing permissions and
+% limitations under the License.
+% ------------------------------------------------------------------- \fi
+% \iffalse
+%<*package>
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesPackage{beamerinnerthemesjtubeamer}[2021/08/21 sjtubeamer inner theme v1.3]
+%</package>
+% \fi
+% \CheckSum{0}
+% \StopEventually{}
+% \iffalse
+%<*package>
+% ------------------------------------------------------------------- \fi
+%
+%
+% \subsection{Inner Theme}
+%
+%
+% A |beamer| inner theme dictates the style of the frame elements traditionally
+% set in the ``body'' of each slide. These include:
+%
+% \begin{itemize}
+%   \item title, part, and section pages;
+%   \item itemize, enumerate, and description environments;
+%   \item block environments including theorems and proofs;
+%   \item figures and tables; and
+%   \item footnotes and plain text.
+% \end{itemize}
+%
+%  \subsubsection{Load Packages}
+%   Load SJTU VI Library to get the definition on color and shape.
+%    \begin{macrocode}
+\RequirePackage{sjtuvi}
+%    \end{macrocode}
+%   Load tcolorbox for creating delicate boxes.
+%    \begin{macrocode}
+\RequirePackage{tcolorbox}
+%    \end{macrocode}
+%   Table Supports.
+%    \begin{macrocode}
+\RequirePackage{array}
+\RequirePackage{colortbl}
+\RequirePackage{booktabs}
+%    \end{macrocode}
+%
+%   \subsubsection{Option Declaration}
+%  \begin{macro}{\sjtubeamer@inner@cover}
+%    \begin{macrocode}
+\DeclareOptionBeamer{maxplus}{\def\sjtubeamer@inner@cover{maxplus}}
+\DeclareOptionBeamer{max}{\def\sjtubeamer@inner@cover{max}}
+\DeclareOptionBeamer{min}{\def\sjtubeamer@inner@cover{min}}
+\DeclareOptionBeamer{my}{\def\sjtubeamer@inner@cover{my}} % reserved for customization
+\ExecuteOptionsBeamer{max}
+%    \end{macrocode}
+%  \end{macro}
+%
+%  \begin{macro}{\sjtubeamer@inner@lang}
+%    \begin{macrocode}
+\DefineOption{inner}{lang}{cn}
+\DefineOption{inner}{lang}{en}
+\ExecuteOptionsBeamer{cn}
+%    \end{macrocode}
+%  \end{macro}
+%
+%  \begin{macro}{\sjtubeamer@inner@color}
+%    \begin{macrocode}
+\DefineOption{inner}{color}{red}
+\DefineOption{inner}{color}{blue}
+\ExecuteOptionsBeamer{red}
+%    \end{macrocode}
+%  \end{macro}
+%
+%    \begin{macrocode}
+\ProcessOptionsBeamer
+\PassOptionsToPackage{\sjtubeamer@inner@cover}{sjtucover}
+%    \end{macrocode}
+%
+%   \subsubsection{Load Packages}
+%
+%   Introduce the library from tcolorbox to make code blocks.
+%   \verb"listingsutf8" is used to receive UTF-8 input.
+%    \begin{macrocode}
+\RequirePackage{tcolorbox}
+\tcbuselibrary{skins}
+\tcbuselibrary{listingsutf8}
+%    \end{macrocode}
+%
+% \subsubsection{Title Page \& Bottom Page}
+%
+%
+% Define logo.
+%    \begin{macrocode}
+\usebeamercolor{palatte primary}
+\if\EqualOption{inner}{cover}{max}
+  \logo{\resizebox{!}{0.7cm}{\sjtubadge{cprimary}}}
+\else
+  \if\EqualOption{inner}{lang}{cn}
+    \logo{\resizebox{!}{0.7cm}{\cnlogo{fg}}}
+  \else
+    \logo{\resizebox{!}{0.7cm}{\enlogo{fg}}}
+  \fi
+\fi
+%    \end{macrocode}
+%
+% Define the title grahic image.
+%    \begin{macrocode}
+\if\EqualOption{inner}{cover}{maxplus}
+  \titlegraphic{\includegraphics{sjtuphoto.jpg}}
+\else\if\EqualOption{inner}{cover}{max}
+  \usebeamercolor{palatte primary}
+  \titlegraphic{\sjtubg{fg}}
+  \setbeamertemplate{background}{\resizebox{\the\paperwidth}{!}{\sjtubg{black}}}
+\else\if\EqualOption{inner}{cover}{min}
+  \titlegraphic{\includegraphics{sjtuphoto.jpg}}
+\else
+  \titlegraphic{}
+  %
+  % Developer could define your title graphic here for "my"...
+  %
+\fi\fi\fi
+%    \end{macrocode}
+%
+%   Load Cover Library to get the customized cover.
+%    \begin{macrocode}
+\RequirePackage{sjtucover}
+%    \end{macrocode}
+%  \begin{macro}{\maketitle}
+%  Patch make title command.
+%    \begin{macrocode}
+\def\maketitle{
+  \ifbeamer@inframe\titlepage\else
+  \begin{frame}[plain]
+    \titlepage
+  \end{frame}\fi
+}
+%    \end{macrocode}
+%  \end{macro}
+%
+%  \begin{macro}{\bottompage}
+%   Call the bottom page template to make a bottom page.
+%    \begin{macrocode}
+\def\bottompage{
+  \usebeamertemplate*{bottom page}
+}
+%    \end{macrocode}
+%  \end{macro}
+%
+%  \begin{macro}{\makebottom}
+%   Make the bottom page. Not a built-in command.
+%    \begin{macrocode}
+\def\makebottom{
+  \ifbeamer@inframe\bottompage\else
+  \begin{frame}[plain]
+    \bottompage
+  \end{frame}\fi
+}
+%    \end{macrocode}
+%  \end{macro}
+%
+% \subsubsection{Part Page}
+%   Define the \verb"part page" beamer template.
+%    \begin{macrocode}
+\defbeamertemplate*{part page}{sjtubeamermin}[1][]
+{
+  \vfill
+  \vskip 8pt
+  \begingroup
+%    \end{macrocode}
+%   Print the number of this part. If it is in Chinese, the translated version is printed.
+%    \begin{macrocode}
+    \begin{beamercolorbox}[sep=16pt,right,#1]{part title}
+      \hfill\usebeamerfont{part name}
+      \ifx\beamer@sjtubeamermin@lang\beamer@sjtubeamermin@langcn%
+      第~\insertromanpartnumber~部分
+      \else%
+        \partname~\insertromanpartnumber
+      \fi%
+      \par\vskip4pt
+      \usebeamerfont{part title}\insertpart\par
+%    \end{macrocode}
+%   Since navigation bar is packaged, to modify the color, you have to change the \verb"section in head/foot" beamer color. Here, the first move is to save the current color to a temporary variable. After the insertion, the previous color should be restored.
+%    \begin{macrocode}
+      \hbox to \textwidth{
+        \usebeamerfont{footline}%
+        \setbeamercolor{temp}{fg=section in head/foot.fg}
+        \setbeamercolor{section in head/foot}{use=palette primary,
+          fg=palette primary.fg,bg=}
+        \hfill
+        \insertnavigation{0.4\textwidth}
+        \hspace*{1cm}
+        \setbeamercolor{section in head/foot}{fg=temp.fg}
+      }
+    \end{beamercolorbox}
+  \endgroup
+  \vfill
+}
+%    \end{macrocode}
+%
+%   Redirect the part command to make a part page.
+%    \begin{macrocode}
+\AtBeginPart{
+  \begin{frame}
+    \partpage
+  \end{frame}
+}
+%    \end{macrocode}
+%
+% \subsubsection{Section Page \& Subsection Page}
+%   Define the common \verb"\sectionblock" command to make the section block.
+%    \begin{macrocode}
+\def\sectionblock#1{
+  \begin{beamercolorbox}[sep=12pt,right,#1]{section title}
+    \usebeamerfont{section name}
+    \ifx\beamer@sjtubeamermin@lang\beamer@sjtubeamermin@langcn%
+      第~\insertsectionnumber~节
+    \else%
+      \sectionname~\insertsectionnumber
+    \fi%
+    \par\vskip4pt
+    \usebeamerfont{section title}\insertsection\par
+  \end{beamercolorbox}
+}
+%    \end{macrocode}
+%
+%   Define the \verb"section page" beamer template.
+%    \begin{macrocode}
+\defbeamertemplate*{section page}{sjtubeamermin}[1][]
+{
+  \vfill
+  \begingroup
+    \sectionblock{#1}
+  \endgroup
+  \vfill
+}
+%    \end{macrocode}
+%
+%   Define the \verb"subection page" beamer template.
+%    \begin{macrocode}
+\defbeamertemplate*{subsection page}{sjtubeamermin}[1][]
+{
+  \vfill
+  \begingroup
+    \sectionblock{#1}
+    \begin{beamercolorbox}[sep=8pt,right,#1]{subsection title}
+      \usebeamerfont{subsection name}
+      \ifx\beamer@sjtubeamermin@lang\beamer@sjtubeamermin@langcn%
+        第~\insertsubsectionnumber~小节
+      \else%
+        \subsectionname~\insertsubsectionnumber
+      \fi%
+      \par\vskip 4pt
+      \usebeamerfont{subsection title}\insertsubsection\par
+    \end{beamercolorbox}
+  \endgroup
+  \vfill
+}
+%    \end{macrocode}
+%
+% \subsubsection{Itemize Environments}
+%
+%   Set the item marker to circle and set the marker for section and subsection in TOC (Table of Contents) to circle.
+%    \begin{macrocode}
+\useinnertheme{circles}
+%    \end{macrocode}
+%
+% \subsubsection{Block Environments}
+%
+%    \begin{macrocode}
+\if\EqualOption{inner}{cover}{maxplus}%
+  \setbeamertemplate{blocks}[rounded]
+\else\if\EqualOption{inner}{cover}{max}%
+  \setbeamertemplate{blocks}[rounded]
+\fi\fi
+%    \end{macrocode}
+%
+%   Hard-coded color for blocks.
+%    \begin{macrocode}
+\if\EqualOption{inner}{color}{red}
+  \colorlet{cprimary}{sjtuRedPrimary}
+  \colorlet{csecondary}{sjtuRedSecondary}
+  \colorlet{ctertiary}{sjtuRedTertiary}
+  \colorlet{cquanternary}{black}
+\else
+  \colorlet{cprimary}{sjtuBluePrimary}
+  \colorlet{csecondary}{sjtuBlueSecondary}
+  \colorlet{ctertiary}{sjtuBlueTertiary}
+  \colorlet{cquanternary}{white}
+\fi
+%    \end{macrocode}
+%
+% \begin{macro}{\highlight}
+%   Highlight the given text. Create a primary color background block with white as foreground.
+%    \begin{macrocode}
+\newtcbox{\highlight}[1][cprimary]{
+    on line,
+    arc=0pt,
+    colback=#1,
+    colupper=white,
+    boxrule=0pt,
+    boxsep=0pt,
+    left=4pt,
+    right=4pt,
+    top=2pt,
+    bottom=2pt
+}
+%    \end{macrocode}
+% \end{macro}
+%
+% \begin{macro}{\paragraph}
+%   Use \verb"\highlight" macro for making contrast.
+%   Since beamer has deleted \verb"\paragraph" macro in this class, this template defines a macro for that to indicate it is another point and more paragraph-like. It is useful for the migration from \verb"article" class.
+%    \begin{macrocode}
+\def\paragraph#1{\highlight{#1}~}
+%    \end{macrocode}
+% \end{macro}
+%
+% \begin{macro}{stampbox}
+%   Make a stampbox border, which is a decoration advice from SJTU VI. It has the dependency on \verb"stampline" from \verb"sjtuvi" package.
+%    \begin{macrocode}
+\newtcolorbox{stampbox}[1][cprimary]{%
+  capture=hbox,
+  enhanced,
+  frame empty,
+  interior empty,
+  sharp corners,
+  top=2pt,bottom=2pt,left=2pt,right=2pt,
+  borderline={4pt}{0pt}{
+    #1,
+    line width=0.5pt,
+    decoration={
+      stampline,
+      segment length=8pt,
+      path has corners=true,
+    },
+    decorate
+  }
+}
+%    \end{macrocode}
+% \end{macro}
+%
+%   Declare the basic listing highlighter. \verb"columns" is set to \verb"flexible" to avoid ugly grid alignment. \verb"breaklines" is set to enable line wrapping.
+%    \begin{macrocode}
+\lstset{
+  basicstyle=\ttfamily\small,
+  keywordstyle=\color{cprimary},%
+  stringstyle=\color{csecondary},%
+  commentstyle=\color{ctertiary!80!gray},%
+  columns=flexible,
+  extendedchars=false,
+  showstringspaces=false,
+  showspaces=false,
+  breaklines
+}
+%    \end{macrocode}
+%
+% \begin{macro}{codeblock}
+%   Code block environment is made for presenting code in an obvious way. Two parameters are required. The first parameter is passed to listing, which mostly sets the language to highlight, see the \verb"listings" package for more details. And the second parameter receives the title to make.
+%    \begin{macrocode}
+\newtcblisting{codeblock}[2][]{
+listing only, 
+listing engine=listings,
+listing options={
+  #1,%
+  numbers=left,
+  numberstyle=\color{cprimary!80}\ttfamily\scriptsize,
+  numbersep=5pt,
+},
+enhanced,
+sharp corners,
+top=0mm,
+bottom=0mm,
+title=#2,
+colback=cprimary!5,
+colframe=cprimary!80,
+overlay={
+    \begin{tcbclipinterior}\fill[cprimary!20]%
+        (frame.south west) rectangle ([xshift=5mm]frame.north west);
+    \end{tcbclipinterior}
+}
+}
+%    \end{macrocode}
+% \end{macro}
+%
+%   Extra Support for pgfplots and pgfplotstable (if loaded in the main file).
+%    \begin{macrocode}
+\AtEndPreamble{%
+%    \end{macrocode}
+%   Set the default visual theme for \textsc{Pgfplots}. The cycle list is set to the current color theme. And lines on the graph is optimized to make it clear for presentation. The predefinition on the height is made to avoid the overfullbox on the vertical side.
+%    \begin{macrocode}
+  \@ifpackageloaded{pgfplots}{%
+    \pgfplotsset{
+      compat=newest,
+      every axis/.style={
+        font=\small\sffamily,
+        cycle multi list={
+          mark options={thick}\nextlist
+          mark list\nextlist
+          cprimary,csecondary,ctertiary\nextlist
+        },
+        height=0.5*\the\paperheight,
+        axis line style={
+          cprimary,
+          thin
+        },
+        every tick label/.style={
+          cprimary,
+          font=\small,
+          /pgf/number format/assume math mode=true
+        },
+        grid style={cprimary!10},
+        tick style={cprimary!50},
+        minor tick style={cprimary!30},
+        xlabel style={cprimary},
+        ylabel style={cprimary},
+        zlabel style={cprimary},
+        legend style={
+          draw={cprimary},
+          thin,
+          nodes={cprimary}
+        },
+        thick,
+      },
+    }
+  }{}
+%    \end{macrocode}
+%   Two macros are defined to make the header colored.
+%    \begin{macrocode}
+\def\zapcolorreset{\let\reset@color\relax\ignorespaces}
+\def\colorrows#1{\noalign{\aftergroup\zapcolorreset#1}\ignorespaces}
+%    \end{macrocode}
+%   Set the style of \textsc{Pgfplotstable}. The \verb"\colorrows" macro here is used for making the header colored. The \verb"booktabs" line is used to create a professional look.
+%    \begin{macrocode}
+  \@ifpackageloaded{pgfplotstable}{%
+    \RequirePackage{array}
+    \RequirePackage{colortbl}
+    \RequirePackage{booktabs}
+    \pgfplotstableset{
+      col sep=comma,
+      every table/.style={
+        font={\small\sffamily},
+      },
+      every head row/.style={
+        before row={
+          \arrayrulecolor{cprimary}
+          \toprule
+          \colorrows{\color{cprimary}}
+        },
+        after row={
+          \midrule
+          \colorrows{\color{black}}
+        },
+      },
+      every last row/.style={
+        after row=\bottomrule
+      },
+    }
+  }{}
+}
+%    \end{macrocode}
+%
+% \subsubsection{Footnotes}
+%   Define the \verb"footline" beamer template. The format is slightly changed from the original beamer definition.
+%    \begin{macrocode}
+\defbeamertemplate*{footnote}{sjtubeamermin}
+{
+  \usebeamerfont{footnote}
+  \usebeamercolor[fg]{footnote}
+  \parindent 0.5em\noindent%
+  \raggedright
+  \hbox to 1.5em{\hfil\insertfootnotemark}\insertfootnotetext\par%
+}
+%    \end{macrocode}
+%
+% \iffalse
+%</package>
+% \fi
+%
+% \Finale
+\endinput

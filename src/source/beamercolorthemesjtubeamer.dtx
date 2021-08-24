@@ -1,5 +1,5 @@
 % \iffalse meta-comment ---------------------------------------------
-% Copyright (C) 2021 LogCreative
+% Copyright (C) 2021 SJTUG
 %
 % Licensed under the Apache License, Version 2.0 (the "License");
 % you may not use this file except in compliance with the License.
@@ -12,13 +12,11 @@
 % WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 % See the License for the specific language governing permissions and
 % limitations under the License.
-%
-% The Current Maintainer of this work is Log Creative.
 % ------------------------------------------------------------------- \fi
 % \iffalse
 %<*package>
 \NeedsTeXFormat{LaTeX2e}
-\ProvidesPackage{beamercolorthemesjtubeamermin}[2021-08-19 sjtubeamermin color theme 1.2]
+\ProvidesPackage{beamercolorthemesjtubeamer}[2021/08/21 sjtubeamer color theme v1.3]
 %</package>
 % \fi
 % \CheckSum{0}
@@ -29,33 +27,62 @@
 %
 % \subsection{Color Theme}
 %
-%
-%   \subsubsection{Option Declartion}
-%   Color theme gets the \verb"color" option only to select different color scheme.
-%    \begin{macrocode}
-\DeclareOptionBeamer{color}{\def\beamer@sjtubeamermin@color{#1}}
-\def\beamer@sjtubeamermin@colorblue{blue}%
-\def\beamer@sjtubeamermin@colorred{red}%
-\ExecuteOptionsBeamer{color=blue}
-\ProcessOptionsBeamer
-%    \end{macrocode}
-%
-%   \subsubsection{Beamer Color Interface}
-%
-%   Load the common color library for sjtubeamermin.
+%   Load SJTU VI Library to get the pre-defined color.
 %    \begin{macrocode}
 \RequirePackage{sjtuvi}
 %    \end{macrocode}
 %
-%   Map the defined color in \verb"sjtuvi" to the interface of beamer color.
-%   Especially, the \verb"structure" interface could not derived from 
-%   the color palette.
+%  \begin{macro}{\sjtubeamer@color@color}
 %    \begin{macrocode}
-\setbeamercolor{palette primary}{bg=cprimary,fg=white}
-\setbeamercolor{palette secondary}{bg=csecondary,fg=white}
-\setbeamercolor{palette tertiary}{bg=ctertiary,fg=white}
-\setbeamercolor{palette quanternary}{bg=,fg=cquanternary}
+\DefineOption{color}{color}{red}
+\DefineOption{color}{color}{blue}
+\ExecuteOptionsBeamer{red}
+%    \end{macrocode}
+%  \end{macro}
+%
+%  \begin{macro}{\sjtubeamer@color@lum}
+%    \begin{macrocode}
+\DefineOption{color}{lum}{light}
+\DefineOption{color}{lum}{dark}
+\ExecuteOptionsBeamer{dark}
+%    \end{macrocode}
+%  \end{macro}
+%
+%    \begin{macrocode}
+\ProcessOptionsBeamer
+%    \end{macrocode}
+%
+%   Intermediate color palette depending on the choice of color theme.
+%   Notice: inner theme has a replica of the following code.
+%   To fullfill with the standfree requirements.
+%    \begin{macrocode}
+\if\EqualOption{color}{color}{red}
+  \colorlet{cprimary}{sjtuRedPrimary}
+  \colorlet{csecondary}{sjtuRedSecondary}
+  \colorlet{ctertiary}{sjtuRedTertiary}
+  \colorlet{cquanternary}{black}
+\else
+  \colorlet{cprimary}{sjtuBluePrimary}
+  \colorlet{csecondary}{sjtuBlueSecondary}
+  \colorlet{ctertiary}{sjtuBlueTertiary}
+  \colorlet{cquanternary}{white}
+\fi
+%    \end{macrocode}
+%
+%   Main color palatte depending on the choice of lumination.
+%   Especially, the \verb"structure" interface could not be derived from 
+%   any other color palette.
+%    \begin{macrocode}
 \setbeamercolor{structure}{fg=cprimary}
+\if\EqualOption{color}{lum}{light}
+  \setbeamercolor{palette primary}{bg=white,fg=cprimary}
+  \setbeamercolor{palette secondary}{bg=white,fg=cprimary!50!csecondary}
+  \setbeamercolor{palette tertiary}{bg=white,fg=csecondary}
+\else
+  \setbeamercolor{palette primary}{bg=cprimary,fg=white}
+  \setbeamercolor{palette secondary}{bg=cprimary!50!csecondary,fg=white}
+  \setbeamercolor{palette tertiary}{bg=csecondary,fg=white}
+\fi
 %    \end{macrocode}
 %
 %   This part defines the color scheme of title.
@@ -64,9 +91,12 @@
 \setbeamercolor{logo}{use={palette primary},bg=,fg=palette primary.fg}
 \setbeamercolor{normal text}{fg=black,bg=black!40}
 \setbeamercolor*{block title}{parent=structure}
-\setbeamercolor{titlelike}{parent={palette primary}}
-\setbeamercolor{title}{fg=cprimary,bg=}
-\setbeamercolor{subtitle}{fg=csecondary,bg=}
+\setbeamercolor{titlelike}{bg=,fg=cprimary}
+\setbeamercolor{title}{use={palette primary},fg=palette primary.fg,bg=}
+\setbeamercolor{subtitle}{use={palette secondary},fg=palette secondary.fg,bg=}
+\setbeamercolor{author}{parent=logo}
+\setbeamercolor{institute}{parent=logo}
+\setbeamercolor{date}{parent=logo}
 %    \end{macrocode}
 %
 %   This part defines the color of block title.
@@ -90,7 +120,7 @@
 %
 %   This part defines the color of footline.
 %    \begin{macrocode}
-\setbeamercolor{section in head/foot}{use={palette primary},
+\setbeamercolor{footnote}{use={palette primary},
   fg=palette primary.bg,bg=}
 %    \end{macrocode}
 %
@@ -101,14 +131,23 @@
 \setbeamercolor{subsection title}{parent={palette tertiary}}
 %    \end{macrocode}
 %
+%   Set the footline color.
+%
+%    \begin{macrocode}
+\setbeamercolor{section in head/foot}{fg=white,bg=cprimary}
+\setbeamercolor{subsection in head/foot}{fg=cprimary,bg=cprimary!20}
+\setbeamercolor{institute in head/foot}{fg=white,bg=}
+\setbeamercolor{page number in head/foot}{fg=white,bg=}
+%    \end{macrocode}
+%
+%
 %   Set the emphasized color and redefine the emphasizing command to make the text both italic for ASCII character and colored in the middle color of cprimary and csecondary.
 %
 %   The redefinition is required since beamer class has redefined the \verb"\emph" command to make it not nested. According to LearnLaTeX.org, the emphasized color is defined to make contrast in presentation.
 %
 %   For ASCII character, the italic part dominates, as it is quite different from the normal roman font. As for chinese character, the color part dominates, since it is often in bolder shape and changing to other font will make the layout messy.
 %    \begin{macrocode}
-\setbeamercolor{emph}{use={palette primary,palette secondary},
-  fg=palette primary.bg!50!palette secondary.bg}
+\setbeamercolor{emph}{fg=cprimary!50!csecondary}
 \renewcommand<>{\emph}[1]{%
   {\only#2{\usebeamercolor[fg]{emph}\itshape}#1}%
 }
@@ -116,12 +155,12 @@
 %
 %   As is native to beamer, you could also use \verb"\alert" command to highlight the text. The color is redirected to the cprimary.
 %    \begin{macrocode}
-\setbeamercolor{alerted text}{use=palette primary,fg=palette primary.bg}
+\setbeamercolor{alerted text}{fg=cprimary}
 %    \end{macrocode}
 %
 %
 % \iffalse
-% </package>
+%</package>
 % \fi
 % \Finale
 \endinput

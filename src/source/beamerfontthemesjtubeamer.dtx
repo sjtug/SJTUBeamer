@@ -1,5 +1,5 @@
 % \iffalse meta-comment ---------------------------------------------
-% Copyright (C) 2021 LogCreative
+% Copyright (C) 2021 SJTUG
 %
 % Licensed under the Apache License, Version 2.0 (the "License");
 % you may not use this file except in compliance with the License.
@@ -12,13 +12,11 @@
 % WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 % See the License for the specific language governing permissions and
 % limitations under the License.
-%
-% The Current Maintainer of this work is Log Creative.
 % ------------------------------------------------------------------- \fi
 % \iffalse
 %<*package>
 \NeedsTeXFormat{LaTeX2e}
-\ProvidesPackage{beamerfontthemesjtubeamermin}[2021-08-19 sjtubeamermin font theme 1.2]
+\ProvidesPackage{beamerfontthemesjtubeamer}[2021/08/21 sjtubeamer font theme v1.3]
 %</package>
 % \fi
 % \CheckSum{0}
@@ -29,14 +27,21 @@
 %
 % \subsection{Font Theme}
 %
+%
+%   Ignore unwanted warnings.
+%    \begin{macrocode}
+\RequirePackage{silence}
+\WarningFilter{latexfont}{Font shape}
+%    \end{macrocode}
+%
 %   Use \verb"professionalfonts" font theme to compress all formula environments, which is in serif font style.
 %    \begin{macrocode}
 \usefonttheme{professionalfonts}
 %    \end{macrocode}
 %
-%   Use \verb"sansmath" package to support sans serif math font in some blocks, e.g., PGFPlots.
+%   Use \verb"structurebold" font theme to make the title in bfseries.
 %    \begin{macrocode}
-\RequirePackage[eulergreek]{sansmath}
+\usefonttheme{structurebold}
 %    \end{macrocode}
 %
 %   Set the font size to normal size for the number indication in part page, section page, and subsection page.
@@ -51,7 +56,7 @@
 \setbeamerfont{footnote}{size=\footnotesize}
 %    \end{macrocode}
 % \iffalse
-% </package>
+%</package>
 % \fi
 % \Finale
 \endinput

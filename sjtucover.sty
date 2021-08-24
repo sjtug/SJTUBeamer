@@ -1,0 +1,262 @@
+%%
+%% This is file `sjtucover.sty',
+%% generated with the docstrip utility.
+%%
+%% The original source files were:
+%%
+%% sjtucover.dtx  (with options: `package')
+%% -------------------------------------------------------------------
+%% Copyright (C) Shanghai Jiao Tong University
+%% The definition in this file is refered to the Visual Identity System
+%% from Shanghai Jiao Tong University (SJTU).
+%% See https://vi.sjtu.edu.cn for more information.
+%% 
+%% SJTUG implements the design, but doesn't hold the copyright.
+%% Any commercial usage in this file should be acknowledged by
+%% the administration of SJTU.
+%% More infomation about the license,
+%% see https://vi.sjtu.edu.cn/index.php/articles/bulletin/16.
+%% -------------------------------------------------------------------
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesPackage{sjtucover}[2021-08-21 cover library for sjtubeamer 1.3]
+\RequirePackage{sjtuvi}
+\DefineOption{sjtucover}{cover}{maxplus}
+\DefineOption{sjtucover}{cover}{max}
+\DefineOption{sjtucover}{cover}{min}
+\DefineOption{sjtucover}{cover}{my}  % reserved for customization
+\ExecuteOptionsBeamer{max}
+\ProcessOptionsBeamer
+\defbeamertemplate*{title page}{maxplus}[1][]
+{
+  \nointerlineskip%
+  \begin{beamercolorbox}[wd=\paperwidth, ht=\paperheight]{empty}
+    \usebeamercolor{palette primary}%
+    \begin{tikzpicture}
+      \pgfmathsetlengthmacro{\outslant}{\the\paperwidth - 0.8cm}
+      \node[anchor=north west, inner sep=0, outer sep=0]
+          at (0,\the\paperheight){
+            \resizebox{!}{\the\paperheight}{\inserttitlegraphic}};
+      \fill[color=white] (0,0) rectangle(\the\paperwidth,3.9);
+      \fill[color=bg]  (0,0) rectangle(\the\paperwidth,3.88);
+      \node[anchor=north west, text width=.8\paperwidth]
+        at (0.8,3.6){%
+      \usebeamercolor[fg]{title}
+      \ifx\insertsubtitle\@empty%
+        {\huge\bfseries\inserttitle}\\
+        \else%
+        {\Large\bfseries\inserttitle}\\
+        {\small\insertsubtitle}\\
+      \fi%
+      };
+      \node[anchor=south west, text width=.8\paperwidth] at (0.8,0.45){%
+        {\usebeamercolor[fg]{author}\small\insertauthor}\\
+        {\usebeamercolor[fg]{institute}\small\insertinstitute}\\
+        {\usebeamercolor[fg]{date}\small\insertdate}%
+      };
+      \node[anchor=south east, inner sep=0, outer sep=0] at (\outslant,0.5){
+        \resizebox{!}{1cm}{\insertlogo}
+      };
+    \end{tikzpicture}
+  \end{beamercolorbox}
+}
+\defbeamertemplate*{title page}{max}[1][]
+{
+  \vbox{}
+  \usebeamercolor{palette primary}
+  \begin{tikzpicture}[overlay]
+      \fill [palette primary.bg] (-0.2*\the\paperwidth,-1*\the\paperheight)
+      rectangle (1*\the\paperwidth, 0.2*\the\paperheight);
+      \node [anchor=center,inner sep=0pt] at (0.45*\the\paperwidth,-0.35*\the\paperheight) {
+        \resizebox{!}{1.2\paperheight}{\inserttitlegraphic}
+      };
+  \end{tikzpicture}
+  \vfill
+  \begingroup
+  \begin{beamercolorbox}[sep=8pt,#1,center]{title}
+    \usebeamerfont{title}\inserttitle\par%
+    \ifx\insertsubtitle\@empty%
+    \else%
+      \vskip0.25em%
+      {\usebeamerfont{subtitle}\insertsubtitle\par}%
+    \fi%
+  \end{beamercolorbox}%
+  \vskip1em\par
+  \begin{beamercolorbox}[sep=8pt,#1,center]{author}
+    \usebeamercolor[fg]{palette primary}
+    \usebeamerfont{author}\insertauthor
+  \end{beamercolorbox}
+  \begin{beamercolorbox}[sep=8pt,#1,center]{institute}
+    \usebeamercolor[fg]{palette primary}
+    \usebeamerfont{institute}\insertinstitute
+  \end{beamercolorbox}
+  \begin{beamercolorbox}[sep=8pt,#1,center]{date}
+    \usebeamercolor[fg]{palette primary}
+    \usebeamerfont{date}\insertdate
+  \end{beamercolorbox}
+  \endgroup
+  \vfill
+}
+\tikzfading[
+  name=center fade,
+  inner color=transparent!0,
+  outer color=transparent!15
+]
+\tikzfading[
+  name=fade right,
+  left color=transparent!0,
+  right color=transparent!100
+]
+\defbeamertemplate*{title page}{min}[1][]
+{
+  \vbox{}
+  \usebeamercolor{palette primary}
+  \begin{tikzpicture}[overlay]
+      \fill [palette primary.bg] (-0.2*\the\paperwidth,-1*\the\paperheight)
+      rectangle (1*\the\paperwidth, 0.2*\the\paperheight);
+  \end{tikzpicture}
+  \ifbeamer@draftmode%
+  \else%
+    \begin{tikzpicture}[overlay]
+      \stamparray{20pt}
+        {(-0.2*\the\paperwidth,-1*\the\paperheight)}
+        {(1*\the\paperwidth, 0.2*\the\paperheight)}
+      \fill [bg,path fading=fade right]
+        (-0.2*\the\paperwidth,-1*\the\paperheight) rectangle
+        (1*\the\paperwidth, 0.2*\the\paperheight);
+      \fill [bg,path fading=center fade,xshift=-10pt,yshift=-20pt]
+        (0.2*\the\paperwidth,0) circle [radius=\the\paperwidth];
+    \end{tikzpicture}
+  \fi%
+  \vfill
+  \begingroup
+    \centering
+    \usebeamercolor{titlelike}
+    \begin{beamercolorbox}{logo}
+      \vskip8pt
+      \hbox{
+        \hskip4.5pt{\resizebox{!}{1cm}{\insertlogo}}
+        \ifx\insertinstitute\@empty%
+        \else
+          \ifx\insertlogo\@empty%
+          \else
+            {\hskip3pt \vrule width0.5pt}\hskip7pt
+          \fi
+          \ifx\beamer@sjtubeamermin@lang\beamer@sjtubeamermin@langcn%
+            \vbox{
+              \fontsize{13pt}{0pt}\selectfont
+              \insertinstitute
+              \par\noindent\vskip0.15em
+              \fontsize{5pt}{0pt}\selectfont
+              \textsc{\insertshortinstitute}
+              \baselineskip 3.2pt
+              \par~
+            }
+          \else%
+            \vbox to 1cm{
+              \vfill
+              \vbox{
+                \offinterlineskip
+                \noindent \strut
+                \baselineskip 0pt \lineskip -2pt
+                \scriptsize\textsc{\beamer@shortinstitute}
+                \strut
+              }
+              \vfill
+            }
+          \fi%
+        \fi%
+      }
+      \vskip8pt
+    \end{beamercolorbox}
+    \begin{beamercolorbox}[sep=8pt,#1]{title}
+      \usebeamerfont{title}\inserttitle\par%
+      \ifx\insertsubtitle\@empty%
+      \else%
+        \vskip0.25em%
+        {\usebeamerfont{subtitle}\insertsubtitle\par}%
+      \fi%
+    \end{beamercolorbox}%
+    \vskip1em\par
+    \begin{beamercolorbox}[sep=8pt,#1]{author}
+      \usebeamerfont{author}\insertauthor
+    \end{beamercolorbox}
+    \begin{beamercolorbox}[sep=8pt,#1]{date}
+      \usebeamerfont{date}\insertdate
+    \end{beamercolorbox}
+      \usebeamercolor{palette primary}%
+      \ifx\inserttitlegraphic\@empty%
+      \else
+        \begin{tikzpicture}[overlay,yshift=0.77em]
+          \node (pic) [fg, above left] at (0.88*\the\paperwidth,0)
+            {\resizebox{0.3\paperwidth}{!}{\inserttitlegraphic}};
+          \draw[decoration={
+              stampline,
+              segment length=8pt,
+              path has corners=true,
+            },decorate,fg]
+              (pic.north west) --
+              (pic.north east) --
+              (pic.south east) --
+              (pic.south west) -- cycle;
+        \end{tikzpicture}
+      \fi
+  \endgroup
+  \vskip0.5em
+  \vfill
+}
+\defbeamertemplate*{title page}{my}[1][]{
+  %
+  % Developer could implement your own title page template here...
+  % or use "my" theme first, then implement your title page
+  % in a different style file mycover.sty with:
+  %    \addtobeamertemplate{title page}{}{<Your implementation>}
+  % and in the main.tex:
+  %    \usetheme[my]{sjtubeamer}\usepackage{mycover}
+  %
+}
+\defbeamertemplate*{bottom page}{min}[1][]
+{
+  \vbox{}
+  \usebeamercolor{palette primary}
+  \usebeamercolor{palette secondary}
+  \begin{tikzpicture}[overlay,yshift=-80pt]
+    \def\w{\the\paperwidth}%
+    \def\h{\the\paperheight}%
+    \fill [palette primary.bg] (-0.2*\w,-1*\h) rectangle (1*\w, 0.5*\h);
+    \begin{scope}[fill=palette primary.bg!50!black,fill opacity=0.15]
+      \clip (0.63*\w,1.05*\h) circle (1*\h);
+      \fill (0.14*\w,-0.95*\h) circle (1.67*\h);
+    \end{scope}
+    \begin{scope}[fill=palette secondary.bg!50!palette primary.bg!70!white,
+      fill opacity=0.15]
+      \clip[xshift=26pt] (0.95*\w,-0.67*\h) circle (1.17*\h);
+      \fill
+        (0.14*\w,-0.95*\h) circle (1.67*\h)
+        (0.63*\w,1.05*\h) circle (1*\h);
+    \end{scope}
+  \end{tikzpicture}
+  \vfill
+  \begingroup
+    \raggedleft
+    \resizebox{!}{1cm}{\insertlogo}
+    \vfill
+    \vskip6em
+    \begin{beamercolorbox}[sep=8pt]{title}
+      \usebeamercolor[fg]{palette primary}
+      \usebeamerfont{title}\noindent
+      \ifx\beamer@sjtubeamermin@lang\beamer@sjtubeamermin@langcn
+        谢谢
+      \else
+        Thank You
+      \fi
+      \vskip1em%
+      \usebeamerfont{subtitle}\insertauthor~$\cdot$~\inserttitle
+    \end{beamercolorbox}%
+    \vfill
+    \vskip3.5em
+  \endgroup
+}
+\setbeamertemplate{title page}[\sjtubeamer@sjtucover@cover]
+\endinput
+%%
+%% End of file `sjtucover.sty'.
