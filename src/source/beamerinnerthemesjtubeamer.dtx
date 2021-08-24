@@ -105,7 +105,7 @@
 %    \begin{macrocode}
 \usebeamercolor{palatte primary}
 \if\EqualOption{inner}{cover}{max}
-  \logo{\resizebox{!}{0.7cm}{\sjtubadge{cprimary}}}
+  \logo{\resizebox{!}{1cm}{\sjtubadge{cprimary}}}
 \else
   \if\EqualOption{inner}{lang}{cn}
     \logo{\resizebox{!}{0.7cm}{\cnlogo{fg}}}
@@ -138,13 +138,15 @@
 \RequirePackage{sjtucover}
 %    \end{macrocode}
 %  \begin{macro}{\maketitle}
-%  Patch make title command.
+%  Patch make title command. It will receive an optional argument for switching different type of title page.
 %    \begin{macrocode}
-\def\maketitle{
+\renewcommand{\maketitle}[1][\sjtubeamer@inner@cover]{
+  \setbeamertemplate{title page}[#1]
   \ifbeamer@inframe\titlepage\else
   \begin{frame}[plain]
     \titlepage
   \end{frame}\fi
+  \setbeamertemplate{title page}[\sjtubeamer@inner@cover]
 }
 %    \end{macrocode}
 %  \end{macro}
@@ -305,16 +307,16 @@
 %   Highlight the given text. Create a primary color background block with white as foreground.
 %    \begin{macrocode}
 \newtcbox{\highlight}[1][cprimary]{
-    on line,
-    arc=0pt,
-    colback=#1,
-    colupper=white,
-    boxrule=0pt,
-    boxsep=0pt,
-    left=4pt,
-    right=4pt,
-    top=2pt,
-    bottom=2pt
+  on line,
+  arc=0pt,
+  colback=#1,
+  colupper=white,
+  boxrule=0pt,
+  boxsep=0pt,
+  left=4pt,
+  right=4pt,
+  top=2pt,
+  bottom=2pt
 }
 %    \end{macrocode}
 % \end{macro}
@@ -436,17 +438,19 @@ overlay={
     }
   }{}
 %    \end{macrocode}
-%   Two macros are defined to make the header colored.
-%    \begin{macrocode}
-\def\zapcolorreset{\let\reset@color\relax\ignorespaces}
-\def\colorrows#1{\noalign{\aftergroup\zapcolorreset#1}\ignorespaces}
-%    \end{macrocode}
 %   Set the style of \textsc{Pgfplotstable}. The \verb"\colorrows" macro here is used for making the header colored. The \verb"booktabs" line is used to create a professional look.
 %    \begin{macrocode}
   \@ifpackageloaded{pgfplotstable}{%
     \RequirePackage{array}
     \RequirePackage{colortbl}
     \RequirePackage{booktabs}
+%    \end{macrocode}
+%   Two macros are defined to make the header colored.
+%    \begin{macrocode}
+    \def\zapcolorreset{\let\reset@color\relax\ignorespaces}
+    \def\colorrows#1{\noalign{\aftergroup\zapcolorreset#1}\ignorespaces}
+%    \end{macrocode}
+%    \begin{macrocode}
     \pgfplotstableset{
       col sep=comma,
       every table/.style={

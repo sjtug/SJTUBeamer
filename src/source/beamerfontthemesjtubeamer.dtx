@@ -33,6 +33,20 @@
 \RequirePackage{silence}
 \WarningFilter{latexfont}{Font shape}
 %    \end{macrocode}
+%   Disable the warning from \verb"hyperref" which conflicts the setting in C\TeX{} or CJK. It has to be manually disabled.
+%    \begin{macrocode}
+\def\Hy@WarnOptionDisabled#1{
+    \def\next{#1}%
+    \ifx\next pdfauthor %
+        \ifx\next driverfallback %
+        \else
+        \Hy@Warning{%
+            Option `#1' has already been used,\MessageBreak 
+            setting the option has no effect%
+        }\fi%
+    \fi%
+}
+%    \end{macrocode}
 %
 %   Use \verb"professionalfonts" font theme to compress all formula environments, which is in serif font style.
 %    \begin{macrocode}
