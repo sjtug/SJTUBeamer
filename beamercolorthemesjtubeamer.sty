@@ -1,10 +1,10 @@
 %%
-%% This is file `beamercolorthemesjtubeamermin.sty',
+%% This is file `beamercolorthemesjtubeamer.sty',
 %% generated with the docstrip utility.
 %%
 %% The original source files were:
 %%
-%% beamercolorthemesjtubeamermin.dtx  (with options: `package')
+%% beamercolorthemesjtubeamer.dtx  (with options: `package')
 %% -------------------------------------------------------------------
 %% Copyright (C) 2021 SJTUG
 %% 
@@ -21,25 +21,46 @@
 %% limitations under the License.
 %% -------------------------------------------------------------------
 \NeedsTeXFormat{LaTeX2e}
-\ProvidesPackage{beamercolorthemesjtubeamermin}[2021-08-19 sjtubeamermin color theme 1.2]
-\DeclareOptionBeamer{color}{\def\beamer@sjtubeamermin@color{#1}}
-\def\beamer@sjtubeamermin@colorblue{blue}%
-\def\beamer@sjtubeamermin@colorred{red}%
-\ExecuteOptionsBeamer{color=blue}
-\ProcessOptionsBeamer
+\ProvidesPackage{beamercolorthemesjtubeamer}[2021/08/21 sjtubeamer color theme v1.3]
 \RequirePackage{sjtuvi}
-\setbeamercolor{palette primary}{bg=cprimary,fg=white}
-\setbeamercolor{palette secondary}{bg=csecondary,fg=white}
-\setbeamercolor{palette tertiary}{bg=ctertiary,fg=white}
-\setbeamercolor{palette quanternary}{bg=,fg=cquanternary}
+\DefineOption{color}{color}{red}
+\DefineOption{color}{color}{blue}
+\ExecuteOptionsBeamer{red}
+\DefineOption{color}{lum}{light}
+\DefineOption{color}{lum}{dark}
+\ExecuteOptionsBeamer{dark}
+\ProcessOptionsBeamer
+\if\EqualOption{color}{color}{red}
+  \colorlet{cprimary}{sjtuRedPrimary}
+  \colorlet{csecondary}{sjtuRedSecondary}
+  \colorlet{ctertiary}{sjtuRedTertiary}
+  \colorlet{cquanternary}{black}
+\else
+  \colorlet{cprimary}{sjtuBluePrimary}
+  \colorlet{csecondary}{sjtuBlueSecondary}
+  \colorlet{ctertiary}{sjtuBlueTertiary}
+  \colorlet{cquanternary}{white}
+\fi
 \setbeamercolor{structure}{fg=cprimary}
+\if\EqualOption{color}{lum}{light}
+  \setbeamercolor{palette primary}{bg=white,fg=cprimary}
+  \setbeamercolor{palette secondary}{bg=white,fg=cprimary!50!csecondary}
+  \setbeamercolor{palette tertiary}{bg=white,fg=csecondary}
+\else
+  \setbeamercolor{palette primary}{bg=cprimary,fg=white}
+  \setbeamercolor{palette secondary}{bg=cprimary!50!csecondary,fg=white}
+  \setbeamercolor{palette tertiary}{bg=csecondary,fg=white}
+\fi
 \setbeamercolor{background canvas}{bg=white}
 \setbeamercolor{logo}{use={palette primary},bg=,fg=palette primary.fg}
 \setbeamercolor{normal text}{fg=black,bg=black!40}
 \setbeamercolor*{block title}{parent=structure}
-\setbeamercolor{titlelike}{parent={palette primary}}
-\setbeamercolor{title}{fg=cprimary,bg=}
-\setbeamercolor{subtitle}{fg=csecondary,bg=}
+\setbeamercolor{titlelike}{bg=,fg=cprimary}
+\setbeamercolor{title}{use={palette primary},fg=palette primary.fg,bg=}
+\setbeamercolor{subtitle}{use={palette secondary},fg=palette secondary.fg,bg=}
+\setbeamercolor{author}{parent=logo}
+\setbeamercolor{institute}{parent=logo}
+\setbeamercolor{date}{parent=logo}
 \setbeamercolor{block title}{fg=white,bg=cprimary!90}
 \setbeamercolor{block title alerted}{use=alerted text,
   fg=white,bg=csecondary}
@@ -51,17 +72,20 @@
   use=block title alerted,bg=block title alerted.bg!30}
 \setbeamercolor{block body example}{parent=normal text,
   use=block title example,bg=block title example.bg!30}
-\setbeamercolor{section in head/foot}{use={palette primary},
+\setbeamercolor{footnote}{use={palette primary},
   fg=palette primary.bg,bg=}
 \setbeamercolor{part title}{parent={palette primary}}
 \setbeamercolor{section title}{parent={palette secondary}}
 \setbeamercolor{subsection title}{parent={palette tertiary}}
-\setbeamercolor{emph}{use={palette primary,palette secondary},
-  fg=palette primary.bg!50!palette secondary.bg}
+\setbeamercolor{section in head/foot}{fg=white,bg=cprimary}
+\setbeamercolor{subsection in head/foot}{fg=cprimary,bg=cprimary!20}
+\setbeamercolor{institute in head/foot}{fg=white,bg=}
+\setbeamercolor{page number in head/foot}{fg=white,bg=}
+\setbeamercolor{emph}{fg=cprimary!50!csecondary}
 \renewcommand<>{\emph}[1]{%
   {\only#2{\usebeamercolor[fg]{emph}\itshape}#1}%
 }
-\setbeamercolor{alerted text}{use=palette primary,fg=palette primary.bg}
+\setbeamercolor{alerted text}{fg=cprimary}
 \endinput
 %%
-%% End of file `beamercolorthemesjtubeamermin.sty'.
+%% End of file `beamercolorthemesjtubeamer.sty'.

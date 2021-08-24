@@ -4,7 +4,7 @@
 %%
 %% The original source files were:
 %%
-%% beamerthemesjtubeamer.dtx  (with options: `root')
+%% beamerthemesjtubeamer.dtx  (with options: `package')
 %% -------------------------------------------------------------------
 %% Copyright (C) 2021 SJTUG
 %% 
@@ -21,53 +21,37 @@
 %% limitations under the License.
 %% -------------------------------------------------------------------
 \NeedsTeXFormat{LaTeX2e}
-\ProvidesPackage{beamerthemesjtubeamer}[2021-08-19 sjtubeamer parent root 1.2]
-\RequirePackage{kvoptions}
-\RequirePackage{iftex}
-
-\SetupKeyvalOptions{
-  family=sjtubeamer,
-  prefix=sjtubeamer@
-}
-
-\DeclareBoolOption{maxplus}
-\DeclareBoolOption{max}
-\DeclareBoolOption{min}
-\sjtubeamer@maxfalse
-\sjtubeamer@maxtrue
-\sjtubeamer@minfalse
-
-\DeclareBoolOption{red}
-\DeclareBoolOption{blue}
-\sjtubeamer@redtrue
-
-\DeclareBoolOption{bannertitle}
-
-\ProcessKeyvalOptions{sjtubeamer}
-
-\ifsjtubeamer@bannertitle
-  \ClassWarning{sjtubeamer}{"bannertitle" is obsolete. Use "maxplus" option instead.}
-  \sjtubeamer@maxplustrue
-\fi
-
-\ifsjtubeamer@min
-  \ifsjtubeamer@red
-    \PassOptionsToPackage{color=red}{sjtubeamermin}
-  \else
-    \PassOptionsToPackage{color=blue}{sjtubeamermin}
-  \fi
-  \usetheme{sjtubeamermin}
-\else
-  \ifsjtubeamer@red
-    \PassOptionsToPackage{red}{sjtubeamermax}
-  \else
-    \PassOptionsToPackage{blue}{sjtubeamermax}
-  \fi
-  \ifsjtubeamer@maxplus
-    \PassOptionsToPackage{bannertitle}{sjtubeamermax}
-  \fi
-  \usetheme{sjtubeamermax}
-\fi
+\ProvidesPackage{beamerthemesjtubeamer}[2021/08/21 sjtubeamer parent theme v1.3]
+\DeclareOptionBeamer{maxplus}{\def\sjtubeamer@cover{maxplus}}
+\DeclareOptionBeamer{max}{\def\sjtubeamer@cover{max}}
+\DeclareOptionBeamer{min}{\def\sjtubeamer@cover{min}}
+\DeclareOptionBeamer{my}{\def\sjtubeamer@cover{my}} % reserved for customization
+\ExecuteOptionsBeamer{max}
+\DeclareOptionBeamer{red}{\def\sjtubeamer@color{red}}
+\DeclareOptionBeamer{blue}{\def\sjtubeamer@color{blue}}
+\ExecuteOptionsBeamer{red}
+\DeclareOptionBeamer{light}{\def\sjtubeamer@lum{light}}
+\DeclareOptionBeamer{dark}{\def\sjtubeamer@lum{dark}}
+\ExecuteOptionsBeamer{dark}
+\DeclareOptionBeamer{cn}{\def\sjtubeamer@lang{cn}}
+\DeclareOptionBeamer{en}{\def\sjtubeamer@lang{en}}
+\ExecuteOptionsBeamer{cn}
+\DeclareOptionBeamer{miniframes}{\def\sjtubeamer@nav{miniframes}}
+\DeclareOptionBeamer{infolines}{\def\sjtubeamer@nav{infolines}}
+\DeclareOptionBeamer{sidebar}{\def\sjtubeamer@nav{sidebar}}
+\ExecuteOptionsBeamer{miniframes}
+\ProcessOptionsBeamer
+\PassOptionsToPackage{\sjtubeamer@cover}{beamerinnerthemesjtubeamer}
+\PassOptionsToPackage{\sjtubeamer@color}{beamercolorthemesjtubeamer}
+\PassOptionsToPackage{\sjtubeamer@color}{beamercolorthemesjtubeamer}
+\PassOptionsToPackage{\sjtubeamer@lum}{beamercolorthemesjtubeamer}
+\PassOptionsToPackage{\sjtubeamer@lang}{beamerinnerthemesjtubeamer}
+\PassOptionsToPackage{\sjtubeamer@nav}{beamerouterthemesjtubeamer}
+\mode<presentation>
+\usecolortheme{sjtubeamer}
+\usefonttheme{sjtubeamer}
+\useinnertheme{sjtubeamer}
+\useoutertheme{sjtubeamer}
 \endinput
 %%
 %% End of file `beamerthemesjtubeamer.sty'.
