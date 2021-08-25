@@ -93,7 +93,7 @@
   \begin{tikzpicture}[overlay]
       \fill [palette primary.bg] (-0.2*\the\paperwidth,-1*\the\paperheight) 
       rectangle (1*\the\paperwidth, 0.2*\the\paperheight);
-      \node [anchor=center,inner sep=0pt] at (0.45*\the\paperwidth,-0.35*\the\paperheight) {
+      \node [anchor=center,inner sep=0pt] at (0.441*\the\paperwidth,-0.35*\the\paperheight) {
         \resizebox{!}{1.2\paperheight}{\inserttitlegraphic}
       };
   \end{tikzpicture}
@@ -284,29 +284,35 @@
 %
 %    \begin{macrocode}
 \tikzfading[name=fade right img,
-	left color=transparent!20,
-	right color=transparent!100]
+  left color=transparent!20,
+  right color=transparent!100]
 \defbeamertemplate*{bottom page}{maxplus}[1][]
 {
   \nointerlineskip
   \begin{tikzpicture}[overlay]
     \usebeamercolor{palette primary}
-		\fill[palette primary.bg] (-0.2\paperwidth,-\paperheight) rectangle (\paperwidth, 0.5\paperheight);
-	\end{tikzpicture}
-	\begin{beamercolorbox}[wd=\paperwidth,center,sep=24pt]{title}
-		\LARGE \bfseries \bottomthanks
-	\end{beamercolorbox}
-	\begin{beamercolorbox}[wd=\paperwidth,ht=0.45\paperheight]{empty}
-		\begin{tikzpicture}
-			\begin{scope}
-				\clip (-0.64\paperwidth,0.08\paperheight) rectangle (0.36\paperwidth,0.53\paperheight);
-				\node at (0,0) {\resizebox{1.3\paperwidth}{!}{\inserttitlegraphic}};
-			\end{scope}
-			\fill[cprimary!50!black,path fading=fade right img]  (-0.64\paperwidth,0.08\paperheight) rectangle (0.36\paperwidth,0.53\paperheight);
-			\node at (-0.45\paperwidth,0.31\paperheight) {\resizebox{!}{0.115\paperheight}{\cnlogo{white}}};
-      \draw[white] (-0.64\paperwidth,0.12\paperheight) -- (0.36\paperwidth,0.12\paperheight);
-		\end{tikzpicture}
-	\end{beamercolorbox}
+    \fill[palette primary.bg] (-0.2\paperwidth,-\paperheight) 
+      rectangle (\paperwidth, 0.5\paperheight);
+  \end{tikzpicture}
+  \begin{beamercolorbox}[wd=\paperwidth,center,sep=24pt]{title}
+    \LARGE \bfseries \bottomthanks
+  \end{beamercolorbox}
+  \begin{beamercolorbox}[wd=\paperwidth,ht=0.45\paperheight]{empty}
+    \begin{tikzpicture}
+      \begin{scope}
+        \clip (-0.64\paperwidth,0.08\paperheight) 
+          rectangle (0.36\paperwidth,0.53\paperheight);
+        \node at (0,0) {\resizebox{1.3\paperwidth}{!}{\inserttitlegraphic}};
+      \end{scope}
+      \fill[cprimary!50!black,path fading=fade right img]  
+        (-0.64\paperwidth,0.08\paperheight) rectangle 
+        (0.36\paperwidth,0.53\paperheight);
+      \node at (-0.45\paperwidth,0.31\paperheight) 
+        {\resizebox{!}{0.115\paperheight}{\cnlogo{white}}};
+      \draw[white] (-0.64\paperwidth,0.12\paperheight) 
+        -- (0.36\paperwidth,0.12\paperheight);
+    \end{tikzpicture}
+  \end{beamercolorbox}
 }
 %    \end{macrocode}
 %

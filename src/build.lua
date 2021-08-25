@@ -8,19 +8,19 @@
 module           = "sjtubeamer"
 
 sourcefiledir    = "source"
-sourcefiles      = {"*.ins","*.dtx","*logo.pdf","sjtubadge.pdf","sjtubg.pdf","sjtuphoto.jpg"}
-installfiles     = {"*.sty","*logo.pdf","sjtubadge.pdf","sjtubg.pdf","sjtuphoto.jpg"}
+sourcefiles      = {"*.ins","*.dtx","*logo.pdf","sjtubadge.pdf","sjtubg.pdf","sjtubg.png","sjtuphoto.jpg"}
+installfiles     = {"*.sty","*logo.pdf","sjtubadge.pdf","sjtubg.pdf","sjtubg.png","sjtuphoto.jpg"}
 
 docfiledir       = "doc"
 typesetexe       = "xelatex"
 -- typesetfiles     = {"sjtubeamermintheme.tex","sjtubeamermindevguide.tex"}
 typesetfiles     = {}
 typesetruns      = 1 -- for debug. Some reference may not be linked.
-typesetdemofiles = {"main.tex","min.tex","cover.tex"}
--- typesetdemofiles = {"cover.tex"}
+-- typesetdemofiles = {"main.tex","min.tex","cover.tex"}
+typesetdemofiles = {"cover.tex"}
 typesetsuppfiles = {"head.png","plant.jpg","test.csv","testgraph.tex","ref.bib","contents/"}
 
--- packtdszip       = true -- recommended for "tree" layouts
+packtdszip       = true -- recommended for "tree" layouts
 
 tagfiles = {"*.dtx","README.md","*.ins","sjtubeamermintheme.tex","sjtubeamermindevguide.tex"}
 
