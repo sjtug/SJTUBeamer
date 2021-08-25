@@ -83,6 +83,21 @@
 %    \end{macrocode}
 %  \end{macro}
 %
+%   Hard-coded color for blocks.
+%    \begin{macrocode}
+\if\EqualOption{inner}{color}{red}
+  \colorlet{cprimary}{sjtuRedPrimary}
+  \colorlet{csecondary}{sjtuRedSecondary}
+  \colorlet{ctertiary}{sjtuRedTertiary}
+  \colorlet{cquanternary}{black}
+\else
+  \colorlet{cprimary}{sjtuBluePrimary}
+  \colorlet{csecondary}{sjtuBlueSecondary}
+  \colorlet{ctertiary}{sjtuBlueTertiary}
+  \colorlet{cquanternary}{white}
+\fi
+%    \end{macrocode}
+%
 %    \begin{macrocode}
 \ProcessOptionsBeamer
 \PassOptionsToPackage{\sjtubeamer@inner@cover}{sjtucover}
@@ -99,7 +114,6 @@
 %    \end{macrocode}
 %
 % \subsubsection{Title Page \& Bottom Page}
-%
 %
 % Define logo.
 %    \begin{macrocode}
@@ -133,12 +147,8 @@
 \fi\fi\fi
 %    \end{macrocode}
 %
-%   Load Cover Library to get the customized cover.
-%    \begin{macrocode}
-\RequirePackage{sjtucover}
-%    \end{macrocode}
 %  \begin{macro}{\maketitle}
-%  Patch make title command. It will receive an optional argument for switching different type of title page.
+%  Patch make title command. It will receive an optional argument for switching different type of title page. After making the current title page, the previous setting should be restored.
 %    \begin{macrocode}
 \renewcommand{\maketitle}[1][\sjtubeamer@inner@cover]{
   \setbeamertemplate{title page}[#1]
@@ -160,17 +170,35 @@
 %    \end{macrocode}
 %  \end{macro}
 %
+%  \begin{macro}{\bottomthanks}
+%  The "Thank You" caption in the bottom page.
+%    \begin{macrocode}
+\if\EqualOption{inner}{lang}{cn}%
+  \def\bottomthanks{谢谢}
+\else%
+  \def\bottomthanks{Thank You}
+\fi%
+%    \end{macrocode}
+%  \end{macro}
+%
 %  \begin{macro}{\makebottom}
 %   Make the bottom page. Not a built-in command.
 %    \begin{macrocode}
-\def\makebottom{
+\newcommand{\makebottom}[1][\sjtubeamer@inner@cover]{
+  \setbeamertemplate{bottom page}[#1][\bottomthanks]
   \ifbeamer@inframe\bottompage\else
   \begin{frame}[plain]
     \bottompage
   \end{frame}\fi
+  \setbeamertemplate{bottom page}[\sjtubeamer@inner@cover][\bottomthanks]
 }
 %    \end{macrocode}
 %  \end{macro}
+%
+%   Load Cover Library to get the customized cover.
+%    \begin{macrocode}
+\RequirePackage{sjtucover}
+%    \end{macrocode}
 %
 % \subsubsection{Part Page}
 %   Define the \verb"part page" beamer template.
@@ -185,8 +213,8 @@
 %    \begin{macrocode}
     \begin{beamercolorbox}[sep=16pt,right,#1]{part title}
       \hfill\usebeamerfont{part name}
-      \ifx\beamer@sjtubeamermin@lang\beamer@sjtubeamermin@langcn%
-      第~\insertromanpartnumber~部分
+      \if\EqualOption{inner}{lang}{cn}%
+        第~\insertromanpartnumber~部分
       \else%
         \partname~\insertromanpartnumber
       \fi%
@@ -197,13 +225,13 @@
 %    \begin{macrocode}
       \hbox to \textwidth{
         \usebeamerfont{footline}%
-        \setbeamercolor{temp}{fg=section in head/foot.fg}
+        \setbeamercolor{tempcolor}{fg=section in head/foot.fg}
         \setbeamercolor{section in head/foot}{use=palette primary,
           fg=palette primary.fg,bg=}
         \hfill
         \insertnavigation{0.4\textwidth}
         \hspace*{1cm}
-        \setbeamercolor{section in head/foot}{fg=temp.fg}
+        \setbeamercolor{section in head/foot}{fg=tempcolor.fg}
       }
     \end{beamercolorbox}
   \endgroup
@@ -226,7 +254,7 @@
 \def\sectionblock#1{
   \begin{beamercolorbox}[sep=12pt,right,#1]{section title}
     \usebeamerfont{section name}
-    \ifx\beamer@sjtubeamermin@lang\beamer@sjtubeamermin@langcn%
+    \if\EqualOption{inner}{lang}{cn}%
       第~\insertsectionnumber~节
     \else%
       \sectionname~\insertsectionnumber
@@ -258,7 +286,7 @@
     \sectionblock{#1}
     \begin{beamercolorbox}[sep=8pt,right,#1]{subsection title}
       \usebeamerfont{subsection name}
-      \ifx\beamer@sjtubeamermin@lang\beamer@sjtubeamermin@langcn%
+      \if\EqualOption{inner}{lang}{cn}%
         第~\insertsubsectionnumber~小节
       \else%
         \subsectionname~\insertsubsectionnumber
@@ -286,21 +314,6 @@
 \else\if\EqualOption{inner}{cover}{max}%
   \setbeamertemplate{blocks}[rounded]
 \fi\fi
-%    \end{macrocode}
-%
-%   Hard-coded color for blocks.
-%    \begin{macrocode}
-\if\EqualOption{inner}{color}{red}
-  \colorlet{cprimary}{sjtuRedPrimary}
-  \colorlet{csecondary}{sjtuRedSecondary}
-  \colorlet{ctertiary}{sjtuRedTertiary}
-  \colorlet{cquanternary}{black}
-\else
-  \colorlet{cprimary}{sjtuBluePrimary}
-  \colorlet{csecondary}{sjtuBlueSecondary}
-  \colorlet{ctertiary}{sjtuBlueTertiary}
-  \colorlet{cquanternary}{white}
-\fi
 %    \end{macrocode}
 %
 % \begin{macro}{\highlight}
@@ -372,26 +385,26 @@
 %   Code block environment is made for presenting code in an obvious way. Two parameters are required. The first parameter is passed to listing, which mostly sets the language to highlight, see the \verb"listings" package for more details. And the second parameter receives the title to make.
 %    \begin{macrocode}
 \newtcblisting{codeblock}[2][]{
-listing only, 
-listing engine=listings,
-listing options={
-  #1,%
-  numbers=left,
-  numberstyle=\color{cprimary!80}\ttfamily\scriptsize,
-  numbersep=5pt,
-},
-enhanced,
-sharp corners,
-top=0mm,
-bottom=0mm,
-title=#2,
-colback=cprimary!5,
-colframe=cprimary!80,
-overlay={
-    \begin{tcbclipinterior}\fill[cprimary!20]%
-        (frame.south west) rectangle ([xshift=5mm]frame.north west);
-    \end{tcbclipinterior}
-}
+  listing only, 
+  listing engine=listings,
+  listing options={
+    #1,%
+    numbers=left,
+    numberstyle=\color{cprimary!80}\ttfamily\scriptsize,
+    numbersep=5pt,
+  },
+  enhanced,
+  sharp corners,
+  top=0mm,
+  bottom=0mm,
+  title=#2,
+  colback=cprimary!5,
+  colframe=cprimary!80,
+  overlay={
+      \begin{tcbclipinterior}\fill[cprimary!20]%
+          (frame.south west) rectangle ([xshift=5mm]frame.north west);
+      \end{tcbclipinterior}
+  }
 }
 %    \end{macrocode}
 % \end{macro}

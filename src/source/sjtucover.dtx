@@ -13,7 +13,7 @@
 % \iffalse
 %<*package>
 \NeedsTeXFormat{LaTeX2e}
-\ProvidesPackage{sjtucover}[2021-08-21 cover library for sjtubeamer 1.3]
+\ProvidesPackage{sjtucover}[2021/08/21 cover library for sjtubeamer v1.3]
 %</package>
 % \fi
 % \CheckSum{0}
@@ -262,7 +262,7 @@
               (pic.south west) -- cycle;
         \end{tikzpicture}
       \fi
-  \endgroup
+    \endgroup
   \vskip0.5em
   \vfill
 }
@@ -282,9 +282,20 @@
 }
 %    \end{macrocode}
 %
+%    \begin{macrocode}
+\defbeamertemplate*{bottom page}{maxplus}[1][]
+{
+
+}
+%    \end{macrocode}
 %
-% TODO: Since the implementation of bottom page is incomplete,
-% other options will be implemented in the future version.
+%    \begin{macrocode}
+\defbeamertemplate*{bottom page}{max}[1][]
+{
+
+}
+%    \end{macrocode}
+%
 %    \begin{macrocode}
 \defbeamertemplate*{bottom page}{min}[1][]
 {
@@ -301,11 +312,11 @@
     \def\w{\the\paperwidth}%
     \def\h{\the\paperheight}%
     \fill [palette primary.bg] (-0.2*\w,-1*\h) rectangle (1*\w, 0.5*\h);
-    \begin{scope}[fill=palette primary.bg!50!black,fill opacity=0.15]
+    \begin{scope}[fill=palette primary.bg!50!palatte primary.fg,fill opacity=0.15]
       \clip (0.63*\w,1.05*\h) circle (1*\h);
       \fill (0.14*\w,-0.95*\h) circle (1.67*\h);
     \end{scope}
-    \begin{scope}[fill=palette secondary.bg!50!palette primary.bg!70!white,
+    \begin{scope}[fill=palette secondary.bg!50!palette primary.bg!70!palatte primary.fg,
       fill opacity=0.15]
       \clip[xshift=26pt] (0.95*\w,-0.67*\h) circle (1.17*\h);
       \fill 
@@ -327,12 +338,7 @@
     \vskip6em
     \begin{beamercolorbox}[sep=8pt]{title}
       \usebeamercolor[fg]{palette primary}
-      \usebeamerfont{title}\noindent
-      \ifx\beamer@sjtubeamermin@lang\beamer@sjtubeamermin@langcn
-        谢谢
-      \else
-        Thank You
-      \fi
+      \usebeamerfont{title}\noindent#1
       \vskip1em%
       \usebeamerfont{subtitle}\insertauthor~$\cdot$~\inserttitle
     \end{beamercolorbox}%
@@ -342,9 +348,17 @@
 }
 %    \end{macrocode}
 %
-%   Initialize the title page when the package is loaded.
+%    \begin{macrocode}
+\defbeamertemplate*{bottom page}{my}[1][]
+{
+
+}
+%    \end{macrocode}
+%
+%   Initialize the title page and bottom page when the package is loaded.
 %    \begin{macrocode}
 \setbeamertemplate{title page}[\sjtubeamer@sjtucover@cover]
+\setbeamertemplate{bottom page}[\sjtubeamer@sjtucover@cover]
 %    \end{macrocode}
 %
 % \iffalse
