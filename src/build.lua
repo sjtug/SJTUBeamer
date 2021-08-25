@@ -17,9 +17,10 @@ typesetexe       = "xelatex"
 typesetfiles     = {}
 typesetruns      = 1 -- for debug. Some reference may not be linked.
 typesetdemofiles = {"main.tex","min.tex","cover.tex"}
+-- typesetdemofiles = {"cover.tex"}
 typesetsuppfiles = {"head.png","plant.jpg","test.csv","testgraph.tex","ref.bib","contents/"}
 
-packtdszip       = true -- recommended for "tree" layouts
+-- packtdszip       = true -- recommended for "tree" layouts
 
 tagfiles = {"*.dtx","README.md","*.ins","sjtubeamermintheme.tex","sjtubeamermindevguide.tex"}
 

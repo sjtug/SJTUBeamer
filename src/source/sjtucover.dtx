@@ -283,9 +283,30 @@
 %    \end{macrocode}
 %
 %    \begin{macrocode}
+\tikzfading[name=fade right img,
+	left color=transparent!20,
+	right color=transparent!100]
 \defbeamertemplate*{bottom page}{maxplus}[1][]
 {
-
+  \nointerlineskip
+  \begin{tikzpicture}[overlay]
+    \usebeamercolor{palette primary}
+		\fill[palette primary.bg] (-0.2\paperwidth,-\paperheight) rectangle (\paperwidth, 0.5\paperheight);
+	\end{tikzpicture}
+	\begin{beamercolorbox}[wd=\paperwidth,center,sep=24pt]{title}
+		\LARGE \bfseries \bottomthanks
+	\end{beamercolorbox}
+	\begin{beamercolorbox}[wd=\paperwidth,ht=0.45\paperheight]{empty}
+		\begin{tikzpicture}
+			\begin{scope}
+				\clip (-0.64\paperwidth,0.08\paperheight) rectangle (0.36\paperwidth,0.53\paperheight);
+				\node at (0,0) {\resizebox{1.3\paperwidth}{!}{\inserttitlegraphic}};
+			\end{scope}
+			\fill[cprimary!50!black,path fading=fade right img]  (-0.64\paperwidth,0.08\paperheight) rectangle (0.36\paperwidth,0.53\paperheight);
+			\node at (-0.45\paperwidth,0.31\paperheight) {\resizebox{!}{0.115\paperheight}{\cnlogo{white}}};
+      \draw[white] (-0.64\paperwidth,0.12\paperheight) -- (0.36\paperwidth,0.12\paperheight);
+		\end{tikzpicture}
+	\end{beamercolorbox}
 }
 %    \end{macrocode}
 %
@@ -312,11 +333,11 @@
     \def\w{\the\paperwidth}%
     \def\h{\the\paperheight}%
     \fill [palette primary.bg] (-0.2*\w,-1*\h) rectangle (1*\w, 0.5*\h);
-    \begin{scope}[fill=palette primary.bg!50!palatte primary.fg,fill opacity=0.15]
+    \begin{scope}[fill=palette primary.bg!50!palette primary.fg,fill opacity=0.15]
       \clip (0.63*\w,1.05*\h) circle (1*\h);
       \fill (0.14*\w,-0.95*\h) circle (1.67*\h);
     \end{scope}
-    \begin{scope}[fill=palette secondary.bg!50!palette primary.bg!70!palatte primary.fg,
+    \begin{scope}[fill=palette secondary.bg!50!palette primary.bg!70!palette primary.fg,
       fill opacity=0.15]
       \clip[xshift=26pt] (0.95*\w,-0.67*\h) circle (1.17*\h);
       \fill 
@@ -351,14 +372,21 @@
 %    \begin{macrocode}
 \defbeamertemplate*{bottom page}{my}[1][]
 {
-
+  %
+  % Developer could implement your own bottom page template here...
+  % or use "my" theme first, then implement your title page 
+  % in a different style file mycover.sty with:
+  %    \addtobeamertemplate{bottom page}{}{<Your implementation>}
+  % and in the main.tex:
+  %    \usetheme[my]{sjtubeamer}\usepackage{mycover}
+  %
 }
 %    \end{macrocode}
 %
 %   Initialize the title page and bottom page when the package is loaded.
 %    \begin{macrocode}
 \setbeamertemplate{title page}[\sjtubeamer@sjtucover@cover]
-\setbeamertemplate{bottom page}[\sjtubeamer@sjtucover@cover]
+\setbeamertemplate{bottom page}[\sjtubeamer@sjtucover@cover][Thanks]
 %    \end{macrocode}
 %
 % \iffalse
