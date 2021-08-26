@@ -4,7 +4,7 @@ apk add zip
 cd src
 l3build ctan
 cp -r -f build/distrib/tds/tex/latex/sjtubeamer/* ..
-cp src/doc/cover.pdf build/cover.pdf
+cp doc/cover.pdf ../build/cover.pdf
 
 # turn resource files into symbolic link.
 # TODO: a more elegant solution in the future.
