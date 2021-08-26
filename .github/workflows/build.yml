@@ -28,7 +28,7 @@ jobs:
         with:
           path: |
             build/build-*.pdf
-          name: build-xelatex.zip
+          name: build-xelatex
         name: upload build artifacts
   build-lualatex:
     runs-on: ubuntu-latest
@@ -47,7 +47,7 @@ jobs:
         with:
           path: |
             build/build-*.pdf
-          name: build-lualatex.zip
+          name: build-lualatex
         name: upload build artifacts
   build-package:
     runs-on: ubuntu-latest
@@ -65,5 +65,5 @@ jobs:
             src/build/distrib/tds/doc
             src/build/distrib/tds/source
             src/build/distrib/tds/tex
-          name: sjtubeamer.tds.zip
+          name: sjtubeamer.tds
         name: upload build artifacts
