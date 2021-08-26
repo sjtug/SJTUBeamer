@@ -61,7 +61,6 @@ jobs:
         name: build package with l3build
       - name: check if generated files are of latest version
         run: |
-          sudo cp src/build/distrib/tds/tex/latex/sjtubeamer/*.sty .
           git diff --exit-code
       - uses: actions/upload-artifact@v2
         with:
