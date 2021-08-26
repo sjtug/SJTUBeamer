@@ -16,7 +16,7 @@
 % \iffalse
 %<*package>
 \NeedsTeXFormat{LaTeX2e}
-\ProvidesPackage{beamerinnerthemesjtubeamer}[2021/08/26 sjtubeamer inner theme v1.4]
+\ProvidesPackage{beamerinnerthemesjtubeamer}[2021/08/26 sjtubeamer inner theme v1.4.5]
 %</package>
 % \fi
 % \CheckSum{0}
@@ -135,6 +135,8 @@
 %    \end{macrocode}
 %
 % Define the title grahic image.
+%
+% NOTICE: if you are using your own title graphic, please use png image with predefined color and transparency. Since it is beyond the control of logo color system. Or you could use the provided command in the sjtuvi library to create your own masked picture in order to follow the logo color system (The provided picture should be white and transparent in the background).
 %    \begin{macrocode}
 \if\EqualOption{inner}{cover}{maxplus}
   \titlegraphic{\includegraphics{sjtuphoto.jpg}}

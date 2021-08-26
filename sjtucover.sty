@@ -18,7 +18,7 @@
 %% see https://vi.sjtu.edu.cn/index.php/articles/bulletin/16.
 %% -------------------------------------------------------------------
 \NeedsTeXFormat{LaTeX2e}
-\ProvidesPackage{sjtucover}[2021/08/26 cover library for sjtubeamer v1.4]
+\ProvidesPackage{sjtucover}[2021/08/26 cover library for sjtubeamer v1.4.5]
 \RequirePackage{sjtuvi}
 \DefineOption{sjtucover}{cover}{maxplus}
 \DefineOption{sjtucover}{cover}{max}
@@ -265,7 +265,8 @@
     \def\leftw{0.215\paperwidth}
     \def\midw{0.435\paperwidth}
     \def\rightw{0.655\paperwidth}
-    \fill[palette primary.bg] (-0.2\paperwidth,-\paperheight) rectangle (\paperwidth, 0.5\paperheight);
+    \fill[palette primary.bg] (-0.2\paperwidth,-\paperheight)
+      rectangle (\paperwidth, 0.5\paperheight);
     \fill[palette primary.fg] (\leftw,0.5\paperheight)
       -- (\leftw,-0.5\paperheight)
       -- (\midw,-0.65\paperheight)
@@ -278,7 +279,8 @@
       -- (\rightw,-0.53\paperheight)
       -- (\midw,-0.68\paperheight) -- cycle;
     \node at (\midw,-0.65\paperheight) {
-      \def\sjtubeamer@logocolor{palette primary.fg!50!palette primary.bg}
+      \def\sjtubeamer@logocolor{black!10!palette primary.bg!
+        50!palette primary.fg!70!palette primary.bg}
       \resizebox{1.2\paperwidth}{!}{\inserttitlegraphic}};
     \node at (\midw,-0.2\paperheight) {
       \def\sjtubeamer@logocolor{palette primary.bg}
