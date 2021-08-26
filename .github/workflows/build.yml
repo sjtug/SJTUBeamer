@@ -28,6 +28,7 @@ jobs:
         with:
           path: |
             build/build-*.pdf
+            src/doc/cover.pdf
           name: build-xelatex
         name: upload build artifacts
   build-lualatex:
@@ -47,6 +48,7 @@ jobs:
         with:
           path: |
             build/build-*.pdf
+            src/doc/cover.pdf
           name: build-lualatex
         name: upload build artifacts
   build-package:
