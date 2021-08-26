@@ -36,15 +36,15 @@
 %   Disable the warning from \verb"hyperref" which conflicts the setting in C\TeX{} or CJK. It has to be manually disabled.
 %    \begin{macrocode}
 \def\Hy@WarnOptionDisabled#1{
-    \def\next{#1}%
-    \ifx\next pdfauthor %
-        \ifx\next driverfallback %
-        \else
-        \Hy@Warning{%
-            Option `#1' has already been used,\MessageBreak 
-            setting the option has no effect%
-        }\fi%
-    \fi%
+  \def\next{#1}%
+  \ifx\next pdfauthor %
+    \ifx\next driverfallback %
+    \else
+    \Hy@Warning{%
+      Option `#1' has already been used,\MessageBreak 
+      setting the option has no effect%
+    }\fi%
+  \fi%
 }
 %    \end{macrocode}
 %

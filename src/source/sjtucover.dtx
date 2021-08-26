@@ -330,22 +330,22 @@
   \nointerlineskip
   \usebeamercolor{palette primary}
   \usebeamercolor{structure}
-	\begin{tikzpicture}[overlay]
-		\def\leftw{0.215\paperwidth}
-		\def\midw{0.435\paperwidth}
-		\def\rightw{0.655\paperwidth}
-		\fill[palette primary.bg] (-0.2\paperwidth,-\paperheight) rectangle (\paperwidth, 0.5\paperheight);
-		\fill[palette primary.fg] (\leftw,0.5\paperheight)
-			-- (\leftw,-0.5\paperheight)
-			-- (\midw,-0.65\paperheight)
-			-- (\rightw,-0.5\paperheight)
-			-- (\rightw,0.5\paperheight) -- cycle;
-		\fill[palette primary.fg] (\leftw,-0.53\paperheight) 
-			-- (\leftw,-0.59\paperheight)
-			-- (\midw,-0.74\paperheight)
-			-- (\rightw,-0.59\paperheight)
-			-- (\rightw,-0.53\paperheight)
-			-- (\midw,-0.68\paperheight) -- cycle;
+  \begin{tikzpicture}[overlay]
+    \def\leftw{0.215\paperwidth}
+    \def\midw{0.435\paperwidth}
+    \def\rightw{0.655\paperwidth}
+    \fill[palette primary.bg] (-0.2\paperwidth,-\paperheight) rectangle (\paperwidth, 0.5\paperheight);
+    \fill[palette primary.fg] (\leftw,0.5\paperheight)
+      -- (\leftw,-0.5\paperheight)
+      -- (\midw,-0.65\paperheight)
+      -- (\rightw,-0.5\paperheight)
+      -- (\rightw,0.5\paperheight) -- cycle;
+    \fill[palette primary.fg] (\leftw,-0.53\paperheight) 
+      -- (\leftw,-0.59\paperheight)
+      -- (\midw,-0.74\paperheight)
+      -- (\rightw,-0.59\paperheight)
+      -- (\rightw,-0.53\paperheight)
+      -- (\midw,-0.68\paperheight) -- cycle;
     \node at (\midw,-0.65\paperheight) {
       \resizebox{1.2\paperwidth}{!}{\sjtubg[0.2]{black}}};
     \node at (\midw,-0.2\paperheight) {
@@ -353,9 +353,9 @@
     \node at (\midw,-0.45\paperheight) {
       \usebeamercolor[bg]{palette primary}
       \LARGE \bfseries\bottomthanks};
-	\end{tikzpicture}
-	\begin{beamercolorbox}[wd=\paperwidth,ht=\paperheight,center]{empty}
-	\end{beamercolorbox}
+  \end{tikzpicture}
+  \begin{beamercolorbox}[wd=\paperwidth,ht=\paperheight,center]{empty}
+  \end{beamercolorbox}
 }
 %    \end{macrocode}
 %
