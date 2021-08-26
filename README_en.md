@@ -18,6 +18,14 @@ To design the template as simple as possible, since everyone can modify it accor
 
 Feel free to file an issue with GitHub Issues. At the same time, PRs are always welcomed.
 
+> After modifying the corresponding source code in src/source, run .github/ci/build_package.sh in bash to build the package and update the sty files.
+> For Windows users, before the next edition of l3build is released, please run
+```cmd
+cd src/source
+latex beamerthemesjtubeamer.ins
+```
+and copy the corresponding files to the correct directory.
+
 ## Appearance 🧐
 
 **Blue theme cover page**
