@@ -8,15 +8,16 @@
 module           = "sjtubeamer"
 
 sourcefiledir    = "source"
-sourcefiles      = {"*.ins","*.dtx","*logo.pdf","sjtubadge.pdf","sjtubg.pdf","sjtuphoto.jpg"}
-installfiles     = {"*.sty","*logo.pdf","sjtubadge.pdf","sjtubg.pdf","sjtuphoto.jpg"}
+sourcefiles      = {"*.ins","*.dtx","*logo.pdf","sjtubadge.pdf","sjtubg.pdf","sjtubg.png","sjtuphoto.jpg"}
+installfiles     = {"*.sty","*logo.pdf","sjtubadge.pdf","sjtubg.pdf","sjtubg.png","sjtuphoto.jpg"}
 
 docfiledir       = "doc"
 typesetexe       = "xelatex"
 -- typesetfiles     = {"sjtubeamermintheme.tex","sjtubeamermindevguide.tex"}
 typesetfiles     = {}
-typesetruns      = 1 -- for debug. Some reference may not be linked.
+-- typesetruns      = 1 -- for debug. Some reference may not be linked.
 typesetdemofiles = {"main.tex","min.tex","cover.tex"}
+-- typesetdemofiles = {"cover.tex"} -- for debug
 typesetsuppfiles = {"head.png","plant.jpg","test.csv","testgraph.tex","ref.bib","contents/"}
 
 packtdszip       = true -- recommended for "tree" layouts
@@ -25,7 +26,7 @@ tagfiles = {"*.dtx","README.md","*.ins","sjtubeamermintheme.tex","sjtubeamermind
 
 -- Detail how to set the version automatically
 function update_tag(file,content,tagname,tagdate)
-    local iso = "%d%d%d%d%%/%d%d%%/%d%d"
+    local iso = "%d%d%d%d%/%d%d%/%d%d"
     if string.match(content,"%(C%)%s*[%d%-,]+") then
         local year = os.date("%Y")
         content = string.gsub(content,

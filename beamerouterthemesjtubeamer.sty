@@ -21,7 +21,7 @@
 %% limitations under the License.
 %% -------------------------------------------------------------------
 \NeedsTeXFormat{LaTeX2e}
-\ProvidesPackage{beamerouterthemesjtubeamer}[2021/08/21 sjtubeamer outer theme v1.3]
+\ProvidesPackage{beamerouterthemesjtubeamer}[2021/08/26 sjtubeamer outer theme v1.4]
 \RequirePackage{sjtuvi}
 \DefineOption{outer}{nav}{miniframes}
 \DefineOption{outer}{nav}{infolines}
@@ -35,7 +35,7 @@
   \useoutertheme{infolines}
 \else\if\EqualOption{outer}{nav}{sidebar}
   \PackageWarning{outer}{
-    Feature "sidebar" is not implemented yet.\MessageBreak
+    Feature "sidebar" has not been implemented yet.\MessageBreak
     Fallback to the default setting.
   }
   \useoutertheme[footline=institutetitle]{miniframes}

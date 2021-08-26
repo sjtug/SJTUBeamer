@@ -18,7 +18,7 @@
 %% see https://vi.sjtu.edu.cn/index.php/articles/bulletin/16.
 %% -------------------------------------------------------------------
 \NeedsTeXFormat{LaTeX2e}
-\ProvidesPackage{sjtucover}[2021-08-21 cover library for sjtubeamer 1.3]
+\ProvidesPackage{sjtucover}[2021/08/26 cover library for sjtubeamer v1.4]
 \RequirePackage{sjtuvi}
 \DefineOption{sjtucover}{cover}{maxplus}
 \DefineOption{sjtucover}{cover}{max}
@@ -61,14 +61,15 @@
 }
 \defbeamertemplate*{title page}{max}[1][]
 {
+  \nointerlineskip
   \vbox{}
   \usebeamercolor{palette primary}
   \begin{tikzpicture}[overlay]
-      \fill [palette primary.bg] (-0.2*\the\paperwidth,-1*\the\paperheight)
+    \fill [palette primary.bg] (-0.2*\the\paperwidth,-1*\the\paperheight)
       rectangle (1*\the\paperwidth, 0.2*\the\paperheight);
-      \node [anchor=center,inner sep=0pt] at (0.45*\the\paperwidth,-0.35*\the\paperheight) {
-        \resizebox{!}{1.2\paperheight}{\inserttitlegraphic}
-      };
+    \node [inner sep=0pt]
+      at (0.45\paperwidth-6pt,-0.4*\the\paperheight)
+      {\resizebox{1.3\paperwidth}{!}{\inserttitlegraphic}};
   \end{tikzpicture}
   \vfill
   \begingroup
@@ -200,7 +201,7 @@
               (pic.south west) -- cycle;
         \end{tikzpicture}
       \fi
-  \endgroup
+    \endgroup
   \vskip0.5em
   \vfill
 }
@@ -214,6 +215,71 @@
   %    \usetheme[my]{sjtubeamer}\usepackage{mycover}
   %
 }
+\tikzfading[name=fade right img,
+  left color=transparent!20,
+  right color=transparent!100]
+\defbeamertemplate*{bottom page}{maxplus}[1][]
+{
+  \nointerlineskip
+  \begin{tikzpicture}[overlay]
+    \usebeamercolor{palette primary}
+    \fill[palette primary.bg] (-0.2\paperwidth,-\paperheight)
+      rectangle (\paperwidth, 0.5\paperheight);
+  \end{tikzpicture}
+  \begin{beamercolorbox}[wd=\paperwidth,center,sep=24pt]{title}
+    \LARGE \bfseries \bottomthanks
+  \end{beamercolorbox}
+  \begin{beamercolorbox}[wd=\paperwidth]{empty}
+    \usebeamercolor{structure}
+    \begin{tikzpicture}
+      \begin{scope}
+        \clip (-0.64\paperwidth,0.08\paperheight)
+          rectangle (0.36\paperwidth,0.53\paperheight);
+        \node [anchor=north] at (0,0.6\paperheight+0.03\paperwidth) {
+          \resizebox{1.3\paperwidth}{!}{\inserttitlegraphic}};
+        \fill[structure.fg!50!black,path fading=fade right img]
+          (-0.64\paperwidth,0.08\paperheight)
+          rectangle (0.36\paperwidth,0.53\paperheight);
+        \node at (-0.45\paperwidth,0.31\paperheight)
+          {\resizebox{!}{0.115\paperheight}{\cnlogo{white}}};
+        \draw[white] (-0.64\paperwidth,0.12\paperheight)
+          -- (0.36\paperwidth,0.12\paperheight);
+      \end{scope}
+    \end{tikzpicture}
+  \end{beamercolorbox}
+}
+\defbeamertemplate*{bottom page}{max}[1][]
+{
+  \nointerlineskip
+  \usebeamercolor{palette primary}
+  \usebeamercolor{structure}
+  \begin{tikzpicture}[overlay]
+    \def\leftw{0.215\paperwidth}
+    \def\midw{0.435\paperwidth}
+    \def\rightw{0.655\paperwidth}
+    \fill[palette primary.bg] (-0.2\paperwidth,-\paperheight) rectangle (\paperwidth, 0.5\paperheight);
+    \fill[palette primary.fg] (\leftw,0.5\paperheight)
+      -- (\leftw,-0.5\paperheight)
+      -- (\midw,-0.65\paperheight)
+      -- (\rightw,-0.5\paperheight)
+      -- (\rightw,0.5\paperheight) -- cycle;
+    \fill[palette primary.fg] (\leftw,-0.53\paperheight)
+      -- (\leftw,-0.59\paperheight)
+      -- (\midw,-0.74\paperheight)
+      -- (\rightw,-0.59\paperheight)
+      -- (\rightw,-0.53\paperheight)
+      -- (\midw,-0.68\paperheight) -- cycle;
+    \node at (\midw,-0.65\paperheight) {
+      \resizebox{1.2\paperwidth}{!}{\sjtubg[0.2]{black}}};
+    \node at (\midw,-0.2\paperheight) {
+      \resizebox{4cm}{!}{\dlogo{palette primary.bg}}};
+    \node at (\midw,-0.45\paperheight) {
+      \usebeamercolor[bg]{palette primary}
+      \LARGE \bfseries\bottomthanks};
+  \end{tikzpicture}
+  \begin{beamercolorbox}[wd=\paperwidth,ht=\paperheight,center]{empty}
+  \end{beamercolorbox}
+}
 \defbeamertemplate*{bottom page}{min}[1][]
 {
   \vbox{}
@@ -223,11 +289,12 @@
     \def\w{\the\paperwidth}%
     \def\h{\the\paperheight}%
     \fill [palette primary.bg] (-0.2*\w,-1*\h) rectangle (1*\w, 0.5*\h);
-    \begin{scope}[fill=palette primary.bg!50!black,fill opacity=0.15]
+    \begin{scope}[fill=palette primary.bg!50!palette primary.fg,fill opacity=0.15]
       \clip (0.63*\w,1.05*\h) circle (1*\h);
       \fill (0.14*\w,-0.95*\h) circle (1.67*\h);
     \end{scope}
-    \begin{scope}[fill=palette secondary.bg!50!palette primary.bg!70!white,
+    \begin{scope}
+      [fill=palette secondary.bg!50!palette primary.bg!70!palette primary.fg,
       fill opacity=0.15]
       \clip[xshift=26pt] (0.95*\w,-0.67*\h) circle (1.17*\h);
       \fill
@@ -243,12 +310,7 @@
     \vskip6em
     \begin{beamercolorbox}[sep=8pt]{title}
       \usebeamercolor[fg]{palette primary}
-      \usebeamerfont{title}\noindent
-      \ifx\beamer@sjtubeamermin@lang\beamer@sjtubeamermin@langcn
-        谢谢
-      \else
-        Thank You
-      \fi
+      \usebeamerfont{title}\noindent#1
       \vskip1em%
       \usebeamerfont{subtitle}\insertauthor~$\cdot$~\inserttitle
     \end{beamercolorbox}%
@@ -256,7 +318,19 @@
     \vskip3.5em
   \endgroup
 }
+\defbeamertemplate*{bottom page}{my}[1][]
+{
+  %
+  % Developer could implement your own bottom page template here...
+  % or use "my" theme first, then implement your title page
+  % in a different style file mycover.sty with:
+  %    \addtobeamertemplate{bottom page}{}{<Your implementation>}
+  % and in the main.tex:
+  %    \usetheme[my]{sjtubeamer}\usepackage{mycover}
+  %
+}
 \setbeamertemplate{title page}[\sjtubeamer@sjtucover@cover]
+\setbeamertemplate{bottom page}[\sjtubeamer@sjtucover@cover][Thanks]
 \endinput
 %%
 %% End of file `sjtucover.sty'.

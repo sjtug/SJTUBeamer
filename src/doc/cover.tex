@@ -1,4 +1,6 @@
-\documentclass[aspectratio=169]{ctexbeamer}
+\documentclass[
+    aspectratio=169
+]{ctexbeamer}
 \usetheme{sjtubeamer}
 \begin{document}
 
@@ -14,22 +16,17 @@
 
     \date{\today}
 
-    % set global logo
-    \logo{\resizebox{!}{0.7cm}{\cnlogo{white}}}
-
-    \setbeamertemplate{title page}[maxplus]
     \titlegraphic{\includegraphics{sjtuphoto.jpg}}
-    \maketitle
-    \makebottom
+    \maketitle[maxplus]
+    \makebottom[maxplus]
 
-    \setbeamertemplate{title page}[max]
-    \titlegraphic{\sjtubg{fg}}
-    \maketitle
-    \makebottom
+    \titlegraphic{\sjtubg[0.2]{fg}}
+    \maketitle[max]
+    \frame{}
+    \makebottom[max]
 
-    \setbeamertemplate{title page}[min]
     \titlegraphic{\includegraphics{sjtuphoto.jpg}}
-    \maketitle
-    \makebottom
+    \maketitle[min]
+    \makebottom[min]
 
 \end{document}
