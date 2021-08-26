@@ -13,3 +13,11 @@
 .github export-ignore
 .gitattributes export-ignore
 .gitignore export-ignore
+
+beamercolorthemesjtubeamer.sty linguist-generated=true
+beamerinnerthemesjtubeamer.sty linguist-generated=true
+beamerthemesjtubeamer.sty linguist-generated=true
+sjtuvi.sty linguist-generated=true
+beamerfontthemesjtubeamer.sty linguist-generated=true
+beamerouterthemesjtubeamer.sty linguist-generated=true
+sjtucover.sty linguist-generated=true
