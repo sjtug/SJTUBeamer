@@ -69,9 +69,14 @@
   \titlegraphic{\includegraphics{sjtuphoto.jpg}}
 \else\if\EqualOption{inner}{cover}{max}
   \usebeamercolor{palatte primary}
-  \titlegraphic{\sjtubg[white]}
+  \titlegraphic{\sjtubg[opacity=0.2]}
   \setbeamertemplate{background}
-    {\resizebox{\paperwidth}{!}{\sjtubg[cprimary!10]}}
+    {
+      \let\oldlogocolor=\sjtubeamer@logocolor%
+      \def\sjtubeamer@logocolor{cprimary!50}
+      \resizebox{\paperwidth}{!}{\inserttitlegraphic}
+      \let\sjtubeamer@logocolor=\oldlogocolor%
+    }
 \else\if\EqualOption{inner}{cover}{min}
   \titlegraphic{\includegraphics{sjtuphoto.jpg}}
 \else

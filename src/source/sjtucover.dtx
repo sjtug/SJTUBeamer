@@ -90,7 +90,7 @@
   \nointerlineskip
   \vbox{}
   \usebeamercolor{palette primary}
-  \def\sjtubeamer@logocolor{palette primary.fg!20!palette primary.bg}
+  \def\sjtubeamer@logocolor{palette primary.fg}
   \begin{tikzpicture}[overlay]
     \fill [palette primary.bg] (-0.2*\the\paperwidth,-1*\the\paperheight) 
       rectangle (1*\the\paperwidth, 0.2*\the\paperheight);
@@ -354,8 +354,7 @@
       -- (\rightw,-0.53\paperheight)
       -- (\midw,-0.68\paperheight) -- cycle;
     \node at (\midw,-0.65\paperheight) {
-      \def\sjtubeamer@logocolor{black!10!palette primary.bg!
-        50!palette primary.fg!50!palette primary.bg}
+      \def\sjtubeamer@logocolor{black}
       \resizebox{1.2\paperwidth}{!}{\inserttitlegraphic}};
     \node at (\midw,-0.2\paperheight) {
       \def\sjtubeamer@logocolor{palette primary.bg}

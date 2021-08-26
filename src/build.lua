@@ -16,7 +16,7 @@ typesetexe       = "xelatex"
 -- typesetfiles     = {"sjtubeamermintheme.tex","sjtubeamermindevguide.tex"}
 typesetfiles     = {}
 -- typesetruns      = 1 -- for debug. Some reference may not be linked.
-typesetdemofiles = {"main.tex","min.tex","cover-*.tex"}
+typesetdemofiles = {"main.tex","min.tex","cover-*.tex","cover.tex"}
 -- typesetdemofiles = {"cover.tex"} -- for debug
 typesetsuppfiles = {"head.png","plant.jpg","test.csv","testgraph.tex","ref.bib","contents/"}
 
