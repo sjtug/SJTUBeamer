@@ -1,0 +1,36 @@
+\documentclass[
+    aspectratio=169
+]{ctexbeamer}
+\usetheme[blue,light]{sjtubeamer}
+\begin{document}
+
+    \title[SJTU Beamer Template] % 页脚显示标题
+    {\textbf{上海交通大学 Beamer 模版}} % 首页标题
+
+    \author[Anxue Chen, Alexara Wu, Log Creative]
+    {Anxue Chen, Alexara Wu, Log Creative}
+
+    \institute[SJTU]{Shanghai Jiao Tong University}
+
+    \date{\today}
+
+    \subtitle{blue,light,maxplus}
+    \logo{\resizebox{!}{0.7cm}{\cnlogo}}
+    \titlegraphic{\includegraphics{sjtuphoto.jpg}}
+    \maketitle[maxplus]
+    \makebottom[maxplus]
+
+    \subtitle{blue,light,max}
+    \logo{\resizebox{!}{1cm}{\sjtubadge}}
+    \titlegraphic{\sjtubg}
+    \maketitle[max]
+    \frame{}
+    \makebottom[max]
+
+    \subtitle{blue,light,min}
+    \logo{\resizebox{!}{0.7cm}{\enlogo}}
+    \titlegraphic{\includegraphics{sjtuphoto.jpg}}
+    \maketitle[min]
+    \makebottom[min]
+
+\end{document}

@@ -18,7 +18,7 @@
 %% see https://vi.sjtu.edu.cn/index.php/articles/bulletin/16.
 %% -------------------------------------------------------------------
 \NeedsTeXFormat{LaTeX2e}
-\ProvidesPackage{sjtucover}[2021/08/26 cover library for sjtubeamer v1.4]
+\ProvidesPackage{sjtucover}[2021/08/26 cover library for sjtubeamer v1.4.5]
 \RequirePackage{sjtuvi}
 \DefineOption{sjtucover}{cover}{maxplus}
 \DefineOption{sjtucover}{cover}{max}
@@ -31,6 +31,7 @@
   \nointerlineskip%
   \begin{beamercolorbox}[wd=\paperwidth, ht=\paperheight]{empty}
     \usebeamercolor{palette primary}%
+    \def\sjtubeamer@logocolor{palette primary.fg}
     \begin{tikzpicture}
       \pgfmathsetlengthmacro{\outslant}{\the\paperwidth - 0.8cm}
       \node[anchor=north west, inner sep=0, outer sep=0]
@@ -64,6 +65,7 @@
   \nointerlineskip
   \vbox{}
   \usebeamercolor{palette primary}
+  \def\sjtubeamer@logocolor{palette primary.fg!20!palette primary.bg}
   \begin{tikzpicture}[overlay]
     \fill [palette primary.bg] (-0.2*\the\paperwidth,-1*\the\paperheight)
       rectangle (1*\the\paperwidth, 0.2*\the\paperheight);
@@ -111,6 +113,7 @@
 {
   \vbox{}
   \usebeamercolor{palette primary}
+  \def\sjtubeamer@logocolor{palette primary.fg}
   \begin{tikzpicture}[overlay]
       \fill [palette primary.bg] (-0.2*\the\paperwidth,-1*\the\paperheight)
       rectangle (1*\the\paperwidth, 0.2*\the\paperheight);
@@ -214,6 +217,10 @@
   % and in the main.tex:
   %    \usetheme[my]{sjtubeamer}\usepackage{mycover}
   %
+  % Remember the change on logo color is temporary,
+  % which will be restored after rendering this page.
+  \usebeamercolor{palette primary}
+  \def\sjtubeamer@logocolor{palette primary.fg}
 }
 \tikzfading[name=fade right img,
   left color=transparent!20,
@@ -231,6 +238,7 @@
   \end{beamercolorbox}
   \begin{beamercolorbox}[wd=\paperwidth]{empty}
     \usebeamercolor{structure}
+    \def\sjtubeamer@logocolor{white}
     \begin{tikzpicture}
       \begin{scope}
         \clip (-0.64\paperwidth,0.08\paperheight)
@@ -241,7 +249,7 @@
           (-0.64\paperwidth,0.08\paperheight)
           rectangle (0.36\paperwidth,0.53\paperheight);
         \node at (-0.45\paperwidth,0.31\paperheight)
-          {\resizebox{!}{0.115\paperheight}{\cnlogo{white}}};
+          {\resizebox{!}{0.115\paperheight}{\insertlogo}};
         \draw[white] (-0.64\paperwidth,0.12\paperheight)
           -- (0.36\paperwidth,0.12\paperheight);
       \end{scope}
@@ -257,7 +265,8 @@
     \def\leftw{0.215\paperwidth}
     \def\midw{0.435\paperwidth}
     \def\rightw{0.655\paperwidth}
-    \fill[palette primary.bg] (-0.2\paperwidth,-\paperheight) rectangle (\paperwidth, 0.5\paperheight);
+    \fill[palette primary.bg] (-0.2\paperwidth,-\paperheight)
+      rectangle (\paperwidth, 0.5\paperheight);
     \fill[palette primary.fg] (\leftw,0.5\paperheight)
       -- (\leftw,-0.5\paperheight)
       -- (\midw,-0.65\paperheight)
@@ -270,9 +279,12 @@
       -- (\rightw,-0.53\paperheight)
       -- (\midw,-0.68\paperheight) -- cycle;
     \node at (\midw,-0.65\paperheight) {
-      \resizebox{1.2\paperwidth}{!}{\sjtubg[0.2]{black}}};
+      \def\sjtubeamer@logocolor{black!10!palette primary.bg!
+        50!palette primary.fg!70!palette primary.bg}
+      \resizebox{1.2\paperwidth}{!}{\inserttitlegraphic}};
     \node at (\midw,-0.2\paperheight) {
-      \resizebox{4cm}{!}{\dlogo{palette primary.bg}}};
+      \def\sjtubeamer@logocolor{palette primary.bg}
+      \resizebox{3cm}{!}{\insertlogo}};
     \node at (\midw,-0.45\paperheight) {
       \usebeamercolor[bg]{palette primary}
       \LARGE \bfseries\bottomthanks};
@@ -285,6 +297,7 @@
   \vbox{}
   \usebeamercolor{palette primary}
   \usebeamercolor{palette secondary}
+  \def\sjtubeamer@logocolor{palette primary.fg}
   \begin{tikzpicture}[overlay,yshift=-80pt]
     \def\w{\the\paperwidth}%
     \def\h{\the\paperheight}%
@@ -328,6 +341,10 @@
   % and in the main.tex:
   %    \usetheme[my]{sjtubeamer}\usepackage{mycover}
   %
+  % Remember the change on logo color is temporary,
+  % which will be restored after rendering this page.
+  \usebeamercolor{palette primary}
+  \def\sjtubeamer@logocolor{palette primary.fg}
 }
 \setbeamertemplate{title page}[\sjtubeamer@sjtucover@cover]
 \setbeamertemplate{bottom page}[\sjtubeamer@sjtucover@cover][Thanks]
