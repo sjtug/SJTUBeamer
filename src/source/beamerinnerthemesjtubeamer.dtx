@@ -83,7 +83,12 @@
 %    \end{macrocode}
 %  \end{macro}
 %
-%   Hard-coded color for blocks.
+%    \begin{macrocode}
+\ProcessOptionsBeamer
+\PassOptionsToPackage{\sjtubeamer@inner@cover}{sjtucover}
+%    \end{macrocode}
+%
+%   Hard-coded color for blocks. A replica of color theme.
 %    \begin{macrocode}
 \if\EqualOption{inner}{color}{red}
   \colorlet{cprimary}{sjtuRedPrimary}
@@ -96,11 +101,6 @@
   \colorlet{ctertiary}{sjtuBlueTertiary}
   \colorlet{cquanternary}{white}
 \fi
-%    \end{macrocode}
-%
-%    \begin{macrocode}
-\ProcessOptionsBeamer
-\PassOptionsToPackage{\sjtubeamer@inner@cover}{sjtucover}
 %    \end{macrocode}
 %
 %   \subsubsection{Load Packages}

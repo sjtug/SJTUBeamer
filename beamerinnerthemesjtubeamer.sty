@@ -38,6 +38,8 @@
 \DefineOption{inner}{color}{red}
 \DefineOption{inner}{color}{blue}
 \ExecuteOptionsBeamer{red}
+\ProcessOptionsBeamer
+\PassOptionsToPackage{\sjtubeamer@inner@cover}{sjtucover}
 \if\EqualOption{inner}{color}{red}
   \colorlet{cprimary}{sjtuRedPrimary}
   \colorlet{csecondary}{sjtuRedSecondary}
@@ -49,8 +51,6 @@
   \colorlet{ctertiary}{sjtuBlueTertiary}
   \colorlet{cquanternary}{white}
 \fi
-\ProcessOptionsBeamer
-\PassOptionsToPackage{\sjtubeamer@inner@cover}{sjtucover}
 \RequirePackage{tcolorbox}
 \tcbuselibrary{skins}
 \tcbuselibrary{listingsutf8}
