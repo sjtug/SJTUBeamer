@@ -135,9 +135,9 @@
   \titlegraphic{\includegraphics{sjtuphoto.jpg}}
 \else\if\EqualOption{inner}{cover}{max}
   \usebeamercolor{palatte primary}
-  \titlegraphic{\sjtubg{fg}{0.2}}
+  \titlegraphic{\sjtubg[0.2]{fg}}
   \setbeamertemplate{background}
-    {\resizebox{\the\paperwidth}{!}{\sjtubg{black}{0.05}}}
+    {\resizebox{\paperwidth}{!}{\sjtubg[0.05]{black}}}
 \else\if\EqualOption{inner}{cover}{min}
   \titlegraphic{\includegraphics{sjtuphoto.jpg}}
 \else

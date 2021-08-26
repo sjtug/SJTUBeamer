@@ -23,7 +23,7 @@
 % ------------------------------------------------------------------- \fi
 %
 % \subsection{Cover Library}
-%   This library provides the template for the title page and the bottom page. It is apart from inner theme, to provide more ability on extension.
+%   This library provides the template for the title page and the bottom page.
 %
 %   \subsubsection{Load Packages}
 %
@@ -88,14 +88,15 @@
 %    \begin{macrocode}
 \defbeamertemplate*{title page}{max}[1][]
 {
+  \nointerlineskip
   \vbox{}
   \usebeamercolor{palette primary}
   \begin{tikzpicture}[overlay]
     \fill [palette primary.bg] (-0.2*\the\paperwidth,-1*\the\paperheight) 
       rectangle (1*\the\paperwidth, 0.2*\the\paperheight);
-    \node [anchor=center,inner sep=0pt] at (0.441*\the\paperwidth,-0.35*\the\paperheight) {
-      \resizebox{!}{1.2\paperheight}{\inserttitlegraphic}
-    };
+    \node [inner sep=0pt] 
+      at (0.45\paperwidth-6pt,-0.4*\the\paperheight)
+      {\resizebox{1.3\paperwidth}{!}{\inserttitlegraphic}};
   \end{tikzpicture}
   \vfill
   \begingroup
@@ -330,9 +331,9 @@
   \usebeamercolor{palette primary}
   \usebeamercolor{structure}
 	\begin{tikzpicture}[overlay]
-		\def\leftw{0.22\paperwidth}
-		\def\midw{0.44\paperwidth}
-		\def\rightw{0.66\paperwidth}
+		\def\leftw{0.21\paperwidth}
+		\def\midw{0.43\paperwidth}
+		\def\rightw{0.65\paperwidth}
 		\fill[palette primary.bg] (-0.2\paperwidth,-\paperheight) rectangle (\paperwidth, 0.5\paperheight);
 		\fill[palette primary.fg] (\leftw,0.5\paperheight)
 			-- (\leftw,-0.5\paperheight)
@@ -346,7 +347,7 @@
 			-- (\rightw,-0.53\paperheight)
 			-- (\midw,-0.68\paperheight) -- cycle;
     \node at (\midw,-0.65\paperheight) {
-      \resizebox{1.1\paperwidth}{!}{\sjtubg{black}{0.2}}};
+      \resizebox{1.2\paperwidth}{!}{\sjtubg[0.2]{black}}};
     \node at (\midw,-0.2\paperheight) {
       \resizebox{4cm}{!}{\dlogo{palette primary.bg}}};
     \node at (\midw,-0.45\paperheight) {
