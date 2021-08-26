@@ -103,6 +103,11 @@
 \fi
 %    \end{macrocode}
 %
+%   Change the color variable that controls the logo color to current main color of this theme. Since this template doesn't design a dark background for the contents (it is really not easy to handle with the dark background for some serious scenario).
+%    \begin{macrocode}
+\def\sjtubeamer@logocolor{cprimary}
+%    \end{macrocode}
+%
 %   \subsubsection{Load Packages}
 %
 %   Introduce the library from tcolorbox to make code blocks.
@@ -119,12 +124,12 @@
 %    \begin{macrocode}
 \usebeamercolor{palette primary}
 \if\EqualOption{inner}{cover}{max}
-  \logo{\resizebox{!}{1cm}{\sjtubadge{fg}}}
+  \logo{\resizebox{!}{1cm}{\sjtubadge}}
 \else
   \if\EqualOption{inner}{lang}{cn}
-    \logo{\resizebox{!}{0.7cm}{\cnlogo{fg}}}
+    \logo{\resizebox{!}{0.7cm}{\cnlogo}}
   \else
-    \logo{\resizebox{!}{0.7cm}{\enlogo{fg}}}
+    \logo{\resizebox{!}{0.7cm}{\enlogo}}
   \fi
 \fi
 %    \end{macrocode}
@@ -135,9 +140,9 @@
   \titlegraphic{\includegraphics{sjtuphoto.jpg}}
 \else\if\EqualOption{inner}{cover}{max}
   \usebeamercolor{palatte primary}
-  \titlegraphic{\sjtubg[0.2]{fg}}
+  \titlegraphic{\sjtubg[white]}
   \setbeamertemplate{background}
-    {\resizebox{\paperwidth}{!}{\sjtubg[0.05]{black}}}
+    {\resizebox{\paperwidth}{!}{\sjtubg[cprimary!10]}}
 \else\if\EqualOption{inner}{cover}{min}
   \titlegraphic{\includegraphics{sjtuphoto.jpg}}
 \else
@@ -147,6 +152,17 @@
   %
 \fi\fi\fi
 %    \end{macrocode}
+%
+%  \begin{macro}{\titlepage}
+%   Call the title page template to make a title page. This is a patch for the original \verb"\titlepage" command, to fit with the logo color system.
+%    \begin{macrocode}
+\def\titlepage{
+  \let\oldlogocolor=\sjtubeamer@logocolor%
+  \usebeamertemplate*{title page}
+  \let\sjtubeamer@logocolor=\oldlogocolor%
+}
+%    \end{macrocode}
+%  \end{macro}
 %
 %  \begin{macro}{\maketitle}
 %  Patch make title command. It will receive an optional argument for switching different type of title page. After making the current title page, the previous setting should be restored.
@@ -166,7 +182,9 @@
 %   Call the bottom page template to make a bottom page.
 %    \begin{macrocode}
 \def\bottompage{
+  \let\oldlogocolor=\sjtubeamer@logocolor%
   \usebeamertemplate*{bottom page}
+  \let\sjtubeamer@logocolor=\oldlogocolor%
 }
 %    \end{macrocode}
 %  \end{macro}

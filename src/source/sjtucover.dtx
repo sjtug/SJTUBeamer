@@ -45,8 +45,6 @@
 %
 %   \subsubsection{Title Page}
 %
-%   TODO: Back to if
-%
 %   \paragraph{maxplus.}
 %    \begin{macrocode}
 \defbeamertemplate*{title page}{maxplus}[1][]
@@ -54,6 +52,7 @@
   \nointerlineskip%
   \begin{beamercolorbox}[wd=\paperwidth, ht=\paperheight]{empty}
     \usebeamercolor{palette primary}% 
+    \def\sjtubeamer@logocolor{palette primary.fg}
     \begin{tikzpicture}
       \pgfmathsetlengthmacro{\outslant}{\the\paperwidth - 0.8cm}
       \node[anchor=north west, inner sep=0, outer sep=0]
@@ -91,6 +90,7 @@
   \nointerlineskip
   \vbox{}
   \usebeamercolor{palette primary}
+  \def\sjtubeamer@logocolor{palette primary.fg}
   \begin{tikzpicture}[overlay]
     \fill [palette primary.bg] (-0.2*\the\paperwidth,-1*\the\paperheight) 
       rectangle (1*\the\paperwidth, 0.2*\the\paperheight);
@@ -153,6 +153,7 @@
 %   Use TikZ rectangle also avoids the unexpected shift because the risk of redefining the internal command is avoided. If there is any text before the title page, the \verb"\maketitle" will start from a new page.
 %    \begin{macrocode}
   \usebeamercolor{palette primary}
+  \def\sjtubeamer@logocolor{palette primary.fg}
   \begin{tikzpicture}[overlay]
       \fill [palette primary.bg] (-0.2*\the\paperwidth,-1*\the\paperheight) 
       rectangle (1*\the\paperwidth, 0.2*\the\paperheight);
@@ -280,6 +281,10 @@
   % and in the main.tex:
   %    \usetheme[my]{sjtubeamer}\usepackage{mycover}
   %
+  % Remember the change on logo color is temporary,
+  % which will be restored after rendering this page.
+  \usebeamercolor{palette primary}
+  \def\sjtubeamer@logocolor{palette primary.fg}
 }
 %    \end{macrocode}
 %
@@ -304,6 +309,7 @@
   \end{beamercolorbox}
   \begin{beamercolorbox}[wd=\paperwidth]{empty}
     \usebeamercolor{structure}
+    \def\sjtubeamer@logocolor{white}
     \begin{tikzpicture}
       \begin{scope}
         \clip (-0.64\paperwidth,0.08\paperheight) 
@@ -314,7 +320,7 @@
           (-0.64\paperwidth,0.08\paperheight) 
           rectangle (0.36\paperwidth,0.53\paperheight);
         \node at (-0.45\paperwidth,0.31\paperheight) 
-          {\resizebox{!}{0.115\paperheight}{\cnlogo{white}}};
+          {\resizebox{!}{0.115\paperheight}{\insertlogo}};
         \draw[white] (-0.64\paperwidth,0.12\paperheight) 
           -- (0.36\paperwidth,0.12\paperheight);
       \end{scope}
@@ -330,6 +336,7 @@
   \nointerlineskip
   \usebeamercolor{palette primary}
   \usebeamercolor{structure}
+  \def\sjtubeamer@logocolor{palette primary.bg}
   \begin{tikzpicture}[overlay]
     \def\leftw{0.215\paperwidth}
     \def\midw{0.435\paperwidth}
@@ -347,9 +354,10 @@
       -- (\rightw,-0.53\paperheight)
       -- (\midw,-0.68\paperheight) -- cycle;
     \node at (\midw,-0.65\paperheight) {
-      \resizebox{1.2\paperwidth}{!}{\sjtubg[0.2]{black}}};
+      \def\sjtubeamer@logocolor{black!10}
+      \resizebox{1.2\paperwidth}{!}{\inserttitlegraphic}};
     \node at (\midw,-0.2\paperheight) {
-      \resizebox{4cm}{!}{\dlogo{palette primary.bg}}};
+      \resizebox{3cm}{!}{\insertlogo}};
     \node at (\midw,-0.45\paperheight) {
       \usebeamercolor[bg]{palette primary}
       \LARGE \bfseries\bottomthanks};
@@ -372,6 +380,7 @@
 %    \begin{macrocode}
   \usebeamercolor{palette primary}
   \usebeamercolor{palette secondary}
+  \def\sjtubeamer@logocolor{palette primary.fg}
   \begin{tikzpicture}[overlay,yshift=-80pt]
     \def\w{\the\paperwidth}%
     \def\h{\the\paperheight}%
@@ -425,6 +434,10 @@
   % and in the main.tex:
   %    \usetheme[my]{sjtubeamer}\usepackage{mycover}
   %
+  % Remember the change on logo color is temporary,
+  % which will be restored after rendering this page.
+  \usebeamercolor{palette primary}
+  \def\sjtubeamer@logocolor{palette primary.fg}
 }
 %    \end{macrocode}
 %

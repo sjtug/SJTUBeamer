@@ -51,26 +51,27 @@
   \colorlet{ctertiary}{sjtuBlueTertiary}
   \colorlet{cquanternary}{white}
 \fi
+\def\sjtubeamer@logocolor{cprimary}
 \RequirePackage{tcolorbox}
 \tcbuselibrary{skins}
 \tcbuselibrary{listingsutf8}
 \usebeamercolor{palette primary}
 \if\EqualOption{inner}{cover}{max}
-  \logo{\resizebox{!}{1cm}{\sjtubadge{fg}}}
+  \logo{\resizebox{!}{1cm}{\sjtubadge}}
 \else
   \if\EqualOption{inner}{lang}{cn}
-    \logo{\resizebox{!}{0.7cm}{\cnlogo{fg}}}
+    \logo{\resizebox{!}{0.7cm}{\cnlogo}}
   \else
-    \logo{\resizebox{!}{0.7cm}{\enlogo{fg}}}
+    \logo{\resizebox{!}{0.7cm}{\enlogo}}
   \fi
 \fi
 \if\EqualOption{inner}{cover}{maxplus}
   \titlegraphic{\includegraphics{sjtuphoto.jpg}}
 \else\if\EqualOption{inner}{cover}{max}
   \usebeamercolor{palatte primary}
-  \titlegraphic{\sjtubg[0.2]{fg}}
+  \titlegraphic{\sjtubg[white]}
   \setbeamertemplate{background}
-    {\resizebox{\paperwidth}{!}{\sjtubg[0.05]{black}}}
+    {\resizebox{\paperwidth}{!}{\sjtubg[cprimary!10]}}
 \else\if\EqualOption{inner}{cover}{min}
   \titlegraphic{\includegraphics{sjtuphoto.jpg}}
 \else
@@ -79,6 +80,11 @@
   % Developer could define your title graphic here for "my"...
   %
 \fi\fi\fi
+\def\titlepage{
+  \let\oldlogocolor=\sjtubeamer@logocolor%
+  \usebeamertemplate*{title page}
+  \let\sjtubeamer@logocolor=\oldlogocolor%
+}
 \renewcommand{\maketitle}[1][\sjtubeamer@inner@cover]{
   \setbeamertemplate{title page}[#1]
   \ifbeamer@inframe\titlepage\else
@@ -88,7 +94,9 @@
   \setbeamertemplate{title page}[\sjtubeamer@inner@cover]
 }
 \def\bottompage{
+  \let\oldlogocolor=\sjtubeamer@logocolor%
   \usebeamertemplate*{bottom page}
+  \let\sjtubeamer@logocolor=\oldlogocolor%
 }
 \if\EqualOption{inner}{lang}{cn}%
   \def\bottomthanks{谢\,谢}

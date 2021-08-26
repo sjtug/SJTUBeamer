@@ -1,7 +1,7 @@
 \documentclass[
     aspectratio=169
 ]{ctexbeamer}
-\usetheme[red,dark]{sjtubeamer}
+\usetheme[red-dark]{sjtubeamer}
 \begin{document}
 
     \title[SJTU Beamer Template] % 页脚显示标题
@@ -14,18 +14,21 @@
 
     \date{\today}
 
-    \subtitle{red,dark,maxplus}
+    \subtitle{red-dark,maxplus}
+    \logo{\resizebox{!}{0.7cm}{\cnlogo}}
     \titlegraphic{\includegraphics{sjtuphoto.jpg}}
     \maketitle[maxplus]
     \makebottom[maxplus]
 
-    \subtitle{red,dark,max}
-    \titlegraphic{\sjtubg[0.2]{fg}}
+    \subtitle{red-dark,max}
+    \logo{\resizebox{!}{1cm}{\sjtubadge}}
+    \titlegraphic{\sjtubg}
     \maketitle[max]
     \frame{}
     \makebottom[max]
 
-    \subtitle{red,dark,min}
+    \subtitle{red-dark,min}
+    \logo{\resizebox{!}{0.7cm}{\enlogo}}
     \titlegraphic{\includegraphics{sjtuphoto.jpg}}
     \maketitle[min]
     \makebottom[min]
