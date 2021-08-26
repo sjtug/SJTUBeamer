@@ -19,7 +19,6 @@ jobs:
       - uses: xu-cheng/texlive-action/full@v1
         with:
           run: |
-            .github/ci/build_package.sh 
             .github/ci/build_test_variants.sh -halt-on-error -time -quiet -xelatex
         name: build with XeLaTeX
       - run: cat build/build-*.log
@@ -29,15 +28,8 @@ jobs:
         with:
           path: |
             build/build-*.pdf
-            src/doc/min.pdf
-            src/doc/cover.pdf
-          name: build-xelatex
+          name: build-xelatex.zip
         name: upload build artifacts
-      - uses: actions/upload-artifact@v2
-        with:
-          path: src/build/distrib/tds/tex/latex/sjtubeamer
-          name: package
-        name: upload package
   build-lualatex:
     runs-on: ubuntu-latest
     steps: 
@@ -46,7 +38,6 @@ jobs:
       - uses: xu-cheng/texlive-action/full@v1
         with:
           run: |
-            .github/ci/build_package.sh
             .github/ci/build_test_variants.sh -halt-on-error -time -quiet -lualatex
         name: build with LuaLaTeX
       - run: cat build/build-*.log
@@ -56,7 +47,23 @@ jobs:
         with:
           path: |
             build/build-*.pdf
-            src/doc/min.pdf
-            src/doc/cover.pdf
-          name: build-lualatex
+          name: build-lualatex.zip
+        name: upload build artifacts
+  build-package:
+    runs-on: ubuntu-latest
+    steps: 
+      - uses: actions/checkout@v2
+        name: checkout code
+      - uses: xu-cheng/texlive-action/full@v1
+        with:
+          run: |
+            .github/ci/build_package.sh
+        name: build package with l3build
+      - uses: actions/upload-artifact@v2
+        with:
+          path: |
+            src/build/distrib/tds/doc
+            src/build/distrib/tds/source
+            src/build/distrib/tds/tex
+          name: sjtubeamer.tds.zip
         name: upload build artifacts
