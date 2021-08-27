@@ -126,7 +126,8 @@
 %    \begin{macrocode}
 \DeclareOptionBeamer{cn}{\def\sjtubeamer@lang{cn}}
 \DeclareOptionBeamer{en}{\def\sjtubeamer@lang{en}}
-\ExecuteOptionsBeamer{cn}
+\@ifclassloaded{ctexbeamer}{\ExecuteOptionsBeamer{cn}}{
+  \ExecuteOptionsBeamer{en}}
 %    \end{macrocode}
 %  \end{macro}
 %

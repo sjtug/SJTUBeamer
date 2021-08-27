@@ -86,7 +86,8 @@
 %    \begin{macrocode}
 \DefineOption{inner}{lang}{cn}
 \DefineOption{inner}{lang}{en}
-\ExecuteOptionsBeamer{cn}
+\@ifclassloaded{ctexbeamer}{\ExecuteOptionsBeamer{cn}}{
+  \ExecuteOptionsBeamer{en}}
 %    \end{macrocode}
 %  \end{macro}
 %

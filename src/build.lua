@@ -16,7 +16,7 @@ typesetexe       = "xelatex"
 typesetfiles     = {"sjtubeamerdevguide.tex"}
 -- typesetruns      = 1 -- for debug. Some reference may not be linked.
 -- typesetdemofiles = {"min.tex","cover-*.tex","cover.tex"}
-typesetdemofiles = {"min.tex"} -- for debug
+-- typesetdemofiles = {"min.tex"} -- for debug
 typesetsuppfiles = {"head.png","plant.jpg","test.csv","testgraph.tex","ref.bib"}
 
 packtdszip       = true -- recommended for "tree" layouts
