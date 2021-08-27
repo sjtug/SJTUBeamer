@@ -162,6 +162,8 @@
 % Define the title grahic image.
 %
 % NOTICE: if you are using your own title graphic, please use png image with predefined color and transparency. Since it is beyond the control of logo color system. Or you could use the provided command in the sjtuvi library to create your own masked picture in order to follow the logo color system (The provided picture should be white and transparent in the background).
+%
+% The background of max will be the same as the title graphic.
 %    \begin{macrocode}
 %<*maxplus>
 \if\EqualOption{inner}{cover}{maxplus}
@@ -170,13 +172,21 @@
 %</maxplus>
 %<*max>
   \if\EqualOption{inner}{cover}{max}
-  \usebeamercolor{palatte primary}
-  \titlegraphic{\sjtubg[opacity=0.2]}
-  \setbeamertemplate{background}
+    \usebeamercolor{palatte primary}
+    \titlegraphic{\sjtubg[opacity=0.2]}
+    \setbeamertemplate{background}
     {
       \let\oldlogocolor=\sjtubeamer@logocolor%
       \def\sjtubeamer@logocolor{cprimary!50}
-      \resizebox{\paperwidth}{!}{\inserttitlegraphic}
+      \vbox to \paperheight{
+        \vfil
+          \hbox to \paperwidth{
+            \hfil
+              \resizebox{\paperwidth}{!}{\inserttitlegraphic}
+            \hfil
+          }
+        \vfil
+      }
       \let\sjtubeamer@logocolor=\oldlogocolor%
     }
   \else
