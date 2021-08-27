@@ -1,0 +1,20 @@
+\documentclass{ltxdoc}
+\usepackage[scheme=plain]{ctex}
+% \usepackage{sjtuvi}
+\usepackage[colorlinks]{hyperref}
+\def\themename{\textsf{SJTUBeamer}}
+\title{\themename}
+\begin{document}
+    \maketitle
+    \tableofcontents
+    \section{Implementation}
+% The DocTeX follows the alphabatic order to input.
+    \DocInput{beamercolorthemesjtubeamer.dtx}
+    \DocInput{beamerfontthemesjtubeamer.dtx}
+    \DocInput{beamerinnerthemesjtubeamer.dtx}
+    \DocInput{beamerouterthemesjtubeamer.dtx}
+    \DocInput{beamerthemesjtubeamer.dtx}
+% SJTUG doesn't hold the copyright of the following code.
+    \DocInput{sjtucover.dtx}
+    \DocInput{sjtuvi.dtx}
+\end{document}

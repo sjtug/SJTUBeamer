@@ -1,4 +1,4 @@
-% \iffalse meta-comment ---------------------------------------------
+% \iffalse meta-comment --------------------------------------------------
 % Copyright (C) 2021 SJTUG
 %
 % Licensed under the Apache License, Version 2.0 (the "License");
@@ -12,7 +12,7 @@
 % WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 % See the License for the specific language governing permissions and
 % limitations under the License.
-% ------------------------------------------------------------------- \fi
+% ------------------------------------------------------------------------ \fi
 % \iffalse
 %<*package>
 \NeedsTeXFormat{LaTeX2e}
@@ -48,12 +48,6 @@
 %   Load tcolorbox for creating delicate boxes.
 %    \begin{macrocode}
 \RequirePackage{tcolorbox}
-%    \end{macrocode}
-%   Table Supports.
-%    \begin{macrocode}
-\RequirePackage{array}
-\RequirePackage{colortbl}
-\RequirePackage{booktabs}
 %    \end{macrocode}
 %
 %   \subsubsection{Option Declaration}
@@ -103,10 +97,12 @@
 \fi
 %    \end{macrocode}
 %
-%   Change the color variable that controls the logo color to current main color of this theme. Since this template doesn't design a dark background for the contents (it is really not easy to handle with the dark background for some serious scenario).
+%  \begin{macro}{\sjtubeamer@logocolor}
+%   Change the color variable that controls the logo color to current main color of this theme. Since this template doesn't design a dark background for the contents (it is really not easy to handle with the contents for a dark background).
 %    \begin{macrocode}
 \def\sjtubeamer@logocolor{cprimary}
 %    \end{macrocode}
+%  \end{macro}
 %
 %   \subsubsection{Load Packages}
 %
@@ -120,7 +116,8 @@
 %
 % \subsubsection{Title Page \& Bottom Page}
 %
-% Define logo.
+%  \begin{macro}{\logo}
+%  Define logo.
 %    \begin{macrocode}
 \usebeamercolor{palette primary}
 \if\EqualOption{inner}{cover}{max}
@@ -133,7 +130,9 @@
   \fi
 \fi
 %    \end{macrocode}
+%  \end{macro}
 %
+%  \begin{macro}{\titlegraphic}
 % Define the title grahic image.
 %
 % NOTICE: if you are using your own title graphic, please use png image with predefined color and transparency. Since it is beyond the control of logo color system. Or you could use the provided command in the sjtuvi library to create your own masked picture in order to follow the logo color system (The provided picture should be white and transparent in the background).
@@ -153,12 +152,13 @@
 \else\if\EqualOption{inner}{cover}{min}
   \titlegraphic{\includegraphics{sjtuphoto.jpg}}
 \else
-  \titlegraphic{}
   %
   % Developer could define your title graphic here for "my"...
   %
+  \titlegraphic{}
 \fi\fi\fi
 %    \end{macrocode}
+%  \end{macro}
 %
 %  \begin{macro}{\titlepage}
 %   Call the title page template to make a title page. This is a patch for the original \verb"\titlepage" command, to fit with the logo color system.
@@ -227,6 +227,7 @@
 %    \end{macrocode}
 %
 % \subsubsection{Part Page}
+%  \begin{macro}{\partpage}
 %   Define the \verb"part page" beamer template.
 %    \begin{macrocode}
 \defbeamertemplate*{part page}{sjtubeamermin}[1][]
@@ -264,7 +265,9 @@
   \vfill
 }
 %    \end{macrocode}
+%  \end{macro}
 %
+%  \begin{macro}{\part}
 %   Redirect the part command to make a part page.
 %    \begin{macrocode}
 \AtBeginPart{
@@ -273,6 +276,7 @@
   \end{frame}
 }
 %    \end{macrocode}
+%  \end{macro}
 %
 % \subsubsection{Section Page \& Subsection Page}
 %   Define the common \verb"\sectionblock" command to make the section block.
@@ -291,6 +295,7 @@
 }
 %    \end{macrocode}
 %
+%  \begin{macro}{\sectionpage}
 %   Define the \verb"section page" beamer template.
 %    \begin{macrocode}
 \defbeamertemplate*{section page}{sjtubeamermin}[1][]
@@ -302,7 +307,9 @@
   \vfill
 }
 %    \end{macrocode}
+%  \end{macro}
 %
+%  \begin{macro}{\subsectionpage}
 %   Define the \verb"subection page" beamer template.
 %    \begin{macrocode}
 \defbeamertemplate*{subsection page}{sjtubeamermin}[1][]
@@ -324,6 +331,7 @@
   \vfill
 }
 %    \end{macrocode}
+%  \end{macro}
 %
 % \subsubsection{Itemize Environments}
 %
@@ -515,6 +523,7 @@
 %    \end{macrocode}
 %
 % \subsubsection{Footnotes}
+%  \begin{macro}{\footnote}
 %   Define the \verb"footline" beamer template. The format is slightly changed from the original beamer definition.
 %    \begin{macrocode}
 \defbeamertemplate*{footnote}{sjtubeamermin}
@@ -526,6 +535,7 @@
   \hbox to 1.5em{\hfil\insertfootnotemark}\insertfootnotetext\par%
 }
 %    \end{macrocode}
+%  \end{macro}
 %
 % \iffalse
 %</package>

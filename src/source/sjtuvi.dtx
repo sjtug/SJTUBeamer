@@ -121,6 +121,7 @@
 }
 %    \end{macrocode}
 % \end{macro}
+%
 %   WARNING: This library will define the initial color to sjtuRedPrimary, remember to change the variable after using this package!
 %    \begin{macrocode}
 \def\sjtubeamer@logocolor{sjtuRedPrimary}
@@ -196,9 +197,9 @@
 %	  Notice \TeX{} is not good at handling parameters. Always remember to store it into a temporary variable. Register \verb"\pgfmathresult" will store the result of \verb"\pgfmathparse".
 %    \begin{macrocode}
 \providecommand{\stamparray}[3]{
-  %#1: pattern size
-  %#2: starting point
-  %#3: ending point
+  % #1: pattern size
+  % #2: starting point
+  % #3: ending point
   \usebeamercolor{palette primary}
   \fill [pattern={stamp[size=#1]},
     pattern color=bg!50!fg] #2 rectangle #3;
