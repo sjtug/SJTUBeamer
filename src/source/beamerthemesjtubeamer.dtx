@@ -66,14 +66,35 @@
 %    \item The final level should be the variable name itself.
 %   \end{itemize}
 %    \begin{macrocode}
+%<*maxplus>
 \DeclareOptionBeamer{maxplus}{\def\sjtubeamer@cover{maxplus}}
+%</maxplus>
+%<*max>
 \DeclareOptionBeamer{max}{\def\sjtubeamer@cover{max}}
+%</max>
+%<*min>
 \DeclareOptionBeamer{min}{\def\sjtubeamer@cover{min}}
+%</min>
+%<*my>
 \DeclareOptionBeamer{my}{\def\sjtubeamer@cover{my}} % reserved for customization
+%</my>
 %    \end{macrocode}
 %   $\rightarrow$ Next, declare the initial configuration.
 %    \begin{macrocode}
-\ExecuteOptionsBeamer{max}
+\ExecuteOptionsBeamer{
+%<*maxplus>
+    maxplus,
+%</maxplus>
+%<*min>
+    min,
+%</min>
+%<*my>
+    my,
+%</my>    
+%<*max>
+    max,
+%</max>
+}
 %    \end{macrocode}
 %  \end{macro}
 %

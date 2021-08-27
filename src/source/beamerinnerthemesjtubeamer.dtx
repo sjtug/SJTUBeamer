@@ -53,11 +53,32 @@
 %   \subsubsection{Option Declaration}
 %  \begin{macro}{\sjtubeamer@inner@cover}
 %    \begin{macrocode}
+%<*maxplus>
 \DeclareOptionBeamer{maxplus}{\def\sjtubeamer@inner@cover{maxplus}}
+%</maxplus>
+%<*max>
 \DeclareOptionBeamer{max}{\def\sjtubeamer@inner@cover{max}}
+%</max>
+%<*min>
 \DeclareOptionBeamer{min}{\def\sjtubeamer@inner@cover{min}}
+%</min>
+%<*my>
 \DeclareOptionBeamer{my}{\def\sjtubeamer@inner@cover{my}} % reserved for customization
-\ExecuteOptionsBeamer{max}
+%</my>
+\ExecuteOptionsBeamer{
+%<*maxplus>
+    maxplus,
+%</maxplus>
+%<*min>
+    min,
+%</min>
+%<*my>
+    my,
+%</my>    
+%<*max>
+    max,
+%</max>
+}
 %    \end{macrocode}
 %  \end{macro}
 %
@@ -120,15 +141,19 @@
 %  Define logo.
 %    \begin{macrocode}
 \usebeamercolor{palette primary}
+%<*max>
 \if\EqualOption{inner}{cover}{max}
   \logo{\resizebox{!}{1cm}{\sjtubadge}}
 \else
+%</max>
   \if\EqualOption{inner}{lang}{cn}
     \logo{\resizebox{!}{0.7cm}{\cnlogo}}
   \else
     \logo{\resizebox{!}{0.7cm}{\enlogo}}
   \fi
+%<*max>
 \fi
+%</max>
 %    \end{macrocode}
 %  \end{macro}
 %
@@ -137,9 +162,13 @@
 %
 % NOTICE: if you are using your own title graphic, please use png image with predefined color and transparency. Since it is beyond the control of logo color system. Or you could use the provided command in the sjtuvi library to create your own masked picture in order to follow the logo color system (The provided picture should be white and transparent in the background).
 %    \begin{macrocode}
+%<*maxplus>
 \if\EqualOption{inner}{cover}{maxplus}
   \titlegraphic{\includegraphics{sjtuphoto.jpg}}
-\else\if\EqualOption{inner}{cover}{max}
+\else
+%</maxplus>
+%<*max>
+  \if\EqualOption{inner}{cover}{max}
   \usebeamercolor{palatte primary}
   \titlegraphic{\sjtubg[opacity=0.2]}
   \setbeamertemplate{background}
@@ -149,14 +178,28 @@
       \resizebox{\paperwidth}{!}{\inserttitlegraphic}
       \let\sjtubeamer@logocolor=\oldlogocolor%
     }
-\else\if\EqualOption{inner}{cover}{min}
-  \titlegraphic{\includegraphics{sjtuphoto.jpg}}
-\else
-  %
-  % Developer could define your title graphic here for "my"...
-  %
-  \titlegraphic{}
-\fi\fi\fi
+  \else
+%</max>
+%<*min>
+    \if\EqualOption{inner}{cover}{min}
+      \titlegraphic{\includegraphics{sjtuphoto.jpg}}
+    \else
+%</min>
+%<*my>
+      %
+      % Developer could define your title graphic here for "my"...
+      %
+      \titlegraphic{}
+%</my>
+%<*min>
+    \fi
+%</min>
+%<*max>
+  \fi
+%</max>
+%<*maxplus>
+\fi
+%</maxplus>
 %    \end{macrocode}
 %  \end{macro}
 %
@@ -343,11 +386,19 @@
 % \subsubsection{Block Environments}
 %
 %    \begin{macrocode}
+%<*maxplus>
 \if\EqualOption{inner}{cover}{maxplus}%
   \setbeamertemplate{blocks}[rounded]
-\else\if\EqualOption{inner}{cover}{max}%
-  \setbeamertemplate{blocks}[rounded]
-\fi\fi
+\else
+%</maxplus>
+%<*max>
+  \if\EqualOption{inner}{cover}{max}%
+    \setbeamertemplate{blocks}[rounded]
+  \fi
+%</max>
+%<*maxplus>
+\fi
+%</maxplus>
 %    \end{macrocode}
 %
 % \begin{macro}{\highlight}
