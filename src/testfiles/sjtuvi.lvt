@@ -17,17 +17,18 @@
         \colorblock{sjtuBlueTertiary}
     \end{frame}
     \OMIT
+    \setbeamertemplate{background}{
+        \sjtubg
+    }
     \begin{frame}
         \frametitle{Logo Insertion}
-        \setbeamertemplate{background}{
-            \sjtubg
-        }
         \cnlogo
         \enlogo
         \dlogo
         \vlogo
         \sjtubadge
     \end{frame}
+    \setbeamertemplate{background}{}
     \TIMO
     \begin{frame}
         \frametitle{Stamp shapes}

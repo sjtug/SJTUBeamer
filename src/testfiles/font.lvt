@@ -2,11 +2,11 @@
 \usefonttheme[]{sjtubeamer}
 \input{regression-test.tex}
 \begin{document}
-		\START
-		\begin{frame}
-				\frametitle{Title test}
-				\framesubtitle{Subtitle test}
-				Content test.
-		\end{frame}
-		\END
+        \START
+        \begin{frame}
+                \frametitle{Title test}
+                \framesubtitle{Subtitle test}
+                Content test.
+        \end{frame}
+        \END
 \end{document}
