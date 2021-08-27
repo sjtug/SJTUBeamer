@@ -1,0 +1,28 @@
+\documentclass[]{beamer}
+\useinnertheme[min]{sjtubeamer}
+\input{regression-test.tex}
+\begin{document}
+    \logo{}
+    \START
+    \part{Part test}
+    \begin{frame}
+        \paragraph{SJTUBeamer} is a beamer template for Shanghai Jiao Tong University.
+
+        \begin{stampbox}
+            Test for a stampbox.
+        \end{stampbox}
+    \end{frame}
+    \OMIT
+    \begin{frame}[fragile]
+        \frametitle{Code Block}
+        \lstset{language=[LaTeX]TeX}
+        \begin{codeblock}[]{\LaTeX{} Code}
+\documentclass{article}
+\begin{document}
+    Hello, world!
+\end{document}
+        \end{codeblock}
+    \end{frame}
+    \TIMO
+    \END
+\end{document}

@@ -122,7 +122,9 @@
 %  \end{macro}
 %
 %  \begin{macro}{\sjtubeamer@lang}
-%    Set the main language of this beamer.
+%    Set the main language of this beamer. If the user is using \verb"ctexbeamer" class, the default option will be Chinese. If the user use \verb"ctex" package after using this theme, such an advanced user should specify the language to Chinese manually.
+%
+%   TODO: may be a built in support for Chinese will be used in the future. Just taken \verb"\RequirePackage[scheme=plain]{ctex}" for basic Chinese character support.
 %    \begin{macrocode}
 \DeclareOptionBeamer{cn}{\def\sjtubeamer@lang{cn}}
 \DeclareOptionBeamer{en}{\def\sjtubeamer@lang{en}}
@@ -132,13 +134,7 @@
 %  \end{macro}
 %
 %  \begin{macro}{\sjtubeamer@nav}
-%   Decide the type of the navigation bar.
-%   \begin{description}
-%       \item[miniframes] shows the progress on subsection.
-%       \item[infolines] shows the page number and the document info.
-%       \item[sidebar] make a sidebar to display the TOC. 
-%       \item[default] the default minimal slide layout.
-%   \end{description}
+%   Choose the outer theme for this template.
 %    \begin{macrocode}
 \DeclareOptionBeamer{miniframes}{\def\sjtubeamer@nav{miniframes}}
 \DeclareOptionBeamer{infolines}{\def\sjtubeamer@nav{infolines}}
