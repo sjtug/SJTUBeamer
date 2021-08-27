@@ -41,6 +41,12 @@
 \DefineOption{outer}{nav}{miniframes}
 \DefineOption{outer}{nav}{infolines}
 \DefineOption{outer}{nav}{sidebar}
+\DefineOption{outer}{nav}{default}
+\DefineOption{outer}{nav}{smoothbars}
+\DefineOption{outer}{nav}{split}
+\DefineOption{outer}{nav}{shadow}
+\DefineOption{outer}{nav}{tree}
+\DefineOption{outer}{nav}{smoothtree}
 \ExecuteOptionsBeamer{miniframes}
 %    \end{macrocode}
 %  \end{macro}
@@ -54,19 +60,14 @@
 \beamer@compresstrue
 %    \end{macrocode}
 %
-% Use the built-in outer templates.
+% Use the built-in outer templates. If you want to take special care about one outer theme, please add a condition test on that theme. Otherwise, it will use the default configuration of the corresponding built-in outer theme.
 %    \begin{macrocode}
 \if\EqualOption{outer}{nav}{miniframes}
   \useoutertheme[footline=institutetitle]{miniframes}
-\else\if\EqualOption{outer}{nav}{infolines}
-  \useoutertheme{infolines}
 \else\if\EqualOption{outer}{nav}{sidebar}
-  \PackageWarning{outer}{
-    Feature "sidebar" has not been implemented yet.\MessageBreak
-    Fallback to the default setting.
-  }
-  \useoutertheme[footline=institutetitle]{miniframes}
-\fi\fi\fi
+  \useoutertheme{sidebar}
+\else\useoutertheme{\sjtubeamer@outer@nav}
+\fi\fi
 %    \end{macrocode}
 %
 % Add page number to the toolbox.
