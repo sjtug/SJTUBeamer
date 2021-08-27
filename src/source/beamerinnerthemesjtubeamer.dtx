@@ -214,12 +214,24 @@
 %    \end{macrocode}
 %  \end{macro}
 %
+%  Initialize sidebar width to 0pt as no sidebar required, which will be overwritten in outer theme.
+%    \begin{macrocode}
+\newdimen\beamer@sidebarwidth
+\beamer@sidebarwidth=0pt
+%    \end{macrocode}
+%
 %  \begin{macro}{\titlepage}
 %   Call the title page template to make a title page. This is a patch for the original \verb"\titlepage" command, to fit with the logo color system.
 %    \begin{macrocode}
 \def\titlepage{
   \let\oldlogocolor=\sjtubeamer@logocolor%
-  \usebeamertemplate*{title page}
+  \ifdim\beamer@sidebarwidth=0pt %
+    \usebeamertemplate*{title page}
+  \else
+    \hspace*{-0.5\beamer@sidebarwidth}\parbox[t]{\textwidth}{
+      \usebeamertemplate*{title page}
+    }
+  \fi
   \let\sjtubeamer@logocolor=\oldlogocolor%
 }
 %    \end{macrocode}
@@ -244,7 +256,13 @@
 %    \begin{macrocode}
 \def\bottompage{
   \let\oldlogocolor=\sjtubeamer@logocolor%
-  \usebeamertemplate*{bottom page}
+  \ifdim\beamer@sidebarwidth=0pt %
+    \usebeamertemplate*{bottom page}
+  \else
+    \hspace*{-0.5\beamer@sidebarwidth}\parbox[t]{\textwidth}{
+      \usebeamertemplate*{bottom page}
+    }
+  \fi
   \let\sjtubeamer@logocolor=\oldlogocolor%
 }
 %    \end{macrocode}
