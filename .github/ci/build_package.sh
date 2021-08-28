@@ -14,3 +14,8 @@ do
     rm -f $resource
     ln -s src/source/$resource $resource
 done
+
+if [ ! -f src/sjtubeamer-ctan.zip ]; then
+    echo "BUILD FAILED."
+    exit 1
+fi
