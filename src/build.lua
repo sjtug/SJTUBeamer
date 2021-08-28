@@ -14,9 +14,9 @@ installfiles     = {"*.sty","*logo.pdf","sjtubadge.pdf","sjtubg.pdf","sjtubg.png
 docfiledir       = "doc"
 typesetexe       = "xelatex"
 typesetfiles     = {"sjtubeamerdevguide.tex","sjtubeamer.tex"}
--- typesetruns      = 1 -- for debug. Some reference may not be linked.
+typesetruns      = 1 -- for debug. Some reference may not be linked.
 -- typesetdemofiles = {"min.tex","cover-*.tex","cover.tex"}
--- typesetdemofiles = {"min.tex"} -- for debug
+typesetdemofiles = {"cover-red-dark.tex"} -- for debug
 typesetsuppfiles = {"head.png","plant.jpg","test.csv","testgraph.tex","ref.bib"}
 
 packtdszip       = true -- recommended for "tree" layouts

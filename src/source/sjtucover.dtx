@@ -83,8 +83,8 @@
       \node[anchor=north west, inner sep=0, outer sep=0]
           at (0,\the\paperheight){
             \resizebox{!}{\the\paperheight}{\inserttitlegraphic}};
-      \fill[color=white] (0,0) rectangle(\the\paperwidth,3.9);
-      \fill[color=bg]  (0,0) rectangle(\the\paperwidth,3.88);
+      \fill[color=white] (0,0) rectangle(\paperwidth,3.9);
+      \fill[color=bg]  (0,0) rectangle(\paperwidth,3.88);
       \node[anchor=north west, text width=.8\paperwidth]
         at (0.8,3.6){%
       \usebeamercolor[fg]{title}
@@ -369,19 +369,21 @@
 \defbeamertemplate*{bottom page}{max}[1][]
 {
   \nointerlineskip
+  \vbox{}
   \usebeamercolor{palette primary}
   \usebeamercolor{structure}
-  \begin{tikzpicture}[overlay]
+  \begin{beamercolorbox}[sep=0pt]{empty}
+  \begin{tikzpicture}[overlay,yshift=0.2\paperwidth,xshift=-5pt]
     \def\leftw{0.215\paperwidth}
     \def\midw{0.435\paperwidth}
     \def\rightw{0.655\paperwidth}
-    \fill[palette primary.bg] (-0.2\paperwidth,-\paperheight) 
-      rectangle (\paperwidth, 0.5\paperheight);
-    \fill[palette primary.fg] (\leftw,0.5\paperheight)
+    \fill[palette primary.bg] (-0.2\paperwidth,-1\paperheight) rectangle 
+    (\paperwidth, 0.1\paperheight);
+    \fill[palette primary.fg] (\leftw,0.1\paperheight)
       -- (\leftw,-0.5\paperheight)
       -- (\midw,-0.65\paperheight)
       -- (\rightw,-0.5\paperheight)
-      -- (\rightw,0.5\paperheight) -- cycle;
+      -- (\rightw,0.1\paperheight) -- cycle;
     \fill[palette primary.fg] (\leftw,-0.53\paperheight) 
       -- (\leftw,-0.59\paperheight)
       -- (\midw,-0.74\paperheight)
@@ -398,7 +400,6 @@
       \usebeamercolor[bg]{palette primary}
       \LARGE \bfseries\bottomthanks};
   \end{tikzpicture}
-  \begin{beamercolorbox}[wd=\paperwidth,ht=\paperheight,center]{empty}
   \end{beamercolorbox}
 }
 %</max>
