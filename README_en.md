@@ -35,9 +35,10 @@ You could get different styles from the following keywords.
 % use red/blue to change main color.
 % use light/dark to change dominate color.
 % use the following keywords to make different sidebars:
-%   miniframes infolines  sidebar 
+%   miniframes infolines  sidebar*
 %   default    smoothbars split	 
 %   shadow     tree       smoothtree
+% *siderbar is recommended to be used with max option.
 ```
 
 ## Appearance 🧐

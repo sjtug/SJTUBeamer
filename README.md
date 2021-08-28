@@ -37,9 +37,10 @@ latex beamerthemesjtubeamer.ins
 % 使用 red/blue 切换主色调
 % 使用 light/dark 切换亮/暗色模式
 % 使用外样式关键词以获得不同的边栏样式
-%   miniframes infolines  sidebar 
+%   miniframes infolines  sidebar* 
 %   default    smoothbars split	 
 %   shadow     tree       smoothtree
+% *siderbar 推荐与 max 一起使用。
 ```
 
 ## 展示 🧐
