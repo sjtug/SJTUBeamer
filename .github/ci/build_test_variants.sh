@@ -17,7 +17,7 @@ do
 {
     # eliminate data dependencies
     cp contents/basis.tex contents/basis-$mainbuild.tex
-    sed -e "s|basis|basis\-${mainbuild}\}|g" build-$mainbuild.tex > contents/basis-$mainbuild.tex
+    sed -e "s|basis|basis\-${mainbuild}\}|g" build/build-$mainbuild.tex > build/build-$mainbuild.tex
     latexmk $@ -outdir=build build/build-$mainbuild.tex
 } &
 done
