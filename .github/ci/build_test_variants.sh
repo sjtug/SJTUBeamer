@@ -19,3 +19,5 @@ do
 } &
 done
 wait
+
+echo BUILD COMPLETE.
