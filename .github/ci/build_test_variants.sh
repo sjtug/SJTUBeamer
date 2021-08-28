@@ -12,12 +12,22 @@ sed -e "s|usetheme\[.*\]|usetheme\[max,light,red\]|g" main.tex              > bu
 sed -e "s|usetheme\[.*\]|usetheme\[min,dark,red\]|g" main.tex              > build/build-min.tex
 
 mainbuilds=(blue red min)
+
+for mainbuild in ${mainbuilds[@]};
+do
+    regstr="s|contents\/basis|contents\/basis-${mainbuild}|g"
+    file=build/build-$mainbuild.tex
+    echo $file
+    sed -e $regstr $file > $file.tmp
+    rm -f $file
+    mv $file.tmp $file
+done
+
 for mainbuild in ${mainbuilds[@]};
 do
 {
     # eliminate data dependencies
     cp contents/basis.tex contents/basis-$mainbuild.tex
-    sed -e "s|basis|basis\-${mainbuild}\}|g" build/build-$mainbuild.tex > build/build-$mainbuild.tex
     latexmk $@ -outdir=build build/build-$mainbuild.tex
 } &
 done
