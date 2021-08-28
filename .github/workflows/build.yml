@@ -69,9 +69,6 @@ jobs:
           git diff --exit-code
       - uses: actions/upload-artifact@v2
         with:
-          path: |
-            src/build/distrib/tds/doc
-            src/build/distrib/tds/source
-            src/build/distrib/tds/tex
-          name: sjtubeamer.tds
+          path: sjtubeamer-ctan.zip
+          name: sjtubeamer-ctan.zip
         name: upload build artifacts
