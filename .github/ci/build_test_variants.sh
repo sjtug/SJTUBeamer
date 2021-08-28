@@ -23,6 +23,7 @@ do
     mv $file.tmp $file
 done
 
+mainbuilds=(blue min)
 for mainbuild in ${mainbuilds[@]};
 do
 {
@@ -32,5 +33,8 @@ do
 } &
 done
 wait
+
+# temp fix for build-red
+latexmk $@ -outdir=build build/build-red.tex
 
 echo BUILD COMPLETE.
