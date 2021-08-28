@@ -18,10 +18,12 @@ jobs:
         name: checkout code
       - uses: xu-cheng/texlive-action/full@v1
         with:
-          run: |
-            .github/ci/build_test_variants.sh -halt-on-error -time -quiet -xelatex
-            .github/ci/gen_cover.sh -halt-on-error -time -quiet -xelatex
-        name: build with XeLaTeX
+          run: .github/ci/build_test_variants.sh -halt-on-error -time -quiet -xelatex
+        name: build test variants with XeLaTeX
+      - uses: xu-cheng/texlive-action/full@v1
+        with:
+          run: .github/ci/gen_cover.sh -halt-on-error -time -quiet -xelatex
+        name: build cover with XeLaTeX
       - run: cat build/build-*.log
         name: display build log
         if: ${{ failure() || success() }}
@@ -39,10 +41,12 @@ jobs:
         name: checkout code
       - uses: xu-cheng/texlive-action/full@v1
         with:
-          run: |
-            .github/ci/build_test_variants.sh -halt-on-error -time -quiet -lualatex
-            .github/ci/gen_cover.sh -halt-on-error -time -quiet -lualatex
-        name: build with LuaLaTeX
+          run: .github/ci/build_test_variants.sh -halt-on-error -time -quiet -lualatex
+        name: build test variants with LuaLaTeX
+      - uses: xu-cheng/texlive-action/full@v1
+        with:
+          run: .github/ci/gen_cover.sh -halt-on-error -time -quiet -lualatex
+        name: build cover with LuaLaTeX
       - run: cat build/build-*.log
         name: display build log
         if: ${{ failure() || success() }}

@@ -15,11 +15,16 @@ jobs:
         name: checkout code
       - uses: xu-cheng/texlive-action/full@v1
         with:
-          run: |
-            .github/ci/build_package.sh
-            .github/ci/build_all_variants.sh -halt-on-error -time -quiet -xelatex
-            .github/ci/gen_cover.sh -halt-on-error -time -quiet -xelatex
-        name: build with XeLaTeX
+          run: .github/ci/build_package.sh
+        name: build package with XeLaTeX
+      - uses: xu-cheng/texlive-action/full@v1
+        with:
+          run: .github/ci/build_all_variants.sh -halt-on-error -time -quiet -xelatex
+        name: build all variants with XeLaTeX
+      - uses: xu-cheng/texlive-action/full@v1
+        with:
+          run: .github/ci/gen_cover.sh -halt-on-error -time -quiet -xelatex
+        name: build cover with XeLaTeX
       - run: cat build/build-*.log
         name: display build log
         if: ${{ failure() || success() }}
