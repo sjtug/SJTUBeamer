@@ -1,6 +1,6 @@
 #!/bin/bash
 
-apk add zip
+apk add zip diffutils
 cd src
 l3build ctan
 cp -r -f build/distrib/tds/tex/latex/sjtubeamer/* ..
