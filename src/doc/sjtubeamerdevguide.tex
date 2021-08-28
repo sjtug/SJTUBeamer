@@ -1,0 +1,90 @@
+\documentclass{ltxdoc}
+\usepackage[scheme=plain]{ctex}
+% \usepackage{sjtuvi}
+\usepackage[colorlinks]{hyperref}
+\def\themename{\textsf{SJTUBeamer}}
+\title{Development Guide of\\\themename}
+\def\fcmd#1{\paragraph{\fbox{\ttfamily #1}}}
+\begin{document}
+    \maketitle
+    \tableofcontents
+
+    \section{Build}
+
+    \subsection{l3build}
+
+    \themename{} adopts \verb"l3build" system to build the package. After entering the source code directory:
+    \begin{verbatim}
+        cd src
+    \end{verbatim}
+    You could operate the package by the following command. The build script is set in \verb"build.lua".
+
+    \fcmd{l3build doc} This command will generate the documentation of this package. We set an overall testing file \verb"doc/min.tex" to test all features of \themename. This is the most common command for testing a certain feature.
+    \begin{center}
+        unpack $\rightarrow$ \verb"min.tex" $\rightarrow$ documentations
+    \end{center}
+
+    \fcmd{l3build check} Process a regression test, with an optional parameter to perform one of the following tests:
+    \begin{center}
+        \ttfamily color font inner outer sjtuvi
+    \end{center}
+    which will show if the module is standing-free. If the compilation error occurs, please check if your code use one definition from another module without requiring it first, or the syntax error occurs.
+
+    \fcmd{l3build save color} If you make some modification on the framework (except \verb"sjtucover") and change the result. To save the current result as a referenc, run this command and \verb"color" could be exchanged by any of the test units above.
+
+    \fcmd{l3build clean} Clean the current \verb"src/build" directory, which will be useful if you modified one of the temporary files in that directory. (In this case, you may perform a wrong test with a modified version since \verb"l3build doc" may not refresh it.)
+
+    \fcmd{l3build tag v1.5.0} Tag the version of source code, which will also update the date in the source code.
+
+    \fcmd{l3build ctan} This is the last step before release. Both \verb"l3build check" and \verb"l3build doc" will be performed. The generated file is \verb"src/sjtubeamer-ctan.zip".
+
+    More information about \verb"l3build", please refer to
+    \begin{verbatim}
+        texdoc l3build
+    \end{verbatim}
+
+    \subsection{Customize Generation}
+
+    In \verb"source/beamerthemesjtubeamer.ins", you could customize what templates you want to output on the line:
+    \begin{verbatim}
+        \def\preserveoption{,maxplus,max,min,my} 
+    \end{verbatim}
+    Reduce the parameter number will reduce the number of templates it generates. It is useful if you want to debug or make a slight performance jump. Or make your own version of this template.
+
+    \subsection{Pull Request}
+
+    Before making a pull request, please refresh the root \verb".sty" files first. Switch to the main directory:
+    \begin{verbatim}
+        cd ..
+    \end{verbatim}
+    Then, run the bash code on *nix.
+    \begin{verbatim}
+        .github/ci/build_package.sh
+    \end{verbatim}
+    And all other scripts in the folder could also be checked in your local machine to make sure you can pass the CI on GitHub Actions.
+
+    If you are a Windows user, please use the old extracting method in \verb"src/source":
+    \begin{verbatim}
+        latex beamerthemesjtubeamer.ins
+    \end{verbatim}
+    and copy the corresponding generated files to the root directory.
+
+    \subsection{CI}
+
+    TBD.
+
+    \section{Details}
+
+    TBD. Please refer to the old pull requests for details.
+
+    \section{Implementation}
+% The DocTeX follows the alphabatic order to input.
+    \DocInput{beamercolorthemesjtubeamer.dtx}
+    \DocInput{beamerfontthemesjtubeamer.dtx}
+    \DocInput{beamerinnerthemesjtubeamer.dtx}
+    \DocInput{beamerouterthemesjtubeamer.dtx}
+    \DocInput{beamerthemesjtubeamer.dtx}
+% SJTUG doesn't hold the copyright of the following code.
+    \DocInput{sjtucover.dtx}
+    \DocInput{sjtuvi.dtx}
+\end{document}

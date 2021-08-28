@@ -4,7 +4,6 @@ apk add zip
 cd src
 l3build ctan
 cp -r -f build/distrib/tds/tex/latex/sjtubeamer/* ..
-cp doc/cover.pdf ../build/cover.pdf
 
 # turn resource files into symbolic link.
 # TODO: a more elegant solution in the future.
@@ -15,3 +14,8 @@ do
     rm -f $resource
     ln -s src/source/$resource $resource
 done
+
+if [ ! -f src/sjtubeamer-ctan.zip ]; then
+    echo "BUILD FAILED."
+    exit 1
+fi

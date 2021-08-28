@@ -26,6 +26,21 @@ latex beamerthemesjtubeamer.ins
 ```
 and copy the corresponding files to the correct directory.
 
+## Test Version
+
+You could get different styles from the following keywords.
+```latex
+\usetheme[maxplus]{sjtubeamer}
+% use maxplus/max/min to change covers.
+% use red/blue to change main color.
+% use light/dark to change dominate color.
+% use the following keywords to make different sidebars:
+%   miniframes infolines  sidebar*
+%   default    smoothbars split	 
+%   shadow     tree       smoothtree
+% *siderbar is recommended to be used with max option.
+```
+
 ## Appearance 🧐
 
 **Blue theme cover page**

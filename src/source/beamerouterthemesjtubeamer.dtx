@@ -1,4 +1,4 @@
-% \iffalse meta-comment ---------------------------------------------
+% \iffalse meta-comment --------------------------------------------------
 % Copyright (C) 2021 SJTUG
 %
 % Licensed under the Apache License, Version 2.0 (the "License");
@@ -12,11 +12,11 @@
 % WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 % See the License for the specific language governing permissions and
 % limitations under the License.
-% ------------------------------------------------------------------- \fi
+% ------------------------------------------------------------------------ \fi
 % \iffalse
 %<*package>
 \NeedsTeXFormat{LaTeX2e}
-\ProvidesPackage{beamerouterthemesjtubeamer}[2021/08/26 sjtubeamer outer theme v1.4.7]
+\ProvidesPackage{beamerouterthemesjtubeamer}[2021/08/28 sjtubeamer outer theme v1.5.0]
 %</package>
 % \fi
 % \CheckSum{0}
@@ -41,6 +41,12 @@
 \DefineOption{outer}{nav}{miniframes}
 \DefineOption{outer}{nav}{infolines}
 \DefineOption{outer}{nav}{sidebar}
+\DefineOption{outer}{nav}{default}
+\DefineOption{outer}{nav}{smoothbars}
+\DefineOption{outer}{nav}{split}
+\DefineOption{outer}{nav}{shadow}
+\DefineOption{outer}{nav}{tree}
+\DefineOption{outer}{nav}{smoothtree}
 \ExecuteOptionsBeamer{miniframes}
 %    \end{macrocode}
 %  \end{macro}
@@ -54,20 +60,22 @@
 \beamer@compresstrue
 %    \end{macrocode}
 %
-% Use the built-in outer templates.
+% Use the built-in outer templates. If you want to take special care about one outer theme, please add a condition test on that theme. Otherwise, it will use the default configuration of the corresponding built-in outer theme.
 %    \begin{macrocode}
 \if\EqualOption{outer}{nav}{miniframes}
   \useoutertheme[footline=institutetitle]{miniframes}
-\else\if\EqualOption{outer}{nav}{infolines}
-  \useoutertheme{infolines}
 \else\if\EqualOption{outer}{nav}{sidebar}
-  \PackageWarning{outer}{
-    Feature "sidebar" has not been implemented yet.\MessageBreak
-    Fallback to the default setting.
-  }
-  \useoutertheme[footline=institutetitle]{miniframes}
-\fi\fi\fi
+  \useoutertheme{sidebar}
+\else\useoutertheme{\sjtubeamer@outer@nav}
+\fi\fi
 %    \end{macrocode}
+%
+% Color patch for shadow, smoothtrees.
+%    \begin{macrocode}
+\setbeamercolor{frametitle}{use=titlelike,bg=white,fg=titlelike.fg}
+\setbeamercolor{frametitle right}{parent=subsection in head/foot}
+%    \end{macrocode}
+%
 %
 % Add page number to the toolbox.
 %    \begin{macrocode}

@@ -1,0 +1,27 @@
+\documentclass[draft]{beamer}
+\usecolortheme[red,dark]{sjtubeamer}
+\input{regression-test.tex}
+\begin{document}
+\START
+    \begin{frame}
+        \frametitle{Base color test}
+        \textcolor{cprimary}{\ttfamily cprimary} color.
+        
+        \textcolor{csecondary}{\ttfamily csecondary} color.
+
+        \textcolor{ctertiary}{\ttfamily ctertiary} color.
+    \end{frame}
+    \begin{frame}
+        \frametitle{Palette color test}
+        \begin{beamercolorbox}{palette primary}
+            \ttfamily palette primary
+        \end{beamercolorbox}
+        \begin{beamercolorbox}{palette secondary}
+            \ttfamily palette secondary
+        \end{beamercolorbox}
+        \begin{beamercolorbox}{palette tertiary}
+            \ttfamily palette tertiary
+        \end{beamercolorbox}
+    \end{frame}
+\END
+\end{document}

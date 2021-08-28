@@ -4,8 +4,8 @@
 %%
 %% The original source files were:
 %%
-%% sjtuvi.dtx  (with options: `package')
-%% -------------------------------------------------------------------
+%% sjtuvi.dtx  (with options: `package,maxplus,max,min,my')
+%% ------------------------------------------------------------------------
 %% Copyright (C) Shanghai Jiao Tong University
 %% The definition in this file is refered to the Visual Identity System
 %% from Shanghai Jiao Tong University (SJTU).
@@ -16,9 +16,9 @@
 %% the administration of SJTU.
 %% More infomation about the license,
 %% see https://vi.sjtu.edu.cn/index.php/articles/bulletin/16.
-%% -------------------------------------------------------------------
+%% ------------------------------------------------------------------------
 \NeedsTeXFormat{LaTeX2e}
-\ProvidesPackage{sjtuvi}[2021/08/26 Visual Identity System library for sjtubeamer v1.4.7]
+\ProvidesPackage{sjtuvi}[2021/08/28 Visual Identity System library for sjtubeamer v1.5.0]
 \def\DefineOption#1#2#3{
     % #1: package
     % #2: key
@@ -46,7 +46,7 @@
 \definecolor{sjtuBluePrimary}{RGB}{0,64,152}         %problue
 \definecolor{sjtuBlueSecondary}{RGB}{51,141,39}      %lightgreen
 \definecolor{sjtuBlueTertiary}{RGB}{0,81,78}         %lightgray
-\newcommand{\maskcolor}[3]{
+\newcommand{\definelogo}[3]{
     % #1: file
     % #2: horizontal clip (0~1)
     % #3: vertical clip (0~1)
@@ -74,12 +74,12 @@
     }
 }
 \def\sjtubeamer@logocolor{sjtuRedPrimary}
-\maskcolor{sjtubadge}{0}{0}
-\maskcolor{cnlogo}{0.13}{0.75}
-\maskcolor{enlogo}{0.13}{0.75}
-\maskcolor{dlogo}{0}{0}
-\maskcolor{vlogo}{0.8}{0.13}
-\maskcolor{sjtubg}{0.3}{0.5}
+\definelogo{sjtubadge}{0}{0}
+\definelogo{cnlogo}{0.13}{0.75}
+\definelogo{enlogo}{0.13}{0.75}
+\definelogo{dlogo}{0}{0}
+\definelogo{vlogo}{0.8}{0.13}
+\definelogo{sjtubg}{0.3}{0.5}
 \tikzdeclarepattern{
   name=stamp,
   parameters={
@@ -126,9 +126,9 @@
   }
 }
 \providecommand{\stamparray}[3]{
-  %#1: pattern size
-  %#2: starting point
-  %#3: ending point
+  % #1: pattern size
+  % #2: starting point
+  % #3: ending point
   \usebeamercolor{palette primary}
   \fill [pattern={stamp[size=#1]},
     pattern color=bg!50!fg] #2 rectangle #3;

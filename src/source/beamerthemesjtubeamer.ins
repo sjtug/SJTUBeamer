@@ -1,4 +1,4 @@
-%% -------------------------------------------------------------------
+%% ------------------------------------------------------------------------
 %% Copyright (C) 2021 SJTUG
 %%
 %% Licensed under the Apache License, Version 2.0 (the "License");
@@ -12,15 +12,16 @@
 %% WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 %% See the License for the specific language governing permissions and
 %% limitations under the License.
-%% -------------------------------------------------------------------
+%% ------------------------------------------------------------------------
 
 \input docstrip.tex %
 \keepsilent
 \askforoverwritefalse
-\usedir{tex/latex/mtheme}
+\usedir{tex/latex/sjtubeamer}
+\def\preserveoption{,maxplus,max,min,my} % reduce the option will reduce the related module extracting. Full option should be ",maxplus,max,min,my"
 
 \preamble
--------------------------------------------------------------------
+------------------------------------------------------------------------
 Copyright (C) 2021 SJTUG
 
 Licensed under the Apache License, Version 2.0 (the "License");
@@ -34,14 +35,14 @@ distributed under the License is distributed on an "AS IS" BASIS,
 WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 See the License for the specific language governing permissions and
 limitations under the License.
--------------------------------------------------------------------
+------------------------------------------------------------------------
 \endpreamble
 
 \generate{\file{beamerthemesjtubeamer.sty}{%
-          \from{beamerthemesjtubeamer.dtx}{package}}
+          \from{beamerthemesjtubeamer.dtx}{package\preserveoption}}
          }
 \generate{\file{beamerinnerthemesjtubeamer.sty}{%
-          \from{beamerinnerthemesjtubeamer.dtx}{package}}
+          \from{beamerinnerthemesjtubeamer.dtx}{package\preserveoption}}
          }
 \generate{\file{beamerouterthemesjtubeamer.sty}{%
           \from{beamerouterthemesjtubeamer.dtx}{package}}
@@ -54,7 +55,7 @@ limitations under the License.
          }
 
 \preamble
--------------------------------------------------------------------
+------------------------------------------------------------------------
 Copyright (C) Shanghai Jiao Tong University
 The definition in this file is refered to the Visual Identity System
 from Shanghai Jiao Tong University (SJTU). 
@@ -65,14 +66,14 @@ Any commercial usage in this file should be acknowledged by
 the administration of SJTU.
 More infomation about the license,
 see https://vi.sjtu.edu.cn/index.php/articles/bulletin/16. 
--------------------------------------------------------------------
+------------------------------------------------------------------------
 \endpreamble
 
 \generate{\file{sjtucover.sty}{%
-          \from{sjtucover.dtx}{package}}
+          \from{sjtucover.dtx}{package\preserveoption}}
          }
 \generate{\file{sjtuvi.sty}{%
-          \from{sjtuvi.dtx}{package}}
+          \from{sjtuvi.dtx}{package\preserveoption}}
          }
 
 \obeyspaces
@@ -95,9 +96,9 @@ see https://vi.sjtu.edu.cn/index.php/articles/bulletin/16.
 \Msg{*     sjtubg.png                                             *}
 \Msg{*                                                            *}
 \Msg{* To produce the documentation run the file                  *}
-\Msg{*     SJTUBeamermintheme.tex                                 *}
+\Msg{*     sjtubeamertheme.tex                                    *}
 \Msg{* For Development documentation, run the file                *}
-\Msg{*     SJTUBeamermindevguide.tex                              *}
+\Msg{*     sjtubeamerdevguide.tex                                 *}
 \Msg{* through XeLaTeX.                                           *}
 \Msg{*                                                            *}
 \Msg{* Happy TeXing!                                              *}

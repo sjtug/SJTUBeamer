@@ -1,4 +1,4 @@
-% \iffalse meta-comment ---------------------------------------------
+% \iffalse meta-comment --------------------------------------------------
 % Copyright (C) 2021 SJTUG
 %
 % Licensed under the Apache License, Version 2.0 (the "License");
@@ -12,18 +12,18 @@
 % WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 % See the License for the specific language governing permissions and
 % limitations under the License.
-% ------------------------------------------------------------------- \fi
+% ------------------------------------------------------------------------ \fi
 % \iffalse
 %<*package>
 \NeedsTeXFormat{LaTeX2e}
-\ProvidesPackage{beamerfontthemesjtubeamer}[2021/08/26 sjtubeamer font theme v1.4.7]
+\ProvidesPackage{beamerfontthemesjtubeamer}[2021/08/28 sjtubeamer font theme v1.5.0]
 %</package>
 % \fi
 % \CheckSum{0}
 % \StopEventually{}
 % \iffalse
 %<*package>
-% ------------------------------------------------------------------- \fi
+% ------------------------------------------------------------------------ \fi
 %
 % \subsection{Font Theme}
 %
@@ -32,20 +32,6 @@
 %    \begin{macrocode}
 \RequirePackage{silence}
 \WarningFilter{latexfont}{Font shape}
-%    \end{macrocode}
-%   Disable the warning from \verb"hyperref" which conflicts the setting in C\TeX{} or CJK. It has to be manually disabled.
-%    \begin{macrocode}
-\def\Hy@WarnOptionDisabled#1{
-  \def\next{#1}%
-  \ifx\next pdfauthor %
-    \ifx\next driverfallback %
-    \else
-    \Hy@Warning{%
-      Option `#1' has already been used,\MessageBreak 
-      setting the option has no effect%
-    }\fi%
-  \fi%
-}
 %    \end{macrocode}
 %
 %   Use \verb"professionalfonts" font theme to compress all formula environments, which is in serif font style.

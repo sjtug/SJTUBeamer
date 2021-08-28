@@ -20,6 +20,7 @@ jobs:
         with:
           run: |
             .github/ci/build_test_variants.sh -halt-on-error -time -quiet -xelatex
+            .github/ci/gen_cover.sh -halt-on-error -time -quiet -xelatex
         name: build with XeLaTeX
       - run: cat build/build-*.log
         name: display build log
@@ -40,6 +41,7 @@ jobs:
         with:
           run: |
             .github/ci/build_test_variants.sh -halt-on-error -time -quiet -lualatex
+            .github/ci/gen_cover.sh -halt-on-error -time -quiet -lualatex
         name: build with LuaLaTeX
       - run: cat build/build-*.log
         name: display build log
@@ -59,6 +61,7 @@ jobs:
       - uses: xu-cheng/texlive-action/full@v1
         with:
           run: |
+            export diffexe="diff -U 3"
             .github/ci/build_package.sh
         name: build package with l3build
       - name: check if generated files are of latest version

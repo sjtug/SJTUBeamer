@@ -1,0 +1,11 @@
+\documentclass[]{beamer}
+\useoutertheme[default]{sjtubeamer}
+\input{regression-test.tex}
+\begin{document}
+    \START
+    \begin{frame}
+        \frametitle{Outer theme}
+        Test for outer theme.
+    \end{frame}
+    \END
+\end{document}

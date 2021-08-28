@@ -1,0 +1,47 @@
+\input{regression-test.tex}
+\documentclass{beamer}
+\usepackage{sjtuvi}
+\def\colorblock#1{
+    #1\hfill\tikz{\draw[black,fill=#1] (-1,-0.25) rectangle (1,0.25);}\par
+}
+\begin{document}
+    \START
+    \begin{frame}
+        \frametitle{Predefined color}
+        \ttfamily
+        \colorblock{sjtuRedPrimary}
+        \colorblock{sjtuRedSecondary}
+        \colorblock{sjtuRedTertiary}
+        \colorblock{sjtuBluePrimary}
+        \colorblock{sjtuBlueSecondary}
+        \colorblock{sjtuBlueTertiary}
+    \end{frame}
+    \OMIT
+    \setbeamertemplate{background}{
+        \sjtubg
+    }
+    \begin{frame}
+        \frametitle{Logo Insertion}
+        \cnlogo
+        \enlogo
+        \dlogo
+        \vlogo
+        \sjtubadge
+    \end{frame}
+    \setbeamertemplate{background}{}
+    \TIMO
+    \begin{frame}
+        \frametitle{Stamp shapes}
+        \begin{tikzpicture}
+            \stamparray{4pt}{(-3,-3)}{(3,3)}
+        \end{tikzpicture}
+        \begin{tikzpicture}
+            \draw[decoration={
+              stampline,
+              segment length=8pt,
+              path has corners=true,
+            },decorate,sjtuRedPrimary] (-2,-2) rectangle (2,2);
+        \end{tikzpicture}
+    \end{frame}
+    \END
+\end{document}

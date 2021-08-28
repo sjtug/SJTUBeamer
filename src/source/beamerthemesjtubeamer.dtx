@@ -1,4 +1,4 @@
-% \iffalse meta-comment ---------------------------------------------
+% \iffalse meta-comment --------------------------------------------------
 % Copyright (C) 2021 SJTUG
 %
 % Licensed under the Apache License, Version 2.0 (the "License");
@@ -13,7 +13,7 @@
 % See the License for the specific language governing permissions and
 % limitations under the License.
 %
-% ------------------------------------------------------------------- \fi
+% ------------------------------------------------------------------------ \fi
 % \CheckSum{0}
 % \StopEventually{}
 % \iffalse
@@ -37,7 +37,7 @@
 % ------------------------------------------------------------------- \fi
 % \iffalse
 \NeedsTeXFormat{LaTeX2e}
-\ProvidesPackage{beamerthemesjtubeamer}[2021/08/26 sjtubeamer parent theme v1.4.7]
+\ProvidesPackage{beamerthemesjtubeamer}[2021/08/28 sjtubeamer parent theme v1.5.0]
 % \fi
 %
 % \subsection{Parent Theme}
@@ -66,15 +66,37 @@
 %    \item The final level should be the variable name itself.
 %   \end{itemize}
 %    \begin{macrocode}
+%<*maxplus>
 \DeclareOptionBeamer{maxplus}{\def\sjtubeamer@cover{maxplus}}
+%</maxplus>
+%<*max>
 \DeclareOptionBeamer{max}{\def\sjtubeamer@cover{max}}
+%</max>
+%<*min>
 \DeclareOptionBeamer{min}{\def\sjtubeamer@cover{min}}
+%</min>
+%<*my>
 \DeclareOptionBeamer{my}{\def\sjtubeamer@cover{my}} % reserved for customization
+%</my>
 %    \end{macrocode}
 %   $\rightarrow$ Next, declare the initial configuration.
 %    \begin{macrocode}
-\ExecuteOptionsBeamer{max}
+\ExecuteOptionsBeamer{
+%<*maxplus>
+    maxplus,
+%</maxplus>
+%<*min>
+    min,
+%</min>
+%<*my>
+    my,
+%</my>    
+%<*max>
+    max,
+%</max>
+}
 %    \end{macrocode}
+%  \end{macro}
 %
 %  \begin{macro}{\sjtubeamer@color}
 %   Choose the main color palette.
@@ -100,30 +122,34 @@
 %  \end{macro}
 %
 %  \begin{macro}{\sjtubeamer@lang}
-%    Set the main language of this beamer.
+%    Set the main language of this beamer. If the user is using \verb"ctexbeamer" class, the default option will be Chinese. If the user use \verb"ctex" package after using this theme, such an advanced user should specify the language to Chinese manually.
+%
+%   TODO: may be a built in support for Chinese will be used in the future. Just taken \verb"\RequirePackage[scheme=plain]{ctex}" for basic Chinese character support.
 %    \begin{macrocode}
 \DeclareOptionBeamer{cn}{\def\sjtubeamer@lang{cn}}
 \DeclareOptionBeamer{en}{\def\sjtubeamer@lang{en}}
-\ExecuteOptionsBeamer{cn}
+\@ifclassloaded{ctexbeamer}{\ExecuteOptionsBeamer{cn}}{
+  \ExecuteOptionsBeamer{en}}
 %    \end{macrocode}
 %  \end{macro}
 %
 %  \begin{macro}{\sjtubeamer@nav}
-%   Decide the type of the navigation bar.
-%   \begin{description}
-%       \item[miniframes] shows the progress on subsection.
-%       \item[infolines] shows the page number and the document info.
-%       \item[sidebar] make a sidebar to display the TOC. 
-%   \end{description}
+%   Choose the outer theme for this template.
 %    \begin{macrocode}
 \DeclareOptionBeamer{miniframes}{\def\sjtubeamer@nav{miniframes}}
 \DeclareOptionBeamer{infolines}{\def\sjtubeamer@nav{infolines}}
 \DeclareOptionBeamer{sidebar}{\def\sjtubeamer@nav{sidebar}}
+\DeclareOptionBeamer{default}{\def\sjtubeamer@nav{default}}
+\DeclareOptionBeamer{smoothbars}{\def\sjtubeamer@nav{smoothbars}}
+\DeclareOptionBeamer{split}{\def\sjtubeamer@nav{split}}
+\DeclareOptionBeamer{shadow}{\def\sjtubeamer@nav{shadow}}
+\DeclareOptionBeamer{tree}{\def\sjtubeamer@nav{tree}}
+\DeclareOptionBeamer{smoothtree}{\def\sjtubeamer@nav{smoothtree}}
 \ExecuteOptionsBeamer{miniframes}
 %    \end{macrocode}
 %  \end{macro}
 %
-%   $\rightarrow$ Then, the user's option will be processed after this (at the end of this subsubsection).
+%   $\rightarrow$ Then, the user's option will be processed after this (at the end of this subsection).
 %    \begin{macrocode}
 \ProcessOptionsBeamer
 %    \end{macrocode}
@@ -151,6 +177,6 @@
 %
 % \iffalse
 %</package>
-% ------------------------------------------------------------------- \fi
+% ------------------------------------------------------------------------ \fi
 % \Finale
 \endinput

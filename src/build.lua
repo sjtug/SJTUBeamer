@@ -13,12 +13,13 @@ installfiles     = {"*.sty","*logo.pdf","sjtubadge.pdf","sjtubg.pdf","sjtubg.png
 
 docfiledir       = "doc"
 typesetexe       = "xelatex"
--- typesetfiles     = {"sjtubeamermintheme.tex","sjtubeamermindevguide.tex"}
-typesetfiles     = {}
+typesetfiles     = {"sjtubeamerdevguide.tex","sjtubeamer.tex"}
 -- typesetruns      = 1 -- for debug. Some reference may not be linked.
-typesetdemofiles = {"main.tex","min.tex","cover-*.tex","cover.tex"}
--- typesetdemofiles = {"cover.tex"} -- for debug
-typesetsuppfiles = {"head.png","plant.jpg","test.csv","testgraph.tex","ref.bib","contents/"}
+typesetdemofiles = {"min.tex"}
+typesetsuppfiles = {"head.png","plant.jpg","test.csv","testgraph.tex","ref.bib"}
+
+-- Regression tests mainly test the decoupling properties between kernel modules.
+testfiledir      = "./testfiles"
 
 packtdszip       = true -- recommended for "tree" layouts
 
