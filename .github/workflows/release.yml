@@ -32,39 +32,75 @@ jobs:
           body: ${{ github.event.head_commit.message }}
           draft: true
           prerelease: true
-      - name: add build-bannertitle-blue
+      - name: add build-maxplus-blue
         uses: actions/upload-release-asset@v1.0.1
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
           upload_url: ${{ steps.create_release.outputs.upload_url }}
-          asset_path: build/build-bannertitle-blue.pdf
-          asset_name: build-bannertitle-blue.pdf
+          asset_path: build/build-maxplus-blue.pdf
+          asset_name: doc-theme-maxplus-blue.pdf
           asset_content_type: application/pdf
-      - name: add build-bannertitle-red
+      - name: add build-maxplus-red
         uses: actions/upload-release-asset@v1.0.1
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
           upload_url: ${{ steps.create_release.outputs.upload_url }}
-          asset_path: build/build-bannertitle-red.pdf
-          asset_name: build-bannertitle-red.pdf
+          asset_path: build/build-maxplus-red.pdf
+          asset_name: doc-theme-maxplus-red.pdf
           asset_content_type: application/pdf
-      - name: add build-blue
+      - name: add build-max-red
         uses: actions/upload-release-asset@v1.0.1
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
           upload_url: ${{ steps.create_release.outputs.upload_url }}
-          asset_path: build/build-blue.pdf
-          asset_name: build-blue.pdf
+          asset_path: build/build-max-red.pdf
+          asset_name: doc-theme-max-red.pdf
           asset_content_type: application/pdf
-      - name: add build-red
+      - name: add build-min-red
         uses: actions/upload-release-asset@v1.0.1
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
           upload_url: ${{ steps.create_release.outputs.upload_url }}
-          asset_path: build/build-red.pdf
-          asset_name: build-red.pdf
+          asset_path: build/build-min-red.pdf
+          asset_name: doc-theme-min-red.pdf
+          asset_content_type: application/pdf
+      - name: add covers
+        uses: actions/upload-release-asset@v1.0.1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          upload_url: ${{ steps.create_release.outputs.upload_url }}
+          asset_path: build/cover.pdf
+          asset_name: sample-all-covers.pdf
+          asset_content_type: application/pdf
+      - name: add ctan zip
+        uses: actions/upload-release-asset@v1.0.1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          upload_url: ${{ steps.create_release.outputs.upload_url }}
+          asset_path: src/sjtubeamer-ctan.zip
+          asset_name: sjtubeamer-ctan.zip
+          asset_content_type: application/zip
+      - name: add devguide
+        uses: actions/upload-release-asset@v1.0.1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          upload_url: ${{ steps.create_release.outputs.upload_url }}
+          asset_path: src/build/distrib/ctan/sjtubeamer/sjtubeamerdevguide.pdf
+          asset_name: sjtubeamer-dev-guide.pdf
+          asset_content_type: application/pdf
+      - name: add intro
+        uses: actions/upload-release-asset@v1.0.1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          upload_url: ${{ steps.create_release.outputs.upload_url }}
+          asset_path: src/build/distrib/ctan/sjtubeamer/sjtubeamer.pdf
+          asset_name: sjtubeamer-intro.pdf
           asset_content_type: application/pdf
