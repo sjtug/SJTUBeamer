@@ -23,18 +23,15 @@ do
     mv $file.tmp $file
 done
 
-mainbuilds=(blue min)
+mainbuilds=(blue red min)
 for mainbuild in ${mainbuilds[@]};
 do
 {
     # eliminate data dependencies
     cp contents/basis.tex contents/basis-$mainbuild.tex
     latexmk $@ -outdir=build build/build-$mainbuild.tex
-} &
+}
 done
 wait
-
-# temp fix for build-red
-latexmk $@ -outdir=build build/build-red.tex
 
 echo BUILD COMPLETE.
