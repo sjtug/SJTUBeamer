@@ -1,13 +1,15 @@
 \documentclass{ltxdoc}
 \usepackage[scheme=plain]{ctex}
-% \usepackage{sjtuvi}
 \usepackage[colorlinks]{hyperref}
+
 \def\themename{\textsf{SJTUBeamer}}
 \title{Development Guide of\\\themename}
 \def\fcmd#1{\paragraph{\fbox{\ttfamily #1}}}
+
 \begin{document}
     \maketitle
     \tableofcontents
+    \clearpage
 
     \section{Build}
 
@@ -28,13 +30,13 @@
     \begin{center}
         \ttfamily color font inner outer sjtuvi
     \end{center}
-    which will show if the module is standing-free. If the compilation error occurs, please check if your code use one definition from another module without requiring it first, or the syntax error occurs.
+    which will show if the module is standing-free. If the compilation error occurs, please check if your code uses one definition from another module without requiring it first, or the syntax error occurs.
 
-    \fcmd{l3build save color} If you make some modification on the framework (except \verb"sjtucover") and change the result. To save the current result as a referenc, run this command and \verb"color" could be exchanged by any of the test units above.
+    \fcmd{l3build save color} If you make some modification to the framework (except \verb"sjtucover") and change the result. To save the current result as a reference, run this command and \verb"color" could be exchanged by any of the test units above.
 
     \fcmd{l3build clean} Clean the current \verb"src/build" directory, which will be useful if you modified one of the temporary files in that directory. (In this case, you may perform a wrong test with a modified version since \verb"l3build doc" may not refresh it.)
 
-    \fcmd{l3build tag v1.5.0} Tag the version of source code, which will also update the date in the source code.
+    \fcmd{l3build tag v1.5.0} Tag the version of the source code, which will also update the date in the source code.
 
     \fcmd{l3build ctan} This is the last step before release. Both \verb"l3build check" and \verb"l3build doc" will be performed. The generated file is \verb"src/sjtubeamer-ctan.zip".
 
@@ -61,9 +63,10 @@
     \begin{verbatim}
         .github/ci/build_package.sh
     \end{verbatim}
+
     And all other scripts in the folder could also be checked in your local machine to make sure you can pass the CI on GitHub Actions.
 
-    If you are a Windows user, please use the old extracting method in \verb"src/source":
+    If you are a Windows user\footnote{Windows 10 users could also install WSL (Windows Subsystem for Linux) in order to use Linux environment conveniently.}, please use the old extracting method in \verb"src/source":
     \begin{verbatim}
         latex beamerthemesjtubeamer.ins
     \end{verbatim}
@@ -73,9 +76,11 @@
 
     TBD.
 
-    \section{Details}
+    \section{Coding Style}
 
-    TBD. Please refer to the old pull requests for details.
+    This section gives a contribution code on coding style. Every contributor should follow this coding style if you want to make a pull request to this project.
+
+
 
     \section{Implementation}
 % The DocTeX follows the alphabatic order to input.

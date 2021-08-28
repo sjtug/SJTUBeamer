@@ -197,10 +197,15 @@
     \else
 %</min>
 %<*my>
-      %
-      % Developer could define your title graphic here for "my"...
-      %
-      \titlegraphic{}
+      \if\EqualOption{inner}{cover}{my}
+        %
+        % Developer could define your title graphic here for "my"...
+        %
+        \titlegraphic{}
+      \else
+%</my>
+%<*my>
+      \fi
 %</my>
 %<*min>
     \fi
