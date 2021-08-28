@@ -75,27 +75,31 @@
 \defbeamertemplate*{title page}{maxplus}[1][]
 {
   \nointerlineskip%
-  \begin{beamercolorbox}[wd=\paperwidth, ht=\paperheight]{empty}
+  \vbox{}
+  \vfill
+  \begingroup
     \usebeamercolor{palette primary}% 
     \def\sjtubeamer@logocolor{palette primary.fg}
-    \begin{tikzpicture}
-      \pgfmathsetlengthmacro{\outslant}{\the\paperwidth - 0.8cm}
-      \node[anchor=north west, inner sep=0, outer sep=0]
-          at (0,\the\paperheight){
-            \resizebox{!}{\the\paperheight}{\inserttitlegraphic}};
-      \fill[color=white] (0,0) rectangle(\paperwidth,3.9);
-      \fill[color=bg]  (0,0) rectangle(\paperwidth,3.88);
+    \begin{tikzpicture}[overlay,
+      xshift=-0.12\paperwidth,
+      yshift=-0.53\paperheight]
+      \pgfmathsetlengthmacro{\outslant}{1.02\paperwidth}
+      \node[inner sep=0, outer sep=0]
+          at (0.57\paperwidth,0.5\paperheight){
+            \resizebox{!}{1.06\paperheight}{\inserttitlegraphic}};
+      \fill[color=white] (0,0) rectangle(1.1\paperwidth,3.9);
+      \fill[color=bg]  (0,-0.1\paperheight) rectangle(1.1\paperwidth,3.88);
       \node[anchor=north west, text width=.8\paperwidth]
-        at (0.8,3.6){%
-      \usebeamercolor[fg]{title}
-      \ifx\insertsubtitle\@empty%
-        {\huge\bfseries\inserttitle}\\
-        \else%
-        {\Large\bfseries\inserttitle}\\
-        {\small\insertsubtitle}\\
-      \fi%
+        at (0.11\paperwidth,3.6){%
+        \usebeamercolor[fg]{title}
+        \ifx\insertsubtitle\@empty%
+          {\huge\bfseries\inserttitle}\\
+          \else%
+          {\Large\bfseries\inserttitle}\\
+          {\small\insertsubtitle}\\
+        \fi%
       };
-      \node[anchor=south west, text width=.8\paperwidth] at (0.8,0.45){%
+      \node[anchor=south west, text width=.8\paperwidth] at (0.11\paperwidth,0.45){%
         {\usebeamercolor[fg]{author}\small\insertauthor}\\
         {\usebeamercolor[fg]{institute}\small\insertinstitute}\\
         {\usebeamercolor[fg]{date}\small\insertdate}%
@@ -104,7 +108,8 @@
         \resizebox{!}{1cm}{\insertlogo}
       };
     \end{tikzpicture}
-  \end{beamercolorbox}
+  \endgroup
+  \vfill
 }
 %</maxplus>
 %    \end{macrocode}
@@ -120,7 +125,7 @@
   \def\sjtubeamer@logocolor{palette primary.fg}
   \begin{tikzpicture}[overlay]
     \fill [palette primary.bg] (-0.2*\the\paperwidth,-1*\the\paperheight) 
-      rectangle (1*\the\paperwidth, 0.2*\the\paperheight);
+      rectangle (1*\the\paperwidth, 0.3*\the\paperheight);
     \node [inner sep=0pt] 
       at (0.45\paperwidth-6pt,-0.4*\the\paperheight)
       {\resizebox{1.3\paperwidth}{!}{\inserttitlegraphic}};
@@ -332,33 +337,37 @@
 \defbeamertemplate*{bottom page}{maxplus}[1][]
 {
   \nointerlineskip
+  \vbox{}
   \begin{tikzpicture}[overlay]
     \usebeamercolor{palette primary}
     \fill[palette primary.bg] (-0.2\paperwidth,-\paperheight) 
       rectangle (\paperwidth, 0.5\paperheight);
   \end{tikzpicture}
-  \begin{beamercolorbox}[wd=\paperwidth,center,sep=24pt]{title}
-    \LARGE \bfseries \bottomthanks
-  \end{beamercolorbox}
-  \begin{beamercolorbox}[wd=\paperwidth]{empty}
+  \vfill
+  \begin{beamercolorbox}[sep=0pt]{empty}
     \usebeamercolor{structure}
     \def\sjtubeamer@logocolor{white}
-    \begin{tikzpicture}
+    \begin{tikzpicture}[overlay,xshift=0.54\paperwidth,yshift=-0.41\paperheight]
       \begin{scope}
-        \clip (-0.64\paperwidth,0.08\paperheight) 
-          rectangle (0.36\paperwidth,0.53\paperheight);
-        \node [anchor=north] at (0,0.6\paperheight+0.03\paperwidth) {
-          \resizebox{1.3\paperwidth}{!}{\inserttitlegraphic}};
+        \clip (-0.66\paperwidth,0.06\paperheight) 
+          rectangle (0.43\paperwidth,0.53\paperheight);
+        \node [anchor=north] at (0,0.645\paperheight) {
+          \resizebox{1.33\paperwidth}{!}{\inserttitlegraphic}};
         \fill[structure.fg!50!black,path fading=fade right img]  
-          (-0.64\paperwidth,0.08\paperheight) 
-          rectangle (0.36\paperwidth,0.53\paperheight);
-        \node at (-0.45\paperwidth,0.31\paperheight) 
+          (-0.66\paperwidth,0.06\paperheight) 
+          rectangle (0.43\paperwidth,0.53\paperheight);
+        \node at (-0.45\paperwidth,0.3\paperheight) 
           {\resizebox{!}{0.115\paperheight}{\insertlogo}};
-        \draw[white] (-0.64\paperwidth,0.12\paperheight) 
-          -- (0.36\paperwidth,0.12\paperheight);
+        \draw[white] (-0.66\paperwidth,0.1\paperheight) 
+          -- (0.43\paperwidth,0.1\paperheight);
       \end{scope}
+      \node at (-0.13\paperwidth,0.7\paperheight) {
+        \usebeamercolor[fg]{title}
+        \LARGE \bfseries \bottomthanks
+      };
     \end{tikzpicture}
   \end{beamercolorbox}
+  \vfill
 }
 %</maxplus>
 %    \end{macrocode}
@@ -373,11 +382,11 @@
   \usebeamercolor{palette primary}
   \usebeamercolor{structure}
   \begin{beamercolorbox}[sep=0pt]{empty}
-  \begin{tikzpicture}[overlay,yshift=0.2\paperwidth,xshift=-5pt]
+  \begin{tikzpicture}[overlay,yshift=0.25\paperwidth]
     \def\leftw{0.215\paperwidth}
     \def\midw{0.435\paperwidth}
     \def\rightw{0.655\paperwidth}
-    \fill[palette primary.bg] (-0.2\paperwidth,-1\paperheight) rectangle 
+    \fill[palette primary.bg] (-0.2\paperwidth,-1.2\paperheight) rectangle 
     (\paperwidth, 0.1\paperheight);
     \fill[palette primary.fg] (\leftw,0.1\paperheight)
       -- (\leftw,-0.5\paperheight)
@@ -392,7 +401,7 @@
       -- (\midw,-0.68\paperheight) -- cycle;
     \node at (\midw,-0.65\paperheight) {
       \def\sjtubeamer@logocolor{black}
-      \resizebox{1.2\paperwidth}{!}{\inserttitlegraphic}};
+      \resizebox{1.25\paperwidth}{!}{\inserttitlegraphic}};
     \node at (\midw,-0.2\paperheight) {
       \def\sjtubeamer@logocolor{palette primary.bg}
       \resizebox{3cm}{!}{\insertlogo}};
