@@ -61,6 +61,7 @@ jobs:
       - uses: xu-cheng/texlive-action/full@v1
         with:
           run: |
+            export diffexe=diff -U 3
             .github/ci/build_package.sh
         name: build package with l3build
       - name: check if generated files are of latest version

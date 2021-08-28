@@ -20,7 +20,6 @@ typesetfiles     = {"sjtubeamerdevguide.tex","sjtubeamer.tex"}
 
 -- Regression tests mainly test the decoupling properties between kernel modules.
 testfiledir      = "./testfiles"
-diffexe          = "diff -U 3 "
 
 packtdszip       = true -- recommended for "tree" layouts
 
