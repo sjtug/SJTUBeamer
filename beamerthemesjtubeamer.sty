@@ -4,8 +4,8 @@
 %%
 %% The original source files were:
 %%
-%% beamerthemesjtubeamer.dtx  (with options: `package')
-%% -------------------------------------------------------------------
+%% beamerthemesjtubeamer.dtx  (with options: `package,maxplus,max,min,my')
+%% ------------------------------------------------------------------------
 %% Copyright (C) 2021 SJTUG
 %% 
 %% Licensed under the Apache License, Version 2.0 (the "License");
@@ -19,14 +19,19 @@
 %% WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 %% See the License for the specific language governing permissions and
 %% limitations under the License.
-%% -------------------------------------------------------------------
+%% ------------------------------------------------------------------------
 \NeedsTeXFormat{LaTeX2e}
-\ProvidesPackage{beamerthemesjtubeamer}[2021/08/26 sjtubeamer parent theme v1.4.7]
+\ProvidesPackage{beamerthemesjtubeamer}[2021/08/28 sjtubeamer parent theme v1.5.0]
 \DeclareOptionBeamer{maxplus}{\def\sjtubeamer@cover{maxplus}}
 \DeclareOptionBeamer{max}{\def\sjtubeamer@cover{max}}
 \DeclareOptionBeamer{min}{\def\sjtubeamer@cover{min}}
 \DeclareOptionBeamer{my}{\def\sjtubeamer@cover{my}} % reserved for customization
-\ExecuteOptionsBeamer{max}
+\ExecuteOptionsBeamer{
+    maxplus,
+    min,
+    my,
+    max,
+}
 \DeclareOptionBeamer{red}{\def\sjtubeamer@color{red}}
 \DeclareOptionBeamer{blue}{\def\sjtubeamer@color{blue}}
 \ExecuteOptionsBeamer{red}
@@ -35,10 +40,17 @@
 \ExecuteOptionsBeamer{dark}
 \DeclareOptionBeamer{cn}{\def\sjtubeamer@lang{cn}}
 \DeclareOptionBeamer{en}{\def\sjtubeamer@lang{en}}
-\ExecuteOptionsBeamer{cn}
+\@ifclassloaded{ctexbeamer}{\ExecuteOptionsBeamer{cn}}{
+  \ExecuteOptionsBeamer{en}}
 \DeclareOptionBeamer{miniframes}{\def\sjtubeamer@nav{miniframes}}
 \DeclareOptionBeamer{infolines}{\def\sjtubeamer@nav{infolines}}
 \DeclareOptionBeamer{sidebar}{\def\sjtubeamer@nav{sidebar}}
+\DeclareOptionBeamer{default}{\def\sjtubeamer@nav{default}}
+\DeclareOptionBeamer{smoothbars}{\def\sjtubeamer@nav{smoothbars}}
+\DeclareOptionBeamer{split}{\def\sjtubeamer@nav{split}}
+\DeclareOptionBeamer{shadow}{\def\sjtubeamer@nav{shadow}}
+\DeclareOptionBeamer{tree}{\def\sjtubeamer@nav{tree}}
+\DeclareOptionBeamer{smoothtree}{\def\sjtubeamer@nav{smoothtree}}
 \ExecuteOptionsBeamer{miniframes}
 \ProcessOptionsBeamer
 \PassOptionsToPackage{\sjtubeamer@cover}{beamerinnerthemesjtubeamer}
