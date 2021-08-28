@@ -28,6 +28,20 @@ latex beamerthemesjtubeamer.ins
 ```
 > 手动解包复制。
 
+## 测试版本
+
+您可以通过向该主题添加参数获取不同的样式。
+```latex
+\usetheme[maxplus]{sjtubeamer}
+% 使用 maxplus/max/min 切换标题页样式
+% 使用 red/blue 切换主色调
+% 使用 light/dark 切换亮/暗色模式
+% 使用外样式关键词以获得不同的边栏样式
+%   miniframes infolines  sidebar 
+%   default    smoothbars split	 
+%   shadow     tree       smoothtree
+```
+
 ## 展示 🧐
 
 您可以在 [v1.0.0](https://github.com/sjtug/SJTUBeamer/releases/tag/v1.0.0) 预览生成的四个主题的 pdf。
