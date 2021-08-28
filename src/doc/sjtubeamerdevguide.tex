@@ -30,11 +30,18 @@
     \end{center}
     which will show if the module is standing-free. If the compilation error occurs, please check if your code use one definition from another module without requiring it first, or the syntax error occurs.
 
+    \fcmd{l3build save color} If you make some modification on the framework (except \verb"sjtucover") and change the result. To save the current result as a referenc, run this command and \verb"color" could be exchanged by any of the test units above.
+
     \fcmd{l3build clean} Clean the current \verb"src/build" directory, which will be useful if you modified one of the temporary files in that directory. (In this case, you may perform a wrong test with a modified version since \verb"l3build doc" may not refresh it.)
 
-    \fcmd{l3build ctan v1.5.0} Tag the version of source code, which will also update the date in the source code.
+    \fcmd{l3build tag v1.5.0} Tag the version of source code, which will also update the date in the source code.
 
     \fcmd{l3build ctan} This is the last step before release. Both \verb"l3build check" and \verb"l3build doc" will be performed. The generated file is \verb"src/sjtubeamer-ctan.zip".
+
+    More information about \verb"l3build", please refer to
+    \begin{verbatim}
+        texdoc l3build
+    \end{verbatim}
 
     \subsection{Customize Generation}
 
