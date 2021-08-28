@@ -15,6 +15,9 @@ mainbuilds=(blue red min)
 for mainbuild in ${mainbuilds[@]};
 do
 {
+    # eliminate data dependencies
+    regstr="s|include\{contents\/basis\}|include\{contents\/basis-${mainbuild}\}|g"
+    sed -e regstr contents/basis.tex > contents/basis-$mainbuild.tex
     latexmk $@ -outdir=build build/build-$mainbuild.tex
 } &
 done
