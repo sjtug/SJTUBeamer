@@ -7,7 +7,7 @@ SJTUBeamer 是上海交通大学的非官方 Beamer 模版。您可以使用 SJT
 ## 使用方法 🧰
 
 Overleaf 用户可以直接下载 [最新版](https://github.com/sjtug/SJTUBeamer/archive/refs/heads/main.zip) 或 
-[v1.0.0](https://github.com/sjtug/SJTUBeamer/releases/tag/v1.0.0) 的代码，上传至 Overleaf 使用。
+[v1.5.0](https://github.com/sjtug/SJTUBeamer/releases/tag/v1.5.0) 的代码，上传至 Overleaf 使用。
 
 如果您希望在本地使用 SJTUBeamer 模版，请安装 TeXLive 套件，并通过 `latexmk -xelatex main.tex` 命令进行编译。
 VSCode 用户可以使用 LaTeX Workshop 中的“Recipe: latexmk (latexmkrc)”进行编译。
@@ -31,6 +31,7 @@ latex beamerthemesjtubeamer.ins
 ## 测试版本
 
 您可以通过向该主题添加参数获取不同的样式。
+
 ```latex
 \usetheme[maxplus]{sjtubeamer}
 % 使用 maxplus/max/min 切换标题页样式
@@ -45,20 +46,9 @@ latex beamerthemesjtubeamer.ins
 
 ## 展示 🧐
 
-您可以在 [v1.0.0](https://github.com/sjtug/SJTUBeamer/releases/tag/v1.0.0) 预览生成的四个主题的 pdf。
+您可以在 [v1.5.0](https://github.com/sjtug/SJTUBeamer/releases/tag/v1.5.0) 预览生成的四个主题的 pdf。
 
-**蓝色主题封面**
-
-![page001](https://user-images.githubusercontent.com/4198311/119085675-be619a80-ba36-11eb-878f-609b2882dc35.png)
-
-**红色主题封面**
-
-![page001](https://user-images.githubusercontent.com/4198311/119085697-c7526c00-ba36-11eb-8a70-296f8f36c2d6.png)
-
-**普通封面**
-
-![page001](https://user-images.githubusercontent.com/4198311/118810621-aa0a8a00-b8de-11eb-907e-6342c156ea53.png)
-
-**红色主题内页**
-
-![page004](https://user-images.githubusercontent.com/4198311/118810609-a70f9980-b8de-11eb-84b3-68918c905817.png)
+![cover-0](https://user-images.githubusercontent.com/4198311/131241659-90f0804b-d0b1-4bb9-b45c-7d3c81ace02a.png)
+![cover-1](https://user-images.githubusercontent.com/4198311/131241665-2ced7884-7428-4967-8055-6ce47de7f8bd.png)
+![cover-2](https://user-images.githubusercontent.com/4198311/131241668-cc47d9fb-14c4-4681-b95d-98400e9b8d77.png)
+![cover-3](https://user-images.githubusercontent.com/4198311/131241669-ccf58f17-d35f-492d-8707-2cfdbd613107.png)
