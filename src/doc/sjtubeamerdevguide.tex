@@ -1,8 +1,12 @@
 \documentclass{ltxdoc}
 \usepackage[scheme=plain]{ctex}
 \usepackage[colorlinks]{hyperref}
-\usepackage{fontspec}
-\defaultfontfeatures{Extension=.otf}
+\usepackage{iftex}
+\ifPDFTeX % Windows User should always use this.
+\else%
+    \usepackage{fontspec}
+    \defaultfontfeatures{Extension=.otf}
+\fi
 \usepackage{fontawesome}
 \usepackage{tcolorbox}
 \tcbuselibrary{skins}
@@ -75,7 +79,7 @@
         texdoc l3build
     \end{verbatim}
 
-    \subsection{Customize Generation}
+    \subsection{Customize Generation}\label{sec:precompile}
 
     In \verb"source/beamerthemesjtubeamer.ins", you could customize what templates you want to output on the line:
     \begin{verbatim}
@@ -174,6 +178,119 @@
     \subparagraph{Cons:} This method will limit some features \TeX{} provides and you may not pass the compilation if you switch some \verb"\def" to \verb"\newcommand" or \verb"\providecommand".
 
     \subparagraph{Decision:} Use unique name on interface function.
+
+    \subsubsection{Global Variable Definition}
+
+    Global variable means that it will be used across modules.
+
+    \paragraph{Global variables should use the naming scheme as follows.}
+
+    \begin{itemize}
+        \item Start with the project name \verb"sjtubeamer".
+        \item Split by \verb"@" symbol and move to the next level. (only for middle layer)
+        \item The final level should be the variable name itself.
+    \end{itemize}
+
+    \begin{lstlisting}
+\def\sjtubeamer@logocolor{sjtuRedPrimary}
+    \end{lstlisting}
+
+    \subparagraph{Pros:} Make a clear visual indication of the variable type and avoid duplicates with other packages.
+
+    \subparagraph{Cons:} A long name may make the typing experience troubling and easy to make faults (hard to check). 
+
+    \subparagraph{Decision:} You should avoid using global variables, which will only be useful if you are making communication between modules. If a bug occurs, it is hard to track in \LaTeX{}. As a matter of fact, only the parameter in the function can be called a \emph{local variable} (with an immediate substitution). All variables defined by \verb"\def" will be stored in the global register.
+
+    \subsubsection{Leaf Option Definition}
+
+    Leaf option means it is an option that will not be passed to the next level, or could be used immediately in this module.
+
+    \paragraph{Define the package option by a priority command, which will define a global variable as above.} This will create an option on this package, in package \#1, module \#2, and variable \#3.
+
+    \begin{lstlisting}
+\DefineOption{color}{color}{red}
+    \end{lstlisting}
+    which will define \verb"\def\sjtubeamer@color@color{red}" when it receives \verb"red" option. It is called a leaf option since it will be used in pair with the following condition test:
+
+    \begin{lstlisting}
+\if\EqualOption{color}{color}{red}\fi
+    \end{lstlisting}
+    which will check if the option is \verb"red".
+
+    \subsubsection{Communication Option Definition}
+
+    Communication option means it will be a global option passed between modules.
+
+    \paragraph{Declare the variable in an obvious way.} Use \verb"beamer" macro to declare an option that will not be used in this module.
+
+    \begin{lstlisting}
+\DeclareOptionBeamer{red}{\def\sjtubeamer@color{red}}
+    \end{lstlisting}
+
+    \subparagraph{Pros:} We are making difference between leaf options and communication options in order to not mess up the communication model. It will make the code much simpler.
+
+    \subparagraph{Cons:} It is not using \verb"kvoptions" package for a standard option receiving. Developer might to read the implementation of the macros in \verb"sjtuvi".
+
+    \subparagraph{Decision:} Use our \emph{dialect} of option representation.
+
+    \subsection{Cover Code}
+
+    The coding style in this section is available for the following file:
+    \begin{verbatim}
+        sjtucover.dtx
+    \end{verbatim}
+
+    \subsubsection{Use Beamer Variable}
+
+    \paragraph{Use beamer variable to set color and font.} \verb"beamer" class provides interfaces for using current configuration of color and font, see the documentation of \verb"beamer" class
+    \begin{verbatim}
+        texdoc beamer
+    \end{verbatim}
+
+    \begin{lstlisting}
+\usebeamercolor{palette primary}
+    \end{lstlisting}
+
+    \subparagraph{Pros:} Use native macro will provide a much more flexibility of your cover template. It is essential to make your template fit in the color/font management system.
+
+    \subparagraph{Cons:} Developer has to learn how to use these macros and some are not interested in that.
+
+    \subparagraph{Decision:} To make a pull request, you should always avoid using fixed color/font.
+
+    \subsubsection{New Option Declaration}
+
+    \paragraph{Copy every region in every file that marked as \texttt{my} and paste just below it.} The region is marked as
+
+    \begin{verbatim}
+        <*my>
+        ...
+        </my>
+    \end{verbatim}
+
+    paste it and change \verb"my" to your name of your template. And add the precompiling option mentioned in Section \ref{sec:precompile}.
+
+    \subparagraph{Pros:} This is useful for template management and end user could select what template to be precompiled.
+    
+    \subparagraph{Cons:} This is not so handy to search every file. We are working on an automated tool for developer to achive that.
+
+    \subparagraph{Decision:} Follow the rule to submit your template.
+
+    \subsubsection{Logo Color System}
+
+    \paragraph{Change the variable to change the color logo.} This will change the \emph{temporary} variable of the logo color to fit with different scenarios.
+
+    \begin{lstlisting}
+\def\sjtubeamer@logocolor{palette primary.fg}
+    \end{lstlisting}
+
+    What's more, you should always use the placeholder to insert your logo, surrounded by a size constraint.
+    \begin{lstlisting}
+\resizebox{!}{1cm}{\insertlogo}
+    \end{lstlisting}
+
+    \begin{warn}
+        Logo and title graphic share the color system on this variable. Be sure to change the color before you make those placeholders.
+    \end{warn}
 
     \section{Implementation}
 % The DocTeX follows the alphabatic order to input.

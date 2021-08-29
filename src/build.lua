@@ -15,7 +15,7 @@ docfiledir       = "doc"
 typesetexe       = "xelatex"
 typesetfiles     = {"sjtubeamerdevguide.tex","sjtubeamer.tex"}
 -- typesetruns      = 1 -- for debug. Some reference may not be linked.
-typesetdemofiles = {"min.tex"}
+-- typesetdemofiles = {"min.tex"}
 typesetsuppfiles = {"head.png","plant.jpg","test.csv","testgraph.tex","ref.bib"}
 
 -- Regression tests mainly test the decoupling properties between kernel modules.
