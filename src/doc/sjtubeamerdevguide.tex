@@ -1,10 +1,40 @@
 \documentclass{ltxdoc}
 \usepackage[scheme=plain]{ctex}
 \usepackage[colorlinks]{hyperref}
+\usepackage{fontspec}
+\defaultfontfeatures{Extension=.otf}
+\usepackage{fontawesome}
+\usepackage{tcolorbox}
+\tcbuselibrary{skins}
+
+\tcbset{
+    enhanced,
+    notitle,
+    sharp corners,
+    colframe=yellow,
+    boxrule=1pt,
+    center
+}
+
+\newtcolorbox{warn}[1][]{
+    colback=yellow!5,
+    borderline west={2mm}{0mm}{yellow},
+    before upper={\textcolor{yellow}{\large\faWarning\ }},
+    #1
+}
+
+\usepackage{listings}
+\lstset{
+    basicstyle=\ttfamily, 
+    frame=single, 
+    columns=flexible, 
+    extendedchars=false
+}
+
+\def\fcmd#1{\paragraph{\fbox{\ttfamily #1}}}
 
 \def\themename{\textsf{SJTUBeamer}}
 \title{Development Guide of\\\themename}
-\def\fcmd#1{\paragraph{\fbox{\ttfamily #1}}}
 
 \begin{document}
     \maketitle
@@ -30,7 +60,7 @@
     \begin{center}
         \ttfamily color font inner outer sjtuvi
     \end{center}
-    which will show if the module is standing-free. If the compilation error occurs, please check if your code uses one definition from another module without requiring it first, or the syntax error occurs.
+    which will show if the module is standing-free. If the compilation error occurs, please check if your code uses one definition from another module without requiring it first, or undefined control sequence occurs.
 
     \fcmd{l3build save color} If you make some modification to the framework (except \verb"sjtucover") and change the result. To save the current result as a reference, run this command and \verb"color" could be exchanged by any of the test units above.
 
@@ -53,9 +83,13 @@
     \end{verbatim}
     Reduce the parameter number will reduce the number of templates it generates. It is useful if you want to debug or make a slight performance jump. Or make your own version of this template.
 
+    \begin{warn}
+    \textbf{When you are pulling a request, the item in this column cannot be changed}. The extraction on your template should be decided by end users since large generation files could cause a performance drop on compiling. We are also glad to add your template to this column if your template is picked.
+    \end{warn}
+
     \subsection{Pull Request}
 
-    Before making a pull request, please refresh the root \verb".sty" files first. Switch to the main directory:
+    Before making a pull request, please refresh the root \verb".sty" files first in order to pass CI. In fact, if you are using \verb"l3build", we have embeded this action in \verb"l3build check" (which is included in \verb"l3build ctan"). But we still recommend that you should make a final run on the script. Switch to the main directory:
     \begin{verbatim}
         cd ..
     \end{verbatim}
@@ -66,7 +100,7 @@
 
     And all other scripts in the folder could also be checked in your local machine to make sure you can pass the CI on GitHub Actions.
 
-    If you are a Windows user\footnote{Windows 10 users could also install WSL (Windows Subsystem for Linux) in order to use Linux environment conveniently.}, please use the old extracting method in \verb"src/source":
+    If you are a Windows user\footnote{Windows 10 users could also install WSL (Windows Subsystem for Linux) in order to use Linux environment conveniently. This also provides a faster speed on compiling.} and your \verb"l3build" distribution is not 2021/08/28 and later, please use the old extracting method in \verb"src/source":
     \begin{verbatim}
         latex beamerthemesjtubeamer.ins
     \end{verbatim}
@@ -80,7 +114,66 @@
 
     This section gives a contribution code on coding style. Every contributor should follow this coding style if you want to make a pull request to this project.
 
+    \subsection{Framework Code}
 
+    The coding style in this section is available for the following files:
+    \begin{verbatim}
+        beamerthemesjtubeamer.dtx
+        beamercolorthemesjtubeamer.dtx
+        beamerfontthemesjtubeamer.dtx
+        beamerinnerthemesjtubeamer.dtx
+        beamerouterthemesjtubeamer.dtx
+        sjtuvi.dtx
+    \end{verbatim}
+
+    \subsubsection{Support Version}
+
+    We only support \TeX{} or \LaTeX{} code on these files. No \LaTeX3 code supported since \verb"beamer" is not written in \LaTeX3 and this template has a major dependency on \verb"beamer" class.
+
+    \subsubsection{Kernel Function Definition}
+
+    Kernel function means that it is not recommended to be used by end users.
+
+    \paragraph{If your definition parameters are mandatory, use \TeX\ style.} This gives you better flexibility on the definition. And in this scenario, please use a \emph{unique} command name for your function.
+
+    \begin{lstlisting}
+\def\EqualOption#1#2#3{}
+    \end{lstlisting}
+
+    \subparagraph{Pros:} Using the bottom layer on \TeX{} gives better processing speed. And make the parameter declared obviously will make the code more readable, so as the end user.
+
+    \subparagraph{Cons:} Using \TeX{} \verb"\def" method will skip the defined macro check provided by \LaTeX{}, which may cause macro conflict between different packages.
+
+    \subparagraph{Decision:} Use complicated name if you want to avoid naming conficts on function. This template won't provide a mandatory rule on this.
+
+    \paragraph{If your definition has an optional parameter, use \LaTeX\ style.} The maximum number of optional parameter is 1 only. You cannot have more optional parameters. Give the default optional parameter in the second square brackets.
+
+    \begin{lstlisting}
+\expandafter\providecommand\csname #1\endcsname
+    [1][\sjtubeamer@logocolor]{}
+    \end{lstlisting}
+
+    \subparagraph{Pros:} Using this method could get an optional parameter.
+
+    \subparagraph{Cons:} This method is less readable. And have to decide to use \verb"\newcommand" (check on duplicate functions) or \verb"\providecommand" (skip uniquness check).
+
+    \subparagraph{Decision:} Just use this method if you want an optional parameter. You should not write a function with more than one optional parameters.
+
+    \subsubsection{Interface Function Definition}
+
+    Interface function means that the function will be used by end users.
+
+    \paragraph{Use \LaTeX\ style on function definition.} This gives a clear visual indication on the type of this function.
+
+    \begin{lstlisting}
+\newcommand{\stamparray}[3]{}
+    \end{lstlisting}
+
+    \subparagraph{Pros:} This method will avoid the conflict on packages. Or it is easy to debug to know which package conflicts.
+
+    \subparagraph{Cons:} This method will limit some features \TeX{} provides and you may not pass the compilation if you switch some \verb"\def" to \verb"\newcommand" or \verb"\providecommand".
+
+    \subparagraph{Decision:} Use unique name on interface function.
 
     \section{Implementation}
 % The DocTeX follows the alphabatic order to input.
