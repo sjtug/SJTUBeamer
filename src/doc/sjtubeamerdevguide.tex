@@ -292,6 +292,29 @@
         Logo and title graphic share the color system on this variable. Be sure to change the color before you make those placeholders.
     \end{warn}
 
+    \subsection{Comment}
+
+    Comment means that it is in the Doc\TeX{} source code.
+
+    \subsubsection{Macro Comment}
+
+    \paragraph{Start a macro environment to start comment a macro.} This environment has one parameter to indicate the name of macro.
+
+    \begin{lstlisting}
+% \begin{macro}{\sjtubeamer@color}
+    ...
+% \end{macro}
+    \end{lstlisting}
+
+    \subsubsection{Macrocode}
+
+    \paragraph{To insert source code, you should surround your code with macrocode environment.} This environment must start with four spaces after \verb"%".
+
+    \begin{lstlisting}[showspaces=true]
+%    \begin{macrocode}
+...
+%    \end{macrocode}\end{lstlisting}
+
     \section{Implementation}
 % The DocTeX follows the alphabatic order to input.
     \DocInput{beamercolorthemesjtubeamer.dtx}
