@@ -3,7 +3,7 @@
 apk add zip diffutils
 cd src
 l3build ctan
-cp -r -f build/distrib/tds/tex/latex/sjtubeamer/* ..
+# This will trigger checkinit_hook() to move the files to the root directory.
 
 # turn resource files into symbolic link.
 # TODO: a more elegant solution in the future.
