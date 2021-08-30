@@ -42,6 +42,10 @@
 
 \begin{document}
     \maketitle
+    \begin{abstract}
+        \themename{} is a modular presentation framework based on \verb"beamer" class followed with flexible templates dedicated for SJTU users. Modern checking systems for \LaTeX\ are adopted on development.
+    \end{abstract}
+
     \tableofcontents
     \clearpage
 
@@ -277,7 +281,7 @@
 
     \subsubsection{Logo Color System}
 
-    \paragraph{Change the variable to change the color logo.} This will change the \emph{temporary} variable of the logo color to fit with different scenarios.
+    \paragraph{Change the variable to change the logo color.} This will change the \emph{temporary} variable of the logo color to fit with different scenarios.
 
     \begin{lstlisting}
 \def\sjtubeamer@logocolor{palette primary.fg}
@@ -294,7 +298,7 @@
 
     \subsection{Comment}
 
-    Comment means that it is in the Doc\TeX{} source code.
+    Comment means that the ignored lines in the Doc\TeX{} source code.
 
     \subsubsection{Macro Comment}
 
@@ -314,6 +318,26 @@
 %    \begin{macrocode}
 ...
 %    \end{macrocode}\end{lstlisting}
+
+    \section{Framework}
+
+    \themename\ is a modular presentation framework.
+
+    \begin{figure}[h]
+        \framebox[\textwidth]{\ttfamily main.tex}
+        
+        \framebox[\textwidth]{\ttfamily beamerthemesjtubeamer.sty}
+        
+        \framebox[0.25\textwidth]{\ttfamily colortheme.sty}\framebox[0.25\textwidth]{\ttfamily innertheme.sty}\framebox[0.25\textwidth]{\ttfamily outertheme.sty}\framebox[0.25\textwidth]{\ttfamily fonttheme.sty}
+        
+        \parbox[t]{0.25\textwidth}{\centering $\downarrow$}\framebox[0.25\textwidth]{\ttfamily sjtucover.sty}\parbox[t]{0.25\textwidth}{\centering $\downarrow$}\hspace*{0.25\textwidth}
+
+        \framebox[0.75\textwidth]{\ttfamily sjtuvi.sty}
+
+        \framebox[0.75\textwidth]{\ttfamily logo.pdf}
+    \end{figure}
+
+    
 
     \section{Implementation}
 % The DocTeX follows the alphabatic order to input.
