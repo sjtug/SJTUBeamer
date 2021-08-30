@@ -20,13 +20,16 @@ VSCode 用户可以使用 LaTeX Workshop 中的“Recipe: latexmk (latexmkrc)”
 
 您可以通过 GitHub Issue 反馈使用时碰到的问题。同时，也欢迎您提交 PR 帮助我们改进。
 
-> 在 src/source 中修改对应的源文件后，在存储库根目录运行 .github/ci/build_package.sh，编译成功后会对应地刷新根目录下的 sty 文件。
-> Windows 系统在 l3build 下一个更新没有发布之前，请使用
+在 `src/source` 中修改对应的源文件后，在存储库根目录运行 `.github/ci/build_package.sh`，编译成功后会对应地刷新根目录下的 sty 文件。
+
+Windows 系统在 l3build 下一个更新没有发布之前，请使用
 ```cmd
 cd src/source
 latex beamerthemesjtubeamer.ins
 ```
-> 手动解包复制。
+手动解包复制。
+
+新贡献者可以将自己的信息加入 `src/doc/sjtubeamerdevguide.tex` 的 `Developer` 章节。
 
 ## 测试版本
 
