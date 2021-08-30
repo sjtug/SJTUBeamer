@@ -11,7 +11,7 @@ for coverbuild in ${coverbuilds[@]};
 do
 {
     latexmk $@ -outdir=build build/cover-$coverbuild.tex
-} &
+}
 done
 wait
 
