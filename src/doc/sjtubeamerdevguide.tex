@@ -1,13 +1,9 @@
 \documentclass{ltxdoc}
 \usepackage[scheme=plain]{ctex}
 \usepackage[colorlinks]{hyperref}
-\usepackage{iftex}
-\ifPDFTeX % Windows User should always use this.
-\else%
-    \usepackage{fontspec}
-    \defaultfontfeatures{Extension=.otf}
-\fi
-\usepackage{fontawesome}
+\usepackage[numbers, sort&compress]{natbib}
+\bibliography{IEEEtran}
+\usepackage{array}
 \usepackage{tcolorbox}
 \tcbuselibrary{skins}
 
@@ -23,7 +19,7 @@
 \newtcolorbox{warn}[1][]{
     colback=yellow!5,
     borderline west={2mm}{0mm}{yellow},
-    before upper={\textcolor{yellow}{\large\faWarning\ }},
+    before upper={\textcolor{yellow}{WARNING }},
     #1
 }
 
@@ -34,6 +30,9 @@
     columns=flexible, 
     extendedchars=false
 }
+
+\usepackage{multicol}
+\usepackage{tikz}
 
 \def\fcmd#1{\paragraph{\fbox{\ttfamily #1}}}
 
@@ -51,7 +50,7 @@
 
     \section{Build}
 
-    \subsection{l3build}
+    \subsection{l3build}\label{sec:l3build}
 
     \themename{} adopts \verb"l3build" system to build the package. After entering the source code directory:
     \begin{verbatim}
@@ -319,7 +318,7 @@
 ...
 %    \end{macrocode}\end{lstlisting}
 
-    \section{Framework}
+    \section{Framework}\section{sec:framework}
 
     \themename\ is a modular presentation framework.
 
@@ -337,16 +336,214 @@
         \framebox[0.75\textwidth]{\ttfamily logo.pdf}
     \end{figure}
 
+    \subsection{Decoupling}
+
+    The framework is designed to be used seperately to meet the \verb"beamer" class requirements on \verb"theme". And any line in the following should be also available for compilation:
+    \begin{verbatim}
+        \usetheme{sjtubeamer}
+        \usecolortheme{sjtubeamer}
+        \usefonttheme{sjtubeamer}
+        \useinnertheme{sjtubeamer}
+        \useoutertheme{sjtubeamer}
+        \usepackage{sjtucover}
+        \usepackage{sjtuvi}
+    \end{verbatim}
+    which requires that the decoupling work betweeen modules should be taken seriously. The regression test performed by \verb"l3build check" in Section \ref{sec:l3build} will check such a standard.
+
+    \LaTeX{} doesn't load the same style file twice. If the style file is loaded before, then the next time it loads will get expanded to \verb"\endinput". Be aware if you are going to load a package twice and with different options, which will cause an \verb"option clash" error.
+
+    \subsection{Communication Model}
+
+    The communication model is expanded based on assigning value on a variable.
+
+    \begin{multicols}{2}    
+
+    \begin{center}
+        \fbox{Declare an option to assign a variable} \par
+        $\downarrow$ \par
+        \fbox{Set the default configuration} \par
+        $\downarrow$ \par
+        \fbox{Process the input from the user} \par
+        $\downarrow$ \par
+        \fbox{Pass the variable to the next module}
+    \end{center}
+
+    \begin{flushleft}
+        \verb"\DeclareOptionBeamer{max}"\par\verb"{\def\sjtubeamer@inner@cover{max}}" \par{\centering $\downarrow$ \par}
+        \verb"\ExcuteOptionsBeamer{max}" \par {\centering $\downarrow$ \par}
+        \verb"\ProcessOptionsBeamer" \par {\centering $\downarrow$ \par}
+        \verb"\PassOptionsToPackage"\par\verb"{\sjtubeamer@inner@cover}{sjtucover}"
+    \end{flushleft}
+
+    \end{multicols}
+
+    The table shows the flow of parameter passing.
+
+    \begin{table}[h]
+        \begin{tabular}{l|>{\ttfamily}l|>{\ttfamily}l>{\ttfamily}l>{\ttfamily}l}
+            & parent                           & color                           & inner                           & outer                         \\
+            \hline
+            cover & \textbackslash{}sjtubeamer@cover &                                 & \textbackslash{}...@inner@cover &                               \\
+            color & \textbackslash{}sjtubeamer@color & \textbackslash{}...@color@color & \textbackslash{}...@inner@color &                               \\
+            lum   & \textbackslash{}sjtubeamer@lum   & \textbackslash{}...@clolor@lum  &                                 &                               \\
+            lang  & \textbackslash{}sjtubeamer@lang  &                                 & \textbackslash{}...@inner@lang  &                               \\
+            nav   & \textbackslash{}sjtubeamer@nav   &                                 &                                 & \textbackslash{}...@outer@nav
+        \end{tabular}
+        \vskip 3pt\moveright 0in\vbox{\hrule width3cm \vskip 3pt
+        \moveleft 0em \vbox{
+            \hbox{$^{1}$ Since \texttt{font} theme doesn't get any parameters, the table omits this column.}
+            \hbox{$^{2}$ ... means \texttt{sjtubeamer}.}
+            \hbox{$^{3}$ \texttt{sjtucover} gets \texttt{\textbackslash{}...@sjtucover@cover} from inner.}
+        }}
+    \end{table}
+
+    \subsection{Template Management}
+
+    \themename\ has its own system on template management on title page and bottom page. A modified macro has been implemented to achive this. In a word, all variables will be stored on an artificial stack.
+
+    \begin{figure}[h]
+       \texttt{\textbackslash{}maketitle{[}maxplus{]}}\par
+       ~~$\hookrightarrow $set title template to \texttt{maxplus}\par
+       ~~\hspace*{2em}\texttt{\textbackslash{}titlepage}\par
+       ~~\hspace*{2em} $\hookrightarrow $ store the old \texttt{\textbackslash{}...@logocolor}\par
+       ~~\hspace*{4em} in sidebar mode, make a left shift\par
+       ~~\hspace*{4em} $\hookrightarrow $ insert the defined title page (in \verb"sjtucover.sty")\par
+       ~~\hspace*{4em}restore \texttt{\textbackslash{}...@logocolor}\par
+       ~~\hspace*{1em}restore title template back to \texttt{\textbackslash{}...@inner@cover} 
+    \end{figure}
+
+    Now, a sandbox in \verb"sjtucover.sty" is created. The modification on logo color is temporary and your page insertion aside from current theme is also temporary.
+
+    Since, large source code may cause performance drop on compiling. We have figure out a precompiling machnism to reduce the templates it generates. See Section \ref{sec:precompile}.
+
+    \subsection{Logo Color System}
+
+    \themename\ has its own color model on logo. The main macro is \verb"\definelogo", which will generate a macro on its file name.
     
+    TikZ provides an environment to create our own path fading from picture: \verb"tikzfadingfrompicture", where you could define your fading in a $(-1,-1)$ to $(1,1)$ rectangle area. Fill the background to black and insert a white logo in the middle will create a mask. Set the path fading to the name of this mask will apply to your new TikZ shape.
+
+    However, this only creates a square mask. We have to crop it for some rectangular bounding boxes. Our macro will decide from your input on horizontal and vertical cropping size for your picture fill the height of fill the width. And crop the area symmetrically.
+
+    \begin{figure}
+    \begin{tikzpicture}
+        \draw [fill=black] (-4,1) rectangle (-2,-1);
+        
+        \node [white] at (-3,0) {\LARGE Logo};
+        \node at (-3,-1.5) {\ttfamily tikzfadingfrompicture};
+        \node at (-0.5,0) {$\rightarrow$};
+        
+        \draw (0.5,0.5) rectangle (3,-0.5);
+        \node [red] at (1.75,0) {\LARGE Logo};
+        \node at (1.75,-1.5) {\verb"\def\logo"};
+        \node at (4,0) {$\rightarrow$};
+        
+        \node [blue] at (6,0) {\LARGE Logo};
+        \node at (6,-1.5) {\verb"\logo[blue]"};
+    \end{tikzpicture}
+    \end{figure}
+
+    And the logo color is controlled by a global variable \verb"\sjtubeamer@logocolor". It can be override by an optional parameter when you insert your logo.
+
+    \section{Compatibility}
+
+    Since the vision of \LaTeX{} is to build an open-source typesetting system for multi-platforms and \textsf{beamer} is on top of that to create an easy-to-configure interface on building presentations, \themename{} follows the footstep to make its best on compatibility.
+
+    \subsection{Beamer Interface}\label{sec:beamer}
+
+    \textsf{Beamer} has designed a system of modern interfaces for those theme creators. \themename{} has already followed the modular architecture, as is shown in Section \ref{sec:framework}.
+
+    And there are more APIs in \textsf{beamer} for each corresponding theme style. Here is a good material about it for a lead-in\cite{tex2017}, which provides a brief overview. And this part is only focusing on the implementation of \themename{}.
+    There are mainly three ways to modify a theme:
+    \begin{enumerate}
+        \item \textbf{Want to use presets.} Read Part \uppercase\expandafter{\romannumeral3} in the documentation of \textsf{beamer} package \cite{beamerman}. You can acquire the doc by the terminal command:
+        \begin{verbatim}
+            texdoc beamer
+        \end{verbatim}
+        Then, you could choose to use some preset theme, or call the macro to control the appearance of each component.
+        \item \textbf{Want a complete modification.} Read the source code of \textsf{beamer} package \cite{beamerman}. If no additional theme is used, \textsf{beamer} will assume you are creating a theme from \verb"default". And refer to the corresponding theme file suffixed by \verb"default" will give you the bottom mechanism to implement components.
+        \item \textbf{Want to solve difficult problems.} Go to \TeX{} Stack Exchange \cite{texsc} for help. Always search before you ask. Then you could probably find some patches and magical formulas to tackle the issue since \TeX{} is a Turing-complete language.
+    \end{enumerate}
+
+    \subsection{Mainstream Packages}\label{sec:mainstream}
+
+    Mainstream \LaTeX{} packages are used to make sure the choice on marcos is maintained currently. Since some engine doesn't support \textsf{GhostScript} well (\emph{e.g.} Xe\LaTeX{}), \themename{} (as well as \textsf{beamer}) uses \textsc{pgf} as the backend for graphics in \textsf{PostScript}. And half of the jobs are done on graphics to implement the requirements of VI.
+
+    \themename{} doesn't use too many rasterized pictures, since they are not flexible. You could get the Adobe Illustrator files on VI website\cite{viman}. SJTU VI goes minimalism so that it could be implemented by package Ti\emph{k}Z (which is on top of \textsc{pgf}). You could almost draw any vectorized shapes by referring to Ti\emph{k}Z documentation \cite{tikzman}. In short, Ti\emph{k}Z uses node-edge system to create graphs and many Computer Science pictures can be drawn in such a system\cite{tikztuna}. And if you don't want to mess around with the thousand pages of documentation, Ti\emph{k}ZEdt could help you create that in a WYSIWYG(what you see is what you get) way\cite{tikzedt}, which is a tool to make drafts on patterns.
+
+    \themename{} also uses additional packages like \textsc{pgfplots} and \textsc{PgfplotsTable} to draw highly personalized statistic graphs and layout table from CSV (Comma-Seperated Values) respectively. As is mentioned, the author created a tool \textsc{PgfplotsEdt} to help such graphs in an interactive way\cite{pgfedt}.
+
+    Code blocks are drawn by package \textsf{tcolorbox}, which is also a powerful toolkit to make customized boxes\cite{tcolorbox}. This is almost the most elegant way to make colorful boxes in the current \LaTeX{} system.
+
+    \subsection{Engine Support}
+    To be clear, \themename{} is not adapt to all kinds of compilers in the current \LaTeX{} world. 
+    \begin{table}[h]
+        \begin{center}
+            \begin{tabular}{ccc}
+                & Windows & Unix \\
+           pdf\LaTeX{}(C\TeX{}) & $\surd$ & \\
+           pdf\LaTeX{}(CJK) & $\surd$ & $\surd$ \\
+           Xe\LaTeX{} & $\diamondsuit$ & $\surd$ \\
+           Lua\LaTeX{} & $\diamondsuit$ & $\diamondsuit$\\
+       \end{tabular}
+           \vskip 3pt\moveright 1in\vbox{\hrule width3cm \vskip 3pt
+       \moveleft 0em \hbox{$^*\surd$ is fully available, while $\diamondsuit$ will have font issues.}
+           }
+        \end{center}
+    \end{table}
+
+    \themename{} make its effort on engine support in the following ways:
+    \begin{enumerate}
+        \item \textbf{Use \textsf{beamer} interface.} As is mentioned in Section \ref{sec:beamer}, \themename{} will not create its macro unless there is no substitute in the current version of \textsf{beamer} or it is a common method to implement some features. A good example for this is to make a bottom page, \themename{} mimicked \verb"\maketitle" command to implement \verb"\makebottom" command. A good outcome is that the style file could be separately used with low coupling. 
+        \item \textbf{Use mainstream packages.} Mentioned in Section \ref{sec:mainstream}, mainstream packages are widely accepted in many engines. Some top-level marcos are used to increase the readability of the source code, i.e., \textsc{pgf} is lengthy and hard to be maintained.
+        \item \textbf{Use old-fashioned \TeX{} code.} If there is a nice way to implement in \TeX{}, then go \TeX{}. \TeX{} is a box-based typesetting system, which may be mentioned in many Computer Science books. And \LaTeX{} is on top of that to provide clear-to-read macros. In some scenarios, the native \verb"\vbox" and \verb"\hbox" command could help calculate the position of characters in a more controllable way. But it is certainly painful to learn. The \TeX{} Book\cite{texbook} is the classic to learn that, but Notes On Programming in \TeX{}\cite{texnote} is more recommended in modern \LaTeX{}.
+    \end{enumerate}
 
     \section{Implementation}
 % The DocTeX follows the alphabatic order to input.
+\begin{quotation}
+    \scriptsize
+
+Copyright (C) 2021 SJTUG
+
+Licensed under the Apache License, Version 2.0 (the "License");
+you may not use this file except in compliance with the License.
+You may obtain a copy of the License at
+
+    \href{http://www.apache.org/licenses/LICENSE-2.0}{http://www.apache.org/licenses/LICENSE-2.0}
+
+Unless required by applicable law or agreed to in writing, software
+distributed under the License is distributed on an "AS IS" BASIS,
+WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+See the License for the specific language governing permissions and
+limitations under the License.
+
+\end{quotation}
+
     \DocInput{beamercolorthemesjtubeamer.dtx}
     \DocInput{beamerfontthemesjtubeamer.dtx}
     \DocInput{beamerinnerthemesjtubeamer.dtx}
     \DocInput{beamerouterthemesjtubeamer.dtx}
     \DocInput{beamerthemesjtubeamer.dtx}
 % SJTUG doesn't hold the copyright of the following code.
+
+\begin{quotation}
+    \scriptsize
+    Copyright (C) Shanghai Jiao Tong University
+
+The definition in this file is refered to the Visual Identity System
+from Shanghai Jiao Tong University (SJTU). 
+See \href{https://vi.sjtu.edu.cn}{https://vi.sjtu.edu.cn} for more information.
+
+SJTUG implements the design, but doesn't hold the copyright.
+Any commercial usage in this file should be acknowledged by
+the administration of SJTU.
+More infomation about the license,
+see \href{https://vi.sjtu.edu.cn/index.php/articles/bulletin/16}{https://vi.sjtu.edu.cn/index.php/articles/bulletin/16}. 
+\end{quotation}
+
     \DocInput{sjtucover.dtx}
     \DocInput{sjtuvi.dtx}
+
+    \bibliography{dev}
+
 \end{document}
