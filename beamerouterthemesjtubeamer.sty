@@ -21,7 +21,7 @@
 %% limitations under the License.
 %% ------------------------------------------------------------------------
 \NeedsTeXFormat{LaTeX2e}
-\ProvidesPackage{beamerouterthemesjtubeamer}[2021/08/28 sjtubeamer outer theme v1.5.0]
+\ProvidesPackage{beamerouterthemesjtubeamer}[2021/08/30 sjtubeamer outer theme v1.5.2]
 \RequirePackage{sjtuvi}
 \DefineOption{outer}{nav}{miniframes}
 \DefineOption{outer}{nav}{infolines}
@@ -41,8 +41,6 @@
   \useoutertheme{sidebar}
 \else\useoutertheme{\sjtubeamer@outer@nav}
 \fi\fi
-\setbeamercolor{frametitle}{use=titlelike,bg=white,fg=titlelike.fg}
-\setbeamercolor{frametitle right}{parent=subsection in head/foot}
 \addtobeamertemplate{navigation symbols}{}{
   \hbox{
     \raisebox{1.2pt}[0pt][0pt]{

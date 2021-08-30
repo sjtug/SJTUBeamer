@@ -16,7 +16,7 @@
 % \iffalse
 %<*package>
 \NeedsTeXFormat{LaTeX2e}
-\ProvidesPackage{beamerinnerthemesjtubeamer}[2021/08/28 sjtubeamer inner theme v1.5.0]
+\ProvidesPackage{beamerinnerthemesjtubeamer}[2021/08/30 sjtubeamer inner theme v1.5.2]
 %</package>
 % \fi
 % \CheckSum{0}
@@ -182,7 +182,7 @@
         \vfil
           \hbox to \paperwidth{
             \hfil
-              \resizebox{\paperwidth}{!}{\inserttitlegraphic}
+              \resizebox{\paperwidth}{!}{\sjtubg[opacity=0.2]}
             \hfil
           }
         \vfil
@@ -197,10 +197,15 @@
     \else
 %</min>
 %<*my>
-      %
-      % Developer could define your title graphic here for "my"...
-      %
-      \titlegraphic{}
+      \if\EqualOption{inner}{cover}{my}
+        %
+        % Developer could define your title graphic here for "my"...
+        %
+        \titlegraphic{}
+      \else
+%</my>
+%<*my>
+      \fi
 %</my>
 %<*min>
     \fi

@@ -47,7 +47,7 @@ jobs:
         with:
           run: .github/ci/gen_cover.sh -halt-on-error -time -quiet -lualatex
         name: build cover with LuaLaTeX
-      - run: cat build/build-*.log
+      - run: cat build/*.log
         name: display build log
         if: ${{ failure() || success() }}
       - uses: actions/upload-artifact@v2

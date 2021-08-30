@@ -54,3 +54,10 @@ function update_tag(file,content,tagname,tagdate)
     end
     return content
 end
+
+-- Move generated files to the main directory when it starts to check.
+function checkinit_hook()
+    for _,file in pairs(installfiles) do
+        return cp(file, unpackdir, "../")
+    end
+end
