@@ -292,7 +292,7 @@
     \end{lstlisting}
 
     \begin{warn}
-        Logo and title graphic share the color system on this variable. Be sure to change the color before you make those placeholders.
+        Logo and title graphic share this variable in the color system. Be sure to change the color before you make those placeholders.
     \end{warn}
 
     \subsection{Comment}
@@ -301,7 +301,7 @@
 
     \subsubsection{Macro Comment}
 
-    \paragraph{Start a macro environment to start comment a macro.} This environment has one parameter to indicate the name of macro.
+    \paragraph{Start a macro environment to start to comment a macro.} This environment has one parameter to indicate the name of the macro.
 
     \begin{lstlisting}
 % \begin{macro}{\sjtubeamer@color}
@@ -412,7 +412,7 @@
        ~~\hspace*{1em}restore title template back to \texttt{\textbackslash{}...@inner@cover} 
     \end{figure}
 
-    Now, a sandbox in \verb"sjtucover.sty" is created. The modification on logo color is temporary and your page insertion aside from current theme is also temporary.
+    Now, a sandbox in \verb"sjtucover.sty" is created. The modification on logo color is temporary and your page insertion aside from the current theme is also temporary.
 
     Since, large source code may cause performance drop on compiling. We have figure out a precompiling machnism to reduce the templates it generates. See Section \ref{sec:precompile}.
 
@@ -422,7 +422,7 @@
     
     TikZ provides an environment to create our own path fading from picture: \verb"tikzfadingfrompicture", where you could define your fading in a $(-1,-1)$ to $(1,1)$ rectangle area. Fill the background to black and insert a white logo in the middle will create a mask. Set the path fading to the name of this mask will apply to your new TikZ shape.
 
-    However, this only creates a square mask. We have to crop it for some rectangular bounding boxes. Our macro will decide from your input on horizontal and vertical cropping size for your picture fill the height of fill the width. And crop the area symmetrically.
+    However, this only creates a square mask. We have to crop it for some rectangular bounding boxes. Our macro will decide from your input on horizontal and vertical cropping size for your picture fill the height or fill the width. And crop the area symmetrically.
 
     \begin{figure}
     \begin{tikzpicture}
@@ -442,7 +442,7 @@
     \end{tikzpicture}
     \end{figure}
 
-    And the logo color is controlled by a global variable \verb"\sjtubeamer@logocolor". It can be override by an optional parameter when you insert your logo.
+    And the logo color is controlled by a global variable \verb"\sjtubeamer@logocolor". It can be overridden by an optional parameter when you insert your logo.
 
     \section{Compatibility}
 
