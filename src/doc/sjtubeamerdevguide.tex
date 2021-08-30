@@ -123,7 +123,7 @@
 
     \subsection{Framework Code}
 
-    The coding style in this section is available for the following files:
+    The coding style in this section is applicable for the following files:
     \begin{verbatim}
         beamerthemesjtubeamer.dtx
         beamercolorthemesjtubeamer.dtx
@@ -147,13 +147,13 @@
 \def\EqualOption#1#2#3{}
     \end{lstlisting}
 
-    \subparagraph{Pros:} Using the bottom layer on \TeX{} gives better processing speed. And make the parameter declared obviously will make the code more readable, so as the end user.
+    \subparagraph{Pros:} Using the bottom layer on \TeX{} gives better processing speed. And make the parameter declared obviously will make the code more readable, so as the end-user.
 
     \subparagraph{Cons:} Using \TeX{} \verb"\def" method will skip the defined macro check provided by \LaTeX{}, which may cause macro conflict between different packages.
 
     \subparagraph{Decision:} Use complicated name if you want to avoid naming conficts on function. This template won't provide a mandatory rule on this.
 
-    \paragraph{If your definition has an optional parameter, use \LaTeX\ style.} The maximum number of optional parameter is 1 only. You cannot have more optional parameters. Give the default optional parameter in the second square brackets.
+    \paragraph{If your definition has an optional parameter, use \LaTeX\ style.} The maximum number of the optional parameter is 1 only. You cannot have more optional parameters. Give the default optional parameter in the second square brackets.
 
     \begin{lstlisting}
 \expandafter\providecommand\csname #1\endcsname
@@ -170,7 +170,7 @@
 
     Interface function means that the function will be used by end users.
 
-    \paragraph{Use \LaTeX\ style on function definition.} This gives a clear visual indication on the type of this function.
+    \paragraph{Use \LaTeX\ style on function definition.} This gives a clear visual indication of the type of this function.
 
     \begin{lstlisting}
 \newcommand{\stamparray}[3]{}
@@ -206,9 +206,9 @@
 
     \subsubsection{Leaf Option Definition}
 
-    Leaf option means it is an option that will not be passed to the next level, or could be used immediately in this module.
+    Leaf option means it is an option that will not be passed to the next level or could be used immediately in this module.
 
-    \paragraph{Define the package option by a priority command, which will define a global variable as above.} This will create an option on this package, in package \#1, module \#2, and variable \#3.
+    \paragraph{Define the package option by an exclusive command, which will define a global variable the same as above.} This will create an option on this package, in package \#1, module \#2, and variable \#3.
 
     \begin{lstlisting}
 \DefineOption{color}{color}{red}
@@ -222,7 +222,7 @@
 
     \subsubsection{Communication Option Definition}
 
-    Communication option means it will be a global option passed between modules.
+    The communication option means it will be a global option passed between modules.
 
     \paragraph{Declare the variable in an obvious way.} Use \verb"beamer" macro to declare an option that will not be used in this module.
 
@@ -232,13 +232,13 @@
 
     \subparagraph{Pros:} We are making difference between leaf options and communication options in order to not mess up the communication model. It will make the code much simpler.
 
-    \subparagraph{Cons:} It is not using \verb"kvoptions" package for a standard option receiving. Developer might to read the implementation of the macros in \verb"sjtuvi".
+    \subparagraph{Cons:} It is not using \verb"kvoptions" package for a standard option receiver. The developer has to read the implementation of the macros in \verb"sjtuvi".
 
     \subparagraph{Decision:} Use our \emph{dialect} of option representation.
 
     \subsection{Cover Code}
 
-    The coding style in this section is available for the following file:
+    The coding style in this section is applicable for the following file:
     \begin{verbatim}
         sjtucover.dtx
     \end{verbatim}
@@ -254,7 +254,7 @@
 \usebeamercolor{palette primary}
     \end{lstlisting}
 
-    \subparagraph{Pros:} Use native macro will provide a much more flexibility of your cover template. It is essential to make your template fit in the color/font management system.
+    \subparagraph{Pros:} Use native macro will provide much more flexibility of your cover template. It is essential to make your template fit in the color/font management system.
 
     \subparagraph{Cons:} Developer has to learn how to use these macros and some are not interested in that.
 
@@ -262,7 +262,7 @@
 
     \subsubsection{New Option Declaration}
 
-    \paragraph{Copy every region in every file that marked as \texttt{my} and paste just below it.} The region is marked as
+    \paragraph{Copy every region in every file that is marked as \texttt{my} and paste just below it.} The region is marked as
 
     \begin{verbatim}
         <*my>
@@ -270,11 +270,11 @@
         </my>
     \end{verbatim}
 
-    paste it and change \verb"my" to your name of your template. And add the precompiling option mentioned in Section \ref{sec:precompile}.
+    Paste it and change \verb"my" to your name of your template. And add the precompiling option mentioned in Section \ref{sec:precompile}.
 
-    \subparagraph{Pros:} This is useful for template management and end user could select what template to be precompiled.
+    \subparagraph{Pros:} This is useful for template management and end-user could select what template to be precompiled.
     
-    \subparagraph{Cons:} This is not so handy to search every file. We are working on an automated tool for developer to achive that.
+    \subparagraph{Cons:} This is not so handy to search every file. We are working on an automated tool for developers to achieve that.
 
     \subparagraph{Decision:} Follow the rule to submit your template.
 
@@ -499,7 +499,6 @@
     \end{enumerate}
 
     \section{Developer}
-
     % Please sign your name here ...
     % Name (email address)
 
