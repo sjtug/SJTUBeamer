@@ -50,9 +50,12 @@ boxsep=0pt,left=6pt,right=6pt,top=2pt,bottom=0pt,
 fontupper=\sffamily,colupper=white}
 
 \usepackage{iftex}
-\ifpdftex%
+\ifpdftex 
+    % Windows should always use pdflatex to compile this doc
 \else
+    % *nix should always use xelatex to support fontawesome and ctex
     \usepackage{fontspec}
+    \defaultfontfeatures{Extension = .otf}
 \fi
 \usepackage{fontawesome}
 \usepackage{hologo}
@@ -64,8 +67,16 @@ fontupper=\sffamily,colupper=white}
     columns=flexible, 
     extendedchars=false
 }
-\newtcbinputlisting{\beamerdemo}[2][]{
-    listing file={tutourial/#2}
+
+\tcbuselibrary{skins,raster}
+\newtcbinputlisting{\beamerdemo}[2][1]{
+    enhanced jigsaw,
+    lower separated=false,
+    leftlower=0pt,rightlower=0pt,middle=0pt,
+    listing and comment,
+    listing file={tutourial/#2},
+    pdf comment,
+    comment style={drop lifted shadow, graphics pages={#1}}
 }
 
 \def\themename{\textsf{SJTUBeamer}}
@@ -102,10 +113,11 @@ fontupper=\sffamily,colupper=white}
     \section{测试模板}
 
     \begin{enumerate}
-        \item[\faWindows] Windows 系统采用 \hologo{pdfLaTeX} 编译以获得更快的编译速度。
-        \item[\faApple\ \faLinux] *nix 系统采用 \hologo{XeLaTeX} 编译以获得中文支持。
+        \item[ \faWindows] Windows 系统采用 \hologo{pdfLaTeX} 编译以获得更快的编译速度。
+        \item[ \faApple\ \faLinux] *nix 系统采用 \hologo{XeLaTeX} 编译以获得中文支持。
     \end{enumerate}
 
+    \beamerdemo[1]{step1}
     
 
     \part{进阶操作}

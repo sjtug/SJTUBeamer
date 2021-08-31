@@ -7,7 +7,13 @@ sourcefiles      = {"*.ins","*.dtx","*logo.pdf","sjtubadge.pdf","sjtubg.pdf","sj
 installfiles     = {"*.sty","*logo.pdf","sjtubadge.pdf","sjtubg.pdf","sjtubg.png","sjtuphoto.jpg"}
 
 docfiledir       = "doc"
-typesetexe       = "xelatex"
+
+if os.type == "windows" then
+    typesetexe       = "pdflatex"
+else
+    typesetexe       = "xelatex"
+end
+
 -- typesetfiles     = {"sjtubeamerdevguide.tex","sjtubeamer.tex"}
 typesetfiles     = {"sjtubeamer.tex"}
 typesetruns      = 1 -- for debug. Some reference may not be linked.
@@ -64,12 +70,14 @@ function typeset_demo_tasks()
         if fileexists(tutourialdir .. "/" .. pdffilename) == false then
             errorlevel = tex(p,tutourialdir,typesetcommand)
             if errorlevel ~= 0 then
+                print(pdffilename .. " compilation failed.")
                 return errorlevel
             end
         else
             print(pdffilename .. " exists.")
         end
     end
+    return 0
 end
 
 -- Move generated files to the main directory when it starts to check.
