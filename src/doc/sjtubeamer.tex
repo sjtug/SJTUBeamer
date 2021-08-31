@@ -57,11 +57,15 @@ fontupper=\sffamily,colupper=white}
 \usepackage{fontawesome}
 \usepackage{hologo}
 
+\tcbuselibrary{listingsutf8}
 \lstset{
     language=[LaTeX]TeX,
     basicstyle=\ttfamily,
     columns=flexible, 
     extendedchars=false
+}
+\newtcbinputlisting{\beamerdemo}[2][]{
+    listing file={tutourial/#2}
 }
 
 \def\themename{\textsf{SJTUBeamer}}

@@ -52,14 +52,22 @@ function update_tag(file,content,tagname,tagdate)
 end
 
 -- Generate tutourial files before compiling the doc.
+-- NOTICE: if you want to save the tourial pdf,
+--         please manually copy it to the directory build/doc/tutourial
+--         and when compiling doc, the compilation of this step will be skipped.
 function typeset_demo_tasks()
     local errorlevel = 0
     local tutourialdir = typesetdir .. "/tutourial"
     local typesetcommand = typesetexe .. " " .. typesetopts   -- patch l3build
     for _, p in ipairs(filelist(tutourialdir, "step*.tex")) do
-        errorlevel = tex(p,tutourialdir,typesetcommand)
-        if errorlevel ~= 0 then
-            return errorlevel
+        local pdffilename = string.gsub(p,".tex",".pdf")
+        if fileexists(tutourialdir .. "/" .. pdffilename) == false then
+            errorlevel = tex(p,tutourialdir,typesetcommand)
+            if errorlevel ~= 0 then
+                return errorlevel
+            end
+        else
+            print(pdffilename .. " exists.")
         end
     end
 end
