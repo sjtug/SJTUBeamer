@@ -1,31 +1,45 @@
 \documentclass[
     UTF8,
     heading=true,
-    scheme=plain
+    12pt
 ]{ctexrep}
+
+\pagestyle{plain}
 
 \usepackage{pifont}
 
 \ctexset {
     part = {
+        format = \bfseries\Huge,
         number = ,
         name = \themename,
+        nameformat = \huge
     },
     chapter = {
         beforeskip = 0pt,
         fixskip = true,
         format = \bfseries,
         name = ,
-        nameformat = \hfill\Huge,
+        nameformat = \hfill\huge,
         number = \arabic{chapter},
-        aftername = \,\par\medskip\hfill,
-        titleformat = \huge,
+        aftername = \,\par\hfill,
+        titleformat = \LARGE,
         aftertitle = \par\bigskip\nointerlineskip\rule{\linewidth}{2bp}\par
     },
     section = {
+        format = \bfseries\large\raggedright,
         number = \raisebox{-.1ex}{\ding{\numexpr181 + \arabic{section}}},
-        numberformat = \LARGE
+        numberformat = \Large
     }
+}
+
+\usepackage[colorlinks]{hyperref}
+
+\usepackage{enumitem}
+\setlist[enumerate]{
+    itemsep=0pt,
+    left=\parindent,
+    label=\raisebox{-.1ex}{\large\ding{\numexpr171 + \arabic*}}
 }
 
 \def\themename{\textsf{SJTUBeamer}}
@@ -35,10 +49,26 @@
     \date{\today}
     % \maketitle
 
+    \chapter*{\themename\ 介绍}
+
+    \themename\ 是基于 \verb"beamer" 文档类的主题宏集。
+
     \part{基础操作}
     \chapter{安装}
 
-    \section{开始安装}
+    \section{运行环境}
+
+    为了使用 \themename\ 的全部功能，请使用下者之一：
+    \begin{enumerate}
+        \item \href{https://miktex.org/}{MiK\TeX\ }
+        \item \href{https://mirrors.sjtug.sjtu.edu.cn/ctan/systems/texlive/Images/texlive2021-20210325.iso}{\TeX\ Live} 2020 及以上版本
+    \end{enumerate}
+
+    % 上传至 CTAN 后本段可以直接更改为安装宏包的标准流程
+    \section{下载模板}
+
+    前往 GitHub 上的 \href{https://github.com/sjtug/SJTUBeamer}{sjtug/SJTUBeamer} 页面，点击 Code 按钮下载压缩文件。
+
 
 
     \part{进阶操作}
