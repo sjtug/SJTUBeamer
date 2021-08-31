@@ -65,18 +65,29 @@ fontupper=\sffamily,colupper=white}
     language=[LaTeX]TeX,
     basicstyle=\ttfamily,
     columns=flexible, 
-    extendedchars=false
+    extendedchars=false,
+    lineskip=-.1cm
 }
 
 \tcbuselibrary{skins,raster}
-\newtcbinputlisting{\beamerdemo}[2][1]{
+\newtcbinputlisting[auto counter]{\beamerdemo}[2][1]{
     enhanced jigsaw,
     lower separated=false,
     leftlower=0pt,rightlower=0pt,middle=0pt,
-    listing and comment,
+    listing side comment,
     listing file={tutourial/#2},
+    listing options={
+        style=tcblatex,
+        texcsstyle=*\color{red!70!black}
+    },
     pdf comment,
-    comment style={drop lifted shadow, graphics pages={#1}}
+    comment style={
+        drop lifted shadow,
+        graphics pages={#1},
+        raster columns=1
+    },
+    tile,
+    title={\faEdit 示例 \thetcbcounter}
 }
 
 \def\themename{\textsf{SJTUBeamer}}
@@ -116,6 +127,8 @@ fontupper=\sffamily,colupper=white}
         \item[ \faWindows] Windows 系统采用 \hologo{pdfLaTeX} 编译以获得更快的编译速度。
         \item[ \faApple\ \faLinux] *nix 系统采用 \hologo{XeLaTeX} 编译以获得中文支持。
     \end{enumerate}
+
+    下面的代码可以用于测试 \themename\ 是否可以正常使用。
 
     \beamerdemo[1]{step1}
     
