@@ -1,10 +1,5 @@
 #!/usr/bin/env texlua
 
--- Windows MikTeX still have l3build bug!
--- Use ubuntu to compile.
--- https://github.com/latex3/l3build/issues/185
--- The fix has not been released yet.
-
 module           = "sjtubeamer"
 
 sourcefiledir    = "source"
@@ -13,10 +8,11 @@ installfiles     = {"*.sty","*logo.pdf","sjtubadge.pdf","sjtubg.pdf","sjtubg.png
 
 docfiledir       = "doc"
 typesetexe       = "xelatex"
-typesetfiles     = {"sjtubeamerdevguide.tex","sjtubeamer.tex"}
--- typesetruns      = 1 -- for debug. Some reference may not be linked.
-typesetdemofiles = {"min.tex"}
-typesetsuppfiles = {"head.png","plant.jpg","test.csv","testgraph.tex","ref.bib"}
+-- typesetfiles     = {"sjtubeamerdevguide.tex","sjtubeamer.tex"}
+typesetfiles     = {"sjtubeamer.tex"}
+typesetruns      = 1 -- for debug. Some reference may not be linked.
+-- typesetdemofiles = {"min.tex"}
+typesetsuppfiles = {"head.png","plant.jpg","test.csv","testgraph.tex","ref.bib","tutourial/"}
 
 -- Regression tests mainly test the decoupling properties between kernel modules.
 testfiledir      = "./testfiles"
@@ -53,6 +49,19 @@ function update_tag(file,content,tagname,tagdate)
             "\n\\date{" .. tagname .. " %1}\n")
     end
     return content
+end
+
+-- Generate tutourial files before compiling the doc.
+function typeset_demo_tasks()
+    local errorlevel = 0
+    local tutourialdir = typesetdir .. "/tutourial"
+    local typesetcommand = typesetexe .. " " .. typesetopts   -- patch l3build
+    for _, p in ipairs(filelist(tutourialdir, "step*.tex")) do
+        errorlevel = tex(p,tutourialdir,typesetcommand)
+        if errorlevel ~= 0 then
+            return errorlevel
+        end
+    end
 end
 
 -- Move generated files to the main directory when it starts to check.

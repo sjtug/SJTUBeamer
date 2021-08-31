@@ -42,6 +42,28 @@
     label=\raisebox{-.1ex}{\large\ding{\numexpr171 + \arabic*}}
 }
 
+\usepackage{tcolorbox}
+\newtcbox{\xbutton}[1][red]{on line,
+arc=3pt,colback=#1!50!black,colframe=#1!50!black,
+before upper={\rule[-3pt]{0pt}{10pt}},boxrule=1pt,
+boxsep=0pt,left=6pt,right=6pt,top=2pt,bottom=0pt,
+fontupper=\sffamily,colupper=white}
+
+\usepackage{iftex}
+\ifpdftex%
+\else
+    \usepackage{fontspec}
+\fi
+\usepackage{fontawesome}
+\usepackage{hologo}
+
+\lstset{
+    language=[LaTeX]TeX,
+    basicstyle=\ttfamily,
+    columns=flexible, 
+    extendedchars=false
+}
+
 \def\themename{\textsf{SJTUBeamer}}
 
 \begin{document}
@@ -64,12 +86,23 @@
         \item \href{https://mirrors.sjtug.sjtu.edu.cn/ctan/systems/texlive/Images/texlive2021-20210325.iso}{\TeX\ Live} 2020 及以上版本
     \end{enumerate}
 
+    % 上传至 Overleaf 后添加对应在线步骤
     % 上传至 CTAN 后本段可以直接更改为安装宏包的标准流程
     \section{下载模板}
 
-    前往 GitHub 上的 \href{https://github.com/sjtug/SJTUBeamer}{sjtug/SJTUBeamer} 页面，点击 Code 按钮下载压缩文件。
+    \begin{enumerate}
+        \item 前往 GitHub 上的 \faGithub{}~\href{https://github.com/sjtug/SJTUBeamer}{sjtug/SJTUBeamer} 页面，点击 \xbutton[green]{Code} 按钮下载压缩文件，在解压后的主目录里新建 \TeX{} 源文件即可调用该模板。
+        \item 或者点击进入存储库侧栏的 \href{https://github.com/sjtug/SJTUBeamer/releases}{\textsf{Releases}} 下载查看最新发布版本，并下载 \textsf{Assets} 栏的 \texttt{sjtubeamer-ctan.zip}。
+    \end{enumerate}
+    
+    \section{测试模板}
 
+    \begin{enumerate}
+        \item[\faWindows] Windows 系统采用 \hologo{pdfLaTeX} 编译以获得更快的编译速度。
+        \item[\faApple\ \faLinux] *nix 系统采用 \hologo{XeLaTeX} 编译以获得中文支持。
+    \end{enumerate}
 
+    
 
     \part{进阶操作}
     \chapter{修改}
