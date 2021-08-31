@@ -90,6 +90,16 @@ fontupper=\sffamily,colupper=white}
     title={\faEdit 示例 \thetcbcounter}
 }
 
+\newenvironment{beamerdemoraster}[3][]{
+    \begin{tcbraster}[raster columns=3,colframe=#2,colback=white,
+        colbacktitle=#2!50!white,fonttitle=\small\bfseries\ttfamily,fontupper=\ttfamily,
+        left=0pt,right=0pt,top=0pt,bottom=0pt,boxsep=0pt,boxrule=0.6pt,
+        toptitle=1mm,bottomtitle=1mm,drop lifted shadow,center title,
+        graphics pages={#1}]
+        \tcbincludepdf{tutourial/#3.pdf}
+    \end{tcbraster}
+}{}
+
 \def\themename{\textsf{SJTUBeamer}}
 
 \begin{document}
@@ -132,6 +142,30 @@ fontupper=\sffamily,colupper=white}
 
     \beamerdemo[1]{step1}
     
+    {\small
+        \begin{enumerate}
+            \item 第一行载入 \verb"ctex" 宏包提供的 \verb"ctexbeamer" 文档类。如果不需要中文支持，可以直接使用 \verb"beamer" 文档类。
+            \item 第二行载入 \verb"sjtubeamer" 主题。
+            \item 使用 \verb"document" 环境进入文档主体。
+            \item 使用 \verb"frame" 环境创建新的幻灯片（帧）。
+            \item 在帧中输入文字即可在屏幕垂直居中位置产生文字。
+        \end{enumerate}
+    }
+
+    \clearpage
+
+    \chapter{样式}
+
+    在开始填入内容前，应当首先确定需要使用的样式。\themename 目前提供了三种不同的主要主题、两种配色和明暗模式。
+
+    \begin{beamerdemoraster}[1,3,5,2,4,6]{red}{step2tb}
+    \end{beamerdemoraster}
+
+    \begin{beamerdemoraster}[1,2,3]{blue}{step2bd}
+    \end{beamerdemoraster}
+
+    \begin{beamerdemoraster}[1,2,3]{blue}{step2bl}
+    \end{beamerdemoraster}
 
     \part{进阶操作}
     \chapter{修改}
