@@ -1,8 +1,50 @@
-\documentclass{article}
-\usepackage[UTF8]{ctex}
+\documentclass[
+    UTF8,
+    heading=true,
+    scheme=plain
+]{ctexrep}
+
+\usepackage{pifont}
+
+\ctexset {
+    part = {
+        number = ,
+        name = \themename,
+    },
+    chapter = {
+        beforeskip = 0pt,
+        fixskip = true,
+        format = \bfseries,
+        name = ,
+        nameformat = \hfill\Huge,
+        number = \arabic{chapter},
+        aftername = \,\par\medskip\hfill,
+        titleformat = \huge,
+        aftertitle = \par\bigskip\nointerlineskip\rule{\linewidth}{2bp}\par
+    },
+    section = {
+        number = \raisebox{-.1ex}{\ding{\numexpr181 + \arabic{section}}},
+        numberformat = \LARGE
+    }
+}
+
 \def\themename{\textsf{SJTUBeamer}}
+
 \begin{document}
     \title{\themename}
     \date{\today}
-    \maketitle
+    % \maketitle
+
+    \part{基础操作}
+    \chapter{安装}
+
+    \section{开始安装}
+
+
+    \part{进阶操作}
+    \chapter{修改}
+
+    \part{高级操作}
+    \chapter{源代码}
+
 \end{document}
