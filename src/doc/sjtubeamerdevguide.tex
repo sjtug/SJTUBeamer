@@ -58,16 +58,33 @@
     \end{verbatim}
     You could operate the package by the following command. The build script is set in \verb"build.lua".
 
-    \fcmd{l3build doc} This command will generate the documentation of this package. We set an overall testing file \verb"doc/min.tex" to test all features of \themename. This is the most common command for testing a certain feature.
+    \fcmd{l3build unpack} This command will unpack the source code and create a sandbox environment in \verb"build/local". You can create your own test file to test certain features here. This is the most common command for testing a certain feature.
+
+    \fcmd{l3build doc} This command will generate the documentation of this package. We set an overall testing file \verb"doc/min.tex" to test all features of \themename.
     \begin{center}
         unpack $\rightarrow$ \verb"min.tex" $\rightarrow$ documentations
     \end{center}
+    Since the doc has a lot of dependencies, you can cache the demo files to \verb"support/tutourial" directory.
+    \begin{verbatim}
+        cd support/tutourial
+        ./cache_pdf.sh
+    \end{verbatim}
+    or you could remove all the cached files by
+    \begin{verbatim}
+        ./clean_pdf.sh
+    \end{verbatim}
+    and don't forget to back to the source code directory if you want to use \verb"l3build":
+    \begin{verbatim}
+        cd ../..
+    \end{verbatim}
 
     \fcmd{l3build check} Process a regression test, with an optional parameter to perform one of the following tests:
     \begin{center}
         \ttfamily color font inner outer sjtuvi
     \end{center}
     which will show if the module is standing-free. If the compilation error occurs, please check if your code uses one definition from another module without requiring it first, or undefined control sequence occurs.
+
+    This command will also move the generated style files to the root directory.
 
     \fcmd{l3build save color} If you make some modification to the framework (except \verb"sjtucover") and change the result. To save the current result as a reference, run this command and \verb"color" could be exchanged by any of the test units above.
 
