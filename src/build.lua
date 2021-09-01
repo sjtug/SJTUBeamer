@@ -58,13 +58,14 @@ function update_tag(file,content,tagname,tagdate)
 end
 
 -- Generate tutourial files before compiling the doc.
--- NOTICE: if you want to save the tourial pdf,
---         please manually copy it to the directory build/doc/tutourial
---         and when compiling doc, the compilation of this step will be skipped.
+-- NOTICE: if you want to save the tourial step pdf,
+--         please enter support/tutourial adn run cache_pdf.sh
+--         if you want to clean the cache, please run clean_pdf.sh 
 function typeset_demo_tasks()
     local errorlevel = 0
     local tutourialdir = typesetdir .. "/tutourial"
     local typesetcommand = typesetexe .. " " .. typesetopts   -- patch l3build
+    print("============================================================\n If you want to save the previous demo files\n Please move the pdf into the support/tutourial directory.\n============================================================")
     for _, p in ipairs(filelist(tutourialdir, "step*.tex")) do
         local pdffilename = string.gsub(p,".tex",".pdf")
         if fileexists(tutourialdir .. "/" .. pdffilename) == false then
