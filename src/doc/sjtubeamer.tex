@@ -65,8 +65,11 @@ fontupper=\sffamily,colupper=white}
     language=[LaTeX]TeX,
     basicstyle=\ttfamily,
     columns=flexible, 
+    emph=[1]{usetheme},
+    emphstyle=\color{blue},
     extendedchars=false,
-    lineskip=-.1cm
+    lineskip=-.1cm,
+    breaklines
 }
 
 \tcbuselibrary{skins,raster}
@@ -144,7 +147,7 @@ fontupper=\sffamily,colupper=white}
     
     {\small
         \begin{enumerate}
-            \item 第一行载入 \verb"ctex" 宏包提供的 \verb"ctexbeamer" 文档类。如果不需要中文支持，可以直接使用 \verb"beamer" 文档类。
+            \item 第一行载入 \verb"ctex" 宏包提供的 \verb"ctexbeamer" 文档类。如果不需要中文支持，可以直接使用 \verb"beamer" 文档类。如果需要使用 16:9 的荧幕比例，可以参照示例 2 的相关参数。
             \item 第二行载入 \verb"sjtubeamer" 主题。
             \item 使用 \verb"document" 环境进入文档主体。
             \item 使用 \verb"frame" 环境创建新的幻灯片（帧）。
@@ -158,7 +161,7 @@ fontupper=\sffamily,colupper=white}
 
     在开始填入内容前，应当首先确定需要使用的样式。\themename 目前提供了三种不同的主要主题、两种配色和明暗模式。
 
-    \noindent\ttfamily\hfil\hspace*{-.5cm} + maxplus \hfil\hfil\hspace*{-.5cm}  + max \hfil\hfil + min \hfil\par
+    \noindent{\ttfamily\hfil\hspace*{-.5cm} + maxplus \hfil\hfil\hspace*{-.5cm}  + max \hfil\hfil + min \hfil}\par
     \vspace*{-.2cm}
     \begin{beamerdemoraster}[1,3,5,2,4,6]{red}{step2tb}
     \end{beamerdemoraster}
@@ -169,12 +172,15 @@ fontupper=\sffamily,colupper=white}
     \begin{beamerdemoraster}[1,2,3]{blue}{step2bl}
     \end{beamerdemoraster}
 
+    \themename 可以与 \verb"beamer" 提供的九种外样式随意搭配。
+
     \def\myincludepdf#1{
         \tcbincludepdf[title={#1},
         colframe=red!50!black,colback=red!10!white,
         colbacktitle=red!50!white,left=0pt,right=0pt,top=0pt,
         bottom=0pt,boxsep=0pt,boxrule=0.6pt,
-        toptitle=1mm,bottomtitle=1mm,drop lifted shadow,center title]
+        toptitle=1mm,bottomtitle=1mm,drop lifted shadow,
+        center title,fonttitle=\ttfamily]
         {tutourial/step2#1.pdf}
     }
     \begin{tcbitemize}[raster columns=3, raster equal height,
@@ -190,6 +196,11 @@ fontupper=\sffamily,colupper=white}
         \tcbitem \myincludepdf{tree}
         \tcbitem \myincludepdf{smoothtree}
     \end{tcbitemize}
+
+    \beamerdemo[1]{step2}
+
+    \chapter{草稿}
+    
 
     \part{进阶操作}
     \chapter{修改}
