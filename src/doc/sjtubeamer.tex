@@ -1,7 +1,8 @@
 \documentclass[
     UTF8,
     heading=true,
-    12pt
+    12pt,
+    a4paper
 ]{ctexrep}
 
 \pagestyle{plain}
@@ -214,6 +215,8 @@ fontupper=\sffamily,colupper=white}
         \item 该模式也会关闭目录与引用的生成。
     \end{enumerate}
 
+    \clearpage
+
     当然，如果演示文稿的内容过长的话，推荐分成许多个文件编写。最后通过一个主文件拼接起来。如果暂时想专心编写某一部分的内容，可以直接注释掉其他部分的入口。
 
     \beamerdemo[1]{step4}
@@ -226,12 +229,24 @@ fontupper=\sffamily,colupper=white}
 
     \begin{enumerate}
         \small
-        \item 在载入模板时选择 \texttt{maxplus}, \texttt{max}, \texttt{min}以使用不同的标题页结尾页模板。
+        \item 在载入模板时选择 \texttt{maxplus}, \texttt{max}, \texttt{min} 以使用不同的标题页结尾页模板。
         \item 组织（\texttt{\textbackslash{}institute}）可选，\texttt{min}会根据二级机构的处理方法排列徽标。
         \item \texttt{\textbackslash{}maketitle} 可以制作标题页，\texttt{\textbackslash{}makebottom} 可以制作结束页$^*$。
         \item$^*$ 标题页中 \texttt{\textbackslash{}thanks} 被禁用，\texttt{\textbackslash{}makebottom} 是 \themename\ 专有命令。
-        \item[\faWarning] 将元数据写在 \texttt{document} 中可能会产生警告，但是写在外部可能会加长编译时间。
+        \item[\faWarning] 将元数据写在 \texttt{document} 中可能会产生警告，可无视。
     \end{enumerate}
+
+    \chapter{目录}
+    
+    目录功能是 \texttt{beamer} 的特色之一。\themename\ 提供了两种插入目录的方法。
+
+    \section{单页目录}
+
+    传统的插入目录的方法就是使用标准的目录命令。
+
+    \beamerdemo[1]{step6+.tex}
+
+    \section{节次提示}
 
     \part{进阶操作}
     \chapter{修改}

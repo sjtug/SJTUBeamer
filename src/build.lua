@@ -70,6 +70,10 @@ function typeset_demo_tasks()
         local pdffilename = string.gsub(p,".tex",".pdf")
         if fileexists(tutourialdir .. "/" .. pdffilename) == false then
             errorlevel = tex(p,tutourialdir,typesetcommand)
+            if string.find(p,"+") ~= nil then
+                -- compile the second time if it is marked as "+"
+                errorlevel = tex(p,tutourialdir,typesetcommand)
+            end
             if errorlevel ~= 0 then
                 print(pdffilename .. " compilation failed.")
                 return errorlevel
