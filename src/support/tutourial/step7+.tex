@@ -1,9 +1,10 @@
 \documentclass[aspectratio=169]{ctexbeamer}
 \usetheme[min]{sjtubeamer}
 \begin{document}
+\AtBeginSection[]{
     \begin{frame}
-        \frametitle{目录}
-        \tableofcontents
+        \sectionpage
     \end{frame}
+}
 \include{maincontents.tex}
 \end{document}
