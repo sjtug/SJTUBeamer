@@ -112,7 +112,7 @@ fontupper=\sffamily,colupper=white}
 
     \chapter*{\themename\ 介绍}
 
-    \themename\ 是基于 \verb"beamer" 文档类的主题宏集。
+    \themename\ 是基于 \texttt{beamer} 文档类的主题宏集。
 
     \setcounter{tocdepth}{0}
     \tableofcontents
@@ -150,10 +150,10 @@ fontupper=\sffamily,colupper=white}
     
     {\small
         \begin{enumerate}
-            \item 第一行载入 \verb"ctex" 宏包提供的 \verb"ctexbeamer" 文档类。如果不需要中文支持，可以直接使用 \verb"beamer" 文档类。如果需要使用 16:9 的荧幕比例，可以参照示例 2 的相关参数。
-            \item 第二行载入 \verb"sjtubeamer" 主题。
-            \item 使用 \verb"document" 环境进入文档主体。
-            \item 使用 \verb"frame" 环境创建新的幻灯片（帧）。
+            \item 第一行载入 \texttt{ctex} 宏包提供的 \texttt{ctexbeamer} 文档类。如果不需要中文支持，可以直接使用 \texttt{beamer} 文档类。如果需要使用 16:9 的荧幕比例，可以参照示例 2 的相关参数。
+            \item 第二行载入 \texttt{sjtubeamer} 主题。
+            \item 使用 \texttt{document} 环境进入文档主体。
+            \item 使用 \texttt{frame} 环境创建新的幻灯片（帧）。
             \item 在帧中输入文字即可在屏幕垂直居中位置产生文字。
         \end{enumerate}
     }
@@ -175,7 +175,7 @@ fontupper=\sffamily,colupper=white}
     \begin{beamerdemoraster}[1,2,3]{blue}{step2bl}
     \end{beamerdemoraster}
 
-    \themename 可以与 \verb"beamer" 提供的九种外样式随意搭配。
+    \themename 可以与 \texttt{beamer} 提供的九种外样式随意搭配。
 
     \def\myincludepdf#1{
         \tcbincludepdf[title={#1},
@@ -204,21 +204,34 @@ fontupper=\sffamily,colupper=white}
 
     \chapter{草稿}
 
-    在确定版式后，下一步就要输入文字填入内容了。由于 \LaTeX\ 的编译速度较慢，在打草稿的时候，我们推荐开启 \verb"beamer" 文档类的 \verb"draft" 模式，只关注于内容。在这种模式下，图片都不会被载入，而是使用一个占位符代替。
+    在确定版式后，下一步就要输入文字填入内容了。由于 \LaTeX\ 的编译速度较慢，在打草稿的时候，我们推荐开启 \texttt{beamer} 文档类的 \texttt{draft} 模式，只关注于内容。在这种模式下，图片都不会被载入，而是使用一个占位符代替。
 
     \beamerdemo[1]{step3}
 
     \begin{enumerate}
         \small
-        \item 使用 \verb"columns" 环境分栏，也可以采用 \verb"multicol" 宏包提供的 \verb"multicols" 环境。后者还兼容 \verb"article" 文档类。
+        \item 使用 \texttt{columns} 环境分栏，也可以采用 \texttt{multicol} 宏包提供的 \texttt{multicols} 环境。后者还兼容 \texttt{article} 文档类。
         \item 该模式也会关闭目录与引用的生成。
     \end{enumerate}
 
     当然，如果演示文稿的内容过长的话，推荐分成许多个文件编写。最后通过一个主文件拼接起来。如果暂时想专心编写某一部分的内容，可以直接注释掉其他部分的入口。
 
-    \beamerdemo[1]{step3b}
+    \beamerdemo[1]{step4}
 
-    \chapter{}
+    \chapter{封面}
+
+    当内容完成之后，就可以制作封面和封底了。在此之前需要先填写该文档的元数据信息：标题、副标题、作者、组织、日期。
+
+    \beamerdemo[1,2]{step5}
+
+    \begin{enumerate}
+        \small
+        \item 在载入模板时选择 \texttt{maxplus}, \texttt{max}, \texttt{min}以使用不同的标题页结尾页模板。
+        \item 组织（\texttt{\textbackslash{}institute}）可选，\texttt{min}会根据二级机构的处理方法排列徽标。
+        \item \texttt{\textbackslash{}maketitle} 可以制作标题页，\texttt{\textbackslash{}makebottom} 可以制作结束页$^*$。
+        \item$^*$ 标题页中 \texttt{\textbackslash{}thanks} 被禁用，\texttt{\textbackslash{}makebottom} 是 \themename\ 专有命令。
+        \item[\faWarning] 将元数据写在 \texttt{document} 中可能会产生警告，但是写在外部可能会加长编译时间。
+    \end{enumerate}
 
     \part{进阶操作}
     \chapter{修改}
