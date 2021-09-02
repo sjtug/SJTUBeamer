@@ -221,12 +221,8 @@
   \vfill
 }
 \useinnertheme{circles}
-\if\EqualOption{inner}{cover}{maxplus}%
+\if\EqualOption{inner}{cover}{min}\else
   \setbeamertemplate{blocks}[rounded]
-\else
-  \if\EqualOption{inner}{cover}{max}%
-    \setbeamertemplate{blocks}[rounded]
-  \fi
 \fi
 \newtcbox{\highlight}[1][cprimary]{
   on line,
@@ -354,6 +350,8 @@
         after row=\bottomrule
       },
     }
+    \newcolumntype{L}[1]{>{\begin{pgfplotstablecoltype}[#1]}
+      r<{\end{pgfplotstablecoltype}}}
   }{}
   \def\Hy@WarnOptionDisabled#1{
       \def\next{#1}%

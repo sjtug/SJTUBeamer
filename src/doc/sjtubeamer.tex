@@ -342,6 +342,32 @@ fontupper=\sffamily,colupper=white}
         \item[\faWarning] 使用代码块的页其 \texttt{frame} 环境必须添加 \texttt{fragile} 参数。
     \end{enumerate}
 
+    \chapter{图表}
+
+    表格与统计图是展示数据最直观的方式，可以采用内建的方式插入风格统一的矢量图表。\themename\ 对此设定了一些预设。
+
+    \section{表格}
+
+    考虑到许多专业数据是直接存储在逗号分隔符（\texttt{.csv}）文件中的，便于数据内容的后续更改，用户可以采用 \texttt{pgfplotstable} 宏包从文件插入表格。
+
+    \beamerdemo[1]{step14.tex}
+
+    \begin{enumerate}\small
+        \item 需要加载 \texttt{pgfplotstable} 宏包，表头变为主题色，采用三线表的样式。$^*$
+        \item 也可以使用标准表格插入的方法，只是不会有这种优化。可以使用 \href{https://www.tablesgenerator.com/latex_tables}{Table Generator} 生成标准表格代码。
+    \end{enumerate}
+
+    \section{统计图}
+
+    如果希望通过统计图更加直观地展示数据，可以使用 \texttt{pgfplots} 宏包插入统计图。
+
+    \beamerdemo[1]{step15.tex}
+
+    \begin{enumerate}\small
+        \item 需要加载 \texttt{pgfplots} 宏包，必要时额外加载 \texttt{pgfplotstable} 宏包以读取文件数据。可以使用 \href{https://logcreative.github.io/PGFPlotsEdt/}{PGFPlots 统计绘图编辑器} 生成上述代码。
+        \item[\faWarning] 过多的统计图会增长编译时间，不宜过多使用。
+    \end{enumerate}
+
     \part{高级操作}
     \chapter{源代码}
 

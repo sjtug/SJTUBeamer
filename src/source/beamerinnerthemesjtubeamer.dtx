@@ -419,20 +419,15 @@
 %
 % \subsubsection{Block Environments}
 %
+%   The block in \verb"min" theme is not rounded.
 %    \begin{macrocode}
-%<*maxplus>
-\if\EqualOption{inner}{cover}{maxplus}%
+%<*min>
+\if\EqualOption{inner}{cover}{min}\else
+%</min>
   \setbeamertemplate{blocks}[rounded]
-\else
-%</maxplus>
-%<*max>
-  \if\EqualOption{inner}{cover}{max}%
-    \setbeamertemplate{blocks}[rounded]
-  \fi
-%</max>
-%<*maxplus>
+%<*min>
 \fi
-%</maxplus>
+%</min>
 %    \end{macrocode}
 %
 % \begin{macro}{\highlight}
@@ -603,6 +598,8 @@
         after row=\bottomrule
       },
     }
+    \newcolumntype{L}[1]{>{\begin{pgfplotstablecoltype}[#1]}
+      r<{\end{pgfplotstablecoltype}}}
   }{}
 %    \end{macrocode}
 % Disable the warning from \verb"hyperref" which conflicts the setting in C\TeX{} or CJK. It has to be manually disabled.
