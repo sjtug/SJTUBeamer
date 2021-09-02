@@ -368,7 +368,28 @@ fontupper=\sffamily,colupper=white}
         \item[\faWarning] 过多的统计图会增长编译时间，不宜过多使用。
     \end{enumerate}
 
+    % TODO: 以后的开发计划：Smart Diagram
+    %\chapter{插图}
+
+    \chapter{引用}
+
+    方便地引用文献是 \texttt{beamer} 的另一大特色。\themename\ 对脚注的处理方式进行了一定的优化。
+
+    \section{Biber}
+
+    \faApple\ \faLinux\ 如果使用的是 \hologo{XeLaTeX} 编译，可以使用 \texttt{biblatex} 宏包，并采用 \textsc{Biber} 进行引用处理。
+
+    \beamerdemo[1]{step16+-.tex}
+
+    \begin{enumerate}\small
+        \item 使用 \texttt{\textbackslash{}footfullcite} 进行脚注引用（\texttt{biblatex} 提供的命令）。
+    \end{enumerate}
+
+    \section{Bib\TeX{}}
+
+    \faWindows 如果使用的是 \hologo{pdfLaTeX} 编译，需要使用 \texttt{gbt7714} 宏包，并采用老式的 \textsc{Bib\TeX{}} 进行引用处理。
+
     \part{高级操作}
-    \chapter{源代码}
+    \chapter{徽标}
 
 \end{document}

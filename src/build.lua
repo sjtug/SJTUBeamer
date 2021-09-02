@@ -71,6 +71,11 @@ function typeset_demo_tasks()
         if fileexists(tutourialdir .. "/" .. pdffilename) == false then
             errorlevel = tex(p,tutourialdir,typesetcommand)
             if string.find(p,"+") ~= nil then
+                if string.find(p,"-") ~= nil then
+                    -- biber after compiling the first time if it is marked as "-"
+                    errorlevel = biber(string.gsub(p,".tex",""),tutourialdir)
+                    -- errorlevel = tex(p,tutourialdir,typesetcommand)
+                end
                 -- compile the second time if it is marked as "+"
                 errorlevel = tex(p,tutourialdir,typesetcommand)
             end
