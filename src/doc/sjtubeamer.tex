@@ -299,7 +299,35 @@ fontupper=\sffamily,colupper=white}
     \end{enumerate}
 
     \part{进阶操作}
-    \chapter{修改}
+
+    \chapter{强调}
+    
+    在 \themename\ 中有多种强调内容的方法。
+
+    \section{文字强调}
+
+    主要有两种类型：改变字体和提供高对比。
+    
+    \beamerdemo[1]{step10.tex}
+
+    \begin{enumerate}\small
+        \item \texttt{\textbackslash{}alert} 会改变文字颜色为主题色。\texttt{\textbackslash{}emph} 会改变文字颜色的同时，还会将英文字体变为斜体$^*$。
+        \item \texttt{\textbackslash{}paragraph} 和 \texttt{\textbackslash{}highlight} 都会在文字底部添加纯色方块$^*$，区别在于后者可以设置背景颜色。
+    \end{enumerate}
+
+    \section{区块强调}
+
+    也有两种类型：纯色方块和边缘描边。
+
+    \beamerdemo[1]{step11.tex}
+
+    \beamerdemo[1]{step12.tex}
+
+    \begin{enumerate}\small
+        \item \texttt{block}, \texttt{alertblock}, \texttt{exampleblock} 环境分别可以产生与主题色对应的三种盒子。
+        \item \texttt{min} 主题的盒子非圆角$^*$。
+        \item \texttt{stampbox} 环境可以产生印记边框盒子$^*$，可以丰富视觉效果与统一视觉形象。可接受一个可选参数如 \texttt{[sjtuBluePrimary]} 产生其他颜色的边框。
+    \end{enumerate}
 
     \part{高级操作}
     \chapter{源代码}
