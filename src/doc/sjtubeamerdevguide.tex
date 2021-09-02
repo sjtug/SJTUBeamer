@@ -515,6 +515,27 @@
         \item \textbf{Use old-fashioned \TeX{} code.} If there is a nice way to implement in \TeX{}, then go \TeX{}. \TeX{} is a box-based typesetting system, which may be mentioned in many Computer Science books. And \LaTeX{} is on top of that to provide clear-to-read macros. In some scenarios, the native \verb"\vbox" and \verb"\hbox" command could help calculate the position of characters in a more controllable way. But it is certainly painful to learn. The \TeX{} Book\cite{texbook} is the classic to learn that, but Notes On Programming in \TeX{}\cite{texnote} is more recommended in modern \LaTeX{}.
     \end{enumerate}
 
+    \subsection{Old \TeX\ Distribution}
+
+        To make full use of \themename\, we always recommend using the latest \TeX\ distribution. However, in some cases, an older \TeX\ distribution needs to be supported.
+        
+        For compatibility issues, you need to close the ``compatible'' option in \verb"beamerthemesjtubeamer.ins" for older versions. Change the following line to achieve that.
+
+        \begin{verbatim}
+            \generate{\file{sjtuvi.sty}{%
+                      \from{sjtuvi.dtx}{package,compatible}}
+            }
+        \end{verbatim}
+
+        The following table shows the compilation test of older \TeX\ distribution, where $\circ$ means you have to close the ``compatible'' option.
+
+        \begin{tabular}{c|cccccccc}
+            \TeX\ Live & 2021 & 2020 & 2019 & 2018 & 2017 & 2016 & 2015 & 2014 \\
+            \hline
+            Test & $\surd$ & $\surd$ & $\surd$ & $\circ$ & $\circ$ & $\circ$ & $\circ$ & \\
+        \end{tabular}
+
+
     \section{Developer}
     \begin{itemize}
         \item Cascades Chen (cascadeschen@gmail.com)

@@ -141,8 +141,8 @@ fontupper=\sffamily,colupper=white}
     \section{测试模板}
 
     \begin{enumerate}
-        \item[ \faWindows] Windows 系统采用 \hologo{pdfLaTeX} 编译以获得更快的编译速度。
         \item[ \faApple\ \faLinux] *nix 系统采用 \hologo{XeLaTeX} 编译以获得中文支持。
+        \item[ \faWindows] Windows 系统采用 \hologo{pdfLaTeX} 编译以获得更快的编译速度。
     \end{enumerate}
 
     下面的代码可以用于测试 \themename\ 是否可以正常使用。
@@ -175,6 +175,8 @@ fontupper=\sffamily,colupper=white}
     \vspace*{-.2cm}
     \begin{beamerdemoraster}[1,2,3]{blue}{step2bl}
     \end{beamerdemoraster}
+
+    \clearpage
 
     \themename 可以与 \texttt{beamer} 提供的九种外样式随意搭配。
 
@@ -250,7 +252,23 @@ fontupper=\sffamily,colupper=white}
 
     而新式的方法是使用 \themename\ 优化后的节次页。
 
-    \beamerdemo[1]{step7+.tex}
+    \beamerdemo[4]{step7+.tex}
+
+    \section{分割部分}
+
+    如果内容过多，可以采用 \texttt{\textbackslash{}part} 将内容分割为多个部分。新建一个部分都会新建一个部分页$^*$。
+
+    \beamerdemo[1]{step8+.tex}
+
+    \section{高亮节次}
+
+    使用传统目录也可以在每节开始新建一个目录高亮本节。
+
+    \beamerdemo[1]{step9+.tex}
+
+    \begin{enumerate}\small
+        \item 如果想要在幻灯片列表环境产生类似的“渐进切换”效果，可以在 \texttt{itemize} 环境的每一条后使用 \texttt{\textbackslash{}pause} 命令。或者是 \texttt{\textbackslash{}begin\{itemize\}[<+->]}。
+    \end{enumerate}
 
     \chapter{播放}
 

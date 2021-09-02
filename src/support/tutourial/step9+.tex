@@ -1,9 +1,10 @@
 \documentclass[aspectratio=169]{ctexbeamer}
 \usetheme[min]{sjtubeamer}
 \begin{document}
-\AtBeginSubsection[]{
+\AtBeginSection[]{
     \begin{frame}
-        \subsectionpage
+        \tableofcontents
+        [currentsection]
     \end{frame}
 }
 \include{maincontents.tex}
