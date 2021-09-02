@@ -329,6 +329,19 @@ fontupper=\sffamily,colupper=white}
         \item \texttt{stampbox} 环境可以产生印记边框盒子$^*$，可以丰富视觉效果与统一视觉形象。可接受一个可选参数如 \texttt{[sjtuBluePrimary]} 产生其他颜色的边框。
     \end{enumerate}
 
+    \chapter{代码}
+
+    \themename\ 提供了代码抄录的区块环境。
+
+    \beamerdemo[1]{step13.tex}    
+
+    \begin{enumerate}\small
+        \item \texttt{codeblock} 提供了带行号的代码抄录环境$^*$，第一个可选参数可以用于设置语言，第二个必选参数可以设置代码块的标题。
+        \item 需要清理抄录代码在源文件中的缩进，顶格输入。
+        \item 直接使用 \texttt{listings} 宏包提供的 \texttt{lstlisting} 环境依然可行，\themename\ 已经对其进行了一些预先的优化。
+        \item[\faWarning] 使用代码块的页其 \texttt{frame} 环境必须添加 \texttt{fragile} 参数。
+    \end{enumerate}
+
     \part{高级操作}
     \chapter{源代码}
 
