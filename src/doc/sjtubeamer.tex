@@ -104,6 +104,8 @@ fontupper=\sffamily,colupper=white}
     \end{tcbraster}
 }{}
 
+\usepackage{sjtuvi}
+
 \def\themename{\textsf{SJTUBeamer}}
 
 \begin{document}
@@ -342,6 +344,25 @@ fontupper=\sffamily,colupper=white}
         \item[\faWarning] 使用代码块的页其 \texttt{frame} 环境必须添加 \texttt{fragile} 参数。
     \end{enumerate}
 
+    
+    \chapter{引用}
+
+    方便地引用文献是 \texttt{beamer} 的另一大特色。\themename\ 对脚注的处理方式进行了一定的优化。
+
+    \section{Biber}
+
+    \faApple\ \faLinux\ 如果使用的是 \hologo{XeLaTeX} 编译，可以使用 \texttt{biblatex} 宏包，并采用 \textsc{Biber} 进行引用处理。
+
+    \beamerdemo[1]{step16+-.tex}
+
+    \begin{enumerate}\small
+        \item 使用 \texttt{\textbackslash{}footfullcite} 进行脚注引用（\texttt{biblatex} 提供的命令）。
+    \end{enumerate}
+
+    \section{Bib\TeX{}}
+
+    \faWindows 如果使用的是 \hologo{pdfLaTeX} 编译，需要使用 \texttt{gbt7714} 宏包，并采用老式的 \textsc{Bib\TeX{}} 进行引用处理。
+
     \chapter{图表}
 
     表格与统计图是展示数据最直观的方式，可以采用内建的方式插入风格统一的矢量图表。\themename\ 对此设定了一些预设。
@@ -371,25 +392,30 @@ fontupper=\sffamily,colupper=white}
     % TODO: 以后的开发计划：Smart Diagram
     %\chapter{插图}
 
-    \chapter{引用}
-
-    方便地引用文献是 \texttt{beamer} 的另一大特色。\themename\ 对脚注的处理方式进行了一定的优化。
-
-    \section{Biber}
-
-    \faApple\ \faLinux\ 如果使用的是 \hologo{XeLaTeX} 编译，可以使用 \texttt{biblatex} 宏包，并采用 \textsc{Biber} 进行引用处理。
-
-    \beamerdemo[1]{step16+-.tex}
-
-    \begin{enumerate}\small
-        \item 使用 \texttt{\textbackslash{}footfullcite} 进行脚注引用（\texttt{biblatex} 提供的命令）。
-    \end{enumerate}
-
-    \section{Bib\TeX{}}
-
-    \faWindows 如果使用的是 \hologo{pdfLaTeX} 编译，需要使用 \texttt{gbt7714} 宏包，并采用老式的 \textsc{Bib\TeX{}} 进行引用处理。
-
     \part{高级操作}
     \chapter{徽标}
+
+    \themename\ 内置了一些徽标可供更换。
+
+    \faInfoCircle 徽标与相关元素版权归上海交通大学所有，仅供学习交流使用。
+
+    \begin{tcbitemize}[raster rows=2, raster columns=3, raster every box/.style={center title, valign=center, halign=center,fonttitle=\ttfamily,colback=white}]
+    \tcbitem[raster multicolumn=2,blankest]
+        \begin{tcbitemize}[raster columns=2]
+            \tcbitem[title={\textbackslash{}cnlogo}] \moveleft 0.3cm\hbox{\resizebox{!}{1cm}{\cnlogo}}
+            \tcbitem[title={\textbackslash{}enlogo}] \moveleft 0.3cm\hbox{\resizebox{!}{1cm}{\enlogo}}
+            \tcbitem[title={\textbackslash{}sjtubadge},height=3.5cm] \resizebox{!}{2cm}{\sjtubadge\ } 
+            \tcbitem[title={\textbackslash{}dlogo},height=3.5cm] \resizebox{3cm}{!}{\dlogo\ }
+        \end{tcbitemize}
+    \tcbitem[title={\textbackslash{}vlogo}] \resizebox{!}{4.8cm}{\vlogo\ }
+    \end{tcbitemize}
+
+    \beamerdemo[1]{step17.tex}
+
+    \begin{enumerate}\small
+        \item 使用 \texttt{\textbackslash{}logo} 设定徽标。
+        \item 可以使用自定义的徽标，但是不归 \themename 颜色系统管理$^*$，此时推荐使用亮色主题以提供亮色徽标背景。
+        \item 如果需要创造可变颜色徽标$^*$，参阅\href{run:sjtubeamerdevguide.pdf}{开发指南}第 3.4 节。
+    \end{enumerate}
 
 \end{document}
