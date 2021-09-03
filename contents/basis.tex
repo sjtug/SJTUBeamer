@@ -1,28 +1,6 @@
 % !TeX encoding = UTF-8
 % !TeX root = ../main.tex
 
-\renewcommand{\TeX}{\hologo{TeX}}
-\renewcommand{\LaTeX}{\hologo{LaTeX}}
-\newcommand{\BibTeX}{\hologo{BibTeX}}
-\newcommand{\XeTeX}{\hologo{XeTeX}}
-\newcommand{\pdfTeX}{\hologo{pdfTeX}}
-\newcommand{\LuaTeX}{\hologo{LuaTeX}}
-\renewcommand{\CTeX}{C\TeX}
-\newcommand{\MiKTeX}{\hologo{MiKTeX}}
-\newcommand{\MacTeX}{Mac\hologo{TeX}}
-\newcommand{\beamer}{\textsc{beamer}}
-\newcommand{\XeLaTeX}{\hologo{Xe}\kern-.13em\LaTeX{}}
-\newcommand{\pdfLaTeX}{pdf\LaTeX{}}
-\newcommand{\LuaLaTeX}{Lua\LaTeX{}}
-\newcommand\pkg[1]{\texttt{#1}}
-\def\cmd#1{\texttt{\color{DarkBlue}\footnotesize $\backslash$#1}}
-\def\env#1{\texttt{\color{DarkBlue}\footnotesize #1}}
-\def\cmdxmp#1#2#3{\small{\texttt{\color{DarkBlue}$\backslash$#1}\{#2\}\hspace{1em}\\ $\Rightarrow$\hspace{1em} {#3}\par\vskip1em}}
-\newcommand\link[1]{\href{#1}{[Link]}}
-\newcommand{\SJTUThesis}{\textsc{SJTUThesis}\xspace}
-\newcommand{\SJTUThesisVersion}{1.0.0rc7}
-\newcommand{\SJTUThesisDate}{2020/7/31}
-
 \section{学术论文排版}
 \subsection{\LaTeX{} 排版入门}
 
@@ -325,6 +303,7 @@ V = \frac{4}{3}\pi r^3
 第一个趣闻
 \end{column}
 \end{columns}
+
 \end{frame}
 
 
@@ -392,7 +371,7 @@ V = \frac{4}{3}\pi r^3
   \end{minipage}\hfill
   \begin{minipage}{0.3\linewidth}\centering
     {\songti 交大校徽请参见图~1。}\\[1em]
- \resizebox{!}{0.2\textheight}{\sjtubadge[cprimary]}\\
+ \includegraphics[height=0.2\textheight]{sjtu-badge-blue.pdf}\\
  {\footnotesize\heiti 图~1. 交大校徽。}
   \end{minipage}
 \end{frame}
@@ -623,11 +602,11 @@ V = \frac{4}{3}\pi r^3
     \begin{itemize}
       \item 获取模板：已随发行版自带
         \begin{itemize}
-          \item 在安装目录 |<prefix>/texlive/2021/texmf-dist/doc/latex/IEEEtran|
-          下找到 \verb"bare_jrnl.tex"
+          \item 在安装目录 |<prefix>\texlive\2021\texmf-dist\doc\latex\IEEEtran|
+            下找到 |bare_jrnl.tex|
           \item 复制到某个文件夹(比如个人存论文的目录)
         \end{itemize}
-      \item 编辑 \verb"bare_jrnl.tex" 文件 (英文模板：不支持中文)
+      \item 编辑 |bare_jrnl.tex| 文件 (英文模板：不支持中文)
       \item 编译
         \begin{itemize}
           \item 英文文献：\XeLaTeX{}、\pdfLaTeX{} 编译均可
