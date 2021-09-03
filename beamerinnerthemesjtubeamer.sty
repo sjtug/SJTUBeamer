@@ -84,7 +84,6 @@
 \else
   \if\EqualOption{inner}{cover}{max}
     \usebeamercolor{palatte primary}
-    \titlegraphic{\sjtubg[opacity=0.2]}
     \setbeamertemplate{background}
     {
       \let\oldlogocolor=\sjtubeamer@logocolor%
@@ -94,6 +93,7 @@
       }
       \let\sjtubeamer@logocolor=\oldlogocolor%
     }
+    \titlegraphic{\sjtubg[opacity=0.2]}
   \else
     \if\EqualOption{inner}{cover}{min}
       \titlegraphic{\includegraphics{sjtuphoto.jpg}}

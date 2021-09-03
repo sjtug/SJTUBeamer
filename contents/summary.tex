@@ -1,0 +1,145 @@
+% !TeX encoding = UTF-8
+% !TeX root = ../main.tex
+
+\section{总结}
+
+\begin{frame}{常见 \LaTeX{} 困惑}
+  \begin{itemize}
+    \item \alert{编译不通过} 缺少必要宏包，命令拼写错误，括号未配对等
+    \item \alert{表格图片乱跑} 非问题，\LaTeX{} 浮动定位算法 \link{https://liam.page/2017/04/30/floats-in-LaTeX-the-positioning-algorithm/}
+    \item \alert{段落间距变大} 非问题，\LaTeX{} 排版算法
+    \item \alert{参考文献} 推荐使用 \BibTeX{} 或者 Bib\LaTeX{}（视模板而定），也可以手写 \cmd{bibitem} \link{https://github.com/hushidong/biblatex-gb7714-2015}
+  \end{itemize}
+\end{frame}
+
+\begin{frame}{系统学习}
+  \begin{itemize}
+      \item 包太雷 《\LaTeX{} Notes(第二版)》~(3小时)（lnotes2） \link{http://dralpha.altervista.org/zh/tech/lnotes2.pdf}
+      \item Stefan Kottwitz 《LaTeX Cookbook》
+      \item WikiBooks：英文 \link{https://en.wikibooks.org/wiki/LaTeX}、中文 \link{https://zh.wikibooks.org/wiki/LaTeX}
+      \item 在线教程：OverLeaf 帮助文档 \link{https://www.overleaf.com/learn}
+      \item 经典文档（亦可能比较过时）
+        \begin{itemize}
+          \item 仔细阅读《一份不太简短的~\LaTeXe{} 介绍》(lshort-zh-cn)~(1--2 天)
+            \link{https://mirrors.sjtug.sjtu.edu.cn/CTAN/info/lshort/chinese/lshort-zh-cn.pdf}
+          \item 粗略阅读《\LaTeXe{} 插图指南》~(2--3 小时)
+        \end{itemize}
+      \item 从~\SJTUThesis{} 示例文档入手
+  \end{itemize}
+\end{frame}
+
+\begin{frame}{扩展阅读}
+  \begin{itemize}
+    \item 一份其实很短的 \LaTeX 入门文档 （Liam Huang） \link{https://liam.page/2014/09/08/latex-introduction/}
+    \item 网站推荐:
+      \begin{itemize}
+        \item http://www.latexstudio.net/
+        \item http://www.chinatex.org/
+      \end{itemize}
+    \item 知乎 \LaTeX{} 专栏（偏技术）\link{http://zhuanlan.zhihu.com/LaTeX}
+    % \item \LaTeX{}杂谈（刘海洋）
+    \item 《\LaTeX{}入门》（刘海洋）
+    \item 现代 LaTeX 入门讲座（曾祥东）\link{https://github.com/stone-zeng/latex-talk/releases/tag/2019-04-18}
+    \item “黑科技”：在 \LaTeX{} 中书写 Markdown 进行排版 \link{https://liam.page/2020/03/30/writing-manuscript-in-Markdown-and-typesetting-with-LaTeX/}
+  \end{itemize}
+\end{frame}
+
+
+\begin{frame}[fragile]{利用文档}
+  \begin{itemize}
+    \item 常用文档
+      \begin{itemize}
+        \item \pkg{symbols}: 符号大全
+        \item \pkg{Mathmode}: 数学参考
+        \item \pkg{ctex}, \pkg{xeCJK}: 中文支持
+        \item \pkg{texlive-zh}: \TL 安装与使用
+        \item 所用宏包文档
+      \end{itemize}
+    \item 工具
+      \begin{itemize}
+        \item |tlmgr|: \TL 管理器
+        \item |texdoc|: \TeX{} 文档查看器\\
+          例如：|texdoc lshort-zh-cn|
+        \item 在线文档 \TeX{}doc \link{http://texdoc.net/}
+        \item TeX Studio 和 WinEdt 都支持在帮助里看文档
+      \end{itemize}
+  \end{itemize}
+\end{frame}
+
+\begin{frame}{一点人生的经验}
+  \begin{itemize}
+    \item 不要着急安装，先在 OverLeaf 上熟悉各类操作
+    \item 不要过于相信网上的中文文档
+      \begin{itemize}
+        \item 简单鉴别方法: 排版的好看程度
+      \end{itemize}
+    \item 湿兄用U盘拷给你的的 \CTeX{} 套装一定是过时的，\SJTUThesis{} 八成是老版本的
+    \item 如果你要处理中文
+      \begin{itemize}
+        \item 使用 \XeLaTeX{}, 使用 \XeLaTeX{}, 使用 \XeLaTeX{}
+        \item 忘记 \pkg{CJK}, 忘记 \pkg{CJK}, 忘记 \pkg{CJK}
+        \item 使用 \pkg{ctex} 宏包（2.0以上版本）（跟 \CTeX{} 套装仅仅是名字像）
+      \end{itemize}
+    \item 写一点，编译一次，减小排错搜索空间
+  \end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]
+  \frametitle{Git版本管理}
+  \begin{itemize}
+    \item 版本管理的必要性
+      \begin{itemize}
+        \item 远离「初稿，第二稿……终稿，终稿（打死也不改了）」命名
+        \item 方便与他人协同合作
+      \end{itemize}
+    \item 基本用法
+      \begin{itemize}
+        \item 跟踪更改：|git init|、|git add|、|git commit|
+        \item 撤销与回滚：|git reset|、|git revert|
+        \item 分支与高级用法：|git branch|、|git checkout|、|git rebase|
+        \item 远端仓库操作：|git pull|、|git push|、|git fetch|
+        \item 推荐用 VS Code 等进行可视化操作
+        \item 参考链接：\link{https://git-scm.com/book/en/v2}
+          \link{https://www.liaoxuefeng.com/wiki/0013739516305929606dd18361248578c67b8067c8c017b000}
+      \end{itemize}
+    \item 在线 Git 服务
+      \begin{itemize}
+        \item GitHub \href{https://github.com}{\faGithub}
+        \item 上海交通大学源代码管理平台（基于 GitLab） \link{https://git.sjtu.edu.cn}
+      \end{itemize}
+  \end{itemize}
+  \end{frame}
+
+% 寻求帮助
+\begin{frame}{求助}
+  \begin{columns}[c]
+    \begin{column}{.45\textwidth}
+      \begin{itemize}
+        \item BBS
+          \begin{itemize}
+            \item 水源社区 \link{https://dev.bbs.sjtu.edu.cn/}
+            \item \sout{\CTeX 社区} （已关闭） \link{http://bbs.ctex.org/}
+            \item 转移到 GitHub 的 \CTeX 社区 \link{https://github.com/CTeX-org/forum}
+          \end{itemize}
+        \item \TeX{} FAQ \link{https://www.texfaq.org/}
+        \item \TeX{} StackExchange \link{https://tex.stackexchange.com/}
+        \item Google, Bing, etc.
+          \begin{itemize}
+            \item 使用\textbf{英语}搜索
+          \end{itemize}
+      \end{itemize}
+    \end{column}
+    \begin{column}{.45\textwidth}
+      \includegraphics[width=\textwidth]{TFZsuperellipse-crop.pdf}
+    \end{column}
+  \end{columns}
+\end{frame}
+
+\begin{frame}{你也可以帮助}
+  \begin{itemize}
+    \item 错误反馈、改进建议：GitHub Issues \link{https://github.com/sjtug/SJTUThesis/issues}
+    \item 出力维护：\LaTeX{} 宏包、模板编写，bug 修复
+    \item 科普、答疑 
+    \item \sout{来当主讲人}
+  \end{itemize}
+\end{frame}
