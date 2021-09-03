@@ -69,6 +69,8 @@
   \fi
 \fi
 \newcommand{\bgcenterbox}[1]{
+  \let\oldlogocolor=\sjtubeamer@logocolor%
+  \def\sjtubeamer@logocolor{cprimary!50}
   \vbox to \paperheight{
     \vfil
       \hbox to \paperwidth{
@@ -78,21 +80,13 @@
       }
     \vfil
   }
+  \let\sjtubeamer@logocolor=\oldlogocolor%
 }
 \if\EqualOption{inner}{cover}{maxplus}
   \titlegraphic{\includegraphics{sjtuphoto.jpg}}
 \else
   \if\EqualOption{inner}{cover}{max}
     \usebeamercolor{palatte primary}
-    \setbeamertemplate{background}
-    {
-      \let\oldlogocolor=\sjtubeamer@logocolor%
-      \def\sjtubeamer@logocolor{cprimary!50}
-      \bgcenterbox{
-        \resizebox{\paperwidth}{!}{\sjtubg[opacity=0.2]}
-      }
-      \let\sjtubeamer@logocolor=\oldlogocolor%
-    }
     \titlegraphic{\sjtubg[opacity=0.2]}
   \else
     \if\EqualOption{inner}{cover}{min}
@@ -108,6 +102,12 @@
     \fi
   \fi
 \fi
+\setbeamertemplate{background}
+{
+  \bgcenterbox{
+    \resizebox{0.95\paperwidth}{!}{\sjtubg[opacity=0.2]}
+  }
+}
 \newdimen\beamer@sidebarwidth
 \beamer@sidebarwidth=0pt
 \def\titlepage{

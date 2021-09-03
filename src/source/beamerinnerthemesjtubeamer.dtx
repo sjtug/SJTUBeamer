@@ -162,6 +162,8 @@
 %   Define a command to make a centered background box easily.
 %    \begin{macrocode}
 \newcommand{\bgcenterbox}[1]{
+  \let\oldlogocolor=\sjtubeamer@logocolor%
+  \def\sjtubeamer@logocolor{cprimary!50}
   \vbox to \paperheight{
     \vfil
       \hbox to \paperwidth{
@@ -171,6 +173,7 @@
       }
     \vfil
   }
+  \let\sjtubeamer@logocolor=\oldlogocolor%
 }
 %    \end{macrocode}
 %  \end{macro}
@@ -189,15 +192,6 @@
 %<*max>
   \if\EqualOption{inner}{cover}{max}
     \usebeamercolor{palatte primary}
-    \setbeamertemplate{background}
-    {
-      \let\oldlogocolor=\sjtubeamer@logocolor%
-      \def\sjtubeamer@logocolor{cprimary!50}
-      \bgcenterbox{
-        \resizebox{\paperwidth}{!}{\sjtubg[opacity=0.2]}
-      }
-      \let\sjtubeamer@logocolor=\oldlogocolor%
-    }
     \titlegraphic{\sjtubg[opacity=0.2]}
   \else
 %</max>
@@ -231,7 +225,12 @@
 %
 % Fix the background to be sjtubg.
 %    \begin{macrocode}
-% TODO:
+\setbeamertemplate{background}
+{
+  \bgcenterbox{
+    \resizebox{0.95\paperwidth}{!}{\sjtubg[opacity=0.2]}
+  }
+}
 %    \end{macrocode}
 %
 %  Initialize sidebar width to 0pt as no sidebar required, which will be overwritten in outer theme.
