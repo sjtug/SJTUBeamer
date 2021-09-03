@@ -347,7 +347,7 @@ fontupper=\sffamily,colupper=white}
     
     \chapter{引用}
 
-    方便地引用文献是 \texttt{beamer} 的另一大特色。\themename\ 对脚注的处理方式进行了一定的优化。
+    方便地引用文献是 \texttt{beamer} 的另一大特色，推荐使用 \href{https://www.jabref.org/}{JabRef} 管理文献。\themename\ 对脚注的处理方式进行了一定的优化。
 
     \section{Biber}
 
@@ -418,7 +418,7 @@ fontupper=\sffamily,colupper=white}
         \item 如果需要创造可变颜色徽标$^*$，参阅\href{run:sjtubeamerdevguide.pdf}{开发指南}第 3.4 节。
     \end{enumerate}
 
-    \chapter{背景}
+    \chapter{头图}
 
     可以更改 \themename\ 封面中的头图。
 
@@ -430,9 +430,17 @@ fontupper=\sffamily,colupper=white}
         \item 对头图可以不设定大小，因为会自动占满占位符。
     \end{enumerate}
 
+    \chapter{背景}
+
     可以更改 \themename\ 的背景图。
 
-    
+    \beamerdemo[1]{step19.tex}
+
+    \begin{enumerate}\small
+        \item \texttt{\textbackslash{}setbeamertemplate} 可以设定背景图。
+        \item \texttt{\textbackslash{}stamparray} 可以用于生成印记矩阵。$^*$
+        \item \texttt{\textbackslash{}bgcenterbox} 命令可以用于居中背景图。$^*$
+    \end{enumerate}
 
     \chapter{迁移}
 

@@ -158,6 +158,23 @@
 %    \end{macrocode}
 %  \end{macro}
 %
+%  \begin{macro}{\bgcenterbox}
+%   Define a command to make a centered background box easily.
+%    \begin{macrocode}
+\newcommand{\bgcenterbox}[1]{
+  \vbox to \paperheight{
+    \vfil
+      \hbox to \paperwidth{
+        \hfil
+          #1
+        \hfil
+      }
+    \vfil
+  }
+}
+%    \end{macrocode}
+%  \end{macro}
+%
 %  \begin{macro}{\titlegraphic}
 % Define the title grahic image.
 %
@@ -178,14 +195,8 @@
     {
       \let\oldlogocolor=\sjtubeamer@logocolor%
       \def\sjtubeamer@logocolor{cprimary!50}
-      \vbox to \paperheight{
-        \vfil
-          \hbox to \paperwidth{
-            \hfil
-              \resizebox{\paperwidth}{!}{\sjtubg[opacity=0.2]}
-            \hfil
-          }
-        \vfil
+      \bgcenterbox{
+        \resizebox{\paperwidth}{!}{\sjtubg[opacity=0.2]}
       }
       \let\sjtubeamer@logocolor=\oldlogocolor%
     }
