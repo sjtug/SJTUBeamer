@@ -1,13 +1,15 @@
 \documentclass[]{beamer}
 \useinnertheme[min]{sjtubeamer}
 \input{regression-test.tex}
+\setbeamertemplate{background}{} % omit background
 \begin{document}
     \logo{}
     \START
     \part{Part test}
     \begin{frame}
         \paragraph{SJTUBeamer} is a beamer template for Shanghai Jiao Tong University.
-
+    \end{frame}
+    \begin{frame}
         \begin{stampbox}
             Test for a stampbox.
         \end{stampbox}

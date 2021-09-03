@@ -162,6 +162,8 @@
 %   Define a command to make a centered background box easily.
 %    \begin{macrocode}
 \newcommand{\bgcenterbox}[1]{
+  \let\oldlogocolor=\sjtubeamer@logocolor%
+  \def\sjtubeamer@logocolor{cprimary!50}
   \vbox to \paperheight{
     \vfil
       \hbox to \paperwidth{
@@ -171,6 +173,7 @@
       }
     \vfil
   }
+  \let\sjtubeamer@logocolor=\oldlogocolor%
 }
 %    \end{macrocode}
 %  \end{macro}
@@ -180,6 +183,7 @@
 %
 % NOTICE: if you are using your own title graphic, please use png image with predefined color and transparency. Since it is beyond the control of logo color system. Or you could use the provided command in the sjtuvi library to create your own masked picture in order to follow the logo color system (The provided picture should be white and transparent in the background).
 %
+%    max theme has the background.
 %    \begin{macrocode}
 %<*maxplus>
 \if\EqualOption{inner}{cover}{maxplus}
@@ -189,16 +193,13 @@
 %<*max>
   \if\EqualOption{inner}{cover}{max}
     \usebeamercolor{palatte primary}
+    \titlegraphic{\sjtubg[opacity=0.2]}
     \setbeamertemplate{background}
     {
-      \let\oldlogocolor=\sjtubeamer@logocolor%
-      \def\sjtubeamer@logocolor{cprimary!50}
       \bgcenterbox{
-        \resizebox{\paperwidth}{!}{\sjtubg[opacity=0.2]}
+        \resizebox{0.95\paperwidth}{!}{\sjtubg[opacity=0.2]}
       }
-      \let\sjtubeamer@logocolor=\oldlogocolor%
     }
-    \titlegraphic{\sjtubg[opacity=0.2]}
   \else
 %</max>
 %<*min>
@@ -229,10 +230,6 @@
 %    \end{macrocode}
 %  \end{macro}
 %
-% Fix the background to be sjtubg.
-%    \begin{macrocode}
-% TODO:
-%    \end{macrocode}
 %
 %  Initialize sidebar width to 0pt as no sidebar required, which will be overwritten in outer theme.
 %    \begin{macrocode}
@@ -530,9 +527,9 @@
   colback=cprimary!5,
   colframe=cprimary!80,
   overlay={
-      \begin{tcbclipinterior}\fill[cprimary!20]%
-          (frame.south west) rectangle ([xshift=5mm]frame.north west);
-      \end{tcbclipinterior}
+    \begin{tcbclipinterior}\fill[cprimary!20]%
+      (frame.south west) rectangle ([xshift=5mm]frame.north west);
+    \end{tcbclipinterior}
   }
 }
 %    \end{macrocode}
@@ -620,15 +617,15 @@
 % Disable the warning from \verb"hyperref" which conflicts the setting in C\TeX{} or CJK. It has to be manually disabled.
 %    \begin{macrocode}
   \def\Hy@WarnOptionDisabled#1{
-      \def\next{#1}%
-      \ifx\next pdfauthor %
-          \ifx\next driverfallback %
-          \else
-          \Hy@Warning{%
-              Option `#1' has already been used,\MessageBreak 
-              setting the option has no effect%
-          }\fi%
-      \fi%
+    \def\next{#1}%
+    \ifx\next pdfauthor %
+      \ifx\next driverfallback %
+      \else
+      \Hy@Warning{%
+        Option `#1' has already been used,\MessageBreak 
+        setting the option has no effect%
+      }\fi%
+    \fi%
   }
 }
 %    \end{macrocode}

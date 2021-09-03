@@ -65,14 +65,10 @@
 \if\EqualOption{outer}{nav}{miniframes}
   \useoutertheme[footline=institutetitle]{miniframes}
 %    \end{macrocode}
-% If it is a sidebar, then add a line to the sidebar edge.
+% Sidebar.
 %    \begin{macrocode}
 \else\if\EqualOption{outer}{nav}{sidebar}
   \useoutertheme{sidebar}
-  \addtobeamertemplate{sidebar left}{}{
-    \usebeamercolor{structure}
-    \smash{\hspace*{\beamer@sidebarwidth}\textcolor{structure.fg}{\rule{1pt}{\paperheight}}}
-  }
 %    \end{macrocode}
 % If it is other theme, change the beamercolor to fit smooth* theme.
 %    \begin{macrocode}
@@ -91,10 +87,7 @@
 %
 % \subsubsection{Bottombar}
 %
-%   Clear the original definition of sidebar first. Then append the page info to the footline, which could avoid collision on footnote.
-%    \begin{macrocode} 
-\setbeamertemplate{sidebar right}{}
-%    \end{macrocode}
+% TODO: move the logo position.
 %
 % Add page number to the toolbox.
 %    \begin{macrocode}
@@ -110,22 +103,10 @@
   }
 }
 %    \end{macrocode}
-%
-%  Append the navigation to the footline to avoid the collision with the navigation symbols.
-%    \begin{macrocode}
-\addtobeamertemplate{footline}{
-  \hfill%
-  \usebeamertemplate***{navigation symbols}%
-  \hspace*{0.1cm}\par
-  \vskip 4pt
-}{}
-%    \end{macrocode}
-%
 % And set the page number template to none.
 %    \begin{macrocode}
 \setbeamertemplate{page number in head/foot}{}
 %    \end{macrocode}
-%
 %
 %
 % \iffalse
