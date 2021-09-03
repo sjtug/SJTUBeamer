@@ -93,21 +93,22 @@
 %    The first argument assigns the file name and the second sets the horizontal cropping and the third sets the vertical cropping. Notice that the cropping is symmetrical (double the length). When the horizontal cropping is greater than the vertical cropping, the mask will be placed by its height, otherwise by its width. The domain for both cropping parameters is 0 to 1.
 %    You should define a logo \verb"\definelogo{mylogo}{<hc>}{<vc>}" then use it in the contents like:
 %    \verb"\mylogo[white]", where the optional parameter could be the override color beyond the control of main logo color system or \verb"opacity=..." to identify the opacity you want or any other parameter for a TikZ node.
+%   Remember, the picture should be in the vi/ folder.
 %    \begin{macrocode}
 \newcommand{\definelogo}[3]{
-    % #1: file
+    % #1: file from vi/ folder
     % #2: horizontal clip (0~1)
     % #3: vertical clip (0~1)
     \pgfmathparse{notgreater(#2,#3)}
     \ifnum\pgfmathresult=1
       \begin{tikzfadingfrompicture}[name=#1]
         \fill[black] (-1,-1) rectangle (1,1);
-        \node {\includegraphics[width=1.5cm]{#1}};
+        \node {\includegraphics[width=1.5cm]{vi/#1}};
       \end{tikzfadingfrompicture}
     \else 
       \begin{tikzfadingfrompicture}[name=#1]
         \fill[black] (-1,-1) rectangle (1,1);
-        \node {\includegraphics[height=1.5cm]{#1}};
+        \node {\includegraphics[height=1.5cm]{vi/#1}};
       \end{tikzfadingfrompicture}
     \fi
     \expandafter\providecommand\csname #1\endcsname[1][\sjtubeamer@logocolor]{
