@@ -67,8 +67,6 @@ jobs:
           run: |
             export diffexe="diff -U 3"
             apk add zip diffutils
-            latexindent -w **/*.dtx -l latexindent.yaml
-            latexindent -w **/*.tex -l latexindent.yaml
             .github/ci/build_package.sh
         name: build package with l3build
       - name: check if generated files are of latest version
