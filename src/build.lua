@@ -14,10 +14,10 @@ else
     typesetexe       = "xelatex"
 end
 
-typesetfiles     = {"sjtubeamerdevguide.tex","sjtubeamer.tex"}
+-- typesetfiles     = {"sjtubeamerdevguide.tex","sjtubeamer.tex"}
 -- typesetfiles     = {"sjtubeamer.tex"}
--- typesetruns      = 1 -- for debug. Some reference may not be linked.
--- typesetdemofiles = {"min.tex"}
+typesetruns      = 1 -- for debug. Some reference may not be linked.
+typesetdemofiles = {"min.tex"}
 typesetsuppfiles = {"head.png","plant.jpg","test.csv","testgraph.tex","ref.bib","tutorial/"}
 
 -- Regression tests mainly test the decoupling properties between kernel modules.
