@@ -486,4 +486,31 @@ fontupper=\sffamily,colupper=white}
 
     \chapter{贡献}
 
+    欢迎向 \themename\ 贡献您的代码！
+
+    \section{封面模板}
+
+    如果您通过内部的 \texttt{my} 接口实现了自己的标题页和尾页模板，并且希望贡献到这个存储库让更多的人用到的话，欢迎进行 Pull Request 提供自己创建的主题。
+
+    为达成这一点，您可能需要
+    \begin{enumerate}
+        \item 学习一些 Ti\textit{k}Z 宏包的知识画出矢量图形。\texttt{texdoc pgf}
+        \item 充分利用内部库 \texttt{sjtuvi} 来调用预先定义的视觉图案。
+        \item 至少需要完成 16:9 和 4:3 的弹性布局，可能需要预先进行测试。
+    \end{enumerate}
+   
+    \section{内核框架}
+
+    如果您是 \LaTeX{} 老手，欢迎向该框架提出您的改进、添加您的功能、优化其编译速度。
+
+    为达成这一点，您可能需要
+    \begin{enumerate}
+        \item 了解 \texttt{beamer} 的\href{https://latex-beamer.com/}{进阶操作}。
+        \item 充分熟悉 \texttt{beamer} 的结构与内部宏。\texttt{texdoc beamer}
+        \item 阅读\href{run:sjtubeamerdevguide.pdf}{开发文档}，熟悉工程的构建方式与内部原理。
+        \item 学习 \TeX{} 的\href{https://mirrors.sjtug.sjtu.edu.cn/CTAN/graphics/pgf/contrib/pgfplots/doc/TeX-programming-notes.pdf}{底层知识}。
+        \item 尝试作出改动并通过回归测试、单元测试和集成测试。
+    \end{enumerate}
+
+
 \end{document}
