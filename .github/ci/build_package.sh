@@ -1,6 +1,5 @@
 #!/bin/bash
 
-apk add zip diffutils
 cd src
 l3build ctan
 # This will trigger checkinit_hook() to move the files to the root directory.
