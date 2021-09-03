@@ -18,7 +18,7 @@ typesetfiles     = {"sjtubeamerdevguide.tex","sjtubeamer.tex"}
 -- typesetfiles     = {"sjtubeamer.tex"}
 -- typesetruns      = 1 -- for debug. Some reference may not be linked.
 -- typesetdemofiles = {"min.tex"}
-typesetsuppfiles = {"head.png","plant.jpg","test.csv","testgraph.tex","ref.bib","tutourial/"}
+typesetsuppfiles = {"head.png","plant.jpg","test.csv","testgraph.tex","ref.bib","tutorial/"}
 
 -- Regression tests mainly test the decoupling properties between kernel modules.
 testfiledir      = "./testfiles"
@@ -57,27 +57,27 @@ function update_tag(file,content,tagname,tagdate)
     return content
 end
 
--- Generate tutourial files before compiling the doc.
+-- Generate tutorial files before compiling the doc.
 -- NOTICE: if you want to save the tourial step pdf,
---         please enter support/tutourial adn run cache_pdf.sh
+--         please enter support/tutorial adn run cache_pdf.sh
 --         if you want to clean the cache, please run clean_pdf.sh 
 function typeset_demo_tasks()
     local errorlevel = 0
-    local tutourialdir = typesetdir .. "/tutourial"
+    local tutorialdir = typesetdir .. "/tutorial"
     local typesetcommand = typesetexe .. " " .. typesetopts   -- patch l3build
-    print("============================================================\n If you want to save the previous demo files\n Please move the pdf into the support/tutourial directory.\n============================================================")
-    for _, p in ipairs(filelist(tutourialdir, "step*.tex")) do
+    print("============================================================\n If you want to save the previous demo files\n Please move the pdf into the support/tutorial directory.\n============================================================")
+    for _, p in ipairs(filelist(tutorialdir, "step*.tex")) do
         local pdffilename = string.gsub(p,".tex",".pdf")
-        if fileexists(tutourialdir .. "/" .. pdffilename) == false then
-            errorlevel = tex(p,tutourialdir,typesetcommand)
+        if fileexists(tutorialdir .. "/" .. pdffilename) == false then
+            errorlevel = tex(p,tutorialdir,typesetcommand)
             if string.find(p,"+") ~= nil then
                 if string.find(p,"-") ~= nil then
                     -- biber after compiling the first time if it is marked as "-"
-                    errorlevel = biber(string.gsub(p,".tex",""),tutourialdir)
-                    -- errorlevel = tex(p,tutourialdir,typesetcommand)
+                    errorlevel = biber(string.gsub(p,".tex",""),tutorialdir)
+                    -- errorlevel = tex(p,tutorialdir,typesetcommand)
                 end
                 -- compile the second time if it is marked as "+"
-                errorlevel = tex(p,tutourialdir,typesetcommand)
+                errorlevel = tex(p,tutorialdir,typesetcommand)
             end
             if errorlevel ~= 0 then
                 print(pdffilename .. " compilation failed.")

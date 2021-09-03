@@ -18,10 +18,10 @@ Copy-Item -Path support/* -Destination build/
 Set-Location build/unpacked
 
 # Parallel is only available for PowerShell 7
-Get-ChildItem support/tutourial/step*.tex | ForEach-Object -Parallel {
+Get-ChildItem support/tutorial/step*.tex | ForEach-Object -Parallel {
     latexmk $_ -xelatex -interaction=nonstopmode
 }
 
-Copy-Item -Path step*.pdf -Destination ../../support/tutourial -Recurse
+Copy-Item -Path step*.pdf -Destination ../../support/tutorial -Recurse
 
-Set-Location ../../support/tutourial
+Set-Location ../../support/tutorial

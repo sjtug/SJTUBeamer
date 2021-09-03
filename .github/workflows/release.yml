@@ -15,7 +15,9 @@ jobs:
         name: checkout code
       - uses: xu-cheng/texlive-action/full@v1
         with:
-          run: .github/ci/build_package.sh
+          run: |
+            apk add zip diffutils
+            .github/ci/build_package.sh
         name: build package with XeLaTeX
       - uses: xu-cheng/texlive-action/full@v1
         with:
