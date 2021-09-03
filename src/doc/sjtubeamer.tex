@@ -7,14 +7,17 @@
 
 \pagestyle{plain}
 
+\usepackage{tocloft}
+\setlength\cftbeforechapskip{0em}
+\renewcommand{\cftchapleader}{\cftdotfill{\cftdotsep}}
+
 \usepackage{pifont}
 
 \ctexset {
     part = {
         format = \bfseries\Huge,
-        number = ,
-        name = \themename,
-        nameformat = \huge
+        name = ,
+        nameformat = \Huge
     },
     chapter = {
         beforeskip = 0pt,
@@ -375,7 +378,7 @@ fontupper=\sffamily,colupper=white}
 
     \faApple\ \faLinux\ 如果使用的是 \hologo{XeLaTeX} 编译，可以使用 \texttt{biblatex} 宏包，并采用 \textsc{Biber} 进行引用处理。
 
-    \beamerdemo[1]{step16+-.tex}
+    \beamerdemo[1]{step14+-.tex}
 
     \begin{enumerate}\small
         \item 使用 \texttt{\textbackslash{}footfullcite} 进行脚注引用（\texttt{biblatex} 提供的命令）。
@@ -393,7 +396,7 @@ fontupper=\sffamily,colupper=white}
 
     考虑到许多专业数据是直接存储在逗号分隔符（\texttt{.csv}）文件中的，便于数据内容的后续更改，用户可以采用 \texttt{pgfplotstable} 宏包从文件插入表格。
 
-    \beamerdemo[1]{step14.tex}
+    \beamerdemo[1]{step15.tex}
 
     \begin{enumerate}\small
         \item 需要加载 \texttt{pgfplotstable} 宏包，表头变为主题色，采用三线表的样式。$^*$
@@ -404,7 +407,7 @@ fontupper=\sffamily,colupper=white}
 
     如果希望通过统计图更加直观地展示数据，可以使用 \texttt{pgfplots} 宏包插入统计图。
 
-    \beamerdemo[1]{step15.tex}
+    \beamerdemo[1]{step16.tex}
 
     \begin{enumerate}\small
         \item 需要加载 \texttt{pgfplots} 宏包，必要时额外加载 \texttt{pgfplotstable} 宏包以读取文件数据。可以使用 \href{https://logcreative.github.io/PGFPlotsEdt/}{PGFPlots 统计绘图编辑器} 生成上述代码。
@@ -538,5 +541,9 @@ fontupper=\sffamily,colupper=white}
     \themename\ 符合 \href{https://github.com/sjtug/SJTUBeamer/blob/main/LICENSE}{Apache-2.0 开源许可}，不提供任何担保。
 
     \texttt{sjtuvi} 和 \texttt{sjtucover} 库及其附属徽标、图片不符合上述开源许可，由上海交通大学持有\href{https://vi.sjtu.edu.cn/index.php/articles/bulletin/16}{版权}。校属各单位及个人以经营为目的使用视觉形象识别系统，须向学校申请使用许可。校外单位及个人未经许可，不得制作或使用载有视觉形象识别系统的物品。
+
+    \vfill
+
+    {\small \themename{} \hfill \today}
 
 \end{document}
