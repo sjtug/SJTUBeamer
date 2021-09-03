@@ -11,7 +11,7 @@ resources=(cnlogo.pdf dlogo.pdf enlogo.pdf sjtubadge.pdf sjtuphoto.jpg vlogo.pdf
 for resource in ${resources[@]};
 do
     rm -f $resource
-    ln -s src/source/$resource $resource
+    cp src/source/$resource $resource
 done
 
 if [ ! -f src/sjtubeamer-ctan.zip ]; then
