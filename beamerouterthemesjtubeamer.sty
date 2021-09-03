@@ -39,10 +39,6 @@
   \useoutertheme[footline=institutetitle]{miniframes}
 \else\if\EqualOption{outer}{nav}{sidebar}
   \useoutertheme{sidebar}
-  \addtobeamertemplate{sidebar left}{}{
-    \usebeamercolor{structure}
-    \smash{\hspace*{\beamer@sidebarwidth}\textcolor{structure.fg}{\rule{1pt}{\paperheight}}}
-  }
 \else
   \useoutertheme{\sjtubeamer@outer@nav}
   \setbeamercolor{title in head/foot}{use=structure,bg=white,fg=structure.fg}

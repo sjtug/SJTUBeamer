@@ -359,15 +359,15 @@
       r<{\end{pgfplotstablecoltype}}}
   }{}
   \def\Hy@WarnOptionDisabled#1{
-      \def\next{#1}%
-      \ifx\next pdfauthor %
-          \ifx\next driverfallback %
-          \else
-          \Hy@Warning{%
-              Option `#1' has already been used,\MessageBreak
-              setting the option has no effect%
-          }\fi%
-      \fi%
+    \def\next{#1}%
+    \ifx\next pdfauthor %
+      \ifx\next driverfallback %
+      \else
+      \Hy@Warning{%
+        Option `#1' has already been used,\MessageBreak
+        setting the option has no effect%
+      }\fi%
+    \fi%
   }
 }
 \defbeamertemplate*{footnote}{sjtubeamermin}
