@@ -30,7 +30,7 @@
 \usepackage[backend=biber,style=gb7714-2015]{biblatex}
 
 \addbibresource{thesis.bib}
-\setbeamertemplate{bibliography item}[text]
+% \setbeamertemplate{bibliography item}[text]
 
 \graphicspath{{figures/}}
 
@@ -95,16 +95,6 @@
 }
 \lstMakeShortInline[style=style@inline]|
 
-\hypersetup{
-  pdfsubject = {上海交通大学图书馆专题培训讲座},
-  pdfauthor = {Alexara Wu},
-  pdfcopyright = {Licensed under CC-BY-SA 4.0. Some rights reserved.},
-  pdflicenseurl = {http://creativecommons.org/licenses/by-sa/4.0/},
-  unicode            = true,
-  psdextra           = true,
-  pdfdisplaydoctitle = true
-}
-
 \usetheme[maxplus]{sjtubeamer}
 % 使用 maxplus/max/min 切换标题页样式
 % 使用 red/blue 切换主色调
@@ -128,11 +118,11 @@
 \begin{document}
 
 % 在每一个section或subsection前都添加目录页，并高亮当前的标题
-\AtBeginSubsection[]
+\AtBeginSection[] % \AtBeginSubsection
 {
   \begin{frame}
     \frametitle{目录}
-    \tableofcontents[currentsection,currentsubsection]
+    \tableofcontents[currentsection]
   \end{frame}
 }
 
