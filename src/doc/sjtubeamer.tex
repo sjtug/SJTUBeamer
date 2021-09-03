@@ -106,6 +106,8 @@ fontupper=\sffamily,colupper=white}
 
 \usepackage{sjtuvi}
 
+\usepackage{array}
+
 \def\themename{\textsf{SJTUBeamer}}
 
 \begin{document}
@@ -145,6 +147,7 @@ fontupper=\sffamily,colupper=white}
     \begin{enumerate}
         \item[ \faApple\ \faLinux] *nix 系统采用 \hologo{XeLaTeX} 编译以获得中文支持。
         \item[ \faWindows] Windows 系统采用 \hologo{pdfLaTeX} 编译以获得更快的编译速度。
+        \item[\faWrench] 也可以直接使用 \texttt{latexmk (latexmkrc)} 编译示例的主文档。 
     \end{enumerate}
 
     下面的代码可以用于测试 \themename\ 是否可以正常使用。
@@ -395,7 +398,7 @@ fontupper=\sffamily,colupper=white}
     \part{高级操作}
     \chapter{徽标}
 
-    \themename\ 内置了一些徽标可供更换。
+    \themename\ 内置了一些徽标可供更换$^*$。
 
     \faInfoCircle 徽标与相关元素版权归上海交通大学所有，仅供学习交流使用。
 
@@ -440,9 +443,46 @@ fontupper=\sffamily,colupper=white}
         \item \texttt{\textbackslash{}setbeamertemplate} 可以设定背景图。
         \item \texttt{\textbackslash{}stamparray} 可以用于生成印记矩阵。$^*$
         \item \texttt{\textbackslash{}bgcenterbox} 命令可以用于居中背景图。$^*$
+        \item 作为文字的背景，其透明度应该较低或者颜色偏淡。
     \end{enumerate}
 
+    %TODO: 未来的开发计划
+    %\chapter{字体}
+
     \chapter{迁移}
+
+    \section{从 Markdown 或 \texttt{article} 文档类迁移}
+
+    如果稿子已经预先使用 Markdown 或 \texttt{article} 文档类完成，可以尝试使用 \href{https://logcreative.github.io/AutoBeamer/}{AutoBeamer} 幻灯片自动切分工具。这个方向迁移的关键在于充分利用 \texttt{beamer} 提供的 \texttt{allowframebreaks} 功能。
+
+    \section{迁移到其他主题}
+
+    上文中所有 \themename\ 独占的功能都已经用星号 $^*$ 标记。在迁移到其他的主题时，您需要手动重定向这些独占命令。
+    
+    \begin{table}[h]
+        \centering
+        \begin{tabular}{>{\ttfamily}c>{\ttfamily}c>{\ttfamily}c}
+            \hline
+            \textbackslash{}makebottom & \textbackslash{}emph & \textbackslash{}highlight  \\
+            \textbackslash{}paragraph & codeblock & \textbackslash{}stamparray \\
+            \textbackslash{}*logo & \textbackslash{}sjtubadge & stampline \\
+            \hline
+        \end{tabular}
+    \end{table}
+    
+    并且需要补齐已经预先加载的宏包。
+
+    \begin{table}[h]
+        \centering
+        \begin{tabular}{>{\sffamily}c>{\sffamily}c}
+            \hline
+            tikz & tcolorbox \\
+            \hline
+        \end{tabular}
+    \end{table}
+
+    我们更加推荐在本模板的基础上进行自定义修正来达到类似更换主题的效果（比如高级操作部分提到的方法）。
+
 
     \chapter{贡献}
 
