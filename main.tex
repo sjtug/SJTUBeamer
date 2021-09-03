@@ -27,7 +27,8 @@
 \usepackage{datetime2}
 \usepackage{fontawesome}
 \usepackage{hyperref}
-\usepackage{biblatex}
+\usepackage[backend=biber,style=gb7714-2015]{biblatex}
+
 \addbibresource{thesis.bib}
 % \setbeamertemplate{bibliography item}[text]
 
@@ -49,16 +50,6 @@
   \let\hspace\@gobble
 }
 
-% From user guide
-\makeatletter
-\def\psRotation#1(#2,#3)#4{%
-  \rput{#1}(#2,#3){%
-    \psellipticarc[linewidth=.4pt]{->}(0,-0.1)(0.6,0.15){120}{70}
-    \ifdim#1pt>\z@\rput[l]{*0}(0.675,0){#4}\else\rput[l](0.675,0){#4}\fi
-  }%
-}
-\makeatother
-
 \renewcommand{\TeX}{\hologo{TeX}}
 \renewcommand{\LaTeX}{\hologo{LaTeX}}
 \newcommand{\BibTeX}{\hologo{BibTeX}}
@@ -76,6 +67,7 @@
 \def\TeXLive{\TeX{} Live\xspace}
 \let\TL=\TeXLive
 \newcommand{\SJTUThesis}{\textsc{SJTUThesis}\xspace}
+\newcommand{\SJTUBeamer}{\textsc{SJTUBeamer}\xspace}
 \newcommand{\SJTUThesisVersion}{1.0.0rc7}
 \newcommand{\SJTUThesisDate}{2020/7/31}
 
@@ -88,6 +80,13 @@
 
 \lstset{
   language=[LaTeX]TeX,
+  basicstyle=\ttfamily\footnotesize,
+  tabsize=2,
+  keywordstyle=\bfseries\ttfamily\color{cprimary},
+  commentstyle=\sl\ttfamily\color[RGB]{100,100,100},
+  stringstyle=\ttfamily\color[RGB]{50,50,50},
+  extendedchars=true,
+  breaklines=true,
 }
 
 \lstdefinestyle{style@inline}{
@@ -106,17 +105,15 @@
 %   shadow     tree       smoothtree
 % *siderbar 推荐与 max 一起使用。
 
-\title[SJTU Beamer Template] % 页脚显示标题
-{\textbf{上海交通大学 Beamer 模版}} % 首页标题
+\author{Alexara Wu}
+\institute{上海交通大学 Linux 用户组}
+\date{\the\year 年 \the\month 月}
+\subject{LaTeX, 论文排版, SJTUThesis}
 
-\subtitle{使用教程}
+\title[\SJTUBeamer 示例文档] % 页脚显示标题
+{\textbf{如何使用 \LaTeX 排版论文}} % 首页标题
 
-\author[Anxue Chen, Alexara Wu, Log Creative]
-{Anxue Chen, Alexara Wu, Log Creative}
-
-\institute[SJTU]{Shanghai Jiao Tong University}
-
-\date{August 2021}
+\subtitle{\SJTUBeamer 示例文档}
 
 \begin{document}
 
@@ -126,13 +123,6 @@
   \begin{frame}
     \frametitle{目录}
     \tableofcontents[currentsection]
-  \end{frame}
-}
-\AtBeginSubsection[]
-{
-  \begin{frame}
-    \frametitle{目录}
-    \tableofcontents[currentsection,currentsubsection]
   \end{frame}
 }
 
