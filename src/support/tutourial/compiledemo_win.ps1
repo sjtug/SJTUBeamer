@@ -2,15 +2,26 @@
 # To compile the doc, go through
 # this Powershell 7 Script First.
 
+# l3build has Windows bug on this.
+
 Set-Location ../..
+
+Remove-Item -Path build/unpacked -Recurse
 
 # unpack the dtx files first.
 l3build unpack
 
-Copy-Item -Path support -Destination build/unpack/ -Recurse
+Copy-Item -Path support -Destination build/unpacked/ -Recurse
 
-Set-Location build/unpack
+Copy-Item -Path support/* -Destination build/
 
-Get-ChildItem unpack/support/tutourial/step*.tex | ForEach-Object -Parallel {
-    echo $_
+Set-Location build/unpacked
+
+# Parallel is only available for PowerShell 7
+Get-ChildItem support/tutourial/step*.tex | ForEach-Object -Parallel {
+    latexmk $_ -xelatex -interaction=nonstopmode
 }
+
+Copy-Item -Path step*.pdf -Destination ../../support/tutourial -Recurse
+
+Set-Location ../../support/tutourial
