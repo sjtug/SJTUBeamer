@@ -189,6 +189,15 @@
 %<*max>
   \if\EqualOption{inner}{cover}{max}
     \usebeamercolor{palatte primary}
+    \setbeamertemplate{background}
+    {
+      \let\oldlogocolor=\sjtubeamer@logocolor%
+      \def\sjtubeamer@logocolor{cprimary!50}
+      \bgcenterbox{
+        \resizebox{\paperwidth}{!}{\sjtubg[opacity=0.2]}
+      }
+      \let\sjtubeamer@logocolor=\oldlogocolor%
+    }
     \titlegraphic{\sjtubg[opacity=0.2]}
   \else
 %</max>
@@ -222,15 +231,7 @@
 %
 % Fix the background to be sjtubg.
 %    \begin{macrocode}
-\setbeamertemplate{background}
-{
-  \let\oldlogocolor=\sjtubeamer@logocolor%
-  \def\sjtubeamer@logocolor{cprimary!50}
-  \bgcenterbox{
-    \resizebox{\textwidth}{!}{\sjtubg[opacity=0.2]}
-  }
-  \let\sjtubeamer@logocolor=\oldlogocolor%
-}
+% TODO:
 %    \end{macrocode}
 %
 %  Initialize sidebar width to 0pt as no sidebar required, which will be overwritten in outer theme.

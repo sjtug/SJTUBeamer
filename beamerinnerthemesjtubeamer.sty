@@ -84,6 +84,15 @@
 \else
   \if\EqualOption{inner}{cover}{max}
     \usebeamercolor{palatte primary}
+    \setbeamertemplate{background}
+    {
+      \let\oldlogocolor=\sjtubeamer@logocolor%
+      \def\sjtubeamer@logocolor{cprimary!50}
+      \bgcenterbox{
+        \resizebox{\paperwidth}{!}{\sjtubg[opacity=0.2]}
+      }
+      \let\sjtubeamer@logocolor=\oldlogocolor%
+    }
     \titlegraphic{\sjtubg[opacity=0.2]}
   \else
     \if\EqualOption{inner}{cover}{min}
@@ -99,15 +108,6 @@
     \fi
   \fi
 \fi
-\setbeamertemplate{background}
-{
-  \let\oldlogocolor=\sjtubeamer@logocolor%
-  \def\sjtubeamer@logocolor{cprimary!50}
-  \bgcenterbox{
-    \resizebox{\textwidth}{!}{\sjtubg[opacity=0.2]}
-  }
-  \let\sjtubeamer@logocolor=\oldlogocolor%
-}
 \newdimen\beamer@sidebarwidth
 \beamer@sidebarwidth=0pt
 \def\titlepage{
