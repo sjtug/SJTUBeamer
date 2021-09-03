@@ -29,7 +29,7 @@
 \usepackage{hyperref}
 \usepackage{biblatex}
 \addbibresource{thesis.bib}
-\setbeamertemplate{bibliography item}[text]
+% \setbeamertemplate{bibliography item}[text]
 
 \graphicspath{{figures/}}
 
@@ -96,16 +96,6 @@
 }
 \lstMakeShortInline[style=style@inline]|
 
-\hypersetup{
-  pdfsubject = {上海交通大学图书馆专题培训讲座},
-  pdfauthor = {Alexara Wu},
-  pdfcopyright = {Licensed under CC-BY-SA 4.0. Some rights reserved.},
-  pdflicenseurl = {http://creativecommons.org/licenses/by-sa/4.0/},
-  unicode            = true,
-  psdextra           = true,
-  pdfdisplaydoctitle = true
-}
-
 \usetheme[maxplus]{sjtubeamer}
 % 使用 maxplus/max/min 切换标题页样式
 % 使用 red/blue 切换主色调
@@ -135,7 +125,7 @@
 {
   \begin{frame}
     \frametitle{目录}
-    \tableofcontents[currentsection] % [currentsection,currentsubsection]
+    \tableofcontents[currentsection]
   \end{frame}
 }
 \AtBeginSubsection[]
