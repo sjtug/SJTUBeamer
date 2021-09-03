@@ -1,10 +1,5 @@
 #!/usr/bin/env texlua
 
--- Windows MikTeX still have l3build bug!
--- Use ubuntu to compile.
--- https://github.com/latex3/l3build/issues/185
--- The fix has not been released yet.
-
 module           = "sjtubeamer"
 
 sourcefiledir    = "source"
@@ -12,11 +7,18 @@ sourcefiles      = {"*.ins","*.dtx","*logo.pdf","sjtubadge.pdf","sjtubg.pdf","sj
 installfiles     = {"*.sty","*logo.pdf","sjtubadge.pdf","sjtubg.pdf","sjtubg.png","sjtuphoto.jpg"}
 
 docfiledir       = "doc"
-typesetexe       = "xelatex"
+
+if os.type == "windows" then
+    typesetexe       = "pdflatex"
+else
+    typesetexe       = "xelatex"
+end
+
 typesetfiles     = {"sjtubeamerdevguide.tex","sjtubeamer.tex"}
+-- typesetfiles     = {"sjtubeamer.tex"}
 -- typesetruns      = 1 -- for debug. Some reference may not be linked.
-typesetdemofiles = {"min.tex"}
-typesetsuppfiles = {"head.png","plant.jpg","test.csv","testgraph.tex","ref.bib"}
+-- typesetdemofiles = {"min.tex"}
+typesetsuppfiles = {"head.png","plant.jpg","test.csv","testgraph.tex","ref.bib","tutourial/"}
 
 -- Regression tests mainly test the decoupling properties between kernel modules.
 testfiledir      = "./testfiles"
@@ -53,6 +55,39 @@ function update_tag(file,content,tagname,tagdate)
             "\n\\date{" .. tagname .. " %1}\n")
     end
     return content
+end
+
+-- Generate tutourial files before compiling the doc.
+-- NOTICE: if you want to save the tourial step pdf,
+--         please enter support/tutourial adn run cache_pdf.sh
+--         if you want to clean the cache, please run clean_pdf.sh 
+function typeset_demo_tasks()
+    local errorlevel = 0
+    local tutourialdir = typesetdir .. "/tutourial"
+    local typesetcommand = typesetexe .. " " .. typesetopts   -- patch l3build
+    print("============================================================\n If you want to save the previous demo files\n Please move the pdf into the support/tutourial directory.\n============================================================")
+    for _, p in ipairs(filelist(tutourialdir, "step*.tex")) do
+        local pdffilename = string.gsub(p,".tex",".pdf")
+        if fileexists(tutourialdir .. "/" .. pdffilename) == false then
+            errorlevel = tex(p,tutourialdir,typesetcommand)
+            if string.find(p,"+") ~= nil then
+                if string.find(p,"-") ~= nil then
+                    -- biber after compiling the first time if it is marked as "-"
+                    errorlevel = biber(string.gsub(p,".tex",""),tutourialdir)
+                    -- errorlevel = tex(p,tutourialdir,typesetcommand)
+                end
+                -- compile the second time if it is marked as "+"
+                errorlevel = tex(p,tutourialdir,typesetcommand)
+            end
+            if errorlevel ~= 0 then
+                print(pdffilename .. " compilation failed.")
+                return errorlevel
+            end
+        else
+            print(pdffilename .. " exists.")
+        end
+    end
+    return 0
 end
 
 -- Move generated files to the main directory when it starts to check.

@@ -50,6 +50,15 @@
 
     \section{Build}
 
+    \subsection{Build Overview}
+
+    \themename\ has three different types of checking:
+    \begin{description}
+        \item[Regression test] To test the decoupling properties of the modules. \texttt{l3build check}
+        \item[Unit test] To test each function seperately by compiling documentation. \texttt{l3build doc}
+        \item[CI] To make an overall check by compiling a real-world presentation. It is often completed in GitHub Actions when you are pulling a request. \texttt{l3build ctan}
+    \end{description}
+
     \subsection{l3build}\label{sec:l3build}
 
     \themename{} adopts \verb"l3build" system to build the package. After entering the source code directory:
@@ -58,10 +67,7 @@
     \end{verbatim}
     You could operate the package by the following command. The build script is set in \verb"build.lua".
 
-    \fcmd{l3build doc} This command will generate the documentation of this package. We set an overall testing file \verb"doc/min.tex" to test all features of \themename. This is the most common command for testing a certain feature.
-    \begin{center}
-        unpack $\rightarrow$ \verb"min.tex" $\rightarrow$ documentations
-    \end{center}
+    \fcmd{l3build unpack} This command will unpack the source code and create a sandbox environment in \verb"build/local". You can create your own test file to test certain features here. It is the most common command for testing a certain feature.
 
     \fcmd{l3build check} Process a regression test, with an optional parameter to perform one of the following tests:
     \begin{center}
@@ -69,11 +75,33 @@
     \end{center}
     which will show if the module is standing-free. If the compilation error occurs, please check if your code uses one definition from another module without requiring it first, or undefined control sequence occurs.
 
+    This command will also move the generated style files to the root directory.
+
+    \fcmd{l3build doc} This command will generate the documentation of this package. 
+    % We set an overall testing file \verb"doc/min.tex" to test all features of \themename.
+    % \begin{center}
+    %     unpack $\rightarrow$ \verb"min.tex" $\rightarrow$ documentations
+    % \end{center}
+    Since the doc has a lot of dependencies (or unit tests), you can cache the demo files to \verb"support/tutourial" directory.
+    \begin{verbatim}
+        cd support/tutourial
+        ./cache_pdf.sh
+    \end{verbatim}
+    or you could remove all the cached files by
+    \begin{verbatim}
+        ./clean_pdf.sh
+    \end{verbatim}
+    and don't forget to back to the source code directory if you want to use \verb"l3build":
+    \begin{verbatim}
+        cd ../..
+    \end{verbatim}
+    We highly recommend that using *nix to compile the doc.
+
     \fcmd{l3build save color} If you make some modification to the framework (except \verb"sjtucover") and change the result. To save the current result as a reference, run this command and \verb"color" could be exchanged by any of the test units above.
 
     \fcmd{l3build clean} Clean the current \verb"src/build" directory, which will be useful if you modified one of the temporary files in that directory. (In this case, you may perform a wrong test with a modified version since \verb"l3build doc" may not refresh it.)
 
-    \fcmd{l3build tag v1.5.0} Tag the version of the source code, which will also update the date in the source code.
+    \fcmd{l3build tag v2.0.0} Tag the version of the source code, which will also update the date in the source code.
 
     \fcmd{l3build ctan} This is the last step before release. Both \verb"l3build check" and \verb"l3build doc" will be performed. The generated file is \verb"src/sjtubeamer-ctan.zip".
 
@@ -105,8 +133,6 @@
         .github/ci/build_package.sh
     \end{verbatim}
 
-    And all other scripts in the folder could also be checked in your local machine to make sure you can pass the CI on GitHub Actions.
-
     If you are a Windows user\footnote{Windows 10 users could also install WSL (Windows Subsystem for Linux) in order to use Linux environment conveniently. This also provides a faster speed on compiling.} and your \verb"l3build" distribution is not 2021/08/28 and later, please use the old extracting method in \verb"src/source":
     \begin{verbatim}
         latex beamerthemesjtubeamer.ins
@@ -115,7 +141,9 @@
 
     \subsection{Check Integration}
 
-    TBD.
+    All other scripts in the folder \verb".github/ci" could also be checked in your local machine to make sure you can pass the CI on GitHub Actions.
+
+    \clearpage
 
     \section{Coding Style}
 
@@ -414,6 +442,10 @@
 
     Now, a sandbox in \verb"sjtucover.sty" is created. The modification on logo color is temporary and your page insertion aside from the current theme is also temporary.
 
+    \begin{warn}
+        When drawing in the sandbox through Ti\emph{k}Z, make sure to use \texttt{overlay} option for adjustment. It will avoid the shift of your cover when using \texttt{sidebar} theme.
+    \end{warn}
+
     Since large source code may cause a performance drop on compiling. We have figure out a precompiling mechanism to reduce the templates it generates. See Section \ref{sec:precompile}.
 
     \subsection{Logo Color System}
@@ -498,6 +530,27 @@
         \item \textbf{Use old-fashioned \TeX{} code.} If there is a nice way to implement in \TeX{}, then go \TeX{}. \TeX{} is a box-based typesetting system, which may be mentioned in many Computer Science books. And \LaTeX{} is on top of that to provide clear-to-read macros. In some scenarios, the native \verb"\vbox" and \verb"\hbox" command could help calculate the position of characters in a more controllable way. But it is certainly painful to learn. The \TeX{} Book\cite{texbook} is the classic to learn that, but Notes On Programming in \TeX{}\cite{texnote} is more recommended in modern \LaTeX{}.
     \end{enumerate}
 
+    \subsection{Old \TeX\ Distribution}
+
+        To make full use of \themename\, we always recommend using the latest \TeX\ distribution. However, in some cases, an older \TeX\ distribution needs to be supported.
+        
+        For compatibility issues, you need to close the ``compatible'' option in \verb"beamerthemesjtubeamer.ins" for older versions. Change the following line to achieve that.
+
+        \begin{verbatim}
+            \generate{\file{sjtuvi.sty}{%
+                      \from{sjtuvi.dtx}{package,compatible}}
+            }
+        \end{verbatim}
+
+        The following table shows the compilation test of older \TeX\ distribution, where $\circ$ means you have to close the ``compatible'' option.
+
+        \begin{tabular}{c|cccccccc}
+            \TeX\ Live & 2021 & 2020 & 2019 & 2018 & 2017 & 2016 & 2015 & 2014 \\
+            \hline
+            Test & $\surd$ & $\surd$ & $\surd$ & $\circ$ & $\circ$ & $\circ$ & $\circ$ & \\
+        \end{tabular}
+
+
     \section{Developer}
     \begin{itemize}
         \item Cascades Chen (cascadeschen@gmail.com)
@@ -552,6 +605,7 @@ see \href{https://vi.sjtu.edu.cn/index.php/articles/bulletin/16}{https://vi.sjtu
     \DocInput{sjtucover.dtx}
     \DocInput{sjtuvi.dtx}
 
+    \clearpage
     \bibliography{dev}
 
 \end{document}

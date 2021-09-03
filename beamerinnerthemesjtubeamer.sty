@@ -21,7 +21,7 @@
 %% limitations under the License.
 %% ------------------------------------------------------------------------
 \NeedsTeXFormat{LaTeX2e}
-\ProvidesPackage{beamerinnerthemesjtubeamer}[2021/08/30 sjtubeamer inner theme v1.5.2]
+\ProvidesPackage{beamerinnerthemesjtubeamer}[2021/09/03 sjtubeamer inner theme v2.0.0]
 \RequirePackage{sjtuvi}
 \RequirePackage{tcolorbox}
 \DeclareOptionBeamer{maxplus}{\def\sjtubeamer@inner@cover{maxplus}}
@@ -68,6 +68,17 @@
     \logo{\resizebox{!}{0.7cm}{\enlogo}}
   \fi
 \fi
+\newcommand{\bgcenterbox}[1]{
+  \vbox to \paperheight{
+    \vfil
+      \hbox to \paperwidth{
+        \hfil
+          #1
+        \hfil
+      }
+    \vfil
+  }
+}
 \if\EqualOption{inner}{cover}{maxplus}
   \titlegraphic{\includegraphics{sjtuphoto.jpg}}
 \else
@@ -78,14 +89,8 @@
     {
       \let\oldlogocolor=\sjtubeamer@logocolor%
       \def\sjtubeamer@logocolor{cprimary!50}
-      \vbox to \paperheight{
-        \vfil
-          \hbox to \paperwidth{
-            \hfil
-              \resizebox{\paperwidth}{!}{\sjtubg[opacity=0.2]}
-            \hfil
-          }
-        \vfil
+      \bgcenterbox{
+        \resizebox{\paperwidth}{!}{\sjtubg[opacity=0.2]}
       }
       \let\sjtubeamer@logocolor=\oldlogocolor%
     }
@@ -178,7 +183,7 @@
   \vfill
 }
 \AtBeginPart{
-  \begin{frame}
+  \begin{frame}[plain]
     \partpage
   \end{frame}
 }
@@ -221,12 +226,8 @@
   \vfill
 }
 \useinnertheme{circles}
-\if\EqualOption{inner}{cover}{maxplus}%
+\if\EqualOption{inner}{cover}{min}\else
   \setbeamertemplate{blocks}[rounded]
-\else
-  \if\EqualOption{inner}{cover}{max}%
-    \setbeamertemplate{blocks}[rounded]
-  \fi
 \fi
 \newtcbox{\highlight}[1][cprimary]{
   on line,
@@ -354,7 +355,20 @@
         after row=\bottomrule
       },
     }
+    \newcolumntype{L}[1]{>{\begin{pgfplotstablecoltype}[#1]}
+      r<{\end{pgfplotstablecoltype}}}
   }{}
+  \def\Hy@WarnOptionDisabled#1{
+      \def\next{#1}%
+      \ifx\next pdfauthor %
+          \ifx\next driverfallback %
+          \else
+          \Hy@Warning{%
+              Option `#1' has already been used,\MessageBreak
+              setting the option has no effect%
+          }\fi%
+      \fi%
+  }
 }
 \defbeamertemplate*{footnote}{sjtubeamermin}
 {

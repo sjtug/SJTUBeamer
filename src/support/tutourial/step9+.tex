@@ -1,0 +1,11 @@
+\documentclass[aspectratio=169]{ctexbeamer}
+\usetheme[min]{sjtubeamer}
+\begin{document}
+\AtBeginSection[]{
+    \begin{frame}
+        \tableofcontents
+        [currentsection]
+    \end{frame}
+}
+\include{maincontents.tex}
+\end{document}

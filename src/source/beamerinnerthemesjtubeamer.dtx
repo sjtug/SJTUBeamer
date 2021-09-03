@@ -16,7 +16,7 @@
 % \iffalse
 %<*package>
 \NeedsTeXFormat{LaTeX2e}
-\ProvidesPackage{beamerinnerthemesjtubeamer}[2021/08/30 sjtubeamer inner theme v1.5.2]
+\ProvidesPackage{beamerinnerthemesjtubeamer}[2021/09/03 sjtubeamer inner theme v2.0.0]
 %</package>
 % \fi
 % \CheckSum{0}
@@ -158,6 +158,23 @@
 %    \end{macrocode}
 %  \end{macro}
 %
+%  \begin{macro}{\bgcenterbox}
+%   Define a command to make a centered background box easily.
+%    \begin{macrocode}
+\newcommand{\bgcenterbox}[1]{
+  \vbox to \paperheight{
+    \vfil
+      \hbox to \paperwidth{
+        \hfil
+          #1
+        \hfil
+      }
+    \vfil
+  }
+}
+%    \end{macrocode}
+%  \end{macro}
+%
 %  \begin{macro}{\titlegraphic}
 % Define the title grahic image.
 %
@@ -178,14 +195,8 @@
     {
       \let\oldlogocolor=\sjtubeamer@logocolor%
       \def\sjtubeamer@logocolor{cprimary!50}
-      \vbox to \paperheight{
-        \vfil
-          \hbox to \paperwidth{
-            \hfil
-              \resizebox{\paperwidth}{!}{\sjtubg[opacity=0.2]}
-            \hfil
-          }
-        \vfil
+      \bgcenterbox{
+        \resizebox{\paperwidth}{!}{\sjtubg[opacity=0.2]}
       }
       \let\sjtubeamer@logocolor=\oldlogocolor%
     }
@@ -348,7 +359,7 @@
 %   Redirect the part command to make a part page.
 %    \begin{macrocode}
 \AtBeginPart{
-  \begin{frame}
+  \begin{frame}[plain]
     \partpage
   \end{frame}
 }
@@ -419,20 +430,15 @@
 %
 % \subsubsection{Block Environments}
 %
+%   The block in \verb"min" theme is not rounded.
 %    \begin{macrocode}
-%<*maxplus>
-\if\EqualOption{inner}{cover}{maxplus}%
+%<*min>
+\if\EqualOption{inner}{cover}{min}\else
+%</min>
   \setbeamertemplate{blocks}[rounded]
-\else
-%</maxplus>
-%<*max>
-  \if\EqualOption{inner}{cover}{max}%
-    \setbeamertemplate{blocks}[rounded]
-  \fi
-%</max>
-%<*maxplus>
+%<*min>
 \fi
-%</maxplus>
+%</min>
 %    \end{macrocode}
 %
 % \begin{macro}{\highlight}
@@ -603,7 +609,23 @@
         after row=\bottomrule
       },
     }
+    \newcolumntype{L}[1]{>{\begin{pgfplotstablecoltype}[#1]}
+      r<{\end{pgfplotstablecoltype}}}
   }{}
+%    \end{macrocode}
+% Disable the warning from \verb"hyperref" which conflicts the setting in C\TeX{} or CJK. It has to be manually disabled.
+%    \begin{macrocode}
+  \def\Hy@WarnOptionDisabled#1{
+      \def\next{#1}%
+      \ifx\next pdfauthor %
+          \ifx\next driverfallback %
+          \else
+          \Hy@Warning{%
+              Option `#1' has already been used,\MessageBreak 
+              setting the option has no effect%
+          }\fi%
+      \fi%
+  }
 }
 %    \end{macrocode}
 %

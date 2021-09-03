@@ -16,7 +16,7 @@
 % \iffalse
 %<*package>
 \NeedsTeXFormat{LaTeX2e}
-\ProvidesPackage{beamerouterthemesjtubeamer}[2021/08/30 sjtubeamer outer theme v1.5.2]
+\ProvidesPackage{beamerouterthemesjtubeamer}[2021/09/03 sjtubeamer outer theme v2.0.0]
 %</package>
 % \fi
 % \CheckSum{0}
@@ -70,6 +70,20 @@
 \fi\fi
 %    \end{macrocode}
 %
+%   Color patch for sidebar, shadow, and smoothtrees.
+%   WARNING: This cannot be moved to the color theme, since the color was set in the outer theme itself. And the outer theme is the last theme to be loaded.
+%    \begin{macrocode}
+\setbeamercolor{frametitle}{use=titlelike,bg=white,fg=titlelike.fg}
+\setbeamercolor{frametitle right}{parent=subsection in head/foot}
+%    \end{macrocode}
+%
+% \subsubsection{Bottombar}
+%
+%   Clear the original definition of sidebar first. Then append the page info to the footline, which could avoid collision on footnote.
+%    \begin{macrocode} 
+\setbeamertemplate{sidebar right}{}
+%    \end{macrocode}
+%
 % Add page number to the toolbox.
 %    \begin{macrocode}
 \addtobeamertemplate{navigation symbols}{}{
@@ -84,6 +98,17 @@
   }
 }
 %    \end{macrocode}
+%
+%  Append the navigation to the footline to avoid the collision with the navigation symbols.
+%    \begin{macrocode}
+\addtobeamertemplate{footline}{
+  \hfill%
+  \usebeamertemplate***{navigation symbols}%
+  \hspace*{0.1cm}\par
+  \vskip 4pt
+}{}
+%    \end{macrocode}
+%
 % And set the page number template to none.
 %    \begin{macrocode}
 \setbeamertemplate{page number in head/foot}{}

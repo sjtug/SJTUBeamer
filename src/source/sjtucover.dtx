@@ -13,7 +13,7 @@
 % \iffalse
 %<*package>
 \NeedsTeXFormat{LaTeX2e}
-\ProvidesPackage{sjtucover}[2021/08/30 cover library for sjtubeamer v1.5.2]
+\ProvidesPackage{sjtucover}[2021/09/03 cover library for sjtubeamer v2.0.0]
 %</package>
 % \fi
 % \CheckSum{0}
@@ -221,29 +221,20 @@
 %    \end{macrocode}
 %   \verb"resizebox" is used to adapt to all size of logo into 1cm height one. And it is the same in outer theme to make a 0.7cm logo. 
 %   The institute is in \TeX{} code for typesetting. \verb"\beamer@shortinstitute" meta is used to avoid compressing on \verb"\par", while \verb"\insertinstitute" will force the input to spread on one signle line. The mode to use is depended on the \verb"language" option. Super small font could be made by \verb"fontsize".
+%   Here, we use the option from inner to get the language setting, if this package is used independently, only chinese mode is available.
 %    \begin{macrocode}
     \usebeamercolor{titlelike}
     \begin{beamercolorbox}{logo}
       \vskip8pt
       \hbox{
-        \hskip4.5pt{\resizebox{!}{1cm}{\insertlogo}}
+        \hskip0pt{\resizebox{!}{1cm}{\insertlogo}}
         \ifx\insertinstitute\@empty%
         \else
           \ifx\insertlogo\@empty%
           \else
-            {\hskip3pt \vrule width0.5pt}\hskip7pt
+            {\hskip0pt \vrule width0.5pt}\hskip3pt
           \fi
-          \ifx\beamer@sjtubeamermin@lang\beamer@sjtubeamermin@langcn%
-            \vbox{
-              \fontsize{13pt}{0pt}\selectfont
-              \insertinstitute
-              \par\noindent\vskip0.15em
-              \fontsize{5pt}{0pt}\selectfont
-              \textsc{\insertshortinstitute}
-              \baselineskip 3.2pt
-              \par~
-            }
-          \else%
+          \if\EqualOption{inner}{lang}{en}
             \vbox to 1cm{
               \vfill
               \vbox{
@@ -255,7 +246,17 @@
               }
               \vfill
             }
-          \fi%
+          \else
+            \vbox{
+              \fontsize{13pt}{0pt}\selectfont
+              \insertinstitute
+              \par\noindent\vskip0.15em
+              \fontsize{5pt}{0pt}\selectfont
+              \textsc{\insertshortinstitute}
+              \baselineskip 3.2pt
+              \par~
+            }
+          \fi
         \fi%
       }
       \vskip8pt

@@ -16,7 +16,7 @@
 % \iffalse
 %<*package>
 \NeedsTeXFormat{LaTeX2e}
-\ProvidesPackage{beamercolorthemesjtubeamer}[2021/08/30 sjtubeamer color theme v1.5.2]
+\ProvidesPackage{beamercolorthemesjtubeamer}[2021/09/03 sjtubeamer color theme v2.0.0]
 %</package>
 % \fi
 % \CheckSum{0}
@@ -134,13 +134,15 @@
 %
 %   Set the footline color.
 %    \begin{macrocode}
+\setbeamercolor{title in head/foot}{fg=cprimary,bg=white}
 \setbeamercolor{section in head/foot}{fg=white,bg=cprimary}
 \setbeamercolor{subsection in head/foot}{fg=cprimary,bg=cprimary!20}
 \setbeamercolor{institute in head/foot}{fg=white,bg=}
 \setbeamercolor{page number in head/foot}{fg=white,bg=}
 %    \end{macrocode}
 %
-%   Color patch for shadow, smoothtrees.
+%   Color patch for sidebar, shadow, and smoothtrees.
+%   WARNING: This is a replica from outer theme, just in case if you want to use color theme seperately. But it is useless in the overall theming.
 %    \begin{macrocode}
 \setbeamercolor{frametitle}{use=titlelike,bg=white,fg=titlelike.fg}
 \setbeamercolor{frametitle right}{parent=subsection in head/foot}
