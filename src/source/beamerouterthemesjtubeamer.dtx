@@ -64,8 +64,18 @@
 %    \begin{macrocode}
 \if\EqualOption{outer}{nav}{miniframes}
   \useoutertheme[footline=institutetitle]{miniframes}
+%    \end{macrocode}
+% If it is a sidebar, then add a line to the sidebar edge.
+%    \begin{macrocode}
 \else\if\EqualOption{outer}{nav}{sidebar}
   \useoutertheme{sidebar}
+  \addtobeamertemplate{sidebar left}{}{
+    \usebeamercolor{structure}
+    \smash{\hspace*{\beamer@sidebarwidth}\textcolor{structure.fg}{\rule{1pt}{\paperheight}}}
+  }
+%    \end{macrocode}
+% If it is other theme, change the beamercolor to fit smooth* theme.
+%    \begin{macrocode}
 \else
   \useoutertheme{\sjtubeamer@outer@nav}
   \setbeamercolor{title in head/foot}{use=structure,bg=white,fg=structure.fg}
