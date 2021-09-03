@@ -180,7 +180,6 @@
 %
 % NOTICE: if you are using your own title graphic, please use png image with predefined color and transparency. Since it is beyond the control of logo color system. Or you could use the provided command in the sjtuvi library to create your own masked picture in order to follow the logo color system (The provided picture should be white and transparent in the background).
 %
-% The background of max will be the same as the title graphic.
 %    \begin{macrocode}
 %<*maxplus>
 \if\EqualOption{inner}{cover}{maxplus}
@@ -191,15 +190,6 @@
   \if\EqualOption{inner}{cover}{max}
     \usebeamercolor{palatte primary}
     \titlegraphic{\sjtubg[opacity=0.2]}
-    \setbeamertemplate{background}
-    {
-      \let\oldlogocolor=\sjtubeamer@logocolor%
-      \def\sjtubeamer@logocolor{cprimary!50}
-      \bgcenterbox{
-        \resizebox{\paperwidth}{!}{\sjtubg[opacity=0.2]}
-      }
-      \let\sjtubeamer@logocolor=\oldlogocolor%
-    }
   \else
 %</max>
 %<*min>
@@ -229,6 +219,19 @@
 %</maxplus>
 %    \end{macrocode}
 %  \end{macro}
+%
+% Fix the background to be sjtubg.
+%    \begin{macrocode}
+\setbeamertemplate{background}
+{
+  \let\oldlogocolor=\sjtubeamer@logocolor%
+  \def\sjtubeamer@logocolor{cprimary!50}
+  \bgcenterbox{
+    \resizebox{\paperwidth}{!}{\sjtubg[opacity=0.2]}
+  }
+  \let\sjtubeamer@logocolor=\oldlogocolor%
+}
+%    \end{macrocode}
 %
 %  Initialize sidebar width to 0pt as no sidebar required, which will be overwritten in outer theme.
 %    \begin{macrocode}
