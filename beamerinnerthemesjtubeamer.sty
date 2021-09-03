@@ -88,6 +88,12 @@
   \if\EqualOption{inner}{cover}{max}
     \usebeamercolor{palatte primary}
     \titlegraphic{\sjtubg[opacity=0.2]}
+    \setbeamertemplate{background}
+    {
+      \bgcenterbox{
+        \resizebox{0.95\paperwidth}{!}{\sjtubg[opacity=0.2]}
+      }
+    }
   \else
     \if\EqualOption{inner}{cover}{min}
       \titlegraphic{\includegraphics{sjtuphoto.jpg}}
@@ -102,12 +108,6 @@
     \fi
   \fi
 \fi
-\setbeamertemplate{background}
-{
-  \bgcenterbox{
-    \resizebox{0.95\paperwidth}{!}{\sjtubg[opacity=0.2]}
-  }
-}
 \newdimen\beamer@sidebarwidth
 \beamer@sidebarwidth=0pt
 \def\titlepage{
@@ -288,9 +288,9 @@
   colback=cprimary!5,
   colframe=cprimary!80,
   overlay={
-      \begin{tcbclipinterior}\fill[cprimary!20]%
-          (frame.south west) rectangle ([xshift=5mm]frame.north west);
-      \end{tcbclipinterior}
+    \begin{tcbclipinterior}\fill[cprimary!20]%
+      (frame.south west) rectangle ([xshift=5mm]frame.north west);
+    \end{tcbclipinterior}
   }
 }
 \AtEndPreamble{%
