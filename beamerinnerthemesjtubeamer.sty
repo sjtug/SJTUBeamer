@@ -90,9 +90,7 @@
     \titlegraphic{\sjtubg[opacity=0.2]}
     \setbeamertemplate{background}
     {
-      \bgcenterbox{
-        \resizebox{0.95\paperwidth}{!}{\sjtubg[opacity=0.2]}
-      }
+      \parbox[c][1.1\paperheight][c]{\paperwidth}{\centering\resizebox{\paperwidth}{!}{\sjtubg[cprimary!50,opacity=0.2]}}
     }
   \else
     \if\EqualOption{inner}{cover}{min}
