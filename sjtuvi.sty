@@ -20,21 +20,21 @@
 \NeedsTeXFormat{LaTeX2e}
 \ProvidesPackage{sjtuvi}[2021/09/03 Visual Identity System library for sjtubeamer v2.0.0]
 \def\DefineOption#1#2#3{
-    % #1: package
-    % #2: key
-    % #3: value
-    \DeclareOptionBeamer{#3}{\expandafter\def\csname sjtubeamer@#1@#2\endcsname{#3}}
+  % #1: package
+  % #2: key
+  % #3: value
+  \DeclareOptionBeamer{#3}{\expandafter\def\csname sjtubeamer@#1@#2\endcsname{#3}}
 }
 \def\EqualOption{TT\fi\ifEqualOption} % dummy trick to pass the condition test
 \def\ifEqualOption#1#2#3{
-    % #1: package
-    % #2: key
-    % #3: value
-    \newif\iftempif
-    \edef\tempvar{\csname sjtubeamer@#1@#2\endcsname}
-    \def\tempvalue{#3}
-    \ifx\tempvar\tempvalue\tempiftrue\else\tempiffalse\fi
-    \iftempif
+  % #1: package
+  % #2: key
+  % #3: value
+  \newif\iftempif
+  \edef\tempvar{\csname sjtubeamer@#1@#2\endcsname}
+  \def\tempvalue{#3}
+  \ifx\tempvar\tempvalue\tempiftrue\else\tempiffalse\fi
+  \iftempif
 }
 \RequirePackage{tikz}
 \usetikzlibrary{patterns.meta}
@@ -83,36 +83,36 @@
 \tikzdeclarepattern{
   name=stamp,
   parameters={
-    \pgfkeysvalueof{/pgf/pattern keys/size},
-    \pgfkeysvalueof{/pgf/pattern keys/xshift},
-    \pgfkeysvalueof{/pgf/pattern keys/yshift},
-  },
+      \pgfkeysvalueof{/pgf/pattern keys/size},
+      \pgfkeysvalueof{/pgf/pattern keys/xshift},
+      \pgfkeysvalueof{/pgf/pattern keys/yshift},
+    },
   defaults={
-    size/.initial = 5pt,
-    xshift/.initial = 0pt,
-    yshift/.initial = 0pt,
-  },
+      size/.initial = 5pt,
+      xshift/.initial = 0pt,
+      yshift/.initial = 0pt,
+    },
   bottom left={(
-    -0.5*\pgfkeysvalueof{/pgf/pattern keys/size}
+      -0.5*\pgfkeysvalueof{/pgf/pattern keys/size}
       +\pgfkeysvalueof{/pgf/pattern keys/xshift},
-    -0.4*\pgfkeysvalueof{/pgf/pattern keys/size}
+      -0.4*\pgfkeysvalueof{/pgf/pattern keys/size}
       +\pgfkeysvalueof{/pgf/pattern keys/yshift}
-  )},
+      )},
   top right={(
-    0.5*\pgfkeysvalueof{/pgf/pattern keys/size}
+      0.5*\pgfkeysvalueof{/pgf/pattern keys/size}
       +\pgfkeysvalueof{/pgf/pattern keys/xshift},
-    0.4*\pgfkeysvalueof{/pgf/pattern keys/size}
+      0.4*\pgfkeysvalueof{/pgf/pattern keys/size}
       +\pgfkeysvalueof{/pgf/pattern keys/yshift}
-  )},
+      )},
   tile size={(
-    \pgfkeysvalueof{/pgf/pattern keys/size},
-    0.8*\pgfkeysvalueof{/pgf/pattern keys/size}
-  )},
+      \pgfkeysvalueof{/pgf/pattern keys/size},
+      0.8*\pgfkeysvalueof{/pgf/pattern keys/size}
+      )},
   code={
-    \def\s{\pgfkeysvalueof{/pgf/pattern keys/size}}%
-    \tikzset{x=0.5*\s,y=0.2*\s}
-    \fill[xshift=\pgfkeysvalueof{/pgf/pattern keys/xshift},
-      yshift=\pgfkeysvalueof{/pgf/pattern keys/yshift}]
+      \def\s{\pgfkeysvalueof{/pgf/pattern keys/size}}%
+      \tikzset{x=0.5*\s,y=0.2*\s}
+      \fill[xshift=\pgfkeysvalueof{/pgf/pattern keys/xshift},
+        yshift=\pgfkeysvalueof{/pgf/pattern keys/yshift}]
       (-0.25*\s,0)
       -- (-0.17*\s,0.06*\s)
       -- (-0.17*\s,0.1*\s)
@@ -123,7 +123,7 @@
       -- (0.17*\s,-0.1*\s)
       -- (-0.17*\s,-0.1*\s)
       -- (-0.17*\s,-0.06*\s) -- cycle;
-  }
+    }
 }
 \providecommand{\stamparray}[3]{
   % #1: pattern size
