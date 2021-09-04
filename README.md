@@ -10,6 +10,10 @@ SJTUBeamer 是上海交通大学的非官方 Beamer 模版。您可以使用 SJT
 
 目前的 `main.tex` 是一个示例文档《如何使用 LaTeX 排版论文》。您可以将里面的内容替换掉。下面是一个最简示例：
 
+<details>
+
+<summary>点击展开代码片段</summary>
+
 ```latex
 \documentclass[
     % draft,          % 草稿模式
@@ -110,26 +114,44 @@ int main(){
 \end{document}
 ```
 
+</details>
+
 ## 使用方法 🧰
 
 普通用户只需编辑 `main.tex` 即可开始使用。
 
-* Overleaf 用户可以直接下载 [最新版](https://github.com/sjtug/SJTUBeamer/archive/refs/heads/main.zip) 或 
-[v1.5.0](https://github.com/sjtug/SJTUBeamer/releases/tag/v1.5.0) 的代码，上传至 Overleaf 使用。
-* 如果您希望在本地使用 SJTUBeamer 模版，请安装 TeXLive 套件，并通过 `latexmk -xelatex main.tex` 命令进行编译。
-* VSCode 用户可以使用 LaTeX Workshop 中的“Recipe: latexmk (latexmkrc)”进行编译。
+### 模版下载与编译
 
-您可以阅读 "Release" 中的 `sjtubeamer-intro.pdf` 以了解模版的参数和详细使用方法。
+* Overleaf
+  * 下载 [最新版](https://github.com/sjtug/SJTUBeamer/archive/refs/heads/main.zip) 压缩包。
+  * 或下载 [v1.5.0](https://github.com/sjtug/SJTUBeamer/archive/refs/tags/v1.5.0.zip) 压缩包。
+  * 上传至 Overleaf 使用即可。
+  * Overleaf 的设置中需要选择“XeLaTeX”编译器编译。
+* 本地使用
+  * 安装 TeXLive 套件。
+  * 下载 [最新版](https://github.com/sjtug/SJTUBeamer/archive/refs/heads/main.zip) 压缩包。
+  * 或下载 [v1.5.0](https://github.com/sjtug/SJTUBeamer/archive/refs/tags/v1.5.0.zip) 压缩包。
+  * 或使用 git 克隆仓库 `git clone https://github.com/sjtug/SJTUBeamer/`。
+  * 之后通过 `latexmk -xelatex main.tex` 命令进行编译即可。
+  * VSCode 用户可以使用 LaTeX Workshop 中的 “Recipe: latexmk (latexmkrc)” 进行编译。
 
-## 设计哲学 💭
+目前模版最新的稳定版是 v1.5.0。您可以在 [发布页](https://github.com/sjtug/SJTUBeamer/releases/tag/v1.5.0) 查看修改日志和更多资料。通常来说，SJTUBeamer 的一个稳定版本包括如下内容：
 
-简单易用，即使是 LaTeX 初学者也能轻松上手。
+* `sjtubeamer.pdf`: SJTUBeamer 用户文档。**强烈推荐在使用前阅读一遍 👍👍👍。**
+* `sjtubeamerdevguide.pdf`: SJTUBeamer 开发指南。
+* `sjtulib-talk-max-red.pdf`: 示例文档《如何使用 LaTeX 排版论文》的 `max,red` 主题版本。
+* `sjtulib-talk-maxplus-blue.pdf`: 示例文档《如何使用 LaTeX 排版论文》的 `maxplus,blue` 主题版本。
+* `sjtulib-talk-maxplus-red.pdf`: 示例文档《如何使用 LaTeX 排版论文》的 `maxplus,red` 主题版本。
+* `sjtulib-talk-min-red.pdf`: 示例文档《如何使用 LaTeX 排版论文》的 `min,red` 主题版本。
+* `sample-all-covers.pdf`: 所有配色主题的封面封底。
+* `sjtubeamer-ctan.zip`: 包含所有文档和样式的压缩包。
+* SJTUBeamer 源代码。
 
 ## 使用反馈与贡献代码 👷
 
 * 您可以通过 GitHub Issue 反馈使用时碰到的问题。同时，也欢迎您提交 PR 帮助我们改进。
 * 所有对模版的修改应该在 `.dtx` 文件中进行，而后用 l3build 生成 sty 文件。
-* 您可以阅读 "Release" 中的 `sjtubeamer-dev-guide.pdf` 以了解模版的实现细节与编译方法。
+* 您可以阅读发布页面中的《SJTUBeamer 开发指南》`sjtubeamerdevguide.pdf` 了解模版的实现细节与编译方法。
 
 整个开发流程如下：
 
@@ -144,9 +166,15 @@ int main(){
 
 ## 展示 🧐
 
-您可以在 [v1.5.0](https://github.com/sjtug/SJTUBeamer/releases/tag/v1.5.0) 预览生成的四个主题的 pdf。
-
 ![cover-0](https://user-images.githubusercontent.com/4198311/131241659-90f0804b-d0b1-4bb9-b45c-7d3c81ace02a.png)
 ![cover-1](https://user-images.githubusercontent.com/4198311/131241665-2ced7884-7428-4967-8055-6ce47de7f8bd.png)
 ![cover-2](https://user-images.githubusercontent.com/4198311/131241668-cc47d9fb-14c4-4681-b95d-98400e9b8d77.png)
 ![cover-3](https://user-images.githubusercontent.com/4198311/131241669-ccf58f17-d35f-492d-8707-2cfdbd613107.png)
+
+## 许可证
+
+SJTUBeamer 仓库同时包含 SJTUBeamer 包和一个示例文档。其中内容的许可证各不相同。您可以阅读各个文件的开头部分，了解该文件所使用的许可证。
+
+* SJTUBeamer 包使用的许可证为 Apache-2.0。
+* SJTUBeamer 示例文档使用 CC-BY-SA 4.0 许可。
+* sjtuvi 和 sjtucover 库及其附属徽标、图片由上海交通大学持有版权。校属各单位及个人以经营为目的使用视觉形象识别系统，须向学校申请使用许可。校外单位及个人未经许可，不得制作或使用载有视觉形象识别系统的物品。

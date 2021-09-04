@@ -18,25 +18,17 @@
 %% see https://vi.sjtu.edu.cn/index.php/articles/bulletin/16.
 %% ------------------------------------------------------------------------
 \NeedsTeXFormat{LaTeX2e}
-\ProvidesPackage{sjtucover}[2021/09/03 cover library for sjtubeamer v2.0.0]
+\ProvidesPackage{sjtucover}[2021/09/04 cover library for sjtubeamer v2.0.0]
 \RequirePackage{sjtuvi}
 \DeclareOptionBeamer{maxplus}{\def\sjtubeamer@sjtucover@cover{maxplus}}
 \DeclareOptionBeamer{max}{\def\sjtubeamer@sjtucover@cover{max}}
 \DeclareOptionBeamer{min}{\def\sjtubeamer@sjtucover@cover{min}}
 \DeclareOptionBeamer{my}{\def\sjtubeamer@sjtucover@cover{my}} % reserved for customization
 \ExecuteOptionsBeamer{
-  %<*maxplus>
   maxplus,
-  %</maxplus>
-  %<*min>
   min,
-  %</min>
-  %<*my>
   my,
-  %</my>
-  %<*max>
   max,
-  %</max>
 }
 \ProcessOptionsBeamer
 \defbeamertemplate*{title page}{maxplus}[1][]
@@ -130,27 +122,13 @@
 \defbeamertemplate*{title page}{min}[1][]
 {
   \vbox{}
-  %    \end{macrocode}
-  %   The background of the title page is implemented by a TikZ rectangle, which avoids the changing on \verb"background canvas" beamer color.
-  %
-  %   In this definition environment, you could not change the beamer color. The older version redefines \verb"maketitle" command and switches the \verb"background canvas" color, which is harmful for decoupling.
-  %
-  %   Use TikZ rectangle also avoids the unexpected shift because the risk of redefining the internal command is avoided. If there is any text before the title page, the \verb"\maketitle" will start from a new page.
-  %    \begin{macrocode}
   \usebeamercolor{palette primary}
   \def\sjtubeamer@logocolor{palette primary.fg}
   \begin{tikzpicture}[overlay]
     \fill [palette primary.bg] (-0.2*\the\paperwidth,-1*\the\paperheight)
     rectangle (1*\the\paperwidth, 0.2*\the\paperheight);
   \end{tikzpicture}
-  %    \end{macrocode}
-  %   If it is in draftmode, no pattern will get rendered.
-  %    \begin{macrocode}
   \ifbeamer@draftmode%
-    %    \end{macrocode}
-    %   Otherwise, the fade tile of stamp array will get covered on top of the background rectangle.
-    %   \verb"stamparray" is defined in \verb"SJTUvi". Then, a fade right covers this array layer and a center fade covers the previous result.
-    %    \begin{macrocode}
   \else%
     \begin{tikzpicture}[overlay]
       \stamparray{20pt}
@@ -163,17 +141,9 @@
       (0.2*\the\paperwidth,0) circle [radius=\the\paperwidth];
     \end{tikzpicture}
   \fi%
-  %    \end{macrocode}
-  %   Set a constraint in the vertical mode to make the following contents centered in the middle of the slide.
-  %    \begin{macrocode}
   \vfill
   \begingroup
   \centering
-  %    \end{macrocode}
-  %   \verb"resizebox" is used to adapt to all size of logo into 1cm height one. And it is the same in outer theme to make a 0.7cm logo.
-  %   The institute is in \TeX{} code for typesetting. \verb"\beamer@shortinstitute" meta is used to avoid compressing on \verb"\par", while \verb"\insertinstitute" will force the input to spread on one signle line. The mode to use is depended on the \verb"language" option. Super small font could be made by \verb"fontsize".
-  %   Here, we use the option from inner to get the language setting, if this package is used independently, only chinese mode is available.
-  %    \begin{macrocode}
   \usebeamercolor{titlelike}
   \begin{beamercolorbox}{logo}
     \vskip8pt
@@ -212,9 +182,6 @@
     }
     \vskip8pt
   \end{beamercolorbox}
-  %    \end{macrocode}
-  %   Insert title, subtitle, author, and date.
-  %    \begin{macrocode}
   \begin{beamercolorbox}[sep=8pt,#1]{title}
     \usebeamerfont{title}\inserttitle\par%
     \ifx\insertsubtitle\@empty%
@@ -230,9 +197,6 @@
   \begin{beamercolorbox}[sep=8pt,#1]{date}
     \usebeamerfont{date}\insertdate
   \end{beamercolorbox}
-  %    \end{macrocode}
-  %   Here insert the titlegraphic. The node position is set to \verb"above left" to make sure the bottom of the picture is aligned to the bottom of the date line.
-  %    \begin{macrocode}
   \usebeamercolor{palette primary}%
   \ifx\inserttitlegraphic\@empty%
   \else
@@ -344,7 +308,7 @@
 }
 \defbeamertemplate*{bottom page}{min}[1][]
 {
-\vbox{}
+  \vbox{}
   \usebeamercolor{palette primary}
   \usebeamercolor{palette secondary}
   \def\sjtubeamer@logocolor{palette primary.fg}

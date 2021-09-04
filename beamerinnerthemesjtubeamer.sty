@@ -21,7 +21,7 @@
 %% limitations under the License.
 %% ------------------------------------------------------------------------
 \NeedsTeXFormat{LaTeX2e}
-\ProvidesPackage{beamerinnerthemesjtubeamer}[2021/09/03 sjtubeamer inner theme v2.0.0]
+\ProvidesPackage{beamerinnerthemesjtubeamer}[2021/09/04 sjtubeamer inner theme v2.0.0]
 \RequirePackage{sjtuvi}
 \RequirePackage{tcolorbox}
 \DeclareOptionBeamer{maxplus}{\def\sjtubeamer@inner@cover{maxplus}}
@@ -29,10 +29,10 @@
 \DeclareOptionBeamer{min}{\def\sjtubeamer@inner@cover{min}}
 \DeclareOptionBeamer{my}{\def\sjtubeamer@inner@cover{my}} % reserved for customization
 \ExecuteOptionsBeamer{
-maxplus,
-min,
-my,
-max,
+  maxplus,
+  min,
+  my,
+  max,
 }
 \DefineOption{inner}{lang}{cn}
 \DefineOption{inner}{lang}{en}
