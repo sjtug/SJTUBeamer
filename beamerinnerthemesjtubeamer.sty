@@ -62,13 +62,11 @@
 \if\EqualOption{inner}{cover}{max}
   \logo{\resizebox{!}{1cm}{\sjtubadge}}
 \else
-  %</max>
   \if\EqualOption{inner}{lang}{cn}
     \logo{\resizebox{!}{0.7cm}{\cnlogo}}
   \else
     \logo{\resizebox{!}{0.7cm}{\enlogo}}
   \fi
-  %<*max>
 \fi
 \newcommand{\bgcenterbox}[1]{
   \let\oldlogocolor=\sjtubeamer@logocolor%
@@ -85,7 +83,7 @@
   \let\sjtubeamer@logocolor=\oldlogocolor%
 }
 \if\EqualOption{inner}{cover}{maxplus}
-  \titlegraphic{\includegraphics{sjtuphoto.jpg}}
+  \titlegraphic{\includegraphics{vi/sjtuphoto.jpg}}
 \else
   \if\EqualOption{inner}{cover}{max}
     \usebeamercolor{palatte primary}
@@ -98,7 +96,7 @@
     }
   \else
     \if\EqualOption{inner}{cover}{min}
-      \titlegraphic{\includegraphics{sjtuphoto.jpg}}
+      \titlegraphic{\includegraphics{vi/sjtuphoto.jpg}}
     \else
       \if\EqualOption{inner}{cover}{my}
         %
@@ -252,15 +250,15 @@
   sharp corners,
   top=2pt,bottom=2pt,left=2pt,right=2pt,
   borderline={4pt}{0pt}{
-      #1,
-      line width=0.5pt,
-      decoration={
-          stampline,
-          segment length=8pt,
-          path has corners=true,
-        },
-      decorate
-    }
+    #1,
+    line width=0.5pt,
+    decoration={
+      stampline,
+      segment length=8pt,
+      path has corners=true,
+    },
+    decorate
+  }
 }
 \lstset{
   basicstyle=\ttfamily\small,
@@ -277,11 +275,11 @@
   listing only,
   listing engine=listings,
   listing options={
-      #1,%
-      numbers=left,
-      numberstyle=\color{cprimary!80}\ttfamily\scriptsize,
-      numbersep=5pt,
-    },
+    #1,%
+    numbers=left,
+    numberstyle=\color{cprimary!80}\ttfamily\scriptsize,
+    numbersep=5pt,
+  },
   enhanced,
   sharp corners,
   top=0mm,
@@ -290,45 +288,45 @@
   colback=cprimary!5,
   colframe=cprimary!80,
   overlay={
-      \begin{tcbclipinterior}\fill[cprimary!20]%
-        (frame.south west) rectangle ([xshift=5mm]frame.north west);
-      \end{tcbclipinterior}
-    }
+    \begin{tcbclipinterior}\fill[cprimary!20]%
+      (frame.south west) rectangle ([xshift=5mm]frame.north west);
+    \end{tcbclipinterior}
+  }
 }
 \AtEndPreamble{%
   \@ifpackageloaded{pgfplots}{%
     \pgfplotsset{
       compat=newest,
       every axis/.style={
-          font=\small\sffamily,
-          cycle multi list={
-              mark options={thick}\nextlist
-              mark list\nextlist
-              cprimary,csecondary,ctertiary\nextlist
-            },
-          height=0.5*\the\paperheight,
-          axis line style={
-              cprimary,
-              thin
-            },
-          every tick label/.style={
-              cprimary,
-              font=\small,
-              /pgf/number format/assume math mode=true
-            },
-          grid style={cprimary!10},
-          tick style={cprimary!50},
-          minor tick style={cprimary!30},
-          xlabel style={cprimary},
-          ylabel style={cprimary},
-          zlabel style={cprimary},
-          legend style={
-              draw={cprimary},
-              thin,
-              nodes={cprimary}
-            },
-          thick,
-        },
+        font=\small\sffamily,
+        cycle multi list={
+            mark options={thick}\nextlist
+            mark list\nextlist
+            cprimary,csecondary,ctertiary\nextlist
+          },
+        height=0.5*\the\paperheight,
+        axis line style={
+            cprimary,
+            thin
+          },
+        every tick label/.style={
+            cprimary,
+            font=\small,
+            /pgf/number format/assume math mode=true
+          },
+        grid style={cprimary!10},
+        tick style={cprimary!50},
+        minor tick style={cprimary!30},
+        xlabel style={cprimary},
+        ylabel style={cprimary},
+        zlabel style={cprimary},
+        legend style={
+            draw={cprimary},
+            thin,
+            nodes={cprimary}
+          },
+        thick,
+      },
     }
   }{}
   \@ifpackageloaded{pgfplotstable}{%
@@ -340,22 +338,22 @@
     \pgfplotstableset{
       col sep=comma,
       every table/.style={
-          font={\small\sffamily},
-        },
+        font={\small\sffamily},
+      },
       every head row/.style={
-          before row={
-              \arrayrulecolor{cprimary}
-              \toprule
-              \colorrows{\color{cprimary}}
-            },
-          after row={
-              \midrule
-              \colorrows{\color{black}}
-            },
+        before row={
+          \arrayrulecolor{cprimary}
+          \toprule
+          \colorrows{\color{cprimary}}
+        },
+        after row={
+            \midrule
+            \colorrows{\color{black}}
+          },
         },
       every last row/.style={
-          after row=\bottomrule
-        },
+        after row=\bottomrule
+      },
     }
     \newcolumntype{L}[1]{>{\begin{pgfplotstablecoltype}[#1]}
             r<{\end{pgfplotstablecoltype}}}
