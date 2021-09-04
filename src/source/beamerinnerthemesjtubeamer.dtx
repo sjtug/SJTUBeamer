@@ -196,18 +196,9 @@
     \titlegraphic{\sjtubg[opacity=0.2]}
     \setbeamertemplate{background}
     {
-      \let\oldlogocolor=\sjtubeamer@logocolor%
-      \def\sjtubeamer@logocolor{cprimary!50}
-      \vbox to \paperheight{
-        \vfil
-        \hbox to \paperwidth{
-          \hfil
-            \resizebox{\paperwidth}{!}{\sjtubg[opacity=0.2]}
-          \hfil
-        }
-        \vfil
+      \bgcenterbox{
+        \resizebox{\paperwidth}{!}{\sjtubg[opacity=0.2]}
       }
-      \let\sjtubeamer@logocolor=\oldlogocolor%
     }
   \else
 %</max>
