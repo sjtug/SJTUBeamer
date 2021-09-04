@@ -47,7 +47,7 @@ jobs:
         with:
           upload_url: ${{ steps.create_release.outputs.upload_url }}
           asset_path: build/build-maxplus-blue.pdf
-          asset_name: doc-theme-maxplus-blue.pdf
+          asset_name: sjtulib-talk-maxplus-blue.pdf
           asset_content_type: application/pdf
       - name: add build-maxplus-red
         uses: actions/upload-release-asset@v1.0.1
@@ -56,7 +56,7 @@ jobs:
         with:
           upload_url: ${{ steps.create_release.outputs.upload_url }}
           asset_path: build/build-maxplus-red.pdf
-          asset_name: doc-theme-maxplus-red.pdf
+          asset_name: sjtulib-talk-maxplus-red.pdf
           asset_content_type: application/pdf
       - name: add build-max-red
         uses: actions/upload-release-asset@v1.0.1
@@ -65,7 +65,7 @@ jobs:
         with:
           upload_url: ${{ steps.create_release.outputs.upload_url }}
           asset_path: build/build-max-red.pdf
-          asset_name: doc-theme-max-red.pdf
+          asset_name: sjtulib-talk-max-red.pdf
           asset_content_type: application/pdf
       - name: add build-min-red
         uses: actions/upload-release-asset@v1.0.1
@@ -74,7 +74,7 @@ jobs:
         with:
           upload_url: ${{ steps.create_release.outputs.upload_url }}
           asset_path: build/build-min-red.pdf
-          asset_name: doc-theme-min-red.pdf
+          asset_name: sjtulib-talk-min-red.pdf
           asset_content_type: application/pdf
       - name: add covers
         uses: actions/upload-release-asset@v1.0.1
@@ -101,7 +101,7 @@ jobs:
         with:
           upload_url: ${{ steps.create_release.outputs.upload_url }}
           asset_path: src/build/distrib/ctan/sjtubeamer/sjtubeamerdevguide.pdf
-          asset_name: sjtubeamer-dev-guide.pdf
+          asset_name: sjtubeamerdevguide.pdf
           asset_content_type: application/pdf
       - name: add intro
         uses: actions/upload-release-asset@v1.0.1
@@ -110,5 +110,5 @@ jobs:
         with:
           upload_url: ${{ steps.create_release.outputs.upload_url }}
           asset_path: src/build/distrib/ctan/sjtubeamer/sjtubeamer.pdf
-          asset_name: sjtubeamer-intro.pdf
+          asset_name: sjtubeamer.pdf
           asset_content_type: application/pdf
