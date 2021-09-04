@@ -55,7 +55,7 @@ Current document `main.tex` is an example documentation of *How to Use LaTeX to 
 
 \begin{frame}
   \frametitle{Title}
-  \paragraph{List} This \alert{side} contains the following items:
+  \paragraph{List} This \alert{slide} contains the following items:
   \begin{itemize}
     \item Item 1
     \item Item 2
@@ -76,7 +76,7 @@ Current document `main.tex` is an example documentation of *How to Use LaTeX to 
   \frametitle{Some boxes}
   \begin{block}{block}
     This is a box.
-    % \cite{<a cite>}
+    % \cite{<thelegendofjiang>}
   \end{block}
   \begin{alertblock}{alertblock}
     Text.
