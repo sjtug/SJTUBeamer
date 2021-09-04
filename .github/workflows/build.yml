@@ -88,7 +88,7 @@ jobs:
       - uses: xu-cheng/texlive-action/full@v1
         with:
           run: |
-            apk add diffutils git
+            apk add diffutils git make
             make format-dev
       - name: check if generated files are of latest version
         run: |
