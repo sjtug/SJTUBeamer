@@ -141,6 +141,8 @@ The current stable version is v2.0.0。You could visit [the release page](https:
 * `sjtubeamer-ctan.zip`: the installation package.
 * SJTUBeamer source code.
 
+Please use Chrome browser or Adobe Acrobat to open user guide, otherwise there could be display issues.
+
 ## Feedback & Contribution 👷
 
 * Feel free to file an issue with GitHub Issues. At the same time, PRs are always welcomed.
