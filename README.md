@@ -123,21 +123,21 @@ int main(){
 ### 模版下载与编译
 
 * Overleaf
-  * 下载 [最新版](https://github.com/sjtug/SJTUBeamer/archive/refs/heads/main.zip) 压缩包。
-  * 或下载 [v1.5.0](https://github.com/sjtug/SJTUBeamer/archive/refs/tags/v1.5.0.zip) 压缩包。
+  * 下载开发版压缩包。页面右上角 Code - Download Zip 即可。
+  * 或下载 [最新版](https://github.com/sjtug/SJTUBeamer/releases) 压缩包。点击 “Source Code (zip)” 即可下载。
   * 上传至 Overleaf 使用即可。
   * Overleaf 的设置中需要选择“XeLaTeX”编译器编译。
 * 本地使用
   * 安装 TeXLive 套件。
-  * 下载 [最新版](https://github.com/sjtug/SJTUBeamer/archive/refs/heads/main.zip) 压缩包。
-  * 或下载 [v1.5.0](https://github.com/sjtug/SJTUBeamer/archive/refs/tags/v1.5.0.zip) 压缩包。
-  * 或使用 git 克隆仓库 `git clone https://github.com/sjtug/SJTUBeamer/`。
+  * 使用 git 克隆仓库 `git clone https://github.com/sjtug/SJTUBeamer/`。
+  * 或下载开发版压缩包。页面右上角 Code - Download Zip 即可。
+  * 或下载 [最新版](https://github.com/sjtug/SJTUBeamer/releases) 压缩包。点击 “Source Code (zip)” 即可下载。
   * 之后通过 `latexmk -xelatex main.tex` 命令进行编译即可。
   * VSCode 用户可以使用 LaTeX Workshop 中的 “Recipe: latexmk (latexmkrc)” 进行编译。
 
-目前模版最新的稳定版是 v1.5.0。您可以在 [发布页](https://github.com/sjtug/SJTUBeamer/releases/tag/v1.5.0) 查看修改日志和更多资料。通常来说，SJTUBeamer 的一个稳定版本包括如下内容：
+目前模版最新的稳定版是 v2.0.0。您可以在 [发布页](https://github.com/sjtug/SJTUBeamer/releases) 查看修改日志和更多资料。通常来说，SJTUBeamer 的一个稳定版本包括如下内容：
 
-* `sjtubeamer.pdf`: SJTUBeamer 用户文档。**强烈推荐在使用前阅读一遍 👍👍👍。**
+* `sjtubeamer.pdf`: **强烈推荐在使用前阅读一遍 👍👍👍** SJTUBeamer 用户文档。
 * `sjtubeamerdevguide.pdf`: SJTUBeamer 开发指南。
 * `sjtulib-talk-max-red.pdf`: 示例文档《如何使用 LaTeX 排版论文》的 `max,red` 主题版本。
 * `sjtulib-talk-maxplus-blue.pdf`: 示例文档《如何使用 LaTeX 排版论文》的 `maxplus,blue` 主题版本。
