@@ -49,18 +49,18 @@
 \DeclareOptionBeamer{my}{\def\sjtubeamer@sjtucover@cover{my}} % reserved for customization
 %</my>
 \ExecuteOptionsBeamer{
-  %<*maxplus>
+%<*maxplus>
   maxplus,
-  %</maxplus>
-  %<*min>
+%</maxplus>
+%<*min>
   min,
-  %</min>
-  %<*my>
+%</min>
+%<*my>
   my,
-  %</my>    
-  %<*max>
+%</my>    
+%<*max>
   max,
-  %</max>
+%</max>
 }
 \ProcessOptionsBeamer
 %    \end{macrocode}
@@ -179,27 +179,27 @@
 \defbeamertemplate*{title page}{min}[1][]
 {
   \vbox{}
-  %    \end{macrocode}
-  %   The background of the title page is implemented by a TikZ rectangle, which avoids the changing on \verb"background canvas" beamer color. 
-  %
-  %   In this definition environment, you could not change the beamer color. The older version redefines \verb"maketitle" command and switches the \verb"background canvas" color, which is harmful for decoupling. 
-  %
-  %   Use TikZ rectangle also avoids the unexpected shift because the risk of redefining the internal command is avoided. If there is any text before the title page, the \verb"\maketitle" will start from a new page.
-  %    \begin{macrocode}
+%    \end{macrocode}
+%   The background of the title page is implemented by a TikZ rectangle, which avoids the changing on \verb"background canvas" beamer color. 
+%
+%   In this definition environment, you could not change the beamer color. The older version redefines \verb"maketitle" command and switches the \verb"background canvas" color, which is harmful for decoupling. 
+%
+%   Use TikZ rectangle also avoids the unexpected shift because the risk of redefining the internal command is avoided. If there is any text before the title page, the \verb"\maketitle" will start from a new page.
+%    \begin{macrocode}
   \usebeamercolor{palette primary}
   \def\sjtubeamer@logocolor{palette primary.fg}
   \begin{tikzpicture}[overlay]
     \fill [palette primary.bg] (-0.2*\the\paperwidth,-1*\the\paperheight)
     rectangle (1*\the\paperwidth, 0.2*\the\paperheight);
   \end{tikzpicture}
-  %    \end{macrocode}
-  %   If it is in draftmode, no pattern will get rendered.
-  %    \begin{macrocode}
+%    \end{macrocode}
+%   If it is in draftmode, no pattern will get rendered.
+%    \begin{macrocode}
   \ifbeamer@draftmode%
-    %    \end{macrocode}
-    %   Otherwise, the fade tile of stamp array will get covered on top of the background rectangle.
-    %   \verb"stamparray" is defined in \verb"SJTUvi". Then, a fade right covers this array layer and a center fade covers the previous result.
-    %    \begin{macrocode}
+%    \end{macrocode}
+%   Otherwise, the fade tile of stamp array will get covered on top of the background rectangle.
+%   \verb"stamparray" is defined in \verb"SJTUvi". Then, a fade right covers this array layer and a center fade covers the previous result.
+%    \begin{macrocode}
   \else%
     \begin{tikzpicture}[overlay]
       \stamparray{20pt}
@@ -212,17 +212,17 @@
       (0.2*\the\paperwidth,0) circle [radius=\the\paperwidth];
     \end{tikzpicture}
   \fi%
-  %    \end{macrocode}
-  %   Set a constraint in the vertical mode to make the following contents centered in the middle of the slide.
-  %    \begin{macrocode}
+%    \end{macrocode}
+%   Set a constraint in the vertical mode to make the following contents centered in the middle of the slide.
+%    \begin{macrocode}
   \vfill
   \begingroup
   \centering
-  %    \end{macrocode}
-  %   \verb"resizebox" is used to adapt to all size of logo into 1cm height one. And it is the same in outer theme to make a 0.7cm logo. 
-  %   The institute is in \TeX{} code for typesetting. \verb"\beamer@shortinstitute" meta is used to avoid compressing on \verb"\par", while \verb"\insertinstitute" will force the input to spread on one signle line. The mode to use is depended on the \verb"language" option. Super small font could be made by \verb"fontsize".
-  %   Here, we use the option from inner to get the language setting, if this package is used independently, only chinese mode is available.
-  %    \begin{macrocode}
+%    \end{macrocode}
+%   \verb"resizebox" is used to adapt to all size of logo into 1cm height one. And it is the same in outer theme to make a 0.7cm logo. 
+%   The institute is in \TeX{} code for typesetting. \verb"\beamer@shortinstitute" meta is used to avoid compressing on \verb"\par", while \verb"\insertinstitute" will force the input to spread on one signle line. The mode to use is depended on the \verb"language" option. Super small font could be made by \verb"fontsize".
+%   Here, we use the option from inner to get the language setting, if this package is used independently, only chinese mode is available.
+%    \begin{macrocode}
   \usebeamercolor{titlelike}
   \begin{beamercolorbox}{logo}
     \vskip8pt
@@ -279,9 +279,9 @@
   \begin{beamercolorbox}[sep=8pt,#1]{date}
     \usebeamerfont{date}\insertdate
   \end{beamercolorbox}
-  %    \end{macrocode}
-  %   Here insert the titlegraphic. The node position is set to \verb"above left" to make sure the bottom of the picture is aligned to the bottom of the date line.
-  %    \begin{macrocode}
+%    \end{macrocode}
+%   Here insert the titlegraphic. The node position is set to \verb"above left" to make sure the bottom of the picture is aligned to the bottom of the date line.
+%    \begin{macrocode}
   \usebeamercolor{palette primary}% 
   \ifx\inserttitlegraphic\@empty%
   \else
@@ -420,13 +420,13 @@
 %<*min>
 \defbeamertemplate*{bottom page}{min}[1][]
 {
-  %    \end{macrocode}
-  %   Enter vertical mode.
-  %    \begin{macrocode}
+%    \end{macrocode}
+%   Enter vertical mode.
+%    \begin{macrocode}
   \vbox{}
-  %    \end{macrocode}
-  %   Create the background canvas and the three overlapping circles in the right. Use \verb"scope" to define the influence range. And use \verb"\clip" to make the clipping in the current range.
-  %    \begin{macrocode}
+%    \end{macrocode}
+%   Create the background canvas and the three overlapping circles in the right. Use \verb"scope" to define the influence range. And use \verb"\clip" to make the clipping in the current range.
+%    \begin{macrocode}
   \usebeamercolor{palette primary}
   \usebeamercolor{palette secondary}
   \def\sjtubeamer@logocolor{palette primary.fg}
@@ -447,16 +447,16 @@
       (0.63*\w,1.05*\h) circle (1*\h);
     \end{scope}
   \end{tikzpicture}
-  %    \end{macrocode}
-  %   Insert the logo in the crossing center of the overlapping circles.
-  %    \begin{macrocode}
+%    \end{macrocode}
+%   Insert the logo in the crossing center of the overlapping circles.
+%    \begin{macrocode}
   \vfill
   \begingroup
   \raggedleft
   \resizebox{!}{1cm}{\insertlogo}
-  %    \end{macrocode}
-  %   Inset the ``thank you'' quote and the title of this beamer. Notice that three \verb"\vfill" divide the frame into three portions with final adjust using \verb"\vskip".
-  %    \begin{macrocode}
+%    \end{macrocode}
+%   Inset the ``thank you'' quote and the title of this beamer. Notice that three \verb"\vfill" divide the frame into three portions with final adjust using \verb"\vskip".
+%    \begin{macrocode}
   \vfill
   \vskip6em
   \begin{beamercolorbox}[sep=8pt]{title}

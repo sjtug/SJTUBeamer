@@ -66,18 +66,18 @@
 \DeclareOptionBeamer{my}{\def\sjtubeamer@inner@cover{my}} % reserved for customization
 %</my>
 \ExecuteOptionsBeamer{
-  %<*maxplus>
+%<*maxplus>
   maxplus,
-  %</maxplus>
-  %<*min>
+%</maxplus>
+%<*min>
   min,
-  %</min>
-  %<*my>
+%</min>
+%<*my>
   my,
-  %</my>    
-  %<*max>
+%</my>    
+%<*max>
   max,
-  %</max>
+%</max>
 }
 %    \end{macrocode}
 %  \end{macro}
@@ -189,8 +189,8 @@
 \if\EqualOption{inner}{cover}{maxplus}
   \titlegraphic{\includegraphics{sjtuphoto.jpg}}
 \else
-  %</maxplus>
-  %<*max>
+%</maxplus>
+%<*max>
   \if\EqualOption{inner}{cover}{max}
     \usebeamercolor{palatte primary}
     \titlegraphic{\sjtubg[opacity=0.2]}
@@ -201,30 +201,30 @@
       }
     }
   \else
-    %</max>
-    %<*min>
+%</max>
+%<*min>
     \if\EqualOption{inner}{cover}{min}
       \titlegraphic{\includegraphics{sjtuphoto.jpg}}
     \else
-      %</min>
-      %<*my>
+%</min>
+%<*my>
       \if\EqualOption{inner}{cover}{my}
         %
         % Developer could define your title graphic here for "my"...
         %
         \titlegraphic{}
       \else
-        %</my>
-        %<*my>
+%</my>
+%<*my>
       \fi
-      %</my>
-      %<*min>
+%</my>
+%<*min>
     \fi
-    %</min>
-    %<*max>
+%</min>
+%<*max>
   \fi
-  %</max>
-  %<*maxplus>
+%</max>
+%<*maxplus>
 \fi
 %</maxplus>
 %    \end{macrocode}
@@ -324,9 +324,9 @@
   \vfill
   \vskip 8pt
   \begingroup
-  %    \end{macrocode}
-  %   Print the number of this part. If it is in Chinese, the translated version is printed.
-  %    \begin{macrocode}
+%    \end{macrocode}
+%   Print the number of this part. If it is in Chinese, the translated version is printed.
+%    \begin{macrocode}
   \begin{beamercolorbox}[sep=16pt,right,#1]{part title}
     \hfill\usebeamerfont{part name}
     \if\EqualOption{inner}{lang}{cn}%
@@ -336,9 +336,9 @@
     \fi%
     \par\vskip4pt
     \usebeamerfont{part title}\insertpart\par
-    %    \end{macrocode}
-    %   Since navigation bar is packaged, to modify the color, you have to change the \verb"section in head/foot" beamer color. Here, the first move is to save the current color to a temporary variable. After the insertion, the previous color should be restored.
-    %    \begin{macrocode}
+%    \end{macrocode}
+%   Since navigation bar is packaged, to modify the color, you have to change the \verb"section in head/foot" beamer color. Here, the first move is to save the current color to a temporary variable. After the insertion, the previous color should be restored.
+%    \begin{macrocode}
     \hbox to \textwidth{
       \usebeamerfont{footline}%
       \setbeamercolor{tempcolor}{fg=section in head/foot.fg}
@@ -435,9 +435,9 @@
 %    \begin{macrocode}
 %<*min>
 \if\EqualOption{inner}{cover}{min}\else
-  %</min>
+%</min>
   \setbeamertemplate{blocks}[rounded]
-  %<*min>
+%<*min>
 \fi
 %</min>
 %    \end{macrocode}
@@ -538,9 +538,9 @@
 %   Extra Support for pgfplots and pgfplotstable (if loaded in the main file).
 %    \begin{macrocode}
 \AtEndPreamble{%
-  %    \end{macrocode}
-  %   Set the default visual theme for \textsc{Pgfplots}. The cycle list is set to the current color theme. And lines on the graph is optimized to make it clear for presentation. The predefinition on the height is made to avoid the overfullbox on the vertical side.
-  %    \begin{macrocode}
+%    \end{macrocode}
+%   Set the default visual theme for \textsc{Pgfplots}. The cycle list is set to the current color theme. And lines on the graph is optimized to make it clear for presentation. The predefinition on the height is made to avoid the overfullbox on the vertical side.
+%    \begin{macrocode}
   \@ifpackageloaded{pgfplots}{%
     \pgfplotsset{
       compat=newest,
@@ -576,20 +576,20 @@
         },
     }
   }{}
-  %    \end{macrocode}
-  %   Set the style of \textsc{Pgfplotstable}. The \verb"\colorrows" macro here is used for making the header colored. The \verb"booktabs" line is used to create a professional look.
-  %    \begin{macrocode}
+%    \end{macrocode}
+%   Set the style of \textsc{Pgfplotstable}. The \verb"\colorrows" macro here is used for making the header colored. The \verb"booktabs" line is used to create a professional look.
+%    \begin{macrocode}
   \@ifpackageloaded{pgfplotstable}{%
     \RequirePackage{array}
     \RequirePackage{colortbl}
     \RequirePackage{booktabs}
-    %    \end{macrocode}
-    %   Two macros are defined to make the header colored.
-    %    \begin{macrocode}
+%    \end{macrocode}
+%   Two macros are defined to make the header colored.
+%    \begin{macrocode}
     \def\zapcolorreset{\let\reset@color\relax\ignorespaces}
     \def\colorrows#1{\noalign{\aftergroup\zapcolorreset#1}\ignorespaces}
-    %    \end{macrocode}
-    %    \begin{macrocode}
+%    \end{macrocode}
+%    \begin{macrocode}
     \pgfplotstableset{
       col sep=comma,
       every table/.style={
@@ -613,9 +613,9 @@
     \newcolumntype{L}[1]{>{\begin{pgfplotstablecoltype}[#1]}
             r<{\end{pgfplotstablecoltype}}}
   }{}
-  %    \end{macrocode}
-  % Disable the warning from \verb"hyperref" which conflicts the setting in C\TeX{} or CJK. It has to be manually disabled.
-  %    \begin{macrocode}
+%    \end{macrocode}
+% Disable the warning from \verb"hyperref" which conflicts the setting in C\TeX{} or CJK. It has to be manually disabled.
+%    \begin{macrocode}
   \def\Hy@WarnOptionDisabled#1{
     \def\next{#1}%
     \ifx\next pdfauthor %
