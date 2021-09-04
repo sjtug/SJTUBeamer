@@ -4,8 +4,8 @@ cd src
 l3build ctan
 # This will trigger checkinit_hook() to move the files to the root directory.
 
-# but doesn't move vi/ folder.
-cp -r -f source/vi ../vi/
+cd ..
+.github/ci/copy_resources.sh
 
 if [ ! -f src/sjtubeamer-ctan.zip ]; then
     echo "BUILD FAILED."
