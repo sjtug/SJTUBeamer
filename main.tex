@@ -13,7 +13,14 @@
 \usepackage{amsmath}
 \usepackage{unicode-math}
 \usepackage{fontspec}
+
+\usepackage{ifplatform}
+% Workaround for Fontawesome
+\ifmacosx
+\else
 \defaultfontfeatures{Extension = .otf}
+\fi
+
 \usepackage{ccicons}
 \usepackage{hologo}
 \usepackage{colortbl}

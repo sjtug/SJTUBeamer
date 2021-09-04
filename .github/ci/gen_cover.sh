@@ -2,6 +2,8 @@
 
 set -e
 
+mkdir -p build
+
 # covers
 sed -e "s|<options>|red,light|g" src/doc/cover.template.tex > build/cover-red-light.tex
 sed -e "s|<options>|red,dark|g" src/doc/cover.template.tex > build/cover-red-dark.tex

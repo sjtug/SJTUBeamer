@@ -3,11 +3,13 @@
 # ----------------
 
 LATEXINDENT_ARGS=-l latexindent.yaml -c build
-LATEXMK_ARGS=-halt-on-error -time -xelatex -outdir=build
+LATEXMK_ARGS=-halt-on-error -time -xelatex -outdir=build -shell-escape
+
+all: build
 
 prepare:
-	mkdir build || true
-	mkdir build/contents || true
+	mkdir -p build
+	mkdir -p build/contents
 
 # Build latex files in root directory
 build: prepare
