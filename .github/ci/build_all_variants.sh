@@ -2,7 +2,6 @@
 
 set -e
 
-rm -rf build
 mkdir -p build
 
 sed -e "s|usetheme\[.*\]|usetheme\[maxplus,light,blue\]|g" main.tex > build/build-maxplus-blue.tex

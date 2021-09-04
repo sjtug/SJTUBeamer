@@ -2,10 +2,7 @@
 
 set -e
 
-rm -rf build
 mkdir -p build
-
-# main builds
 
 sed -e "s|usetheme\[.*\]|usetheme\[maxplus,blue\]|g" main.tex > build/build-blue.tex
 sed -e "s|usetheme\[.*\]|usetheme\[max,light,red\]|g" main.tex              > build/build-red.tex

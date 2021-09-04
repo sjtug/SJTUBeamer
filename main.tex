@@ -13,7 +13,14 @@
 \usepackage{amsmath}
 \usepackage{unicode-math}
 \usepackage{fontspec}
+
+\usepackage{ifplatform}
+% Workaround for Fontawesome
+\ifmacosx
+\else
 \defaultfontfeatures{Extension = .otf}
+\fi
+
 \usepackage{ccicons}
 \usepackage{hologo}
 \usepackage{colortbl}
@@ -117,12 +124,19 @@
 
 \begin{document}
 
-% 在每一个section或subsection前都添加目录页，并高亮当前的标题
-\AtBeginSection[] % \AtBeginSubsection
-{
+% 使用节目录
+\AtBeginSection[]{
   \begin{frame}
-    \frametitle{目录}
-    \tableofcontents[currentsection]
+    % \tableofcontents[currentsection]           % 传统节目录             
+    \sectionpage                   % 节页
+  \end{frame}
+}
+
+% 使用小节目录
+\AtBeginSubsection[]{                  % 在每小节开始
+  \begin{frame}
+    % \tableofcontents[currentsection,currentsubsection]             % 传统小节目录             
+    \subsectionpage                % 小节页
   \end{frame}
 }
 
