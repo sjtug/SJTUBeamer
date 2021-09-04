@@ -147,6 +147,8 @@ int main(){
 * `sjtubeamer-ctan.zip`: 包含所有文档和样式的压缩包。
 * SJTUBeamer 源代码。
 
+请使用 Chrome 浏览器或 Adobe Acrobat 打开 SJTUBeamer 用户文档，以避免 pdf 兼容性导致的显示问题。
+
 ## 使用反馈与贡献代码 👷
 
 * 您可以通过 GitHub Issue 反馈使用时碰到的问题。同时，也欢迎您提交 PR 帮助我们改进。
