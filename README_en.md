@@ -16,7 +16,7 @@ Current document `main.tex` is an example documentation of *How to Use LaTeX to 
 \documentclass[
     % draft,          % draft mode
     aspectratio=169,  % use 16:9 ratio 
-]{ctexbeamer}
+]{beamer}
 \mode<presentation>
 
 \usetheme[maxplus]{sjtubeamer}
@@ -29,13 +29,13 @@ Current document `main.tex` is an example documentation of *How to Use LaTeX to 
 %   shadow     tree       smoothtree
 % *siderbar is recommended to be used with max option.
 
-\usepackage[backend=biber,style=gb7714-2015]{biblatex}
+\usepackage{biblatex}
 \addbibresource{thesis.bib}
 
-\institute[SJTUG]{上海交通大学 Linux 用户组}
+\institute[SJTUG]{Shanghai Jiao Tong University *nix User Group}
 
-\title{SJTUBeamer 幻灯片模板}
-\subtitle{SJTUBeamer Template}
+\title{SJTUBeamer}
+\subtitle{A Beamer Template}
 \author{SJTUG}
 \date{\today} 
 
@@ -43,7 +43,7 @@ Current document `main.tex` is an example documentation of *How to Use LaTeX to 
 
 \maketitle
 
-\part{第一部分}
+\part{Intro}
 
 \AtBeginSection[]{
   \begin{frame}          
@@ -51,43 +51,44 @@ Current document `main.tex` is an example documentation of *How to Use LaTeX to 
   \end{frame}
 }
 
-\section{第 1 节}
+\section{Basics}
 
 \begin{frame}
-  \frametitle{标题}
-  \paragraph{列表} 这个\alert{幻灯片}有下面几项：
+  \frametitle{Title}
+  \paragraph{List} This \alert{side} contains the following items:
   \begin{itemize}
-    \item 第 1 项
-    \item 第 2 项
-    \item 第 3 项
+    \item Item 1
+    \item Item 2
+    \item Item 3
   \end{itemize}
 \end{frame}
 
 \begin{frame}
-  \frametitle{标题}
-  \framesubtitle{子标题}
+  \frametitle{Title}
+  \framesubtitle{Subtitle}
   \begin{equation}
     x^2+2x+1=(x+1)^2
   \end{equation}
 \end{frame}
 
-\section{第 2 节}
+\section{Blocks}
 \begin{frame}
-  \frametitle{一些盒子}
-  \begin{block}{盒子}
-    这是一个盒子\cite{thelegendofjiang}
+  \frametitle{Some boxes}
+  \begin{block}{block}
+    This is a box.
+    % \cite{<a cite>}
   \end{block}
-  \begin{alertblock}{注意}
-    注意内容
+  \begin{alertblock}{alertblock}
+    Text.
   \end{alertblock}
-  \begin{exampleblock}{示例}
-    示例内容
+  \begin{exampleblock}{exampleblock}
+    Text.
   \end{exampleblock}
 \end{frame}
 
 \begin{frame}[fragile]          % fragile 
-  \frametitle{代码块}
-  \begin{codeblock}[language=c++]{C++代码}
+  \frametitle{codeblock}
+  \begin{codeblock}[language=c++]{C++ Code}
 #include<iostream>
 
 int main(){
@@ -98,9 +99,9 @@ int main(){
   \end{codeblock}
 \end{frame}
 
-\part{参考文献}
+\part{Bibliography}
 \begin{frame}[allowframebreaks]
-  \printbibliography[title=参考文献]
+  \printbibliography
 \end{frame}
 
 \makebottom       % create the bottom page
