@@ -30,8 +30,7 @@ clean:
 
 # Format all tex and dtx files
 format-dev:
-	git ls-files | grep .dtx$ | xargs -n1 latexindent -w $(LATEXINDENT_ARGS)
-	git ls-files | grep .tex$ | xargs -n1 latexindent -w $(LATEXINDENT_ARGS)
+	.github/ci/format.sh $(LATEXINDENT_ARGS)
 
 # Clean all temporary files and generated files
 clean-dev:
