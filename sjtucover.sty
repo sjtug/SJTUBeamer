@@ -25,10 +25,18 @@
 \DeclareOptionBeamer{min}{\def\sjtubeamer@sjtucover@cover{min}}
 \DeclareOptionBeamer{my}{\def\sjtubeamer@sjtucover@cover{my}} % reserved for customization
 \ExecuteOptionsBeamer{
-    maxplus,
-    min,
-    my,
-    max,
+  %<*maxplus>
+  maxplus,
+  %</maxplus>
+  %<*min>
+  min,
+  %</min>
+  %<*my>
+  my,
+  %</my>
+  %<*max>
+  max,
+  %</max>
 }
 \ProcessOptionsBeamer
 \defbeamertemplate*{title page}{maxplus}[1][]
@@ -37,36 +45,36 @@
   \vbox{}
   \vfill
   \begingroup
-    \usebeamercolor{palette primary}%
-    \def\sjtubeamer@logocolor{palette primary.fg}
-    \begin{tikzpicture}[overlay,
+  \usebeamercolor{palette primary}%
+  \def\sjtubeamer@logocolor{palette primary.fg}
+  \begin{tikzpicture}[overlay,
       xshift=-0.12\paperwidth,
       yshift=-0.53\paperheight]
-      \pgfmathsetlengthmacro{\outslant}{1.02\paperwidth}
-      \node[inner sep=0, outer sep=0]
-          at (0.57\paperwidth,0.5\paperheight){
-            \resizebox{!}{1.06\paperheight}{\inserttitlegraphic}};
-      \fill[color=white] (0,0) rectangle(1.1\paperwidth,3.9);
-      \fill[color=bg]  (0,-0.1\paperheight) rectangle(1.1\paperwidth,3.88);
-      \node[anchor=north west, text width=.8\paperwidth]
-        at (0.11\paperwidth,3.6){%
-        \usebeamercolor[fg]{title}
-        \ifx\insertsubtitle\@empty%
-          {\huge\bfseries\inserttitle}\\
-          \else%
-          {\Large\bfseries\inserttitle}\\
-          {\small\insertsubtitle}\\
-        \fi%
-      };
-      \node[anchor=south west, text width=.8\paperwidth] at (0.11\paperwidth,0.45){%
-        {\usebeamercolor[fg]{author}\small\insertauthor\par}
+    \pgfmathsetlengthmacro{\outslant}{1.02\paperwidth}
+    \node[inner sep=0, outer sep=0]
+    at (0.57\paperwidth,0.5\paperheight){
+      \resizebox{!}{1.06\paperheight}{\inserttitlegraphic}};
+    \fill[color=white] (0,0) rectangle(1.1\paperwidth,3.9);
+    \fill[color=bg]  (0,-0.1\paperheight) rectangle(1.1\paperwidth,3.88);
+    \node[anchor=north west, text width=.8\paperwidth]
+    at (0.11\paperwidth,3.6){%
+    \usebeamercolor[fg]{title}
+    \ifx\insertsubtitle\@empty%
+      {\huge\bfseries\inserttitle}\\
+      \else%
+      {\Large\bfseries\inserttitle}\\
+      {\small\insertsubtitle}\\
+    \fi%
+    };
+    \node[anchor=south west, text width=.8\paperwidth] at (0.11\paperwidth,0.45){%
+      {\usebeamercolor[fg]{author}\small\insertauthor\par}
         {\usebeamercolor[fg]{institute}\small\insertinstitute\par}
         {\usebeamercolor[fg]{date}\small\insertdate}%
-      };
-      \node[anchor=south east, inner sep=0, outer sep=0] at (\outslant,0.5){
-        \resizebox{!}{1cm}{\insertlogo}
-      };
-    \end{tikzpicture}
+    };
+    \node[anchor=south east, inner sep=0, outer sep=0] at (\outslant,0.5){
+      \resizebox{!}{1cm}{\insertlogo}
+    };
+  \end{tikzpicture}
   \endgroup
   \vfill
 }
@@ -78,10 +86,10 @@
   \def\sjtubeamer@logocolor{palette primary.fg}
   \begin{tikzpicture}[overlay]
     \fill [palette primary.bg] (-0.2*\the\paperwidth,-1*\the\paperheight)
-      rectangle (1*\the\paperwidth, 0.3*\the\paperheight);
+    rectangle (1*\the\paperwidth, 0.3*\the\paperheight);
     \node [inner sep=0pt]
-      at (0.45\paperwidth-6pt,-0.4*\the\paperheight)
-      {\resizebox{1.3\paperwidth}{!}{\inserttitlegraphic}};
+    at (0.45\paperwidth-6pt,-0.4*\the\paperheight)
+    {\resizebox{1.3\paperwidth}{!}{\inserttitlegraphic}};
   \end{tikzpicture}
   \vfill
   \begingroup
@@ -122,99 +130,127 @@
 \defbeamertemplate*{title page}{min}[1][]
 {
   \vbox{}
+  %    \end{macrocode}
+  %   The background of the title page is implemented by a TikZ rectangle, which avoids the changing on \verb"background canvas" beamer color.
+  %
+  %   In this definition environment, you could not change the beamer color. The older version redefines \verb"maketitle" command and switches the \verb"background canvas" color, which is harmful for decoupling.
+  %
+  %   Use TikZ rectangle also avoids the unexpected shift because the risk of redefining the internal command is avoided. If there is any text before the title page, the \verb"\maketitle" will start from a new page.
+  %    \begin{macrocode}
   \usebeamercolor{palette primary}
   \def\sjtubeamer@logocolor{palette primary.fg}
   \begin{tikzpicture}[overlay]
-      \fill [palette primary.bg] (-0.2*\the\paperwidth,-1*\the\paperheight)
-      rectangle (1*\the\paperwidth, 0.2*\the\paperheight);
+    \fill [palette primary.bg] (-0.2*\the\paperwidth,-1*\the\paperheight)
+    rectangle (1*\the\paperwidth, 0.2*\the\paperheight);
   \end{tikzpicture}
+  %    \end{macrocode}
+  %   If it is in draftmode, no pattern will get rendered.
+  %    \begin{macrocode}
   \ifbeamer@draftmode%
+    %    \end{macrocode}
+    %   Otherwise, the fade tile of stamp array will get covered on top of the background rectangle.
+    %   \verb"stamparray" is defined in \verb"SJTUvi". Then, a fade right covers this array layer and a center fade covers the previous result.
+    %    \begin{macrocode}
   \else%
     \begin{tikzpicture}[overlay]
       \stamparray{20pt}
-        {(-0.2*\the\paperwidth,-1*\the\paperheight)}
-        {(1*\the\paperwidth, 0.2*\the\paperheight)}
+      {(-0.2*\the\paperwidth,-1*\the\paperheight)}
+      {(1*\the\paperwidth, 0.2*\the\paperheight)}
       \fill [bg,path fading=fade right]
-        (-0.2*\the\paperwidth,-1*\the\paperheight) rectangle
-        (1*\the\paperwidth, 0.2*\the\paperheight);
+      (-0.2*\the\paperwidth,-1*\the\paperheight) rectangle
+      (1*\the\paperwidth, 0.2*\the\paperheight);
       \fill [bg,path fading=center fade,xshift=-10pt,yshift=-20pt]
-        (0.2*\the\paperwidth,0) circle [radius=\the\paperwidth];
+      (0.2*\the\paperwidth,0) circle [radius=\the\paperwidth];
     \end{tikzpicture}
   \fi%
+  %    \end{macrocode}
+  %   Set a constraint in the vertical mode to make the following contents centered in the middle of the slide.
+  %    \begin{macrocode}
   \vfill
   \begingroup
-    \centering
-    \usebeamercolor{titlelike}
-    \begin{beamercolorbox}{logo}
-      \vskip8pt
-      \hbox{
-        \hskip0pt{\resizebox{!}{1cm}{\insertlogo}}
-        \ifx\insertinstitute\@empty%
-        \else
-          \ifx\insertlogo\@empty%
-          \else
-            {\hskip0pt \vrule width0.5pt}\hskip3pt
-          \fi
-          \if\EqualOption{inner}{lang}{en}
-            \vbox to 1cm{
-              \vfill
-              \vbox{
-                \offinterlineskip
-                \noindent \strut
-                \baselineskip 0pt \lineskip -2pt
-                \scriptsize\textsc{\beamer@shortinstitute}
-                \strut
-              }
-              \vfill
-            }
-          \else
-            \vbox{
-              \fontsize{13pt}{0pt}\selectfont
-              \insertinstitute
-              \par\noindent\vskip0.15em
-              \fontsize{5pt}{0pt}\selectfont
-              \textsc{\insertshortinstitute}
-              \baselineskip 3.2pt
-              \par~
-            }
-          \fi
-        \fi%
-      }
-      \vskip8pt
-    \end{beamercolorbox}
-    \begin{beamercolorbox}[sep=8pt,#1]{title}
-      \usebeamerfont{title}\inserttitle\par%
-      \ifx\insertsubtitle\@empty%
-      \else%
-        \vskip0.25em%
-        {\usebeamerfont{subtitle}\insertsubtitle\par}%
-      \fi%
-    \end{beamercolorbox}%
-    \vskip1em\par
-    \begin{beamercolorbox}[sep=8pt,#1]{author}
-      \usebeamerfont{author}\insertauthor
-    \end{beamercolorbox}
-    \begin{beamercolorbox}[sep=8pt,#1]{date}
-      \usebeamerfont{date}\insertdate
-    \end{beamercolorbox}
-      \usebeamercolor{palette primary}%
-      \ifx\inserttitlegraphic\@empty%
+  \centering
+  %    \end{macrocode}
+  %   \verb"resizebox" is used to adapt to all size of logo into 1cm height one. And it is the same in outer theme to make a 0.7cm logo.
+  %   The institute is in \TeX{} code for typesetting. \verb"\beamer@shortinstitute" meta is used to avoid compressing on \verb"\par", while \verb"\insertinstitute" will force the input to spread on one signle line. The mode to use is depended on the \verb"language" option. Super small font could be made by \verb"fontsize".
+  %   Here, we use the option from inner to get the language setting, if this package is used independently, only chinese mode is available.
+  %    \begin{macrocode}
+  \usebeamercolor{titlelike}
+  \begin{beamercolorbox}{logo}
+    \vskip8pt
+    \hbox{
+      \hskip0pt{\resizebox{!}{1cm}{\insertlogo}}
+      \ifx\insertinstitute\@empty%
       \else
-        \begin{tikzpicture}[overlay,yshift=0.77em]
-          \node (pic) [fg, above left] at (0.88*\the\paperwidth,0)
-            {\resizebox{0.3\paperwidth}{!}{\inserttitlegraphic}};
-          \draw[decoration={
-              stampline,
-              segment length=8pt,
-              path has corners=true,
-            },decorate,fg]
-              (pic.north west) --
-              (pic.north east) --
-              (pic.south east) --
-              (pic.south west) -- cycle;
-        \end{tikzpicture}
+      \ifx\insertlogo\@empty%
+        \else
+        {\hskip0pt \vrule width0.5pt}\hskip3pt
       \fi
-    \endgroup
+      \if\EqualOption{inner}{lang}{en}
+      \vbox to 1cm{
+          \vfill
+          \vbox{
+            \offinterlineskip
+            \noindent \strut
+            \baselineskip 0pt \lineskip -2pt
+            \scriptsize\textsc{\beamer@shortinstitute}
+            \strut
+          }
+          \vfill
+        }
+      \else
+      \vbox{
+        \fontsize{13pt}{0pt}\selectfont
+        \insertinstitute
+        \par\noindent\vskip0.15em
+        \fontsize{5pt}{0pt}\selectfont
+        \textsc{\insertshortinstitute}
+        \baselineskip 3.2pt
+        \par~
+      }
+      \fi
+      \fi%
+    }
+    \vskip8pt
+  \end{beamercolorbox}
+  %    \end{macrocode}
+  %   Insert title, subtitle, author, and date.
+  %    \begin{macrocode}
+  \begin{beamercolorbox}[sep=8pt,#1]{title}
+    \usebeamerfont{title}\inserttitle\par%
+    \ifx\insertsubtitle\@empty%
+    \else%
+      \vskip0.25em%
+      {\usebeamerfont{subtitle}\insertsubtitle\par}%
+    \fi%
+  \end{beamercolorbox}%
+  \vskip1em\par
+  \begin{beamercolorbox}[sep=8pt,#1]{author}
+    \usebeamerfont{author}\insertauthor
+  \end{beamercolorbox}
+  \begin{beamercolorbox}[sep=8pt,#1]{date}
+    \usebeamerfont{date}\insertdate
+  \end{beamercolorbox}
+  %    \end{macrocode}
+  %   Here insert the titlegraphic. The node position is set to \verb"above left" to make sure the bottom of the picture is aligned to the bottom of the date line.
+  %    \begin{macrocode}
+  \usebeamercolor{palette primary}%
+  \ifx\inserttitlegraphic\@empty%
+  \else
+    \begin{tikzpicture}[overlay,yshift=0.77em]
+      \node (pic) [fg, above left] at (0.88*\the\paperwidth,0)
+      {\resizebox{0.3\paperwidth}{!}{\inserttitlegraphic}};
+      \draw[decoration={
+            stampline,
+            segment length=8pt,
+            path has corners=true,
+          },decorate,fg]
+      (pic.north west) --
+      (pic.north east) --
+      (pic.south east) --
+      (pic.south west) -- cycle;
+    \end{tikzpicture}
+  \fi
+  \endgroup
   \vskip0.5em
   \vfill
 }
@@ -242,7 +278,7 @@
   \begin{tikzpicture}[overlay]
     \usebeamercolor{palette primary}
     \fill[palette primary.bg] (-0.2\paperwidth,-\paperheight)
-      rectangle (\paperwidth, 0.5\paperheight);
+    rectangle (\paperwidth, 0.5\paperheight);
   \end{tikzpicture}
   \vfill
   \begin{beamercolorbox}[sep=0pt]{empty}
@@ -251,16 +287,16 @@
     \begin{tikzpicture}[overlay,xshift=0.54\paperwidth,yshift=-0.41\paperheight]
       \begin{scope}
         \clip (-0.66\paperwidth,0.06\paperheight)
-          rectangle (0.43\paperwidth,0.53\paperheight);
+        rectangle (0.43\paperwidth,0.53\paperheight);
         \node [anchor=north] at (0,0.645\paperheight) {
           \resizebox{1.33\paperwidth}{!}{\inserttitlegraphic}};
         \fill[structure.fg!50!black,path fading=fade right img]
-          (-0.66\paperwidth,0.06\paperheight)
-          rectangle (0.43\paperwidth,0.53\paperheight);
+        (-0.66\paperwidth,0.06\paperheight)
+        rectangle (0.43\paperwidth,0.53\paperheight);
         \node at (-0.45\paperwidth,0.3\paperheight)
-          {\resizebox{!}{0.115\paperheight}{\insertlogo}};
+        {\resizebox{!}{0.115\paperheight}{\insertlogo}};
         \draw[white] (-0.66\paperwidth,0.1\paperheight)
-          -- (0.43\paperwidth,0.1\paperheight);
+        -- (0.43\paperwidth,0.1\paperheight);
       \end{scope}
       \node at (-0.13\paperwidth,0.7\paperheight) {
         \usebeamercolor[fg]{title}
@@ -277,38 +313,44 @@
   \usebeamercolor{palette primary}
   \usebeamercolor{structure}
   \begin{beamercolorbox}[sep=0pt]{empty}
-  \begin{tikzpicture}[overlay,yshift=0.25\paperwidth]
-    \def\leftw{0.215\paperwidth}
-    \def\midw{0.435\paperwidth}
-    \def\rightw{0.655\paperwidth}
-    \fill[palette primary.bg] (-0.2\paperwidth,-1.2\paperheight) rectangle
-    (\paperwidth, 0.1\paperheight);
-    \fill[palette primary.fg] (\leftw,0.1\paperheight)
+    \begin{tikzpicture}[overlay,yshift=0.25\paperwidth]
+      \def\leftw{0.215\paperwidth}
+      \def\midw{0.435\paperwidth}
+      \def\rightw{0.655\paperwidth}
+      \fill[palette primary.bg] (-0.2\paperwidth,-1.2\paperheight) rectangle
+      (\paperwidth, 0.1\paperheight);
+      \fill[palette primary.fg] (\leftw,0.1\paperheight)
       -- (\leftw,-0.5\paperheight)
       -- (\midw,-0.65\paperheight)
       -- (\rightw,-0.5\paperheight)
       -- (\rightw,0.1\paperheight) -- cycle;
-    \fill[palette primary.fg] (\leftw,-0.53\paperheight)
+      \fill[palette primary.fg] (\leftw,-0.53\paperheight)
       -- (\leftw,-0.59\paperheight)
       -- (\midw,-0.74\paperheight)
       -- (\rightw,-0.59\paperheight)
       -- (\rightw,-0.53\paperheight)
       -- (\midw,-0.68\paperheight) -- cycle;
-    \node at (\midw,-0.65\paperheight) {
-      \def\sjtubeamer@logocolor{black}
-      \resizebox{1.25\paperwidth}{!}{\inserttitlegraphic}};
-    \node at (\midw,-0.2\paperheight) {
-      \def\sjtubeamer@logocolor{palette primary.bg}
-      \resizebox{3cm}{!}{\insertlogo}};
-    \node at (\midw,-0.45\paperheight) {
-      \usebeamercolor[bg]{palette primary}
-      \LARGE \bfseries\bottomthanks};
-  \end{tikzpicture}
+      \node at (\midw,-0.65\paperheight) {
+        \def\sjtubeamer@logocolor{black}
+        \resizebox{1.25\paperwidth}{!}{\inserttitlegraphic}};
+      \node at (\midw,-0.2\paperheight) {
+        \def\sjtubeamer@logocolor{palette primary.bg}
+        \resizebox{3cm}{!}{\insertlogo}};
+      \node at (\midw,-0.45\paperheight) {
+        \usebeamercolor[bg]{palette primary}
+        \LARGE \bfseries\bottomthanks};
+    \end{tikzpicture}
   \end{beamercolorbox}
 }
 \defbeamertemplate*{bottom page}{min}[1][]
 {
+  %    \end{macrocode}
+  %   Enter vertical mode.
+  %    \begin{macrocode}
   \vbox{}
+  %    \end{macrocode}
+  %   Create the background canvas and the three overlapping circles in the right. Use \verb"scope" to define the influence range. And use \verb"\clip" to make the clipping in the current range.
+  %    \begin{macrocode}
   \usebeamercolor{palette primary}
   \usebeamercolor{palette secondary}
   \def\sjtubeamer@logocolor{palette primary.fg}
@@ -322,27 +364,33 @@
     \end{scope}
     \begin{scope}
       [fill=palette secondary.bg!50!palette primary.bg!70!palette primary.fg,
-      fill opacity=0.15]
+        fill opacity=0.15]
       \clip[xshift=26pt] (0.95*\w,-0.67*\h) circle (1.17*\h);
       \fill
-        (0.14*\w,-0.95*\h) circle (1.67*\h)
-        (0.63*\w,1.05*\h) circle (1*\h);
+      (0.14*\w,-0.95*\h) circle (1.67*\h)
+      (0.63*\w,1.05*\h) circle (1*\h);
     \end{scope}
   \end{tikzpicture}
+  %    \end{macrocode}
+  %   Insert the logo in the crossing center of the overlapping circles.
+  %    \begin{macrocode}
   \vfill
   \begingroup
-    \raggedleft
-    \resizebox{!}{1cm}{\insertlogo}
-    \vfill
-    \vskip6em
-    \begin{beamercolorbox}[sep=8pt]{title}
-      \usebeamercolor[fg]{palette primary}
-      \usebeamerfont{title}\noindent#1
-      \vskip1em%
-      \usebeamerfont{subtitle}\insertauthor~$\cdot$~\inserttitle
-    \end{beamercolorbox}%
-    \vfill
-    \vskip3.5em
+  \raggedleft
+  \resizebox{!}{1cm}{\insertlogo}
+  %    \end{macrocode}
+  %   Inset the ``thank you'' quote and the title of this beamer. Notice that three \verb"\vfill" divide the frame into three portions with final adjust using \verb"\vskip".
+  %    \begin{macrocode}
+  \vfill
+  \vskip6em
+  \begin{beamercolorbox}[sep=8pt]{title}
+    \usebeamercolor[fg]{palette primary}
+    \usebeamerfont{title}\noindent#1
+    \vskip1em%
+    \usebeamerfont{subtitle}\insertauthor~$\cdot$~\inserttitle
+  \end{beamercolorbox}%
+  \vfill
+  \vskip3.5em
   \endgroup
 }
 \defbeamertemplate*{bottom page}{my}[1][]

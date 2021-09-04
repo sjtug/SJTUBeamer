@@ -29,10 +29,18 @@
 \DeclareOptionBeamer{min}{\def\sjtubeamer@inner@cover{min}}
 \DeclareOptionBeamer{my}{\def\sjtubeamer@inner@cover{my}} % reserved for customization
 \ExecuteOptionsBeamer{
-    maxplus,
-    min,
-    my,
-    max,
+  %<*maxplus>
+  maxplus,
+  %</maxplus>
+  %<*min>
+  min,
+  %</min>
+  %<*my>
+  my,
+  %</my>
+  %<*max>
+  max,
+  %</max>
 }
 \DefineOption{inner}{lang}{cn}
 \DefineOption{inner}{lang}{en}
@@ -62,22 +70,24 @@
 \if\EqualOption{inner}{cover}{max}
   \logo{\resizebox{!}{1cm}{\sjtubadge}}
 \else
+  %</max>
   \if\EqualOption{inner}{lang}{cn}
     \logo{\resizebox{!}{0.7cm}{\cnlogo}}
   \else
     \logo{\resizebox{!}{0.7cm}{\enlogo}}
   \fi
+  %<*max>
 \fi
 \newcommand{\bgcenterbox}[1]{
   \let\oldlogocolor=\sjtubeamer@logocolor%
   \def\sjtubeamer@logocolor{cprimary!50}
   \vbox to \paperheight{
     \vfil
-      \hbox to \paperwidth{
-        \hfil
-          #1
-        \hfil
-      }
+    \hbox to \paperwidth{
+      \hfil
+      #1
+      \hfil
+    }
     \vfil
   }
   \let\sjtubeamer@logocolor=\oldlogocolor%
@@ -85,6 +95,8 @@
 \if\EqualOption{inner}{cover}{maxplus}
   \titlegraphic{\includegraphics{sjtuphoto.jpg}}
 \else
+  %</maxplus>
+  %<*max>
   \if\EqualOption{inner}{cover}{max}
     \usebeamercolor{palatte primary}
     \titlegraphic{\sjtubg[opacity=0.2]}
@@ -95,18 +107,30 @@
       }
     }
   \else
+    %</max>
+    %<*min>
     \if\EqualOption{inner}{cover}{min}
       \titlegraphic{\includegraphics{sjtuphoto.jpg}}
     \else
+      %</min>
+      %<*my>
       \if\EqualOption{inner}{cover}{my}
         %
         % Developer could define your title graphic here for "my"...
         %
         \titlegraphic{}
       \else
+        %</my>
+        %<*my>
       \fi
+      %</my>
+      %<*min>
     \fi
+    %</min>
+    %<*max>
   \fi
+  %</max>
+  %<*maxplus>
 \fi
 \newdimen\beamer@sidebarwidth
 \beamer@sidebarwidth=0pt
@@ -124,9 +148,9 @@
 \renewcommand{\maketitle}[1][\sjtubeamer@inner@cover]{
   \setbeamertemplate{title page}[#1]
   \ifbeamer@inframe\titlepage\else
-  \begin{frame}[plain]
-    \titlepage
-  \end{frame}\fi
+    \begin{frame}[plain]
+      \titlepage
+    \end{frame}\fi
   \setbeamertemplate{title page}[\sjtubeamer@inner@cover]
 }
 \def\bottompage{
@@ -148,9 +172,9 @@
 \newcommand{\makebottom}[1][\sjtubeamer@inner@cover]{
   \setbeamertemplate{bottom page}[#1][\bottomthanks]
   \ifbeamer@inframe\bottompage\else
-  \begin{frame}[plain]
-    \bottompage
-  \end{frame}\fi
+    \begin{frame}[plain]
+      \bottompage
+    \end{frame}\fi
   \setbeamertemplate{bottom page}[\sjtubeamer@inner@cover][\bottomthanks]
 }
 \RequirePackage{sjtucover}
@@ -159,26 +183,32 @@
   \vfill
   \vskip 8pt
   \begingroup
-    \begin{beamercolorbox}[sep=16pt,right,#1]{part title}
-      \hfill\usebeamerfont{part name}
-      \if\EqualOption{inner}{lang}{cn}%
-        第~\insertromanpartnumber~部分
-      \else%
-        \partname~\insertromanpartnumber
-      \fi%
-      \par\vskip4pt
-      \usebeamerfont{part title}\insertpart\par
-      \hbox to \textwidth{
-        \usebeamerfont{footline}%
-        \setbeamercolor{tempcolor}{fg=section in head/foot.fg}
-        \setbeamercolor{section in head/foot}{use=palette primary,
-          fg=palette primary.fg,bg=}
-        \hfill
-        \insertnavigation{0.4\textwidth}
-        \hspace*{1cm}
-        \setbeamercolor{section in head/foot}{fg=tempcolor.fg}
-      }
-    \end{beamercolorbox}
+  %    \end{macrocode}
+  %   Print the number of this part. If it is in Chinese, the translated version is printed.
+  %    \begin{macrocode}
+  \begin{beamercolorbox}[sep=16pt,right,#1]{part title}
+    \hfill\usebeamerfont{part name}
+    \if\EqualOption{inner}{lang}{cn}%
+    第~\insertromanpartnumber~部分
+    \else%
+    \partname~\insertromanpartnumber
+    \fi%
+    \par\vskip4pt
+    \usebeamerfont{part title}\insertpart\par
+    %    \end{macrocode}
+    %   Since navigation bar is packaged, to modify the color, you have to change the \verb"section in head/foot" beamer color. Here, the first move is to save the current color to a temporary variable. After the insertion, the previous color should be restored.
+    %    \begin{macrocode}
+    \hbox to \textwidth{
+      \usebeamerfont{footline}%
+      \setbeamercolor{tempcolor}{fg=section in head/foot.fg}
+      \setbeamercolor{section in head/foot}{use=palette primary,
+        fg=palette primary.fg,bg=}
+      \hfill
+      \insertnavigation{0.4\textwidth}
+      \hspace*{1cm}
+      \setbeamercolor{section in head/foot}{fg=tempcolor.fg}
+    }
+  \end{beamercolorbox}
   \endgroup
   \vfill
 }
@@ -191,9 +221,9 @@
   \begin{beamercolorbox}[sep=12pt,right,#1]{section title}
     \usebeamerfont{section name}
     \if\EqualOption{inner}{lang}{cn}%
-      第~\insertsectionnumber~节
+    第~\insertsectionnumber~节
     \else%
-      \sectionname~\insertsectionnumber
+    \sectionname~\insertsectionnumber
     \fi%
     \par\vskip4pt
     \usebeamerfont{section title}\insertsection\par
@@ -203,7 +233,7 @@
 {
   \vfill
   \begingroup
-    \sectionblock{#1}
+  \sectionblock{#1}
   \endgroup
   \vfill
 }
@@ -211,23 +241,25 @@
 {
   \vfill
   \begingroup
-    \sectionblock{#1}
-    \begin{beamercolorbox}[sep=8pt,right,#1]{subsection title}
-      \usebeamerfont{subsection name}
-      \if\EqualOption{inner}{lang}{cn}%
-        第~\insertsubsectionnumber~小节
-      \else%
-        \subsectionname~\insertsubsectionnumber
-      \fi%
-      \par\vskip 4pt
-      \usebeamerfont{subsection title}\insertsubsection\par
-    \end{beamercolorbox}
+  \sectionblock{#1}
+  \begin{beamercolorbox}[sep=8pt,right,#1]{subsection title}
+    \usebeamerfont{subsection name}
+    \if\EqualOption{inner}{lang}{cn}%
+    第~\insertsubsectionnumber~小节
+    \else%
+    \subsectionname~\insertsubsectionnumber
+    \fi%
+    \par\vskip 4pt
+    \usebeamerfont{subsection title}\insertsubsection\par
+  \end{beamercolorbox}
   \endgroup
   \vfill
 }
 \useinnertheme{circles}
 \if\EqualOption{inner}{cover}{min}\else
+  %</min>
   \setbeamertemplate{blocks}[rounded]
+  %<*min>
 \fi
 \newtcbox{\highlight}[1][cprimary]{
   on line,
@@ -250,15 +282,15 @@
   sharp corners,
   top=2pt,bottom=2pt,left=2pt,right=2pt,
   borderline={4pt}{0pt}{
-    #1,
-    line width=0.5pt,
-    decoration={
-      stampline,
-      segment length=8pt,
-      path has corners=true,
-    },
-    decorate
-  }
+      #1,
+      line width=0.5pt,
+      decoration={
+          stampline,
+          segment length=8pt,
+          path has corners=true,
+        },
+      decorate
+    }
 }
 \lstset{
   basicstyle=\ttfamily\small,
@@ -275,11 +307,11 @@
   listing only,
   listing engine=listings,
   listing options={
-    #1,%
-    numbers=left,
-    numberstyle=\color{cprimary!80}\ttfamily\scriptsize,
-    numbersep=5pt,
-  },
+      #1,%
+      numbers=left,
+      numberstyle=\color{cprimary!80}\ttfamily\scriptsize,
+      numbersep=5pt,
+    },
   enhanced,
   sharp corners,
   top=0mm,
@@ -288,85 +320,99 @@
   colback=cprimary!5,
   colframe=cprimary!80,
   overlay={
-    \begin{tcbclipinterior}\fill[cprimary!20]%
-      (frame.south west) rectangle ([xshift=5mm]frame.north west);
-    \end{tcbclipinterior}
-  }
+      \begin{tcbclipinterior}\fill[cprimary!20]%
+        (frame.south west) rectangle ([xshift=5mm]frame.north west);
+      \end{tcbclipinterior}
+    }
 }
 \AtEndPreamble{%
+  %    \end{macrocode}
+  %   Set the default visual theme for \textsc{Pgfplots}. The cycle list is set to the current color theme. And lines on the graph is optimized to make it clear for presentation. The predefinition on the height is made to avoid the overfullbox on the vertical side.
+  %    \begin{macrocode}
   \@ifpackageloaded{pgfplots}{%
     \pgfplotsset{
       compat=newest,
       every axis/.style={
-        font=\small\sffamily,
-        cycle multi list={
-          mark options={thick}\nextlist
-          mark list\nextlist
-          cprimary,csecondary,ctertiary\nextlist
+          font=\small\sffamily,
+          cycle multi list={
+              mark options={thick}\nextlist
+              mark list\nextlist
+              cprimary,csecondary,ctertiary\nextlist
+            },
+          height=0.5*\the\paperheight,
+          axis line style={
+              cprimary,
+              thin
+            },
+          every tick label/.style={
+              cprimary,
+              font=\small,
+              /pgf/number format/assume math mode=true
+            },
+          grid style={cprimary!10},
+          tick style={cprimary!50},
+          minor tick style={cprimary!30},
+          xlabel style={cprimary},
+          ylabel style={cprimary},
+          zlabel style={cprimary},
+          legend style={
+              draw={cprimary},
+              thin,
+              nodes={cprimary}
+            },
+          thick,
         },
-        height=0.5*\the\paperheight,
-        axis line style={
-          cprimary,
-          thin
-        },
-        every tick label/.style={
-          cprimary,
-          font=\small,
-          /pgf/number format/assume math mode=true
-        },
-        grid style={cprimary!10},
-        tick style={cprimary!50},
-        minor tick style={cprimary!30},
-        xlabel style={cprimary},
-        ylabel style={cprimary},
-        zlabel style={cprimary},
-        legend style={
-          draw={cprimary},
-          thin,
-          nodes={cprimary}
-        },
-        thick,
-      },
     }
   }{}
+  %    \end{macrocode}
+  %   Set the style of \textsc{Pgfplotstable}. The \verb"\colorrows" macro here is used for making the header colored. The \verb"booktabs" line is used to create a professional look.
+  %    \begin{macrocode}
   \@ifpackageloaded{pgfplotstable}{%
     \RequirePackage{array}
     \RequirePackage{colortbl}
     \RequirePackage{booktabs}
+    %    \end{macrocode}
+    %   Two macros are defined to make the header colored.
+    %    \begin{macrocode}
     \def\zapcolorreset{\let\reset@color\relax\ignorespaces}
     \def\colorrows#1{\noalign{\aftergroup\zapcolorreset#1}\ignorespaces}
+    %    \end{macrocode}
+    %    \begin{macrocode}
     \pgfplotstableset{
       col sep=comma,
       every table/.style={
-        font={\small\sffamily},
-      },
+          font={\small\sffamily},
+        },
       every head row/.style={
-        before row={
-          \arrayrulecolor{cprimary}
-          \toprule
-          \colorrows{\color{cprimary}}
+          before row={
+              \arrayrulecolor{cprimary}
+              \toprule
+              \colorrows{\color{cprimary}}
+            },
+          after row={
+              \midrule
+              \colorrows{\color{black}}
+            },
         },
-        after row={
-          \midrule
-          \colorrows{\color{black}}
-        },
-      },
       every last row/.style={
-        after row=\bottomrule
-      },
+          after row=\bottomrule
+        },
     }
     \newcolumntype{L}[1]{>{\begin{pgfplotstablecoltype}[#1]}
-      r<{\end{pgfplotstablecoltype}}}
+            r<{\end{pgfplotstablecoltype}}}
   }{}
+  %    \end{macrocode}
+  % Disable the warning from \verb"hyperref" which conflicts the setting in C\TeX{} or CJK. It has to be manually disabled.
+  %    \begin{macrocode}
   \def\Hy@WarnOptionDisabled#1{
     \def\next{#1}%
     \ifx\next pdfauthor %
       \ifx\next driverfallback %
       \else
-      \Hy@Warning{%
-        Option `#1' has already been used,\MessageBreak
-        setting the option has no effect%
-      }\fi%
+        \Hy@Warning{%
+          Option `#1' has already been used,\MessageBreak
+          setting the option has no effect%
+        }\fi%
     \fi%
   }
 }

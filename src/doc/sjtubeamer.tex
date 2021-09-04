@@ -114,436 +114,436 @@ fontupper=\sffamily,colupper=white}
 \def\themename{\textsf{SJTUBeamer}}
 
 \begin{document}
-    \title{\themename}
-    \date{\today}
-    % \maketitle
+\title{\themename}
+\date{\today}
+% \maketitle
 
-    \chapter*{\themename\ 介绍}
+\chapter*{\themename\ 介绍}
 
-    \themename\ 是基于 \verb"beamer" 文档类的主题宏集。
+\themename\ 是基于 \verb"beamer" 文档类的主题宏集。
 
-    \section*{何时应该使用这个主题？}
-    众所周知，\LaTeX\ 是一种非常专业的排版语言，而 \texttt{beamer} 是为了方便 \LaTeX\ 用户制作幻灯片而创造的宏包。为了获得专业的幻灯片文档，下面是可能需要使用 \texttt{beamer} 的时机：
-    \begin{enumerate}
-        \item 重要正式的学术场合。
-        \item 大型文档的构建（上百页）。
-        \item 已经使用 \LaTeX\ 写好稿子，需要基于此演说。
-    \end{enumerate}
+\section*{何时应该使用这个主题？}
+众所周知，\LaTeX\ 是一种非常专业的排版语言，而 \texttt{beamer} 是为了方便 \LaTeX\ 用户制作幻灯片而创造的宏包。为了获得专业的幻灯片文档，下面是可能需要使用 \texttt{beamer} 的时机：
+\begin{enumerate}
+  \item 重要正式的学术场合。
+  \item 大型文档的构建（上百页）。
+  \item 已经使用 \LaTeX\ 写好稿子，需要基于此演说。
+\end{enumerate}
 
-    而 \themename\ 为上海交通大学的 \LaTeX\ 用户提供了一些内置功能，以快速构建交大主题的幻灯片文档。
+而 \themename\ 为上海交通大学的 \LaTeX\ 用户提供了一些内置功能，以快速构建交大主题的幻灯片文档。
 
-    \section*{何时不应该使用这个主题？}
-    遗憾的是，\LaTeX\ 不是可见即可得的，编译需要花费时间。学习 \LaTeX\ 也需要花费时间。下面就是一些不推荐使用的情况：
-    \begin{enumerate}
-        \item 幻灯片需要大量的美术，图形需要大量的动画。纵然 \LaTeX\ 支持矢量图的绘制，但是需要的编译时间也会成倍的增长，Ti\emph{k}Z 绘图更偏重于计算图形绘制。
-        \item 文档较小，或者公式很少。这种情况使用 \texttt{beamer} 略显多余，造轮子花费的时间可能不够划算。
-    \end{enumerate}
+\section*{何时不应该使用这个主题？}
+遗憾的是，\LaTeX\ 不是可见即可得的，编译需要花费时间。学习 \LaTeX\ 也需要花费时间。下面就是一些不推荐使用的情况：
+\begin{enumerate}
+  \item 幻灯片需要大量的美术，图形需要大量的动画。纵然 \LaTeX\ 支持矢量图的绘制，但是需要的编译时间也会成倍的增长，Ti\emph{k}Z 绘图更偏重于计算图形绘制。
+  \item 文档较小，或者公式很少。这种情况使用 \texttt{beamer} 略显多余，造轮子花费的时间可能不够划算。
+\end{enumerate}
 
-    遇到任何问题，欢迎前往 \href{https://github.com/sjtug/SJTUBeamer/issues}{Issues} 提问。并推荐附上本文档一直采用的最小工作集示例方式。
+遇到任何问题，欢迎前往 \href{https://github.com/sjtug/SJTUBeamer/issues}{Issues} 提问。并推荐附上本文档一直采用的最小工作集示例方式。
 
-    \setcounter{tocdepth}{0}
-    \tableofcontents
+\setcounter{tocdepth}{0}
+\tableofcontents
 
-    \part{基础操作}
-    \chapter{安装}
+\part{基础操作}
+\chapter{安装}
 
-    \section{运行环境}
+\section{运行环境}
 
-    为了使用 \themename\ 的全部功能，请使用下者之一：
-    \begin{enumerate}
-        \item \href{https://miktex.org/}{MiK\TeX\ }
-        \item \href{https://mirrors.sjtug.sjtu.edu.cn/ctan/systems/texlive/Images/texlive2021-20210325.iso}{\TeX\ Live} 2019 及以上版本
-    \end{enumerate}
+为了使用 \themename\ 的全部功能，请使用下者之一：
+\begin{enumerate}
+  \item \href{https://miktex.org/}{MiK\TeX\ }
+  \item \href{https://mirrors.sjtug.sjtu.edu.cn/ctan/systems/texlive/Images/texlive2021-20210325.iso}{\TeX\ Live} 2019 及以上版本
+\end{enumerate}
 
-    % 上传至 Overleaf 后添加对应在线步骤
-    % 上传至 CTAN 后本段可以直接更改为安装宏包的标准流程
-    \section{下载模板}
+% 上传至 Overleaf 后添加对应在线步骤
+% 上传至 CTAN 后本段可以直接更改为安装宏包的标准流程
+\section{下载模板}
 
-    \begin{enumerate}
-        \item 前往 GitHub 上的 \faGithub{}~\href{https://github.com/sjtug/SJTUBeamer}{sjtug/SJTUBeamer} 页面，点击 \xbutton[green]{Code} 按钮下载压缩文件，在解压后的主目录里新建 \TeX{} 源文件即可调用该模板。
-        \item 或者点击进入存储库侧栏的 \href{https://github.com/sjtug/SJTUBeamer/releases}{\textsf{Releases}} 下载查看最新发布版本，并下载 \textsf{Assets} 栏的 \texttt{sjtubeamer-ctan.zip}。
-    \end{enumerate}
-    
-    \section{测试模板}
+\begin{enumerate}
+  \item 前往 GitHub 上的 \faGithub{}~\href{https://github.com/sjtug/SJTUBeamer}{sjtug/SJTUBeamer} 页面，点击 \xbutton[green]{Code} 按钮下载压缩文件，在解压后的主目录里新建 \TeX{} 源文件即可调用该模板。
+  \item 或者点击进入存储库侧栏的 \href{https://github.com/sjtug/SJTUBeamer/releases}{\textsf{Releases}} 下载查看最新发布版本，并下载 \textsf{Assets} 栏的 \texttt{sjtubeamer-ctan.zip}。
+\end{enumerate}
 
-    \begin{enumerate}
-        \item[ \faApple\ \faLinux] *nix 系统采用 \hologo{XeLaTeX} 编译以获得中文支持。
-        \item[ \faWindows] Windows 系统采用 \hologo{pdfLaTeX} 编译以获得更快的编译速度。
-        \item[\faWrench] 也可以直接使用 \texttt{latexmk (latexmkrc)} 编译示例的主文档。 
-    \end{enumerate}
+\section{测试模板}
 
-    下面的代码可以用于测试 \themename\ 是否可以正常使用。
+\begin{enumerate}
+  \item[ \faApple\ \faLinux] *nix 系统采用 \hologo{XeLaTeX} 编译以获得中文支持。
+  \item[ \faWindows] Windows 系统采用 \hologo{pdfLaTeX} 编译以获得更快的编译速度。
+  \item[\faWrench] 也可以直接使用 \texttt{latexmk (latexmkrc)} 编译示例的主文档。
+\end{enumerate}
 
-    \beamerdemo[1]{step1}
-    
-    {\small
-        \begin{enumerate}
-            \item 第一行载入 \texttt{ctex} 宏包提供的 \texttt{ctexbeamer} 文档类。如果不需要中文支持，可以直接使用 \texttt{beamer} 文档类。如果需要使用 16:9 的荧幕比例，可以参照示例 2 的相关参数。
-            \item 第二行载入 \texttt{sjtubeamer} 主题。
-            \item 使用 \texttt{document} 环境进入文档主体。
-            \item 使用 \texttt{frame} 环境创建新的幻灯片（帧）。
-            \item 在帧中输入文字即可在屏幕垂直居中位置产生文字。
-        \end{enumerate}
-    }
+下面的代码可以用于测试 \themename\ 是否可以正常使用。
 
-    \clearpage
+\beamerdemo[1]{step1}
 
-    \chapter{样式}
+{\small
+  \begin{enumerate}
+    \item 第一行载入 \texttt{ctex} 宏包提供的 \texttt{ctexbeamer} 文档类。如果不需要中文支持，可以直接使用 \texttt{beamer} 文档类。如果需要使用 16:9 的荧幕比例，可以参照示例 2 的相关参数。
+    \item 第二行载入 \texttt{sjtubeamer} 主题。
+    \item 使用 \texttt{document} 环境进入文档主体。
+    \item 使用 \texttt{frame} 环境创建新的幻灯片（帧）。
+    \item 在帧中输入文字即可在屏幕垂直居中位置产生文字。
+  \end{enumerate}
+}
 
-    在开始填入内容前，应当首先确定需要使用的样式。\themename 目前提供了三种不同的主要主题、两种配色和明暗模式。
+\clearpage
 
-    \noindent{\ttfamily\hfil\hspace*{-.5cm} + maxplus \hfil\hfil\hspace*{-.5cm}  + max \hfil\hfil + min \hfil}\par
-    \vspace*{-.2cm}
-    \begin{beamerdemoraster}[1,3,5,2,4,6]{red}{step2tb}
-    \end{beamerdemoraster}
+\chapter{样式}
 
-    \begin{beamerdemoraster}[1,2,3]{blue}{step2bd}\marginpar{\ttfamily\raisebox{1.8cm}{+ blue}}\marginpar{\ttfamily\raisebox{-1.8cm}{+ light}}
-    \end{beamerdemoraster}
-    \vspace*{-.2cm}
-    \begin{beamerdemoraster}[1,2,3]{blue}{step2bl}
-    \end{beamerdemoraster}
+在开始填入内容前，应当首先确定需要使用的样式。\themename 目前提供了三种不同的主要主题、两种配色和明暗模式。
 
-    \clearpage
+\noindent{\ttfamily\hfil\hspace*{-.5cm} + maxplus \hfil\hfil\hspace*{-.5cm}  + max \hfil\hfil + min \hfil}\par
+\vspace*{-.2cm}
+\begin{beamerdemoraster}[1,3,5,2,4,6]{red}{step2tb}
+\end{beamerdemoraster}
 
-    \themename 可以与 \texttt{beamer} 提供的九种外样式随意搭配。
+\begin{beamerdemoraster}[1,2,3]{blue}{step2bd}\marginpar{\ttfamily\raisebox{1.8cm}{+ blue}}\marginpar{\ttfamily\raisebox{-1.8cm}{+ light}}
+\end{beamerdemoraster}
+\vspace*{-.2cm}
+\begin{beamerdemoraster}[1,2,3]{blue}{step2bl}
+\end{beamerdemoraster}
 
-    \def\myincludepdf#1{
-        \tcbincludepdf[title={#1},
-        colframe=red!50!black,colback=red!10!white,
-        colbacktitle=red!50!white,left=0pt,right=0pt,top=0pt,
-        bottom=0pt,boxsep=0pt,boxrule=0.6pt,
-        toptitle=1mm,bottomtitle=1mm,drop lifted shadow,
-        center title,fonttitle=\ttfamily]
-        {tutorial/step2#1.pdf}
-    }
-    \begin{tcbitemize}[raster columns=3, raster equal height,
-        left=0pt,right=0pt,top=0pt,
-        bottom=0pt,boxsep=0pt,boxrule=0pt]
-        \tcbitem \myincludepdf{miniframes}
-        \tcbitem \myincludepdf{default}
-        \tcbitem \myincludepdf{infolines}
-        \tcbitem \myincludepdf{smoothbars}
-        \tcbitem \myincludepdf{sidebar}
-        \tcbitem \myincludepdf{split}
-        \tcbitem \myincludepdf{shadow}
-        \tcbitem \myincludepdf{tree}
-        \tcbitem \myincludepdf{smoothtree}
-    \end{tcbitemize}
+\clearpage
 
-    \beamerdemo[1]{step2}
+\themename 可以与 \texttt{beamer} 提供的九种外样式随意搭配。
 
-    \chapter{草稿}
+\def\myincludepdf#1{
+  \tcbincludepdf[title={#1},
+    colframe=red!50!black,colback=red!10!white,
+    colbacktitle=red!50!white,left=0pt,right=0pt,top=0pt,
+    bottom=0pt,boxsep=0pt,boxrule=0.6pt,
+    toptitle=1mm,bottomtitle=1mm,drop lifted shadow,
+    center title,fonttitle=\ttfamily]
+  {tutorial/step2#1.pdf}
+}
+\begin{tcbitemize}[raster columns=3, raster equal height,
+    left=0pt,right=0pt,top=0pt,
+    bottom=0pt,boxsep=0pt,boxrule=0pt]
+  \tcbitem \myincludepdf{miniframes}
+  \tcbitem \myincludepdf{default}
+  \tcbitem \myincludepdf{infolines}
+  \tcbitem \myincludepdf{smoothbars}
+  \tcbitem \myincludepdf{sidebar}
+  \tcbitem \myincludepdf{split}
+  \tcbitem \myincludepdf{shadow}
+  \tcbitem \myincludepdf{tree}
+  \tcbitem \myincludepdf{smoothtree}
+\end{tcbitemize}
 
-    在确定版式后，下一步就要输入文字填入内容了。由于 \LaTeX\ 的编译速度较慢，在打草稿的时候，我们推荐开启 \texttt{beamer} 文档类的 \texttt{draft} 模式，只关注于内容。在这种模式下，图片都不会被载入，而是使用一个占位符代替。
+\beamerdemo[1]{step2}
 
-    \beamerdemo[1]{step3}
+\chapter{草稿}
 
-    \begin{enumerate}
-        \small
-        \item 使用 \texttt{columns} 环境分栏，也可以采用 \texttt{multicol} 宏包提供的 \texttt{multicols} 环境。后者还兼容 \texttt{article} 文档类。
-        \item 该模式也会关闭目录与引用的生成。
-    \end{enumerate}
+在确定版式后，下一步就要输入文字填入内容了。由于 \LaTeX\ 的编译速度较慢，在打草稿的时候，我们推荐开启 \texttt{beamer} 文档类的 \texttt{draft} 模式，只关注于内容。在这种模式下，图片都不会被载入，而是使用一个占位符代替。
 
-    \clearpage
+\beamerdemo[1]{step3}
 
-    当然，如果演示文稿的内容过长的话，推荐分成许多个文件编写。最后通过一个主文件拼接起来。如果暂时想专心编写某一部分的内容，可以直接注释掉其他部分的入口。
+\begin{enumerate}
+  \small
+  \item 使用 \texttt{columns} 环境分栏，也可以采用 \texttt{multicol} 宏包提供的 \texttt{multicols} 环境。后者还兼容 \texttt{article} 文档类。
+  \item 该模式也会关闭目录与引用的生成。
+\end{enumerate}
 
-    \beamerdemo[1]{step4}
+\clearpage
 
-    \chapter{封面}
+当然，如果演示文稿的内容过长的话，推荐分成许多个文件编写。最后通过一个主文件拼接起来。如果暂时想专心编写某一部分的内容，可以直接注释掉其他部分的入口。
 
-    当内容完成之后，就可以制作封面和封底了。在此之前需要先填写该文档的元数据信息：标题、副标题、作者、组织、日期。
+\beamerdemo[1]{step4}
 
-    \beamerdemo[1,2]{step5}
+\chapter{封面}
 
-    \begin{enumerate}
-        \small
-        \item 在载入模板时选择 \texttt{maxplus}, \texttt{max}, \texttt{min} 以使用不同的标题页结尾页模板。
-        \item 组织（\texttt{\textbackslash{}institute}）可选，\texttt{min}会根据二级机构的处理方法排列徽标。
-        \item \texttt{\textbackslash{}maketitle} 可以制作标题页，\texttt{\textbackslash{}makebottom} 可以制作结束页$^*$。
+当内容完成之后，就可以制作封面和封底了。在此之前需要先填写该文档的元数据信息：标题、副标题、作者、组织、日期。
+
+\beamerdemo[1,2]{step5}
+
+\begin{enumerate}
+  \small
+  \item 在载入模板时选择 \texttt{maxplus}, \texttt{max}, \texttt{min} 以使用不同的标题页结尾页模板。
+  \item 组织（\texttt{\textbackslash{}institute}）可选，\texttt{min}会根据二级机构的处理方法排列徽标。
+  \item \texttt{\textbackslash{}maketitle} 可以制作标题页，\texttt{\textbackslash{}makebottom} 可以制作结束页$^*$。
         \item$^*$ 标题页中 \texttt{\textbackslash{}thanks} 被禁用，\texttt{\textbackslash{}makebottom} 是 \themename\ 专有命令。
-        \item[\faWarning] 将元数据写在 \texttt{document} 中可能会产生警告，可无视。
-    \end{enumerate}
+  \item[\faWarning] 将元数据写在 \texttt{document} 中可能会产生警告，可无视。
+\end{enumerate}
 
-    \chapter{目录}
-    
-    目录功能是 \texttt{beamer} 的特色之一。\themename\ 提供了两种插入目录的方法——两种方法也可以共同使用。
+\chapter{目录}
 
-    \section{单页目录}
+目录功能是 \texttt{beamer} 的特色之一。\themename\ 提供了两种插入目录的方法——两种方法也可以共同使用。
 
-    传统的插入目录的方法就是使用标准的目录命令。
+\section{单页目录}
 
-    \beamerdemo[1]{step6+.tex}
+传统的插入目录的方法就是使用标准的目录命令。
 
-    \section{节次提示}
+\beamerdemo[1]{step6+.tex}
 
-    而新式的方法是使用 \themename\ 优化后的节次页。
+\section{节次提示}
 
-    \beamerdemo[4]{step7+.tex}
+而新式的方法是使用 \themename\ 优化后的节次页。
 
-    \section{分割部分}
+\beamerdemo[4]{step7+.tex}
 
-    如果内容过多，可以采用 \texttt{\textbackslash{}part} 将内容分割为多个部分。新建一个部分都会新建一个部分页$^*$。
+\section{分割部分}
 
-    \beamerdemo[1]{step8+.tex}
+如果内容过多，可以采用 \texttt{\textbackslash{}part} 将内容分割为多个部分。新建一个部分都会新建一个部分页$^*$。
 
-    \section{高亮节次}
+\beamerdemo[1]{step8+.tex}
 
-    使用传统目录也可以在每节开始新建一个目录高亮本节。
+\section{高亮节次}
 
-    \beamerdemo[1]{step9+.tex}
+使用传统目录也可以在每节开始新建一个目录高亮本节。
 
-    \begin{enumerate}\small
-        \item 如果想要在幻灯片列表环境产生类似的“渐进切换”效果，可以在 \texttt{itemize} 环境的每一条后使用 \texttt{\textbackslash{}pause} 命令。或者是 \texttt{\textbackslash{}begin\{itemize\}[<+->]}。
-    \end{enumerate}
+\beamerdemo[1]{step9+.tex}
 
-    \chapter{播放}
+\begin{enumerate}\small
+  \item 如果想要在幻灯片列表环境产生类似的“渐进切换”效果，可以在 \texttt{itemize} 环境的每一条后使用 \texttt{\textbackslash{}pause} 命令。或者是 \texttt{\textbackslash{}begin\{itemize\}[<+->]}。
+\end{enumerate}
 
-    制作的演示文稿推荐使用 Adobe Acrobat 播放，浏览器内置的阅读器不支持一些额外功能。
+\chapter{播放}
 
-    \section{Adobe Acrobat}
+制作的演示文稿推荐使用 Adobe Acrobat 播放，浏览器内置的阅读器不支持一些额外功能。
 
-    在 Adobe Acrobat Pro（或免费版本的 Adobe Acrobat Reader）打开演示文稿，在“视图”选单中选择“全屏模式”即可播放。
+\section{Adobe Acrobat}
 
+在 Adobe Acrobat Pro（或免费版本的 Adobe Acrobat Reader）打开演示文稿，在“视图”选单中选择“全屏模式”即可播放。
+
+\begin{figure}[h]
+  \centering
+  \begin{tcolorbox}[enhanced, title={视图(V)}, attach boxed title to top left, boxed title style={sharp corners}, sharp corners, tile, width=6cm]
+    \faTv\ 全屏模式(F)\hfill Ctrl+L
+  \end{tcolorbox}
+\end{figure}
+
+\section{浏览器阅读器}
+
+\begin{enumerate}
+  \item[\faChrome] Chrome 浏览器以及 *nix 内置的阅读器支持“演示”功能。
     \begin{figure}[h]
-        \centering
-        \begin{tcolorbox}[enhanced, title={视图(V)}, attach boxed title to top left, boxed title style={sharp corners}, sharp corners, tile, width=6cm]
-            \faTv\ 全屏模式(F)\hfill Ctrl+L
-        \end{tcolorbox}
+      \centering
+      \begin{tcolorbox}[enhanced, title={$\vdots$}, attach boxed title to top right, boxed title style={circular arc,top=0mm,bottom=2mm,left=3.25mm,right=3.25mm}, sharp corners, tile, width=6cm]
+        演示
+      \end{tcolorbox}
     \end{figure}
+  \item[\faInternetExplorer] Edge 浏览器需要调整为“适应宽度”\fbox{\faArrowsH}，并使用 \fbox{\sffamily PageDown} 翻页。尽量不要使用该播放方法。
+\end{enumerate}
 
-    \section{浏览器阅读器}
+\part{进阶操作}
 
-    \begin{enumerate}
-        \item[\faChrome] Chrome 浏览器以及 *nix 内置的阅读器支持“演示”功能。
-        \begin{figure}[h]
-            \centering
-            \begin{tcolorbox}[enhanced, title={$\vdots$}, attach boxed title to top right, boxed title style={circular arc,top=0mm,bottom=2mm,left=3.25mm,right=3.25mm}, sharp corners, tile, width=6cm]
-                演示
-            \end{tcolorbox}
-        \end{figure} 
-        \item[\faInternetExplorer] Edge 浏览器需要调整为“适应宽度”\fbox{\faArrowsH}，并使用 \fbox{\sffamily PageDown} 翻页。尽量不要使用该播放方法。
-    \end{enumerate}
+\chapter{强调}
 
-    \part{进阶操作}
+在 \themename\ 中有多种强调内容的方法。
 
-    \chapter{强调}
-    
-    在 \themename\ 中有多种强调内容的方法。
+\section{文字强调}
 
-    \section{文字强调}
+主要有两种类型：改变字体和提供高对比。
 
-    主要有两种类型：改变字体和提供高对比。
-    
-    \beamerdemo[1]{step10.tex}
+\beamerdemo[1]{step10.tex}
 
-    \begin{enumerate}\small
-        \item \texttt{\textbackslash{}alert} 会改变文字颜色为主题色。\texttt{\textbackslash{}emph} 会改变文字颜色的同时，还会将英文字体变为斜体$^*$。
-        \item \texttt{\textbackslash{}paragraph} 和 \texttt{\textbackslash{}highlight} 都会在文字底部添加纯色方块$^*$，区别在于后者可以设置背景颜色。
-    \end{enumerate}
+\begin{enumerate}\small
+  \item \texttt{\textbackslash{}alert} 会改变文字颜色为主题色。\texttt{\textbackslash{}emph} 会改变文字颜色的同时，还会将英文字体变为斜体$^*$。
+  \item \texttt{\textbackslash{}paragraph} 和 \texttt{\textbackslash{}highlight} 都会在文字底部添加纯色方块$^*$，区别在于后者可以设置背景颜色。
+\end{enumerate}
 
-    \section{区块强调}
+\section{区块强调}
 
-    也有两种类型：纯色方块和边缘描边。
+也有两种类型：纯色方块和边缘描边。
 
-    \beamerdemo[1]{step11.tex}
+\beamerdemo[1]{step11.tex}
 
-    \beamerdemo[1]{step12.tex}
+\beamerdemo[1]{step12.tex}
 
-    \begin{enumerate}\small
-        \item \texttt{block}, \texttt{alertblock}, \texttt{exampleblock} 环境分别可以产生与主题色对应的三种盒子。
-        \item \texttt{min} 主题的盒子非圆角$^*$。
-        \item \texttt{stampbox} 环境可以产生印记边框盒子$^*$，可以丰富视觉效果与统一视觉形象。可接受一个可选参数如 \texttt{[sjtuBluePrimary]} 产生其他颜色的边框。
-    \end{enumerate}
+\begin{enumerate}\small
+  \item \texttt{block}, \texttt{alertblock}, \texttt{exampleblock} 环境分别可以产生与主题色对应的三种盒子。
+  \item \texttt{min} 主题的盒子非圆角$^*$。
+  \item \texttt{stampbox} 环境可以产生印记边框盒子$^*$，可以丰富视觉效果与统一视觉形象。可接受一个可选参数如 \texttt{[sjtuBluePrimary]} 产生其他颜色的边框。
+\end{enumerate}
 
-    \chapter{代码}
+\chapter{代码}
 
-    \themename\ 提供了代码抄录的区块环境。
+\themename\ 提供了代码抄录的区块环境。
 
-    \beamerdemo[1]{step13.tex}    
+\beamerdemo[1]{step13.tex}
 
-    \begin{enumerate}\small
-        \item \texttt{codeblock} 提供了带行号的代码抄录环境$^*$，第一个可选参数可以用于设置语言，第二个必选参数可以设置代码块的标题。
-        \item 需要清理抄录代码在源文件中的缩进，顶格输入。
-        \item 直接使用 \texttt{listings} 宏包提供的 \texttt{lstlisting} 环境依然可行，\themename\ 已经对其进行了一些预先的优化。
-        \item[\faWarning] 使用代码块的页其 \texttt{frame} 环境必须添加 \texttt{fragile} 参数。
-    \end{enumerate}
+\begin{enumerate}\small
+  \item \texttt{codeblock} 提供了带行号的代码抄录环境$^*$，第一个可选参数可以用于设置语言，第二个必选参数可以设置代码块的标题。
+  \item 需要清理抄录代码在源文件中的缩进，顶格输入。
+  \item 直接使用 \texttt{listings} 宏包提供的 \texttt{lstlisting} 环境依然可行，\themename\ 已经对其进行了一些预先的优化。
+  \item[\faWarning] 使用代码块的页其 \texttt{frame} 环境必须添加 \texttt{fragile} 参数。
+\end{enumerate}
 
-    
-    \chapter{引用}
 
-    方便地引用文献是 \texttt{beamer} 的另一大特色，推荐使用 \href{https://www.jabref.org/}{JabRef} 管理文献。\themename\ 对脚注的处理方式进行了一定的优化。
+\chapter{引用}
 
-    \section{Biber}
+方便地引用文献是 \texttt{beamer} 的另一大特色，推荐使用 \href{https://www.jabref.org/}{JabRef} 管理文献。\themename\ 对脚注的处理方式进行了一定的优化。
 
-    \faApple\ \faLinux\ 如果使用的是 \hologo{XeLaTeX} 编译，可以使用 \texttt{biblatex} 宏包，并采用 \textsc{Biber} 进行引用处理。
+\section{Biber}
 
-    \beamerdemo[1]{step14+-.tex}
+\faApple\ \faLinux\ 如果使用的是 \hologo{XeLaTeX} 编译，可以使用 \texttt{biblatex} 宏包，并采用 \textsc{Biber} 进行引用处理。
 
-    \begin{enumerate}\small
-        \item 使用 \texttt{\textbackslash{}footfullcite} 进行脚注引用（\texttt{biblatex} 提供的命令）。
-    \end{enumerate}
+\beamerdemo[1]{step14+-.tex}
 
-    \section{Bib\TeX{}}
+\begin{enumerate}\small
+  \item 使用 \texttt{\textbackslash{}footfullcite} 进行脚注引用（\texttt{biblatex} 提供的命令）。
+\end{enumerate}
 
-    \faWindows 如果使用的是 \hologo{pdfLaTeX} 编译，需要使用 \texttt{gbt7714} 宏包，并采用老式的 \textsc{Bib\TeX{}} 进行引用处理。
+\section{Bib\TeX{}}
 
-    \chapter{图表}
+\faWindows 如果使用的是 \hologo{pdfLaTeX} 编译，需要使用 \texttt{gbt7714} 宏包，并采用老式的 \textsc{Bib\TeX{}} 进行引用处理。
 
-    表格与统计图是展示数据最直观的方式，可以采用内建的方式插入风格统一的矢量图表。\themename\ 对此设定了一些预设。
+\chapter{图表}
 
-    \section{表格}
+表格与统计图是展示数据最直观的方式，可以采用内建的方式插入风格统一的矢量图表。\themename\ 对此设定了一些预设。
 
-    考虑到许多专业数据是直接存储在逗号分隔符（\texttt{.csv}）文件中的，便于数据内容的后续更改，用户可以采用 \texttt{pgfplotstable} 宏包从文件插入表格。
+\section{表格}
 
-    \beamerdemo[1]{step15.tex}
+考虑到许多专业数据是直接存储在逗号分隔符（\texttt{.csv}）文件中的，便于数据内容的后续更改，用户可以采用 \texttt{pgfplotstable} 宏包从文件插入表格。
 
-    \begin{enumerate}\small
-        \item 需要加载 \texttt{pgfplotstable} 宏包，表头变为主题色，采用三线表的样式。$^*$
-        \item 也可以使用标准表格插入的方法，只是不会有这种优化。可以使用 \href{https://www.tablesgenerator.com/latex_tables}{Table Generator} 生成标准表格代码。
-    \end{enumerate}
+\beamerdemo[1]{step15.tex}
 
-    \section{统计图}
+\begin{enumerate}\small
+  \item 需要加载 \texttt{pgfplotstable} 宏包，表头变为主题色，采用三线表的样式。$^*$
+  \item 也可以使用标准表格插入的方法，只是不会有这种优化。可以使用 \href{https://www.tablesgenerator.com/latex_tables}{Table Generator} 生成标准表格代码。
+\end{enumerate}
 
-    如果希望通过统计图更加直观地展示数据，可以使用 \texttt{pgfplots} 宏包插入统计图。
+\section{统计图}
 
-    \beamerdemo[1]{step16.tex}
+如果希望通过统计图更加直观地展示数据，可以使用 \texttt{pgfplots} 宏包插入统计图。
 
-    \begin{enumerate}\small
-        \item 需要加载 \texttt{pgfplots} 宏包，必要时额外加载 \texttt{pgfplotstable} 宏包以读取文件数据。可以使用 \href{https://logcreative.github.io/PGFPlotsEdt/}{PGFPlots 统计绘图编辑器} 生成上述代码。
-        \item[\faWarning] 过多的统计图会增长编译时间，不宜过多使用。
-    \end{enumerate}
+\beamerdemo[1]{step16.tex}
 
-    % TODO: 以后的开发计划：Smart Diagram
-    %\chapter{插图}
+\begin{enumerate}\small
+  \item 需要加载 \texttt{pgfplots} 宏包，必要时额外加载 \texttt{pgfplotstable} 宏包以读取文件数据。可以使用 \href{https://logcreative.github.io/PGFPlotsEdt/}{PGFPlots 统计绘图编辑器} 生成上述代码。
+  \item[\faWarning] 过多的统计图会增长编译时间，不宜过多使用。
+\end{enumerate}
 
-    \part{高级操作}
-    \chapter{徽标}
+% TODO: 以后的开发计划：Smart Diagram
+%\chapter{插图}
 
-    \themename\ 内置了一些徽标可供更换$^*$。
+\part{高级操作}
+\chapter{徽标}
 
-    \faInfoCircle 徽标与相关元素版权归上海交通大学所有，仅供学习交流使用。
+\themename\ 内置了一些徽标可供更换$^*$。
 
-    \begin{tcbitemize}[raster rows=2, raster columns=3, raster every box/.style={center title, valign=center, halign=center,fonttitle=\ttfamily,colback=white}]
-    \tcbitem[raster multicolumn=2,blankest]
-        \begin{tcbitemize}[raster columns=2]
-            \tcbitem[title={\textbackslash{}cnlogo}] \moveleft 0.3cm\hbox{\resizebox{!}{1cm}{\cnlogo}}
-            \tcbitem[title={\textbackslash{}enlogo}] \moveleft 0.3cm\hbox{\resizebox{!}{1cm}{\enlogo}}
-            \tcbitem[title={\textbackslash{}sjtubadge},height=3.5cm] \resizebox{!}{2cm}{\sjtubadge\ } 
-            \tcbitem[title={\textbackslash{}dlogo},height=3.5cm] \resizebox{3cm}{!}{\dlogo\ }
-        \end{tcbitemize}
-    \tcbitem[title={\textbackslash{}vlogo}] \resizebox{!}{4.8cm}{\vlogo\ }
-    \end{tcbitemize}
+\faInfoCircle 徽标与相关元素版权归上海交通大学所有，仅供学习交流使用。
 
-    \beamerdemo[1]{step17.tex}
+\begin{tcbitemize}[raster rows=2, raster columns=3, raster every box/.style={center title, valign=center, halign=center,fonttitle=\ttfamily,colback=white}]
+  \tcbitem[raster multicolumn=2,blankest]
+  \begin{tcbitemize}[raster columns=2]
+    \tcbitem[title={\textbackslash{}cnlogo}] \moveleft 0.3cm\hbox{\resizebox{!}{1cm}{\cnlogo}}
+    \tcbitem[title={\textbackslash{}enlogo}] \moveleft 0.3cm\hbox{\resizebox{!}{1cm}{\enlogo}}
+    \tcbitem[title={\textbackslash{}sjtubadge},height=3.5cm] \resizebox{!}{2cm}{\sjtubadge\ }
+    \tcbitem[title={\textbackslash{}dlogo},height=3.5cm] \resizebox{3cm}{!}{\dlogo\ }
+  \end{tcbitemize}
+  \tcbitem[title={\textbackslash{}vlogo}] \resizebox{!}{4.8cm}{\vlogo\ }
+\end{tcbitemize}
 
-    \begin{enumerate}\small
-        \item 使用 \texttt{\textbackslash{}logo} 设定徽标。
-        \item 可以使用自定义的徽标，但是不归 \themename 颜色系统管理$^*$，此时推荐使用亮色主题以提供亮色徽标背景。
-        \item 如果需要创造可变颜色徽标$^*$，参阅\href{run:sjtubeamerdevguide.pdf}{开发指南}第 3.4 节。
-    \end{enumerate}
+\beamerdemo[1]{step17.tex}
 
-    \chapter{头图}
+\begin{enumerate}\small
+  \item 使用 \texttt{\textbackslash{}logo} 设定徽标。
+  \item 可以使用自定义的徽标，但是不归 \themename 颜色系统管理$^*$，此时推荐使用亮色主题以提供亮色徽标背景。
+  \item 如果需要创造可变颜色徽标$^*$，参阅\href{run:sjtubeamerdevguide.pdf}{开发指南}第 3.4 节。
+\end{enumerate}
 
-    可以更改 \themename\ 封面中的头图。
+\chapter{头图}
 
-    \beamerdemo[1]{step18.tex}
+可以更改 \themename\ 封面中的头图。
 
-    \begin{enumerate}
-        \item 使用 \texttt{\textbackslash{}titlegraphic} 设定头图，需要在封面图输出前进行赋值。
-        \item 每个主题的头图位置不同，特别要注意默认的 \texttt{max} 主题的头图是淡色背景图。
-        \item 对头图可以不设定大小，因为会自动占满占位符。
-    \end{enumerate}
+\beamerdemo[1]{step18.tex}
 
-    \chapter{背景}
+\begin{enumerate}
+  \item 使用 \texttt{\textbackslash{}titlegraphic} 设定头图，需要在封面图输出前进行赋值。
+  \item 每个主题的头图位置不同，特别要注意默认的 \texttt{max} 主题的头图是淡色背景图。
+  \item 对头图可以不设定大小，因为会自动占满占位符。
+\end{enumerate}
 
-    可以更改 \themename\ 的背景图。
+\chapter{背景}
 
-    \beamerdemo[1]{step19.tex}
+可以更改 \themename\ 的背景图。
 
-    \begin{enumerate}\small
-        \item \texttt{\textbackslash{}setbeamertemplate} 可以设定背景图。
-        \item \texttt{\textbackslash{}stamparray} 可以用于生成印记矩阵。$^*$
-        \item \texttt{\textbackslash{}bgcenterbox} 命令可以用于居中背景图。$^*$
-        \item 作为文字的背景，其透明度应该较低或者颜色偏淡。
-    \end{enumerate}
+\beamerdemo[1]{step19.tex}
 
-    %TODO: 未来的开发计划
-    %\chapter{字体}
+\begin{enumerate}\small
+  \item \texttt{\textbackslash{}setbeamertemplate} 可以设定背景图。
+  \item \texttt{\textbackslash{}stamparray} 可以用于生成印记矩阵。$^*$
+  \item \texttt{\textbackslash{}bgcenterbox} 命令可以用于居中背景图。$^*$
+  \item 作为文字的背景，其透明度应该较低或者颜色偏淡。
+\end{enumerate}
 
-    \chapter{迁移}
+%TODO: 未来的开发计划
+%\chapter{字体}
 
-    \section{从 Markdown 或 \texttt{article} 文档类迁移}
+\chapter{迁移}
 
-    如果稿子已经预先使用 Markdown 或 \texttt{article} 文档类完成，可以尝试使用 \href{https://logcreative.github.io/AutoBeamer/}{AutoBeamer} 幻灯片自动切分工具。这个方向迁移的关键在于充分利用 \texttt{beamer} 提供的 \texttt{allowframebreaks} 功能。
+\section{从 Markdown 或 \texttt{article} 文档类迁移}
 
-    \section{迁移到其他主题}
+如果稿子已经预先使用 Markdown 或 \texttt{article} 文档类完成，可以尝试使用 \href{https://logcreative.github.io/AutoBeamer/}{AutoBeamer} 幻灯片自动切分工具。这个方向迁移的关键在于充分利用 \texttt{beamer} 提供的 \texttt{allowframebreaks} 功能。
 
-    上文中所有 \themename\ 独占的功能都已经用星号 $^*$ 标记。在迁移到其他的主题时，您需要手动重定向这些独占命令。
-    
-    \begin{table}[h]
-        \centering
-        \begin{tabular}{>{\ttfamily}c>{\ttfamily}c>{\ttfamily}c}
-            \hline
-            \textbackslash{}makebottom & \textbackslash{}emph & \textbackslash{}highlight  \\
-            \textbackslash{}paragraph & codeblock & \textbackslash{}stamparray \\
-            \textbackslash{}*logo & \textbackslash{}sjtubadge & stampline \\
-            \hline
-        \end{tabular}
-    \end{table}
-    
-    并且需要补齐已经预先加载的宏包。
+\section{迁移到其他主题}
 
-    \begin{table}[h]
-        \centering
-        \begin{tabular}{>{\sffamily}c>{\sffamily}c}
-            \hline
-            tikz & tcolorbox \\
-            \hline
-        \end{tabular}
-    \end{table}
+上文中所有 \themename\ 独占的功能都已经用星号 $^*$ 标记。在迁移到其他的主题时，您需要手动重定向这些独占命令。
 
-    我们更加推荐在本模板的基础上进行自定义修正来达到类似更换主题的效果（比如高级操作部分提到的方法）。
+\begin{table}[h]
+  \centering
+  \begin{tabular}{>{\ttfamily}c>{\ttfamily}c>{\ttfamily}c}
+    \hline
+    \textbackslash{}makebottom & \textbackslash{}emph      & \textbackslash{}highlight  \\
+    \textbackslash{}paragraph  & codeblock                 & \textbackslash{}stamparray \\
+    \textbackslash{}*logo      & \textbackslash{}sjtubadge & stampline                  \\
+    \hline
+  \end{tabular}
+\end{table}
 
+并且需要补齐已经预先加载的宏包。
 
-    \chapter{贡献}
+\begin{table}[h]
+  \centering
+  \begin{tabular}{>{\sffamily}c>{\sffamily}c}
+    \hline
+    tikz & tcolorbox \\
+    \hline
+  \end{tabular}
+\end{table}
 
-    欢迎向 \themename\ 贡献您的代码！
+我们更加推荐在本模板的基础上进行自定义修正来达到类似更换主题的效果（比如高级操作部分提到的方法）。
 
-    \section{封面模板}
 
-    如果您通过内部的 \texttt{my} 接口实现了自己的标题页和尾页模板，并且希望贡献到这个存储库让更多的人用到的话，欢迎进行 \href{https://github.com/sjtug/SJTUBeamer/pulls}{Pull Request} 提供自己创建的主题。
+\chapter{贡献}
 
-    为达成这一点，您可能需要
-    \begin{enumerate}
-        \item 学习一些 Ti\textit{k}Z 宏包的知识画出矢量图形。\texttt{texdoc pgf}
-        \item 尝试通过 \href{https://code.google.com/archive/p/tikzedt/downloads}{TikZEdt 编辑器} 打出草稿。
-        \item 充分利用内部库 \texttt{sjtuvi} 来调用预先定义的视觉图案。
-        \item 至少需要完成 16:9 和 4:3 的弹性布局，可能需要预先进行测试。
-    \end{enumerate}
-   
-    \section{内核框架}
+欢迎向 \themename\ 贡献您的代码！
 
-    如果您是 \LaTeX{} 老手，欢迎向该框架提出您的改进、添加您的功能、优化其编译速度。
+\section{封面模板}
 
-    为达成这一点，您可能需要
-    \begin{enumerate}
-        \item 了解 \texttt{beamer} 的\href{https://latex-beamer.com/}{进阶操作}。
-        \item 充分熟悉 \texttt{beamer} 的结构与内部宏。\texttt{texdoc beamer}
-        \item 阅读\href{run:sjtubeamerdevguide.pdf}{开发文档}，熟悉工程的构建方式与内部原理。
-        \item 学习 \TeX{} 的\href{https://mirrors.sjtug.sjtu.edu.cn/CTAN/graphics/pgf/contrib/pgfplots/doc/TeX-programming-notes.pdf}{底层知识}。
-        \item 尝试作出改动并通过回归测试、单元测试和集成测试。
-    \end{enumerate}
+如果您通过内部的 \texttt{my} 接口实现了自己的标题页和尾页模板，并且希望贡献到这个存储库让更多的人用到的话，欢迎进行 \href{https://github.com/sjtug/SJTUBeamer/pulls}{Pull Request} 提供自己创建的主题。
 
+为达成这一点，您可能需要
+\begin{enumerate}
+  \item 学习一些 Ti\textit{k}Z 宏包的知识画出矢量图形。\texttt{texdoc pgf}
+  \item 尝试通过 \href{https://code.google.com/archive/p/tikzedt/downloads}{TikZEdt 编辑器} 打出草稿。
+  \item 充分利用内部库 \texttt{sjtuvi} 来调用预先定义的视觉图案。
+  \item 至少需要完成 16:9 和 4:3 的弹性布局，可能需要预先进行测试。
+\end{enumerate}
 
-    \chapter*{许可证}
+\section{内核框架}
 
-    \themename\ 符合 \href{https://github.com/sjtug/SJTUBeamer/blob/main/LICENSE}{Apache-2.0 开源许可}，不提供任何担保。
+如果您是 \LaTeX{} 老手，欢迎向该框架提出您的改进、添加您的功能、优化其编译速度。
 
-    \texttt{sjtuvi} 和 \texttt{sjtucover} 库及其附属徽标、图片不符合上述开源许可，由上海交通大学持有\href{https://vi.sjtu.edu.cn/index.php/articles/bulletin/16}{版权}。校属各单位及个人以经营为目的使用视觉形象识别系统，须向学校申请使用许可。校外单位及个人未经许可，不得制作或使用载有视觉形象识别系统的物品。
+为达成这一点，您可能需要
+\begin{enumerate}
+  \item 了解 \texttt{beamer} 的\href{https://latex-beamer.com/}{进阶操作}。
+  \item 充分熟悉 \texttt{beamer} 的结构与内部宏。\texttt{texdoc beamer}
+  \item 阅读\href{run:sjtubeamerdevguide.pdf}{开发文档}，熟悉工程的构建方式与内部原理。
+  \item 学习 \TeX{} 的\href{https://mirrors.sjtug.sjtu.edu.cn/CTAN/graphics/pgf/contrib/pgfplots/doc/TeX-programming-notes.pdf}{底层知识}。
+  \item 尝试作出改动并通过回归测试、单元测试和集成测试。
+\end{enumerate}
 
-    \vfill
 
-    {\small \themename{} \hfill \today}
+\chapter*{许可证}
+
+\themename\ 符合 \href{https://github.com/sjtug/SJTUBeamer/blob/main/LICENSE}{Apache-2.0 开源许可}，不提供任何担保。
+
+\texttt{sjtuvi} 和 \texttt{sjtucover} 库及其附属徽标、图片不符合上述开源许可，由上海交通大学持有\href{https://vi.sjtu.edu.cn/index.php/articles/bulletin/16}{版权}。校属各单位及个人以经营为目的使用视觉形象识别系统，须向学校申请使用许可。校外单位及个人未经许可，不得制作或使用载有视觉形象识别系统的物品。
+
+\vfill
+
+{\small \themename{} \hfill \today}
 
 \end{document}
