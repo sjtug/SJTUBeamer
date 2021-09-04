@@ -64,18 +64,18 @@
 %    \begin{macrocode}
 \if\EqualOption{outer}{nav}{miniframes}
   \useoutertheme[footline=institutetitle]{miniframes}
-%    \end{macrocode}
-% Sidebar.
-%    \begin{macrocode}
+  %    \end{macrocode}
+  % Sidebar.
+  %    \begin{macrocode}
 \else\if\EqualOption{outer}{nav}{sidebar}
-  \useoutertheme{sidebar}
-%    \end{macrocode}
-% If it is other theme, change the beamercolor to fit smooth* theme.
-%    \begin{macrocode}
-\else
-  \useoutertheme{\sjtubeamer@outer@nav}
-  \setbeamercolor{title in head/foot}{use=structure,bg=white,fg=structure.fg}
-\fi\fi
+    \useoutertheme{sidebar}
+    %    \end{macrocode}
+    % If it is other theme, change the beamercolor to fit smooth* theme.
+    %    \begin{macrocode}
+  \else
+    \useoutertheme{\sjtubeamer@outer@nav}
+    \setbeamercolor{title in head/foot}{use=structure,bg=white,fg=structure.fg}
+  \fi\fi
 %    \end{macrocode}
 %
 %   Color patch for sidebar, shadow, and smoothtrees.

@@ -3,16 +3,16 @@
 \usepackage{pgfplotstable}
 \begin{document}
 \begin{frame}
-\frametitle{表格}
-\begin{table}
+  \frametitle{表格}
+  \begin{table}
     \caption{表格标题}
     \pgfplotstabletypeset[
-    columns/Quick/.style={
-        dec sep align},
-    columns/Cocktail/.style={
-        dec sep align},
-    column type=r]
+      columns/Quick/.style={
+          dec sep align},
+      columns/Cocktail/.style={
+          dec sep align},
+      column type=r]
     {../test.csv}
-\end{table}
+  \end{table}
 \end{frame}
 \end{document}
