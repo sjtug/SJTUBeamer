@@ -376,120 +376,120 @@ The framework is designed to be used seperately to meet the \verb"beamer" class 
         \usepackage{sjtucover}
         \usepackage{sjtuvi}
     \end{verbatim}
-    which requires that the decoupling work betweeen modules should be taken seriously. The regression test performed by \verb"l3build check" in Section \ref{sec:l3build} will check such a standard.
+which requires that the decoupling work betweeen modules should be taken seriously. The regression test performed by \verb"l3build check" in Section \ref{sec:l3build} will check such a standard.
 
-    \LaTeX{} doesn't load the same style file twice. If the style file is loaded before, then the next time it loads will get expanded to \verb"\endinput". Be aware if you are going to load a package twice and with different options, which will cause an \verb"option clash" error.
+\LaTeX{} doesn't load the same style file twice. If the style file is loaded before, then the next time it loads will get expanded to \verb"\endinput". Be aware if you are going to load a package twice and with different options, which will cause an \verb"option clash" error.
 
-    \subsection{Communication Model}
+\subsection{Communication Model}
 
-    The communication model is expanded based on assigning value on a variable.
+The communication model is expanded based on assigning value on a variable.
 
-    \begin{multicols}{2}    
+\begin{multicols}{2}
 
-    \begin{center}
-        \fbox{Declare an option to assign a variable} \par
-        $\downarrow$ \par
-        \fbox{Set the default configuration} \par
-        $\downarrow$ \par
-        \fbox{Process the input from the user} \par
-        $\downarrow$ \par
-        \fbox{Pass the variable to the next module}
-    \end{center}
+  \begin{center}
+    \fbox{Declare an option to assign a variable} \par
+    $\downarrow$ \par
+    \fbox{Set the default configuration} \par
+    $\downarrow$ \par
+    \fbox{Process the input from the user} \par
+    $\downarrow$ \par
+    \fbox{Pass the variable to the next module}
+  \end{center}
 
-    \begin{flushleft}
-        \verb"\DeclareOptionBeamer{max}"\par\verb"{\def\sjtubeamer@inner@cover{max}}" \par{\centering $\downarrow$ \par}
-        \verb"\ExcuteOptionsBeamer{max}" \par {\centering $\downarrow$ \par}
-        \verb"\ProcessOptionsBeamer" \par {\centering $\downarrow$ \par}
-        \verb"\PassOptionsToPackage"\par\verb"{\sjtubeamer@inner@cover}{sjtucover}"
-    \end{flushleft}
+  \begin{flushleft}
+    \verb"\DeclareOptionBeamer{max}"\par\verb"{\def\sjtubeamer@inner@cover{max}}" \par{\centering $\downarrow$ \par}
+    \verb"\ExcuteOptionsBeamer{max}" \par {\centering $\downarrow$ \par}
+    \verb"\ProcessOptionsBeamer" \par {\centering $\downarrow$ \par}
+    \verb"\PassOptionsToPackage"\par\verb"{\sjtubeamer@inner@cover}{sjtucover}"
+  \end{flushleft}
 
-    \end{multicols}
+\end{multicols}
 
-    The table shows the flow of parameter passing.
+The table shows the flow of parameter passing.
 
-    \begin{table}[h]
-        \begin{tabular}{l|>{\ttfamily}l|>{\ttfamily}l>{\ttfamily}l>{\ttfamily}l}
-            & parent                           & color                           & inner                           & outer                         \\
-            \hline
-            cover & \textbackslash{}sjtubeamer@cover &                                 & \textbackslash{}...@inner@cover &                               \\
-            color & \textbackslash{}sjtubeamer@color & \textbackslash{}...@color@color & \textbackslash{}...@inner@color &                               \\
-            lum   & \textbackslash{}sjtubeamer@lum   & \textbackslash{}...@clolor@lum  &                                 &                               \\
-            lang  & \textbackslash{}sjtubeamer@lang  &                                 & \textbackslash{}...@inner@lang  &                               \\
-            nav   & \textbackslash{}sjtubeamer@nav   &                                 &                                 & \textbackslash{}...@outer@nav
-        \end{tabular}
-        \vskip 3pt\moveright 0in\vbox{\hrule width3cm \vskip 3pt
-        \moveleft 0em \vbox{
-            \hbox{$^{1}$ Since \texttt{font} theme doesn't get any parameters, the table omits this column.}
-            \hbox{$^{2}$ ... means \texttt{sjtubeamer}.}
-            \hbox{$^{3}$ \texttt{sjtucover} gets \texttt{\textbackslash{}...@sjtucover@cover} from inner.}
-        }}
-    \end{table}
+\begin{table}[h]
+  \begin{tabular}{l|>{\ttfamily}l|>{\ttfamily}l>{\ttfamily}l>{\ttfamily}l}
+          & parent                           & color                           & inner                           & outer                         \\
+    \hline
+    cover & \textbackslash{}sjtubeamer@cover &                                 & \textbackslash{}...@inner@cover &                               \\
+    color & \textbackslash{}sjtubeamer@color & \textbackslash{}...@color@color & \textbackslash{}...@inner@color &                               \\
+    lum   & \textbackslash{}sjtubeamer@lum   & \textbackslash{}...@clolor@lum  &                                 &                               \\
+    lang  & \textbackslash{}sjtubeamer@lang  &                                 & \textbackslash{}...@inner@lang  &                               \\
+    nav   & \textbackslash{}sjtubeamer@nav   &                                 &                                 & \textbackslash{}...@outer@nav
+  \end{tabular}
+  \vskip 3pt\moveright 0in\vbox{\hrule width3cm \vskip 3pt
+    \moveleft 0em \vbox{
+      \hbox{$^{1}$ Since \texttt{font} theme doesn't get any parameters, the table omits this column.}
+      \hbox{$^{2}$ ... means \texttt{sjtubeamer}.}
+      \hbox{$^{3}$ \texttt{sjtucover} gets \texttt{\textbackslash{}...@sjtucover@cover} from inner.}
+    }}
+\end{table}
 
-    \subsection{Template Management}
+\subsection{Template Management}
 
-    \themename\ has its own system on template management on title page and bottom page. A modified macro has been implemented to achive this. In a word, all variables will be stored on an artificial stack.
+\themename\ has its own system on template management on title page and bottom page. A modified macro has been implemented to achive this. In a word, all variables will be stored on an artificial stack.
 
-    \begin{figure}[h]
-       \texttt{\textbackslash{}maketitle{[}maxplus{]}}\par
-       ~~$\hookrightarrow $set title template to \texttt{maxplus}\par
-       ~~\hspace*{2em}\texttt{\textbackslash{}titlepage}\par
-       ~~\hspace*{2em} $\hookrightarrow $ store the old \texttt{\textbackslash{}...@logocolor}\par
-       ~~\hspace*{4em} in sidebar mode, make a left shift\par
-       ~~\hspace*{4em} $\hookrightarrow $ insert the defined title page (in \verb"sjtucover.sty")\par
-       ~~\hspace*{4em}restore \texttt{\textbackslash{}...@logocolor}\par
-       ~~\hspace*{1em}restore title template back to \texttt{\textbackslash{}...@inner@cover} 
-    \end{figure}
+\begin{figure}[h]
+  \texttt{\textbackslash{}maketitle{[}maxplus{]}}\par
+  ~~$\hookrightarrow $set title template to \texttt{maxplus}\par
+  ~~\hspace*{2em}\texttt{\textbackslash{}titlepage}\par
+  ~~\hspace*{2em} $\hookrightarrow $ store the old \texttt{\textbackslash{}...@logocolor}\par
+  ~~\hspace*{4em} in sidebar mode, make a left shift\par
+  ~~\hspace*{4em} $\hookrightarrow $ insert the defined title page (in \verb"sjtucover.sty")\par
+  ~~\hspace*{4em}restore \texttt{\textbackslash{}...@logocolor}\par
+  ~~\hspace*{1em}restore title template back to \texttt{\textbackslash{}...@inner@cover}
+\end{figure}
 
-    Now, a sandbox in \verb"sjtucover.sty" is created. The modification on logo color is temporary and your page insertion aside from the current theme is also temporary.
+Now, a sandbox in \verb"sjtucover.sty" is created. The modification on logo color is temporary and your page insertion aside from the current theme is also temporary.
 
-    \begin{warn}
-        When drawing in the sandbox through Ti\emph{k}Z, make sure to use \texttt{overlay} option for adjustment. It will avoid the shift of your cover when using \texttt{sidebar} theme.
-    \end{warn}
+\begin{warn}
+  When drawing in the sandbox through Ti\emph{k}Z, make sure to use \texttt{overlay} option for adjustment. It will avoid the shift of your cover when using \texttt{sidebar} theme.
+\end{warn}
 
-    Since large source code may cause a performance drop on compiling. We have figure out a precompiling mechanism to reduce the templates it generates. See Section \ref{sec:precompile}.
+Since large source code may cause a performance drop on compiling. We have figure out a precompiling mechanism to reduce the templates it generates. See Section \ref{sec:precompile}.
 
-    \subsection{Logo Color System}
+\subsection{Logo Color System}
 
-    \themename\ has its own color model on logo. The main macro is \verb"\definelogo", which will generate a macro on its file name.
-    
-    TikZ provides an environment to create our own path fading from picture: \verb"tikzfadingfrompicture", where you could define your fading in a $(-1,-1)$ to $(1,1)$ rectangle area. Fill the background to black and insert a white logo in the middle will create a mask. Set the path fading to the name of this mask will apply to your new TikZ shape.
+\themename\ has its own color model on logo. The main macro is \verb"\definelogo", which will generate a macro on its file name.
 
-    However, this only creates a square mask. We have to crop it for some rectangular bounding boxes. Our macro will decide from your input on horizontal and vertical cropping size for your picture fill the height or fill the width. And crop the area symmetrically.
+TikZ provides an environment to create our own path fading from picture: \verb"tikzfadingfrompicture", where you could define your fading in a $(-1,-1)$ to $(1,1)$ rectangle area. Fill the background to black and insert a white logo in the middle will create a mask. Set the path fading to the name of this mask will apply to your new TikZ shape.
 
-    \begin{figure}
-    \begin{tikzpicture}
-        \draw [fill=black] (-4,1) rectangle (-2,-1);
-        
-        \node [white] at (-3,0) {\LARGE Logo};
-        \node at (-3,-1.5) {\ttfamily tikzfadingfrompicture};
-        \node at (-0.5,0) {$\rightarrow$};
-        
-        \draw (0.5,0.5) rectangle (3,-0.5);
-        \node [red] at (1.75,0) {\LARGE Logo};
-        \node at (1.75,-1.5) {\verb"\def\logo"};
-        \node at (4,0) {$\rightarrow$};
-        
-        \node [blue] at (6,0) {\LARGE Logo};
-        \node at (6,-1.5) {\verb"\logo[blue]"};
-    \end{tikzpicture}
-    \end{figure}
+However, this only creates a square mask. We have to crop it for some rectangular bounding boxes. Our macro will decide from your input on horizontal and vertical cropping size for your picture fill the height or fill the width. And crop the area symmetrically.
 
-    And the logo color is controlled by a global variable \verb"\sjtubeamer@logocolor". It can be overridden by an optional parameter when you insert your logo.
+\begin{figure}
+  \begin{tikzpicture}
+    \draw [fill=black] (-4,1) rectangle (-2,-1);
 
-    Remember, you have to store the picture in the \texttt{vi/} folder to create a mask.
+    \node [white] at (-3,0) {\LARGE Logo};
+    \node at (-3,-1.5) {\ttfamily tikzfadingfrompicture};
+    \node at (-0.5,0) {$\rightarrow$};
 
-    \section{Compatibility}
+    \draw (0.5,0.5) rectangle (3,-0.5);
+    \node [red] at (1.75,0) {\LARGE Logo};
+    \node at (1.75,-1.5) {\verb"\def\logo"};
+    \node at (4,0) {$\rightarrow$};
 
-    Since the vision of \LaTeX{} is to build an open-source typesetting system for multi-platforms and \textsf{beamer} is on top of that to create an easy-to-configure interface on building presentations, \themename{} follows the footstep to make its best on compatibility.
+    \node [blue] at (6,0) {\LARGE Logo};
+    \node at (6,-1.5) {\verb"\logo[blue]"};
+  \end{tikzpicture}
+\end{figure}
 
-    \subsection{Beamer Interface}\label{sec:beamer}
+And the logo color is controlled by a global variable \verb"\sjtubeamer@logocolor". It can be overridden by an optional parameter when you insert your logo.
 
-    \textsf{Beamer} has designed a system of modern interfaces for those theme creators. \themename{} has already followed the modular architecture, as is shown in Section \ref{sec:framework}.
+Remember, you have to store the picture in the \texttt{vi/} folder to create a mask.
 
-    And there are more APIs in \textsf{beamer} for each corresponding theme style. Here is a good material about it for a lead-in\cite{tex2017}, which provides a brief overview. And this part is only focusing on the implementation of \themename{}.
-    There are mainly three ways to modify a theme:
-    \begin{enumerate}
-        \item \textbf{Want to use presets.} Read Part \uppercase\expandafter{\romannumeral3} in the documentation of \textsf{beamer} package \cite{beamerman}. You can acquire the doc by the terminal command:
+\section{Compatibility}
+
+Since the vision of \LaTeX{} is to build an open-source typesetting system for multi-platforms and \textsf{beamer} is on top of that to create an easy-to-configure interface on building presentations, \themename{} follows the footstep to make its best on compatibility.
+
+\subsection{Beamer Interface}\label{sec:beamer}
+
+\textsf{Beamer} has designed a system of modern interfaces for those theme creators. \themename{} has already followed the modular architecture, as is shown in Section \ref{sec:framework}.
+
+And there are more APIs in \textsf{beamer} for each corresponding theme style. Here is a good material about it for a lead-in\cite{tex2017}, which provides a brief overview. And this part is only focusing on the implementation of \themename{}.
+There are mainly three ways to modify a theme:
+\begin{enumerate}
+  \item \textbf{Want to use presets.} Read Part \uppercase\expandafter{\romannumeral3} in the documentation of \textsf{beamer} package \cite{beamerman}. You can acquire the doc by the terminal command:
         \begin{verbatim}
             texdoc beamer
         \end{verbatim}
