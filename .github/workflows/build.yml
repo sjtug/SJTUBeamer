@@ -89,8 +89,7 @@ jobs:
         with:
           run: |
             apk add diffutils git
-            git ls-files | grep .tex$ | xargs -n1 latexindent -l latexindent.yaml -w > /dev/null
-            git ls-files | grep .dtx$ | xargs -n1 latexindent -l latexindent.yaml -w > /dev/null
+            make format-dev
       - name: check if generated files are of latest version
         run: |
           git diff --exit-code

@@ -1,11 +1,64 @@
-build:
-	latexmk main.tex -halt-on-error -time -xelatex
+# ----------------
+# User commands
+# ----------------
 
+LATEXINDENT_ARGS=-l latexindent.yaml -c build
+LATEXMK_ARGS=-halt-on-error -time -xelatex -outdir=build
+
+prepare:
+	mkdir build || true
+	mkdir build/contents || true
+
+# Build latex files in root directory
+build: prepare
+	latexmk main.tex $(LATEXMK_ARGS)
+	cp build/main.pdf .
+
+# Format tex files in root directory
 format:
-	latexindent -w -l *.tex
-	latexindent -w -l *.sty
+	latexindent main.tex -l latexindent.yaml -w $(LATEXINDENT_ARGS)
 
+# Clean temporary files
 clean:
+	latexmk -C $(LATEXMK_ARGS)
+
+# ----------------
+# Developer commands
+# ----------------
+
+# Format all tex and dtx files
+format-dev:
+	git ls-files | grep .dtx$ | xargs -n1 latexindent -w $(LATEXINDENT_ARGS)
+	git ls-files | grep .tex$ | xargs -n1 latexindent -w $(LATEXINDENT_ARGS)
+
+# Clean all temporary files and generated files
+clean-dev:
 	latexmk -C
+	cd src && l3build clean
+	git clean -dfX
+
+# Build all covers to `cover.pdf`
+build-cover: prepare
+	.github/ci/gen_cover.sh $(LATEXMK_ARGS)
+	cp build/cover.pdf .
+
+# Build sjtubeamer package
+build-dev: prepare
+	cd src && l3build ctan
+
+# Build `main.tex` with multiple test variants
+build-test-variants: prepare
+	.github/ci/build_test_variants.sh $(LATEXMK_ARGS)
+	cp build/build-*.pdf .
+
+# Build `main.tex` with multiple release variants
+build-all-variants: prepare
+	.github/ci/build_all_variants.sh $(LATEXMK_ARGS)
+	cp build/build-*.pdf .
+
+# Generate `.sty` files and copy resources
+generate:
+	(cd src/source && latex beamerthemesjtubeamer.ins && mv *.sty ../..)
+	.github/ci/copy_resources.sh
 
 .PHONY: build format clean

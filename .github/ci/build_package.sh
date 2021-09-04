@@ -7,12 +7,8 @@ l3build ctan
 # turn resource files into symbolic link.
 # TODO: a more elegant solution in the future.
 cd ..
-resources=(cnlogo.pdf dlogo.pdf enlogo.pdf sjtubadge.pdf sjtuphoto.jpg vlogo.pdf sjtubg.png)
-for resource in ${resources[@]};
-do
-    rm -f $resource
-    cp src/source/$resource $resource
-done
+
+.github/ci/copy_resources.sh
 
 if [ ! -f src/sjtubeamer-ctan.zip ]; then
     echo "BUILD FAILED."
