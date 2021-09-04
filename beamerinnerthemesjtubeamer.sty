@@ -90,7 +90,10 @@
     \titlegraphic{\sjtubg[opacity=0.2]}
     \setbeamertemplate{background}
     {
+      \let\oldlogocolor=\sjtubeamer@logocolor%
+      \def\sjtubeamer@logocolor{cprimary!50}
       \resizebox{\textwidth}{!}{\sjtubg[opacity=0.2]}
+      \let\sjtubeamer@logocolor=\oldlogocolor%
     }
   \else
     \if\EqualOption{inner}{cover}{min}
