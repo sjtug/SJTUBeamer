@@ -12,34 +12,42 @@ SJTUBeamer 是上海交通大学的非官方 Beamer 模版。您可以使用 SJT
 
 ```latex
 \documentclass[
-    % draft,                             % 草稿模式
-    aspectratio=169,                   % 使用 16:9 比例
+    % draft,          % 草稿模式
+    aspectratio=169,  % 使用 16:9 比例
 ]{ctexbeamer}
 \mode<presentation>
 
 \usetheme[min]{sjtubeamer}
+% 使用 maxplus/max/min 切换标题页样式
+% 使用 red/blue 切换主色调
+% 使用 light/dark 切换亮/暗色模式
+% 使用外样式关键词以获得不同的边栏样式
+%   miniframes infolines  sidebar* 
+%   default    smoothbars split	 
+%   shadow     tree       smoothtree
+% *siderbar 推荐与 max 一起使用。
 
 \usepackage[backend=biber,style=gb7714-2015]{biblatex}
 \addbibresource{thesis.bib}
 
-\institute[SJTUG]{上海交通大学 Linux 用户组}   % 组织
+\institute[SJTUG]{上海交通大学 Linux 用户组} % 组织
 
-\title{SJTUBeamer 幻灯片模板}  % 标题
-\subtitle{SJTUBeamer Template}         % 副标题
-\author{SJTUG}                  % 作者
-\date{\today}                          % 日期  
+\title{SJTUBeamer 幻灯片模板}         % 标题
+\subtitle{SJTUBeamer Template}       % 副标题
+\author{SJTUG}                       % 作者
+\date{\today}                        % 日期  
 
 \begin{document}
 
-\maketitle                             % 创建标题页
+\maketitle                           % 创建标题页
 
 \part{第一部分}
 
 % 使用节目录
 \AtBeginSection[]{
   \begin{frame}
-    % \tableofcontents[currentsection]           % 传统节目录             
-    \sectionpage                   % 节页
+    % \tableofcontents[currentsection]  % 传统节目录             
+    \sectionpage                        % 节页
   \end{frame}
 }
 
@@ -82,13 +90,13 @@ SJTUBeamer 是上海交通大学的非官方 Beamer 模版。您可以使用 SJT
   % 代码块参数：语言，标题
   % 请减少代码初始的缩进
   \begin{codeblock}[language=c++]{C++代码}
-    #include<iostream>
+#include<iostream>
 
-    int main(){
-        // Console Output
-        std::cout << "Hello, SJTU!" << std::endl;
-        return 0;
-      }
+int main(){
+  // Console Output
+  std::cout << "Hello, SJTU!" << std::endl;
+  return 0;
+}
   \end{codeblock}
 \end{frame}
 
@@ -97,24 +105,9 @@ SJTUBeamer 是上海交通大学的非官方 Beamer 模版。您可以使用 SJT
   \printbibliography[title=参考文献]
 \end{frame}
 
-\makebottom
+\makebottom       % 创建结束页
 
 \end{document}
-```
-
-
-您可以通过向该主题添加参数获取不同的样式。
-
-```latex
-\usetheme[maxplus]{sjtubeamer}
-% 使用 maxplus/max/min 切换标题页样式
-% 使用 red/blue 切换主色调
-% 使用 light/dark 切换亮/暗色模式
-% 使用外样式关键词以获得不同的边栏样式
-%   miniframes infolines  sidebar* 
-%   default    smoothbars split	 
-%   shadow     tree       smoothtree
-% *siderbar 推荐与 max 一起使用。
 ```
 
 ## 使用方法 🧰
