@@ -117,19 +117,19 @@ Edit `main.tex` and start to use.
 ### Template Download & Compilation
 
 * Overleaf
-  * Downlaod [the latest version](https://github.com/sjtug/SJTUBeamer/archive/refs/heads/main.zip).
-  * Or download [v2.0.0](https://github.com/sjtug/SJTUBeamer/archive/refs/tags/v2.0.0.zip).
+  * Download the development version by clicking "Code - Download Zip".
+  * Or download [the latest version](https://github.com/sjtug/SJTUBeamer/releases). Click "Source Code (zip)" to download.
   * Upload to Overleaf.
   * Set to "XeLaTeX" for compilation.
 * Local Use
   * Install TeXLive.
-  * Download [the latest version](https://github.com/sjtug/SJTUBeamer/archive/refs/heads/main.zip).
-  * Or Download [v2.0.0](https://github.com/sjtug/SJTUBeamer/archive/refs/tags/v2.0.0.zip).
-  * Or clone `git clone https://github.com/sjtug/SJTUBeamer/`.
-  * Go through command `latexmk -xelatex main.tex` to compile
+  * Run `git clone https://github.com/sjtug/SJTUBeamer/`.
+  * Or download the development version by clicking "Code - Download Zip".
+  * Or download [the latest version](https://github.com/sjtug/SJTUBeamer/releases). Click "Source Code (zip)" to download.
+  * Run `latexmk -xelatex main.tex` to compile
   * VSCode LaTeX Workshop: use “Recipe: latexmk (latexmkrc)” to compile
 
-The current stable version is v2.0.0。You could visit [the release page](https://github.com/sjtug/SJTUBeamer/releases/tag/v2.0.0) for the changelog and more details. Generally speaking, a release of SJTUBeamer has the following content:
+The current stable version is v2.0.0。You could visit [the release page](https://github.com/sjtug/SJTUBeamer/releases) for the changelog and more details. Generally speaking, a release of SJTUBeamer has the following content:
 
 * `sjtubeamer.pdf`: SJTUBeamer User Guide。**HIGHLY RECOMMENDED TO READ BEFORE YOU START👍👍👍**
 * `sjtubeamerdevguide.pdf`: SJTUBeamer Development Guide.
@@ -145,7 +145,7 @@ The current stable version is v2.0.0。You could visit [the release page](https:
 
 * Feel free to file an issue with GitHub Issues. At the same time, PRs are always welcomed.
 * The source code should be modified in `.dtx` files. Then use l3build to generate sty files.
-* You could get more implementation details in `sjtubeameruserguide.pdf`.
+* You could get more implementation details in `sjtubeamerdevguide.pdf`.
 
 The development process is as follows:
 
@@ -154,20 +154,20 @@ The development process is as follows:
 * Update `main.tex`, and run `make build` for previewing modification.
 * Update dev guide, and run `make build-dev` ro compile the doc and run tests.
 * (Optional) Run `make format-dev` to format all the files.
-* Release a Pull Request.
+* Submit a Pull Request.
 
 New contributors could add your name to the developer list in `sjtubeamerdevguide.tex`.
 
 ## Appearance 🧐
 
-![cover-0](https://user-images.githubusercontent.com/4198311/131241659-90f0804b-d0b1-4bb9-b45c-7d3c81ace02a.png)
-![cover-1](https://user-images.githubusercontent.com/4198311/131241665-2ced7884-7428-4967-8055-6ce47de7f8bd.png)
-![cover-2](https://user-images.githubusercontent.com/4198311/131241668-cc47d9fb-14c4-4681-b95d-98400e9b8d77.png)
-![cover-3](https://user-images.githubusercontent.com/4198311/131241669-ccf58f17-d35f-492d-8707-2cfdbd613107.png)
+![cover-0](https://user-images.githubusercontent.com/4198311/132097433-3c44d6f6-47e1-4d38-95db-560252ec5817.png)
+![cover-1](https://user-images.githubusercontent.com/4198311/132097442-0994886f-3eb1-4935-a8f5-34f5516fcdc3.png)
+![cover-2](https://user-images.githubusercontent.com/4198311/132097445-6fbfeb22-8e19-4c48-ab1e-ba81672e7ba3.png)
+![cover-3](https://user-images.githubusercontent.com/4198311/132097448-f3c44794-3834-4c4f-8a9a-769098aad8a9.png)
 
 ## License
 
 
 * SJTUBeamer is licensed under Apache-2.0.
-* SJTUBeamer is lincesed under CC-BY-SA 4.0.
+* SJTUBeamer is licensed under CC-BY-SA 4.0.
 * sjtuvi and sjtucover library and related graphics is under [No commercial](https://vi.sjtu.edu.cn/index.php/articles/bulletin/16).

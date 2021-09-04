@@ -177,4 +177,4 @@ SJTUBeamer 仓库同时包含 SJTUBeamer 包和一个示例文档。其中内容
 
 * SJTUBeamer 包使用的许可证为 Apache-2.0。
 * SJTUBeamer 示例文档使用 CC-BY-SA 4.0 许可。
-* sjtuvi 和 sjtucover 库及其附属徽标、图片由上海交通大学持有版权。校属各单位及个人以经营为目的使用视觉形象识别系统，须向学校申请使用许可。校外单位及个人未经许可，不得制作或使用载有视觉形象识别系统的物品。
+* sjtuvi 和 sjtucover 库及其附属徽标、图片由上海交通大学持有版权。校属各单位及个人以经营为目的使用视觉形象识别系统，须向学校申请使用许可。校外单位及个人未经许可，不得制作或使用载有视觉形象识别系统的物品。您可以在 [vi.sjtu.edu.cn](https://vi.sjtu.edu.cn/index.php/articles/bulletin/16) 阅读许可协议。
