@@ -159,7 +159,7 @@
 %  \end{macro}
 %
 %  \begin{macro}{\bgcenterbox}
-%   Define a command to make a centered background box easily.
+%   Define a command to make a centered background box easily. This is not used in current version. Always use a full paperwidth background.
 %    \begin{macrocode}
 \newcommand{\bgcenterbox}[1]{
   \let\oldlogocolor=\sjtubeamer@logocolor%
@@ -196,9 +196,10 @@
     \titlegraphic{\sjtubg[opacity=0.2]}
     \setbeamertemplate{background}
     {
-      \bgcenterbox{
-        \resizebox{\paperwidth}{!}{\sjtubg[opacity=0.2]}
-      }
+      \let\oldlogocolor=\sjtubeamer@logocolor%
+      \def\sjtubeamer@logocolor{cprimary!50}
+      \resizebox{\paperwidth}{!}{\sjtubg[opacity=0.2]}
+      \let\sjtubeamer@logocolor=\oldlogocolor%
     }
   \else
 %</max>
