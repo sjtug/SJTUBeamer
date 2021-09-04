@@ -420,13 +420,13 @@
 %<*min>
 \defbeamertemplate*{bottom page}{min}[1][]
 {
-  %    \end{macrocode}
-  %   Enter vertical mode.
-  %    \begin{macrocode}
-  \vbox{}
-  %    \end{macrocode}
-  %   Create the background canvas and the three overlapping circles in the right. Use \verb"scope" to define the influence range. And use \verb"\clip" to make the clipping in the current range.
-  %    \begin{macrocode}
+%    \end{macrocode}
+%   Enter vertical mode.
+%    \begin{macrocode}
+\vbox{}
+%    \end{macrocode}
+%   Create the background canvas and the three overlapping circles in the right. Use \verb"scope" to define the influence range. And use \verb"\clip" to make the clipping in the current range.
+%    \begin{macrocode}
   \usebeamercolor{palette primary}
   \usebeamercolor{palette secondary}
   \def\sjtubeamer@logocolor{palette primary.fg}
@@ -447,16 +447,16 @@
       (0.63*\w,1.05*\h) circle (1*\h);
     \end{scope}
   \end{tikzpicture}
-  %    \end{macrocode}
-  %   Insert the logo in the crossing center of the overlapping circles.
-  %    \begin{macrocode}
+%    \end{macrocode}
+%   Insert the logo in the crossing center of the overlapping circles.
+%    \begin{macrocode}
   \vfill
   \begingroup
   \raggedleft
   \resizebox{!}{1cm}{\insertlogo}
-  %    \end{macrocode}
-  %   Inset the ``thank you'' quote and the title of this beamer. Notice that three \verb"\vfill" divide the frame into three portions with final adjust using \verb"\vskip".
-  %    \begin{macrocode}
+%    \end{macrocode}
+%   Inset the ``thank you'' quote and the title of this beamer. Notice that three \verb"\vfill" divide the frame into three portions with final adjust using \verb"\vskip".
+%    \begin{macrocode}
   \vfill
   \vskip6em
   \begin{beamercolorbox}[sep=8pt]{title}
