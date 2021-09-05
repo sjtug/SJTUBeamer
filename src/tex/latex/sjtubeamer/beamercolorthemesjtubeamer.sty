@@ -1,0 +1,93 @@
+%%
+%% This is file `beamercolorthemesjtubeamer.sty',
+%% generated with the docstrip utility.
+%%
+%% The original source files were:
+%%
+%% beamercolorthemesjtubeamer.dtx  (with options: `package')
+%% ------------------------------------------------------------------------
+%% Copyright (C) 2021 SJTUG
+%% 
+%% Licensed under the Apache License, Version 2.0 (the "License");
+%% you may not use this file except in compliance with the License.
+%% You may obtain a copy of the License at
+%% 
+%%     http://www.apache.org/licenses/LICENSE-2.0
+%% 
+%% Unless required by applicable law or agreed to in writing, software
+%% distributed under the License is distributed on an "AS IS" BASIS,
+%% WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+%% See the License for the specific language governing permissions and
+%% limitations under the License.
+%% ------------------------------------------------------------------------
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesPackage{beamercolorthemesjtubeamer}[2021/09/05 sjtubeamer color theme v2.0.0]
+\RequirePackage{sjtuvi}
+\DefineOption{color}{color}{red}
+\DefineOption{color}{color}{blue}
+\ExecuteOptionsBeamer{red}
+\DefineOption{color}{lum}{light}
+\DefineOption{color}{lum}{dark}
+\ExecuteOptionsBeamer{dark}
+\ProcessOptionsBeamer
+\if\EqualOption{color}{color}{red}
+  \colorlet{cprimary}{sjtuRedPrimary}
+  \colorlet{csecondary}{sjtuRedSecondary}
+  \colorlet{ctertiary}{sjtuRedTertiary}
+  \colorlet{cquanternary}{black}
+\else
+  \colorlet{cprimary}{sjtuBluePrimary}
+  \colorlet{csecondary}{sjtuBlueSecondary}
+  \colorlet{ctertiary}{sjtuBlueTertiary}
+  \colorlet{cquanternary}{white}
+\fi
+\setbeamercolor{structure}{fg=cprimary}
+\if\EqualOption{color}{lum}{light}
+  \setbeamercolor{palette primary}{bg=white,fg=cprimary}
+  \setbeamercolor{palette secondary}{bg=white,fg=cprimary!50!csecondary}
+  \setbeamercolor{palette tertiary}{bg=white,fg=csecondary}
+\else
+  \setbeamercolor{palette primary}{bg=cprimary,fg=white}
+  \setbeamercolor{palette secondary}{bg=cprimary!50!csecondary,fg=white}
+  \setbeamercolor{palette tertiary}{bg=csecondary,fg=white}
+\fi
+\setbeamercolor{background canvas}{bg=white}
+\setbeamercolor{normal text}{fg=black,bg=black!40}
+\setbeamercolor*{block title}{parent=structure}
+\setbeamercolor{titlelike}{bg=,fg=cprimary}
+\setbeamercolor{title}{use={palette primary},fg=palette primary.fg,bg=}
+\setbeamercolor{subtitle}{use={palette secondary},fg=palette secondary.fg,bg=}
+\setbeamercolor{logo}{use={palette primary},bg=,fg=palette primary.fg}
+\setbeamercolor{author}{parent=logo}
+\setbeamercolor{institute}{parent=logo}
+\setbeamercolor{date}{parent=logo}
+\setbeamercolor{block title}{fg=white,bg=cprimary!90}
+\setbeamercolor{block title alerted}{use=alerted text,
+  fg=white,bg=csecondary}
+\setbeamercolor{block title example}{use=example text,
+  fg=cquanternary,bg=ctertiary}
+\setbeamercolor{block body}{parent=normal text,use=block title,
+  bg=block title.bg!30}
+\setbeamercolor{block body alerted}{parent=normal text,
+  use=block title alerted,bg=block title alerted.bg!30}
+\setbeamercolor{block body example}{parent=normal text,
+  use=block title example,bg=block title example.bg!30}
+\setbeamercolor{footnote}{use={palette primary},
+  fg=palette primary.bg,bg=}
+\setbeamercolor{part title}{parent={palette primary}}
+\setbeamercolor{section title}{parent={palette secondary}}
+\setbeamercolor{subsection title}{parent={palette tertiary}}
+\setbeamercolor{section in head/foot}{fg=white,bg=cprimary}
+\setbeamercolor{subsection in head/foot}{fg=cprimary,bg=cprimary!20}
+\setbeamercolor{institute in head/foot}{fg=white,bg=}
+\setbeamercolor{page number in head/foot}{fg=white,bg=}
+\setbeamercolor{frametitle}{use=titlelike,bg=white,fg=titlelike.fg}
+\setbeamercolor{frametitle right}{parent=subsection in head/foot}
+\setbeamercolor{emph}{fg=cprimary!50!csecondary}
+\renewcommand<>{\emph}[1]{%
+  {\only#2{\usebeamercolor[fg]{emph}\itshape}#1}%
+}
+\setbeamercolor{alerted text}{fg=cprimary}
+\endinput
+%%
+%% End of file `beamercolorthemesjtubeamer.sty'.

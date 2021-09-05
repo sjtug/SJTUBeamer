@@ -10,10 +10,8 @@ SJTUBeamer 是上海交通大学的非官方 Beamer 模版。您可以使用 SJT
 
 ## 许可证
 
-SJTUBeamer 仓库同时包含 SJTUBeamer 包和一个示例文档。其中内容的许可证各不相同。您可以阅读各个文件的开头部分，了解该文件所使用的许可证。
-
 * SJTUBeamer 包使用的许可证为 Apache-2.0。
-* sjtuvi 和 sjtucover 库及其附属徽标、图片由上海交通大学持有版权。校属各单位及个人以经营为目的使用视觉形象识别系统，须向学校申请使用许可。校外单位及个人未经许可，不得制作或使用载有视觉形象识别系统的物品。您可以在 [vi.sjtu.edu.cn](https://vi.sjtu.edu.cn/index.php/articles/bulletin/16) 阅读许可协议。
+* `sjtuvi` 和 `sjtucover` 库及其附属徽标、图片由上海交通大学持有版权。校属各单位及个人以经营为目的使用视觉形象识别系统，须向学校申请使用许可。校外单位及个人未经许可，不得制作或使用载有视觉形象识别系统的物品。您可以在 [vi.sjtu.edu.cn](https://vi.sjtu.edu.cn/index.php/articles/bulletin/16) 阅读许可协议。
 
 -------
 
@@ -30,7 +28,7 @@ This is the beamer template exclusively for Shanghai Jiaotong University student
 ## License
 
 * SJTUBeamer is licensed under Apache-2.0.
-* sjtuvi and sjtucover library and related graphics is under [No commercial](https://vi.sjtu.edu.cn/index.php/articles/bulletin/16).
+* `sjtuvi` and `sjtucover` library and related graphics is under [No commercial](https://vi.sjtu.edu.cn/index.php/articles/bulletin/16).
 
 
 ![cover-0](https://user-images.githubusercontent.com/4198311/132097433-3c44d6f6-47e1-4d38-95db-560252ec5817.png)

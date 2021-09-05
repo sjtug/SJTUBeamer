@@ -1,0 +1,69 @@
+%%
+%% This is file `beamerthemesjtubeamer.sty',
+%% generated with the docstrip utility.
+%%
+%% The original source files were:
+%%
+%% beamerthemesjtubeamer.dtx  (with options: `package,maxplus,max,min,my')
+%% ------------------------------------------------------------------------
+%% Copyright (C) 2021 SJTUG
+%% 
+%% Licensed under the Apache License, Version 2.0 (the "License");
+%% you may not use this file except in compliance with the License.
+%% You may obtain a copy of the License at
+%% 
+%%     http://www.apache.org/licenses/LICENSE-2.0
+%% 
+%% Unless required by applicable law or agreed to in writing, software
+%% distributed under the License is distributed on an "AS IS" BASIS,
+%% WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+%% See the License for the specific language governing permissions and
+%% limitations under the License.
+%% ------------------------------------------------------------------------
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesPackage{beamerthemesjtubeamer}[2021/09/05 sjtubeamer parent theme v2.0.0]
+\DeclareOptionBeamer{maxplus}{\def\sjtubeamer@cover{maxplus}}
+\DeclareOptionBeamer{max}{\def\sjtubeamer@cover{max}}
+\DeclareOptionBeamer{min}{\def\sjtubeamer@cover{min}}
+\DeclareOptionBeamer{my}{\def\sjtubeamer@cover{my}} % reserved for customization
+\ExecuteOptionsBeamer{
+  maxplus,
+  min,
+  my,
+  max,
+}
+\DeclareOptionBeamer{red}{\def\sjtubeamer@color{red}}
+\DeclareOptionBeamer{blue}{\def\sjtubeamer@color{blue}}
+\ExecuteOptionsBeamer{red}
+\DeclareOptionBeamer{light}{\def\sjtubeamer@lum{light}}
+\DeclareOptionBeamer{dark}{\def\sjtubeamer@lum{dark}}
+\ExecuteOptionsBeamer{dark}
+\DeclareOptionBeamer{cn}{\def\sjtubeamer@lang{cn}}
+\DeclareOptionBeamer{en}{\def\sjtubeamer@lang{en}}
+\@ifclassloaded{ctexbeamer}{\ExecuteOptionsBeamer{cn}}{
+  \ExecuteOptionsBeamer{en}}
+\DeclareOptionBeamer{miniframes}{\def\sjtubeamer@nav{miniframes}}
+\DeclareOptionBeamer{infolines}{\def\sjtubeamer@nav{infolines}}
+\DeclareOptionBeamer{sidebar}{\def\sjtubeamer@nav{sidebar}}
+\DeclareOptionBeamer{default}{\def\sjtubeamer@nav{default}}
+\DeclareOptionBeamer{smoothbars}{\def\sjtubeamer@nav{smoothbars}}
+\DeclareOptionBeamer{split}{\def\sjtubeamer@nav{split}}
+\DeclareOptionBeamer{shadow}{\def\sjtubeamer@nav{shadow}}
+\DeclareOptionBeamer{tree}{\def\sjtubeamer@nav{tree}}
+\DeclareOptionBeamer{smoothtree}{\def\sjtubeamer@nav{smoothtree}}
+\ExecuteOptionsBeamer{miniframes}
+\ProcessOptionsBeamer
+\PassOptionsToPackage{\sjtubeamer@cover}{beamerinnerthemesjtubeamer}
+\PassOptionsToPackage{\sjtubeamer@color}{beamercolorthemesjtubeamer}
+\PassOptionsToPackage{\sjtubeamer@color}{beamerinnerthemesjtubeamer}
+\PassOptionsToPackage{\sjtubeamer@lum}{beamercolorthemesjtubeamer}
+\PassOptionsToPackage{\sjtubeamer@lang}{beamerinnerthemesjtubeamer}
+\PassOptionsToPackage{\sjtubeamer@nav}{beamerouterthemesjtubeamer}
+\mode<presentation>
+\usecolortheme{sjtubeamer}
+\usefonttheme{sjtubeamer}
+\useinnertheme{sjtubeamer}
+\useoutertheme{sjtubeamer}
+\endinput
+%%
+%% End of file `beamerthemesjtubeamer.sty'.
