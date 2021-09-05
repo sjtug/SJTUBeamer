@@ -15,5 +15,5 @@ fi
 # test installation
 cd src
 l3build install
-cd src/doc
+cd doc
 latexmk min -halt-on-error -time -xelatex -outdir=build -shell-escape
