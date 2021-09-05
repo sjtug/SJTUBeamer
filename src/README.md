@@ -8,6 +8,8 @@ SJTUBeamer 是上海交通大学的非官方 Beamer 模版。您可以使用 SJT
 
 [仓库](https://github.com/sjtug/SJTUBeamer)中包含 SJTUBeamer 所使用的宏包 `sjtubeamer`，以及一个示例文档。
 
+使用 `\usetheme{sjtubeamer}` 即可使用该主题。更多设置参见 `texdoc sjtubeamer`。
+
 ## 许可证
 
 * SJTUBeamer 包使用的许可证为 Apache-2.0。
@@ -24,6 +26,8 @@ Welcome! 🥳
 This is the beamer template exclusively for Shanghai Jiaotong University students to give a speech on group meeting or course project.
 
 [This repository](https://github.com/sjtug/SJTUBeamer) contains the source code of SJTUBeamer and a demo file.
+
+To use the theme, input `\usetheme{sjtubeamer}`. To get more information, see `texdoc sjtubeamer`.
 
 ## License
 
