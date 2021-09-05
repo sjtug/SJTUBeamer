@@ -23,7 +23,7 @@ SJTUBeamer 是上海交通大学的非官方 Beamer 模版。您可以使用 SJT
 
 Welcome! 🥳
 
-This is the beamer template exclusively for Shanghai Jiaotong University students to give a speech on group meeting or course project.
+This is the beamer template exclusively for Shanghai Jiao Tong University students to give a speech on group meeting or course project.
 
 [This repository](https://github.com/sjtug/SJTUBeamer) contains the source code of SJTUBeamer and a demo file.
 
