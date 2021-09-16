@@ -472,6 +472,7 @@
 %
 % \begin{macro}{stampbox}
 %   Make a stampbox border, which is a decoration advice from SJTU VI. It has the dependency on \verb"stampline" from \verb"sjtuvi" package.
+%   TODO: if you insert the \verb"stampbox" inside the document, the error will occurred. The externalize library is really not that handy when comes to these edge scenarios. Consider to solve the problem entirely, or try to shelter this, or disable this feature.
 %    \begin{macrocode}
 \newtcolorbox{stampbox}[1][cprimary]{%
   capture=hbox,
