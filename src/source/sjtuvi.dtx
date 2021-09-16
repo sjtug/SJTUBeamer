@@ -61,7 +61,11 @@
 %  \end{macro}
 %
 % \subsubsection{Load TikZ}
-%   Load TikZ package and its related library: \verb"pattern.meta" provides the interface to define a pattern; \verb"fadings" provides the method to create a fading mask; \verb"decoration.pathmorphing" provides the interface to user-define a decoration.
+%   Load TikZ package and its related library: 
+%   \verb"pattern.meta" provides the interface to define a pattern; 
+%   \verb"fadings" provides the method to create a fading mask; 
+%   \verb"decoration.pathmorphing" provides the interface to user-define a decoration.
+%   \verb"external" provides the way for tikz externalization, which will reduce the number of repetitive rendering with the cached pdf.
 %    \begin{macrocode}
 \RequirePackage{tikz}
 %<*compatible>
@@ -69,6 +73,7 @@
 %</compatible>
 \usetikzlibrary{fadings}
 \usetikzlibrary{decorations.pathmorphing}
+\usetikzlibrary{external}
 %    \end{macrocode}
 %
 % \subsubsection{Color Definition}
@@ -94,6 +99,7 @@
 %    You should define a logo \verb"\definelogo{mylogo}{<hc>}{<vc>}" then use it in the contents like:
 %    \verb"\mylogo[white]", where the optional parameter could be the override color beyond the control of main logo color system or \verb"opacity=..." to identify the opacity you want or any other parameter for a TikZ node.
 %   Remember, the picture should be in the vi/ folder.
+%   The externalization will be disabled when using this system to generate logos, locally.
 %    \begin{macrocode}
 \newcommand{\definelogo}[3]{
     % #1: file from vi/ folder
@@ -113,13 +119,16 @@
     \fi
     \expandafter\providecommand\csname #1\endcsname[1][\sjtubeamer@logocolor]{
       % ##1: override color, or opacity=... (optional)
-      \begin{tikzpicture}
-        \begin{scope}
-          \clip ({-1.0+#2},{-1.0+#3}) rectangle ({1.0-#2},{1.0-#3});
-          \fill [\sjtubeamer@logocolor, ##1, path fading=#1]
-            (-1,-1) rectangle (1,1);
-        \end{scope}
-      \end{tikzpicture}
+      {
+        \tikzset{external/export=false}
+        \begin{tikzpicture}
+          \begin{scope}
+            \clip ({-1.0+#2},{-1.0+#3}) rectangle ({1.0-#2},{1.0-#3});
+            \fill [\sjtubeamer@logocolor, ##1, path fading=#1]
+              (-1,-1) rectangle (1,1);
+          \end{scope}
+        \end{tikzpicture}
+      }
     }
 }
 %    \end{macrocode}
@@ -215,7 +224,7 @@
 }
 %</compatible>
 %    \end{macrocode}
-%   For \TeX Live 2018 and even older, it is \emph{not} compatible to use the patterns.meta library for making user-defined patterns. The function will do noting.
+%   For \TeX Live 2018 and even older, it is \emph{not} compatible to use the patterns.meta library for making user-defined patterns. The function will do nothing.
 %    \begin{macrocode}
 %<*!compatible>
 \providecommand{\stamparray}[3]{}
@@ -250,6 +259,12 @@
 }
 %    \end{macrocode}
 % \end{macro}
+%
+%  Enable the externalization and cache all pdf's to \verb"cache/" folder.
+%  NOTICE: the externalization starts from here to avoid the conflict with the \verb"fadings" library.
+%    \begin{macrocode}
+\tikzexternalize[prefix=cache/]
+%    \end{macrocode}
 %
 % \iffalse
 %</package>

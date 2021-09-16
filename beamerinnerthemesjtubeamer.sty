@@ -108,16 +108,22 @@
 \fi
 \newdimen\beamer@sidebarwidth
 \beamer@sidebarwidth=0pt
+\def\coverpage#1{
+  {
+    \tikzset{external/export=false}
+    \let\oldlogocolor=\sjtubeamer@logocolor%
+    \ifdim\beamer@sidebarwidth=0pt %
+      \usebeamertemplate*{#1}
+    \else
+      \hspace*{-0.5\beamer@sidebarwidth}\parbox[t]{\textwidth}{
+        \usebeamertemplate*{#1}
+      }
+    \fi
+    \let\sjtubeamer@logocolor=\oldlogocolor%
+  }
+}
 \def\titlepage{
-  \let\oldlogocolor=\sjtubeamer@logocolor%
-  \ifdim\beamer@sidebarwidth=0pt %
-    \usebeamertemplate*{title page}
-  \else
-    \hspace*{-0.5\beamer@sidebarwidth}\parbox[t]{\textwidth}{
-      \usebeamertemplate*{title page}
-    }
-  \fi
-  \let\sjtubeamer@logocolor=\oldlogocolor%
+  \coverpage{title page}
 }
 \renewcommand{\maketitle}[1][\sjtubeamer@inner@cover]{
   \setbeamertemplate{title page}[#1]
@@ -128,15 +134,7 @@
   \setbeamertemplate{title page}[\sjtubeamer@inner@cover]
 }
 \def\bottompage{
-  \let\oldlogocolor=\sjtubeamer@logocolor%
-  \ifdim\beamer@sidebarwidth=0pt %
-    \usebeamertemplate*{bottom page}
-  \else
-    \hspace*{-0.5\beamer@sidebarwidth}\parbox[t]{\textwidth}{
-      \usebeamertemplate*{bottom page}
-    }
-  \fi
-  \let\sjtubeamer@logocolor=\oldlogocolor%
+  \coverpage{bottom page}
 }
 \if\EqualOption{inner}{lang}{cn}%
   \def\bottomthanks{谢\,谢}
@@ -368,7 +366,7 @@
     \fi%
   }
 }
-\defbeamertemplate*{footnote}{sjtubeamermin}
+\defbeamertemplate*{footnote}{sjtubeamer}
 {
   \usebeamerfont{footnote}
   \usebeamercolor[fg]{footnote}

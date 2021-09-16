@@ -3,8 +3,8 @@
 module           = "sjtubeamer"
 
 sourcefiledir    = "source"
-sourcefiles      = {"*.ins","*.dtx","vi/"}
-installfiles     = {"*.sty","vi/"}
+sourcefiles      = {"*.ins","*.dtx","vi/","latexmkrc"}
+installfiles     = {"*.sty","vi/","latexmkrc"}
 
 docfiledir       = "doc"
 
@@ -59,7 +59,7 @@ end
 
 -- Generate tutorial files before compiling the doc.
 -- NOTICE: if you want to save the tourial step pdf,
---         please enter support/tutorial adn run cache_pdf.sh
+--         please enter support/tutorial and run cache_pdf.sh
 --         if you want to clean the cache, please run clean_pdf.sh 
 function typeset_demo_tasks()
     local errorlevel = 0

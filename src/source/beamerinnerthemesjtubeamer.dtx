@@ -235,19 +235,31 @@
 \beamer@sidebarwidth=0pt
 %    \end{macrocode}
 %
+%  \begin{macro}{\coverpage}
+%  Common command for \verb"\titlepage" and \verb"\bottompage". Disable externalization for generating title page and bottom page, locally.
+%    \begin{macrocode}
+\def\coverpage#1{
+  {
+    \tikzset{external/export=false}
+    \let\oldlogocolor=\sjtubeamer@logocolor%
+    \ifdim\beamer@sidebarwidth=0pt %
+      \usebeamertemplate*{#1}
+    \else
+      \hspace*{-0.5\beamer@sidebarwidth}\parbox[t]{\textwidth}{
+        \usebeamertemplate*{#1}
+      }
+    \fi
+    \let\sjtubeamer@logocolor=\oldlogocolor%
+  }
+}
+%    \end{macrocode}
+%  \end{macro}
+%
 %  \begin{macro}{\titlepage}
 %   Call the title page template to make a title page. This is a patch for the original \verb"\titlepage" command, to fit with the logo color system.
 %    \begin{macrocode}
 \def\titlepage{
-  \let\oldlogocolor=\sjtubeamer@logocolor%
-  \ifdim\beamer@sidebarwidth=0pt %
-    \usebeamertemplate*{title page}
-  \else
-    \hspace*{-0.5\beamer@sidebarwidth}\parbox[t]{\textwidth}{
-      \usebeamertemplate*{title page}
-    }
-  \fi
-  \let\sjtubeamer@logocolor=\oldlogocolor%
+  \coverpage{title page}
 }
 %    \end{macrocode}
 %  \end{macro}
@@ -270,15 +282,7 @@
 %   Call the bottom page template to make a bottom page.
 %    \begin{macrocode}
 \def\bottompage{
-  \let\oldlogocolor=\sjtubeamer@logocolor%
-  \ifdim\beamer@sidebarwidth=0pt %
-    \usebeamertemplate*{bottom page}
-  \else
-    \hspace*{-0.5\beamer@sidebarwidth}\parbox[t]{\textwidth}{
-      \usebeamertemplate*{bottom page}
-    }
-  \fi
-  \let\sjtubeamer@logocolor=\oldlogocolor%
+  \coverpage{bottom page}
 }
 %    \end{macrocode}
 %  \end{macro}
@@ -632,7 +636,7 @@
 %  \begin{macro}{\footnote}
 %   Define the \verb"footline" beamer template. The format is slightly changed from the original beamer definition.
 %    \begin{macrocode}
-\defbeamertemplate*{footnote}{sjtubeamermin}
+\defbeamertemplate*{footnote}{sjtubeamer}
 {
   \usebeamerfont{footnote}
   \usebeamercolor[fg]{footnote}
