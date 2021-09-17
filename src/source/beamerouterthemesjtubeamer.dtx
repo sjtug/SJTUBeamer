@@ -59,6 +59,7 @@
 %    \begin{macrocode}
 \beamer@compresstrue
 %    \end{macrocode}
+%
 % \subsubsection{Frame Title}
 %
 %   Define the beamer template \verb"frametitle" to add a logo in the right of the frametitle (top right corner).
@@ -93,13 +94,13 @@
     \vskip-1ex%
     \endgroup%
 %    \end{macrocode}
-%   Add the logo to the upper right corner. It will be scaled to a 0.7cm height one by using \verb"\resizebox".
+%   Add the logo to the upper right corner. It will be scaled to a 0.7cm height one by using \verb"\resizebox". \verb"\vphantom" here is to create a phantom box to make sure the \verb"\resizebox" has a non-zero height box input.
 %    \begin{macrocode}
     \raggedleft%
     \begingroup
     \ifx\insertframesubtitle\@empty\vskip-2.5ex%
     \else\vskip-3.5ex\fi%
-    {\resizebox{!}{0.7cm}{\insertlogo}}\hspace*{5pt}%
+    {\resizebox{!}{0.7cm}{\vphantom{-}\insertlogo}}\hspace*{5pt}%
     \endgroup%
     \ifx\insertframesubtitle\@empty%
     \else\vskip0.5ex\fi%
