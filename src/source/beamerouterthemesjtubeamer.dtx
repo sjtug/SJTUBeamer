@@ -99,7 +99,7 @@
     \begingroup
     \ifx\insertframesubtitle\@empty\vskip-2.5ex%
     \else\vskip-3.5ex\fi%
-    {\resizebox{!}{0.7cm}{\insertlogo}}\hspace*{2ex}%
+    {\resizebox{!}{0.7cm}{\insertlogo}}\hspace*{5pt}%
     \endgroup%
     \ifx\insertframesubtitle\@empty%
     \else\vskip0.5ex\fi%
@@ -108,7 +108,7 @@
 }
 %    \end{macrocode}
 %
-%  \subsubsection{Execute Outer theme}
+%  \subsubsection{Execute Outer Theme}
 %
 % Use the built-in outer templates. If you want to take special care about one outer theme, please add a condition test on that theme. Otherwise, it will use the default configuration of the corresponding built-in outer theme.
 %    \begin{macrocode}
@@ -119,7 +119,7 @@
 %    \begin{macrocode}
 \else\if\EqualOption{outer}{nav}{sidebar}
     \useoutertheme{sidebar}
-    \setbeamertemplate{frametitle}{sidebar theme}
+    \setbeamertemplate{frametitle}[sidebar theme]
 %    \end{macrocode}
 % If it is other theme, change the beamercolor to fit smooth* theme.
 %    \begin{macrocode}
