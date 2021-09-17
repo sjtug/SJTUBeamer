@@ -265,10 +265,12 @@
 \RequirePackage{pdftexcmds}
 %    \end{macrocode}
 %  Enable the externalization and cache all pdf's to \verb"cache/" folder, if it is in --shell-escape mode (1).
-%  NOTICE: the externalization starts from here to avoid the conflict with the \verb"fadings" library.
+%  NOTICE: the externalization starts from the end of preamble to avoid the conflict with the \verb"fadings" library.
 %    \begin{macrocode}
 \ifnum\pdf@shellescape=1
-  \tikzexternalize[prefix=cache/]
+  \AtEndPreamble{
+    \tikzexternalize[prefix=cache/]
+  }
 \else
 \fi
 %    \end{macrocode}

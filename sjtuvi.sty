@@ -48,34 +48,34 @@
 \definecolor{sjtuBlueSecondary}{RGB}{51,141,39}      %lightgreen
 \definecolor{sjtuBlueTertiary}{RGB}{0,81,78}         %lightgray
 \newcommand{\definelogo}[3]{
-    % #1: file from vi/ folder
-    % #2: horizontal clip (0~1)
-    % #3: vertical clip (0~1)
-    \pgfmathparse{notgreater(#2,#3)}
-    \ifnum\pgfmathresult=1
-      \begin{tikzfadingfrompicture}[name=#1]
-        \fill[black] (-1,-1) rectangle (1,1);
-        \node {\includegraphics[width=1.5cm]{vi/#1}};
-      \end{tikzfadingfrompicture}
-    \else
-      \begin{tikzfadingfrompicture}[name=#1]
-        \fill[black] (-1,-1) rectangle (1,1);
-        \node {\includegraphics[height=1.5cm]{vi/#1}};
-      \end{tikzfadingfrompicture}
-    \fi
-    \expandafter\providecommand\csname #1\endcsname[1][\sjtubeamer@logocolor]{
-      % ##1: override color, or opacity=... (optional)
-      {
-        \tikzset{external/export=false}
-        \begin{tikzpicture}
-          \begin{scope}
-            \clip ({-1.0+#2},{-1.0+#3}) rectangle ({1.0-#2},{1.0-#3});
-            \fill [\sjtubeamer@logocolor, ##1, path fading=#1]
-              (-1,-1) rectangle (1,1);
-          \end{scope}
-        \end{tikzpicture}
-      }
+  % #1: file from vi/ folder
+  % #2: horizontal clip (0~1)
+  % #3: vertical clip (0~1)
+  \pgfmathparse{notgreater(#2,#3)}
+  \ifnum\pgfmathresult=1
+    \begin{tikzfadingfrompicture}[name=#1]
+      \fill[black] (-1,-1) rectangle (1,1);
+      \node {\includegraphics[width=1.5cm]{vi/#1}};
+    \end{tikzfadingfrompicture}
+  \else
+    \begin{tikzfadingfrompicture}[name=#1]
+      \fill[black] (-1,-1) rectangle (1,1);
+      \node {\includegraphics[height=1.5cm]{vi/#1}};
+    \end{tikzfadingfrompicture}
+  \fi
+  \expandafter\providecommand\csname #1\endcsname[1][\sjtubeamer@logocolor]{
+    % ##1: override color, or opacity=... (optional)
+    {
+      \tikzset{external/export=false}
+      \begin{tikzpicture}
+        \begin{scope}
+          \clip ({-1.0+#2},{-1.0+#3}) rectangle ({1.0-#2},{1.0-#3});
+          \fill [\sjtubeamer@logocolor, ##1, path fading=#1]
+            (-1,-1) rectangle (1,1);
+        \end{scope}
+      \end{tikzpicture}
     }
+  }
 }
 \def\sjtubeamer@logocolor{sjtuRedPrimary}
 \definelogo{sjtubadge}{0}{0}
@@ -162,7 +162,13 @@
     \pgfpathlineto{\pgfpointdecoratedpathlast}
   }
 }
-\tikzexternalize[prefix=cache/]
+\RequirePackage{pdftexcmds}
+\ifnum\pdf@shellescape=1
+  \AtEndPreamble{
+    \tikzexternalize[prefix=cache/]
+  }
+\else
+\fi
 \endinput
 %%
 %% End of file `sjtuvi.sty'.
