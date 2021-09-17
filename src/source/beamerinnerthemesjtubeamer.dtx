@@ -129,11 +129,13 @@
 %   \subsubsection{Load Packages}
 %
 %   Introduce the library from tcolorbox to make code blocks.
-%   \verb"listingsutf8" is used to receive UTF-8 input.
+%   \verb"listingsutf8" is used to receive UTF-8 input. 
+%   The global set on shield externalize will prevent tcolorbox from externalizing. 
 %    \begin{macrocode}
 \RequirePackage{tcolorbox}
 \tcbuselibrary{skins}
 \tcbuselibrary{listingsutf8}
+\tcbset{shield externalize}
 %    \end{macrocode}
 %
 % \subsubsection{Title Page \& Bottom Page}
@@ -472,7 +474,6 @@
 %
 % \begin{macro}{stampbox}
 %   Make a stampbox border, which is a decoration advice from SJTU VI. It has the dependency on \verb"stampline" from \verb"sjtuvi" package.
-%   TODO: if you insert the \verb"stampbox" inside the document, the error will occurred. The externalize library is really not that handy when comes to these edge scenarios. Consider to solve the problem entirely, or try to shelter this, or disable this feature.
 %    \begin{macrocode}
 \newtcolorbox{stampbox}[1][cprimary]{%
   capture=hbox,
