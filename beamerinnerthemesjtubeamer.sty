@@ -21,7 +21,7 @@
 %% limitations under the License.
 %% ------------------------------------------------------------------------
 \NeedsTeXFormat{LaTeX2e}
-\ProvidesPackage{beamerinnerthemesjtubeamer}[2021/09/04 sjtubeamer inner theme v2.0.0]
+\ProvidesPackage{beamerinnerthemesjtubeamer}[2021/09/17 sjtubeamer inner theme v2.1.0]
 \RequirePackage{sjtuvi}
 \RequirePackage{tcolorbox}
 \DeclareOptionBeamer{maxplus}{\def\sjtubeamer@inner@cover{maxplus}}
@@ -58,6 +58,7 @@
 \RequirePackage{tcolorbox}
 \tcbuselibrary{skins}
 \tcbuselibrary{listingsutf8}
+\tcbset{shield externalize}
 \usebeamercolor{palette primary}
 \if\EqualOption{inner}{cover}{max}
   \logo{\resizebox{!}{1cm}{\sjtubadge}}
