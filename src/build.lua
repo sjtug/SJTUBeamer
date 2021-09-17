@@ -3,8 +3,8 @@
 module           = "sjtubeamer"
 
 sourcefiledir    = "source"
-sourcefiles      = {"*.ins","*.dtx","vi/","latexmkrc"}
-installfiles     = {"*.sty","vi/","latexmkrc"}
+sourcefiles      = {"*.ins","*.dtx","vi/"}
+installfiles     = {"*.sty","vi/"}
 
 docfiledir       = "doc"
 
