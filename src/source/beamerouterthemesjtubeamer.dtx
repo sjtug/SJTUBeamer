@@ -87,7 +87,10 @@
 %
 % \subsubsection{Bottombar}
 %
-% TODO: move the logo position.
+%   Clear the original definition of sidebar first. Then append the page info to the footline, which could avoid collision on footnote.
+%    \begin{macrocode} 
+\setbeamertemplate{sidebar right}{}
+%    \end{macrocode}
 %
 % Add page number to the toolbox.
 %    \begin{macrocode}
@@ -103,6 +106,17 @@
   }
 }
 %    \end{macrocode}
+%
+%  Append the navigation to the footline to avoid the collision with the navigation symbols. This will clear the original placeholder for the logo -- place it elsewhere.
+%    \begin{macrocode}
+\addtobeamertemplate{footline}{
+  \hfill%
+  \usebeamertemplate***{navigation symbols}%
+  \hspace*{0.1cm}\par
+  \vskip 4pt
+}{}
+%    \end{macrocode}
+%
 % And set the page number template to none.
 %    \begin{macrocode}
 \setbeamertemplate{page number in head/foot}{}
@@ -110,7 +124,7 @@
 %
 %
 % \iffalse
-% </package>
+%</package>
 % \fi
 % \Finale
 \endinput
