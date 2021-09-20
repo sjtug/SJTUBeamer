@@ -53,15 +53,7 @@ before upper={\rule[-3pt]{0pt}{10pt}},boxrule=1pt,
 boxsep=0pt,left=6pt,right=6pt,top=2pt,bottom=0pt,
 fontupper=\sffamily,colupper=white}
 
-\usepackage{iftex}
-\ifpdftex 
-    % Windows should always use pdflatex to compile this doc
-\else
-    % *nix should always use xelatex to support fontawesome and ctex
-    \usepackage{fontspec}
-    \defaultfontfeatures{Extension = .otf}
-\fi
-\usepackage{fontawesome}
+\usepackage{fontawesome5}
 \usepackage{hologo}
 
 \tcbuselibrary{listingsutf8}
