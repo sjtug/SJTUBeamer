@@ -254,7 +254,7 @@ fontupper=\sffamily,colupper=white}
   \item 组织（\texttt{\textbackslash{}institute}）可选，\texttt{min}会根据二级机构的处理方法排列徽标。
   \item \texttt{\textbackslash{}maketitle} 可以制作标题页，\texttt{\textbackslash{}makebottom} 可以制作结束页$^*$。
         \item$^*$ 标题页中 \texttt{\textbackslash{}thanks} 被禁用，\texttt{\textbackslash{}makebottom} 是 \themename\ 专有命令。
-  \item[\faWarning] 将元数据写在 \texttt{document} 中可能会产生警告，可无视。
+  \item[\faExclamationTriangle] 将元数据写在 \texttt{document} 中可能会产生警告，可无视。
 \end{enumerate}
 
 \chapter{目录}
@@ -314,7 +314,7 @@ fontupper=\sffamily,colupper=white}
         演示
       \end{tcolorbox}
     \end{figure}
-  \item[\faInternetExplorer] Edge 浏览器需要调整为“适应宽度”\fbox{\faArrowsH}，并使用 \fbox{\sffamily PageDown} 翻页。尽量不要使用该播放方法。
+  \item[\faInternetExplorer] Edge 浏览器需要调整为“适应宽度”\fbox{\faArrowsAltH}，并使用 \fbox{\sffamily PageDown} 翻页。尽量不要使用该播放方法。
 \end{enumerate}
 
 \part{进阶操作}
@@ -358,7 +358,7 @@ fontupper=\sffamily,colupper=white}
   \item \texttt{codeblock} 提供了带行号的代码抄录环境$^*$，第一个可选参数可以用于设置语言，第二个必选参数可以设置代码块的标题。
   \item 需要清理抄录代码在源文件中的缩进，顶格输入。
   \item 直接使用 \texttt{listings} 宏包提供的 \texttt{lstlisting} 环境依然可行，\themename\ 已经对其进行了一些预先的优化。
-  \item[\faWarning] 使用代码块的页其 \texttt{frame} 环境必须添加 \texttt{fragile} 参数。
+  \item[\faExclamationTriangle] 使用代码块的页其 \texttt{frame} 环境必须添加 \texttt{fragile} 参数。
 \end{enumerate}
 
 
@@ -403,7 +403,7 @@ fontupper=\sffamily,colupper=white}
 
 \begin{enumerate}\small
   \item 需要加载 \texttt{pgfplots} 宏包，必要时额外加载 \texttt{pgfplotstable} 宏包以读取文件数据。可以使用 \href{https://logcreative.github.io/PGFPlotsEdt/}{PGFPlots 统计绘图编辑器} 生成上述代码。
-  \item[\faWarning] 过多的统计图会增长编译时间，不宜过多使用。
+  \item[\faExclamationTriangle] 过多的统计图会增长编译时间，不宜过多使用。
 \end{enumerate}
 
 % TODO: 以后的开发计划：Smart Diagram
