@@ -161,21 +161,13 @@
 %  \end{macro}
 %
 %  \begin{macro}{\bgcenterbox}
-%   Define a command for USERS to make a centered background box easily.
+%   Define a command for USERS to make a centered background box easily. Move the defination on \verb"\sjtubeamer@logocolor" to the inner environment, to avoid the shift on centering. And since the definition has already been moved into the inner group, the definition here is \emph{locale} and no more stack saving is needed.
 %    \begin{macrocode}
 \newcommand{\bgcenterbox}[1]{
-  \let\oldlogocolor=\sjtubeamer@logocolor%
-  \def\sjtubeamer@logocolor{cprimary!50}
-  \vbox to \paperheight{
-    \vfil
-    \hbox to \paperwidth{
-      \hfil
-      #1
-      \hfil
-    }
-    \vfil
+  \parbox[c][1.1\paperheight][c]{\paperwidth}{
+    \def\sjtubeamer@logocolor{cprimary!50}
+    \centering\resizebox{\paperwidth}{!}{#1}
   }
-  \let\sjtubeamer@logocolor=\oldlogocolor%
 }
 %    \end{macrocode}
 %  \end{macro}
@@ -197,9 +189,7 @@
     \usebeamercolor{palatte primary}
     \titlegraphic{\sjtubg[opacity=0.2]}
     \setbeamertemplate{background}
-    {
-      \parbox[c][1.1\paperheight][c]{\paperwidth}{\centering\resizebox{\paperwidth}{!}{\sjtubg[cprimary!50,opacity=0.2]}}
-    }
+    {\bgcenterbox{\sjtubg[cprimary!50,opacity=0.2]}}
   \else
 %</max>
 %<*min>
@@ -628,7 +618,8 @@
         \Hy@Warning{%
           Option `#1' has already been used,\MessageBreak
           setting the option has no effect%
-        }\fi%
+        }
+      \fi%
     \fi%
   }
 }
