@@ -16,7 +16,7 @@ end
 
 typesetfiles     = {"sjtubeamerdevguide.tex","sjtubeamer.tex"}
 -- typesetfiles     = {"sjtubeamer.tex"}
-typesetruns      = 1 -- for debug. Some reference may not be linked.
+-- typesetruns      = 1 -- for debug. Some reference may not be linked.
 -- typesetdemofiles = {"min.tex"}
 typesetsuppfiles = {"head.png","plant.jpg","test.csv","testgraph.tex","ref.bib","tutorial/"}
 
@@ -65,7 +65,10 @@ function typeset_demo_tasks()
     local errorlevel = 0
     local tutorialdir = typesetdir .. "/tutorial"
     local typesetcommand = typesetexe .. " " .. typesetopts   -- patch l3build
-    print("============================================================\n If you want to save the previous demo files\n Please move the pdf into the support/tutorial directory.\n============================================================")
+    print("============================================================")
+    print("If you want to save the previous demo files")
+    print("Please move the pdf into the support/tutorial directory.")
+    print("============================================================")
     for _, p in ipairs(filelist(tutorialdir, "step*.tex")) do
         local pdffilename = string.gsub(p,".tex",".pdf")
         if fileexists(tutorialdir .. "/" .. pdffilename) == false then
