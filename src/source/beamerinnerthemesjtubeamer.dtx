@@ -229,11 +229,11 @@
 %
 %  \begin{macro}{\coverpage}
 %  Common command for \verb"\titlepage" and \verb"\bottompage". Disable externalization for generating title page and bottom page, locally.
+%  Since the definition on \verb"\sjtubeamer@logocolor" is defined in a group, the stack is not necessary to store the value.
 %    \begin{macrocode}
 \def\coverpage#1{
   {
     \tikzset{external/export=false}
-    \let\oldlogocolor=\sjtubeamer@logocolor%
     \ifdim\beamer@sidebarwidth=0pt %
       \usebeamertemplate*{#1}
     \else
@@ -241,7 +241,6 @@
         \usebeamertemplate*{#1}
       }
     \fi
-    \let\sjtubeamer@logocolor=\oldlogocolor%
   }
 }
 %    \end{macrocode}
@@ -257,15 +256,16 @@
 %  \end{macro}
 %
 %  \begin{macro}{\maketitle}
-%  Patch make title command. It will receive an optional argument for switching different type of title page. After making the current title page, the previous setting should be restored.
+%  Patch make title command. It will receive an optional argument for switching different type of title page. The set on beamer template is inside a group, so the setting is locale.
 %    \begin{macrocode}
 \renewcommand{\maketitle}[1][\sjtubeamer@inner@cover]{
-  \setbeamertemplate{title page}[#1]
-  \ifbeamer@inframe\titlepage\else
-    \begin{frame}[plain]
-      \titlepage
-    \end{frame}\fi
-  \setbeamertemplate{title page}[\sjtubeamer@inner@cover]
+  {
+    \setbeamertemplate{title page}[#1]
+    \ifbeamer@inframe\titlepage\else
+      \begin{frame}[plain]
+        \titlepage
+      \end{frame}\fi
+  }
 }
 %    \end{macrocode}
 %  \end{macro}
@@ -294,12 +294,13 @@
 %   Make the bottom page. Not a built-in command.
 %    \begin{macrocode}
 \newcommand{\makebottom}[1][\sjtubeamer@inner@cover]{
-  \setbeamertemplate{bottom page}[#1][\bottomthanks]
-  \ifbeamer@inframe\bottompage\else
-    \begin{frame}[plain]
-      \bottompage
-    \end{frame}\fi
-  \setbeamertemplate{bottom page}[\sjtubeamer@inner@cover][\bottomthanks]
+  {
+    \setbeamertemplate{bottom page}[#1][\bottomthanks]
+    \ifbeamer@inframe\bottompage\else
+      \begin{frame}[plain]
+        \bottompage
+      \end{frame}\fi
+  }
 }
 %    \end{macrocode}
 %  \end{macro}
