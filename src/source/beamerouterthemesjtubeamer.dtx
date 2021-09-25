@@ -66,41 +66,36 @@
 %    \begin{macrocode}
 \defbeamertemplate*{frametitle}{sjtubeamer}[1][left]
 {%
-  \ifbeamercolorempty[bg]{frametitle}{}{\nointerlineskip}%
+\ifbeamercolorempty[bg]{frametitle}{}{\nointerlineskip}%
   \@tempdima=\textwidth%
   \advance\@tempdima by\beamer@leftmargin%
   \advance\@tempdima by\beamer@rightmargin%
   \begin{beamercolorbox}[sep=0.3cm,#1,wd=\the\@tempdima]{frametitle}
-    \begingroup
-    \usebeamerfont{frametitle}
-%    \end{macrocode}
-%   Insert title and subtitle and make spacing depend on the existence of subtitle.
-%    \begin{macrocode}
-    \vbox{}
-    \ifx\insertframesubtitle\@empty\vskip-2pt%
-    \else\vskip-1ex\fi%
-    \if@tempswa\else\csname beamer@fte#1\endcsname\fi%
-    \strut\insertframetitle\strut\par%
-    {%
-      \ifx\insertframesubtitle\@empty%
-      \else%
-      {
-        \usebeamerfont{framesubtitle}
-        \usebeamercolor[fg]{framesubtitle}
-        \strut\insertframesubtitle\strut\par
-      }%
-      \fi
-    }%
-    \vskip-1ex%
-    \endgroup%
-%    \end{macrocode}
-%   Add the logo to the upper right corner. It will be scaled to a 0.7cm height one by using \verb"\resizebox". \verb"\vphantom" here is to create a phantom box to make sure the \verb"\resizebox" has a non-zero height box input.
-%    \begin{macrocode}
+    \hbox{
+      \insertouterlogo
+      \vbox{
+        \ifx\insertframesubtitle\@empty\vskip-2pt%
+        \else\vskip-1ex\fi%
+        \if@tempswa\else\csname beamer@fte#1\endcsname\fi%
+        \strut\insertframetitle\strut\par%
+        {%
+          \ifx\insertframesubtitle\@empty%
+          \else%
+          {
+            \usebeamerfont{framesubtitle}
+            \usebeamercolor[fg]{framesubtitle}
+            \strut\insertframesubtitle\strut\par
+          }%
+          \fi
+        }%
+        \vskip-1ex%
+      }
+    }
     \raggedleft%
     \begingroup
     \ifx\insertframesubtitle\@empty\vskip-2.5ex%
     \else\vskip-3.5ex\fi%
-    {\resizebox{!}{0.7cm}{\vphantom{-}\insertlogo}}\hspace*{5pt}%
+    \insertouterlogo\hspace*{5pt}%
     \endgroup%
     \ifx\insertframesubtitle\@empty%
     \else\vskip0.5ex\fi%
