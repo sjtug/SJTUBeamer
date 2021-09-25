@@ -21,7 +21,7 @@
 %% limitations under the License.
 %% ------------------------------------------------------------------------
 \NeedsTeXFormat{LaTeX2e}
-\ProvidesPackage{beamerinnerthemesjtubeamer}[2021/09/22 sjtubeamer inner theme v2.1.0]
+\ProvidesPackage{beamerinnerthemesjtubeamer}[2021/09/25 sjtubeamer inner theme v2.2.0]
 \RequirePackage{sjtuvi}
 \RequirePackage{tcolorbox}
 \DeclareOptionBeamer{maxplus}{\def\sjtubeamer@inner@cover{maxplus}}
@@ -357,14 +357,6 @@
       \fi%
     \fi%
   }
-}
-\defbeamertemplate*{footnote}{sjtubeamer}
-{
-  \usebeamerfont{footnote}
-  \usebeamercolor[fg]{footnote}
-  \parindent 0.5em\noindent%
-  \raggedright
-  \hbox to 1.5em{\hfil\insertfootnotemark}\insertfootnotetext\par%
 }
 \endinput
 %%

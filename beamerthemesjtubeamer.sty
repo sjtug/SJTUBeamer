@@ -21,11 +21,16 @@
 %% limitations under the License.
 %% ------------------------------------------------------------------------
 \NeedsTeXFormat{LaTeX2e}
-\ProvidesPackage{beamerthemesjtubeamer}[2021/09/22 sjtubeamer parent theme v2.1.0]
-\DeclareOptionBeamer{maxplus}{\def\sjtubeamer@cover{maxplus}}
-\DeclareOptionBeamer{max}{\def\sjtubeamer@cover{max}}
-\DeclareOptionBeamer{min}{\def\sjtubeamer@cover{min}}
-\DeclareOptionBeamer{my}{\def\sjtubeamer@cover{my}} % reserved for customization
+\ProvidesPackage{beamerthemesjtubeamer}[2021/09/25 sjtubeamer parent theme v2.2.0]
+\DeclareOptionBeamer{maxplus}{
+  \def\sjtubeamer@cover{maxplus}\def\sjtubeamer@logopos{topleft}}
+\DeclareOptionBeamer{max}{
+  \def\sjtubeamer@cover{max}\def\sjtubeamer@logopos{bottomright}}
+\DeclareOptionBeamer{min}{
+  \def\sjtubeamer@cover{min}\def\sjtubeamer@logopos{topright}}
+\DeclareOptionBeamer{my}{
+  \def\sjtubeamer@cover{my}\def\sjtubeamer@logopos{bottomleft}}
+    % reserved for customization
 \ExecuteOptionsBeamer{
   maxplus,
   min,
@@ -52,6 +57,10 @@
 \DeclareOptionBeamer{tree}{\def\sjtubeamer@nav{tree}}
 \DeclareOptionBeamer{smoothtree}{\def\sjtubeamer@nav{smoothtree}}
 \ExecuteOptionsBeamer{miniframes}
+\DeclareOptionBeamer{topleft}{\def\sjtubeamer@logopos{topleft}}
+\DeclareOptionBeamer{topright}{\def\sjtubeamer@logopos{topright}}
+\DeclareOptionBeamer{bottomright}{\def\sjtubeamer@logopos{bottomright}}
+\DeclareOptionBeamer{bottomleft}{\def\sjtubeamer@logopos{bottomleft}}
 \ProcessOptionsBeamer
 \PassOptionsToPackage{\sjtubeamer@cover}{beamerinnerthemesjtubeamer}
 \PassOptionsToPackage{\sjtubeamer@color}{beamercolorthemesjtubeamer}
@@ -59,6 +68,7 @@
 \PassOptionsToPackage{\sjtubeamer@lum}{beamercolorthemesjtubeamer}
 \PassOptionsToPackage{\sjtubeamer@lang}{beamerinnerthemesjtubeamer}
 \PassOptionsToPackage{\sjtubeamer@nav}{beamerouterthemesjtubeamer}
+\PassOptionsToPackage{\sjtubeamer@logopos}{beamerouterthemesjtubeamer}
 \mode<presentation>
 \usecolortheme{sjtubeamer}
 \usefonttheme{sjtubeamer}
