@@ -33,51 +33,11 @@
 \DefineOption{outer}{nav}{tree}
 \DefineOption{outer}{nav}{smoothtree}
 \ExecuteOptionsBeamer{miniframes}
-\DefineOption{outer}{logopos}{topleft}
 \DefineOption{outer}{logopos}{topright}
 \DefineOption{outer}{logopos}{bottomright}
-\DefineOption{outer}{logopos}{bottomleft}
 \ExecuteOptionsBeamer{bottomright}
 \ProcessOptionsBeamer
 \beamer@compresstrue
-\def\insertouterlogo{
-  \resizebox{!}{0.7cm}{\vphantom{-}\insertlogo}
-}
-\def\inserttitlesubtitle#1{
-  \ifx\insertframesubtitle\@empty\vskip-2pt%
-  \else\vskip-1ex\fi%
-  \if@tempswa\else\csname beamer@fte#1\endcsname\fi%
-  \strut\insertframetitle\strut\par%
-  {%
-    \ifx\insertframesubtitle\@empty%
-    \else%
-    {
-      \usebeamerfont{framesubtitle}
-      \usebeamercolor[fg]{framesubtitle}
-      \strut\insertframesubtitle\strut\par
-    }%
-    \fi
-  }%
-  \vskip-1ex%
-}
-\if\EqualOption{outer}{logopos}{topleft}
-  \defbeamertemplate*{frametitle}{sjtubeamer}[1][left]
-  {%
-  \ifbeamercolorempty[bg]{frametitle}{}{\nointerlineskip}%
-    \@tempdima=\textwidth%
-    \advance\@tempdima by\beamer@leftmargin%
-    \advance\@tempdima by\beamer@rightmargin%
-    \begin{beamercolorbox}[sep=0.3cm,#1,wd=\the\@tempdima]{frametitle}
-      \hbox{
-        \insertouterlogo
-        \vbox{
-          \inserttitlesubtitle{#1}
-        }
-      }
-      \if@tempswa\else\vskip-.3cm\fi%
-    \end{beamercolorbox}%
-  }
-\fi
 \if\EqualOption{outer}{logopos}{topright}
   \defbeamertemplate*{frametitle}{sjtubeamer}[1][left]
   {%
@@ -86,12 +46,30 @@
     \advance\@tempdima by\beamer@leftmargin%
     \advance\@tempdima by\beamer@rightmargin%
     \begin{beamercolorbox}[sep=0.3cm,#1,wd=\the\@tempdima]{frametitle}
-      \inserttitlesubtitle{#1}
+      \begingroup
+      \usebeamerfont{frametitle}
+      \vbox{}
+      \ifx\insertframesubtitle\@empty\vskip-2pt%
+      \else\vskip-1ex\fi%
+      \if@tempswa\else\csname beamer@fte#1\endcsname\fi%
+      \strut\insertframetitle\strut\par%
+      {%
+        \ifx\insertframesubtitle\@empty%
+        \else%
+        {
+          \usebeamerfont{framesubtitle}
+          \usebeamercolor[fg]{framesubtitle}
+          \strut\insertframesubtitle\strut\par
+        }%
+        \fi
+      }%
+      \vskip-1ex%
+      \endgroup%
       \raggedleft%
       \begingroup
       \ifx\insertframesubtitle\@empty\vskip-2.5ex%
       \else\vskip-3.5ex\fi%
-      \insertouterlogo\hspace*{5pt}%
+      \resizebox{!}{0.7cm}{\vphantom{-}\insertlogo}\hspace*{5pt}%
       \endgroup%
       \ifx\insertframesubtitle\@empty%
       \else\vskip0.5ex\fi%
@@ -122,19 +100,11 @@
     }
   }
 }
-\if\EqualOption{outer}{logopos}{bottomleft}
-  \addtobeamertemplate{footline}{
-    \rlap{\raisebox{3ex}[0pt][0pt]{\insertouterlogo}}
-    \hfill%
-    \usebeamertemplate***{navigation symbols}%
-    \hspace*{0.1cm}\par
-    \vskip 4pt
-  }{}
-\else\if\EqualOption{outer}{logopos}{bottomright}
+\if\EqualOption{outer}{logopos}{bottomright}
   \addtobeamertemplate{footline}{
     \hfill%
     \usebeamertemplate***{navigation symbols}%
-    \llap{\raisebox{1pc}[0pt][0pt]{\insertouterlogo}}
+    \llap{\raisebox{1pc}[0pt][0pt]{\insertlogo}}
     \hspace*{0.1cm}\par
     \vskip 4pt
   }{}
@@ -145,7 +115,7 @@
     \hspace*{0.1cm}\par
     \vskip 4pt
   }{}
-\fi\fi
+\fi
 \setbeamertemplate{page number in head/foot}{}
 \endinput
 %%
