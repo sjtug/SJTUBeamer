@@ -70,48 +70,53 @@
 %
 % \subsubsection{Frame Title}
 %
+%
 %   Define the beamer template \verb"frametitle" to add a logo in the right of the frametitle (top right corner) for \verb"topright" option. If it is not \verb"topright" option, then the default \verb"frametitle" template is used.
+%
+%   \verb"smoothbars", \verb"smoothtree" and \verb"shadow" theme use a different frame title insertion mechanism so that the redefinition on \verb"frametitle" should be done just after the document starts. This overwrites the original definition of those outer theme and may cause a certain degree of style lost.
 %    \begin{macrocode}
 \if\EqualOption{outer}{logopos}{topright}
-  \defbeamertemplate*{frametitle}{sjtubeamer}[1][left]
-  {%
-  \ifbeamercolorempty[bg]{frametitle}{}{\nointerlineskip}%
-    \@tempdima=\textwidth%
-    \advance\@tempdima by\beamer@leftmargin%
-    \advance\@tempdima by\beamer@rightmargin%
-    \begin{beamercolorbox}[sep=0.3cm,#1,wd=\the\@tempdima]{frametitle}
-      \begingroup
-      \usebeamerfont{frametitle}
-      \vbox{}
-      \ifx\insertframesubtitle\@empty\vskip-2pt%
-      \else\vskip-1ex\fi%
-      \if@tempswa\else\csname beamer@fte#1\endcsname\fi%
-      \strut\insertframetitle\strut\par%
-      {%
-        \ifx\insertframesubtitle\@empty%
-        \else%
-        {
-          \usebeamerfont{framesubtitle}
-          \usebeamercolor[fg]{framesubtitle}
-          \strut\insertframesubtitle\strut\par
+  \AtBeginDocument{
+    \defbeamertemplate*{frametitle}{sjtubeamer}[1][left]
+    {%
+    \ifbeamercolorempty[bg]{frametitle}{}{\nointerlineskip}%
+      \@tempdima=\textwidth%
+      \advance\@tempdima by\beamer@leftmargin%
+      \advance\@tempdima by\beamer@rightmargin%
+      \begin{beamercolorbox}[sep=0.3cm,#1,wd=\the\@tempdima]{frametitle}
+        \begingroup
+        \usebeamerfont{frametitle}
+        \vbox{}
+        \ifx\insertframesubtitle\@empty\vskip-2pt%
+        \else\vskip-1ex\fi%
+        \if@tempswa\else\csname beamer@fte#1\endcsname\fi%
+        \strut\insertframetitle\strut\par%
+        {%
+          \ifx\insertframesubtitle\@empty%
+          \else%
+          {
+            \usebeamerfont{framesubtitle}
+            \usebeamercolor[fg]{framesubtitle}
+            \strut\insertframesubtitle\strut\par
+          }%
+          \fi
         }%
-        \fi
-      }%
-      \vskip-1ex%
-      \endgroup%
-      \raggedleft%
-      \begingroup
-      \ifx\insertframesubtitle\@empty\vskip-2.5ex%
-      \else\vskip-3.5ex\fi%
+        \vskip-1ex%
+        \endgroup%
+        \raggedleft%
+        \begingroup
+        \ifx\insertframesubtitle\@empty\vskip-2.5ex%
+        \else\vskip-3.5ex\fi%
 %    \end{macrocode}
 % Insert the outer logo with 0.7cm height. \verb"\vphantom" here is to create a phantom box to make sure the \verb"\resizebox" has a non-zero height box input. The calculation is fixed for a 0.7cm height logo placeholder.
 %    \begin{macrocode}
-      \resizebox{!}{0.7cm}{\vphantom{-}\insertlogo}\hspace*{5pt}%
-      \endgroup%
-      \ifx\insertframesubtitle\@empty%
-      \else\vskip0.5ex\fi%
-      \if@tempswa\else\vskip-.3cm\fi%
-    \end{beamercolorbox}%
+        \resizebox{!}{0.7cm}{\vphantom{-}\insertlogo}\hspace*{5pt}%
+        \endgroup%
+        \ifx\insertframesubtitle\@empty%
+        \else\vskip0.5ex\fi%
+        \if@tempswa\else\vskip-.3cm\fi%
+      \end{beamercolorbox}%
+    }
   }
 \fi
 %    \end{macrocode}
@@ -127,7 +132,9 @@
 %    \begin{macrocode}
 \else\if\EqualOption{outer}{nav}{sidebar}
     \useoutertheme{sidebar}
-    \setbeamertemplate{frametitle}[sidebar theme]
+    \AtBeginDocument{
+      \setbeamertemplate{frametitle}[sidebar theme]
+    }
 %    \end{macrocode}
 % If it is other theme, change the beamercolor to fit smooth* theme.
 %    \begin{macrocode}

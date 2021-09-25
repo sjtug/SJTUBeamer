@@ -39,49 +39,53 @@
 \ProcessOptionsBeamer
 \beamer@compresstrue
 \if\EqualOption{outer}{logopos}{topright}
-  \defbeamertemplate*{frametitle}{sjtubeamer}[1][left]
-  {%
-  \ifbeamercolorempty[bg]{frametitle}{}{\nointerlineskip}%
-    \@tempdima=\textwidth%
-    \advance\@tempdima by\beamer@leftmargin%
-    \advance\@tempdima by\beamer@rightmargin%
-    \begin{beamercolorbox}[sep=0.3cm,#1,wd=\the\@tempdima]{frametitle}
-      \begingroup
-      \usebeamerfont{frametitle}
-      \vbox{}
-      \ifx\insertframesubtitle\@empty\vskip-2pt%
-      \else\vskip-1ex\fi%
-      \if@tempswa\else\csname beamer@fte#1\endcsname\fi%
-      \strut\insertframetitle\strut\par%
-      {%
-        \ifx\insertframesubtitle\@empty%
-        \else%
-        {
-          \usebeamerfont{framesubtitle}
-          \usebeamercolor[fg]{framesubtitle}
-          \strut\insertframesubtitle\strut\par
+  \AtBeginDocument{
+    \defbeamertemplate*{frametitle}{sjtubeamer}[1][left]
+    {%
+    \ifbeamercolorempty[bg]{frametitle}{}{\nointerlineskip}%
+      \@tempdima=\textwidth%
+      \advance\@tempdima by\beamer@leftmargin%
+      \advance\@tempdima by\beamer@rightmargin%
+      \begin{beamercolorbox}[sep=0.3cm,#1,wd=\the\@tempdima]{frametitle}
+        \begingroup
+        \usebeamerfont{frametitle}
+        \vbox{}
+        \ifx\insertframesubtitle\@empty\vskip-2pt%
+        \else\vskip-1ex\fi%
+        \if@tempswa\else\csname beamer@fte#1\endcsname\fi%
+        \strut\insertframetitle\strut\par%
+        {%
+          \ifx\insertframesubtitle\@empty%
+          \else%
+          {
+            \usebeamerfont{framesubtitle}
+            \usebeamercolor[fg]{framesubtitle}
+            \strut\insertframesubtitle\strut\par
+          }%
+          \fi
         }%
-        \fi
-      }%
-      \vskip-1ex%
-      \endgroup%
-      \raggedleft%
-      \begingroup
-      \ifx\insertframesubtitle\@empty\vskip-2.5ex%
-      \else\vskip-3.5ex\fi%
-      \resizebox{!}{0.7cm}{\vphantom{-}\insertlogo}\hspace*{5pt}%
-      \endgroup%
-      \ifx\insertframesubtitle\@empty%
-      \else\vskip0.5ex\fi%
-      \if@tempswa\else\vskip-.3cm\fi%
-    \end{beamercolorbox}%
+        \vskip-1ex%
+        \endgroup%
+        \raggedleft%
+        \begingroup
+        \ifx\insertframesubtitle\@empty\vskip-2.5ex%
+        \else\vskip-3.5ex\fi%
+        \resizebox{!}{0.7cm}{\vphantom{-}\insertlogo}\hspace*{5pt}%
+        \endgroup%
+        \ifx\insertframesubtitle\@empty%
+        \else\vskip0.5ex\fi%
+        \if@tempswa\else\vskip-.3cm\fi%
+      \end{beamercolorbox}%
+    }
   }
 \fi
 \if\EqualOption{outer}{nav}{miniframes}
   \useoutertheme[footline=institutetitle]{miniframes}
 \else\if\EqualOption{outer}{nav}{sidebar}
     \useoutertheme{sidebar}
-    \setbeamertemplate{frametitle}[sidebar theme]
+    \AtBeginDocument{
+      \setbeamertemplate{frametitle}[sidebar theme]
+    }
   \else
     \useoutertheme{\sjtubeamer@outer@nav}
     \setbeamercolor{title in head/foot}{use=structure,bg=white,fg=structure.fg}
