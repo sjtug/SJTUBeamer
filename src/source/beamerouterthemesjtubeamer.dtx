@@ -16,7 +16,7 @@
 % \iffalse
 %<*package>
 \NeedsTeXFormat{LaTeX2e}
-\ProvidesPackage{beamerouterthemesjtubeamer}[2021/09/04 sjtubeamer outer theme v2.0.0]
+\ProvidesPackage{beamerouterthemesjtubeamer}[2021/09/25 sjtubeamer outer theme v2.2.0]
 %</package>
 % \fi
 % \CheckSum{0}
@@ -51,6 +51,14 @@
 %    \end{macrocode}
 %  \end{macro}
 %
+% \begin{macro}{\sjtubeamer@outer@logopos}
+%    \begin{macrocode}
+\DefineOption{outer}{logopos}{topright}
+\DefineOption{outer}{logopos}{bottomright}
+\ExecuteOptionsBeamer{bottomright}
+%    \end{macrocode}
+% \end{macro}
+%
 %    \begin{macrocode}
 \ProcessOptionsBeamer
 %    \end{macrocode}
@@ -60,15 +68,73 @@
 \beamer@compresstrue
 %    \end{macrocode}
 %
+% \subsubsection{Frame Title}
+%
+%
+%   Define the beamer template \verb"frametitle" to add a logo in the right of the frametitle (top right corner) for \verb"topright" option. If it is not \verb"topright" option, then the default \verb"frametitle" template is used.
+%
+%   \verb"smoothbars", \verb"smoothtree" and \verb"shadow" theme use a different frame title insertion mechanism so that the redefinition on \verb"frametitle" should be done just after the document starts. This overwrites the original definition of those outer theme and may cause a certain degree of style lost.
+%    \begin{macrocode}
+\if\EqualOption{outer}{logopos}{topright}
+  \AtBeginDocument{
+    \defbeamertemplate*{frametitle}{sjtubeamer}[1][left]
+    {%
+    \ifbeamercolorempty[bg]{frametitle}{}{\nointerlineskip}%
+      \@tempdima=\textwidth%
+      \advance\@tempdima by\beamer@leftmargin%
+      \advance\@tempdima by\beamer@rightmargin%
+      \begin{beamercolorbox}[sep=0.3cm,#1,wd=\the\@tempdima]{frametitle}
+        \begingroup
+        \usebeamerfont{frametitle}
+        \vbox{}
+        \ifx\insertframesubtitle\@empty\vskip-2pt%
+        \else\vskip-1ex\fi%
+        \if@tempswa\else\csname beamer@fte#1\endcsname\fi%
+        \strut\insertframetitle\strut\par%
+        {%
+          \ifx\insertframesubtitle\@empty%
+          \else%
+          {
+            \usebeamerfont{framesubtitle}
+            \usebeamercolor[fg]{framesubtitle}
+            \strut\insertframesubtitle\strut\par
+          }%
+          \fi
+        }%
+        \vskip-1ex%
+        \endgroup%
+        \raggedleft%
+        \begingroup
+        \ifx\insertframesubtitle\@empty\vskip-2.5ex%
+        \else\vskip-3.5ex\fi%
+%    \end{macrocode}
+% Insert the outer logo with 0.7cm height. \verb"\vphantom" here is to create a phantom box to make sure the \verb"\resizebox" has a non-zero height box input. The calculation is fixed for a 0.7cm height logo placeholder.
+%    \begin{macrocode}
+        \resizebox{!}{0.7cm}{\vphantom{-}\insertlogo}\hspace*{5pt}%
+        \endgroup%
+        \ifx\insertframesubtitle\@empty%
+        \else\vskip0.5ex\fi%
+        \if@tempswa\else\vskip-.3cm\fi%
+      \end{beamercolorbox}%
+    }
+  }
+\fi
+%    \end{macrocode}
+%
+%  \subsubsection{Execute Outer Theme}
+%
 % Use the built-in outer templates. If you want to take special care about one outer theme, please add a condition test on that theme. Otherwise, it will use the default configuration of the corresponding built-in outer theme.
 %    \begin{macrocode}
 \if\EqualOption{outer}{nav}{miniframes}
   \useoutertheme[footline=institutetitle]{miniframes}
 %    \end{macrocode}
-% Sidebar.
+% Sidebar. Use the default template for \verb"frametitle" in sidebar, since there has already been a logo in the top left corner.
 %    \begin{macrocode}
 \else\if\EqualOption{outer}{nav}{sidebar}
     \useoutertheme{sidebar}
+    \AtBeginDocument{
+      \setbeamertemplate{frametitle}[sidebar theme]
+    }
 %    \end{macrocode}
 % If it is other theme, change the beamercolor to fit smooth* theme.
 %    \begin{macrocode}
@@ -87,7 +153,10 @@
 %
 % \subsubsection{Bottombar}
 %
-% TODO: move the logo position.
+%   Clear the original definition of sidebar first. Then append the page info to the footline, which could avoid collision on footnote.
+%    \begin{macrocode} 
+\setbeamertemplate{sidebar right}{}
+%    \end{macrocode}
 %
 % Add page number to the toolbox.
 %    \begin{macrocode}
@@ -103,6 +172,28 @@
   }
 }
 %    \end{macrocode}
+%
+%  Append the navigation to the footline to avoid the collision with the navigation symbols. This will clear the original placeholder for the logo -- place it elsewhere. However, in the \verb"bottomright" mode, the logo size is not constrainted.
+%  The code is a bit redundent since we don't want it to check the condition every time making a bottom bar.
+%    \begin{macrocode}
+\if\EqualOption{outer}{logopos}{bottomright}
+  \addtobeamertemplate{footline}{
+    \hfill%
+    \usebeamertemplate***{navigation symbols}%
+    \llap{\raisebox{1pc}[0pt][0pt]{\insertlogo}}
+    \hspace*{0.1cm}\par
+    \vskip 4pt
+  }{}
+\else
+  \addtobeamertemplate{footline}{
+    \hfill%
+    \usebeamertemplate***{navigation symbols}%
+    \hspace*{0.1cm}\par
+    \vskip 4pt
+  }{}
+\fi
+%    \end{macrocode}
+%
 % And set the page number template to none.
 %    \begin{macrocode}
 \setbeamertemplate{page number in head/foot}{}
@@ -110,7 +201,7 @@
 %
 %
 % \iffalse
-% </package>
+%</package>
 % \fi
 % \Finale
 \endinput

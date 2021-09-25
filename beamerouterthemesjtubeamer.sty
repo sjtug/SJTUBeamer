@@ -21,7 +21,7 @@
 %% limitations under the License.
 %% ------------------------------------------------------------------------
 \NeedsTeXFormat{LaTeX2e}
-\ProvidesPackage{beamerouterthemesjtubeamer}[2021/09/04 sjtubeamer outer theme v2.0.0]
+\ProvidesPackage{beamerouterthemesjtubeamer}[2021/09/25 sjtubeamer outer theme v2.2.0]
 \RequirePackage{sjtuvi}
 \DefineOption{outer}{nav}{miniframes}
 \DefineOption{outer}{nav}{infolines}
@@ -33,18 +33,66 @@
 \DefineOption{outer}{nav}{tree}
 \DefineOption{outer}{nav}{smoothtree}
 \ExecuteOptionsBeamer{miniframes}
+\DefineOption{outer}{logopos}{topright}
+\DefineOption{outer}{logopos}{bottomright}
+\ExecuteOptionsBeamer{bottomright}
 \ProcessOptionsBeamer
 \beamer@compresstrue
+\if\EqualOption{outer}{logopos}{topright}
+  \AtBeginDocument{
+    \defbeamertemplate*{frametitle}{sjtubeamer}[1][left]
+    {%
+    \ifbeamercolorempty[bg]{frametitle}{}{\nointerlineskip}%
+      \@tempdima=\textwidth%
+      \advance\@tempdima by\beamer@leftmargin%
+      \advance\@tempdima by\beamer@rightmargin%
+      \begin{beamercolorbox}[sep=0.3cm,#1,wd=\the\@tempdima]{frametitle}
+        \begingroup
+        \usebeamerfont{frametitle}
+        \vbox{}
+        \ifx\insertframesubtitle\@empty\vskip-2pt%
+        \else\vskip-1ex\fi%
+        \if@tempswa\else\csname beamer@fte#1\endcsname\fi%
+        \strut\insertframetitle\strut\par%
+        {%
+          \ifx\insertframesubtitle\@empty%
+          \else%
+          {
+            \usebeamerfont{framesubtitle}
+            \usebeamercolor[fg]{framesubtitle}
+            \strut\insertframesubtitle\strut\par
+          }%
+          \fi
+        }%
+        \vskip-1ex%
+        \endgroup%
+        \raggedleft%
+        \begingroup
+        \ifx\insertframesubtitle\@empty\vskip-2.5ex%
+        \else\vskip-3.5ex\fi%
+        \resizebox{!}{0.7cm}{\vphantom{-}\insertlogo}\hspace*{5pt}%
+        \endgroup%
+        \ifx\insertframesubtitle\@empty%
+        \else\vskip0.5ex\fi%
+        \if@tempswa\else\vskip-.3cm\fi%
+      \end{beamercolorbox}%
+    }
+  }
+\fi
 \if\EqualOption{outer}{nav}{miniframes}
   \useoutertheme[footline=institutetitle]{miniframes}
 \else\if\EqualOption{outer}{nav}{sidebar}
     \useoutertheme{sidebar}
+    \AtBeginDocument{
+      \setbeamertemplate{frametitle}[sidebar theme]
+    }
   \else
     \useoutertheme{\sjtubeamer@outer@nav}
     \setbeamercolor{title in head/foot}{use=structure,bg=white,fg=structure.fg}
   \fi\fi
 \setbeamercolor{frametitle}{use=titlelike,bg=white,fg=titlelike.fg}
 \setbeamercolor{frametitle right}{parent=subsection in head/foot}
+\setbeamertemplate{sidebar right}{}
 \addtobeamertemplate{navigation symbols}{}{
   \hbox{
     \raisebox{1.2pt}[0pt][0pt]{
@@ -56,6 +104,22 @@
     }
   }
 }
+\if\EqualOption{outer}{logopos}{bottomright}
+  \addtobeamertemplate{footline}{
+    \hfill%
+    \usebeamertemplate***{navigation symbols}%
+    \llap{\raisebox{1pc}[0pt][0pt]{\insertlogo}}
+    \hspace*{0.1cm}\par
+    \vskip 4pt
+  }{}
+\else
+  \addtobeamertemplate{footline}{
+    \hfill%
+    \usebeamertemplate***{navigation symbols}%
+    \hspace*{0.1cm}\par
+    \vskip 4pt
+  }{}
+\fi
 \setbeamertemplate{page number in head/foot}{}
 \endinput
 %%

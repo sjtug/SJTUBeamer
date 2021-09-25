@@ -404,6 +404,7 @@ fontupper=\sffamily,colupper=white}
 \begin{enumerate}\small
   \item 需要加载 \texttt{pgfplots} 宏包，必要时额外加载 \texttt{pgfplotstable} 宏包以读取文件数据。可以使用 \href{https://logcreative.github.io/PGFPlotsEdt/}{PGFPlots 统计绘图编辑器} 生成上述代码。
   \item[\faExclamationTriangle] 过多的统计图会增长编译时间，不宜过多使用。
+  \item[\faInfoCircle] 现在的版本对于 Ti\emph{k}Z 插图有实验性的优化，当编译采用 \verb"--shell-escape" 开关时，会启动缓存模式。第一次编译时因为需要渲染缓存会稍慢，但是后面的编译都将使用这次编译的产物，就如直接添加图片一样，就会变得快起来。
 \end{enumerate}
 
 % TODO: 以后的开发计划：Smart Diagram
@@ -430,9 +431,9 @@ fontupper=\sffamily,colupper=white}
 \beamerdemo[1]{step17.tex}
 
 \begin{enumerate}\small
-  \item 使用 \texttt{\textbackslash{}logo} 设定徽标。
+  \item 使用 \texttt{\textbackslash{}logo} 设定徽标。在 \verb"usetheme" 处使用 \verb"topright" 或 \verb"bottomright" 选项强制指定徽标在幻灯片中显示的位置为右上角（\verb"max"默认）或左下角（\verb"maxplus" 和 \verb"min"）。
   \item 可以使用自定义的徽标，但是不归 \themename 颜色系统管理$^*$，此时推荐使用亮色主题以提供亮色徽标背景。
-  \item 如果需要创造可变颜色徽标$^*$，参阅\href{run:sjtubeamerdevguide.pdf}{开发指南}第 3.4 节。
+  \item 或参见\href{run:sjtubeamerdevguide.pdf}{开发指南}第 3.4 节创造可变颜色徽标$^*$。
 \end{enumerate}
 
 \chapter{头图}
@@ -479,7 +480,7 @@ fontupper=\sffamily,colupper=white}
     \hline
     \textbackslash{}makebottom & \textbackslash{}emph      & \textbackslash{}highlight  \\
     \textbackslash{}paragraph  & codeblock                 & \textbackslash{}stamparray \\
-    \textbackslash{}*logo      & \textbackslash{}sjtubadge & stampline                  \\
+    \textbackslash{}*logo      & \textbackslash{}sjtubadge & stampbox                   \\
     \hline
   \end{tabular}
 \end{table}

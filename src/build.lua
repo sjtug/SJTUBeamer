@@ -3,8 +3,8 @@
 module           = "sjtubeamer"
 
 sourcefiledir    = "source"
-sourcefiles      = {"*.ins","*.dtx","vi/"}
-installfiles     = {"*.sty","vi/"}
+sourcefiles      = {"*.ins","*.dtx","vi/","latexmkrc"}
+installfiles     = {"*.sty","vi/","latexmkrc"}
 
 docfiledir       = "doc"
 
@@ -59,13 +59,16 @@ end
 
 -- Generate tutorial files before compiling the doc.
 -- NOTICE: if you want to save the tourial step pdf,
---         please enter support/tutorial adn run cache_pdf.sh
+--         please enter support/tutorial and run cache_pdf.sh
 --         if you want to clean the cache, please run clean_pdf.sh 
 function typeset_demo_tasks()
     local errorlevel = 0
     local tutorialdir = typesetdir .. "/tutorial"
     local typesetcommand = typesetexe .. " " .. typesetopts   -- patch l3build
-    print("============================================================\n If you want to save the previous demo files\n Please move the pdf into the support/tutorial directory.\n============================================================")
+    print("============================================================")
+    print("If you want to save the previous demo files")
+    print("Please move the pdf into the support/tutorial directory.")
+    print("============================================================")
     for _, p in ipairs(filelist(tutorialdir, "step*.tex")) do
         local pdffilename = string.gsub(p,".tex",".pdf")
         if fileexists(tutorialdir .. "/" .. pdffilename) == false then

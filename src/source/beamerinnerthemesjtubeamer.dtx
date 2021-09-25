@@ -16,7 +16,7 @@
 % \iffalse
 %<*package>
 \NeedsTeXFormat{LaTeX2e}
-\ProvidesPackage{beamerinnerthemesjtubeamer}[2021/09/04 sjtubeamer inner theme v2.0.0]
+\ProvidesPackage{beamerinnerthemesjtubeamer}[2021/09/25 sjtubeamer inner theme v2.2.0]
 %</package>
 % \fi
 % \CheckSum{0}
@@ -129,11 +129,13 @@
 %   \subsubsection{Load Packages}
 %
 %   Introduce the library from tcolorbox to make code blocks.
-%   \verb"listingsutf8" is used to receive UTF-8 input.
+%   \verb"listingsutf8" is used to receive UTF-8 input. 
+%   The global set on shield externalize will prevent tcolorbox from externalizing. 
 %    \begin{macrocode}
 \RequirePackage{tcolorbox}
 \tcbuselibrary{skins}
 \tcbuselibrary{listingsutf8}
+\tcbset{shield externalize}
 %    \end{macrocode}
 %
 % \subsubsection{Title Page \& Bottom Page}
@@ -159,21 +161,13 @@
 %  \end{macro}
 %
 %  \begin{macro}{\bgcenterbox}
-%   Define a command for USERS to make a centered background box easily.
+%   Define a command for USERS to make a centered background box easily. Move the defination on \verb"\sjtubeamer@logocolor" to the inner environment, to avoid the shift on centering. And since the definition has already been moved into the inner group, the definition here is \emph{locale} and no more stack saving is needed.
 %    \begin{macrocode}
 \newcommand{\bgcenterbox}[1]{
-  \let\oldlogocolor=\sjtubeamer@logocolor%
-  \def\sjtubeamer@logocolor{cprimary!50}
-  \vbox to \paperheight{
-    \vfil
-    \hbox to \paperwidth{
-      \hfil
-      #1
-      \hfil
-    }
-    \vfil
+  \parbox[c][1.1\paperheight][c]{\paperwidth}{
+    \def\sjtubeamer@logocolor{cprimary!50}
+    \centering\resizebox{\paperwidth}{!}{#1}
   }
-  \let\sjtubeamer@logocolor=\oldlogocolor%
 }
 %    \end{macrocode}
 %  \end{macro}
@@ -195,9 +189,7 @@
     \usebeamercolor{palatte primary}
     \titlegraphic{\sjtubg[opacity=0.2]}
     \setbeamertemplate{background}
-    {
-      \parbox[c][1.1\paperheight][c]{\paperwidth}{\centering\resizebox{\paperwidth}{!}{\sjtubg[cprimary!50,opacity=0.2]}}
-    }
+    {\bgcenterbox{\sjtubg[cprimary!50,opacity=0.2]}}
   \else
 %</max>
 %<*min>
@@ -235,33 +227,45 @@
 \beamer@sidebarwidth=0pt
 %    \end{macrocode}
 %
+%  \begin{macro}{\coverpage}
+%  Common command for \verb"\titlepage" and \verb"\bottompage". Disable externalization for generating title page and bottom page, locally.
+%  Since the definition on \verb"\sjtubeamer@logocolor" is defined in a group, the stack is not necessary to store the value.
+%    \begin{macrocode}
+\def\coverpage#1{
+  {
+    \tikzset{external/export=false}
+    \ifdim\beamer@sidebarwidth=0pt %
+      \usebeamertemplate*{#1}
+    \else
+      \hspace*{-0.5\beamer@sidebarwidth}\parbox[t]{\textwidth}{
+        \usebeamertemplate*{#1}
+      }
+    \fi
+  }
+}
+%    \end{macrocode}
+%  \end{macro}
+%
 %  \begin{macro}{\titlepage}
 %   Call the title page template to make a title page. This is a patch for the original \verb"\titlepage" command, to fit with the logo color system.
 %    \begin{macrocode}
 \def\titlepage{
-  \let\oldlogocolor=\sjtubeamer@logocolor%
-  \ifdim\beamer@sidebarwidth=0pt %
-    \usebeamertemplate*{title page}
-  \else
-    \hspace*{-0.5\beamer@sidebarwidth}\parbox[t]{\textwidth}{
-      \usebeamertemplate*{title page}
-    }
-  \fi
-  \let\sjtubeamer@logocolor=\oldlogocolor%
+  \coverpage{title page}
 }
 %    \end{macrocode}
 %  \end{macro}
 %
 %  \begin{macro}{\maketitle}
-%  Patch make title command. It will receive an optional argument for switching different type of title page. After making the current title page, the previous setting should be restored.
+%  Patch make title command. It will receive an optional argument for switching different type of title page. The set on beamer template is inside a group, so the setting is locale.
 %    \begin{macrocode}
 \renewcommand{\maketitle}[1][\sjtubeamer@inner@cover]{
-  \setbeamertemplate{title page}[#1]
-  \ifbeamer@inframe\titlepage\else
-    \begin{frame}[plain]
-      \titlepage
-    \end{frame}\fi
-  \setbeamertemplate{title page}[\sjtubeamer@inner@cover]
+  {
+    \setbeamertemplate{title page}[#1]
+    \ifbeamer@inframe\titlepage\else
+      \begin{frame}[plain]
+        \titlepage
+      \end{frame}\fi
+  }
 }
 %    \end{macrocode}
 %  \end{macro}
@@ -270,15 +274,7 @@
 %   Call the bottom page template to make a bottom page.
 %    \begin{macrocode}
 \def\bottompage{
-  \let\oldlogocolor=\sjtubeamer@logocolor%
-  \ifdim\beamer@sidebarwidth=0pt %
-    \usebeamertemplate*{bottom page}
-  \else
-    \hspace*{-0.5\beamer@sidebarwidth}\parbox[t]{\textwidth}{
-      \usebeamertemplate*{bottom page}
-    }
-  \fi
-  \let\sjtubeamer@logocolor=\oldlogocolor%
+  \coverpage{bottom page}
 }
 %    \end{macrocode}
 %  \end{macro}
@@ -298,12 +294,13 @@
 %   Make the bottom page. Not a built-in command.
 %    \begin{macrocode}
 \newcommand{\makebottom}[1][\sjtubeamer@inner@cover]{
-  \setbeamertemplate{bottom page}[#1][\bottomthanks]
-  \ifbeamer@inframe\bottompage\else
-    \begin{frame}[plain]
-      \bottompage
-    \end{frame}\fi
-  \setbeamertemplate{bottom page}[\sjtubeamer@inner@cover][\bottomthanks]
+  {
+    \setbeamertemplate{bottom page}[#1][\bottomthanks]
+    \ifbeamer@inframe\bottompage\else
+      \begin{frame}[plain]
+        \bottompage
+      \end{frame}\fi
+  }
 }
 %    \end{macrocode}
 %  \end{macro}
@@ -317,7 +314,7 @@
 %  \begin{macro}{\partpage}
 %   Define the \verb"part page" beamer template.
 %    \begin{macrocode}
-\defbeamertemplate*{part page}{sjtubeamermin}[1][]
+\defbeamertemplate*{part page}{sjtubeamer}[1][]
 {
   \vfill
   \vskip 8pt
@@ -385,7 +382,7 @@
 %  \begin{macro}{\sectionpage}
 %   Define the \verb"section page" beamer template.
 %    \begin{macrocode}
-\defbeamertemplate*{section page}{sjtubeamermin}[1][]
+\defbeamertemplate*{section page}{sjtubeamer}[1][]
 {
   \vfill
   \begingroup
@@ -399,7 +396,7 @@
 %  \begin{macro}{\subsectionpage}
 %   Define the \verb"subection page" beamer template.
 %    \begin{macrocode}
-\defbeamertemplate*{subsection page}{sjtubeamermin}[1][]
+\defbeamertemplate*{subsection page}{sjtubeamer}[1][]
 {
   \vfill
   \begingroup
@@ -622,26 +619,12 @@
         \Hy@Warning{%
           Option `#1' has already been used,\MessageBreak
           setting the option has no effect%
-        }\fi%
+        }
+      \fi%
     \fi%
   }
 }
 %    \end{macrocode}
-%
-% \subsubsection{Footnotes}
-%  \begin{macro}{\footnote}
-%   Define the \verb"footline" beamer template. The format is slightly changed from the original beamer definition.
-%    \begin{macrocode}
-\defbeamertemplate*{footnote}{sjtubeamermin}
-{
-  \usebeamerfont{footnote}
-  \usebeamercolor[fg]{footnote}
-  \parindent 0.5em\noindent%
-  \raggedright
-  \hbox to 1.5em{\hfil\insertfootnotemark}\insertfootnotetext\par%
-}
-%    \end{macrocode}
-%  \end{macro}
 %
 % \iffalse
 %</package>

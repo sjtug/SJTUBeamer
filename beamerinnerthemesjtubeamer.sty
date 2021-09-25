@@ -21,7 +21,7 @@
 %% limitations under the License.
 %% ------------------------------------------------------------------------
 \NeedsTeXFormat{LaTeX2e}
-\ProvidesPackage{beamerinnerthemesjtubeamer}[2021/09/04 sjtubeamer inner theme v2.0.0]
+\ProvidesPackage{beamerinnerthemesjtubeamer}[2021/09/25 sjtubeamer inner theme v2.2.0]
 \RequirePackage{sjtuvi}
 \RequirePackage{tcolorbox}
 \DeclareOptionBeamer{maxplus}{\def\sjtubeamer@inner@cover{maxplus}}
@@ -58,6 +58,7 @@
 \RequirePackage{tcolorbox}
 \tcbuselibrary{skins}
 \tcbuselibrary{listingsutf8}
+\tcbset{shield externalize}
 \usebeamercolor{palette primary}
 \if\EqualOption{inner}{cover}{max}
   \logo{\resizebox{!}{1cm}{\sjtubadge}}
@@ -69,18 +70,10 @@
   \fi
 \fi
 \newcommand{\bgcenterbox}[1]{
-  \let\oldlogocolor=\sjtubeamer@logocolor%
-  \def\sjtubeamer@logocolor{cprimary!50}
-  \vbox to \paperheight{
-    \vfil
-    \hbox to \paperwidth{
-      \hfil
-      #1
-      \hfil
-    }
-    \vfil
+  \parbox[c][1.1\paperheight][c]{\paperwidth}{
+    \def\sjtubeamer@logocolor{cprimary!50}
+    \centering\resizebox{\paperwidth}{!}{#1}
   }
-  \let\sjtubeamer@logocolor=\oldlogocolor%
 }
 \if\EqualOption{inner}{cover}{maxplus}
   \titlegraphic{\includegraphics{vi/sjtuphoto.jpg}}
@@ -89,9 +82,7 @@
     \usebeamercolor{palatte primary}
     \titlegraphic{\sjtubg[opacity=0.2]}
     \setbeamertemplate{background}
-    {
-      \parbox[c][1.1\paperheight][c]{\paperwidth}{\centering\resizebox{\paperwidth}{!}{\sjtubg[cprimary!50,opacity=0.2]}}
-    }
+    {\bgcenterbox{\sjtubg[cprimary!50,opacity=0.2]}}
   \else
     \if\EqualOption{inner}{cover}{min}
       \titlegraphic{\includegraphics{vi/sjtuphoto.jpg}}
@@ -108,35 +99,32 @@
 \fi
 \newdimen\beamer@sidebarwidth
 \beamer@sidebarwidth=0pt
+\def\coverpage#1{
+  {
+    \tikzset{external/export=false}
+    \ifdim\beamer@sidebarwidth=0pt %
+      \usebeamertemplate*{#1}
+    \else
+      \hspace*{-0.5\beamer@sidebarwidth}\parbox[t]{\textwidth}{
+        \usebeamertemplate*{#1}
+      }
+    \fi
+  }
+}
 \def\titlepage{
-  \let\oldlogocolor=\sjtubeamer@logocolor%
-  \ifdim\beamer@sidebarwidth=0pt %
-    \usebeamertemplate*{title page}
-  \else
-    \hspace*{-0.5\beamer@sidebarwidth}\parbox[t]{\textwidth}{
-      \usebeamertemplate*{title page}
-    }
-  \fi
-  \let\sjtubeamer@logocolor=\oldlogocolor%
+  \coverpage{title page}
 }
 \renewcommand{\maketitle}[1][\sjtubeamer@inner@cover]{
-  \setbeamertemplate{title page}[#1]
-  \ifbeamer@inframe\titlepage\else
-    \begin{frame}[plain]
-      \titlepage
-    \end{frame}\fi
-  \setbeamertemplate{title page}[\sjtubeamer@inner@cover]
+  {
+    \setbeamertemplate{title page}[#1]
+    \ifbeamer@inframe\titlepage\else
+      \begin{frame}[plain]
+        \titlepage
+      \end{frame}\fi
+  }
 }
 \def\bottompage{
-  \let\oldlogocolor=\sjtubeamer@logocolor%
-  \ifdim\beamer@sidebarwidth=0pt %
-    \usebeamertemplate*{bottom page}
-  \else
-    \hspace*{-0.5\beamer@sidebarwidth}\parbox[t]{\textwidth}{
-      \usebeamertemplate*{bottom page}
-    }
-  \fi
-  \let\sjtubeamer@logocolor=\oldlogocolor%
+  \coverpage{bottom page}
 }
 \if\EqualOption{inner}{lang}{cn}%
   \def\bottomthanks{谢\,谢}
@@ -144,15 +132,16 @@
   \def\bottomthanks{Thank You}
 \fi%
 \newcommand{\makebottom}[1][\sjtubeamer@inner@cover]{
-  \setbeamertemplate{bottom page}[#1][\bottomthanks]
-  \ifbeamer@inframe\bottompage\else
-    \begin{frame}[plain]
-      \bottompage
-    \end{frame}\fi
-  \setbeamertemplate{bottom page}[\sjtubeamer@inner@cover][\bottomthanks]
+  {
+    \setbeamertemplate{bottom page}[#1][\bottomthanks]
+    \ifbeamer@inframe\bottompage\else
+      \begin{frame}[plain]
+        \bottompage
+      \end{frame}\fi
+  }
 }
 \RequirePackage{sjtucover}
-\defbeamertemplate*{part page}{sjtubeamermin}[1][]
+\defbeamertemplate*{part page}{sjtubeamer}[1][]
 {
   \vfill
   \vskip 8pt
@@ -197,7 +186,7 @@
     \usebeamerfont{section title}\insertsection\par
   \end{beamercolorbox}
 }
-\defbeamertemplate*{section page}{sjtubeamermin}[1][]
+\defbeamertemplate*{section page}{sjtubeamer}[1][]
 {
   \vfill
   \begingroup
@@ -205,7 +194,7 @@
   \endgroup
   \vfill
 }
-\defbeamertemplate*{subsection page}{sjtubeamermin}[1][]
+\defbeamertemplate*{subsection page}{sjtubeamer}[1][]
 {
   \vfill
   \begingroup
@@ -364,17 +353,10 @@
         \Hy@Warning{%
           Option `#1' has already been used,\MessageBreak
           setting the option has no effect%
-        }\fi%
+        }
+      \fi%
     \fi%
   }
-}
-\defbeamertemplate*{footnote}{sjtubeamermin}
-{
-  \usebeamerfont{footnote}
-  \usebeamercolor[fg]{footnote}
-  \parindent 0.5em\noindent%
-  \raggedright
-  \hbox to 1.5em{\hfil\insertfootnotemark}\insertfootnotetext\par%
 }
 \endinput
 %%
