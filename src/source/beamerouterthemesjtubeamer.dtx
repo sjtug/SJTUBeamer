@@ -51,6 +51,16 @@
 %    \end{macrocode}
 %  \end{macro}
 %
+% \begin{macro}{\sjtubeamer@outer@logopos}
+%    \begin{macrocode}
+\DefineOption{outer}{logopos}{topleft}
+\DefineOption{outer}{logopos}{topright}
+\DefineOption{outer}{logopos}{bottomright}
+\DefineOption{outer}{logopos}{bottomleft}
+\ExecuteOptionsBeamer{bottomright}
+%    \end{macrocode}
+% \end{macro}
+%
 %    \begin{macrocode}
 \ProcessOptionsBeamer
 %    \end{macrocode}
@@ -59,6 +69,12 @@
 %    \begin{macrocode}
 \beamer@compresstrue
 %    \end{macrocode}
+%
+% \subsubsection{Outer logo}
+% Insert the outer logo with 0.7cm height. \verb"\vphantom" here is to create a phantom box to make sure the \verb"\resizebox" has a non-zero height box input.
+\def\insertouterlogo{
+  \resizebox{!}{0.7cm}{\vphantom{-}\insertlogo}
+}
 %
 % \subsubsection{Frame Title}
 %
@@ -72,7 +88,9 @@
   \advance\@tempdima by\beamer@rightmargin%
   \begin{beamercolorbox}[sep=0.3cm,#1,wd=\the\@tempdima]{frametitle}
     \hbox{
-      \insertouterlogo
+      \if\EqualOption{outer}{logopos}{topleft}
+        \insertouterlogo
+      \fi
       \vbox{
         \ifx\insertframesubtitle\@empty\vskip-2pt%
         \else\vskip-1ex\fi%
@@ -91,14 +109,16 @@
         \vskip-1ex%
       }
     }
-    \raggedleft%
-    \begingroup
-    \ifx\insertframesubtitle\@empty\vskip-2.5ex%
-    \else\vskip-3.5ex\fi%
-    \insertouterlogo\hspace*{5pt}%
-    \endgroup%
-    \ifx\insertframesubtitle\@empty%
-    \else\vskip0.5ex\fi%
+    \if\EqualOption{outer}{logopos}{topright}
+      \raggedleft%
+      \begingroup
+      \ifx\insertframesubtitle\@empty\vskip-2.5ex%
+      \else\vskip-3.5ex\fi%
+      \insertouterlogo\hspace*{5pt}%
+      \endgroup%
+      \ifx\insertframesubtitle\@empty%
+      \else\vskip0.5ex\fi%
+    \fi
     \if@tempswa\else\vskip-.3cm\fi%
   \end{beamercolorbox}%
 }
@@ -157,10 +177,14 @@
 %  Append the navigation to the footline to avoid the collision with the navigation symbols. This will clear the original placeholder for the logo -- place it elsewhere.
 %    \begin{macrocode}
 \addtobeamertemplate{footline}{
-  \rlap{\raisebox{3ex}[0pt][0pt]{\insertouterlogo}}
+  \if\EqualOption{outer}{logopos}{bottomleft}
+    \rlap{\raisebox{3ex}[0pt][0pt]{\insertouterlogo}}
+  \fi
   \hfill%
   \usebeamertemplate***{navigation symbols}%
-  \llap{\raisebox{1pc}[0pt][0pt]{\insertouterlogo}}
+  \if\EqualOption{outer}{logopos}{bottomright}
+    \llap{\raisebox{1pc}[0pt][0pt]{\insertouterlogo}}
+  \fi
   \hspace*{0.1cm}\par
   \vskip 4pt
 }{}

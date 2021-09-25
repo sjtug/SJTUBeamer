@@ -67,16 +67,21 @@
 %   \end{itemize}
 %    \begin{macrocode}
 %<*maxplus>
-\DeclareOptionBeamer{maxplus}{\def\sjtubeamer@cover{maxplus}}
+\DeclareOptionBeamer{maxplus}{
+  \def\sjtubeamer@cover{maxplus}\def\sjtubeamer@logopos{topleft}}
 %</maxplus>
 %<*max>
-\DeclareOptionBeamer{max}{\def\sjtubeamer@cover{max}}
+\DeclareOptionBeamer{max}{
+  \def\sjtubeamer@cover{max}\def\sjtubeamer@logopos{bottomright}}
 %</max>
 %<*min>
-\DeclareOptionBeamer{min}{\def\sjtubeamer@cover{min}}
+\DeclareOptionBeamer{min}{
+  \def\sjtubeamer@cover{min}\def\sjtubeamer@logopos{topright}}
 %</min>
 %<*my>
-\DeclareOptionBeamer{my}{\def\sjtubeamer@cover{my}} % reserved for customization
+\DeclareOptionBeamer{my}{
+  \def\sjtubeamer@cover{my}\def\sjtubeamer@logopos{bottomleft}}
+    % reserved for customization
 %</my>
 %    \end{macrocode}
 %   $\rightarrow$ Next, declare the initial configuration.
@@ -149,6 +154,16 @@
 %    \end{macrocode}
 %  \end{macro}
 %
+%  \begin{macro}{\sjtubeamer@logopos}
+%   Choose the override outer logo position. No default option will get executed since it has already been executed by the selection of \verb"\sjtubeamer@cover".
+%    \begin{macrocode}
+\DeclareOptionBeamer{topleft}{\def\sjtubeamer@logopos{topleft}}
+\DeclareOptionBeamer{topright}{\def\sjtubeamer@logopos{topright}}
+\DeclareOptionBeamer{bottomright}{\def\sjtubeamer@logopos{bottomright}}
+\DeclareOptionBeamer{bottomleft}{\def\sjtubeamer@logopos{bottomleft}}
+%    \end{macrocode}
+%  \end{macro}
+%
 %   $\rightarrow$ Then, the user's option will be processed after this (at the end of this subsection).
 %    \begin{macrocode}
 \ProcessOptionsBeamer
@@ -161,6 +176,7 @@
 \PassOptionsToPackage{\sjtubeamer@lum}{beamercolorthemesjtubeamer}
 \PassOptionsToPackage{\sjtubeamer@lang}{beamerinnerthemesjtubeamer}
 \PassOptionsToPackage{\sjtubeamer@nav}{beamerouterthemesjtubeamer}
+\PassOptionsToPackage{\sjtubeamer@logopos}{beamerouterthemesjtubeamer}
 %    \end{macrocode}
 %
 %   The following code is executed when it is in <presentation> mode.
