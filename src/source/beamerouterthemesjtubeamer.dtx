@@ -157,6 +157,7 @@
 %  Append the navigation to the footline to avoid the collision with the navigation symbols. This will clear the original placeholder for the logo -- place it elsewhere.
 %    \begin{macrocode}
 \addtobeamertemplate{footline}{
+  \rlap{\raisebox{3ex}[0pt][0pt]{\insertouterlogo}}
   \hfill%
   \usebeamertemplate***{navigation symbols}%
   \llap{\raisebox{1pc}[0pt][0pt]{\insertouterlogo}}
