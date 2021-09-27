@@ -124,7 +124,7 @@ Edit `main.tex` and start to use.
   * Set to "XeLaTeX" for compilation.
 * Local Use
   * Install TeXLive.
-  * Run `git clone https://github.com/sjtug/SJTUBeamer/`.
+  * Run `git clone https://github.com/sjtug/SJTUBeamer/` or `git clone https://mirror.sjtu.edu.cn/git/SJTUBeamer.git/`.
   * Or download the development version by clicking "Code - Download Zip".
   * Or download [the latest version](https://github.com/sjtug/SJTUBeamer/releases). Click "Source Code (zip)" to download.
   * Run `latexmk -xelatex main.tex` to compile

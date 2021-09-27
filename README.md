@@ -129,7 +129,7 @@ int main(){
   * Overleaf 的设置中需要选择“XeLaTeX”编译器编译。
 * 本地使用
   * 安装 TeXLive 套件。
-  * 使用 git 克隆仓库 `git clone https://github.com/sjtug/SJTUBeamer/` or `git clone https://mirror.sjtu.edu.cn/git/SJTUBeamer.git/`。
+  * 使用 git 克隆仓库 `git clone https://github.com/sjtug/SJTUBeamer/` 或 `git clone https://mirror.sjtu.edu.cn/git/SJTUBeamer.git/`。
   * 或下载开发版压缩包。页面右上角 Code - Download Zip 即可。
   * 或下载 [最新版](https://github.com/sjtug/SJTUBeamer/releases) 压缩包。点击 “Source Code (zip)” 即可下载。
   * 之后通过 `latexmk -xelatex main.tex` 命令进行编译即可。
