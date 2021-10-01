@@ -16,7 +16,7 @@
 % \iffalse
 %<*package>
 \NeedsTeXFormat{LaTeX2e}
-\ProvidesPackage{beamerinnerthemesjtubeamer}[2021/09/25 sjtubeamer inner theme v2.2.0]
+\ProvidesPackage{beamerinnerthemesjtubeamer}[2021/10/01 sjtubeamer inner theme v2.2.1]
 %</package>
 % \fi
 % \CheckSum{0}
@@ -295,6 +295,7 @@
 %    \begin{macrocode}
 \newcommand{\makebottom}[1][\sjtubeamer@inner@cover]{
   {
+    \def\beamer@writeslidentry{\clearpage\beamer@notesactions}
     \setbeamertemplate{bottom page}[#1][\bottomthanks]
     \ifbeamer@inframe\bottompage\else
       \begin{frame}[plain]
@@ -355,9 +356,12 @@
 %   Redirect the part command to make a part page.
 %    \begin{macrocode}
 \AtBeginPart{
-  \begin{frame}[plain]
-    \partpage
-  \end{frame}
+  {
+    \def\beamer@writeslidentry{\clearpage\beamer@notesactions}
+    \begin{frame}[plain]
+      \partpage
+    \end{frame}
+  }
 }
 %    \end{macrocode}
 %  \end{macro}

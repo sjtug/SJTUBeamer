@@ -21,7 +21,7 @@
 %% limitations under the License.
 %% ------------------------------------------------------------------------
 \NeedsTeXFormat{LaTeX2e}
-\ProvidesPackage{beamerinnerthemesjtubeamer}[2021/09/25 sjtubeamer inner theme v2.2.0]
+\ProvidesPackage{beamerinnerthemesjtubeamer}[2021/10/01 sjtubeamer inner theme v2.2.1]
 \RequirePackage{sjtuvi}
 \RequirePackage{tcolorbox}
 \DeclareOptionBeamer{maxplus}{\def\sjtubeamer@inner@cover{maxplus}}
@@ -133,6 +133,7 @@
 \fi%
 \newcommand{\makebottom}[1][\sjtubeamer@inner@cover]{
   {
+    \def\beamer@writeslidentry{\clearpage\beamer@notesactions}
     \setbeamertemplate{bottom page}[#1][\bottomthanks]
     \ifbeamer@inframe\bottompage\else
       \begin{frame}[plain]
@@ -170,9 +171,12 @@
   \vfill
 }
 \AtBeginPart{
-  \begin{frame}[plain]
-    \partpage
-  \end{frame}
+  {
+    \def\beamer@writeslidentry{\clearpage\beamer@notesactions}
+    \begin{frame}[plain]
+      \partpage
+    \end{frame}
+  }
 }
 \def\sectionblock#1{
   \begin{beamercolorbox}[sep=12pt,right,#1]{section title}
