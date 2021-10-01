@@ -292,6 +292,7 @@
 %
 %  \begin{macro}{\makebottom}
 %   Make the bottom page. Not a built-in command.
+%   Redefinition on \verb"\beamer@writeslideentrty" locally will remove the corresponding navigation dot for miniframe outer theme. This is not necessary for title page, since it should not belong to any sections.
 %    \begin{macrocode}
 \newcommand{\makebottom}[1][\sjtubeamer@inner@cover]{
   {
@@ -354,7 +355,7 @@
 %
 %  \begin{macro}{\part}
 %   Redirect the part command to make a part page.
-%    \begin{macrocode}
+%   Redefinition on \verb"\beamer@writeslideentrty" locally will remove the corresponding navigation dot like what it has been done in the bottom page.
 \AtBeginPart{
   {
     \def\beamer@writeslidentry{\clearpage\beamer@notesactions}
