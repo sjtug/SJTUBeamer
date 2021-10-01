@@ -356,6 +356,7 @@
 %  \begin{macro}{\part}
 %   Redirect the part command to make a part page.
 %   Redefinition on \verb"\beamer@writeslideentrty" locally will remove the corresponding navigation dot like what it has been done in the bottom page.
+%    \begin{macrocode}
 \AtBeginPart{
   {
     \def\beamer@writeslidentry{\clearpage\beamer@notesactions}
