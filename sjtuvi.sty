@@ -160,12 +160,6 @@
     \pgfpathlineto{\pgfpointdecoratedpathlast}
   }
 }
-\RequirePackage{pdftexcmds}
-\ifnum\pdf@shellescape=1
-  \AtEndPreamble{
-    \tikzexternalize[prefix=cache/]
-  }
-\fi
 \endinput
 %%
 %% End of file `sjtuvi.sty'.
