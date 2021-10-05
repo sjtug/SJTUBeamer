@@ -29,6 +29,9 @@ Current document `main.tex` is an example documentation of *How to Use LaTeX to 
 %   shadow     tree       smoothtree
 % *siderbar is recommended to be used with max option.
 
+% \tikzexternalize[prefix=cache/]
+% To cache the tikz picture, please uncomment the previous line.
+
 \usepackage{biblatex}
 \addbibresource{thesis.bib}
 
