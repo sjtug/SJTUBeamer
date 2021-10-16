@@ -13,7 +13,7 @@
 % \iffalse
 %<*package>
 \NeedsTeXFormat{LaTeX2e}
-\ProvidesPackage{sjtuvi}[2021/10/02 Visual Identity System library for sjtubeamer v2.2.2]
+\ProvidesPackage{sjtuvi}[2021/10/05 Visual Identity System library for sjtubeamer v2.2.3]
 %</package>
 % \fi
 % \CheckSum{0}
@@ -119,7 +119,8 @@
   \fi
   \expandafter\providecommand\csname #1\endcsname[1][\sjtubeamer@logocolor]{
     % ##1: override color, or opacity=... (optional)
-    \begin{tikzpicture}[external/export=false]
+    \tikzexternaldisable
+    \begin{tikzpicture}
       \begin{scope}
         \clip ({-1.0+#2},{-1.0+#3}) rectangle ({1.0-#2},{1.0-#3});
         \fill [\sjtubeamer@logocolor, ##1, path fading=#1]
@@ -257,19 +258,6 @@
 %    \end{macrocode}
 % \end{macro}
 %
-%   Provides the command for deciding if it is in --shell-escape mode.
-%    \begin{macrocode}
-\RequirePackage{pdftexcmds}
-%    \end{macrocode}
-%  Enable the externalization and cache all pdf's to \verb"cache/" folder, if it is in --shell-escape mode (1).
-%  NOTICE: the externalization starts from the end of preamble to avoid the conflict with the \verb"fadings" library.
-%    \begin{macrocode}
-\ifnum\pdf@shellescape=1
-  \AtEndPreamble{
-    \tikzexternalize[prefix=cache/]
-  }
-\fi
-%    \end{macrocode}
 %
 % \iffalse
 %</package>
