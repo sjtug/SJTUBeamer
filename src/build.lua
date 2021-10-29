@@ -19,7 +19,7 @@ typesetfiles     = {"sjtubeamerdevguide.tex","sjtubeamer.tex"}
 -- typesetfiles     = {"sjtubeamer.tex"}
 -- typesetruns      = 1 -- for debug. Some reference may not be linked.
 -- typesetdemofiles = {"min.tex"}
-typesetsuppfiles = {"head.png","plant.jpg","test.csv","testgraph.tex","ref.bib","tutorial/"}
+typesetsuppfiles = {"head.png","plant.jpg","test.csv","testgraph.tex","ref.bib","sjtug.pdf","sjtug_text.pdf","tutorial/"}
 
 -- Regression tests mainly test the decoupling properties between kernel modules.
 testfiledir      = "./testfiles"
@@ -78,7 +78,6 @@ function typeset_demo_tasks()
                 if string.find(p,"-") ~= nil then
                     -- biber after compiling the first time if it is marked as "-"
                     errorlevel = biber(string.gsub(p,".tex",""),tutorialdir)
-                    -- errorlevel = tex(p,tutorialdir,typesetcommand)
                 end
                 -- compile the second time if it is marked as "+"
                 errorlevel = tex(p,tutorialdir,typesetcommand)

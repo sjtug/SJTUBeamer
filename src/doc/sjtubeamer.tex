@@ -45,6 +45,7 @@
     left=\parindent,
     label=\raisebox{-.1ex}{\large\ding{\numexpr171 + \arabic*}}
 }
+\newenvironment{commentlist}{\begin{enumerate}\small}{\end{enumerate}}
 
 \usepackage{tcolorbox}
 \newtcbox{\xbutton}[1][red]{on line,
@@ -152,7 +153,11 @@ fontupper=\sffamily,colupper=white}
 \section{下载模板}
 
 \begin{enumerate}
-  \item git 用户可以使用 \verb"git clone https://mirror.sjtu.edu.cn/git/SJTUBeamer.git/" 克隆本存储库。
+  \item git 用户可以使用
+        \begin{quotation}\ttfamily
+          git clone https://mirror.sjtu.edu.cn/git/SJTUBeamer.git/
+        \end{quotation}
+        克隆本存储库。
   \item 或者前往 GitHub 上的 \faGithub{}~\href{https://github.com/sjtug/SJTUBeamer}{sjtug/SJTUBeamer} 页面，点击 \xbutton[green]{Code} 按钮下载压缩文件，在解压后的主目录里新建 \TeX{} 源文件即可调用该模板。
   \item 或者点击进入存储库侧栏的 \href{https://github.com/sjtug/SJTUBeamer/releases}{\textsf{Releases}} 下载查看最新发布版本，并下载 \textsf{Assets} 栏的 \texttt{sjtubeamer-ctan.zip}。
 \end{enumerate}
@@ -169,15 +174,14 @@ fontupper=\sffamily,colupper=white}
 
 \beamerdemo[1]{step1}
 
-{\small
-  \begin{enumerate}
-    \item 第一行载入 \texttt{ctex} 宏包提供的 \texttt{ctexbeamer} 文档类。如果不需要中文支持，可以直接使用 \texttt{beamer} 文档类。如果需要使用 16:9 的荧幕比例，可以参照示例 2 的相关参数。
-    \item 第二行载入 \texttt{sjtubeamer} 主题。
-    \item 使用 \texttt{document} 环境进入文档主体。
-    \item 使用 \texttt{frame} 环境创建新的幻灯片（帧）。
-    \item 在帧中输入文字即可在屏幕垂直居中位置产生文字。
-  \end{enumerate}
-}
+
+\begin{commentlist}
+  \item 第一行载入 \texttt{ctex} 宏包提供的 \texttt{ctexbeamer} 文档类。如果不需要中文支持，可以直接使用 \texttt{beamer} 文档类。如果需要使用 16:9 的荧幕比例，可以参照示例 2 的相关参数。
+  \item 第二行载入 \texttt{sjtubeamer} 主题。
+  \item 使用 \texttt{document} 环境进入文档主体。
+  \item 使用 \texttt{frame} 环境创建新的幻灯片（帧）。
+  \item 在帧中输入文字即可在屏幕垂直居中位置产生文字。
+\end{commentlist}
 
 \clearpage
 
@@ -231,11 +235,10 @@ fontupper=\sffamily,colupper=white}
 
 \beamerdemo[1]{step3}
 
-\begin{enumerate}
-  \small
+\begin{commentlist}
   \item 使用 \texttt{columns} 环境分栏，也可以采用 \texttt{multicol} 宏包提供的 \texttt{multicols} 环境。后者还兼容 \texttt{article} 文档类。
   \item 该模式也会关闭目录与引用的生成。
-\end{enumerate}
+\end{commentlist}
 
 \clearpage
 
@@ -249,14 +252,13 @@ fontupper=\sffamily,colupper=white}
 
 \beamerdemo[1,2]{step5}
 
-\begin{enumerate}
-  \small
+\begin{commentlist}
   \item 在载入模板时选择 \texttt{maxplus}, \texttt{max}, \texttt{min} 以使用不同的标题页结尾页模板。
   \item 组织（\texttt{\textbackslash{}institute}）可选，\texttt{min}会根据二级机构的处理方法排列徽标。
   \item \texttt{\textbackslash{}maketitle} 可以制作标题页，\texttt{\textbackslash{}makebottom} 可以制作结束页$^*$。
-        \item$^*$ 标题页中 \texttt{\textbackslash{}thanks} 被禁用，\texttt{\textbackslash{}makebottom} 是 \themename\ 专有命令。
+  \item$^*$ 标题页中 \texttt{\textbackslash{}thanks} 被禁用，\texttt{\textbackslash{}makebottom} 是 \themename\ 专有命令。
   \item[\faExclamationTriangle] 将元数据写在 \texttt{document} 中可能会产生警告，可无视。
-\end{enumerate}
+\end{commentlist}
 
 \chapter{目录}
 
@@ -286,9 +288,9 @@ fontupper=\sffamily,colupper=white}
 
 \beamerdemo[1]{step9+.tex}
 
-\begin{enumerate}\small
+\begin{commentlist}
   \item 如果想要在幻灯片列表环境产生类似的“渐进切换”效果，可以在 \texttt{itemize} 环境的每一条后使用 \texttt{\textbackslash{}pause} 命令。或者是 \texttt{\textbackslash{}begin\{itemize\}[<+->]}。
-\end{enumerate}
+\end{commentlist}
 
 \chapter{播放}
 
@@ -330,10 +332,10 @@ fontupper=\sffamily,colupper=white}
 
 \beamerdemo[1]{step10.tex}
 
-\begin{enumerate}\small
+\begin{commentlist}
   \item \texttt{\textbackslash{}alert} 会改变文字颜色为主题色。\texttt{\textbackslash{}emph} 会改变文字颜色的同时，还会将英文字体变为斜体$^*$。
   \item \texttt{\textbackslash{}paragraph} 和 \texttt{\textbackslash{}highlight} 都会在文字底部添加纯色方块$^*$，区别在于后者可以设置背景颜色。
-\end{enumerate}
+\end{commentlist}
 
 \section{区块强调}
 
@@ -343,11 +345,11 @@ fontupper=\sffamily,colupper=white}
 
 \beamerdemo[1]{step12.tex}
 
-\begin{enumerate}\small
+\begin{commentlist}
   \item \texttt{block}, \texttt{alertblock}, \texttt{exampleblock} 环境分别可以产生与主题色对应的三种盒子。
   \item \texttt{min} 主题的盒子非圆角$^*$。
   \item \texttt{stampbox} 环境可以产生印记边框盒子$^*$，可以丰富视觉效果与统一视觉形象。可接受一个可选参数如 \texttt{[sjtuBluePrimary]} 产生其他颜色的边框。
-\end{enumerate}
+\end{commentlist}
 
 \chapter{代码}
 
@@ -355,12 +357,12 @@ fontupper=\sffamily,colupper=white}
 
 \beamerdemo[1]{step13.tex}
 
-\begin{enumerate}\small
+\begin{commentlist}
   \item \texttt{codeblock} 提供了带行号的代码抄录环境$^*$，第一个可选参数可以用于设置语言，第二个必选参数可以设置代码块的标题。
   \item 需要清理抄录代码在源文件中的缩进，顶格输入。
   \item 直接使用 \texttt{listings} 宏包提供的 \texttt{lstlisting} 环境依然可行，\themename\ 已经对其进行了一些预先的优化。
   \item[\faExclamationTriangle] 使用代码块的页其 \texttt{frame} 环境必须添加 \texttt{fragile} 参数。
-\end{enumerate}
+\end{commentlist}
 
 
 \chapter{引用}
@@ -373,10 +375,10 @@ fontupper=\sffamily,colupper=white}
 
 \beamerdemo[1]{step14+-.tex}
 
-\begin{enumerate}\small
+\begin{commentlist}
   \item 使用 \texttt{\textbackslash{}footnote} 可以添加脚注。
   \item 使用 \texttt{\textbackslash{}footfullcite} 进行脚注引用（\texttt{biblatex} 提供的命令）。
-\end{enumerate}
+\end{commentlist}
 
 \section{Bib\TeX{}}
 
@@ -392,10 +394,10 @@ fontupper=\sffamily,colupper=white}
 
 \beamerdemo[1]{step15.tex}
 
-\begin{enumerate}\small
+\begin{commentlist}
   \item 需要加载 \texttt{pgfplotstable} 宏包，表头变为主题色，采用三线表的样式。$^*$
   \item 也可以使用标准表格插入的方法，只是不会有这种优化。可以使用 \href{https://www.tablesgenerator.com/latex_tables}{Table Generator} 生成标准表格代码。
-\end{enumerate}
+\end{commentlist}
 
 \section{统计图}
 
@@ -403,20 +405,20 @@ fontupper=\sffamily,colupper=white}
 
 \beamerdemo[1]{step16.tex}
 
-\begin{enumerate}\small
+\begin{commentlist}
   \item 需要加载 \texttt{pgfplots} 宏包，必要时额外加载 \texttt{pgfplotstable} 宏包以读取文件数据。可以使用 \href{https://logcreative.github.io/PGFPlotsEdt/}{PGFPlots 统计绘图编辑器} 生成上述代码。
-\end{enumerate}
+\end{commentlist}
 
 \section{缓存}
 
 如果你需要使用较多的 Ti\emph{k}Z 和 \texttt{pgfplots} 插图，可以考虑启用图像缓存，当图像没有被更改时会采用上一次的编译产物。\themename\ 已经保护了一些不必要缓存的元素。
 
-\beamerdemo[1]{stepcache.tex}
+\beamerdemo[1]{step17.tex}
 
-\begin{enumerate}
+\begin{commentlist}
   \item \themename\ 已经加载了 \verb"\usetikzlibrary{external}"。
   \item[\faExclamationTriangle] 如果使用的是 Overleaf 这种在线 \LaTeX\ 编译器，您必须要在主文档内使用 \verb"\tikzexternalize[prefix=cache/]" 命令，并且要在同级目录下新建 \verb"cache/" 文件夹，其中应该还有一个占位文档（比如 \verb".gitkeep"）。可参见 \href{https://www.overleaf.com/learn/latex/Questions/I_have_a_lot_of_tikz%2C_matlab2tikz_or_pgfplots_figures%2C_so_I%27m_getting_a_compilation_timeout._Can_I_externalise_my_figures%3F}{相关说明}。
-\end{enumerate}
+\end{commentlist}
 
 % TODO: 以后的开发计划：Smart Diagram
 %\chapter{插图}
@@ -439,38 +441,37 @@ fontupper=\sffamily,colupper=white}
   \tcbitem[title={\textbackslash{}vlogo}] \resizebox{!}{4.8cm}{\vlogo\ }
 \end{tcbitemize}
 
-\beamerdemo[1]{step17.tex}
+\beamerdemo[1]{step18.tex}
 
-\begin{enumerate}\small
-  \item 使用 \texttt{\textbackslash{}logo} 设定徽标。在 \verb"usetheme" 处使用 \verb"topright" 或 \verb"bottomright" 选项强制指定徽标在幻灯片中显示的位置为右上角（\verb"max"默认）或左下角（\verb"maxplus" 和 \verb"min"）。
-  \item 可以使用自定义的徽标，但是不归 \themename 颜色系统管理$^*$，此时推荐使用亮色主题以提供亮色徽标背景。
-  \item 或参见\href{run:sjtubeamerdevguide.pdf}{开发指南}第 3.4 节创造可变颜色徽标$^*$。
-\end{enumerate}
+\begin{commentlist}
+  \item 使用 \texttt{\textbackslash{}logo} 设定徽标。在主题处使用 \verb"topright" 或 \verb"bottomright" 选项强制指定徽标的位置为右上角（\verb"max"默认）或左下角（\verb"maxplus" 和 \verb"min"）。
+  \item 可以使用自定义的徽标，但是不归 \themename 颜色系统管理$^*$，此时推荐使用亮色主题以提供亮色徽标背景。或参见\href{run:sjtubeamerdevguide.pdf}{开发指南}第 3.4 节创造可变颜色徽标$^*$。
+\end{commentlist}
 
 \chapter{头图}
 
 可以更改 \themename\ 封面中的头图。
 
-\beamerdemo[1]{step18.tex}
+\beamerdemo[1]{step19.tex}
 
-\begin{enumerate}
+\begin{commentlist}
   \item 使用 \texttt{\textbackslash{}titlegraphic} 设定头图，需要在封面图输出前进行赋值。
   \item 每个主题的头图位置不同，特别要注意默认的 \texttt{max} 主题的头图是淡色背景图。
   \item 对头图可以不设定大小，因为会自动占满占位符。
-\end{enumerate}
+\end{commentlist}
 
 \chapter{背景}
 
 可以更改 \themename\ 的背景图。
 
-\beamerdemo[1]{step19.tex}
+\beamerdemo[1]{step20.tex}
 
-\begin{enumerate}\small
+\begin{commentlist}
   \item \texttt{\textbackslash{}setbeamertemplate} 可以设定背景图。
   \item \texttt{\textbackslash{}stamparray} 可以用于生成印记矩阵。$^*$
   \item \texttt{\textbackslash{}bgcenterbox} 命令可以用于居中背景图。$^*$
   \item 作为文字的背景，其透明度应该较低或者颜色偏淡。
-\end{enumerate}
+\end{commentlist}
 
 %TODO: 未来的开发计划
 %\chapter{字体}
@@ -546,8 +547,19 @@ fontupper=\sffamily,colupper=white}
 
 \texttt{sjtuvi} 和 \texttt{sjtucover} 库及其附属徽标、图片不符合上述开源许可，由上海交通大学持有\href{https://vi.sjtu.edu.cn/index.php/articles/bulletin/16}{版权}。校属各单位及个人以经营为目的使用视觉形象识别系统，须向学校申请使用许可。校外单位及个人未经许可，不得制作或使用载有视觉形象识别系统的物品。
 
-\vfill
+\def\sjtuglogo{
+  \includegraphics[height=4cm]{sjtug.pdf}\\
+  \vspace*{5pt}
+  \includegraphics[width=3cm]{sjtug_text.pdf}
+}
 
-{\small \themename{} \hfill  SJTUG  \hfill \today}
+\vfill
+{
+\centering
+\sjtuglogo\\
+{\large \themename{}\\}
+\today\\
+}
+\vfill
 
 \end{document}
