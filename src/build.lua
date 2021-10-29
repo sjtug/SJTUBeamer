@@ -78,7 +78,6 @@ function typeset_demo_tasks()
                 if string.find(p,"-") ~= nil then
                     -- biber after compiling the first time if it is marked as "-"
                     errorlevel = biber(string.gsub(p,".tex",""),tutorialdir)
-                    -- errorlevel = tex(p,tutorialdir,typesetcommand)
                 end
                 -- compile the second time if it is marked as "+"
                 errorlevel = tex(p,tutorialdir,typesetcommand)
