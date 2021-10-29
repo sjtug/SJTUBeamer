@@ -154,9 +154,9 @@ fontupper=\sffamily,colupper=white}
 
 \begin{enumerate}
   \item git 用户可以使用
-        \begin{verbatim}
-    git clone https://mirror.sjtu.edu.cn/git/SJTUBeamer.git/  
-  \end{verbatim}
+        \begin{quotation}\ttfamily
+          git clone https://mirror.sjtu.edu.cn/git/SJTUBeamer.git/
+        \end{quotation}
         克隆本存储库。
   \item 或者前往 GitHub 上的 \faGithub{}~\href{https://github.com/sjtug/SJTUBeamer}{sjtug/SJTUBeamer} 页面，点击 \xbutton[green]{Code} 按钮下载压缩文件，在解压后的主目录里新建 \TeX{} 源文件即可调用该模板。
   \item 或者点击进入存储库侧栏的 \href{https://github.com/sjtug/SJTUBeamer/releases}{\textsf{Releases}} 下载查看最新发布版本，并下载 \textsf{Assets} 栏的 \texttt{sjtubeamer-ctan.zip}。
@@ -444,7 +444,7 @@ fontupper=\sffamily,colupper=white}
 \beamerdemo[1]{step18.tex}
 
 \begin{commentlist}
-  \item 使用 \texttt{\textbackslash{}logo} 设定徽标。在 \verb"usetheme" 处使用 \verb"topright" 或 \verb"bottomright" 选项强制指定徽标在幻灯片中显示的位置为右上角（\verb"max"默认）或左下角（\verb"maxplus" 和 \verb"min"）。
+  \item 使用 \texttt{\textbackslash{}logo} 设定徽标。在主题处使用 \verb"topright" 或 \verb"bottomright" 选项强制指定徽标的位置为右上角（\verb"max"默认）或左下角（\verb"maxplus" 和 \verb"min"）。
   \item 可以使用自定义的徽标，但是不归 \themename 颜色系统管理$^*$，此时推荐使用亮色主题以提供亮色徽标背景。或参见\href{run:sjtubeamerdevguide.pdf}{开发指南}第 3.4 节创造可变颜色徽标$^*$。
 \end{commentlist}
 
