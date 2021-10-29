@@ -44,13 +44,7 @@
     left=\parindent,
     label=\raisebox{-.1ex}{\large\ding{\numexpr171 + \arabic*}}
 }
-\newlist{commentlist}{enumerate}{1}
-\setlist[commentlist]{
-    itemsep=0pt,
-    left=\parindent,
-    label=\raisebox{-.1ex}{\large\ding{\numexpr171 + \arabic*}},
-    font = \small
-}
+\newenvironment{commentlist}{\begin{enumerate}\small}{\end{enumerate}}
 
 \usepackage{tcolorbox}
 \newtcbox{\xbutton}[1][red]{on line,
