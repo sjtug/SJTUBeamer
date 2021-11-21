@@ -117,7 +117,7 @@ function gen_snippets()
                 -- Find TeX style definition, see Coding Style 2.1.2
                 local def_param = string.match(line, "\\def" .. in_macro .. "([#%d]+)")
                 -- Find LaTeX style definition, see Coding Style 2.1.3
-                local comm_param, param_default = string.match(line, "\\[renew|provide|new]*command{" .. in_macro .. "}%[(%d)%]([%[%a*@*\\*%]]*)")
+                local comm_param, param_default = string.match(line, "\\[renew|provide|new]*%a+{" .. in_macro .. "}%[(%d)%]([%[%a*@*\\*%]]*)")
                 if def_param ~= nil then
                     def_param = string.gsub(def_param, "#(%d)", "{$%1}")
                     macro_body = macro_body .. "\\" .. in_macro .. def_param

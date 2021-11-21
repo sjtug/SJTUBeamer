@@ -80,7 +80,7 @@
 	"highlight": {
 		"scope": "latex",
 		"prefix": "\\highlight",
-		"body": "\\highlight",
+		"body": "\\highlight[${1:cprimary}]",
 		"description": "Highlight the given text. Create a primary color background block with white as foreground.\n"
 	},
 	"paragraph": {
