@@ -93,8 +93,94 @@ function typeset_demo_tasks()
     return 0
 end
 
--- Move generated files to the main directory when it starts to check.
+snippetdir = "../.vscode"
+snippetfilename = "sjtubeamer.code-snippets"
+scope = 'latex'
+
+-- Generate Visual Studio Code snippets
+-- To make it run properly, please follow the Coding Style guideline.
+-- TODO: This could be replaced by Language Server Protocol (LSP) in the future in order to support mainstream IDEs. And will be implemented as a form of extension.
+function gen_snippets()
+    if not direxists(snippetdir) then
+        mkdir(snippetdir)
+    end
+    snippetfile = io.open(snippetdir .. "/" .. snippetfilename, "w")
+    snippetfile:write("{\n")
+    for _, p in ipairs(filelist(sourcefiledir, "*.dtx")) do
+        local in_macro = nil
+        local macro_body = ""
+        local macro_desc = ""
+        local in_code = false
+        local is_captured = false
+        for line in io.lines(sourcefiledir .. "/" .. p) do
+            if in_macro ~= nil and not is_captured then
+                -- Find TeX style definition, see Coding Style 2.1.2
+                local def_param = string.match(line, "\\def" .. in_macro .. "([#%d]+)")
+                -- Find LaTeX style definition, see Coding Style 2.1.3
+                local comm_param, param_default = string.match(line, "\\[renew|provide|new]*command{" .. in_macro .. "}%[(%d)%]([%[%a*@*\\*%]]*)")
+                if def_param ~= nil then
+                    def_param = string.gsub(def_param, "#(%d)", "{$%1}")
+                    macro_body = macro_body .. "\\" .. in_macro .. def_param
+                    is_captured = true
+                elseif comm_param ~= nil then
+                    comm_param = tonumber(comm_param)
+                    macro_body = macro_body .. "\\" .. in_macro
+                    if param_default ~= "" then
+                        param_default = string.gsub(string.sub(param_default, 2, -2),"\\","\\\\") -- remove square brackets
+                        macro_body = macro_body .. "[${1:" .. param_default .. "}]"
+                    else
+                        macro_body = macro_body .. "{$1}"
+                    end
+                    for i=2,comm_param do
+                        macro_body = macro_body .. "{$" .. i  .."}"
+                    end
+                    is_captured = true
+                -- Find begin macrocode environment, see Coding Style 2.3.2
+                elseif line == "%    \\begin{macrocode}" then
+                    in_code = true
+                -- Won't find end macrocode environment, only capture the first part of this macro as description.
+                elseif in_code == false then
+                    -- Now it is just a plain description of this macro.
+                    macro_desc = macro_desc ..
+                    string.gsub(string.gsub(string.gsub(string.gsub(string.sub(line,2),"\\verb\"([^\"]+)\"","%1"),"\\","\\\\"),"\"","\\\""),"%s%s+","") .. "\\n"
+                end
+            end
+
+            -- Find begin macro DocTeX environment, see Coding Style 2.3.1
+            local env_beg = string.match(line, "\\begin{macro}{(\\%a+)}")
+            if env_beg ~= nil then
+                in_macro = env_beg
+                local match_comm = string.gsub(env_beg, "\\", "\\\\")
+                snippetfile:write("\t\"" .. string.gsub(env_beg,"\\","") .. "\": {\n")
+                snippetfile:write("\t\t\"scope\": \"" .. scope .. "\",\n")
+                snippetfile:write("\t\t\"prefix\": \"" .. match_comm .. "\",\n")
+                snippetfile:write("\t\t\"body\": \"")
+            end
+            -- Find end macro DocTeX environment, see Coding Style 2.3.1
+            if string.match(line, "\\end{macro}") ~= nil and in_macro ~= nil then
+                -- This macro is processed complete.
+                if macro_body == "" then
+                    macro_body = string.gsub(in_macro, "\\", "\\\\")
+                end
+                snippetfile:write(macro_body .. "\",\n")
+                snippetfile:write("\t\t\"description\": \"" .. macro_desc .. "\"\n")
+                snippetfile:write("\t},\n")
+                in_macro = nil
+                in_code = false
+                is_captured = false
+                macro_body = ""
+                macro_desc = ""
+            end
+        end
+    end
+    snippetfile:write("}")
+    snippetfile:close()
+end
+
 function checkinit_hook()
+    gen_snippets()
+
+    -- Move generated files to the main directory when it starts to check.
     for _,file in pairs(installfiles) do
         return cp(file, unpackdir, "../")
     end
