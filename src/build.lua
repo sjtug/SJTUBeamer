@@ -111,17 +111,17 @@ function gen_snippets()
         local macro_body = ""
         local macro_desc = ""
         local in_code = false
-        local is_captured = false
+        local captured = 0
         for line in io.lines(sourcefiledir .. "/" .. p) do
-            if in_macro ~= nil and not is_captured then
+            if in_macro ~= nil and captured == 0 then
                 -- Find TeX style definition, see Coding Style 2.1.2
-                local def_param = string.match(line, "\\def" .. in_macro .. "([#%d]+)")
+                local def_param = string.match(line, "\\def" .. in_macro .. "([#%d]*)")
                 -- Find LaTeX style definition, see Coding Style 2.1.3
                 local comm_param, param_default = string.match(line, "\\[renew|provide|new]*%a+{" .. in_macro .. "}%[(%d)%]([%[%a*@*\\*%]]*)")
                 if def_param ~= nil then
                     def_param = string.gsub(def_param, "#(%d)", "{$%1}")
                     macro_body = macro_body .. "\\" .. in_macro .. def_param
-                    is_captured = true
+                    captured = 1
                 elseif comm_param ~= nil then
                     comm_param = tonumber(comm_param)
                     macro_body = macro_body .. "\\" .. in_macro
@@ -134,7 +134,7 @@ function gen_snippets()
                     for i=2,comm_param do
                         macro_body = macro_body .. "{$" .. i  .."}"
                     end
-                    is_captured = true
+                    captured = 2
                 -- Find begin macrocode environment, see Coding Style 2.3.2
                 elseif line == "%    \\begin{macrocode}" then
                     in_code = true
@@ -162,12 +162,15 @@ function gen_snippets()
                 if macro_body == "" then
                     macro_body = string.gsub(in_macro, "\\", "\\\\")
                 end
+                if captured == 1 then
+                    macro_desc = "[INTERNAL] " .. macro_desc
+                end
                 snippetfile:write(macro_body .. "\",\n")
                 snippetfile:write("\t\t\"description\": \"" .. macro_desc .. "\"\n")
                 snippetfile:write("\t},\n")
                 in_macro = nil
                 in_code = false
-                is_captured = false
+                captured = 0
                 macro_body = ""
                 macro_desc = ""
             end

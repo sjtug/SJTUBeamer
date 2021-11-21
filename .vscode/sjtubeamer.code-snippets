@@ -21,13 +21,13 @@
 		"scope": "latex",
 		"prefix": "\\coverpage",
 		"body": "\\coverpage{$1}",
-		"description": "Common command for \\titlepage and \\bottompage. Disable externalization for generating title page and bottom page, locally.\nSince the definition on \\sjtubeamer@logocolor is defined in a group, the stack is not necessary to store the value.\n"
+		"description": "[INTERNAL] Common command for \\titlepage and \\bottompage. Disable externalization for generating title page and bottom page, locally.\nSince the definition on \\sjtubeamer@logocolor is defined in a group, the stack is not necessary to store the value.\n"
 	},
 	"titlepage": {
 		"scope": "latex",
 		"prefix": "\\titlepage",
 		"body": "\\titlepage",
-		"description": "Call the title page template to make a title page. This is a patch for the original \\titlepage command, to fit with the logo color system.\n"
+		"description": "[INTERNAL] Call the title page template to make a title page. This is a patch for the original \\titlepage command, to fit with the logo color system.\n"
 	},
 	"maketitle": {
 		"scope": "latex",
@@ -39,13 +39,13 @@
 		"scope": "latex",
 		"prefix": "\\bottompage",
 		"body": "\\bottompage",
-		"description": "Call the bottom page template to make a bottom page.\n"
+		"description": "[INTERNAL] Call the bottom page template to make a bottom page.\n"
 	},
 	"bottomthanks": {
 		"scope": "latex",
 		"prefix": "\\bottomthanks",
 		"body": "\\bottomthanks",
-		"description": "The \"Thank You\" caption in the bottom page.\n"
+		"description": "[INTERNAL] The \"Thank You\" caption in the bottom page.\n"
 	},
 	"makebottom": {
 		"scope": "latex",
@@ -93,13 +93,13 @@
 		"scope": "latex",
 		"prefix": "\\DefineOption",
 		"body": "\\DefineOption{$1}{$2}{$3}",
-		"description": "Define the beamer option on the corresponding package, key and value.\n"
+		"description": "[INTERNAL] Define the beamer option on the corresponding package, key and value.\n"
 	},
 	"EqualOption": {
 		"scope": "latex",
 		"prefix": "\\EqualOption",
 		"body": "\\EqualOption",
-		"description": "To check if the option on package, key is equal to value.\n\nHere, a dummy trick is used to pass the if condition.\nSince LaTeX handles \\if differently.\n\\iftrue will eliminate the nearest \\else and \\fi but remains other extra \\fi and throws errors.\nTo avoid this, if the macro is expanded after \\if, T=T, the condition holds and finish the current pair. And continues to process the real defined macro. This solution is somehow to combat against the \\LaTeX compiler. In modern \\LaTeX 3, it is not so nasty to deal with neseted conditions. \n\\iffalse doesn't need to be considered.\n"
+		"description": "[INTERNAL] To check if the option on package, key is equal to value.\n\nHere, a dummy trick is used to pass the if condition.\nSince LaTeX handles \\if differently.\n\\iftrue will eliminate the nearest \\else and \\fi but remains other extra \\fi and throws errors.\nTo avoid this, if the macro is expanded after \\if, T=T, the condition holds and finish the current pair. And continues to process the real defined macro. This solution is somehow to combat against the \\LaTeX compiler. In modern \\LaTeX 3, it is not so nasty to deal with neseted conditions. \n\\iffalse doesn't need to be considered.\n"
 	},
 	"definelogo": {
 		"scope": "latex",
