@@ -1,0 +1,224 @@
+{
+	"sjtubeamer@color@color": {
+		"scope": "doctex,tex",
+		"prefix": "\\sjtubeamer@color@color",
+		"body": "\\sjtubeamer@color@color",
+		"description": ""
+	},
+	"sjtubeamer@color@lum": {
+		"scope": "doctex,tex",
+		"prefix": "\\sjtubeamer@color@lum",
+		"body": "\\sjtubeamer@color@lum",
+		"description": ""
+	},
+	"sjtubeamer@inner@cover": {
+		"scope": "doctex,tex",
+		"prefix": "\\sjtubeamer@inner@cover",
+		"body": "\\sjtubeamer@inner@cover",
+		"description": ""
+	},
+	"sjtubeamer@inner@lang": {
+		"scope": "doctex,tex",
+		"prefix": "\\sjtubeamer@inner@lang",
+		"body": "\\sjtubeamer@inner@lang",
+		"description": ""
+	},
+	"sjtubeamer@inner@color": {
+		"scope": "doctex,tex",
+		"prefix": "\\sjtubeamer@inner@color",
+		"body": "\\sjtubeamer@inner@color",
+		"description": ""
+	},
+	"sjtubeamer@logocolor": {
+		"scope": "doctex,tex",
+		"prefix": "\\sjtubeamer@logocolor",
+		"body": "\\sjtubeamer@logocolor",
+		"description": "Change the color variable that controls the logo color to current main color of this theme. Since this template doesn't design a dark background for the contents (it is really not easy to handle with the contents for a dark background).\n"
+	},
+	"logo": {
+		"scope": "doctex,tex,latex",
+		"prefix": "\\logo",
+		"body": "\\logo{$1}",
+		"description": "Define logo.\n"
+	},
+	"bgcenterbox": {
+		"scope": "doctex,tex,latex",
+		"prefix": "\\bgcenterbox",
+		"body": "\\bgcenterbox{$1}",
+		"description": "Define a command for USERS to make a centered background box easily. Move the defination on \\sjtubeamer@logocolor to the inner environment, to avoid the shift on centering. And since the definition has already been moved into the inner group, the definition here is \\emph{locale} and no more stack saving is needed.\n"
+	},
+	"titlegraphic": {
+		"scope": "doctex,tex,latex",
+		"prefix": "\\titlegraphic",
+		"body": "\\titlegraphic{$1}",
+		"description": " Define the title grahic image.\n\n NOTICE: if you are using your own title graphic, please use png image with predefined color and transparency. Since it is beyond the control of logo color system. Or you could use the provided command in the sjtuvi library to create your own masked picture in order to follow the logo color system (The provided picture should be white and transparent in the background).\n\nmax theme has the background.\n"
+	},
+	"coverpage": {
+		"scope": "doctex,tex",
+		"prefix": "\\coverpage",
+		"body": "\\coverpage{$1}",
+		"description": "Common command for \\titlepage and \\bottompage. Disable externalization for generating title page and bottom page, locally.\nSince the definition on \\sjtubeamer@logocolor is defined in a group, the stack is not necessary to store the value.\n"
+	},
+	"titlepage": {
+		"scope": "doctex,tex",
+		"prefix": "\\titlepage",
+		"body": "\\titlepage",
+		"description": "Call the title page template to make a title page. This is a patch for the original \\titlepage command, to fit with the logo color system.\n"
+	},
+	"maketitle": {
+		"scope": "doctex,tex,latex",
+		"prefix": "\\maketitle",
+		"body": "\\maketitle[${1:\\sjtubeamer@inner@cover}]",
+		"description": "Patch make title command. It will receive an optional argument for switching different type of title page. The set on beamer template is inside a group, so the setting is locale.\n"
+	},
+	"bottompage": {
+		"scope": "doctex,tex",
+		"prefix": "\\bottompage",
+		"body": "\\bottompage",
+		"description": "Call the bottom page template to make a bottom page.\n"
+	},
+	"bottomthanks": {
+		"scope": "doctex,tex",
+		"prefix": "\\bottomthanks",
+		"body": "\\bottomthanks",
+		"description": "The \"Thank You\" caption in the bottom page.\n"
+	},
+	"makebottom": {
+		"scope": "doctex,tex,latex",
+		"prefix": "\\makebottom",
+		"body": "\\makebottom[${1:\\sjtubeamer@inner@cover}]",
+		"description": "Make the bottom page. Not a built-in command.\nRedefinition on \\beamer@writeslideentrty locally will remove the corresponding navigation dot for miniframe outer theme. This is not necessary for title page, since it should not belong to any sections.\n"
+	},
+	"partpage": {
+		"scope": "doctex,tex,latex",
+		"prefix": "\\partpage",
+		"body": "\\partpage{$1}",
+		"description": "Define the part page beamer template.\n"
+	},
+	"part": {
+		"scope": "doctex,tex,latex",
+		"prefix": "\\part",
+		"body": "\\part{$1}",
+		"description": "Redirect the part command to make a part page.\nRedefinition on \\beamer@writeslideentrty locally will remove the corresponding navigation dot like what it has been done in the bottom page.\n"
+	},
+	"sectionpage": {
+		"scope": "doctex,tex,latex",
+		"prefix": "\\sectionpage",
+		"body": "\\sectionpage{$1}",
+		"description": "Define the section page beamer template.\n"
+	},
+	"subsectionpage": {
+		"scope": "doctex,tex,latex",
+		"prefix": "\\subsectionpage",
+		"body": "\\subsectionpage{$1}",
+		"description": "Define the subection page beamer template.\n"
+	},
+	"highlight": {
+		"scope": "doctex,tex,latex",
+		"prefix": "\\highlight",
+		"body": "\\highlight[${1:cprimary}]{$2}",
+		"description": "Highlight the given text. Create a primary color background block with white as foreground.\n"
+	},
+	"paragraph": {
+		"scope": "doctex,tex,latex",
+		"prefix": "\\paragraph",
+		"body": "\\paragraph{$1}",
+		"description": "Use \\highlight macro for making contrast.\nSince beamer has deleted \\paragraph macro in this class, this template defines a macro for that to indicate it is another point and more paragraph-like. It is useful for the migration from article class.\n"
+	},
+	"stampbox": {
+		"scope": "doctex,tex,latex",
+		"prefix": "stampbox",
+		"body": "\n\\begin{stampbox}[${1:cprimary}]\n\t$2\n\\end{stampbox}\n",
+		"description": "Make a stampbox border, which is a decoration advice from SJTU VI. It has the dependency on stampline from sjtuvi package.\n"
+	},
+	"codeblock": {
+		"scope": "doctex,tex,latex",
+		"prefix": "codeblock",
+		"body": "\n\\begin{codeblock}[${1:}]{$2}\n\t$3\n\\end{codeblock}\n",
+		"description": "Code block environment is made for presenting code in an obvious way. Two parameters are required. The first parameter is passed to listing, which mostly sets the language to highlight, see the listings package for more details. And the second parameter receives the title to make.\n"
+	},
+	"sjtubeamer@outer@nav": {
+		"scope": "doctex,tex",
+		"prefix": "\\sjtubeamer@outer@nav",
+		"body": "\\sjtubeamer@outer@nav",
+		"description": ""
+	},
+	"sjtubeamer@outer@logopos": {
+		"scope": "doctex,tex",
+		"prefix": "\\sjtubeamer@outer@logopos",
+		"body": "\\sjtubeamer@outer@logopos",
+		"description": ""
+	},
+	"sjtubeamer@cover": {
+		"scope": "doctex,tex",
+		"prefix": "\\sjtubeamer@cover",
+		"body": "\\sjtubeamer@cover",
+		"description": "This macro selects the cover theme.\n\\begin{description}\n\\item[maxplus] The titlegraphic will be a photo.\n\\item[max] The background will be the photo.\n\\item[min] The design will be minimalistic.\n\\item[my]Reserved interface for developers for customized title page and bottom page.\n\\end{description}\n\n$\\rightarrow$ The following will demostrates how to pass options between files.\n\n$\\rightarrow$ To set up an option, use \\DeclareOptionBeamer to let beamer theme receive such an option and store the value into a variable.\n\n$\\rightarrow$ To make the variable easy to follow and avoid duplicates, the naming system is as follows:\n\\begin{itemize}\n\\item Start with the project name sjtubeamer.\n\\item Split by @ symbol and move to the next level.\n\\item The final level should be the variable name itself.\n\\end{itemize}\n"
+	},
+	"sjtubeamer@color": {
+		"scope": "doctex,tex",
+		"prefix": "\\sjtubeamer@color",
+		"body": "\\sjtubeamer@color",
+		"description": "Choose the main color palette.\n\\begin{description}\n\\item[red] The red color palatte. sjtuRed*\n\\item[blue] The blue color palatte. sjtuBlue*\n\\end{description}\n\n"
+	},
+	"sjtubeamer@lum": {
+		"scope": "doctex,tex",
+		"prefix": "\\sjtubeamer@lum",
+		"body": "\\sjtubeamer@lum",
+		"description": "Decide whether it is in light mode or dark mode. Switch the lumination.\n"
+	},
+	"sjtubeamer@lang": {
+		"scope": "doctex,tex",
+		"prefix": "\\sjtubeamer@lang",
+		"body": "\\sjtubeamer@lang",
+		"description": "Set the main language of this beamer. If the user is using ctexbeamer class, the default option will be Chinese. If the user use ctex package after using this theme, such an advanced user should specify the language to Chinese manually.\n\nTODO: may be a built in support for Chinese will be used in the future. Just taken \\RequirePackage[scheme=plain]{ctex} for basic Chinese character support.\n"
+	},
+	"sjtubeamer@nav": {
+		"scope": "doctex,tex",
+		"prefix": "\\sjtubeamer@nav",
+		"body": "\\sjtubeamer@nav",
+		"description": "Choose the outer theme for this template.\n"
+	},
+	"sjtubeamer@logopos": {
+		"scope": "doctex,tex",
+		"prefix": "\\sjtubeamer@logopos",
+		"body": "\\sjtubeamer@logopos",
+		"description": "Choose the override outer logo position. No default option will get executed since it has already been executed by the selection of \\sjtubeamer@cover.\n"
+	},
+	"DefineOption": {
+		"scope": "doctex,tex",
+		"prefix": "\\DefineOption",
+		"body": "\\DefineOption{$1}{$2}{$3}",
+		"description": "Define the beamer option on the corresponding package, key and value.\n"
+	},
+	"EqualOption": {
+		"scope": "doctex,tex",
+		"prefix": "\\EqualOption",
+		"body": "\\EqualOption",
+		"description": "To check if the option on package, key is equal to value.\n\nHere, a dummy trick is used to pass the if condition.\nSince LaTeX handles \\if differently.\n\\iftrue will eliminate the nearest \\else and \\fi but remains other extra \\fi and throws errors.\nTo avoid this, if the macro is expanded after \\if, T=T, the condition holds and finish the current pair. And continues to process the real defined macro. This solution is somehow to combat against the \\LaTeX compiler. In modern \\LaTeX 3, it is not so nasty to deal with neseted conditions. \n\\iffalse doesn't need to be considered.\n"
+	},
+	"definelogo": {
+		"scope": "doctex,tex,latex",
+		"prefix": "\\definelogo",
+		"body": "\\definelogo{$1}{$2}{$3}",
+		"description": "Define a mask picture to make its different color variants.\nThe first argument assigns the file name and the second sets the horizontal cropping and the third sets the vertical cropping. Notice that the cropping is symmetrical (double the length). When the horizontal cropping is greater than the vertical cropping, the mask will be placed by its height, otherwise by its width. The domain for both cropping parameters is 0 to 1.\nYou should define a logo \\definelogo{mylogo}{<hc>}{<vc>} then use it in the contents like:\n\\mylogo[white], where the optional parameter could be the override color beyond the control of main logo color system or opacity=... to identify the opacity you want or any other parameter for a TikZ node.\nRemember, the picture should be in the vi/ folder.\nThe externalization will be disabled when using this system to generate logos, locally.\n"
+	},
+	"stamp": {
+		"scope": "doctex,tex,latex",
+		"prefix": "stamp",
+		"body": "stamp",
+		"description": "Declare stamp pattern to make a stamp array.\n\nThe newest version of TikZ provides the interface to user-define a pattern. Obeying compatibility philosophy, use \\pgfkeyvalueof interface to get parameters in a standard way. The unit is first tested in a standalone file and previewed by TikZEdt.\n"
+	},
+	"stamparray": {
+		"scope": "doctex,tex,latex",
+		"prefix": "\\stamparray",
+		"body": "\\stamparray{$1}{$2}{$3}",
+		"description": "Create the stamp array in the TikZ environment.\n\nNotice \\TeX{} is not good at handling parameters. Always remember to store it into a temporary variable. Register \\pgfmathresult will store the result of \\pgfmathparse.\n"
+	},
+	"stampline": {
+		"scope": "doctex,tex,latex",
+		"prefix": "stampline",
+		"body": "stampline",
+		"description": "Declare a decoration to make a loop stampline.\n\nNotice that auto corner on length is open to avoid spikes where the state hasn't meet final yet.\n"
+	},
+}

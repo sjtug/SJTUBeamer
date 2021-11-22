@@ -38,7 +38,13 @@
 \def\fcmd#1{\paragraph{\fbox{\ttfamily #1}}}
 
 \def\themename{\textsf{SJTUBeamer}}
+\def\sjtuglogo{
+    \includegraphics[height=1cm]{sjtug.pdf}
+    \includegraphics[height=1cm]{sjtug_text.pdf}
+}
+
 \title{Development Guide of\\\themename}
+\author{\sjtuglogo}
 
 \begin{document}
 \maketitle
@@ -154,11 +160,15 @@ For those who are familiar with \verb"makefile" system, the following command mi
 
 \fcmd{make format-dev} This command will format all the files, clear the indent. In order to improve the code quality.
 
+\begin{warn}
+  You could download \href{https://mirrors.sjtug.sjtu.edu.cn/ctan/support/latexindent.zip}{\ttfamily latexindent} and link the executable path \verb"latex-workshop.latexindent.path" in Visual Studio Code.
+\end{warn}
+
 \clearpage
 
 \section{Coding Style}
 
-This section gives a contribution code on coding style. Every contributor should follow this coding style if you want to make a pull request to this project.
+This section gives a contribution code on coding style. Every contributor should follow this coding style if you want to make a pull request to this project. And following the coding style strictly will make the Doc\TeX{} compiler for Visual Studio Code snippets run properly.
 
 \subsection{Framework Code}
 
@@ -606,11 +616,11 @@ The following table shows the compilation test of older \TeX\ distribution, wher
   \scriptsize
   Copyright (C) Shanghai Jiao Tong University
 
-  The definition in this file is refered to the Visual Identity System
+  The definition in this file is referred to the Visual Identity System
   from Shanghai Jiao Tong University (SJTU).
   See \href{https://vi.sjtu.edu.cn}{https://vi.sjtu.edu.cn} for more information.
 
-  SJTUG implements the design, but doesn't hold the copyright.
+  SJTUG implements the design but doesn't hold the copyright.
   Any commercial usage in this file should be acknowledged by
   the administration of SJTU.
   More infomation about the license,

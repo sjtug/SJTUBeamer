@@ -21,7 +21,7 @@
 %% limitations under the License.
 %% ------------------------------------------------------------------------
 \NeedsTeXFormat{LaTeX2e}
-\ProvidesPackage{beamerinnerthemesjtubeamer}[2021/10/05 sjtubeamer inner theme v2.2.3]
+\ProvidesPackage{beamerinnerthemesjtubeamer}[2021/11/22 sjtubeamer inner theme v2.3.2]
 \RequirePackage{sjtuvi}
 \RequirePackage{tcolorbox}
 \DeclareOptionBeamer{maxplus}{\def\sjtubeamer@inner@cover{maxplus}}
@@ -232,7 +232,9 @@
   top=2pt,
   bottom=2pt
 }
-\def\paragraph#1{\highlight{#1}~}
+\providecommand{\paragraph}[1]{
+  \highlight{#1}~
+}
 \newtcolorbox{stampbox}[1][cprimary]{%
   capture=hbox,
   enhanced,
