@@ -123,7 +123,13 @@ function gen_snippets()
                     captured = 1
                 elseif comm_param ~= nil then
                     comm_param = tonumber(comm_param)
-                    macro_body = macro_body .. "\\" .. in_macro
+                    if string.sub(in_macro,1,1) == "\\" then
+                        macro_body = macro_body .. "\\" .. in_macro
+                        captured = 2
+                    else -- an environment
+                        macro_body = macro_body .. "\\n\\\\begin{" .. in_macro .. "}"
+                        captured = 3
+                    end
                     if param_default ~= "" then
                         param_default = string.gsub(string.sub(param_default, 2, -2),"\\","\\\\") -- remove square brackets
                         macro_body = macro_body .. "[${1:" .. param_default .. "}]"
@@ -133,7 +139,9 @@ function gen_snippets()
                     for i=2,comm_param do
                         macro_body = macro_body .. "{$" .. i  .."}"
                     end
-                    captured = 2
+                    if captured == 3 then
+                        macro_body = macro_body .. "\\n\\t$" .. comm_param + 1 .. "\\n\\\\end{" .. in_macro .. "}\\n"
+                    end
                 -- Find begin macrocode environment, see Coding Style 2.3.2
                 elseif line == "%    \\begin{macrocode}" then
                     in_code = true
@@ -146,7 +154,7 @@ function gen_snippets()
             end
 
             -- Find begin macro DocTeX environment, see Coding Style 2.3.1
-            local env_beg = string.match(line, "\\begin{macro}{(\\%a+)}")
+            local env_beg = string.match(line, "\\begin{macro}{(\\*%a+)}")
             if env_beg ~= nil then
                 in_macro = env_beg
             end
@@ -155,7 +163,7 @@ function gen_snippets()
                 -- This macro is processed complete.
                 local match_comm = string.gsub(in_macro, "\\", "\\\\")
                 local scope = "doctex,tex"
-                if captured == 2 or macro_body == "" then
+                if captured >= 2 or macro_body == "" then
                     scope = scope .. ",latex"   -- public use
                 end
                 if macro_body == "" then
@@ -164,8 +172,7 @@ function gen_snippets()
                 snippetfile:write("\t\"" .. string.gsub(in_macro,"\\","") .. "\": {\n")
                 snippetfile:write("\t\t\"scope\": \"" .. scope .. "\",\n")
                 snippetfile:write("\t\t\"prefix\": \"" .. match_comm .. "\",\n")
-                snippetfile:write("\t\t\"body\": \"")
-                snippetfile:write(macro_body .. "\",\n")
+                snippetfile:write("\t\t\"body\": \"" .. macro_body .. "\",\n")
                 snippetfile:write("\t\t\"description\": \"" .. macro_desc .. "\"\n")
                 snippetfile:write("\t},\n")
                 in_macro = nil

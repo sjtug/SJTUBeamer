@@ -89,6 +89,18 @@
 		"body": "\\paragraph{$1}",
 		"description": "Use \\highlight macro for making contrast.\nSince beamer has deleted \\paragraph macro in this class, this template defines a macro for that to indicate it is another point and more paragraph-like. It is useful for the migration from article class.\n"
 	},
+	"stampbox": {
+		"scope": "doctex,tex,latex",
+		"prefix": "stampbox",
+		"body": "\n\\begin{stampbox}[${1:cprimary}]\n\t$2\n\\end{stampbox}\n",
+		"description": "Make a stampbox border, which is a decoration advice from SJTU VI. It has the dependency on stampline from sjtuvi package.\n"
+	},
+	"codeblock": {
+		"scope": "doctex,tex,latex",
+		"prefix": "codeblock",
+		"body": "\n\\begin{codeblock}[${1:}]{$2}\n\t$3\n\\end{codeblock}\n",
+		"description": "Code block environment is made for presenting code in an obvious way. Two parameters are required. The first parameter is passed to listing, which mostly sets the language to highlight, see the listings package for more details. And the second parameter receives the title to make.\n"
+	},
 	"DefineOption": {
 		"scope": "doctex,tex",
 		"prefix": "\\DefineOption",
@@ -107,10 +119,22 @@
 		"body": "\\definelogo{$1}{$2}{$3}",
 		"description": "Define a mask picture to make its different color variants.\nThe first argument assigns the file name and the second sets the horizontal cropping and the third sets the vertical cropping. Notice that the cropping is symmetrical (double the length). When the horizontal cropping is greater than the vertical cropping, the mask will be placed by its height, otherwise by its width. The domain for both cropping parameters is 0 to 1.\nYou should define a logo \\definelogo{mylogo}{<hc>}{<vc>} then use it in the contents like:\n\\mylogo[white], where the optional parameter could be the override color beyond the control of main logo color system or opacity=... to identify the opacity you want or any other parameter for a TikZ node.\nRemember, the picture should be in the vi/ folder.\nThe externalization will be disabled when using this system to generate logos, locally.\n"
 	},
+	"stamp": {
+		"scope": "doctex,tex,latex",
+		"prefix": "stamp",
+		"body": "stamp",
+		"description": "Declare stamp pattern to make a stamp array.\n\nThe newest version of TikZ provides the interface to user-define a pattern. Obeying compatibility philosophy, use \\pgfkeyvalueof interface to get parameters in a standard way. The unit is first tested in a standalone file and previewed by TikZEdt.\n"
+	},
 	"stamparray": {
 		"scope": "doctex,tex,latex",
 		"prefix": "\\stamparray",
 		"body": "\\stamparray{$1}{$2}{$3}",
 		"description": "Create the stamp array in the TikZ environment.\n\nNotice \\TeX{} is not good at handling parameters. Always remember to store it into a temporary variable. Register \\pgfmathresult will store the result of \\pgfmathparse.\n"
+	},
+	"stampline": {
+		"scope": "doctex,tex,latex",
+		"prefix": "stampline",
+		"body": "stampline",
+		"description": "Declare a decoration to make a loop stampline.\n\nNotice that auto corner on length is open to avoid spikes where the state hasn't meet final yet.\n"
 	},
 }
