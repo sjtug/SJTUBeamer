@@ -105,7 +105,9 @@ function gen_snippets()
     end
     snippetfile = io.open(snippetdir .. "/" .. snippetfilename, "w")
     snippetfile:write("{\n")
-    for _, p in ipairs(filelist(sourcefiledir, "*.dtx")) do
+    dtx_filelist = filelist(sourcefiledir, "*.dtx")
+    table.sort(dtx_filelist)        -- sort to avoid difference
+    for _, p in ipairs(dtx_filelist) do
         local in_macro = nil
         local macro_body = ""
         local macro_desc = ""
