@@ -95,7 +95,6 @@ end
 
 snippetdir = "../.vscode"
 snippetfilename = "sjtubeamer.code-snippets"
-scope = 'latex'
 
 -- Generate Visual Studio Code snippets
 -- To make it run properly, please follow the Coding Style guideline.
@@ -150,21 +149,22 @@ function gen_snippets()
             local env_beg = string.match(line, "\\begin{macro}{(\\%a+)}")
             if env_beg ~= nil then
                 in_macro = env_beg
-                local match_comm = string.gsub(env_beg, "\\", "\\\\")
-                snippetfile:write("\t\"" .. string.gsub(env_beg,"\\","") .. "\": {\n")
-                snippetfile:write("\t\t\"scope\": \"" .. scope .. "\",\n")
-                snippetfile:write("\t\t\"prefix\": \"" .. match_comm .. "\",\n")
-                snippetfile:write("\t\t\"body\": \"")
             end
             -- Find end macro DocTeX environment, see Coding Style 2.3.1
             if string.match(line, "\\end{macro}") ~= nil and in_macro ~= nil then
                 -- This macro is processed complete.
+                local match_comm = string.gsub(in_macro, "\\", "\\\\")
+                local scope = "doctex,tex"
+                if captured == 2 or macro_body == "" then
+                    scope = scope .. ",latex"   -- public use
+                end
                 if macro_body == "" then
-                    macro_body = string.gsub(in_macro, "\\", "\\\\")
+                    macro_body = match_comm     -- no abvious definition
                 end
-                if captured == 1 then
-                    macro_desc = "[INTERNAL] " .. macro_desc
-                end
+                snippetfile:write("\t\"" .. string.gsub(in_macro,"\\","") .. "\": {\n")
+                snippetfile:write("\t\t\"scope\": \"" .. scope .. "\",\n")
+                snippetfile:write("\t\t\"prefix\": \"" .. match_comm .. "\",\n")
+                snippetfile:write("\t\t\"body\": \"")
                 snippetfile:write(macro_body .. "\",\n")
                 snippetfile:write("\t\t\"description\": \"" .. macro_desc .. "\"\n")
                 snippetfile:write("\t},\n")

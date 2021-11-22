@@ -1,114 +1,114 @@
 {
 	"logo": {
-		"scope": "latex",
+		"scope": "doctex,tex,latex",
 		"prefix": "\\logo",
 		"body": "\\logo",
 		"description": "Define logo.\n"
 	},
 	"bgcenterbox": {
-		"scope": "latex",
+		"scope": "doctex,tex,latex",
 		"prefix": "\\bgcenterbox",
 		"body": "\\bgcenterbox{$1}",
 		"description": "Define a command for USERS to make a centered background box easily. Move the defination on \\sjtubeamer@logocolor to the inner environment, to avoid the shift on centering. And since the definition has already been moved into the inner group, the definition here is \\emph{locale} and no more stack saving is needed.\n"
 	},
 	"titlegraphic": {
-		"scope": "latex",
+		"scope": "doctex,tex,latex",
 		"prefix": "\\titlegraphic",
 		"body": "\\titlegraphic",
 		"description": " Define the title grahic image.\n\n NOTICE: if you are using your own title graphic, please use png image with predefined color and transparency. Since it is beyond the control of logo color system. Or you could use the provided command in the sjtuvi library to create your own masked picture in order to follow the logo color system (The provided picture should be white and transparent in the background).\n\nmax theme has the background.\n"
 	},
 	"coverpage": {
-		"scope": "latex",
+		"scope": "doctex,tex",
 		"prefix": "\\coverpage",
 		"body": "\\coverpage{$1}",
-		"description": "[INTERNAL] Common command for \\titlepage and \\bottompage. Disable externalization for generating title page and bottom page, locally.\nSince the definition on \\sjtubeamer@logocolor is defined in a group, the stack is not necessary to store the value.\n"
+		"description": "Common command for \\titlepage and \\bottompage. Disable externalization for generating title page and bottom page, locally.\nSince the definition on \\sjtubeamer@logocolor is defined in a group, the stack is not necessary to store the value.\n"
 	},
 	"titlepage": {
-		"scope": "latex",
+		"scope": "doctex,tex",
 		"prefix": "\\titlepage",
 		"body": "\\titlepage",
-		"description": "[INTERNAL] Call the title page template to make a title page. This is a patch for the original \\titlepage command, to fit with the logo color system.\n"
+		"description": "Call the title page template to make a title page. This is a patch for the original \\titlepage command, to fit with the logo color system.\n"
 	},
 	"maketitle": {
-		"scope": "latex",
+		"scope": "doctex,tex,latex",
 		"prefix": "\\maketitle",
 		"body": "\\maketitle[${1:\\sjtubeamer@inner@cover}]",
 		"description": "Patch make title command. It will receive an optional argument for switching different type of title page. The set on beamer template is inside a group, so the setting is locale.\n"
 	},
 	"bottompage": {
-		"scope": "latex",
+		"scope": "doctex,tex",
 		"prefix": "\\bottompage",
 		"body": "\\bottompage",
-		"description": "[INTERNAL] Call the bottom page template to make a bottom page.\n"
+		"description": "Call the bottom page template to make a bottom page.\n"
 	},
 	"bottomthanks": {
-		"scope": "latex",
+		"scope": "doctex,tex",
 		"prefix": "\\bottomthanks",
 		"body": "\\bottomthanks",
-		"description": "[INTERNAL] The \"Thank You\" caption in the bottom page.\n"
+		"description": "The \"Thank You\" caption in the bottom page.\n"
 	},
 	"makebottom": {
-		"scope": "latex",
+		"scope": "doctex,tex,latex",
 		"prefix": "\\makebottom",
 		"body": "\\makebottom[${1:\\sjtubeamer@inner@cover}]",
 		"description": "Make the bottom page. Not a built-in command.\nRedefinition on \\beamer@writeslideentrty locally will remove the corresponding navigation dot for miniframe outer theme. This is not necessary for title page, since it should not belong to any sections.\n"
 	},
 	"partpage": {
-		"scope": "latex",
+		"scope": "doctex,tex,latex",
 		"prefix": "\\partpage",
 		"body": "\\partpage",
 		"description": "Define the part page beamer template.\n"
 	},
 	"part": {
-		"scope": "latex",
+		"scope": "doctex,tex,latex",
 		"prefix": "\\part",
 		"body": "\\part",
 		"description": "Redirect the part command to make a part page.\nRedefinition on \\beamer@writeslideentrty locally will remove the corresponding navigation dot like what it has been done in the bottom page.\n"
 	},
 	"sectionpage": {
-		"scope": "latex",
+		"scope": "doctex,tex,latex",
 		"prefix": "\\sectionpage",
 		"body": "\\sectionpage",
 		"description": "Define the section page beamer template.\n"
 	},
 	"subsectionpage": {
-		"scope": "latex",
+		"scope": "doctex,tex,latex",
 		"prefix": "\\subsectionpage",
 		"body": "\\subsectionpage",
 		"description": "Define the subection page beamer template.\n"
 	},
 	"highlight": {
-		"scope": "latex",
+		"scope": "doctex,tex,latex",
 		"prefix": "\\highlight",
 		"body": "\\highlight[${1:cprimary}]",
 		"description": "Highlight the given text. Create a primary color background block with white as foreground.\n"
 	},
 	"paragraph": {
-		"scope": "latex",
+		"scope": "doctex,tex,latex",
 		"prefix": "\\paragraph",
 		"body": "\\paragraph{$1}",
 		"description": "Use \\highlight macro for making contrast.\nSince beamer has deleted \\paragraph macro in this class, this template defines a macro for that to indicate it is another point and more paragraph-like. It is useful for the migration from article class.\n"
 	},
 	"DefineOption": {
-		"scope": "latex",
+		"scope": "doctex,tex",
 		"prefix": "\\DefineOption",
 		"body": "\\DefineOption{$1}{$2}{$3}",
-		"description": "[INTERNAL] Define the beamer option on the corresponding package, key and value.\n"
+		"description": "Define the beamer option on the corresponding package, key and value.\n"
 	},
 	"EqualOption": {
-		"scope": "latex",
+		"scope": "doctex,tex",
 		"prefix": "\\EqualOption",
 		"body": "\\EqualOption",
-		"description": "[INTERNAL] To check if the option on package, key is equal to value.\n\nHere, a dummy trick is used to pass the if condition.\nSince LaTeX handles \\if differently.\n\\iftrue will eliminate the nearest \\else and \\fi but remains other extra \\fi and throws errors.\nTo avoid this, if the macro is expanded after \\if, T=T, the condition holds and finish the current pair. And continues to process the real defined macro. This solution is somehow to combat against the \\LaTeX compiler. In modern \\LaTeX 3, it is not so nasty to deal with neseted conditions. \n\\iffalse doesn't need to be considered.\n"
+		"description": "To check if the option on package, key is equal to value.\n\nHere, a dummy trick is used to pass the if condition.\nSince LaTeX handles \\if differently.\n\\iftrue will eliminate the nearest \\else and \\fi but remains other extra \\fi and throws errors.\nTo avoid this, if the macro is expanded after \\if, T=T, the condition holds and finish the current pair. And continues to process the real defined macro. This solution is somehow to combat against the \\LaTeX compiler. In modern \\LaTeX 3, it is not so nasty to deal with neseted conditions. \n\\iffalse doesn't need to be considered.\n"
 	},
 	"definelogo": {
-		"scope": "latex",
+		"scope": "doctex,tex,latex",
 		"prefix": "\\definelogo",
 		"body": "\\definelogo{$1}{$2}{$3}",
 		"description": "Define a mask picture to make its different color variants.\nThe first argument assigns the file name and the second sets the horizontal cropping and the third sets the vertical cropping. Notice that the cropping is symmetrical (double the length). When the horizontal cropping is greater than the vertical cropping, the mask will be placed by its height, otherwise by its width. The domain for both cropping parameters is 0 to 1.\nYou should define a logo \\definelogo{mylogo}{<hc>}{<vc>} then use it in the contents like:\n\\mylogo[white], where the optional parameter could be the override color beyond the control of main logo color system or opacity=... to identify the opacity you want or any other parameter for a TikZ node.\nRemember, the picture should be in the vi/ folder.\nThe externalization will be disabled when using this system to generate logos, locally.\n"
 	},
 	"stamparray": {
-		"scope": "latex",
+		"scope": "doctex,tex,latex",
 		"prefix": "\\stamparray",
 		"body": "\\stamparray{$1}{$2}{$3}",
 		"description": "Create the stamp array in the TikZ environment.\n\nNotice \\TeX{} is not good at handling parameters. Always remember to store it into a temporary variable. Register \\pgfmathresult will store the result of \\pgfmathparse.\n"
