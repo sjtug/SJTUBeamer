@@ -166,6 +166,9 @@ function gen_snippets()
             if string.match(line, "\\end{macro}") ~= nil and in_macro ~= nil then
                 -- This macro is processed complete.
                 local match_comm = string.gsub(in_macro, "\\", "\\\\")
+                if captured == 3 then
+                    match_comm = "\\n\\\\begin{" .. match_comm
+                end
                 local scope = "doctex,tex"
                 if (captured >= 2 or macro_body == "") and
                     string.find(in_macro,"@") == nil then

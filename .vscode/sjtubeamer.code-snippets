@@ -127,13 +127,13 @@
 	},
 	"stampbox": {
 		"scope": "doctex,tex,latex",
-		"prefix": "stampbox",
+		"prefix": "\n\\begin{stampbox",
 		"body": "\n\\begin{stampbox}[${1:cprimary}]\n\t$2\n\\end{stampbox}\n",
 		"description": "Make a stampbox border, which is a decoration advice from SJTU VI. It has the dependency on stampline from sjtuvi package.\n"
 	},
 	"codeblock": {
 		"scope": "doctex,tex,latex",
-		"prefix": "codeblock",
+		"prefix": "\n\\begin{codeblock",
 		"body": "\n\\begin{codeblock}[${1:}]{$2}\n\t$3\n\\end{codeblock}\n",
 		"description": "Code block environment is made for presenting code in an obvious way. Two parameters are required. The first parameter is passed to listing, which mostly sets the language to highlight, see the listings package for more details. And the second parameter receives the title to make.\n"
 	},
