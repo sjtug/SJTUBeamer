@@ -218,9 +218,6 @@ TSWLatexianTemp*
 # KBibTeX
 *~[0-9]*
 
-# VSCode
-.vscode/*
-
 # auto folder when using emacs and auctex
 ./auto/*
 *.el

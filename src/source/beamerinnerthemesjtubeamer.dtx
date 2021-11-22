@@ -16,7 +16,7 @@
 % \iffalse
 %<*package>
 \NeedsTeXFormat{LaTeX2e}
-\ProvidesPackage{beamerinnerthemesjtubeamer}[2021/10/29 sjtubeamer inner theme v2.3.0]
+\ProvidesPackage{beamerinnerthemesjtubeamer}[2021/11/22 sjtubeamer inner theme v2.3.2]
 %</package>
 % \fi
 % \CheckSum{0}
@@ -465,7 +465,9 @@
 %   Use \verb"\highlight" macro for making contrast.
 %   Since beamer has deleted \verb"\paragraph" macro in this class, this template defines a macro for that to indicate it is another point and more paragraph-like. It is useful for the migration from \verb"article" class.
 %    \begin{macrocode}
-\def\paragraph#1{\highlight{#1}~}
+\providecommand{\paragraph}[1]{
+  \highlight{#1}~
+}
 %    \end{macrocode}
 % \end{macro}
 %
