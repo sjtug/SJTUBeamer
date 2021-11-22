@@ -139,8 +139,10 @@ function gen_snippets()
                     for i=2,comm_param do
                         macro_body = macro_body .. "{$" .. i  .."}"
                     end
-                    if captured == 3 then
+                    if captured == 3 then   -- close the environment
                         macro_body = macro_body .. "\\n\\t$" .. comm_param + 1 .. "\\n\\\\end{" .. in_macro .. "}\\n"
+                    elseif string.find(line, "command{") == nil then -- it is a definition method from 3rd party package, which often requires an applying region.
+                        macro_body = macro_body .. "{$" .. comm_param + 1 .. "}"
                     end
                 -- Find begin macrocode environment, see Coding Style 2.3.2
                 elseif line == "%    \\begin{macrocode}" then
@@ -154,7 +156,7 @@ function gen_snippets()
             end
 
             -- Find begin macro DocTeX environment, see Coding Style 2.3.1
-            local env_beg = string.match(line, "\\begin{macro}{(\\*%a+)}")
+            local env_beg = string.match(line, "\\begin{macro}{(\\*[%a@]+)}")
             if env_beg ~= nil then
                 in_macro = env_beg
             end
@@ -163,11 +165,16 @@ function gen_snippets()
                 -- This macro is processed complete.
                 local match_comm = string.gsub(in_macro, "\\", "\\\\")
                 local scope = "doctex,tex"
-                if captured >= 2 or macro_body == "" then
+                if (captured >= 2 or macro_body == "") and
+                    string.find(in_macro,"@") == nil then
                     scope = scope .. ",latex"   -- public use
                 end
                 if macro_body == "" then
                     macro_body = match_comm     -- no abvious definition
+                    if string.sub(in_macro,1,1) == "\\" and     -- a macro
+                        string.find(in_macro,"@") == nil then   -- not an internal variable, see Coding Style 2.1.4
+                        macro_body = macro_body .. "{$1}"       -- it is more like an interface
+                    end
                 end
                 snippetfile:write("\t\"" .. string.gsub(in_macro,"\\","") .. "\": {\n")
                 snippetfile:write("\t\t\"scope\": \"" .. scope .. "\",\n")

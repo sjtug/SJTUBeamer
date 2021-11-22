@@ -1,8 +1,44 @@
 {
+	"sjtubeamer@color@color": {
+		"scope": "doctex,tex",
+		"prefix": "\\sjtubeamer@color@color",
+		"body": "\\sjtubeamer@color@color",
+		"description": ""
+	},
+	"sjtubeamer@color@lum": {
+		"scope": "doctex,tex",
+		"prefix": "\\sjtubeamer@color@lum",
+		"body": "\\sjtubeamer@color@lum",
+		"description": ""
+	},
+	"sjtubeamer@inner@cover": {
+		"scope": "doctex,tex",
+		"prefix": "\\sjtubeamer@inner@cover",
+		"body": "\\sjtubeamer@inner@cover",
+		"description": ""
+	},
+	"sjtubeamer@inner@lang": {
+		"scope": "doctex,tex",
+		"prefix": "\\sjtubeamer@inner@lang",
+		"body": "\\sjtubeamer@inner@lang",
+		"description": ""
+	},
+	"sjtubeamer@inner@color": {
+		"scope": "doctex,tex",
+		"prefix": "\\sjtubeamer@inner@color",
+		"body": "\\sjtubeamer@inner@color",
+		"description": ""
+	},
+	"sjtubeamer@logocolor": {
+		"scope": "doctex,tex",
+		"prefix": "\\sjtubeamer@logocolor",
+		"body": "\\sjtubeamer@logocolor",
+		"description": "Change the color variable that controls the logo color to current main color of this theme. Since this template doesn't design a dark background for the contents (it is really not easy to handle with the contents for a dark background).\n"
+	},
 	"logo": {
 		"scope": "doctex,tex,latex",
 		"prefix": "\\logo",
-		"body": "\\logo",
+		"body": "\\logo{$1}",
 		"description": "Define logo.\n"
 	},
 	"bgcenterbox": {
@@ -14,7 +50,7 @@
 	"titlegraphic": {
 		"scope": "doctex,tex,latex",
 		"prefix": "\\titlegraphic",
-		"body": "\\titlegraphic",
+		"body": "\\titlegraphic{$1}",
 		"description": " Define the title grahic image.\n\n NOTICE: if you are using your own title graphic, please use png image with predefined color and transparency. Since it is beyond the control of logo color system. Or you could use the provided command in the sjtuvi library to create your own masked picture in order to follow the logo color system (The provided picture should be white and transparent in the background).\n\nmax theme has the background.\n"
 	},
 	"coverpage": {
@@ -56,31 +92,31 @@
 	"partpage": {
 		"scope": "doctex,tex,latex",
 		"prefix": "\\partpage",
-		"body": "\\partpage",
+		"body": "\\partpage{$1}",
 		"description": "Define the part page beamer template.\n"
 	},
 	"part": {
 		"scope": "doctex,tex,latex",
 		"prefix": "\\part",
-		"body": "\\part",
+		"body": "\\part{$1}",
 		"description": "Redirect the part command to make a part page.\nRedefinition on \\beamer@writeslideentrty locally will remove the corresponding navigation dot like what it has been done in the bottom page.\n"
 	},
 	"sectionpage": {
 		"scope": "doctex,tex,latex",
 		"prefix": "\\sectionpage",
-		"body": "\\sectionpage",
+		"body": "\\sectionpage{$1}",
 		"description": "Define the section page beamer template.\n"
 	},
 	"subsectionpage": {
 		"scope": "doctex,tex,latex",
 		"prefix": "\\subsectionpage",
-		"body": "\\subsectionpage",
+		"body": "\\subsectionpage{$1}",
 		"description": "Define the subection page beamer template.\n"
 	},
 	"highlight": {
 		"scope": "doctex,tex,latex",
 		"prefix": "\\highlight",
-		"body": "\\highlight[${1:cprimary}]",
+		"body": "\\highlight[${1:cprimary}]{$2}",
 		"description": "Highlight the given text. Create a primary color background block with white as foreground.\n"
 	},
 	"paragraph": {
@@ -100,6 +136,54 @@
 		"prefix": "codeblock",
 		"body": "\n\\begin{codeblock}[${1:}]{$2}\n\t$3\n\\end{codeblock}\n",
 		"description": "Code block environment is made for presenting code in an obvious way. Two parameters are required. The first parameter is passed to listing, which mostly sets the language to highlight, see the listings package for more details. And the second parameter receives the title to make.\n"
+	},
+	"sjtubeamer@outer@nav": {
+		"scope": "doctex,tex",
+		"prefix": "\\sjtubeamer@outer@nav",
+		"body": "\\sjtubeamer@outer@nav",
+		"description": ""
+	},
+	"sjtubeamer@outer@logopos": {
+		"scope": "doctex,tex",
+		"prefix": "\\sjtubeamer@outer@logopos",
+		"body": "\\sjtubeamer@outer@logopos",
+		"description": ""
+	},
+	"sjtubeamer@cover": {
+		"scope": "doctex,tex",
+		"prefix": "\\sjtubeamer@cover",
+		"body": "\\sjtubeamer@cover",
+		"description": "This macro selects the cover theme.\n\\begin{description}\n\\item[maxplus] The titlegraphic will be a photo.\n\\item[max] The background will be the photo.\n\\item[min] The design will be minimalistic.\n\\item[my]Reserved interface for developers for customized title page and bottom page.\n\\end{description}\n\n$\\rightarrow$ The following will demostrates how to pass options between files.\n\n$\\rightarrow$ To set up an option, use \\DeclareOptionBeamer to let beamer theme receive such an option and store the value into a variable.\n\n$\\rightarrow$ To make the variable easy to follow and avoid duplicates, the naming system is as follows:\n\\begin{itemize}\n\\item Start with the project name sjtubeamer.\n\\item Split by @ symbol and move to the next level.\n\\item The final level should be the variable name itself.\n\\end{itemize}\n"
+	},
+	"sjtubeamer@color": {
+		"scope": "doctex,tex",
+		"prefix": "\\sjtubeamer@color",
+		"body": "\\sjtubeamer@color",
+		"description": "Choose the main color palette.\n\\begin{description}\n\\item[red] The red color palatte. sjtuRed*\n\\item[blue] The blue color palatte. sjtuBlue*\n\\end{description}\n\n"
+	},
+	"sjtubeamer@lum": {
+		"scope": "doctex,tex",
+		"prefix": "\\sjtubeamer@lum",
+		"body": "\\sjtubeamer@lum",
+		"description": "Decide whether it is in light mode or dark mode. Switch the lumination.\n"
+	},
+	"sjtubeamer@lang": {
+		"scope": "doctex,tex",
+		"prefix": "\\sjtubeamer@lang",
+		"body": "\\sjtubeamer@lang",
+		"description": "Set the main language of this beamer. If the user is using ctexbeamer class, the default option will be Chinese. If the user use ctex package after using this theme, such an advanced user should specify the language to Chinese manually.\n\nTODO: may be a built in support for Chinese will be used in the future. Just taken \\RequirePackage[scheme=plain]{ctex} for basic Chinese character support.\n"
+	},
+	"sjtubeamer@nav": {
+		"scope": "doctex,tex",
+		"prefix": "\\sjtubeamer@nav",
+		"body": "\\sjtubeamer@nav",
+		"description": "Choose the outer theme for this template.\n"
+	},
+	"sjtubeamer@logopos": {
+		"scope": "doctex,tex",
+		"prefix": "\\sjtubeamer@logopos",
+		"body": "\\sjtubeamer@logopos",
+		"description": "Choose the override outer logo position. No default option will get executed since it has already been executed by the selection of \\sjtubeamer@cover.\n"
 	},
 	"DefineOption": {
 		"scope": "doctex,tex",
