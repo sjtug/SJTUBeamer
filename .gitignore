@@ -252,8 +252,7 @@ thesis-bot.yml
 
 *.bak*
 
-./build/
-src/build/
+build/
 build-*.pdf
 build-*.tex
 

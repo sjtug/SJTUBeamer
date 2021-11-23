@@ -199,19 +199,19 @@
 %   Otherwise, the fade tile of stamp array will get covered on top of the background rectangle.
 %   \verb"stamparray" is defined in \verb"SJTUvi". Then, a fade right covers this array layer and a center fade covers the previous result.
 %    \begin{macrocode}
-%  \ifbeamer@draftmode%
-%  \else%
-%    \begin{tikzpicture}[overlay]
-%      \stamparray{20pt}
-%      {(-0.2*\the\paperwidth,-1*\the\paperheight)}
-%      {(1*\the\paperwidth, 0.2*\the\paperheight)}
-%      \fill [bg,path fading=fade right]
-%      (-0.2*\the\paperwidth,-1*\the\paperheight) rectangle
-%      (1*\the\paperwidth, 0.2*\the\paperheight);
-%      \fill [bg,path fading=center fade,xshift=-10pt,yshift=-20pt]
-%      (0.2*\the\paperwidth,0) circle [radius=\the\paperwidth];
-%    \end{tikzpicture}
-%  \fi%
+  %\ifbeamer@draftmode%
+  %\else%
+  %  \begin{tikzpicture}[overlay]
+  %    \stamparray{20pt}
+  %    {(-0.2*\the\paperwidth,-1*\the\paperheight)}
+  %    {(1*\the\paperwidth, 0.2*\the\paperheight)}
+  %    \fill [bg,path fading=fade right]
+  %    (-0.2*\the\paperwidth,-1*\the\paperheight) rectangle
+  %    (1*\the\paperwidth, 0.2*\the\paperheight);
+  %    \fill [bg,path fading=center fade,xshift=-10pt,yshift=-20pt]
+  %    (0.2*\the\paperwidth,0) circle [radius=\the\paperwidth];
+  %  \end{tikzpicture}
+  %\fi%
 %    \end{macrocode}
 %   Set a constraint in the vertical mode to make the following contents centered in the middle of the slide.
 %    \begin{macrocode}
