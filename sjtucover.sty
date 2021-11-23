@@ -20,17 +20,6 @@
 \NeedsTeXFormat{LaTeX2e}
 \ProvidesPackage{sjtucover}[2021/11/22 cover library for sjtubeamer v2.3.2]
 \RequirePackage{sjtuvi}
-\DeclareOptionBeamer{maxplus}{\def\sjtubeamer@sjtucover@cover{maxplus}}
-\DeclareOptionBeamer{max}{\def\sjtubeamer@sjtucover@cover{max}}
-\DeclareOptionBeamer{min}{\def\sjtubeamer@sjtucover@cover{min}}
-\DeclareOptionBeamer{my}{\def\sjtubeamer@sjtucover@cover{my}} % reserved for customization
-\ExecuteOptionsBeamer{
-  maxplus,
-  min,
-  my,
-  max,
-}
-\ProcessOptionsBeamer
 \defbeamertemplate*{title page}{maxplus}[1][]
 {
   \nointerlineskip%
@@ -128,19 +117,19 @@
     \fill [palette primary.bg] (-0.2*\the\paperwidth,-1*\the\paperheight)
     rectangle (1*\the\paperwidth, 0.2*\the\paperheight);
   \end{tikzpicture}
-  %\ifbeamer@draftmode%
-  %\else%
-  %  \begin{tikzpicture}[overlay]
-  %    \stamparray{20pt}
-  %    {(-0.2*\the\paperwidth,-1*\the\paperheight)}
-  %    {(1*\the\paperwidth, 0.2*\the\paperheight)}
-  %    \fill [bg,path fading=fade right]
-  %    (-0.2*\the\paperwidth,-1*\the\paperheight) rectangle
-  %    (1*\the\paperwidth, 0.2*\the\paperheight);
-  %    \fill [bg,path fading=center fade,xshift=-10pt,yshift=-20pt]
-  %    (0.2*\the\paperwidth,0) circle [radius=\the\paperwidth];
-  %  \end{tikzpicture}
-  %\fi%
+  % \ifbeamer@draftmode%
+  % \else%
+  %   \begin{tikzpicture}[overlay]
+  %     \stamparray{20pt}
+  %     {(-0.2*\the\paperwidth,-1*\the\paperheight)}
+  %     {(1*\the\paperwidth, 0.2*\the\paperheight)}
+  %     \fill [bg,path fading=fade right]
+  %     (-0.2*\the\paperwidth,-1*\the\paperheight) rectangle
+  %     (1*\the\paperwidth, 0.2*\the\paperheight);
+  %     \fill [bg,path fading=center fade,xshift=-10pt,yshift=-20pt]
+  %     (0.2*\the\paperwidth,0) circle [radius=\the\paperwidth];
+  %   \end{tikzpicture}
+  % \fi%
   \vfill
   \begingroup
   \centering
@@ -360,8 +349,6 @@
   \usebeamercolor{palette primary}
   \def\sjtubeamer@logocolor{palette primary.fg}
 }
-\setbeamertemplate{title page}[\sjtubeamer@sjtucover@cover]
-\setbeamertemplate{bottom page}[\sjtubeamer@sjtucover@cover][Thanks]
 \endinput
 %%
 %% End of file `sjtucover.sty'.

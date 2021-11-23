@@ -101,7 +101,6 @@
 %
 %    \begin{macrocode}
 \ProcessOptionsBeamer
-\PassOptionsToPackage{\sjtubeamer@inner@cover}{sjtucover}
 %    \end{macrocode}
 %
 %   Hard-coded color for blocks. A replica of color theme.
@@ -310,6 +309,12 @@
 %   Load Cover Library to get the customized cover.
 %    \begin{macrocode}
 \RequirePackage{sjtucover}
+%    \end{macrocode}
+%
+%   Initialize the title page and bottom page when the package is loaded.
+%    \begin{macrocode}
+\setbeamertemplate{title page}[\sjtubeamer@inner@cover]
+\setbeamertemplate{bottom page}[\sjtubeamer@inner@cover][Thanks]
 %    \end{macrocode}
 %
 % \subsubsection{Part Page}
