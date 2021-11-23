@@ -128,19 +128,6 @@
     \fill [palette primary.bg] (-0.2*\the\paperwidth,-1*\the\paperheight)
     rectangle (1*\the\paperwidth, 0.2*\the\paperheight);
   \end{tikzpicture}
-  \ifbeamer@draftmode%
-  \else%
-    \begin{tikzpicture}[overlay]
-      \stamparray{20pt}
-      {(-0.2*\the\paperwidth,-1*\the\paperheight)}
-      {(1*\the\paperwidth, 0.2*\the\paperheight)}
-      \fill [bg,path fading=fade right]
-      (-0.2*\the\paperwidth,-1*\the\paperheight) rectangle
-      (1*\the\paperwidth, 0.2*\the\paperheight);
-      \fill [bg,path fading=center fade,xshift=-10pt,yshift=-20pt]
-      (0.2*\the\paperwidth,0) circle [radius=\the\paperwidth];
-    \end{tikzpicture}
-  \fi%
   \vfill
   \begingroup
   \centering
@@ -339,7 +326,7 @@
     \usebeamercolor[fg]{palette primary}
     \usebeamerfont{title}\noindent#1
     \vskip1em%
-    \usebeamerfont{subtitle}\insertauthor~$\cdot$~\inserttitle
+    \usebeamerfont{author}\insertauthor~$\cdot$~\inserttitle
   \end{beamercolorbox}%
   \vfill
   \vskip3.5em
