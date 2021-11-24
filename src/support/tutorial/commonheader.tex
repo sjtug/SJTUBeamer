@@ -5,6 +5,12 @@
 \usepackage{tcolorbox}
 \tcbuselibrary{skins}
 \tcbuselibrary{listingsutf8}
+\makeatletter
+\AtEndPreamble{     % patch the langauge if it is ctexbeamer
+    \def\sjtubeamer@lang{cn}
+    \def\sjtubeamer@inner@lang{cn}
+}
+\makeatother
 \begin{document}
     % intentionally left blank
 \end{document}
