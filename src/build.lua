@@ -114,7 +114,7 @@ function typeset_demo_tasks()
         else
             if fileexists(tutorialdir .. "/" .. pdffilename) == false then
                 local stepfile = io.open(tutorialdir .. "/" .. p, "r")
-                if cacheable and stepfile:read("l") == "\\documentclass{ctexbeamer}" then
+                if cacheable and string.match(stepfile:read("l"),"\\documentclass{ctexbeamer}") ~= nil then
                     local cachedfilename = "tmp" .. p
                     local cachedfile = io.open(tutorialdir .. "/" .. cachedfilename, "w")
                     cachedfile:write("%&commonheader\n\\endofdump\n\\usepackage{ctex}\n")
