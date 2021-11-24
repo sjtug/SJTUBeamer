@@ -21,6 +21,7 @@ typesetfiles     = {"sjtubeamerdevguide.tex","sjtubeamer.tex"}
 -- typesetfiles     = {"sjtubeamer.tex"}
 -- typesetruns      = 1 -- for debug. Some reference may not be linked.
 -- typesetdemofiles = {"min.tex"}
+cachedemo        = true -- cache the demo
 typesetsuppfiles = {"head.png","plant.jpg","test.csv","testgraph.tex","ref.bib","sjtug.pdf","sjtug_text.pdf","tutorial/"}
 
 -- Regression tests mainly test the decoupling properties between kernel modules.
@@ -103,6 +104,12 @@ function typeset_demo_tasks()
         cp(file, unpackdir, tutorialdir)
     end
     local typesetcommand = typesetexe .. " " .. typesetopts   -- patch l3build
+    local cachedemo = cachedemo or false
+    if not cachedemo then
+        -- delete the cache
+        rm(tutorialdir, "step*.pdf")
+        rm(supportdir .. "/tutorial", "step*.pdf")
+    end
     for _, p in ipairs(filelist(tutorialdir, "step*.tex")) do
         local pdffilename = string.gsub(p,".tex",".pdf")
         if p == "step0.tex" then
@@ -115,6 +122,7 @@ function typeset_demo_tasks()
             if fileexists(tutorialdir .. "/" .. pdffilename) == false then
                 local stepfile = io.open(tutorialdir .. "/" .. p, "r")
                 if cacheable and string.match(stepfile:read("l"),"\\documentclass{ctexbeamer}") ~= nil then
+                    -- use the precompiled header to compile.
                     local cachedfilename = "tmp" .. p
                     local cachedfile = io.open(tutorialdir .. "/" .. cachedfilename, "w")
                     cachedfile:write("%&commonheader\n\\endofdump\n\\usepackage{ctex}\n")
@@ -129,6 +137,10 @@ function typeset_demo_tasks()
                     if errorlevel ~= 0 then
                         print(pdffilename .. " compilation failed.")
                         return errorlevel
+                    end
+                    if cachedemo then
+                        -- cache the demo
+                        cp(pdffilename, tutorialdir, supportdir .. "/tutorial")
                     end
                 else
                     -- fallback to standard compilation.
