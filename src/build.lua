@@ -10,10 +10,10 @@ docfiledir       = "doc"
 
 if os.type == "windows" then
     typesetexe       = "pdflatex"
-    etypesetexe      = "etex -initialize"
+    etypesetexe      = "etex"
 else
     typesetexe       = "xelatex"
-    etypesetexe      = "xetex -ini"
+    etypesetexe      = "xetex"
 end
 
 typesetopts      = "-interaction=nonstopmode -shell-escape"
@@ -73,9 +73,9 @@ function typeset_demo_tasks()
     print("Please move the pdf into the support/tutorial directory.")
     print("============================================================")
     -- compiling the common header
-    local etypesetcommand = etypesetexe .. " -jobname=commonheader " .. "&" .. typesetexe .. " mylatexformat.ltx \"\"\"tutorial/commonheader.tex\"\"\""
-    print(etypesetcommand)
-    errorlevel = run(typesetdir, etypesetcommand)
+    local headerfilename = "commonheader"
+    local etypesetcommand = etypesetexe .. "  -ini -interaction=nonstopmode -jobname=" .. headerfilename .. " \"&" .. typesetexe .. "\" mylatexformat.ltx "
+    errorlevel = tex("\"\"\"" .. headerfilename .. ".tex\"\"\"", tutorialdir, etypesetcommand)
     if errorlevel ~= 0 then
         print("common header compilation failed.")
         return errorlevel
