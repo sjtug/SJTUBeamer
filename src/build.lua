@@ -60,6 +60,20 @@ function update_tag(file,content,tagname,tagdate)
     return content
 end
 
+function compile_file(dir, cmd, filename)
+    local errorlevel = 0
+    errorlevel = run(dir, cmd .. " " .. filename)
+    if string.find(filename,"+") ~= nil then
+        if string.find(filename,"-") ~= nil then
+            -- biber after compiling the first time if it is marked as "-"
+            errorlevel = biber(string.gsub(filename,".tex",""),dir)
+        end
+        -- compile the second time if it is marked as "+"
+        errorlevel = run(dir,cmd .. " " .. filename)
+    end
+    return errorlevel
+end
+
 -- Generate tutorial files before compiling the doc.
 -- NOTICE: if you want to save the tourial step pdf,
 --         please enter support/tutorial and run cache_pdf.sh
@@ -67,42 +81,66 @@ end
 function typeset_demo_tasks()
     local errorlevel = 0
     local tutorialdir = typesetdir .. "/tutorial"
-    local typesetcommand = typesetexe .. " " .. typesetopts   -- patch l3build
+
     print("============================================================")
     print("If you want to save the previous demo files")
     print("Please move the pdf into the support/tutorial directory.")
     print("============================================================")
-    -- compiling the common header
+    
+    print("Compiling precomiled header...")
+    local cacheable = true
     local headerfilename = "commonheader"
     local etypesetcommand = etypesetexe .. "  -ini -interaction=nonstopmode -jobname=" .. headerfilename .. " \"&" .. typesetexe .. "\" mylatexformat.ltx "
     errorlevel = tex("\"\"\"" .. headerfilename .. ".tex\"\"\"", tutorialdir, etypesetcommand)
     if errorlevel ~= 0 then
         print("common header compilation failed.")
-        return errorlevel
+        cacheable = false
     end
+
     -- Move generated files to the tutorial directory
     -- Since mylatexformat doesn't support relative directory well.
     for _,file in pairs(installfiles) do
         cp(file, unpackdir, tutorialdir)
     end
+    local typesetcommand = typesetexe .. " " .. typesetopts   -- patch l3build
     for _, p in ipairs(filelist(tutorialdir, "step*.tex")) do
         local pdffilename = string.gsub(p,".tex",".pdf")
-        if fileexists(tutorialdir .. "/" .. pdffilename) == false then
+        if p == "step0.tex" then
             errorlevel = run(tutorialdir,typesetcommand .. " " .. p)
-            if string.find(p,"+") ~= nil then
-                if string.find(p,"-") ~= nil then
-                    -- biber after compiling the first time if it is marked as "-"
-                    errorlevel = biber(string.gsub(p,".tex",""),tutorialdir)
-                end
-                -- compile the second time if it is marked as "+"
-                errorlevel = run(tutorialdir,typesetcommand .. " " .. p)
-            end
             if errorlevel ~= 0 then
-                print(pdffilename .. " compilation failed.")
-                return errorlevel
+                print("unable to cache, fallback to standard compilation.")
+                cacheable = false       -- compile on test caching file failed.
             end
         else
-            print(pdffilename .. " exists.")
+            if fileexists(tutorialdir .. "/" .. pdffilename) == false then
+                local stepfile = io.open(tutorialdir .. "/" .. p, "r")
+                if cacheable and stepfile:read("l") == "\\documentclass{ctexbeamer}" then
+                    local cachedfilename = "tmp" .. p
+                    local cachedfile = io.open(tutorialdir .. "/" .. cachedfilename, "w")
+                    cachedfile:write("%&commonheader\n\\endofdump\n\\usepackage{ctex}\n")
+                    for line in stepfile:lines("L") do
+                        cachedfile:write(line)
+                    end
+                    cachedfile:close()
+                    stepfile:close()
+
+                    errorlevel = compile_file(tutorialdir, typesetcommand, cachedfilename)
+                    errorlevel = ren(tutorialdir, "tmp" .. pdffilename, pdffilename)
+                    if errorlevel ~= 0 then
+                        print(pdffilename .. " compilation failed.")
+                        return errorlevel
+                    end
+                else
+                    -- fallback to standard compilation.
+                    errorlevel = compile_file(tutorialdir, typesetcommand, p)
+                    if errorlevel ~= 0 then
+                        print(pdffilename .. " compilation failed.")
+                        return errorlevel
+                    end
+                end
+            else
+                print(pdffilename .. " exists.")
+            end
         end
     end
     return 0
