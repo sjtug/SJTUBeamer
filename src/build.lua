@@ -80,17 +80,22 @@ function typeset_demo_tasks()
         print("common header compilation failed.")
         return errorlevel
     end
+    -- Move generated files to the tutorial directory
+    -- Since mylatexformat doesn't support relative directory well.
+    for _,file in pairs(installfiles) do
+        cp(file, unpackdir, tutorialdir)
+    end
     for _, p in ipairs(filelist(tutorialdir, "step*.tex")) do
         local pdffilename = string.gsub(p,".tex",".pdf")
         if fileexists(tutorialdir .. "/" .. pdffilename) == false then
-            errorlevel = tex(p,tutorialdir,typesetcommand)
+            errorlevel = run(tutorialdir,typesetcommand .. " " .. p)
             if string.find(p,"+") ~= nil then
                 if string.find(p,"-") ~= nil then
                     -- biber after compiling the first time if it is marked as "-"
                     errorlevel = biber(string.gsub(p,".tex",""),tutorialdir)
                 end
                 -- compile the second time if it is marked as "+"
-                errorlevel = tex(p,tutorialdir,typesetcommand)
+                errorlevel = run(tutorialdir,typesetcommand .. " " .. p)
             end
             if errorlevel ~= 0 then
                 print(pdffilename .. " compilation failed.")
