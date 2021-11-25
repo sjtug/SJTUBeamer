@@ -138,10 +138,6 @@ function typeset_demo_tasks()
                         print(pdffilename .. " compilation failed.")
                         return errorlevel
                     end
-                    if cachedemo then
-                        -- cache the demo
-                        cp(pdffilename, tutorialdir, supportdir .. "/tutorial")
-                    end
                 else
                     -- fallback to standard compilation.
                     errorlevel = compile_file(tutorialdir, typesetcommand, p)
@@ -149,6 +145,10 @@ function typeset_demo_tasks()
                         print(pdffilename .. " compilation failed.")
                         return errorlevel
                     end
+                end
+                if cachedemo then
+                    -- cache the demo
+                    cp(pdffilename, tutorialdir, supportdir .. "/tutorial")
                 end
             else
                 print(pdffilename .. " exists.")

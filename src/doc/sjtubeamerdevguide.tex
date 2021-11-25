@@ -575,6 +575,23 @@ The following table shows the compilation test of older \TeX\ distribution, wher
   Test       & $\surd$ & $\surd$ & $\surd$ & $\circ$ & $\circ$ & $\circ$ & $\circ$ &      \\
 \end{tabular}
 
+\subsection{Pre-Compilation}
+
+\themename\ is relatively a large project for developers. To boost up the compilation on 20+ unit tests, we introduced \texttt{mylatexformat} to cache the precompiled common header. However, this method comes with compatibility issues in that it only supports old packages \emph{without} using \texttt{fontspec} to load OpenType fonts.
+
+To dump the format on beamer, we have to reset the encoding to the old 7-bit default\cite{mylatexot1}. Since some sans fonts use a newer version. And it is not available for C\TeX{} in \hologo{XeLaTeX}, since it uses \texttt{fontspec} to load the font. What's more, if we decided to load \texttt{ctex} after loading \texttt{ctexbeamer}, the load on \texttt{ctex} will be skipped\cite{ctex}. And \themename\ has done some of the work similar to \texttt{ctexbeamer}. As a result, we need to split the document class loading line \texttt{\textbackslash documentclass\{ctexbeamer\}} into two parts, which means the loading time on \texttt{ctex} will not be saved:
+\begin{verbatim}
+%--- static -----
+\RequirePackage[OT1]{fontenc}
+\documentclass{beamer}
+%--- dynamic ---
+\endofdump
+\usepackage{ctex}
+\end{verbatim}
+
+In practice, we find that the \texttt{path fading} in Ti\emph{k}Z is not compatible with the caching mechanism, and it introduces more issues in PDF compatibility. Before it is solved in a future version of Ti\emph{k}Z, the background pattern will be commented in the title page template in \texttt{min} theme.
+
+More details about this experimental caching mechanism in \texttt{l3build doc}, see \texttt{build.lua}. And you could change the default behavior of caching the demo files by changing \texttt{cahcedemo} to \texttt{false}.
 
 \section{Developer}
 \begin{itemize}
