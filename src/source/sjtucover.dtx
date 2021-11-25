@@ -27,7 +27,7 @@
 %
 %   \subsubsection{Load Packages}
 %
-%   Load SJTU VI Library to get the definition on shapes.
+%   Load SJTU VI Library to get the definition on shapes. This will also provide \verb"\sjtubeamer@compatible" option.
 %    \begin{macrocode}
 \RequirePackage{sjtuvi}
 %    \end{macrocode}  
@@ -161,23 +161,26 @@
   \end{tikzpicture}
 %    \end{macrocode}
 %   WARNING: The pattern in the title page is now deprecated for the unstability of the \verb"fadings" library in TikZ. If you want to use the pattern, please uncomment the code segement manually. The interface of \verb"stamparry" is functional.
-%   If it is in draftmode, no pattern will get rendered.
+%   If it is in draftmode or it is not compatible, no pattern will get rendered.
 %   Otherwise, the fade tile of stamp array will get covered on top of the background rectangle.
 %   \verb"stamparray" is defined in \verb"SJTUvi". Then, a fade right covers this array layer and a center fade covers the previous result.
 %    \begin{macrocode}
-  % \ifbeamer@draftmode%
-  % \else%
-  %   \begin{tikzpicture}[overlay]
-  %     \stamparray{20pt}
-  %     {(-0.2*\the\paperwidth,-1*\the\paperheight)}
-  %     {(1*\the\paperwidth, 0.2*\the\paperheight)}
-  %     \fill [bg,path fading=fade right]
-  %     (-0.2*\the\paperwidth,-1*\the\paperheight) rectangle
-  %     (1*\the\paperwidth, 0.2*\the\paperheight);
-  %     \fill [bg,path fading=center fade,xshift=-10pt,yshift=-20pt]
-  %     (0.2*\the\paperwidth,0) circle [radius=\the\paperwidth];
-  %   \end{tikzpicture}
-  % \fi%
+  \ifx\sjtubeamer@compatible\sjtubeamer@compatible@false
+  \else
+    \ifbeamer@draftmode%
+    \else%
+      \begin{tikzpicture}[overlay]
+        \stamparray{20pt}
+        {(-0.2*\the\paperwidth,-1*\the\paperheight)}
+        {(1*\the\paperwidth, 0.2*\the\paperheight)}
+        \fill [bg,path fading=fade right]
+        (-0.2*\the\paperwidth,-1*\the\paperheight) rectangle
+        (1*\the\paperwidth, 0.2*\the\paperheight);
+        \fill [bg,path fading=center fade,xshift=-10pt,yshift=-20pt]
+        (0.2*\the\paperwidth,0) circle [radius=\the\paperwidth];
+      \end{tikzpicture}
+    \fi%
+  \fi
 %    \end{macrocode}
 %   Set a constraint in the vertical mode to make the following contents centered in the middle of the slide.
 %    \begin{macrocode}

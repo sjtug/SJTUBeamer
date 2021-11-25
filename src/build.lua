@@ -21,7 +21,7 @@ typesetfiles     = {"sjtubeamerdevguide.tex","sjtubeamer.tex"}
 -- typesetfiles     = {"sjtubeamer.tex"}
 -- typesetruns      = 1 -- for debug. Some reference may not be linked.
 -- typesetdemofiles = {"min.tex"}
-cachedemo        = true -- cache the demo
+-- cachedemo        = true -- cache the demo
 typesetsuppfiles = {"head.png","plant.jpg","test.csv","testgraph.tex","ref.bib","sjtug.pdf","sjtug_text.pdf","tutorial/"}
 
 -- Regression tests mainly test the decoupling properties between kernel modules.
@@ -85,7 +85,7 @@ function typeset_demo_tasks()
 
     print("============================================================")
     print("If you want to save the previous demo files")
-    print("Please move the pdf into the support/tutorial directory.")
+    print("Please modify the cachedemo variable in build.lua file.")
     print("============================================================")
     
     print("Compiling precomiled header...")
@@ -133,11 +133,11 @@ function typeset_demo_tasks()
                     stepfile:close()
 
                     errorlevel = compile_file(tutorialdir, typesetcommand, cachedfilename)
-                    errorlevel = ren(tutorialdir, "tmp" .. pdffilename, pdffilename)
                     if errorlevel ~= 0 then
                         print(pdffilename .. " compilation failed.")
                         return errorlevel
                     end
+                    errorlevel = ren(tutorialdir, "tmp" .. pdffilename, pdffilename)
                 else
                     -- fallback to standard compilation.
                     errorlevel = compile_file(tutorialdir, typesetcommand, p)
