@@ -430,19 +430,19 @@ The table shows the flow of parameter passing.
 
 \begin{table}[h]
   \begin{tabular}{l|>{\ttfamily}l|>{\ttfamily}l>{\ttfamily}l>{\ttfamily}l}
-          & parent                           & color                           & inner                           & outer                         \\
+            & parent                             & color                           & inner                           & outer                                    \\
     \hline
-    cover & \textbackslash{}sjtubeamer@cover &                                 & \textbackslash{}...@inner@cover &                               \\
-    color & \textbackslash{}sjtubeamer@color & \textbackslash{}...@color@color & \textbackslash{}...@inner@color &                               \\
-    lum   & \textbackslash{}sjtubeamer@lum   & \textbackslash{}...@clolor@lum  &                                 &                               \\
-    lang  & \textbackslash{}sjtubeamer@lang  &                                 & \textbackslash{}...@inner@lang  &                               \\
-    nav   & \textbackslash{}sjtubeamer@nav   &                                 &                                 & \textbackslash{}...@outer@nav
+    cover   & \textbackslash{}sjtubeamer@cover   &                                 & \textbackslash{}...@inner@cover &                                          \\
+    color   & \textbackslash{}sjtubeamer@color   & \textbackslash{}...@color@color & \textbackslash{}...@inner@color &                                          \\
+    lum     & \textbackslash{}sjtubeamer@lum     & \textbackslash{}...@clolor@lum  &                                 &                                          \\
+    lang    & \textbackslash{}sjtubeamer@lang    &                                 & \textbackslash{}...@inner@lang  &                                          \\
+    nav     & \textbackslash{}sjtubeamer@nav     &                                 &                                 & \textbackslash{}...@outer@nav            \\
+    logopos & \textbackslash{}sjtubeamer@logopos &                                 &                                 & \textbackslash{}sjtubeamer@outer@logopos \\
   \end{tabular}
   \vskip 3pt\moveright 0in\vbox{\hrule width3cm \vskip 3pt
     \moveleft 0em \vbox{
       \hbox{$^{1}$ Since \texttt{font} theme doesn't get any parameters, the table omits this column.}
       \hbox{$^{2}$ ... means \texttt{sjtubeamer}.}
-      \hbox{$^{3}$ \texttt{sjtucover} gets \texttt{\textbackslash{}...@sjtucover@cover} from inner.}
     }}
 \end{table}
 
@@ -559,15 +559,11 @@ As always, we strongly recommend compiling the document through \hologo{XeLaTeX}
 
 To make full use of \themename\, we always recommend using the latest \TeX\ distribution. However, in some cases, an older \TeX\ distribution needs to be supported.
 
-For compatibility issues, you need to close the ``compatible'' option in \verb"beamerthemesjtubeamer.ins" for older versions. Change the following line to achieve that.
+For compatibility issues, you need to define the \verb"\sjtubeamer@compatible" variable to \verb"false" to close the related rendering before the theme is loaded.
 
-\begin{verbatim}
-            \generate{\file{sjtuvi.sty}{%
-                      \from{sjtuvi.dtx}{package,compatible}}
-            }
-        \end{verbatim}
-
-The following table shows the compilation test of older \TeX\ distribution, where $\circ$ means you have to close the ``compatible'' option.
+\makeatletter
+\def\sjtubeamer@compatible{false}
+\makeatother
 
 \begin{tabular}{c|cccccccc}
   \TeX\ Live & 2021    & 2020    & 2019    & 2018    & 2017    & 2016    & 2015    & 2014 \\
@@ -575,6 +571,28 @@ The following table shows the compilation test of older \TeX\ distribution, wher
   Test       & $\surd$ & $\surd$ & $\surd$ & $\circ$ & $\circ$ & $\circ$ & $\circ$ &      \\
 \end{tabular}
 
+\subsection{Pre-Compilation}
+
+\themename\ is relatively a large project for developers. To boost up the compilation on 20+ unit tests, we introduced \texttt{mylatexformat} to cache the precompiled common header. However, this method comes with compatibility issues in that it only supports old packages \emph{without} using \texttt{fontspec} to load OpenType fonts.
+
+To dump the format on beamer, we have to reset the encoding to the old 7-bit default\cite{mylatexot1}. Since some sans fonts use a newer version. And it is not available for C\TeX{} in \hologo{XeLaTeX}, since it uses \texttt{fontspec} to load the font. What's more, if we decided to load \texttt{ctex} after loading \texttt{ctexbeamer}, the load on \texttt{ctex} will be skipped\cite{ctex}. And \themename\ has done some of the work similar to \texttt{ctexbeamer}. As a result, we need to split the document class loading line \texttt{\textbackslash documentclass\{ctexbeamer\}} into two parts, which means the loading time on \texttt{ctex} will not be saved:
+\begin{verbatim}
+%--- static -----
+\RequirePackage[OT1]{fontenc}
+\documentclass{beamer}
+%--- dynamic ---
+\endofdump
+\usepackage{ctex}
+\end{verbatim}
+
+In practice, we find that the \texttt{path fading} in Ti\emph{k}Z is not compatible with the caching mechanism, and it introduces more issues in PDF compatibility. Before it is solved in a future version of Ti\emph{k}Z, the background pattern will be skipped in the title page template in \texttt{min} theme by adding \verb"\sjtubeamer@compatible" to \verb"false".
+
+If your unit test doesn't want to be cached, you could add a blank square brackets.
+\begin{verbatim}
+  \documentclass[]{ctexbeamer}
+\end{verbatim}
+
+More details about this experimental caching mechanism in \texttt{l3build doc}, see \texttt{build.lua}. And you could change the default behavior of caching the demo files by changing \texttt{cahcedemo} to \texttt{true}.
 
 \section{Developer}
 \begin{itemize}

@@ -1,0 +1,18 @@
+\RequirePackage[OT1]{fontenc}   % old 7-bit to dump
+\documentclass{beamer}
+\makeatletter
+\def\sjtubeamer@compatible{false}
+\makeatother
+\usepackage{sjtuvi}     % contains TikZ
+\usepackage{sjtucover}
+\usepackage{tcolorbox}
+\tcbuselibrary{skins}
+\tcbuselibrary{listingsutf8}
+\makeatletter
+\AtEndPreamble{     % patch the langauge if it is ctexbeamer
+    \def\bottomthanks{谢\,谢}
+}
+\makeatother
+\begin{document}
+% intentionally left blank
+\end{document}

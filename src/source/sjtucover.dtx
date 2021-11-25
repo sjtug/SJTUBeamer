@@ -13,7 +13,7 @@
 % \iffalse
 %<*package>
 \NeedsTeXFormat{LaTeX2e}
-\ProvidesPackage{sjtucover}[2021/11/22 cover library for sjtubeamer v2.3.2]
+\ProvidesPackage{sjtucover}[2021/11/25 cover library for sjtubeamer v2.4.0]
 %</package>
 % \fi
 % \CheckSum{0}
@@ -27,44 +27,10 @@
 %
 %   \subsubsection{Load Packages}
 %
-%   Load SJTU VI Library to get the definition on shapes.
+%   Load SJTU VI Library to get the definition on shapes. This will also provide \verb"\sjtubeamer@compatible" option.
 %    \begin{macrocode}
 \RequirePackage{sjtuvi}
-%    \end{macrocode}
-%
-%   \subsubsection{Option Declaration}
-%
-%  
-%    \begin{macrocode}
-%<*maxplus>
-\DeclareOptionBeamer{maxplus}{\def\sjtubeamer@sjtucover@cover{maxplus}}
-%</maxplus>
-%<*max>
-\DeclareOptionBeamer{max}{\def\sjtubeamer@sjtucover@cover{max}}
-%</max>
-%<*min>
-\DeclareOptionBeamer{min}{\def\sjtubeamer@sjtucover@cover{min}}
-%</min>
-%<*my>
-\DeclareOptionBeamer{my}{\def\sjtubeamer@sjtucover@cover{my}} % reserved for customization
-%</my>
-\ExecuteOptionsBeamer{
-%<*maxplus>
-  maxplus,
-%</maxplus>
-%<*min>
-  min,
-%</min>
-%<*my>
-  my,
-%</my>    
-%<*max>
-  max,
-%</max>
-}
-\ProcessOptionsBeamer
-%    \end{macrocode}
-%  
+%    \end{macrocode}  
 %
 %   \subsubsection{Title Page}
 %
@@ -161,6 +127,7 @@
 %
 %   \paragraph{min.}
 %   Declare two fadings: center fade and fade right. The center fade provides a radial fading on the right side of the title page. The fade right provides a linear fading to avoid the collision on the text in the left.
+%   WARNING: Now it is not used in the titlepage.
 %    \begin{macrocode}
 %<*min>
 \tikzfading[
@@ -193,25 +160,27 @@
     rectangle (1*\the\paperwidth, 0.2*\the\paperheight);
   \end{tikzpicture}
 %    \end{macrocode}
-%   If it is in draftmode, no pattern will get rendered.
-%    \begin{macrocode}
-  \ifbeamer@draftmode%
-%    \end{macrocode}
+%   WARNING: The pattern in the title page is now deprecated for the unstability of the \verb"fadings" library in TikZ. If you want to use the pattern, please uncomment the code segement manually. The interface of \verb"stamparry" is functional.
+%   If it is in draftmode or it is not compatible, no pattern will get rendered.
 %   Otherwise, the fade tile of stamp array will get covered on top of the background rectangle.
 %   \verb"stamparray" is defined in \verb"SJTUvi". Then, a fade right covers this array layer and a center fade covers the previous result.
 %    \begin{macrocode}
-  \else%
-    \begin{tikzpicture}[overlay]
-      \stamparray{20pt}
-      {(-0.2*\the\paperwidth,-1*\the\paperheight)}
-      {(1*\the\paperwidth, 0.2*\the\paperheight)}
-      \fill [bg,path fading=fade right]
-      (-0.2*\the\paperwidth,-1*\the\paperheight) rectangle
-      (1*\the\paperwidth, 0.2*\the\paperheight);
-      \fill [bg,path fading=center fade,xshift=-10pt,yshift=-20pt]
-      (0.2*\the\paperwidth,0) circle [radius=\the\paperwidth];
-    \end{tikzpicture}
-  \fi%
+  \ifx\sjtubeamer@compatible\sjtubeamer@compatible@false
+  \else
+    \ifbeamer@draftmode%
+    \else%
+      \begin{tikzpicture}[overlay]
+        \stamparray{20pt}
+        {(-0.2*\the\paperwidth,-1*\the\paperheight)}
+        {(1*\the\paperwidth, 0.2*\the\paperheight)}
+        \fill [bg,path fading=fade right]
+        (-0.2*\the\paperwidth,-1*\the\paperheight) rectangle
+        (1*\the\paperwidth, 0.2*\the\paperheight);
+        \fill [bg,path fading=center fade,xshift=-10pt,yshift=-20pt]
+        (0.2*\the\paperwidth,0) circle [radius=\the\paperwidth];
+      \end{tikzpicture}
+    \fi%
+  \fi
 %    \end{macrocode}
 %   Set a constraint in the vertical mode to make the following contents centered in the middle of the slide.
 %    \begin{macrocode}
@@ -493,11 +462,6 @@
 %</my>
 %    \end{macrocode}
 %
-%   Initialize the title page and bottom page when the package is loaded.
-%    \begin{macrocode}
-\setbeamertemplate{title page}[\sjtubeamer@sjtucover@cover]
-\setbeamertemplate{bottom page}[\sjtubeamer@sjtucover@cover][Thanks]
-%    \end{macrocode}
 %
 % \iffalse
 %</package>

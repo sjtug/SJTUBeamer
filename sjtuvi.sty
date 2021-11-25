@@ -4,7 +4,7 @@
 %%
 %% The original source files were:
 %%
-%% sjtuvi.dtx  (with options: `package,compatible')
+%% sjtuvi.dtx  (with options: `package')
 %% ------------------------------------------------------------------------
 %% Copyright (C) Shanghai Jiao Tong University
 %% The definition in this file is referred to the Visual Identity System
@@ -18,7 +18,7 @@
 %% see https://vi.sjtu.edu.cn/index.php/articles/bulletin/16.
 %% ------------------------------------------------------------------------
 \NeedsTeXFormat{LaTeX2e}
-\ProvidesPackage{sjtuvi}[2021/11/22 Visual Identity System library for sjtubeamer v2.3.2]
+\ProvidesPackage{sjtuvi}[2021/11/25 Visual Identity System library for sjtubeamer v2.4.0]
 \def\DefineOption#1#2#3{
   % #1: package
   % #2: key
@@ -37,7 +37,6 @@
   \iftempif
 }
 \RequirePackage{tikz}
-\usetikzlibrary{patterns.meta}
 \usetikzlibrary{fadings}
 \usetikzlibrary{decorations.pathmorphing}
 \usetikzlibrary{external}
@@ -82,64 +81,73 @@
 \definelogo{dlogo}{0}{0}
 \definelogo{vlogo}{0.8}{0.13}
 \definelogo{sjtubg}{0.3}{0.5}
-\tikzdeclarepattern{
-  name=stamp,
-  parameters={
-      \pgfkeysvalueof{/pgf/pattern keys/size},
-      \pgfkeysvalueof{/pgf/pattern keys/xshift},
-      \pgfkeysvalueof{/pgf/pattern keys/yshift},
-    },
-  defaults={
-      size/.initial = 5pt,
-      xshift/.initial = 0pt,
-      yshift/.initial = 0pt,
-    },
-  bottom left={(
-      -0.5*\pgfkeysvalueof{/pgf/pattern keys/size}
-      +\pgfkeysvalueof{/pgf/pattern keys/xshift},
-      -0.4*\pgfkeysvalueof{/pgf/pattern keys/size}
-      +\pgfkeysvalueof{/pgf/pattern keys/yshift}
-      )},
-  top right={(
-      0.5*\pgfkeysvalueof{/pgf/pattern keys/size}
-      +\pgfkeysvalueof{/pgf/pattern keys/xshift},
-      0.4*\pgfkeysvalueof{/pgf/pattern keys/size}
-      +\pgfkeysvalueof{/pgf/pattern keys/yshift}
-      )},
-  tile size={(
-      \pgfkeysvalueof{/pgf/pattern keys/size},
-      0.8*\pgfkeysvalueof{/pgf/pattern keys/size}
-      )},
-  code={
-      \def\s{\pgfkeysvalueof{/pgf/pattern keys/size}}%
-      \tikzset{x=0.5*\s,y=0.2*\s}
-      \fill[xshift=\pgfkeysvalueof{/pgf/pattern keys/xshift},
-        yshift=\pgfkeysvalueof{/pgf/pattern keys/yshift}]
-      (-0.25*\s,0)
-      -- (-0.17*\s,0.06*\s)
-      -- (-0.17*\s,0.1*\s)
-      -- (0.17*\s,0.1*\s)
-      -- (0.17*\s,0.06*\s)
-      -- (0.25*\s,0)
-      -- (0.17*\s,-0.06*\s)
-      -- (0.17*\s,-0.1*\s)
-      -- (-0.17*\s,-0.1*\s)
-      -- (-0.17*\s,-0.06*\s) -- cycle;
-    }
-}
-\providecommand{\stamparray}[3]{
-  % #1: pattern size
-  % #2: starting point
-  % #3: ending point
-  \usebeamercolor{palette primary}
-  \fill [pattern={stamp[size=#1]},
-    pattern color=bg!50!fg] #2 rectangle #3;
-  \def\s{#1}%
-  \pgfmathparse{0.5*\s}\let\xs=\pgfmathresult%
-  \pgfmathparse{-0.4*\s}\let\ys=\pgfmathresult%
-  \fill [pattern={stamp[size=#1,xshift=\xs, yshift=\ys]},
-    pattern color=bg!50!fg] #2 rectangle #3;
-}
+\def\sjtubeamer@compatible@false{false}
+\ifx\sjtubeamer@compatible\sjtubeamer@compatible@false
+\else
+  \usetikzlibrary{patterns.meta}
+  \tikzdeclarepattern{
+    name=stamp,
+    parameters={
+        \pgfkeysvalueof{/pgf/pattern keys/size},
+        \pgfkeysvalueof{/pgf/pattern keys/xshift},
+        \pgfkeysvalueof{/pgf/pattern keys/yshift},
+      },
+    defaults={
+        size/.initial = 5pt,
+        xshift/.initial = 0pt,
+        yshift/.initial = 0pt,
+      },
+    bottom left={(
+        -0.5*\pgfkeysvalueof{/pgf/pattern keys/size}
+        +\pgfkeysvalueof{/pgf/pattern keys/xshift},
+        -0.4*\pgfkeysvalueof{/pgf/pattern keys/size}
+        +\pgfkeysvalueof{/pgf/pattern keys/yshift}
+        )},
+    top right={(
+        0.5*\pgfkeysvalueof{/pgf/pattern keys/size}
+        +\pgfkeysvalueof{/pgf/pattern keys/xshift},
+        0.4*\pgfkeysvalueof{/pgf/pattern keys/size}
+        +\pgfkeysvalueof{/pgf/pattern keys/yshift}
+        )},
+    tile size={(
+        \pgfkeysvalueof{/pgf/pattern keys/size},
+        0.8*\pgfkeysvalueof{/pgf/pattern keys/size}
+        )},
+    code={
+        \def\s{\pgfkeysvalueof{/pgf/pattern keys/size}}%
+        \tikzset{x=0.5*\s,y=0.2*\s}
+        \fill[xshift=\pgfkeysvalueof{/pgf/pattern keys/xshift},
+          yshift=\pgfkeysvalueof{/pgf/pattern keys/yshift}]
+        (-0.25*\s,0)
+        -- (-0.17*\s,0.06*\s)
+        -- (-0.17*\s,0.1*\s)
+        -- (0.17*\s,0.1*\s)
+        -- (0.17*\s,0.06*\s)
+        -- (0.25*\s,0)
+        -- (0.17*\s,-0.06*\s)
+        -- (0.17*\s,-0.1*\s)
+        -- (-0.17*\s,-0.1*\s)
+        -- (-0.17*\s,-0.06*\s) -- cycle;
+      }
+  }
+\fi
+\ifx\sjtubeamer@compatible\sjtubeamer@compatible@false
+  \providecommand{\stamparray}[3]{}
+\else
+  \providecommand{\stamparray}[3]{
+    % #1: pattern size
+    % #2: starting point
+    % #3: ending point
+    \usebeamercolor{palette primary}
+    \fill [pattern={stamp[size=#1]},
+      pattern color=bg!50!fg] #2 rectangle #3;
+    \def\s{#1}%
+    \pgfmathparse{0.5*\s}\let\xs=\pgfmathresult%
+    \pgfmathparse{-0.4*\s}\let\ys=\pgfmathresult%
+    \fill [pattern={stamp[size=#1,xshift=\xs, yshift=\ys]},
+      pattern color=bg!50!fg] #2 rectangle #3;
+  }
+\fi
 \pgfdeclaredecoration{stampline}{initial}
 {
   \state{initial}[

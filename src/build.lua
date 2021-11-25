@@ -10,8 +10,10 @@ docfiledir       = "doc"
 
 if os.type == "windows" then
     typesetexe       = "pdflatex"
+    etypesetexe      = "etex"
 else
     typesetexe       = "xelatex"
+    etypesetexe      = "xetex"
 end
 
 typesetopts      = "-interaction=nonstopmode -shell-escape"
@@ -19,6 +21,7 @@ typesetfiles     = {"sjtubeamerdevguide.tex","sjtubeamer.tex"}
 -- typesetfiles     = {"sjtubeamer.tex"}
 -- typesetruns      = 1 -- for debug. Some reference may not be linked.
 -- typesetdemofiles = {"min.tex"}
+-- cachedemo        = true -- cache the demo
 typesetsuppfiles = {"head.png","plant.jpg","test.csv","testgraph.tex","ref.bib","sjtug.pdf","sjtug_text.pdf","tutorial/"}
 
 -- Regression tests mainly test the decoupling properties between kernel modules.
@@ -58,6 +61,28 @@ function update_tag(file,content,tagname,tagdate)
     return content
 end
 
+function compile_file(dir, cmd, filename, native)
+    local errorlevel = 0
+    if native then
+        errorlevel = tex(filename, dir, cmd)
+    else
+        errorlevel = run(dir, cmd .. " " .. filename)
+    end
+    if string.find(filename,"+") ~= nil then
+        if string.find(filename,"-") ~= nil then
+            -- biber after compiling the first time if it is marked as "-"
+            errorlevel = biber(string.gsub(filename,".tex",""),dir)
+        end
+        -- compile the second time if it is marked as "+"
+        if native then
+            errorlevel = tex(filename, dir, cmd)
+        else
+            errorlevel = run(dir,cmd .. " " .. filename)
+        end
+    end
+    return errorlevel
+end
+
 -- Generate tutorial files before compiling the doc.
 -- NOTICE: if you want to save the tourial step pdf,
 --         please enter support/tutorial and run cache_pdf.sh
@@ -65,29 +90,77 @@ end
 function typeset_demo_tasks()
     local errorlevel = 0
     local tutorialdir = typesetdir .. "/tutorial"
-    local typesetcommand = typesetexe .. " " .. typesetopts   -- patch l3build
+
     print("============================================================")
     print("If you want to save the previous demo files")
-    print("Please move the pdf into the support/tutorial directory.")
+    print("Please modify the cachedemo variable in build.lua file.")
     print("============================================================")
+    
+    print("Compiling precomiled header...")
+    local cacheable = true
+    local headerfilename = "commonheader"
+    local etypesetcommand = etypesetexe .. "  -ini -interaction=nonstopmode -jobname=" .. headerfilename .. " \"&" .. typesetexe .. "\" mylatexformat.ltx "
+    errorlevel = tex("\"\"\"" .. headerfilename .. ".tex\"\"\"", tutorialdir, etypesetcommand)
+    if errorlevel ~= 0 then
+        print("common header compilation failed.")
+        cacheable = false
+    end
+
+    -- Move generated files to the tutorial directory
+    -- Since mylatexformat doesn't support relative directory well.
+    for _,file in pairs(installfiles) do
+        cp(file, unpackdir, tutorialdir)
+    end
+    local typesetcommand = typesetexe .. " " .. typesetopts   -- patch l3build
+    local cachedemo = cachedemo or false
+    if not cachedemo then
+        -- delete the cache
+        rm(tutorialdir, "step*.pdf")
+        rm(supportdir .. "/tutorial", "step*.pdf")
+    end
     for _, p in ipairs(filelist(tutorialdir, "step*.tex")) do
         local pdffilename = string.gsub(p,".tex",".pdf")
-        if fileexists(tutorialdir .. "/" .. pdffilename) == false then
-            errorlevel = tex(p,tutorialdir,typesetcommand)
-            if string.find(p,"+") ~= nil then
-                if string.find(p,"-") ~= nil then
-                    -- biber after compiling the first time if it is marked as "-"
-                    errorlevel = biber(string.gsub(p,".tex",""),tutorialdir)
-                end
-                -- compile the second time if it is marked as "+"
-                errorlevel = tex(p,tutorialdir,typesetcommand)
-            end
+        if p == "step0.tex" then
+            errorlevel = run(tutorialdir,typesetcommand .. " " .. p)
             if errorlevel ~= 0 then
-                print(pdffilename .. " compilation failed.")
-                return errorlevel
+                print("unable to cache, fallback to standard compilation.")
+                cacheable = false       -- compile on test caching file failed.
             end
         else
-            print(pdffilename .. " exists.")
+            if fileexists(tutorialdir .. "/" .. pdffilename) == false then
+                local stepfile = io.open(tutorialdir .. "/" .. p, "r")
+                if cacheable and string.match(stepfile:read("l"),"\\documentclass{ctexbeamer}") ~= nil then
+                    -- use the precompiled header to compile.
+                    local cachedfilename = "tmp" .. p
+                    local cachedfile = io.open(tutorialdir .. "/" .. cachedfilename, "w")
+                    cachedfile:write("%&commonheader\n\\endofdump\n\\usepackage{ctex}\n")
+                    for line in stepfile:lines("L") do
+                        cachedfile:write(line)
+                    end
+                    cachedfile:close()
+                    stepfile:close()
+
+                    errorlevel = compile_file(tutorialdir, typesetcommand, cachedfilename, false)
+                    if errorlevel ~= 0 then
+                        print(pdffilename .. " compilation failed.")
+                        return errorlevel
+                    end
+                    errorlevel = ren(tutorialdir, "tmp" .. pdffilename, pdffilename)
+                else
+                    -- fallback to standard compilation.
+                    errorlevel = compile_file(tutorialdir, typesetcommand, p, true)
+                    if errorlevel ~= 0 then
+                        print(pdffilename .. " compilation failed.")
+                        return errorlevel
+                    end
+                end
+                if cachedemo then
+                    -- cache the demo
+                    cp(pdffilename, tutorialdir, supportdir .. "/tutorial")
+                end
+            else
+                print(pdffilename .. " exists.")
+            end
         end
     end
     return 0
@@ -166,6 +239,9 @@ function gen_snippets()
             if string.match(line, "\\end{macro}") ~= nil and in_macro ~= nil then
                 -- This macro is processed complete.
                 local match_comm = string.gsub(in_macro, "\\", "\\\\")
+                if captured == 3 then
+                    match_comm = "\\n\\\\begin{" .. match_comm
+                end
                 local scope = "doctex,tex"
                 if (captured >= 2 or macro_body == "") and
                     string.find(in_macro,"@") == nil then

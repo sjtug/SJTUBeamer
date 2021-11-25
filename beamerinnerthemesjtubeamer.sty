@@ -21,7 +21,7 @@
 %% limitations under the License.
 %% ------------------------------------------------------------------------
 \NeedsTeXFormat{LaTeX2e}
-\ProvidesPackage{beamerinnerthemesjtubeamer}[2021/11/22 sjtubeamer inner theme v2.3.2]
+\ProvidesPackage{beamerinnerthemesjtubeamer}[2021/11/25 sjtubeamer inner theme v2.4.0]
 \RequirePackage{sjtuvi}
 \RequirePackage{tcolorbox}
 \DeclareOptionBeamer{maxplus}{\def\sjtubeamer@inner@cover{maxplus}}
@@ -42,7 +42,6 @@
 \DefineOption{inner}{color}{blue}
 \ExecuteOptionsBeamer{red}
 \ProcessOptionsBeamer
-\PassOptionsToPackage{\sjtubeamer@inner@cover}{sjtucover}
 \if\EqualOption{inner}{color}{red}
   \colorlet{cprimary}{sjtuRedPrimary}
   \colorlet{csecondary}{sjtuRedSecondary}
@@ -142,6 +141,8 @@
   }
 }
 \RequirePackage{sjtucover}
+\setbeamertemplate{title page}[\sjtubeamer@inner@cover]
+\setbeamertemplate{bottom page}[\sjtubeamer@inner@cover][Thanks]
 \defbeamertemplate*{part page}{sjtubeamer}[1][]
 {
   \vfill
