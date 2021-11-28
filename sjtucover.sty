@@ -70,7 +70,7 @@
     rectangle (1*\the\paperwidth, 0.3*\the\paperheight);
     \node [inner sep=0pt]
     at (0.45\paperwidth-6pt,-0.4*\the\paperheight)
-    {\resizebox{1.3\paperwidth}{!}{\inserttitlegraphic}};
+    {\resizebox{1.3\paperwidth}{!}{\hphantom{-}\usebeamertemplate***{background}}};
   \end{tikzpicture}
   \vfill
   \begingroup
@@ -288,7 +288,7 @@
       -- (\midw,-0.68\paperheight) -- cycle;
       \node at (\midw,-0.65\paperheight) {
         \def\sjtubeamer@logocolor{black}
-        \resizebox{1.25\paperwidth}{!}{\inserttitlegraphic}};
+        \resizebox{1.25\paperwidth}{!}{\hphantom{-}\usebeamertemplate***{background}}};
       \node at (\midw,-0.2\paperheight) {
         \def\sjtubeamer@logocolor{palette primary.bg}
         \resizebox{3cm}{!}{\insertlogo}};
