@@ -21,7 +21,7 @@ typesetfiles     = {"sjtubeamerdevguide.tex","sjtubeamer.tex"}
 -- typesetfiles     = {"sjtubeamer.tex"}
 -- typesetruns      = 1 -- for debug. Some reference may not be linked.
 -- typesetdemofiles = {"min.tex"}
--- cachedemo        = true -- cache the demo
+
 typesetsuppfiles = {"head.png","plant.jpg","test.csv","testgraph.tex","ref.bib","sjtug.pdf","sjtug_text.pdf","tutorial/"}
 
 -- Regression tests mainly test the decoupling properties between kernel modules.
@@ -83,10 +83,12 @@ function compile_file(dir, cmd, filename, native)
     return errorlevel
 end
 
--- Generate tutorial files before compiling the doc.
+
 -- NOTICE: if you want to save the tourial step pdf,
---         please enter support/tutorial and run cache_pdf.sh
---         if you want to clean the cache, please run clean_pdf.sh 
+--         please uncomment the following line.
+-- cachedemo        = true -- cache the demo
+
+-- Generate tutorial files before compiling the doc.
 function typeset_demo_tasks()
     local errorlevel = 0
     local tutorialdir = typesetdir .. "/tutorial"
@@ -96,7 +98,7 @@ function typeset_demo_tasks()
     print("Please modify the cachedemo variable in build.lua file.")
     print("============================================================")
     
-    print("Compiling precomiled header...")
+    print("Compiling precompiled header...")
     local cacheable = true
     local headerfilename = "commonheader"
     local etypesetcommand = etypesetexe .. "  -ini -interaction=nonstopmode -jobname=" .. headerfilename .. " \"&" .. typesetexe .. "\" mylatexformat.ltx "
