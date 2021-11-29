@@ -160,11 +160,11 @@
 %  \end{macro}
 %
 %  \begin{macro}{\bgcenterbox}
-%   Define a command for USERS to make a centered background box easily. Move the defination on \verb"\sjtubeamer@logocolor" to the inner environment, to avoid the shift on centering. And since the definition has already been moved into the inner group, the definition here is \emph{locale} and no more stack saving is needed.
+%   Define a command for USERS to make a centered background box easily. 
+%   The change on color is now deprecated.
 %    \begin{macrocode}
 \newcommand{\bgcenterbox}[1]{
   \parbox[c][1.1\paperheight][c]{\paperwidth}{
-    \def\sjtubeamer@logocolor{cprimary!50}
     \centering\resizebox{\paperwidth}{!}{#1}
   }
 }
