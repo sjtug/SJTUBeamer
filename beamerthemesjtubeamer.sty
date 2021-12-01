@@ -72,6 +72,9 @@
 \usefonttheme{sjtubeamer}
 \useinnertheme{sjtubeamer}
 \useoutertheme{sjtubeamer}
+\newrobustcmd*\usemytheme[1]{
+  \input{\getcontribpath{#1}{beamertheme#1.ltx}}
+}
 \endinput
 %%
 %% End of file `beamerthemesjtubeamer.sty'.

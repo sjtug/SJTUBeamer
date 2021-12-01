@@ -189,6 +189,16 @@
 \useoutertheme{sjtubeamer}
 %    \end{macrocode}
 %
+%  \begin{macro}{\usemytheme}
+%  When using \verb"my" option, you could load other contrib sub-themes by this command. The \verb"\getcontribpath" is defined in \verb"sjtuvi" package loaded in inner theme.
+%    \begin{macrocode}
+\newrobustcmd*\usemytheme[1]{
+  \input{\getcontribpath{#1}{beamertheme#1.ltx}}
+}
+%    \end{macrocode}
+%
+%  \end{macro}
+%
 % \iffalse
 %</package>
 % ------------------------------------------------------------------------ \fi
