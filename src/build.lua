@@ -82,7 +82,7 @@ end
 -- NOTICE: if you want to save the tourial step pdf,
 --         please uncomment the following line.
 
-cachedemo        = true -- cache the demo
+-- cachedemo        = true -- cache the demo
 
 -- Generate tutorial files before compiling the doc.
 function typeset_demo_tasks()
