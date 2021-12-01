@@ -80,7 +80,7 @@
 %</maxplus>
 %    \end{macrocode}
 %  
-%   \paragraph{max.} Notice that the titlegraphic is not used here for compatibility issue with other styles. Use background instead.
+%   \paragraph{max.}
 %    \begin{macrocode}
 %<*max>
 \defbeamertemplate*{title page}{max}[1][]
@@ -94,7 +94,7 @@
     rectangle (1*\the\paperwidth, 0.3*\the\paperheight);
     \node [inner sep=0pt]
     at (0.45\paperwidth-6pt,-0.4*\the\paperheight)
-    {\resizebox{1.3\paperwidth}{!}{\hphantom{-}\usebeamertemplate***{background}}};
+    {\resizebox{1.3\paperwidth}{!}{\inserttitlegraphic}};
   \end{tikzpicture}
   \vfill
   \begingroup
@@ -163,7 +163,7 @@
 %   WARNING: The pattern in the title page is now deprecated for the unstability of the \verb"fadings" library in TikZ. If you want to use the pattern, please uncomment the code segement manually. The interface of \verb"stamparry" is functional.
 %   If it is in draftmode or it is not compatible, no pattern will get rendered.
 %   Otherwise, the fade tile of stamp array will get covered on top of the background rectangle.
-%   \verb"stamparray" is defined in \verb"sjtuvi". Then, a fade right covers this array layer and a center fade covers the previous result.
+%   \verb"stamparray" is defined in \verb"SJTUvi". Then, a fade right covers this array layer and a center fade covers the previous result.
 %    \begin{macrocode}
   \ifx\sjtubeamer@compatible\sjtubeamer@compatible@false
   \else
@@ -342,7 +342,7 @@
 %</maxplus>
 %    \end{macrocode}
 %
-%   \paragraph{max.} Use background instead of titlegraphic.
+%   \paragraph{max.}
 %    \begin{macrocode}
 %<*max>
 \defbeamertemplate*{bottom page}{max}[1][]
@@ -371,7 +371,7 @@
       -- (\midw,-0.68\paperheight) -- cycle;
       \node at (\midw,-0.65\paperheight) {
         \def\sjtubeamer@logocolor{black}
-        \resizebox{1.25\paperwidth}{!}{\hphantom{-}\usebeamertemplate***{background}}};
+        \resizebox{1.25\paperwidth}{!}{\inserttitlegraphic}};
       \node at (\midw,-0.2\paperheight) {
         \def\sjtubeamer@logocolor{palette primary.bg}
         \resizebox{3cm}{!}{\insertlogo}};
