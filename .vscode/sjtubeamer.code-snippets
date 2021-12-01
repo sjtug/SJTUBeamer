@@ -45,7 +45,7 @@
 		"scope": "doctex,tex,latex",
 		"prefix": "\\bgcenterbox",
 		"body": "\\bgcenterbox{$1}",
-		"description": "Define a command for USERS to make a centered background box easily. Move the defination on \\sjtubeamer@logocolor to the inner environment, to avoid the shift on centering. And since the definition has already been moved into the inner group, the definition here is \\emph{locale} and no more stack saving is needed.\n"
+		"description": "Define a command for USERS to make a centered background box easily. \nThe change on color is now deprecated.\n"
 	},
 	"titlegraphic": {
 		"scope": "doctex,tex,latex",
