@@ -64,16 +64,27 @@ end
 -- Compiling file in a certain receipe: tex -> biber(-) -> tex(+)
 -- by assigning different symbols in the filename.
 -- This will patch l3build compilation "tex" command.
-function compile_file(dir, cmd, filename)
+function compile_file(dir, cmd, filename, native)
     local errorlevel = 0
-    errorlevel = run(dir, cmd .. " " .. filename)
+    if os.type == "windows" then
+        native = false
+    end
+    if native then
+        errorlevel = tex(filename, dir, cmd)
+    else
+        errorlevel = run(dir, cmd .. " " .. filename)
+    end
     if string.find(filename,"+") ~= nil then
         if string.find(filename,"-") ~= nil then
             -- biber after compiling the first time if it is marked as "-"
             errorlevel = biber(string.gsub(filename,".tex",""),dir)
         end
         -- compile the second time if it is marked as "+"
-        errorlevel = run(dir,cmd .. " " .. filename)
+        if native then
+            errorlevel = tex(filename, dir, cmd)
+        else
+            errorlevel = run(dir,cmd .. " " .. filename)
+        end
     end
     return errorlevel
 end
@@ -138,7 +149,7 @@ function typeset_demo_tasks()
                     cachedfile:close()
                     stepfile:close()
 
-                    errorlevel = compile_file(tutorialdir, typesetcommand, cachedfilename)
+                    errorlevel = compile_file(tutorialdir, typesetcommand, cachedfilename, false)
                     if errorlevel ~= 0 then
                         print(pdffilename .. " compilation failed.")
                         return errorlevel
@@ -146,7 +157,7 @@ function typeset_demo_tasks()
                     errorlevel = ren(tutorialdir, "tmp" .. pdffilename, pdffilename)
                 else
                     -- fallback to standard compilation.
-                    errorlevel = compile_file(tutorialdir, typesetcommand, p)
+                    errorlevel = compile_file(tutorialdir, typesetcommand, p, true)
                     if errorlevel ~= 0 then
                         print(pdffilename .. " compilation failed.")
                         return errorlevel
