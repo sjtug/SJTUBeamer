@@ -61,24 +61,19 @@ function update_tag(file,content,tagname,tagdate)
     return content
 end
 
-function compile_file(dir, cmd, filename, native)
+-- Compiling file in a certain receipe: tex -> biber(-) -> tex(+)
+-- by assigning different symbols in the filename.
+-- This will patch l3build compilation "tex" command.
+function compile_file(dir, cmd, filename)
     local errorlevel = 0
-    if native then
-        errorlevel = tex(filename, dir, cmd)
-    else
-        errorlevel = run(dir, cmd .. " " .. filename)
-    end
+    errorlevel = run(dir, cmd .. " " .. filename)
     if string.find(filename,"+") ~= nil then
         if string.find(filename,"-") ~= nil then
             -- biber after compiling the first time if it is marked as "-"
             errorlevel = biber(string.gsub(filename,".tex",""),dir)
         end
         -- compile the second time if it is marked as "+"
-        if native then
-            errorlevel = tex(filename, dir, cmd)
-        else
-            errorlevel = run(dir,cmd .. " " .. filename)
-        end
+        errorlevel = run(dir,cmd .. " " .. filename)
     end
     return errorlevel
 end
@@ -86,7 +81,8 @@ end
 
 -- NOTICE: if you want to save the tourial step pdf,
 --         please uncomment the following line.
--- cachedemo        = true -- cache the demo
+
+cachedemo        = true -- cache the demo
 
 -- Generate tutorial files before compiling the doc.
 function typeset_demo_tasks()
@@ -142,7 +138,7 @@ function typeset_demo_tasks()
                     cachedfile:close()
                     stepfile:close()
 
-                    errorlevel = compile_file(tutorialdir, typesetcommand, cachedfilename, false)
+                    errorlevel = compile_file(tutorialdir, typesetcommand, cachedfilename)
                     if errorlevel ~= 0 then
                         print(pdffilename .. " compilation failed.")
                         return errorlevel
@@ -150,7 +146,7 @@ function typeset_demo_tasks()
                     errorlevel = ren(tutorialdir, "tmp" .. pdffilename, pdffilename)
                 else
                     -- fallback to standard compilation.
-                    errorlevel = compile_file(tutorialdir, typesetcommand, p, true)
+                    errorlevel = compile_file(tutorialdir, typesetcommand, p)
                     if errorlevel ~= 0 then
                         print(pdffilename .. " compilation failed.")
                         return errorlevel
