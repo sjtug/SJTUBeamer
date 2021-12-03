@@ -73,19 +73,20 @@
 \useinnertheme{sjtubeamer}
 \useoutertheme{sjtubeamer}
 \newrobustcmd*\usemytheme[2][]{
-  \def\sjtubeamer@mytheme@option{#1}
+  \def\sjtubeamer@mythemeoptions{#1}
   \def\sjtubeamer@mythemelist{#2}
   \@for\sjtubeamer@mythemename:=\sjtubeamer@mythemelist\do{
+    \@for\sjtubeamer@mythemeoption:=\sjtubeamer@mythemeoptions\do{
+      \expandafter\def\csname sjtubeamer@\sjtubeamer@mythemename @\sjtubeamer@mythemeoption\endcsname{true}
+    }
     \def\sjtubeamer@mythemefile{sjtubeamertheme\sjtubeamer@mythemename.ltx}
-    \if\EqualOption{mytheme}{option}{debug}
-      \IfFileExists{\sjtubeamer@mythemefile}{
-        \PackageWarning{\sjtubeamer@mythemename}{
-          Local ltx file is found. For documentation use only. \MessageBreak
-          Move to \getcontribdir{\sjtubeamer@mythemename} for release.
-          Unexpected error in other ltx may occur}
-        \renewcommand{\getcontribdir}[1]{.}
-      }{}
-    \fi
+    \IfFileExists{\sjtubeamer@mythemefile}{
+      \PackageWarning{\sjtubeamer@mythemename}{
+        Local ltx file is found. For documentation use only. \MessageBreak
+        Move to \getcontribdir{\sjtubeamer@mythemename} for release.
+        Unexpected error in other ltx may occur}
+      \renewcommand{\getcontribdir}[1]{.}
+    }{}
     \input{\getcontribpath{\sjtubeamer@mythemename}{\sjtubeamer@mythemefile}}
   }
 }
