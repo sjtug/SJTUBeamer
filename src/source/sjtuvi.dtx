@@ -43,9 +43,9 @@
 %   To check if the option on package, key is equal to value.
 %
 %   Here, a dummy trick is used to pass the if condition.
-%   Since LaTeX handles \verb"\if" differently.
+%   Since \LaTeX\ handles \verb"\if" differently.
 %   \verb"\iftrue" will eliminate the nearest \verb"\else" and \verb"\fi" but remains other extra \verb"\fi" and throws errors.
-%   To avoid this, if the macro is expanded after \verb"\if", \verb"T=T", the condition holds and finish the current pair. And continues to process the real defined macro. This solution is somehow to combat against the \LaTeX compiler. In modern \LaTeX 3, it is not so nasty to deal with neseted conditions. 
+%   To avoid this, if the macro is expanded after \verb"\if", \verb"T=T", the condition holds and finish the current pair. And continues to process the real defined macro. This solution is somehow to combat against the \LaTeX\ compiler. In modern \LaTeX3, it is not so nasty to deal with neseted conditions. 
 %   \verb"\iffalse" doesn't need to be considered.
 %    \begin{macrocode}
 \def\EqualOption{TT\fi\ifEqualOption} % dummy trick to pass the condition test

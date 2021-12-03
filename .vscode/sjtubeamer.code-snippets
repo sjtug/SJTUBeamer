@@ -189,7 +189,7 @@
 		"scope": "doctex,tex,latex",
 		"prefix": "\\usemytheme",
 		"body": "\\usemytheme{$1}",
-		"description": "When using my option, you could load other contrib sub-themes by this command. The \\getcontribpath is defined in sjtuvi package loaded in inner theme.\n"
+		"description": "When using my option, you could load other contrib sub-themes by this command. Use comma-seperated list to load multiple sub-themes in one line. The \\getcontribpath is defined in sjtuvi package loaded in inner theme.\n\nIf debug option is given to this command, it will first check the root directory for dependency. If it exists, the \\getcontribdir macro will be redefined. \nRemember the contrib directory is permantly modified and the directory for other dependency may be missing due to this debug config. You may need to modify to \\renewcommand{\\getcontribdir}[1]{\\sjtubeamer@contribdir/#1} manually to recover to the standard configuration. We didn't put the last command into this since we only expect you to only use the debug option for only one contrib dependency -- the one needs to be documented. And you should run l3build install in the src folder for making the sjtubeamer main part into your texmf path. If you want to combine multiple dependencies, you should write and compile your documentation in the root folder. And our CI will move your documentation to the root first before checking.\n"
 	},
 	"DefineOption": {
 		"scope": "doctex,tex",
@@ -201,7 +201,7 @@
 		"scope": "doctex,tex",
 		"prefix": "\\EqualOption",
 		"body": "\\EqualOption",
-		"description": "To check if the option on package, key is equal to value.\n\nHere, a dummy trick is used to pass the if condition.\nSince LaTeX handles \\if differently.\n\\iftrue will eliminate the nearest \\else and \\fi but remains other extra \\fi and throws errors.\nTo avoid this, if the macro is expanded after \\if, T=T, the condition holds and finish the current pair. And continues to process the real defined macro. This solution is somehow to combat against the \\LaTeX compiler. In modern \\LaTeX 3, it is not so nasty to deal with neseted conditions. \n\\iffalse doesn't need to be considered.\n"
+		"description": "To check if the option on package, key is equal to value.\n\nHere, a dummy trick is used to pass the if condition.\nSince \\LaTeX\\ handles \\if differently.\n\\iftrue will eliminate the nearest \\else and \\fi but remains other extra \\fi and throws errors.\nTo avoid this, if the macro is expanded after \\if, T=T, the condition holds and finish the current pair. And continues to process the real defined macro. This solution is somehow to combat against the \\LaTeX\\ compiler. In modern \\LaTeX3, it is not so nasty to deal with neseted conditions. \n\\iffalse doesn't need to be considered.\n"
 	},
 	"getcontribdir": {
 		"scope": "doctex,tex,latex",

@@ -190,16 +190,24 @@
 %    \end{macrocode}
 %
 %  \begin{macro}{\usemytheme}
-%  When using \verb"my" option, you could load other contrib sub-themes by this command. The \verb"\getcontribpath" is defined in \verb"sjtuvi" package loaded in inner theme.
-%  This command will first check the root directory for dependency.
+%  When using \verb"my" option, you could load other contrib sub-themes by this command. Use comma-seperated list to load multiple sub-themes in one line. The \verb"\getcontribpath" is defined in \verb"sjtuvi" package loaded in inner theme.
+%
+%  If \verb"debug" option is given to this command, it will first check the root directory for dependency. If it exists, the \verb"\getcontribdir" macro will be redefined. 
+%  Remember the contrib directory is permantly modified and the directory for other dependency may be missing due to this debug config. You may need to modify to \verb"\renewcommand{\getcontribdir}[1]{\sjtubeamer@contribdir/#1}" manually to recover to the standard configuration. We didn't put the last command into this since we only expect you to only use the debug option for only one contrib dependency -- the one needs to be documented. And you should run \verb"l3build install" in the \verb"src" folder for making the sjtubeamer main part into your texmf path. If you want to combine multiple dependencies, you should write and compile your documentation in the root folder. And our CI will move your documentation to the root first before checking.
 %    \begin{macrocode}
 \newrobustcmd*\usemytheme[1]{
   \def\sjtubeamer@mythemelist{#1}
   \@for\sjtubeamer@mythemename:=\sjtubeamer@mythemelist\do{
     \def\sjtubeamer@mythemefile{sjtubeamertheme\sjtubeamer@mythemename.ltx}
-    \IfFileExists{\sjtubeamer@mythemefile}{
-      \renewcommand{\getcontribdir}[1]{.}
-    }{}
+    \if\EqualOption{mytheme}{option}{debug}
+      \IfFileExists{\sjtubeamer@mythemefile}{
+        \PackageWarning{\sjtubeamer@mythemename}{
+          Local ltx file is found. For documentation use only. \MessageBreak
+          Move to \getcontribdir{\sjtubeamer@mythemename} for release.
+          Unexpected error in other ltx may occur}
+        \renewcommand{\getcontribdir}[1]{.}
+      }{}
+    \fi
     \input{\getcontribpath{\sjtubeamer@mythemename}{\sjtubeamer@mythemefile}}
   }
 }
