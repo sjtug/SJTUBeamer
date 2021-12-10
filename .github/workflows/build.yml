@@ -62,9 +62,13 @@ jobs:
     steps: 
       - uses: actions/checkout@v2
         name: checkout code
-      - name: build package with l3build
-        run: |
-            docker run ghcr.io/xu-cheng/texlive-full:20211101 -eo pipefail -c /bin/bash .github/ci/build_package.sh            
+      - uses: xu-cheng/texlive-action/full@v1
+        with:
+          run: |
+            export diffexe="diff -U 3"
+            apk add zip diffutils
+            .github/ci/build_package.sh
+        name: build package with l3build
       - name: check if generated files are of latest version
         run: |
           git diff --exit-code
