@@ -67,6 +67,7 @@ jobs:
           run: |
             export diffexe="diff -U 3"
             apk add zip diffutils
+            tlmgr install l3build
             .github/ci/build_package.sh
         name: build package with l3build
       - name: check if generated files are of latest version
