@@ -17,11 +17,12 @@
 %% This file should be compiled by
 %%      pdflatex beamerthemesjtubeamer.ins -shell-escape
 %% If the parameter is not given, the vi graphics will not be generated.
-%% If only use latex to unpack, the vi graphics will be generated in ps extension.
 
 \documentclass{article}
+% sjtuvigen contains the metadata of shape.
 \usepackage{sjtuvigen}
 \usetikzlibrary{backgrounds}
+% skip if external is not available.
 \usepackage{pdftexcmds}
 \ifnum\csname pdf@shellescape\endcsname=1 %
     \usetikzlibrary{external}
@@ -30,14 +31,29 @@
 \else %
     \newcommand{\FIG}[1]{}
 \fi
+% patch external library to support .ins suffix (not .tex)
+% and convert to pdf when using latex to compile.
 \makeatletter
 \def\tikzexternal@realjob{beamerthemesjtubeamer.ins}
+\expandafter\def\csname tikzexternal@driver@pgfsys-dvips.def\endcsname{%
+    \pgfkeyssetvalue{/tikz/external/system call}{%
+        latex \tikzexternalcheckshellescape -halt-on-error -interaction=batchmode -jobname "\image" "\texsource" %
+        && dvips -o "\image".pdf "\image".dvi %
+        && ps2pdf "\image".ps "\image".pdf %
+    }%
+}%
+\pgfutil@ifundefined{tikzexternal@driver@\pgfsysdriver}{%
+    % fallback. We do not know the driver here.
+    \csname tikzexternal@driver@pgfsys-pdftex.def\endcsname
+}{%
+    \csname tikzexternal@driver@\pgfsysdriver\endcsname
+}%
 \makeatother
 \begin{document}
-\FIG{cnlogo}      \sjtulogo[color=white]
-\FIG{vlogo}     \sjtuvlogo[color=white]
-\FIG{dlogo}    \sjtuvhlogo[color=white]
-\FIG{enlogo}    \sjtuenlogo[color=white]
+\FIG{cnlogo}        \sjtulogo[color=white]
+\FIG{vlogo}         \sjtuvlogo[color=white]
+\FIG{dlogo}         \sjtuvhlogo[color=white]
+\FIG{enlogo}        \sjtuenlogo[color=white]
 \FIG{sjtubadge}     \sjtubadge[color=white]
 
 \input docstrip.tex %
