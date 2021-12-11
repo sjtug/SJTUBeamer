@@ -290,8 +290,27 @@ end
 function checkinit_hook()
     gen_snippets()
 
+    -- Clean up the generated dummy file in vi folder.
+    local vifolder = unpackdir .. "/vi"
+    rm(vifolder, "*.dpth")
+    rm(vifolder, "*.log")
+    rm(vifolder, "*.md5")
+
     -- Move generated files to the main directory when it starts to check.
-    for _,file in pairs(installfiles) do
-        return cp(file, unpackdir, "../")
+    for _,src in pairs(installfiles) do
+        if string.sub(src,-1,-1) == "/" then
+            local targetdir = "../" .. src
+            if not direxists(targetdir) then
+                mkdir(targetdir)
+            end
+            cp("", unpackdir .. "/" .. src, targetdir)
+        else
+            cp(src, unpackdir, "../")
+        end
     end
+
+    -- Clean the generator style file.
+    rm("../", "sjtuvigen.sty")
+
+    return 0
 end
