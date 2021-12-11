@@ -3,7 +3,7 @@
 module           = "sjtubeamer"
 
 sourcefiledir    = "source"
-sourcefiles      = {"*.ins","*.dtx","vi/","latexmkrc"}
+sourcefiles      = {"*.ins","*.dtx","vi/","sjtuvigen.sty"}
 installfiles     = {"*.sty","vi/","latexmkrc"}
 
 docfiledir       = "doc"
@@ -15,6 +15,12 @@ else
     typesetexe       = "xelatex"
     etypesetexe      = "xetex"
 end
+
+-- ins file is now refactored in standard latex document
+-- when not using -shell-escape parameter
+-- the vi graphics will not be generated.
+unpackexe        = "pdflatex"
+unpackopts       = "--shell-escape"
 
 typesetopts      = "-interaction=nonstopmode -shell-escape"
 typesetfiles     = {"sjtubeamerdevguide.tex","sjtubeamer.tex"}

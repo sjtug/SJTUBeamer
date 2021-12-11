@@ -14,6 +14,31 @@
 %% limitations under the License.
 %% ------------------------------------------------------------------------
 
+%% This file should be compiled by
+%%      pdflatex beamerthemesjtubeamer.ins -shell-escape
+%% If no 
+
+\documentclass{article}
+\usepackage{sjtuvigen}
+\usetikzlibrary{backgrounds}
+\usepackage{pdftexcmds}
+\ifnum\csname pdf@shellescape\endcsname=1 %
+    \usetikzlibrary{external}
+    \tikzexternalize[prefix=vi/]
+    \let\FIG=\tikzsetnextfilename
+\else %
+    \newcommand{\FIG}[1]{}
+\fi
+\makeatletter
+\def\tikzexternal@realjob{beamerthemesjtubeamer.ins}
+\makeatother
+\begin{document}
+\FIG{cnlogo}      \sjtulogo[color=white]
+\FIG{vlogo}     \sjtuvlogo[color=white]
+\FIG{dlogo}    \sjtuvhlogo[color=white]
+\FIG{enlogo}    \sjtuenlogo[color=white]
+\FIG{sjtubadge}     \sjtubadge[color=white]
+
 \input docstrip.tex %
 \keepsilent
 \askforoverwritefalse
@@ -102,3 +127,5 @@ see https://vi.sjtu.edu.cn/index.php/articles/bulletin/16.
 \Msg{**************************************************************}
 
 \endbatchfile
+\end{document}
+
