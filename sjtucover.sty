@@ -18,7 +18,7 @@
 %% see https://vi.sjtu.edu.cn/index.php/articles/bulletin/16.
 %% ------------------------------------------------------------------------
 \NeedsTeXFormat{LaTeX2e}
-\ProvidesPackage{sjtucover}[2021/11/25 cover library for sjtubeamer v2.4.0]
+\ProvidesPackage{sjtucover}[2021/12/01 cover library for sjtubeamer v2.4.1]
 \RequirePackage{sjtuvi}
 \defbeamertemplate*{title page}{maxplus}[1][]
 {
@@ -331,7 +331,14 @@
     \usebeamercolor[fg]{palette primary}
     \usebeamerfont{title}\noindent#1
     \vskip1em%
-    \usebeamerfont{subtitle}\insertauthor~$\cdot$~\inserttitle
+    \usebeamerfont{subtitle}
+    \insertauthor
+    \ifx\insertauthor\@empty
+    \else
+      \ifx\inserttitle\@empty
+      \else~$\cdot$~\fi
+    \fi
+    \inserttitle
   \end{beamercolorbox}%
   \vfill
   \vskip3.5em

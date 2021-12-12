@@ -21,7 +21,7 @@
 %% limitations under the License.
 %% ------------------------------------------------------------------------
 \NeedsTeXFormat{LaTeX2e}
-\ProvidesPackage{beamerinnerthemesjtubeamer}[2021/11/25 sjtubeamer inner theme v2.4.0]
+\ProvidesPackage{beamerinnerthemesjtubeamer}[2021/12/01 sjtubeamer inner theme v2.4.1]
 \RequirePackage{sjtuvi}
 \RequirePackage{tcolorbox}
 \DeclareOptionBeamer{maxplus}{\def\sjtubeamer@inner@cover{maxplus}}
@@ -70,7 +70,6 @@
 \fi
 \newcommand{\bgcenterbox}[1]{
   \parbox[c][1.1\paperheight][c]{\paperwidth}{
-    \def\sjtubeamer@logocolor{cprimary!50}
     \centering\resizebox{\paperwidth}{!}{#1}
   }
 }

@@ -211,7 +211,7 @@ Kernel function means that it is not recommended to be used by end users.
 
 \subparagraph{Pros:} Using this method could get an optional parameter.
 
-\subparagraph{Cons:} This method is less readable. And have to decide to use \verb"\newcommand" (check on duplicate functions) or \verb"\providecommand" (skip uniquness check).
+\subparagraph{Cons:} This method is less readable. And have to decide to use \verb"\newcommand" (check on duplicate functions) or \verb"\providecommand" (no effect if defined).
 
 \subparagraph{Decision:} Just use this method if you want an optional parameter. You should not write a function with more than one optional parameters.
 
@@ -430,14 +430,14 @@ The table shows the flow of parameter passing.
 
 \begin{table}[h]
   \begin{tabular}{l|>{\ttfamily}l|>{\ttfamily}l>{\ttfamily}l>{\ttfamily}l}
-            & parent                             & color                           & inner                           & outer                                    \\
+            & parent                             & color                           & inner                           & outer                             \\
     \hline
-    cover   & \textbackslash{}sjtubeamer@cover   &                                 & \textbackslash{}...@inner@cover &                                          \\
-    color   & \textbackslash{}sjtubeamer@color   & \textbackslash{}...@color@color & \textbackslash{}...@inner@color &                                          \\
-    lum     & \textbackslash{}sjtubeamer@lum     & \textbackslash{}...@clolor@lum  &                                 &                                          \\
-    lang    & \textbackslash{}sjtubeamer@lang    &                                 & \textbackslash{}...@inner@lang  &                                          \\
-    nav     & \textbackslash{}sjtubeamer@nav     &                                 &                                 & \textbackslash{}...@outer@nav            \\
-    logopos & \textbackslash{}sjtubeamer@logopos &                                 &                                 & \textbackslash{}sjtubeamer@outer@logopos \\
+    cover   & \textbackslash{}sjtubeamer@cover   &                                 & \textbackslash{}...@inner@cover &                                   \\
+    color   & \textbackslash{}sjtubeamer@color   & \textbackslash{}...@color@color & \textbackslash{}...@inner@color &                                   \\
+    lum     & \textbackslash{}sjtubeamer@lum     & \textbackslash{}...@clolor@lum  &                                 &                                   \\
+    lang    & \textbackslash{}sjtubeamer@lang    &                                 & \textbackslash{}...@inner@lang  &                                   \\
+    nav     & \textbackslash{}sjtubeamer@nav     &                                 &                                 & \textbackslash{}...@outer@nav     \\
+    logopos & \textbackslash{}sjtubeamer@logopos &                                 &                                 & \textbackslash{}...@outer@logopos \\
   \end{tabular}
   \vskip 3pt\moveright 0in\vbox{\hrule width3cm \vskip 3pt
     \moveleft 0em \vbox{
@@ -469,6 +469,16 @@ Now, a sandbox in \verb"sjtucover.sty" is created. The modification on logo colo
 
 Since large source code may cause a performance drop on compiling. We have figure out a precompiling mechanism to reduce the templates it generates. See Section \ref{sec:precompile}.
 
+You could also make your customized style by using \texttt{my} option to setup all components from scratch without leaving the \themename\ ecosystem with all those utilities.
+
+Developers mainly have two ways to add your template. One is to modify the source code directly where the placeholder for \texttt{my} style has been left blank already. The other is to use a new style file \texttt{my.sty} (whatever the filename) and load it after loading the theme in order to override the previous settings made by \themename\ itself. And you could use \texttt{\textbackslash{}defbeamertemplatealias} to assign \texttt{my} by other current template. Remember, the placeholder is all left blank, and if you encountered
+\begin{verbatim}
+  Divided by zero
+\end{verbatim}
+errors, you have to assign the placeholder for a correct resizing. And if you really want to left it blank, use \texttt{\textbackslash{}hphantom\{-\}} or \texttt{\textbackslash{}vphantom\{-\}} to create a void box.
+
+You could refer to the user guide for a sample file. And the loading on the package is not that necessary as long as you load the theme before it is loaded, which is only for the sake of completeness.
+
 \subsection{Logo Color System}
 
 \themename\ has its own color model on logo. The main macro is \verb"\definelogo", which will generate a macro on its file name.
@@ -477,7 +487,7 @@ TikZ provides an environment to create our own path fading from picture: \verb"t
 
 However, this only creates a square mask. We have to crop it for some rectangular bounding boxes. Our macro will decide from your input on horizontal and vertical cropping size for your picture fill the height or fill the width. And crop the area symmetrically.
 
-\begin{figure}
+\begin{figure}[h]
   \begin{tikzpicture}
     \draw [fill=black] (-4,1) rectangle (-2,-1);
 
@@ -561,9 +571,11 @@ To make full use of \themename\, we always recommend using the latest \TeX\ dist
 
 For compatibility issues, you need to define the \verb"\sjtubeamer@compatible" variable to \verb"false" to close the related rendering before the theme is loaded.
 
+\begin{verbatim}
 \makeatletter
 \def\sjtubeamer@compatible{false}
 \makeatother
+\end{verbatim}
 
 \begin{tabular}{c|cccccccc}
   \TeX\ Live & 2021    & 2020    & 2019    & 2018    & 2017    & 2016    & 2015    & 2014 \\
@@ -587,12 +599,12 @@ To dump the format on beamer, we have to reset the encoding to the old 7-bit def
 
 In practice, we find that the \texttt{path fading} in Ti\emph{k}Z is not compatible with the caching mechanism, and it introduces more issues in PDF compatibility. Before it is solved in a future version of Ti\emph{k}Z, the background pattern will be skipped in the title page template in \texttt{min} theme by adding \verb"\sjtubeamer@compatible" to \verb"false".
 
-If your unit test doesn't want to be cached, you could add a blank square brackets.
+If your unit test doesn't want to be cached, you could add blank square brackets.
 \begin{verbatim}
   \documentclass[]{ctexbeamer}
 \end{verbatim}
 
-More details about this experimental caching mechanism in \texttt{l3build doc}, see \texttt{build.lua}. And you could change the default behavior of caching the demo files by changing \texttt{cahcedemo} to \texttt{true}.
+More details about this experimental caching mechanism in \texttt{l3build doc}, see \texttt{build.lua}. And you could change the default behavior of caching the demo files by changing \texttt{cachedemo} to \texttt{true}.
 
 \section{Developer}
 \begin{itemize}

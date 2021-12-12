@@ -465,10 +465,34 @@ fontupper=\sffamily,colupper=white}
 \beamerdemo[1]{step20.tex}
 
 \begin{commentlist}
-  \item \texttt{\textbackslash{}setbeamertemplate} 可以设定背景图。
+  \item \texttt{\textbackslash{}setbeamertemplate\{background\}\{\}} 可以设定背景图。如果设定为空，将会清除现在已经设定的背景图。请在主题加载完成后设定。
   \item \texttt{\textbackslash{}stamparray} 可以用于生成印记矩阵。$^*$
   \item \texttt{\textbackslash{}bgcenterbox} 命令可以用于居中背景图。$^*$
   \item 作为文字的背景，其透明度应该较低或者颜色偏淡。
+\end{commentlist}
+
+\chapter{自定}
+
+上面的自定义配置可以全部写入一个样式文件中，以在加载主题后加载这个自定义样式文件。采用 \texttt{my} 选项可以从零开始打造这些配置。
+
+\beamerdemo[1]{step21.tex}
+
+\tcbinputlisting{listing file={tutorial/my.sty},
+  listing only,
+  enhanced jigsaw,
+  lower separated=false,
+  leftlower=0pt,rightlower=0pt,middle=0pt,
+  listing options={
+      style=tcblatex,
+      texcsstyle=*\color{red!70!black}
+    },
+  tile,
+  title={\faEdit 样式 my.sty}}
+
+\begin{commentlist}
+  \item 使用 \texttt{\textbackslash{}definecolor} 定义 \texttt{cprimary}、\texttt{csecondary}$^*$ 可以改变主题颜色。
+  \item 使用 \texttt{\textbackslash{}defbeamertemplatealias} 可以通过已有模板进行赋值，这里可以用于设置标题页与尾页的样式为现有样式。
+  \item 更多设置请参见\href{run:sjtubeamerdevguide.pdf}{开发文档}第3.3节。
 \end{commentlist}
 
 %TODO: 未来的开发计划

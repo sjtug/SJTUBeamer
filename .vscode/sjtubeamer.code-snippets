@@ -45,13 +45,13 @@
 		"scope": "doctex,tex,latex",
 		"prefix": "\\bgcenterbox",
 		"body": "\\bgcenterbox{$1}",
-		"description": "Define a command for USERS to make a centered background box easily. Move the defination on \\sjtubeamer@logocolor to the inner environment, to avoid the shift on centering. And since the definition has already been moved into the inner group, the definition here is \\emph{locale} and no more stack saving is needed.\n"
+		"description": "Define a command for USERS to make a centered background box easily. \nThe change on color is now deprecated.\n"
 	},
 	"titlegraphic": {
 		"scope": "doctex,tex,latex",
 		"prefix": "\\titlegraphic",
 		"body": "\\titlegraphic{$1}",
-		"description": " Define the title grahic image.\n\n NOTICE: if you are using your own title graphic, please use png image with predefined color and transparency. Since it is beyond the control of logo color system. Or you could use the provided command in the sjtuvi library to create your own masked picture in order to follow the logo color system (The provided picture should be white and transparent in the background).\n\nmax theme has the background.\n"
+		"description": " Define the title grahic image.\n\n NOTICE: if you are using your own title graphic, please use png image with predefined color and transparency. Since it is beyond the control of logo color system. Or you could use the provided command in the sjtuvi library to create your own masked picture in order to follow the logo color system (The provided picture should be white and transparent in the background).\n\nmax theme has the background.\n\\setbeamertemplate{background}{} after loading the theme will disable it.\n"
 	},
 	"coverpage": {
 		"scope": "doctex,tex",
