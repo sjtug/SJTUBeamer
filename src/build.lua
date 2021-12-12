@@ -295,9 +295,12 @@ function checkinit_hook()
     rm(vifolder, "*.dpth")
     rm(vifolder, "*.log")
     rm(vifolder, "*.md5")
+    rm(vifolder, "*.dvi")
+    rm(vifolder, "*.ps")
 
     -- Move generated files to the main directory when it starts to check.
     for _,src in pairs(installfiles) do
+        -- patch l3build copying action on directories.
         if string.sub(src,-1,-1) == "/" then
             local targetdir = "../" .. src
             if not direxists(targetdir) then

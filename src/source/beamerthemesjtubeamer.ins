@@ -18,11 +18,22 @@
 %%      pdflatex beamerthemesjtubeamer.ins -shell-escape
 %% If the parameter is not given, the vi graphics will not be generated.
 
+%% TODO: add hooks in sjtuvigen in case that 
+%% the installation is not complete,
+%% the first shell-escape run on the document 
+%% will first initialize the vi logos. 
+
+%% TODO: write to external file using filecontent environment
+%% use AtEndDocument hook to append the unpack options.
+
 \documentclass{article}
 % sjtuvigen contains the metadata of shape.
 \usepackage{sjtuvigen}
 \usetikzlibrary{backgrounds}
 % skip if external is not available.
+% TODO: if the externalization is not enabled
+% command in sjtuvigen should be empty
+% in order to avoid the TeX compacity exceeded error.
 \usepackage{pdftexcmds}
 \ifnum\csname pdf@shellescape\endcsname=1 %
     \usetikzlibrary{external}
@@ -34,11 +45,11 @@
 % patch external library to support .ins suffix (not .tex)
 % and convert to pdf when using latex to compile.
 \makeatletter
-\def\tikzexternal@realjob{beamerthemesjtubeamer.ins}
+\def\tikzexternal@realjob{\jobname.ins}
 \expandafter\def\csname tikzexternal@driver@pgfsys-dvips.def\endcsname{%
     \pgfkeyssetvalue{/tikz/external/system call}{%
         latex \tikzexternalcheckshellescape -halt-on-error -interaction=batchmode -jobname "\image" "\texsource" %
-        && dvips -o "\image".pdf "\image".dvi %
+        && dvips -o "\image".ps "\image".dvi %
         && ps2pdf "\image".ps "\image".pdf %
     }%
 }%
@@ -131,6 +142,7 @@ see https://vi.sjtu.edu.cn/index.php/articles/bulletin/16.
 \Msg{*     beamercolorthemesjtubeamermin.sty                      *}
 \Msg{*     sjtucover.sty                                          *}
 \Msg{*     sjtuvi.sty                                             *}
+\Msg{*     sjtuvigen.sty                                          *}
 \Msg{*     vi/                                                    *}
 \Msg{*                                                            *}
 \Msg{* To produce the documentation run the file                  *}

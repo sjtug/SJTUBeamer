@@ -267,3 +267,5 @@ sjtubeamer*.pdf
 cover-*.pdf
 basis-*.tex
 step*.pdf
+src/source/vi/*.ps
+src/source/vi/*.pdf
