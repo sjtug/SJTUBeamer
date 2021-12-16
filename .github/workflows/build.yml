@@ -3,10 +3,14 @@ on:
     branches:
       - main
       - develop
+    paths:
+      - 'src/**'
   pull_request:
     branches:
       - main
       - develop
+    paths:
+      - 'src/**'
 
 name: Build
 
