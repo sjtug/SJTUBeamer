@@ -56,7 +56,7 @@ jobs:
           body: >
             ${{
               format(
-                join(fromJSON(steps.contrib_png.outputs.markdown_urls), '  '),
+                join(fromJSON(steps.contrib_png.outputs.markdown_urls), '  ')
               )
             }}
       # - uses: jungwinter/comment@v1
