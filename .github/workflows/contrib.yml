@@ -24,7 +24,8 @@ jobs:
         name: checkout code
       - name: get newly contributed package
         run: |
-          git diff main --name-only | grep -e 'contrib\/[^/]*\/sjtubeamertheme[^/]*\.ltx' | grep -o -e '\/[^/]*\/' > contrib.txt
+          git branch --list
+          git diff origin/main --name-only | grep -e 'contrib\/[^/]*\/sjtubeamertheme[^/]*\.ltx' | grep -o -e '\/[^/]*\/' > contrib.txt
       - uses: xu-cheng/texlive-action/full@v1
         with:
           run: |
