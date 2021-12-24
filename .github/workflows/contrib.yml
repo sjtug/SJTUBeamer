@@ -8,8 +8,8 @@ on:
     branches:
       - main
       - develop
-    types:
-      - 'review_requested'
+    # types:
+    #   - 'review_requested'
     paths:
       - 'contrib/**'
 
@@ -53,12 +53,7 @@ jobs:
           type: create
           issue_number: ${{ github.event.number }}
           token: ${{ secrets.GITHUB_TOKEN }}
-          body: >
-            ${{
-              format(
-                join(fromJSON(steps.contrib_png.outputs.markdown_urls), '  ')
-              )
-            }}
+          body: ${{ format(join(fromJSON(steps.contrib_png.outputs.markdown_urls), '  ')) }}
       # - uses: jungwinter/comment@v1
       #   if: github.event_name == 'push'
       #   env:
