@@ -1,4 +1,9 @@
 on:
+  # push:
+  #   branches:
+  #     - main
+  #   paths:
+  #     - 'contrib/**'
   pull_request:
     branches:
       - main
@@ -29,12 +34,18 @@ jobs:
           path: ./build/contrib.*.png
           client_id: ${{secrets.IMGUR_CLIENT_ID}}
         name: upload contrib img to imgur
+      - uses: actions/upload-artifact@v2
+        with:
+          path: |
+            build/contrib.*.pdf
+        name: upload contrib artifacts
       - uses: jungwinter/comment@v1
+        if: github.event_name == 'pull_request'
         env:
           MESSAGE: |
-            Thank you for contributing to SJTUBeamer!
+            感谢向 SJTUBeamer 贡献插件！
 
-            The following is the preview of your contribution documentation.
+            以下是插件文档的预览：
 
             {0}
         with:
@@ -47,8 +58,25 @@ jobs:
                 join(fromJSON(steps.contrib_png.outputs.markdown_urls), '  '),
               )
             }}
-      - uses: actions/upload-artifact@v2
-        with:
-          path: |
-            build/contrib.*.pdf
-        name: upload contrib artifacts
+      # - uses: jungwinter/comment@v1
+      #   if: github.event_name == 'push'
+      #   env:
+      #     MESSAGE: |
+      #       ### {0}
+
+      #       @{1} #{2}
+
+      #       {3}
+      #   with:
+      #     type: create
+      #     issue_number: 1 # to be replaced by the good first issue number
+      #     token: ${{ secrets.GITHUB_TOKEN }}
+      #     body: >
+      #       ${{
+      #         format(
+      #           fromJSON(github.event.issue.title)
+      #           fromJSON(github.event.issue.sender.id),
+      #           fromJSON(github.event.issue.number),
+      #           join(fromJSON(steps.contrib_png.outputs.markdown_urls), '  '),
+      #         )
+      #       }}
