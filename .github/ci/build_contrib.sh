@@ -1,10 +1,10 @@
 # !/bin/bash
 
-themes=$(git diff main --name-only | grep -P 'contrib/[^/]+\/sjtubeamertheme[^/]*\.ltx' | grep -oP '\/[^/]*\/')
+themes=$(git diff main --name-only | grep -e 'contrib\/[^/]*\/sjtubeamertheme[^/]*\.ltx' | grep -o -e '\/[^/]*\/')
 # All contrib template should only have one entry point.
 for theme in ${themes[@]};
 do
-    theme=${theme:1:${#theme}-2}
+    theme=${theme:1:${#theme}-2}    # remove the /
     echo Compiling $theme documentation...
     cp contrib/$theme/$theme.tex ./$theme.tex
     latexmk $@ -outdir=build $theme.tex
