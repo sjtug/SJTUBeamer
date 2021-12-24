@@ -1,6 +1,6 @@
 # !/bin/bash
 
-themes=$(git diff main --name-only | grep -e 'contrib\/[^/]*\/sjtubeamertheme[^/]*\.ltx' | grep -o -e '\/[^/]*\/')
+mapfile themes <contrib.txt
 # All contrib template should only have one entry point.
 for theme in ${themes[@]};
 do
