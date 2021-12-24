@@ -22,6 +22,8 @@ jobs:
     steps: 
       - uses: actions/checkout@v2
         name: checkout code
+        with:
+          fetch-depth: 0
       - name: get newly contributed package
         run: |
           git branch --list
