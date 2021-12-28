@@ -42,19 +42,19 @@ jobs:
             build/contrib.*.pdf
         name: upload contrib artifacts
       - uses: devicons/public-upload-to-imgur@v2.2.2
-        if: github.event_name == 'pull_request' # will be replaced by push
+        if: github.event_name == 'push'
         id: contrib_png
         with:
           path: ./build/contrib.*.png
           client_id: ${{secrets.IMGUR_CLIENT_ID}}
         name: upload contrib img to imgur
       - uses: jungwinter/comment@v1
-        if: github.event_name == 'push' # will be replaced by pull_request
+        if: github.event_name == 'pull_request'
         env:
           MESSAGE: |
             Thank you for contributing to SJTUBeamer! 
 
-            Here is the preview of your contribution document.
+            Here is the preview of your contribution documentation.
 
             {0}
         with:
@@ -69,9 +69,14 @@ jobs:
               )
             }}
       - uses: jungwinter/comment@v1
-        if: github.event_name == 'pull_request' # will be replaced by push
+        if: github.event_name == 'push'
         env:
-          MESSAGE: "{0} @{1} {2}"
+          MESSAGE: |
+            ###{0}
+            
+            @{1}
+            
+            {2}
         with:
           type: create
           issue_number: '77' # to be replaced by the good first issue number, open issues only.
@@ -80,8 +85,8 @@ jobs:
             ${{
               format(
                 env.MESSAGE,
-                github.event.title,
-                github.event.sender.login,
+                github.event.push.commits[0].message,
+                github.event.push.commits[0].author.name,
                 join(fromJSON(steps.contrib_png.outputs.markdown_urls), '  ')
               )
             }}
