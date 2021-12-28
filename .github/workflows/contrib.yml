@@ -8,8 +8,8 @@ on:
     branches:
       - main
       - develop
-    # types:
-    #   - 'review_requested'
+    types:
+      - 'review_requested'
     paths:
       - 'contrib/**'
 
@@ -42,7 +42,6 @@ jobs:
             build/contrib.*.pdf
         name: upload contrib artifacts
       - uses: devicons/public-upload-to-imgur@v2.2.2
-        if: github.event_name == 'push'
         id: contrib_png
         with:
           path: ./build/contrib.*.png
