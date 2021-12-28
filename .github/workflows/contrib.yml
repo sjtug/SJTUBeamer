@@ -42,17 +42,18 @@ jobs:
             build/contrib.*.pdf
         name: upload contrib artifacts
       - uses: devicons/public-upload-to-imgur@v2.2.2
-        if: github.event_name == 'push'
+        if: github.event_name == 'pull_request' # will be replaced by push
         id: contrib_png
         with:
           path: ./build/contrib.*.png
           client_id: ${{secrets.IMGUR_CLIENT_ID}}
         name: upload contrib img to imgur
       - uses: jungwinter/comment@v1
-        if: github.event_name == 'push'
+        if: github.event_name == 'push' # will be replaced by pull_request
         env:
           MESSAGE: |
             Thank you for contributing to SJTUBeamer! 
+
             Here is the preview of your contribution document.
 
             {0}
@@ -60,26 +61,27 @@ jobs:
           type: create
           issue_number: ${{ github.event.number }}
           token: ${{ secrets.GITHUB_TOKEN }}
-          body: ${{ format(join(fromJSON(steps.contrib_png.outputs.markdown_urls), '  ')) }}
+          body: >
+            ${{ 
+              format(
+                env.MESSAGE,
+                join(fromJSON(steps.contrib_png.outputs.markdown_urls), '  ')
+              )
+            }}
       - uses: jungwinter/comment@v1
         if: github.event_name == 'pull_request' # will be replaced by push
         env:
-          MESSAGE: |
-            ### {0}
-
-            @{1} #{2}
-
-            {3}
+          MESSAGE: "{0} @{1} {2}"
         with:
           type: create
-          issue_number: 2 # to be replaced by the good first issue number
+          issue_number: '77' # to be replaced by the good first issue number, open issues only.
           token: ${{ secrets.GITHUB_TOKEN }}
           body: >
             ${{
               format(
-                fromJSON(github.event.issue.title),
-                fromJSON(github.event.issue.sender.id),
-                fromJSON(github.event.issue.number),
+                env.MESSAGE,
+                github.event.title,
+                github.event.sender.login,
                 join(fromJSON(steps.contrib_png.outputs.markdown_urls), '  ')
               )
             }}
