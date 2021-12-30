@@ -186,9 +186,9 @@ function gen_snippets()
         local captured = 0
         for line in io.lines(sourcefiledir .. "/" .. p) do
             if in_macro ~= nil and captured == 0 then
-                -- Find TeX style definition, see Coding Style 2.1.2
+                -- Find TeX style definition, see Coding Style 3.1.2
                 local def_param = string.match(line, "\\def" .. in_macro .. "([#%d]*)")
-                -- Find LaTeX style definition, see Coding Style 2.1.3
+                -- Find LaTeX style definition, see Coding Style 3.1.3
                 local comm_param, param_default = string.match(line, "\\[renew|provide|new]*%a+{" .. in_macro .. "}%[(%d)%]([%[%a*@*\\*%]]*)")
                 if def_param ~= nil then
                     def_param = string.gsub(def_param, "#(%d)", "{$%1}")
@@ -217,7 +217,7 @@ function gen_snippets()
                     elseif string.find(line, "command{") == nil then -- it is a definition method from 3rd party package, which often requires an applying region.
                         macro_body = macro_body .. "{$" .. comm_param + 1 .. "}"
                     end
-                -- Find begin macrocode environment, see Coding Style 2.3.2
+                -- Find begin macrocode environment, see Coding Style 3.3.2
                 elseif line == "%    \\begin{macrocode}" then
                     in_code = true
                 -- Won't find end macrocode environment, only capture the first part of this macro as description.
@@ -228,12 +228,12 @@ function gen_snippets()
                 end
             end
 
-            -- Find begin macro DocTeX environment, see Coding Style 2.3.1
+            -- Find begin macro DocTeX environment, see Coding Style 3.3.1
             local env_beg = string.match(line, "\\begin{macro}{(\\*[%a@]+)}")
             if env_beg ~= nil then
                 in_macro = env_beg
             end
-            -- Find end macro DocTeX environment, see Coding Style 2.3.1
+            -- Find end macro DocTeX environment, see Coding Style 3.3.1
             if string.match(line, "\\end{macro}") ~= nil and in_macro ~= nil then
                 -- This macro is processed complete.
                 local match_comm = string.gsub(in_macro, "\\", "\\\\")
@@ -248,7 +248,7 @@ function gen_snippets()
                 if macro_body == "" then
                     macro_body = match_comm     -- no abvious definition
                     if string.sub(in_macro,1,1) == "\\" and     -- a macro
-                        string.find(in_macro,"@") == nil then   -- not an internal variable, see Coding Style 2.1.4
+                        string.find(in_macro,"@") == nil then   -- not an internal variable, see Coding Style 3.1.4
                         macro_body = macro_body .. "{$1}"       -- it is more like an interface
                     end
                 end
