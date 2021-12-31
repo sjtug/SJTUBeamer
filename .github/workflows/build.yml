@@ -4,12 +4,14 @@ on:
       - main
       - develop
     paths:
+      - '**'
       - '!contrib/**'
   pull_request:
     branches:
       - main
       - develop
     paths:
+      - '**'
       - '!contrib/**'
 
 name: Build
