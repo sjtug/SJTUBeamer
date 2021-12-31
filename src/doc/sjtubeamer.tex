@@ -90,6 +90,20 @@ fontupper=\sffamily,colupper=white}
     title={\faEdit 示例 \thetcbcounter}
 }
 
+\newtcbinputlisting{\examplecode}[1]{
+  listing file={tutorial/#1},
+  listing only,
+  enhanced jigsaw,
+  lower separated=false,
+  leftlower=0pt,rightlower=0pt,middle=0pt,
+  listing options={
+      style=tcblatex,
+      texcsstyle=*\color{red!70!black}
+    },
+  tile,
+  title={\faEdit 样例 #1}
+}
+
 \newenvironment{beamerdemoraster}[3][]{
     \begin{tcbraster}[raster columns=3,colframe=#2,colback=white,
         colbacktitle=#2!50!white,fonttitle=\small\bfseries\ttfamily,fontupper=\ttfamily,
@@ -382,6 +396,12 @@ fontupper=\sffamily,colupper=white}
 
 \faWindows 如果使用的是 \hologo{pdfLaTeX} 编译，需要使用 \texttt{gbt7714} 宏包，并采用老式的 \textsc{Bib\TeX{}} 进行引用处理。
 
+\examplecode{bibtex.tex}
+
+\begin{commentlist}
+  \item 对帧使用 \verb"allowframebreaks" 参数可以对过长的内容自动换页。
+\end{commentlist}
+
 \chapter{图表}
 
 表格与统计图是展示数据最直观的方式，可以采用内建的方式插入风格统一的矢量图表。\themename\ 对此设定了一些预设。
@@ -479,17 +499,9 @@ fontupper=\sffamily,colupper=white}
 
 \beamerdemo[1]{step21.tex}
 
-\tcbinputlisting{listing file={tutorial/my.sty},
-  listing only,
-  enhanced jigsaw,
-  lower separated=false,
-  leftlower=0pt,rightlower=0pt,middle=0pt,
-  listing options={
-      style=tcblatex,
-      texcsstyle=*\color{red!70!black}
-    },
-  tile,
-  title={\faEdit 样式 my.sty}}
+其中 \verb"\usepackage{my}" 即加载了同级目录下的 \verb"my.sty" 自定样式文件。
+
+\examplecode{my.sty}
 
 \begin{commentlist}
   \item 使用 \texttt{\textbackslash{}definecolor} 定义 \texttt{cprimary}、\texttt{csecondary}$^*$ 可以改变主题颜色。
@@ -499,20 +511,10 @@ fontupper=\sffamily,colupper=white}
 
 \section{插件}
 
-社区版本中有插件可供使用，使用这些插件可以提高工作效率，减少寻找解决方案的时间。
+从GitHub下载的社区版本中有插件可供使用，使用这些插件可以提高工作效率，减少寻找解决方案的时间。
 
 插件可以在置顶的 Issue 中浏览，使用下面的代码进行调用：
-\tcbinputlisting{listing file={tutorial/contrib.tex},
-  listing only,
-  enhanced jigsaw,
-  lower separated=false,
-  leftlower=0pt,rightlower=0pt,middle=0pt,
-  listing options={
-      style=tcblatex,
-      texcsstyle=*\color{red!70!black}
-    },
-  tile,
-  title={\faEdit 样例 contrib.tex}}
+\examplecode{contrib.tex}
 
 请注意，发布版和安装版不包含社区插件。如果希望贡献自己的插件，可以查看根目录下的 \verb"CONTRIBUTING.md" 以及\href{run:sjtubeamerdevguide.pdf}{开发文档}第1节。
 
