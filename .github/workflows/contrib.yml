@@ -34,6 +34,11 @@ jobs:
         if: github.event_name == 'push'
         run: |
           git diff HEAD^ --name-only | grep -e 'contrib\/[^/]*\/sjtubeamertheme[^/]*\.ltx' | grep -o -e '\/[^/]*\/' > contrib.txt
+      - name: read contrib package name
+        id: contrib_name
+        uses: juliangruber/read-file-action@v1.0.0
+        with:
+          file: contrib.txt
       - uses: xu-cheng/texlive-action/full@v1
         with:
           run: |
@@ -56,11 +61,11 @@ jobs:
         if: github.event_name == 'pull_request'
         env:
           MESSAGE: |
-            Thank you for contributing to SJTUBeamer! 
+            Thank you for contributing to SJTUBeamer! The name of your contribution is: {0}
 
             Here is the preview of your contribution documentation.
 
-            {0}
+            {1}
         with:
           type: create
           issue_number: ${{ github.event.number }}
@@ -69,6 +74,7 @@ jobs:
             ${{ 
               format(
                 env.MESSAGE,
+                steps.contrib_name.outputs.content,
                 join(fromJSON(steps.contrib_png.outputs.markdown_urls), '  ')
               )
             }}
@@ -89,7 +95,7 @@ jobs:
             ${{
               format(
                 env.MESSAGE,
-                github.event.push.commits[0].message,
+                steps.contrib_name.outputs.content,
                 github.event.push.commits[0].author[0],
                 join(fromJSON(steps.contrib_png.outputs.markdown_urls), '  ')
               )
