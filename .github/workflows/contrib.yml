@@ -78,7 +78,7 @@ jobs:
             {2}
         with:
           type: create
-          issue_number: '77' # to be replaced by the good first issue number, open issues only.
+          issue_number: '81'
           token: ${{ secrets.GITHUB_TOKEN }}
           body: >
             ${{
