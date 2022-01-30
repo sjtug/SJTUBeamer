@@ -76,7 +76,7 @@ jobs:
         if: github.event_name == 'push'
         env:
           MESSAGE: |
-            ###{0}
+            ### {0}
             
             @{1}
             
@@ -90,7 +90,7 @@ jobs:
               format(
                 env.MESSAGE,
                 github.event.push.commits[0].message,
-                github.event.push.commits[0].author.name,
+                github.event.push.commits[0].author[0],
                 join(fromJSON(steps.contrib_png.outputs.markdown_urls), '  ')
               )
             }}
