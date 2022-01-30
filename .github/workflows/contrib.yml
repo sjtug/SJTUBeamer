@@ -26,9 +26,14 @@ jobs:
         name: checkout code
         with:
           fetch-depth: 0
-      - name: get newly contributed package
+      - name: get newly contributed package (pull request)
+        if: github.event_name == 'pull_request'
         run: |
           git diff origin/main --name-only | grep -e 'contrib\/[^/]*\/sjtubeamertheme[^/]*\.ltx' | grep -o -e '\/[^/]*\/' > contrib.txt
+      - name: get all contributed packages (push)
+        if: github.event_name == 'push'
+        run: |
+          git diff HEAD^ --name-only | grep -e 'contrib\/[^/]*\/sjtubeamertheme[^/]*\.ltx' | grep -o -e '\/[^/]*\/' > contrib.txt
       - uses: xu-cheng/texlive-action/full@v1
         with:
           run: |
