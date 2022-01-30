@@ -30,7 +30,7 @@ jobs:
         if: github.event_name == 'pull_request'
         run: |
           git diff origin/main --name-only | grep -e 'contrib\/[^/]*\/sjtubeamertheme[^/]*\.ltx' | grep -o -e '\/[^/]*\/' | sed -e "s|\/||g" > contrib.txt
-      - name: get all contributed packages (push)
+      - name: get newly contributed packages (push)
         if: github.event_name == 'push'
         run: |
           git diff HEAD^ --name-only | grep -e 'contrib\/[^/]*\/sjtubeamertheme[^/]*\.ltx' | grep -o -e '\/[^/]*\/' | sed -e "s|\/||g" > contrib.txt
@@ -78,7 +78,7 @@ jobs:
                 join(fromJSON(steps.contrib_png.outputs.markdown_urls), '  ')
               )
             }}
-        name: comment on review request
+        name: comment (review requested)
       - uses: jungwinter/comment@v1
         if: github.event_name == 'push'
         env:
@@ -101,4 +101,4 @@ jobs:
                 join(fromJSON(steps.contrib_png.outputs.markdown_urls), '  ')
               )
             }}
-        name: comment on push
+        name: comment (push)
