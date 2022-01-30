@@ -6,9 +6,20 @@
 \subtitle{副标题}
 \author{作者}
 \maketitle
-\begin{frame}
+\begin{frame}[fragile]
+  % 含有 codeblock 的帧需要 fragile 参数。
   \frametitle{\sjtugtext 主题}
-  这个主题采用了 SJTUG 的 logo。
+  这个主题采用了 SJTUG 的 logo，采用了自定义标题页。
+
+  \begin{codeblock}[]{使用方法}
+    \documentclass{ctexbeamer}
+    \usetheme[my]{sjtubeamer}
+    \usemytheme{sjtug} % 加载主题
+    \begin{document}
+    % 正文内容...
+    \end{document}
+  \end{codeblock}
+
 \end{frame}
 \makebottom
 \end{document}
