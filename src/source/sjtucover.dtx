@@ -13,7 +13,7 @@
 % \iffalse
 %<*package>
 \NeedsTeXFormat{LaTeX2e}
-\ProvidesPackage{sjtucover}[2021/12/01 cover library for sjtubeamer v2.4.1]
+\ProvidesPackage{sjtucover}[2022/01/01 cover library for sjtubeamer v2.5.0]
 %</package>
 % \fi
 % \CheckSum{0}
@@ -283,7 +283,8 @@
   % Developer could implement your own title page template here...
   % or use "my" theme first, then implement your title page 
   % in a different style file mycover.sty with:
-  %    \addtobeamertemplate{title page}{}{<Your implementation>}
+  %    \defbeamertemplate*{title page}{<another name>}[1][]{<Your implementation>}
+  %    \defbeamertemplatealias{title page}{my}{<another name>}
   % and in the main.tex:
   %    \usetheme[my]{sjtubeamer}\usepackage{mycover}
   %
@@ -457,7 +458,8 @@
   % Developer could implement your own bottom page template here...
   % or use "my" theme first, then implement your title page 
   % in a different style file mycover.sty with:
-  %    \addtobeamertemplate{bottom page}{}{<Your implementation>}
+  %    \defbeamertemplate*{bottom page}{<another name>}[1][]{<Your implementation>}
+  %    \defbeamertemplatealias{bottom page}{my}{<another name>}
   % and in the main.tex:
   %    \usetheme[my]{sjtubeamer}\usepackage{mycover}
   %

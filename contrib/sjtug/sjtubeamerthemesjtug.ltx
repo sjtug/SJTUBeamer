@@ -1,0 +1,64 @@
+% 设置组织名称
+\institute[SJTU Linux User Group]{上海交通大学 Linux 用户组}
+% 设置徽标
+\logo{\resizebox{1cm}{!}{\includegraphics{\getcontribpath{sjtug}{vi/sjtug.pdf}}}}
+% 设置头图
+\titlegraphic{\includegraphics{sjtuphoto}}
+% 设定主色
+\definecolor{cprimary}{RGB}{225,111,11}
+% 定义自定可变色 logo
+\definelogo[\getcontribdir{sjtug}/vi]{sjtugtext}{0}{0.8}
+% 设置背景为 SJTUG 文字
+\setbeamertemplate{background}{
+    \bgcenterbox{
+        \sjtugtext[opacity=0.1]
+    }
+}
+% 判断传递的选项
+\if\EqualOption{sjtug}{debug}{true}
+    \PackageWarning{sjtug}{
+        You are debugging \CurrentFilePath/\CurrentFile. \MessageBreak
+        Use lualatex compilation to see the visual reference line
+    }
+    \usepackage{lua-visual-debug}
+\fi
+% 制作自定标题页
+\defbeamertemplate*{title page}{sjtug}[1][]{
+    \nointerlineskip
+    \vbox{}
+    \usebeamercolor{palette primary}
+    \def\sjtubeamer@logocolor{palette primary.fg}
+    \begin{tikzpicture}[overlay]
+        \fill [palette primary.bg] (-0.2*\the\paperwidth,-1*\the\paperheight)
+        rectangle (1*\the\paperwidth, 0.3*\the\paperheight);
+    \end{tikzpicture}
+    \vfill
+    \color{palette primary.fg}
+    \hbox to \textwidth{
+        \hfil
+        \vbox to 3.5cm{
+            \vskip3pt
+            \hbox{\resizebox{2.5cm}{!}{\insertlogo}}
+            \hbox{\hfill\,\,\sjtugtext[palette primary.fg]\,\hfill}
+            \vfill
+        }
+        \hfil
+        \vbox to 3.5cm{
+            \vfill
+            \hbox{\LARGE\bfseries\inserttitle}
+            \vskip4pt
+            \hbox{\large\insertsubtitle}
+            \vskip2pt
+            \hbox{\scriptsize\insertauthor}
+            \hbox{\scriptsize\insertdate}
+            \vfill
+        }
+        \hskip20pt
+        \hfil
+    }
+    \vfill
+}
+% 设置标题页
+\defbeamertemplatealias{title page}{my}{sjtug}
+% 设置结束页
+\defbeamertemplatealias{bottom page}{my}{min}

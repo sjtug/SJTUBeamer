@@ -1,0 +1,12 @@
+\documentclass{standalone}
+\usepackage{tcolorbox}
+\tcbuselibrary{raster}
+\tcbuselibrary{skins}
+\begin{document}
+\begin{tcbraster}[raster columns=3,colframe=gray,colback=white,
+    colbacktitle=gray!50!white,fonttitle=\small\bfseries\ttfamily,
+    left=0pt,right=0pt,top=0pt,bottom=0pt,boxsep=0pt,boxrule=0.6pt,
+    toptitle=1mm,bottomtitle=1mm,drop lifted shadow,center title]
+  \tcbincludepdf{<theme>.pdf}
+\end{tcbraster}
+\end{document}

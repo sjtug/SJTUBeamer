@@ -6,7 +6,7 @@
 %%
 %% beamerthemesjtubeamer.dtx  (with options: `package,maxplus,max,min,my')
 %% ------------------------------------------------------------------------
-%% Copyright (C) 2021 SJTUG
+%% Copyright (C) 2021,2022 SJTUG
 %% 
 %% Licensed under the Apache License, Version 2.0 (the "License");
 %% you may not use this file except in compliance with the License.
@@ -21,7 +21,7 @@
 %% limitations under the License.
 %% ------------------------------------------------------------------------
 \NeedsTeXFormat{LaTeX2e}
-\ProvidesPackage{beamerthemesjtubeamer}[2021/12/01 sjtubeamer parent theme v2.4.1]
+\ProvidesPackage{beamerthemesjtubeamer}[2022/01/01 sjtubeamer parent theme v2.5.0]
 \DeclareOptionBeamer{maxplus}{
   \def\sjtubeamer@cover{maxplus}\def\sjtubeamer@logopos{topright}}
 \DeclareOptionBeamer{max}{
@@ -72,6 +72,24 @@
 \usefonttheme{sjtubeamer}
 \useinnertheme{sjtubeamer}
 \useoutertheme{sjtubeamer}
+\newrobustcmd*\usemytheme[2][]{
+  \def\sjtubeamer@mythemeoptions{#1}
+  \def\sjtubeamer@mythemelist{#2}
+  \@for\sjtubeamer@mythemename:=\sjtubeamer@mythemelist\do{
+    \@for\sjtubeamer@mythemeoption:=\sjtubeamer@mythemeoptions\do{
+      \expandafter\def\csname sjtubeamer@\sjtubeamer@mythemename @\sjtubeamer@mythemeoption\endcsname{true}
+    }
+    \def\sjtubeamer@mythemefile{sjtubeamertheme\sjtubeamer@mythemename.ltx}
+    \IfFileExists{\sjtubeamer@mythemefile}{
+      \PackageWarning{\sjtubeamer@mythemename}{
+        Local ltx file is found. For documentation use only. \MessageBreak
+        Move to \getcontribdir{\sjtubeamer@mythemename} for release.
+        Unexpected error in other ltx may occur}
+      \renewcommand{\getcontribdir}[1]{.}
+    }{}
+    \input{\getcontribpath{\sjtubeamer@mythemename}{\sjtubeamer@mythemefile}}
+  }
+}
 \endinput
 %%
 %% End of file `beamerthemesjtubeamer.sty'.

@@ -1,0 +1,91 @@
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - 'contrib/**'
+  pull_request:
+    branches:
+      - main
+      - develop
+    types:
+      - 'review_requested'
+    paths:
+      - 'contrib/**'
+
+name: Contrib
+
+jobs:
+  build-contrib:
+    runs-on: ubuntu-latest
+    # permission to the environment will 
+    # need to be approved by one of the collaborators
+    environment: IMGUR
+    steps: 
+      - uses: actions/checkout@v2
+        name: checkout code
+        with:
+          fetch-depth: 0
+      - name: get newly contributed package
+        run: |
+          git diff origin/main --name-only | grep -e 'contrib\/[^/]*\/sjtubeamertheme[^/]*\.ltx' | grep -o -e '\/[^/]*\/' > contrib.txt
+      - uses: xu-cheng/texlive-action/full@v1
+        with:
+          run: |
+            apk add ghostscript imagemagick gnupg
+            sed -i "s|<policy domain=\"coder\" rights=\"none\" pattern=\"PDF\" />|<policy domain=\"coder\" rights=\"read\|write\" pattern=\"PDF\" />|g" /etc/ImageMagick-*/policy.xml
+            .github/ci/build_contrib.sh -halt-on-error -time -quiet -xelatex
+        name: build contrib doc with XeLaTeX
+      - uses: actions/upload-artifact@v2
+        with:
+          path: |
+            build/contrib.*.pdf
+        name: upload contrib artifacts
+      - uses: devicons/public-upload-to-imgur@v2.2.2
+        id: contrib_png
+        with:
+          path: ./build/contrib.*.png
+          client_id: ${{secrets.IMGUR_CLIENT_ID}}
+        name: upload contrib img to imgur
+      - uses: jungwinter/comment@v1
+        if: github.event_name == 'pull_request'
+        env:
+          MESSAGE: |
+            Thank you for contributing to SJTUBeamer! 
+
+            Here is the preview of your contribution documentation.
+
+            {0}
+        with:
+          type: create
+          issue_number: ${{ github.event.number }}
+          token: ${{ secrets.GITHUB_TOKEN }}
+          body: >
+            ${{ 
+              format(
+                env.MESSAGE,
+                join(fromJSON(steps.contrib_png.outputs.markdown_urls), '  ')
+              )
+            }}
+      - uses: jungwinter/comment@v1
+        if: github.event_name == 'push'
+        env:
+          MESSAGE: |
+            ###{0}
+            
+            @{1}
+            
+            {2}
+        with:
+          type: create
+          issue_number: '81'
+          token: ${{ secrets.GITHUB_TOKEN }}
+          body: >
+            ${{
+              format(
+                env.MESSAGE,
+                github.event.push.commits[0].message,
+                github.event.push.commits[0].author.name,
+                join(fromJSON(steps.contrib_png.outputs.markdown_urls), '  ')
+              )
+            }}

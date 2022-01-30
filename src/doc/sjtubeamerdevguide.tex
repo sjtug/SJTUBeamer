@@ -55,6 +55,65 @@
 \tableofcontents
 \clearpage
 
+\section{Contribute}
+
+Welcome to the Development Guide of \themename{}! Before contributing to the kernel, we highly recommend that you could contribute your first-ever theme (plugin) to this project before it is solidated to the kernel.
+
+\subsection{Community Version}
+
+You should try out the community version of this beamer template if you want to maximize the availability. To achieve this, you could download the repo at a faster speed by making use of the SJTUG mirror source\footnote{You should install \href{https://git-scm.com/}{git} first before cloning the repository.}:
+\begin{verbatim}
+  git clone https://mirror.sjtu.edu.cn/git/SJTUBeamer.git/
+\end{verbatim}
+After this, to pick up the update from the \verb"main" branch, you could simply use the command
+\begin{verbatim}
+  git pull
+\end{verbatim}
+if you are not using the same main document file aside from \verb"main.tex"\footnote{Otherwise, there will be conflicts to solve.}.
+
+\subsection{Write a Plugin}
+
+However, you could not make a pull request from a mirror source. The recommended way is to implement your plugin first. If ready, fork the GitHub repository \href{https://github.com/sjtug/SJTUBeamer}{sjtug/SJTUBeamer} and then clone your own fork. Move the modification to your repo and make a pull request back to the main branch.
+
+\verb"CONTRIBUTING.md" is an outline on how to contribute a plugin to \themename{}. Refer to it for achkownledging the basic pipeline on how to contributre. A common template for calling your plugin is as follows:
+\begin{verbatim}
+  \documentclass{ctexbeamer}
+  \usetheme{sjtubeamer}
+  \usemytheme[<options>]{<plugin>}
+  \begin{document}
+    % the main content goes here ...
+  \end{document}
+\end{verbatim}
+which will try to insert your \verb"<plugin>.ltx" from the \verb"contrib/<plugin>" folder, overriding some configurations of the previous line (\themename\ caller).
+\begin{figure}[h]
+  \framebox[0.33\textwidth]{\ttfamily main}\framebox[0.33\textwidth]{\ttfamily contrib}\framebox[0.33\textwidth]{\ttfamily theme}
+
+  \hfil$\leftarrow$\hfil$\leftarrow$\hfil
+\end{figure}
+
+Since the plugin is suffixed by \verb".ltx" (an abbreviation of \LaTeX{}), which means that it is not recommended to use \verb"@" in the variable. The plugin is more of a configuration than a basic \LaTeX{} package. If you are stick to using such a variable, remember to surround your lines inside the character-escaped environment:
+\begin{verbatim}
+\makeatletter
+  \def\foo@bar{bar of foo}
+\makeatother
+\end{verbatim}
+
+\themename{} has an internal mechanism of passing the options. For example, if you pass \verb"debug" option to \verb"sjtug" plugin --- \verb"\usemytheme[debug]{sjtug}", you could judge the condition in the plugin file like:
+\begin{verbatim}
+\if\EqualOption{sjtug}{debug}{true}
+  % do something here ...
+\fi
+\end{verbatim}
+For more information about the customized condition test, see Section \ref{sec:optdef}.
+
+\themename{} has an internal macro on how to include external files in the contribution path. Use \verb"\getcontribdir{<plugin>}" to get the directory \verb"contrib/<plugin>" and \verb"\getcontribpath{<plugin>}{<file>}" to get the directory file path \verb"contrib/<plugin>/<file>". If you are writing the documentation \verb"<plugin>.tex", the macro could behave differently and sign a warning. And before writing the documentation, you could refer to Section \ref{sec:l3build} for how to install the theme to your computer.
+
+\begin{warn}
+  We don't recommend using other plugins inside your plugin (native \LaTeX{} packages are fine). If you really want to use them, make sure to test your documentation to avoid any loop dependency problems.
+\end{warn}
+
+However, we could not offer you more about \LaTeX{} or \TeX{} programming aside from the macros provided by \themename{}. You could refer to the source code of other plugins for examples. Or you could learn such knowledge from other references.
+
 \section{Build}
 
 \subsection{Build Overview}
@@ -73,6 +132,8 @@
         cd src
     \end{verbatim}
 You could operate the package by the following command. The build script is set in \verb"build.lua".
+
+\fcmd{l3build install} This command will install current version from \verb"source" to your \TeX{} distribution. Remember to update the \verb"l3build" to the latest version to avoid misbehaving. This command requires an argument \verb"--texmfhome" option to specify the install path, which could be obtained from Mik\TeX{} Console or the \verb"tlmgr". This command is useful if you want this template to be globally available for all documents on your computer.
 
 \fcmd{l3build unpack} This command will unpack the source code and create a sandbox environment in \verb"build/local". You can create your own test file to test certain features here. It is the most common command for testing a certain feature.
 
@@ -123,7 +184,7 @@ In \verb"source/beamerthemesjtubeamer.ins", you could customize what templates y
 \begin{verbatim}
         \def\preserveoption{,maxplus,max,min,my} 
     \end{verbatim}
-Reduce the parameter number will reduce the number of templates it generates. It is useful if you want to debug or make a slight performance jump. Or make your own version of this template.
+Reducing the parameter number will reduce the number of templates it generates. It is useful if you want to debug or make a slight performance jump. Or make your own version of this template.
 
 \begin{warn}
   \textbf{When you are pulling a request, the item in this column cannot be changed}. The extraction on your template should be decided by end users since large generation files could cause a performance drop on compiling. We are also glad to add your template to this column if your template is picked.
@@ -131,7 +192,7 @@ Reduce the parameter number will reduce the number of templates it generates. It
 
 \subsection{Pull Request}
 
-Before making a pull request, please refresh the root \verb".sty" files first in order to pass CI. In fact, if you are using \verb"l3build", we have embeded this action in \verb"l3build check" (which is included in \verb"l3build ctan"). But we still recommend that you should make a final run on the script. Switch to the main directory:
+Before making a pull request, please refresh the root \verb".sty" files first in order to pass CI. In fact, if you are using \verb"l3build", we have embedded this action in \verb"l3build check" (which is included in \verb"l3build ctan"). But we still recommend that you should make a final run on the script. Switch to the main directory:
 \begin{verbatim}
         cd ..
     \end{verbatim}
@@ -184,7 +245,7 @@ The coding style in this section is applicable for the following files:
 
 \subsubsection{Support Version}
 
-We only support \TeX{} or \LaTeX{} code on these files. No \LaTeX3 code supported since \verb"beamer" is not written in \LaTeX3 and this template has a major dependency on \verb"beamer" class.
+We only support \TeX{} or \LaTeXe{} code on these files. No \LaTeX3 code supported since \verb"beamer" is not written in \LaTeX3 and this template has a major dependency on \verb"beamer" class.
 
 \subsubsection{Kernel Function Definition}
 
@@ -253,7 +314,7 @@ Global variable means that it will be used across modules.
 
 \subparagraph{Decision:} You should avoid using global variables, which will only be useful if you are making communication between modules. If a bug occurs, it is hard to track in \LaTeX{}. As a matter of fact, only the parameter in the function can be called a \emph{local variable} (with an immediate substitution). All variables defined by \verb"\def" will be stored in the global register.
 
-\subsubsection{Leaf Option Definition}
+\subsubsection{Leaf Option Definition}\label{sec:optdef}
 
 Leaf option means it is an option that will not be passed to the next level or could be used immediately in this module.
 
@@ -374,6 +435,8 @@ Comment means that the ignored lines in the Doc\TeX{} source code.
 \begin{figure}[h]
   \framebox[\textwidth]{\ttfamily main.tex}
 
+  \framebox[\textwidth]{loaded contrib}
+
   \framebox[\textwidth]{\ttfamily beamerthemesjtubeamer.sty}
 
   \framebox[0.25\textwidth]{\ttfamily colortheme.sty}\framebox[0.25\textwidth]{\ttfamily innertheme.sty}\framebox[0.25\textwidth]{\ttfamily outertheme.sty}\framebox[0.25\textwidth]{\ttfamily fonttheme.sty}
@@ -397,7 +460,7 @@ The framework is designed to be used seperately to meet the \verb"beamer" class 
         \usepackage{sjtucover}
         \usepackage{sjtuvi}
     \end{verbatim}
-which requires that the decoupling work betweeen modules should be taken seriously. The regression test performed by \verb"l3build check" in Section \ref{sec:l3build} will check such a standard.
+which requires that the decoupling work between modules should be taken seriously. The regression test performed by \verb"l3build check" in Section \ref{sec:l3build} will check such a standard.
 
 \LaTeX{} doesn't load the same style file twice. If the style file is loaded before, then the next time it loads will get expanded to \verb"\endinput". Be aware if you are going to load a package twice and with different options, which will cause an \verb"option clash" error.
 

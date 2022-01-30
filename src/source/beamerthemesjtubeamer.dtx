@@ -1,5 +1,5 @@
 % \iffalse meta-comment --------------------------------------------------
-% Copyright (C) 2021 SJTUG
+% Copyright (C) 2021,2022 SJTUG
 %
 % Licensed under the Apache License, Version 2.0 (the "License");
 % you may not use this file except in compliance with the License.
@@ -37,7 +37,7 @@
 % ------------------------------------------------------------------- \fi
 % \iffalse
 \NeedsTeXFormat{LaTeX2e}
-\ProvidesPackage{beamerthemesjtubeamer}[2021/12/01 sjtubeamer parent theme v2.4.1]
+\ProvidesPackage{beamerthemesjtubeamer}[2022/01/01 sjtubeamer parent theme v2.5.0]
 % \fi
 %
 % \subsection{Parent Theme}
@@ -188,6 +188,36 @@
 \useinnertheme{sjtubeamer}
 \useoutertheme{sjtubeamer}
 %    \end{macrocode}
+%
+%  \begin{macro}{\usemytheme}
+%  When using \verb"my" option, you could load other contrib sub-themes by this command. Use comma-seperated list to load multiple sub-themes in one line. The \verb"\getcontribpath" is defined in \verb"sjtuvi" package loaded in inner theme.
+%
+%  You could pass options to all the sub-themes by writing in the square brackets. Then, in your sub-theme, you could use \verb"\if\EqualOption{<themename>}{<option>}{true}" to check the condition.
+%
+%  This command will also first check the root directory for dependency. If it exists, the \verb"\getcontribdir" macro will be redefined. It is never recommended for placing the ltx in the same folder.
+%  Remember the contrib directory is permantly modified and the directory for other dependency may be missing due to this debug config. You may need to modify to \verb"\renewcommand{\getcontribdir}[1]{\sjtubeamer@contribdir/#1}" manually to recover to the standard configuration. We didn't put the last command into this since we only expect you to only use the debug option for only one contrib dependency --- the one needs to be documented. And you should run \verb"l3build install" in the \verb"src" folder for making the sjtubeamer main part into your texmf path. If you want to combine multiple dependencies, you should write and compile your documentation in the root folder. And our CI will move your documentation to the root first before checking.
+%    \begin{macrocode}
+\newrobustcmd*\usemytheme[2][]{
+  \def\sjtubeamer@mythemeoptions{#1}
+  \def\sjtubeamer@mythemelist{#2}
+  \@for\sjtubeamer@mythemename:=\sjtubeamer@mythemelist\do{
+    \@for\sjtubeamer@mythemeoption:=\sjtubeamer@mythemeoptions\do{
+      \expandafter\def\csname sjtubeamer@\sjtubeamer@mythemename @\sjtubeamer@mythemeoption\endcsname{true}
+    }
+    \def\sjtubeamer@mythemefile{sjtubeamertheme\sjtubeamer@mythemename.ltx}
+    \IfFileExists{\sjtubeamer@mythemefile}{
+      \PackageWarning{\sjtubeamer@mythemename}{
+        Local ltx file is found. For documentation use only. \MessageBreak
+        Move to \getcontribdir{\sjtubeamer@mythemename} for release.
+        Unexpected error in other ltx may occur}
+      \renewcommand{\getcontribdir}[1]{.}
+    }{}
+    \input{\getcontribpath{\sjtubeamer@mythemename}{\sjtubeamer@mythemefile}}
+  }
+}
+%    \end{macrocode}
+%
+%  \end{macro}
 %
 % \iffalse
 %</package>
