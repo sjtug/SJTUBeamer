@@ -29,11 +29,11 @@ jobs:
       - name: get newly contributed package (pull request)
         if: github.event_name == 'pull_request'
         run: |
-          git diff origin/main --name-only | grep -e 'contrib\/[^/]*\/sjtubeamertheme[^/]*\.ltx' | grep -o -e '\/[^/]*\/' > contrib.txt
+          git diff origin/main --name-only | grep -e 'contrib\/[^/]*\/sjtubeamertheme[^/]*\.ltx' | grep -o -e '\/[^/]*\/' | sed -e "s|\/||g" > contrib.txt
       - name: get all contributed packages (push)
         if: github.event_name == 'push'
         run: |
-          git diff HEAD^ --name-only | grep -e 'contrib\/[^/]*\/sjtubeamertheme[^/]*\.ltx' | grep -o -e '\/[^/]*\/' > contrib.txt
+          git diff HEAD^ --name-only | grep -e 'contrib\/[^/]*\/sjtubeamertheme[^/]*\.ltx' | grep -o -e '\/[^/]*\/' | sed -e "s|\/||g" > contrib.txt
       - name: read contrib package name
         id: contrib_name
         uses: juliangruber/read-file-action@v1.0.0
