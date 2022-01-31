@@ -26,9 +26,19 @@ jobs:
         name: checkout code
         with:
           fetch-depth: 0
-      - name: get newly contributed package
+      - name: get newly contributed package (pull request)
+        if: github.event_name == 'pull_request'
         run: |
-          git diff origin/main --name-only | grep -e 'contrib\/[^/]*\/sjtubeamertheme[^/]*\.ltx' | grep -o -e '\/[^/]*\/' > contrib.txt
+          git diff origin/main --name-only | grep -e 'contrib\/[^/]*\/sjtubeamertheme[^/]*\.ltx' | grep -o -e '\/[^/]*\/' | sed -e "s|\/||g" > contrib.txt
+      - name: get newly contributed packages (push)
+        if: github.event_name == 'push'
+        run: |
+          git diff HEAD^ --name-only | grep -e 'contrib\/[^/]*\/sjtubeamertheme[^/]*\.ltx' | grep -o -e '\/[^/]*\/' | sed -e "s|\/||g" > contrib.txt
+      - name: read contrib package name
+        id: contrib_name
+        uses: juliangruber/read-file-action@v1.0.0
+        with:
+          path: ./contrib.txt
       - uses: xu-cheng/texlive-action/full@v1
         with:
           run: |
@@ -51,11 +61,11 @@ jobs:
         if: github.event_name == 'pull_request'
         env:
           MESSAGE: |
-            Thank you for contributing to SJTUBeamer! 
+            Thank you for contributing to SJTUBeamer! The name of your contribution is: {0}
 
             Here is the preview of your contribution documentation.
 
-            {0}
+            {1}
         with:
           type: create
           issue_number: ${{ github.event.number }}
@@ -64,14 +74,16 @@ jobs:
             ${{ 
               format(
                 env.MESSAGE,
+                steps.contrib_name.outputs.content,
                 join(fromJSON(steps.contrib_png.outputs.markdown_urls), '  ')
               )
             }}
+        name: comment (review requested)
       - uses: jungwinter/comment@v1
         if: github.event_name == 'push'
         env:
           MESSAGE: |
-            ###{0}
+            ### {0}
             
             @{1}
             
@@ -84,8 +96,9 @@ jobs:
             ${{
               format(
                 env.MESSAGE,
-                github.event.push.commits[0].message,
-                github.event.push.commits[0].author.name,
+                steps.contrib_name.outputs.content,
+                github.event.push.commits[0].author[0],
                 join(fromJSON(steps.contrib_png.outputs.markdown_urls), '  ')
               )
             }}
+        name: comment (push)

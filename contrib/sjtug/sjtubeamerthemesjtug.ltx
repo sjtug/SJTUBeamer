@@ -1,3 +1,20 @@
+%% ------------------------------------------------------------------------
+%% Copyright (C) 2022 LogCreative
+%% 
+%% Licensed under the Apache License, Version 2.0 (the "License");
+%% you may not use this file except in compliance with the License.
+%% You may obtain a copy of the License at
+%% 
+%%     http://www.apache.org/licenses/LICENSE-2.0
+%% 
+%% Unless required by applicable law or agreed to in writing, software
+%% distributed under the License is distributed on an "AS IS" BASIS,
+%% WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+%% See the License for the specific language governing permissions and
+%% limitations under the License.
+%% ------------------------------------------------------------------------
+% 设置文件元数据
+\ProvidesFile{sjtubeamerthemesjtug.ltx}[2022/01/30 SJTUG subtheme for SJTUBeamer]
 % 设置组织名称
 \institute[SJTU Linux User Group]{上海交通大学 Linux 用户组}
 % 设置徽标
@@ -10,53 +27,53 @@
 \definelogo[\getcontribdir{sjtug}/vi]{sjtugtext}{0}{0.8}
 % 设置背景为 SJTUG 文字
 \setbeamertemplate{background}{
-    \bgcenterbox{
-        \sjtugtext[opacity=0.1]
-    }
+  \bgcenterbox{
+    \sjtugtext[opacity=0.1]
+  }
 }
 % 判断传递的选项
 \if\EqualOption{sjtug}{debug}{true}
-    \PackageWarning{sjtug}{
-        You are debugging \CurrentFilePath/\CurrentFile. \MessageBreak
-        Use lualatex compilation to see the visual reference line
-    }
-    \usepackage{lua-visual-debug}
+  \PackageWarning{sjtug}{
+    You are debugging \CurrentFilePath/\CurrentFile. \MessageBreak
+    Use lualatex compilation to see the visual reference line
+  }
+  \usepackage{lua-visual-debug}
 \fi
 % 制作自定标题页
 \defbeamertemplate*{title page}{sjtug}[1][]{
-    \nointerlineskip
-    \vbox{}
-    \usebeamercolor{palette primary}
-    \def\sjtubeamer@logocolor{palette primary.fg}
-    \begin{tikzpicture}[overlay]
-        \fill [palette primary.bg] (-0.2*\the\paperwidth,-1*\the\paperheight)
-        rectangle (1*\the\paperwidth, 0.3*\the\paperheight);
-    \end{tikzpicture}
-    \vfill
-    \color{palette primary.fg}
-    \hbox to \textwidth{
-        \hfil
-        \vbox to 3.5cm{
-            \vskip3pt
-            \hbox{\resizebox{2.5cm}{!}{\insertlogo}}
-            \hbox{\hfill\,\,\sjtugtext[palette primary.fg]\,\hfill}
-            \vfill
-        }
-        \hfil
-        \vbox to 3.5cm{
-            \vfill
-            \hbox{\LARGE\bfseries\inserttitle}
-            \vskip4pt
-            \hbox{\large\insertsubtitle}
-            \vskip2pt
-            \hbox{\scriptsize\insertauthor}
-            \hbox{\scriptsize\insertdate}
-            \vfill
-        }
-        \hskip20pt
-        \hfil
-    }
-    \vfill
+  \nointerlineskip
+  \vbox{}
+  \usebeamercolor{palette primary}
+  \def\sjtubeamer@logocolor{palette primary.fg}
+  \begin{tikzpicture}[overlay]
+    \fill [palette primary.bg] (-0.2*\the\paperwidth,-1*\the\paperheight)
+    rectangle (1*\the\paperwidth, 0.3*\the\paperheight);
+  \end{tikzpicture}
+  \vfill
+  \color{palette primary.fg}
+  \hbox to \textwidth{
+    \hfil
+    \vbox to 3.5cm{
+        \vskip3pt
+        \hbox{\resizebox{2.5cm}{!}{\insertlogo}}
+        \hbox{\hfill\,\,\sjtugtext[palette primary.fg]\,\hfill}
+        \vfill
+      }
+    \hfil
+    \vbox to 3.5cm{
+        \vfill
+        \hbox{\LARGE\bfseries\inserttitle}
+        \vskip4pt
+        \hbox{\large\insertsubtitle}
+        \vskip2pt
+        \hbox{\scriptsize\insertauthor}
+        \hbox{\scriptsize\insertdate}
+        \vfill
+      }
+    \hskip20pt
+    \hfil
+  }
+  \vfill
 }
 % 设置标题页
 \defbeamertemplatealias{title page}{my}{sjtug}

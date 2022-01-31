@@ -4,7 +4,6 @@ mapfile themes <contrib.txt
 # All contrib template should only have one entry point.
 for theme in ${themes[@]};
 do
-    theme=${theme:1:${#theme}-2}    # remove the /
     echo Compiling $theme documentation...
     cp contrib/$theme/$theme.tex ./$theme.tex
     latexmk $@ -outdir=build $theme.tex
