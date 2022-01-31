@@ -1,4 +1,5 @@
-\documentclass[aspectratio=169]{ctexbeamer}
+% 使用文档推荐不超过 9 页
+\documentclass[aspectratio=169]{ctexbeamer} % 使用 16:9 比例
 \usetheme[my]{sjtubeamer}
 \usemytheme{sjtug} % 可以添加 debug 参数
 \begin{document}
@@ -6,7 +7,7 @@
 \subtitle{副标题}
 \author{作者}
 \maketitle
-\begin{frame}[fragile]
+\begin{frame}[fragile] % 含有 codeblock 的页需要使用 fragile 参数
   \frametitle{\sjtugtext 主题}
   这个主题采用了 SJTUG 的 logo，采用了自定义标题页。
 
