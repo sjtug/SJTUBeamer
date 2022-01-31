@@ -1,25 +1,18 @@
 \documentclass{ctexbeamer}
 \usetheme[my]{sjtubeamer}
-\usemytheme{sjtug}
+\usemytheme{sjtug} % 可以添加 debug 参数
 \begin{document}
 \title{标题}
 \subtitle{副标题}
 \author{作者}
 \maketitle
-\begin{frame}[fragile]
-  % 含有 codeblock 的帧需要 fragile 参数。
+\begin{frame}
   \frametitle{\sjtugtext 主题}
   这个主题采用了 SJTUG 的 logo，采用了自定义标题页。
 
-  \begin{codeblock}[]{使用方法}
-    \documentclass{ctexbeamer}
-    \usetheme[my]{sjtubeamer}
-    \usemytheme{sjtug} % 加载主题
-    \begin{document}
-    % 正文内容...
-    \end{document}
-  \end{codeblock}
-
+  \begin{description}
+    \item[\texttt{debug}] 参数可以在使用 Lua\LaTeX{} 编译时调用 \texttt{lua-visual-debug} 宏包显示区块边界。
+  \end{description}
 \end{frame}
 \makebottom
 \end{document}
