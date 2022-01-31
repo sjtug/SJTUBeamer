@@ -286,4 +286,6 @@ function checkinit_hook()
             cp(src, unpackdir, "../")
         end
     end
+
+    return 0
 end
