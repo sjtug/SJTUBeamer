@@ -3,8 +3,8 @@
 module           = "sjtubeamer"
 
 sourcefiledir    = "source"
-sourcefiles      = {"*.ins","*.dtx","vi/","latexmkrc"}
-installfiles     = {"*.sty","vi/","latexmkrc"}
+sourcefiles      = {"*.ins","*.dtx","vi/"}
+installfiles     = {"*.sty","vi/"}
 
 docfiledir       = "doc"
 
@@ -274,7 +274,16 @@ function checkinit_hook()
     gen_snippets()
 
     -- Move generated files to the main directory when it starts to check.
-    for _,file in pairs(installfiles) do
-        return cp(file, unpackdir, "../")
+    for _,src in pairs(installfiles) do
+        -- patch l3build copying action on directories.
+        if string.sub(src,-1,-1) == "/" then
+            local targetdir = "../" .. src
+            if not direxists(targetdir) then
+                mkdir(targetdir)
+            end
+            cp("", unpackdir .. "/" .. src, targetdir)
+        else
+            cp(src, unpackdir, "../")
+        end
     end
 end
