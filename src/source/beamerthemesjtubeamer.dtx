@@ -202,7 +202,8 @@
   \def\sjtubeamer@mythemelist{#2}
   \@for\sjtubeamer@mythemename:=\sjtubeamer@mythemelist\do{
     \@for\sjtubeamer@mythemeoption:=\sjtubeamer@mythemeoptions\do{
-      \expandafter\def\csname sjtubeamer@\sjtubeamer@mythemename @\sjtubeamer@mythemeoption\endcsname{true}
+      \expandafter\def\csname sjtubeamer@\sjtubeamer@mythemename
+      @\sjtubeamer@mythemeoption\endcsname{true}
     }
     \def\sjtubeamer@mythemefile{sjtubeamertheme\sjtubeamer@mythemename.ltx}
     \IfFileExists{\sjtubeamer@mythemefile}{
