@@ -84,8 +84,8 @@
 %
 %  \begin{macro}{\sjtubeamer@inner@lang}
 %    \begin{macrocode}
-\DefineOption{inner}{lang}{cn}
-\DefineOption{inner}{lang}{en}
+\DeclareOptionBeamer{cn}{\def\sjtubeamer@inner@lang{cn}}
+\DeclareOptionBeamer{en}{\def\sjtubeamer@inner@lang{en}}
 \@ifclassloaded{ctexbeamer}{\ExecuteOptionsBeamer{cn}}{
   \ExecuteOptionsBeamer{en}}
 %    \end{macrocode}
@@ -101,6 +101,10 @@
 %
 %    \begin{macrocode}
 \ProcessOptionsBeamer
+%    \end{macrocode}
+%
+%    \begin{macrocode}
+\PassOptionsToPackage{\sjtubeamer@inner@lang}{sjtucover}
 %    \end{macrocode}
 %
 %   Hard-coded color for blocks. A replica of color theme.
@@ -285,17 +289,6 @@
 \definemakecover{title}
 \definemakecover{bottom}
 %    \end{macrocode}
-%
-%  \begin{macro}{\bottomthanks}
-%  The "Thank You" caption in the bottom page.
-%    \begin{macrocode}
-\if\EqualOption{inner}{lang}{cn}%
-  \def\bottomthanks{谢\,谢}
-\else%
-  \def\bottomthanks{Thank You}
-\fi%
-%    \end{macrocode}
-%  \end{macro}
 %
 %   Initialize the title page and bottom page.
 %    \begin{macrocode}
