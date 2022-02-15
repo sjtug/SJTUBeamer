@@ -302,6 +302,7 @@
 \newcommand{\makebottom}[1][\sjtubeamer@inner@cover]{
   {
     \def\beamer@writeslidentry{\clearpage\beamer@notesactions}
+    \setbeamertemplate{bottom page}[#1]
     \ifbeamer@inframe\bottompage\else
       \begin{frame}[plain]
         \bottompage
