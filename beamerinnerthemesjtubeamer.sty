@@ -24,10 +24,10 @@
 \ProvidesPackage{beamerinnerthemesjtubeamer}[2022/01/01 sjtubeamer inner theme v2.5.0]
 \RequirePackage{sjtuvi}
 \RequirePackage{tcolorbox}
-\DeclareOptionBeamer{maxplus}{\def\sjtubeamer@inner@cover{maxplus}}
-\DeclareOptionBeamer{max}{\def\sjtubeamer@inner@cover{max}}
-\DeclareOptionBeamer{min}{\def\sjtubeamer@inner@cover{min}}
-\DeclareOptionBeamer{my}{\def\sjtubeamer@inner@cover{my}} % reserved for customization
+\DefineOption{inner}{cover}{maxplus}
+\DefineOption{inner}{cover}{max}
+\DefineOption{inner}{cover}{min}
+\DefineOption{inner}{cover}{my} % reserved for customization
 \ExecuteOptionsBeamer{
   maxplus,
   min,

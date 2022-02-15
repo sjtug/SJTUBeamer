@@ -54,16 +54,16 @@
 %  \begin{macro}{\sjtubeamer@inner@cover}
 %    \begin{macrocode}
 %<*maxplus>
-\DeclareOptionBeamer{maxplus}{\def\sjtubeamer@inner@cover{maxplus}}
+\DefineOption{inner}{cover}{maxplus}
 %</maxplus>
 %<*max>
-\DeclareOptionBeamer{max}{\def\sjtubeamer@inner@cover{max}}
+\DefineOption{inner}{cover}{max}
 %</max>
 %<*min>
-\DeclareOptionBeamer{min}{\def\sjtubeamer@inner@cover{min}}
+\DefineOption{inner}{cover}{min}
 %</min>
 %<*my>
-\DeclareOptionBeamer{my}{\def\sjtubeamer@inner@cover{my}} % reserved for customization
+\DefineOption{inner}{cover}{my} % reserved for customization
 %</my>
 \ExecuteOptionsBeamer{
 %<*maxplus>
