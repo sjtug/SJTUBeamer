@@ -220,6 +220,10 @@
 %    \end{macrocode}
 %  \end{macro}
 %
+%   Load Cover Library to get the customized cover.
+%    \begin{macrocode}
+\RequirePackage{sjtucover}
+%    \end{macrocode}
 %
 %  Initialize sidebar width to 0pt as no sidebar required, which will be overwritten in outer theme.
 %    \begin{macrocode}
@@ -270,14 +274,6 @@
 %    \end{macrocode}
 %  \end{macro}
 %
-%  \begin{macro}{\bottompage}
-%   Call the bottom page template to make a bottom page.
-%    \begin{macrocode}
-\def\bottompage{
-  \coverpage{bottom page}
-}
-%    \end{macrocode}
-%  \end{macro}
 %
 %  \begin{macro}{\bottomthanks}
 %  The "Thank You" caption in the bottom page.
@@ -290,6 +286,15 @@
 %    \end{macrocode}
 %  \end{macro}
 %
+%  \begin{macro}{\bottompage}
+%   Call the bottom page template to make a bottom page.
+%    \begin{macrocode}
+\def\bottompage{
+  \coverpage{bottom page}
+}
+%    \end{macrocode}
+%  \end{macro}
+%
 %  \begin{macro}{\makebottom}
 %   Make the bottom page. Not a built-in command.
 %   Redefinition on \verb"\beamer@writeslideentrty" locally will remove the corresponding navigation dot for miniframe outer theme. This is not necessary for title page, since it should not belong to any sections.
@@ -297,7 +302,6 @@
 \newcommand{\makebottom}[1][\sjtubeamer@inner@cover]{
   {
     \def\beamer@writeslidentry{\clearpage\beamer@notesactions}
-    \setbeamertemplate{bottom page}[#1][\bottomthanks]
     \ifbeamer@inframe\bottompage\else
       \begin{frame}[plain]
         \bottompage
@@ -307,15 +311,10 @@
 %    \end{macrocode}
 %  \end{macro}
 %
-%   Load Cover Library to get the customized cover.
-%    \begin{macrocode}
-\RequirePackage{sjtucover}
-%    \end{macrocode}
-%
-%   Initialize the title page and bottom page when the package is loaded.
+%   Initialize the title page and bottom page.
 %    \begin{macrocode}
 \setbeamertemplate{title page}[\sjtubeamer@inner@cover]
-\setbeamertemplate{bottom page}[\sjtubeamer@inner@cover][Thanks]
+\setbeamertemplate{bottom page}[\sjtubeamer@inner@cover]
 %    \end{macrocode}
 %
 % \subsubsection{Part Page}

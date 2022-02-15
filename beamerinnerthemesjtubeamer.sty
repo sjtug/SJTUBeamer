@@ -95,6 +95,7 @@
     \fi
   \fi
 \fi
+\RequirePackage{sjtucover}
 \newdimen\beamer@sidebarwidth
 \beamer@sidebarwidth=0pt
 \def\coverpage#1{
@@ -121,27 +122,25 @@
       \end{frame}\fi
   }
 }
-\def\bottompage{
-  \coverpage{bottom page}
-}
 \if\EqualOption{inner}{lang}{cn}%
   \def\bottomthanks{谢\,谢}
 \else%
   \def\bottomthanks{Thank You}
 \fi%
+\def\bottompage{
+  \coverpage{bottom page}
+}
 \newcommand{\makebottom}[1][\sjtubeamer@inner@cover]{
   {
     \def\beamer@writeslidentry{\clearpage\beamer@notesactions}
-    \setbeamertemplate{bottom page}[#1][\bottomthanks]
     \ifbeamer@inframe\bottompage\else
       \begin{frame}[plain]
         \bottompage
       \end{frame}\fi
   }
 }
-\RequirePackage{sjtucover}
 \setbeamertemplate{title page}[\sjtubeamer@inner@cover]
-\setbeamertemplate{bottom page}[\sjtubeamer@inner@cover][Thanks]
+\setbeamertemplate{bottom page}[\sjtubeamer@inner@cover]
 \defbeamertemplate*{part page}{sjtubeamer}[1][]
 {
   \vfill
