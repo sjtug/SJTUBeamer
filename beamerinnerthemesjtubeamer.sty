@@ -110,35 +110,31 @@
     \fi
   }
 }
-\def\titlepage{
-  \coverpage{title page}
-}
-\renewcommand{\maketitle}[1][\sjtubeamer@inner@cover]{
-  {
-    \setbeamertemplate{title page}[#1]
-    \ifbeamer@inframe\titlepage\else
-      \begin{frame}[plain]
-        \titlepage
-      \end{frame}\fi
+\def\definemakecover#1{
+  \expandafter\def\csname #1page\endcsname{
+    \coverpage{#1 page}
+  }
+  \ifcsname make #1\endcsname
+    \expandafter\def\csname make#1\endcsname{}
+  \fi
+  \expandafter\renewcommand\csname make#1\endcsname[1][\sjtubeamer@inner@cover]{
+    {
+      \def\beamer@writeslidentry{\clearpage\beamer@notesactions}
+      \setbeamertemplate{#1 page}[##1]
+      \ifbeamer@inframe\csname #1page\endcsname\else
+        \begin{frame}[plain]
+          \csname #1page\endcsname
+        \end{frame}\fi
+    }
   }
 }
+\definemakecover{title}
+\definemakecover{bottom}
 \if\EqualOption{inner}{lang}{cn}%
   \def\bottomthanks{谢\,谢}
 \else%
   \def\bottomthanks{Thank You}
 \fi%
-\def\bottompage{
-  \coverpage{bottom page}
-}
-\newcommand{\makebottom}[1][\sjtubeamer@inner@cover]{
-  {
-    \def\beamer@writeslidentry{\clearpage\beamer@notesactions}
-    \ifbeamer@inframe\bottompage\else
-      \begin{frame}[plain]
-        \bottompage
-      \end{frame}\fi
-  }
-}
 \setbeamertemplate{title page}[\sjtubeamer@inner@cover]
 \setbeamertemplate{bottom page}[\sjtubeamer@inner@cover]
 \defbeamertemplate*{part page}{sjtubeamer}[1][]

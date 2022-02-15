@@ -250,30 +250,41 @@
 %    \end{macrocode}
 %  \end{macro}
 %
-%  \begin{macro}{\titlepage}
-%   Call the title page template to make a title page. This is a patch for the original \verb"\titlepage" command, to fit with the logo color system.
+% \begin{macro}{\definemakecover}
+%  Command generator for \verb"\maketitle" and \verb"\makebottom", which will receive an optional command for selecting different theme. Redefinition on \verb"\beamer@writeslideentrty" locally will remove the corresponding navigation dot for miniframe outer theme.
+%  This command receives one parameter for the cover type like ``title'' or ``bottom''.
 %    \begin{macrocode}
-\def\titlepage{
-  \coverpage{title page}
-}
+\def\definemakecover#1{
 %    \end{macrocode}
-%  \end{macro}
-%
-%  \begin{macro}{\maketitle}
-%  Patch make title command. It will receive an optional argument for switching different type of title page. The set on beamer template is inside a group, so the setting is locale.
+%  This command will also generate an auxilary interface like \verb"\titlepage" or \verb"\bottompage", which mainly for overriding the default definition on those macros.
 %    \begin{macrocode}
-\renewcommand{\maketitle}[1][\sjtubeamer@inner@cover]{
-  {
-    \setbeamertemplate{title page}[#1]
-    \ifbeamer@inframe\titlepage\else
-      \begin{frame}[plain]
-        \titlepage
-      \end{frame}\fi
+  \expandafter\def\csname #1page\endcsname{
+    \coverpage{#1 page}
+  }
+%    \end{macrocode}
+% To avoid the check of \verb"\renewcommand" and to fullfill the same purpose of overriding like \verb"\def", if the command is not defined, it will get defined as empty first before it goes the command procedure in \LaTeX{} command style in order to use the optional argument.
+%    \begin{macrocode}
+  \ifcsname make#1\endcsname\else
+    \expandafter\def\csname make#1\endcsname{}
+  \fi
+  \expandafter\renewcommand\csname make#1\endcsname[1][\sjtubeamer@inner@cover]{
+    {
+      \def\beamer@writeslidentry{\clearpage\beamer@notesactions}
+      \setbeamertemplate{#1 page}[##1]
+      \ifbeamer@inframe\csname #1page\endcsname\else
+        \begin{frame}[plain]
+          \csname #1page\endcsname
+        \end{frame}\fi
+    }
   }
 }
 %    \end{macrocode}
 %  \end{macro}
 %
+%    \begin{macrocode}
+\definemakecover{title}
+\definemakecover{bottom}
+%    \end{macrocode}
 %
 %  \begin{macro}{\bottomthanks}
 %  The "Thank You" caption in the bottom page.
@@ -283,32 +294,6 @@
 \else%
   \def\bottomthanks{Thank You}
 \fi%
-%    \end{macrocode}
-%  \end{macro}
-%
-%  \begin{macro}{\bottompage}
-%   Call the bottom page template to make a bottom page.
-%    \begin{macrocode}
-\def\bottompage{
-  \coverpage{bottom page}
-}
-%    \end{macrocode}
-%  \end{macro}
-%
-%  \begin{macro}{\makebottom}
-%   Make the bottom page. Not a built-in command.
-%   Redefinition on \verb"\beamer@writeslideentrty" locally will remove the corresponding navigation dot for miniframe outer theme. This is not necessary for title page, since it should not belong to any sections.
-%    \begin{macrocode}
-\newcommand{\makebottom}[1][\sjtubeamer@inner@cover]{
-  {
-    \def\beamer@writeslidentry{\clearpage\beamer@notesactions}
-    \setbeamertemplate{bottom page}[#1]
-    \ifbeamer@inframe\bottompage\else
-      \begin{frame}[plain]
-        \bottompage
-      \end{frame}\fi
-  }
-}
 %    \end{macrocode}
 %  \end{macro}
 %
