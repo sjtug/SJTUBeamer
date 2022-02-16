@@ -20,6 +20,11 @@
 \NeedsTeXFormat{LaTeX2e}
 \ProvidesPackage{sjtucover}[2022/01/01 cover library for sjtubeamer v2.5.0]
 \RequirePackage{sjtuvi}
+\DefineOption{cover}{lang}{cn}
+\DefineOption{cover}{lang}{en}
+\@ifclassloaded{ctexbeamer}{\ExecuteOptionsBeamer{cn}}{
+  \ExecuteOptionsBeamer{en}}
+\ProcessOptionsBeamer
 \defbeamertemplate*{title page}{maxplus}[1][]
 {
   \nointerlineskip%
@@ -225,6 +230,11 @@
   \usebeamercolor{palette primary}
   \def\sjtubeamer@logocolor{palette primary.fg}
 }
+\if\EqualOption{cover}{lang}{cn}%
+  \newcommand\bottomthanks{谢\,谢}
+\else%
+  \newcommand\bottomthanks{Thank You}
+\fi%
 \tikzfading[name=fade right img,
   left color=transparent!20,
   right color=transparent!100]

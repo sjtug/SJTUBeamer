@@ -34,14 +34,15 @@
   my,
   max,
 }
-\DefineOption{inner}{lang}{cn}
-\DefineOption{inner}{lang}{en}
+\DeclareOptionBeamer{cn}{\def\sjtubeamer@inner@lang{cn}}
+\DeclareOptionBeamer{en}{\def\sjtubeamer@inner@lang{en}}
 \@ifclassloaded{ctexbeamer}{\ExecuteOptionsBeamer{cn}}{
   \ExecuteOptionsBeamer{en}}
 \DefineOption{inner}{color}{red}
 \DefineOption{inner}{color}{blue}
 \ExecuteOptionsBeamer{red}
 \ProcessOptionsBeamer
+\PassOptionsToPackage{\sjtubeamer@inner@lang}{sjtucover}
 \if\EqualOption{inner}{color}{red}
   \colorlet{cprimary}{sjtuRedPrimary}
   \colorlet{csecondary}{sjtuRedSecondary}
@@ -114,7 +115,7 @@
   \expandafter\def\csname #1page\endcsname{
     \coverpage{#1 page}
   }
-  \ifcsname make #1\endcsname
+  \ifcsname make#1\endcsname\else
     \expandafter\def\csname make#1\endcsname{}
   \fi
   \expandafter\renewcommand\csname make#1\endcsname[1][\sjtubeamer@inner@cover]{
@@ -130,11 +131,6 @@
 }
 \definemakecover{title}
 \definemakecover{bottom}
-\if\EqualOption{inner}{lang}{cn}%
-  \def\bottomthanks{谢\,谢}
-\else%
-  \def\bottomthanks{Thank You}
-\fi%
 \setbeamertemplate{title page}[\sjtubeamer@inner@cover]
 \setbeamertemplate{bottom page}[\sjtubeamer@inner@cover]
 \defbeamertemplate*{part page}{sjtubeamer}[1][]

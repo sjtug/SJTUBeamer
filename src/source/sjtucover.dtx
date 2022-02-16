@@ -492,6 +492,102 @@
 %</my>
 %    \end{macrocode}
 %
+%  \subsubsection{Part Page}
+%  \paragraph{min.}
+%    \begin{macrocode}
+\defbeamertemplate*{part page}{min}[1][]
+{
+  \vfill
+  \vskip 8pt
+  \begingroup
+%    \end{macrocode}
+%   Print the number of this part. If it is in Chinese, the translated version is printed.
+%    \begin{macrocode}
+  \begin{beamercolorbox}[sep=16pt,right,#1]{part title}
+    \hfill\usebeamerfont{part name}
+    \if\EqualOption{cover}{lang}{cn}%
+      第~\insertromanpartnumber~部分
+    \else%
+      \partname~\insertromanpartnumber
+    \fi%
+    \par\vskip4pt
+    \usebeamerfont{part title}\insertpart\par
+%    \end{macrocode}
+%   Since navigation bar is packaged, to modify the color, you have to change the \verb"section in head/foot" beamer color. Here, the first move is to save the current color to a temporary variable. After the insertion, the previous color should be restored.
+%    \begin{macrocode}
+    \hbox to \textwidth{
+      \usebeamerfont{footline}%
+      \setbeamercolor{tempcolor}{fg=section in head/foot.fg}
+      \setbeamercolor{section in head/foot}{use=palette primary,
+        fg=palette primary.fg,bg=}
+      \hfill
+      \insertnavigation{0.4\textwidth}
+      \hspace*{1cm}
+      \setbeamercolor{section in head/foot}{fg=tempcolor.fg}
+    }
+  \end{beamercolorbox}
+  \endgroup
+  \vfill
+}
+%    \end{macrocode}
+%
+%  \subsection{Section Page \& Subsection Page}
+%    \paragraph{min.}
+%  \begin{macro}{\sectionblock}
+%  The common \verb"\sectionblock" command for making the section block.
+%    \begin{macrocode}
+\def\sectionblock#1{
+  \begin{beamercolorbox}[sep=12pt,right,#1]{section title}
+    \usebeamerfont{section name}
+    \if\EqualOption{inner}{lang}{cn}%
+      第~\insertsectionnumber~节
+    \else%
+      \sectionname~\insertsectionnumber
+    \fi%
+    \par\vskip4pt
+    \usebeamerfont{section title}\insertsection\par
+  \end{beamercolorbox}
+}
+%    \end{macrocode}
+%  \end{macro}
+%
+%  \begin{macro}{\sectionpage}
+%   Define the \verb"section page" beamer template.
+%    \begin{macrocode}
+\defbeamertemplate*{section page}{min}[1][]
+{
+  \vfill
+  \begingroup
+  \sectionblock{#1}
+  \endgroup
+  \vfill
+}
+%    \end{macrocode}
+%  \end{macro}
+%
+%  \begin{macro}{\subsectionpage}
+%   Define the \verb"subection page" beamer template.
+%    \begin{macrocode}
+\defbeamertemplate*{subsection page}{min}[1][]
+{
+  \vfill
+  \begingroup
+  \sectionblock{#1}
+  \begin{beamercolorbox}[sep=8pt,right,#1]{subsection title}
+    \usebeamerfont{subsection name}
+    \if\EqualOption{inner}{lang}{cn}%
+    第~\insertsubsectionnumber~小节
+    \else%
+    \subsectionname~\insertsubsectionnumber
+    \fi%
+    \par\vskip 4pt
+    \usebeamerfont{subsection title}\insertsubsection\par
+  \end{beamercolorbox}
+  \endgroup
+  \vfill
+}
+%    \end{macrocode}
+%  \end{macro}
 %
 % \iffalse
 %</package>
