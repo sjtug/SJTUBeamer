@@ -21,7 +21,7 @@
 %% limitations under the License.
 %% ------------------------------------------------------------------------
 \NeedsTeXFormat{LaTeX2e}
-\ProvidesPackage{beamerthemesjtubeamer}[2022/01/01 sjtubeamer parent theme v2.5.0]
+\ProvidesPackage{beamerthemesjtubeamer}[2022/02/16 sjtubeamer parent theme v2.5.1]
 \DeclareOptionBeamer{maxplus}{
   \def\sjtubeamer@cover{maxplus}\def\sjtubeamer@logopos{topright}}
 \DeclareOptionBeamer{max}{
@@ -77,7 +77,8 @@
   \def\sjtubeamer@mythemelist{#2}
   \@for\sjtubeamer@mythemename:=\sjtubeamer@mythemelist\do{
     \@for\sjtubeamer@mythemeoption:=\sjtubeamer@mythemeoptions\do{
-      \expandafter\def\csname sjtubeamer@\sjtubeamer@mythemename @\sjtubeamer@mythemeoption\endcsname{true}
+      \expandafter\def\csname sjtubeamer@\sjtubeamer@mythemename
+        @\sjtubeamer@mythemeoption\endcsname{true}
     }
     \def\sjtubeamer@mythemefile{sjtubeamertheme\sjtubeamer@mythemename.ltx}
     \IfFileExists{\sjtubeamer@mythemefile}{

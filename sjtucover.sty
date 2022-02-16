@@ -18,8 +18,13 @@
 %% see https://vi.sjtu.edu.cn/index.php/articles/bulletin/16.
 %% ------------------------------------------------------------------------
 \NeedsTeXFormat{LaTeX2e}
-\ProvidesPackage{sjtucover}[2022/01/01 cover library for sjtubeamer v2.5.0]
+\ProvidesPackage{sjtucover}[2022/02/16 cover library for sjtubeamer v2.5.1]
 \RequirePackage{sjtuvi}
+\DefineOption{cover}{lang}{cn}
+\DefineOption{cover}{lang}{en}
+\@ifclassloaded{ctexbeamer}{\ExecuteOptionsBeamer{cn}}{
+  \ExecuteOptionsBeamer{en}}
+\ProcessOptionsBeamer
 \defbeamertemplate*{title page}{maxplus}[1][]
 {
   \nointerlineskip%
@@ -225,6 +230,11 @@
   \usebeamercolor{palette primary}
   \def\sjtubeamer@logocolor{palette primary.fg}
 }
+\if\EqualOption{cover}{lang}{cn}%
+  \newcommand{\bottomthanks}{谢\,谢}
+\else%
+  \newcommand{\bottomthanks}{Thank You}
+\fi%
 \tikzfading[name=fade right img,
   left color=transparent!20,
   right color=transparent!100]
@@ -330,7 +340,7 @@
   \vskip6em
   \begin{beamercolorbox}[sep=8pt]{title}
     \usebeamercolor[fg]{palette primary}
-    \usebeamerfont{title}\noindent#1
+    \usebeamerfont{title}\noindent\bottomthanks
     \vskip1em%
     \usebeamerfont{subtitle}
     \insertauthor
@@ -360,6 +370,72 @@
   % which will be restored after rendering this page.
   \usebeamercolor{palette primary}
   \def\sjtubeamer@logocolor{palette primary.fg}
+}
+\defbeamertemplate*{part page}{min}[1][]
+{
+  \vfill
+  \vskip 8pt
+  \begingroup
+  \begin{beamercolorbox}[sep=16pt,right,#1]{part title}
+    \hfill\usebeamerfont{part name}
+    \if\EqualOption{cover}{lang}{cn}%
+      第~\insertromanpartnumber~部分
+    \else%
+      \partname~\insertromanpartnumber
+    \fi%
+    \par\vskip4pt
+    \usebeamerfont{part title}\insertpart\par
+    \hbox to \textwidth{
+      \usebeamerfont{footline}%
+      \setbeamercolor{tempcolor}{fg=section in head/foot.fg}
+      \setbeamercolor{section in head/foot}{use=palette primary,
+        fg=palette primary.fg,bg=}
+      \hfill
+      \insertnavigation{0.4\textwidth}
+      \hspace*{1cm}
+      \setbeamercolor{section in head/foot}{fg=tempcolor.fg}
+    }
+  \end{beamercolorbox}
+  \endgroup
+  \vfill
+}
+\def\sectionblock#1{
+  \begin{beamercolorbox}[sep=12pt,right,#1]{section title}
+    \usebeamerfont{section name}
+    \if\EqualOption{inner}{lang}{cn}%
+      第~\insertsectionnumber~节
+    \else%
+      \sectionname~\insertsectionnumber
+    \fi%
+    \par\vskip4pt
+    \usebeamerfont{section title}\insertsection\par
+  \end{beamercolorbox}
+}
+\defbeamertemplate*{section page}{min}[1][]
+{
+  \vfill
+  \begingroup
+  \sectionblock{#1}
+  \endgroup
+  \vfill
+}
+\defbeamertemplate*{subsection page}{min}[1][]
+{
+  \vfill
+  \begingroup
+  \sectionblock{#1}
+  \begin{beamercolorbox}[sep=8pt,right,#1]{subsection title}
+    \usebeamerfont{subsection name}
+    \if\EqualOption{inner}{lang}{cn}%
+    第~\insertsubsectionnumber~小节
+    \else%
+    \subsectionname~\insertsubsectionnumber
+    \fi%
+    \par\vskip 4pt
+    \usebeamerfont{subsection title}\insertsubsection\par
+  \end{beamercolorbox}
+  \endgroup
+  \vfill
 }
 \endinput
 %%

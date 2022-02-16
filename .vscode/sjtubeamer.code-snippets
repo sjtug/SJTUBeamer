@@ -59,59 +59,11 @@
 		"body": "\\coverpage{$1}",
 		"description": "Common command for \\titlepage and \\bottompage. Disable externalization for generating title page and bottom page, locally.\nSince the definition on \\sjtubeamer@logocolor is defined in a group, the stack is not necessary to store the value.\n"
 	},
-	"titlepage": {
+	"definecover": {
 		"scope": "doctex,tex",
-		"prefix": "\\titlepage",
-		"body": "\\titlepage",
-		"description": "Call the title page template to make a title page. This is a patch for the original \\titlepage command, to fit with the logo color system.\n"
-	},
-	"maketitle": {
-		"scope": "doctex,tex,latex",
-		"prefix": "\\maketitle",
-		"body": "\\maketitle[${1:\\sjtubeamer@inner@cover}]",
-		"description": "Patch make title command. It will receive an optional argument for switching different type of title page. The set on beamer template is inside a group, so the setting is locale.\n"
-	},
-	"bottompage": {
-		"scope": "doctex,tex",
-		"prefix": "\\bottompage",
-		"body": "\\bottompage",
-		"description": "Call the bottom page template to make a bottom page.\n"
-	},
-	"bottomthanks": {
-		"scope": "doctex,tex",
-		"prefix": "\\bottomthanks",
-		"body": "\\bottomthanks",
-		"description": "The \"Thank You\" caption in the bottom page.\n"
-	},
-	"makebottom": {
-		"scope": "doctex,tex,latex",
-		"prefix": "\\makebottom",
-		"body": "\\makebottom[${1:\\sjtubeamer@inner@cover}]",
-		"description": "Make the bottom page. Not a built-in command.\nRedefinition on \\beamer@writeslideentrty locally will remove the corresponding navigation dot for miniframe outer theme. This is not necessary for title page, since it should not belong to any sections.\n"
-	},
-	"partpage": {
-		"scope": "doctex,tex,latex",
-		"prefix": "\\partpage",
-		"body": "\\partpage{$1}",
-		"description": "Define the part page beamer template.\n"
-	},
-	"part": {
-		"scope": "doctex,tex,latex",
-		"prefix": "\\part",
-		"body": "\\part{$1}",
-		"description": "Redirect the part command to make a part page.\nRedefinition on \\beamer@writeslideentrty locally will remove the corresponding navigation dot like what it has been done in the bottom page.\n"
-	},
-	"sectionpage": {
-		"scope": "doctex,tex,latex",
-		"prefix": "\\sectionpage",
-		"body": "\\sectionpage{$1}",
-		"description": "Define the section page beamer template.\n"
-	},
-	"subsectionpage": {
-		"scope": "doctex,tex,latex",
-		"prefix": "\\subsectionpage",
-		"body": "\\subsectionpage{$1}",
-		"description": "Define the subection page beamer template.\n"
+		"prefix": "\\definecover",
+		"body": "\\definecover{$1}",
+		"description": "Command generator for \\maketitle and \\makebottom, which will receive an optional command for selecting different theme. Redefinition on \\beamer@writeslideentrty locally will remove the corresponding navigation dot for miniframe outer theme.\nThis command receives one parameter for the cover type like ``title'' or ``bottom''.\n"
 	},
 	"highlight": {
 		"scope": "doctex,tex,latex",
@@ -190,6 +142,30 @@
 		"prefix": "\\usemytheme",
 		"body": "\\usemytheme{$1}",
 		"description": "When using my option, you could load other contrib sub-themes by this command. Use comma-seperated list to load multiple sub-themes in one line. The \\getcontribpath is defined in sjtuvi package loaded in inner theme.\n\nYou could pass options to all the sub-themes by writing in the square brackets. Then, in your sub-theme, you could use \\if\\EqualOption{<themename>}{<option>}{true} to check the condition.\n\nThis command will also first check the root directory for dependency. If it exists, the \\getcontribdir macro will be redefined. It is never recommended for placing the ltx in the same folder.\nRemember the contrib directory is permantly modified and the directory for other dependency may be missing due to this debug config. You may need to modify to \\renewcommand{\\getcontribdir}[1]{\\sjtubeamer@contribdir/#1} manually to recover to the standard configuration. We didn't put the last command into this since we only expect you to only use the debug option for only one contrib dependency --- the one needs to be documented. And you should run l3build install in the src folder for making the sjtubeamer main part into your texmf path. If you want to combine multiple dependencies, you should write and compile your documentation in the root folder. And our CI will move your documentation to the root first before checking.\n"
+	},
+	"bottomthanks": {
+		"scope": "doctex,tex,latex",
+		"prefix": "\\bottomthanks",
+		"body": "\\bottomthanks",
+		"description": "The \"Thank You\" caption in the bottom page. Redefine this command will change the bottom page caption.\n"
+	},
+	"sectionblock": {
+		"scope": "doctex,tex",
+		"prefix": "\\sectionblock",
+		"body": "\\sectionblock{$1}",
+		"description": "The common \\sectionblock command for making the section block.\n"
+	},
+	"sectionpage": {
+		"scope": "doctex,tex,latex",
+		"prefix": "\\sectionpage",
+		"body": "\\sectionpage{$1}",
+		"description": "Define the section page beamer template.\n"
+	},
+	"subsectionpage": {
+		"scope": "doctex,tex,latex",
+		"prefix": "\\subsectionpage",
+		"body": "\\subsectionpage{$1}",
+		"description": "Define the subection page beamer template.\n"
 	},
 	"DefineOption": {
 		"scope": "doctex,tex",

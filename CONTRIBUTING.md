@@ -11,7 +11,7 @@ SJTUBeamer 现在已经开放插件接口，存放于根目录的 `contrib/` 文
     - `\getcontribdir{<theme>}` 返回插件目录 `contrib/<theme>`
     - `\getcontribpath{<theme>}{<filepath>}` 返回插件文件 `contrib/<theme>/<filepath>`
 6. 发 PR 时，使用 `contrib: <theme>` 作为标题，并向维护者发出代码审查请求。
-7. 之后在根目录的主文件中就可以在 `\usetheme{sjtubeamer}` 后使用 `\usemytheme{<theme>}` 调用你的插件。
+7. 之后在根目录的主文件中就可以在 `\usetheme[my]{sjtubeamer}` 后使用 `\usemytheme{<theme>}` 调用你的插件。
 
 更多信息，请参阅开发文档。
 
@@ -31,6 +31,6 @@ SJTUBeamer is available for receiving plugins, which are stored in `contrib/` fo
     - `\getcontribdir{<theme>}` returns the plugin directory `contrib/<theme>`
     - `\getcontribpath{<theme>}{<filepath>}` returns plugin file path `contrib/<theme>/<filepath>`
 6. Pull request to this repo naming `contrib: <theme>`, request a review from one of the collaborators.
-7. Now, you could call your plugin by using `\usemytheme{<theme>}` after `\usetheme{sjtubeamer}`.
+7. Now, you could call your plugin by using `\usemytheme{<theme>}` after `\usetheme[my]{sjtubeamer}`.
 
 For more information, please refer to the development guide.

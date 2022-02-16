@@ -21,27 +21,28 @@
 %% limitations under the License.
 %% ------------------------------------------------------------------------
 \NeedsTeXFormat{LaTeX2e}
-\ProvidesPackage{beamerinnerthemesjtubeamer}[2022/01/01 sjtubeamer inner theme v2.5.0]
+\ProvidesPackage{beamerinnerthemesjtubeamer}[2022/02/16 sjtubeamer inner theme v2.5.1]
 \RequirePackage{sjtuvi}
 \RequirePackage{tcolorbox}
-\DeclareOptionBeamer{maxplus}{\def\sjtubeamer@inner@cover{maxplus}}
-\DeclareOptionBeamer{max}{\def\sjtubeamer@inner@cover{max}}
-\DeclareOptionBeamer{min}{\def\sjtubeamer@inner@cover{min}}
-\DeclareOptionBeamer{my}{\def\sjtubeamer@inner@cover{my}} % reserved for customization
+\DefineOption{inner}{cover}{maxplus}
+\DefineOption{inner}{cover}{max}
+\DefineOption{inner}{cover}{min}
+\DefineOption{inner}{cover}{my} % reserved for customization
 \ExecuteOptionsBeamer{
   maxplus,
   min,
   my,
   max,
 }
-\DefineOption{inner}{lang}{cn}
-\DefineOption{inner}{lang}{en}
+\DeclareOptionBeamer{cn}{\def\sjtubeamer@inner@lang{cn}}
+\DeclareOptionBeamer{en}{\def\sjtubeamer@inner@lang{en}}
 \@ifclassloaded{ctexbeamer}{\ExecuteOptionsBeamer{cn}}{
   \ExecuteOptionsBeamer{en}}
 \DefineOption{inner}{color}{red}
 \DefineOption{inner}{color}{blue}
 \ExecuteOptionsBeamer{red}
 \ProcessOptionsBeamer
+\PassOptionsToPackage{\sjtubeamer@inner@lang}{sjtucover}
 \if\EqualOption{inner}{color}{red}
   \colorlet{cprimary}{sjtuRedPrimary}
   \colorlet{csecondary}{sjtuRedSecondary}
@@ -95,6 +96,7 @@
     \fi
   \fi
 \fi
+\RequirePackage{sjtucover}
 \newdimen\beamer@sidebarwidth
 \beamer@sidebarwidth=0pt
 \def\coverpage#1{
@@ -109,112 +111,36 @@
     \fi
   }
 }
-\def\titlepage{
-  \coverpage{title page}
-}
-\renewcommand{\maketitle}[1][\sjtubeamer@inner@cover]{
-  {
-    \setbeamertemplate{title page}[#1]
-    \ifbeamer@inframe\titlepage\else
-      \begin{frame}[plain]
-        \titlepage
-      \end{frame}\fi
+\def\definecover#1{
+  \expandafter\def\csname #1page\endcsname{
+    \coverpage{#1 page}
   }
-}
-\def\bottompage{
-  \coverpage{bottom page}
-}
-\if\EqualOption{inner}{lang}{cn}%
-  \def\bottomthanks{谢\,谢}
-\else%
-  \def\bottomthanks{Thank You}
-\fi%
-\newcommand{\makebottom}[1][\sjtubeamer@inner@cover]{
-  {
-    \def\beamer@writeslidentry{\clearpage\beamer@notesactions}
-    \setbeamertemplate{bottom page}[#1][\bottomthanks]
-    \ifbeamer@inframe\bottompage\else
-      \begin{frame}[plain]
-        \bottompage
-      \end{frame}\fi
-  }
-}
-\RequirePackage{sjtucover}
-\setbeamertemplate{title page}[\sjtubeamer@inner@cover]
-\setbeamertemplate{bottom page}[\sjtubeamer@inner@cover][Thanks]
-\defbeamertemplate*{part page}{sjtubeamer}[1][]
-{
-  \vfill
-  \vskip 8pt
-  \begingroup
-  \begin{beamercolorbox}[sep=16pt,right,#1]{part title}
-    \hfill\usebeamerfont{part name}
-    \if\EqualOption{inner}{lang}{cn}%
-    第~\insertromanpartnumber~部分
-    \else%
-    \partname~\insertromanpartnumber
-    \fi%
-    \par\vskip4pt
-    \usebeamerfont{part title}\insertpart\par
-    \hbox to \textwidth{
-      \usebeamerfont{footline}%
-      \setbeamercolor{tempcolor}{fg=section in head/foot.fg}
-      \setbeamercolor{section in head/foot}{use=palette primary,
-        fg=palette primary.fg,bg=}
-      \hfill
-      \insertnavigation{0.4\textwidth}
-      \hspace*{1cm}
-      \setbeamercolor{section in head/foot}{fg=tempcolor.fg}
+  \ifcsname make#1\endcsname\else
+    \expandafter\def\csname make#1\endcsname{}
+  \fi
+  \expandafter\renewcommand\csname make#1\endcsname[1][\sjtubeamer@inner@cover]{
+    {
+      \def\beamer@writeslidentry{\clearpage\beamer@notesactions}
+      \setbeamertemplate{#1 page}[##1]
+      \ifbeamer@inframe\csname #1page\endcsname\else
+        \begin{frame}[plain]
+          \csname #1page\endcsname
+        \end{frame}\fi
     }
-  \end{beamercolorbox}
-  \endgroup
-  \vfill
-}
-\AtBeginPart{
-  {
-    \def\beamer@writeslidentry{\clearpage\beamer@notesactions}
-    \begin{frame}[plain]
-      \partpage
-    \end{frame}
   }
 }
-\def\sectionblock#1{
-  \begin{beamercolorbox}[sep=12pt,right,#1]{section title}
-    \usebeamerfont{section name}
-    \if\EqualOption{inner}{lang}{cn}%
-    第~\insertsectionnumber~节
-    \else%
-    \sectionname~\insertsectionnumber
-    \fi%
-    \par\vskip4pt
-    \usebeamerfont{section title}\insertsection\par
-  \end{beamercolorbox}
-}
-\defbeamertemplate*{section page}{sjtubeamer}[1][]
-{
-  \vfill
-  \begingroup
-  \sectionblock{#1}
-  \endgroup
-  \vfill
-}
-\defbeamertemplate*{subsection page}{sjtubeamer}[1][]
-{
-  \vfill
-  \begingroup
-  \sectionblock{#1}
-  \begin{beamercolorbox}[sep=8pt,right,#1]{subsection title}
-    \usebeamerfont{subsection name}
-    \if\EqualOption{inner}{lang}{cn}%
-    第~\insertsubsectionnumber~小节
-    \else%
-    \subsectionname~\insertsubsectionnumber
-    \fi%
-    \par\vskip 4pt
-    \usebeamerfont{subsection title}\insertsubsection\par
-  \end{beamercolorbox}
-  \endgroup
-  \vfill
+\definecover{title}
+\definecover{bottom}
+\setbeamertemplate{title page}[\sjtubeamer@inner@cover]
+\setbeamertemplate{bottom page}[\sjtubeamer@inner@cover]
+\definecover{part}
+\definecover{section}
+\definecover{subsection}
+\setbeamertemplate{part page}[min]
+\setbeamertemplate{section page}[min]
+\setbeamertemplate{subsection page}[min]
+\AtBeginPart{
+  \makepart
 }
 \useinnertheme{circles}
 \if\EqualOption{inner}{cover}{min}\else

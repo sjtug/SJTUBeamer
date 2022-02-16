@@ -82,7 +82,7 @@ end
 -- NOTICE: if you want to save the tourial step pdf,
 --         please uncomment the following line.
 
-cachedemo        = true -- cache the demo
+-- cachedemo        = true -- cache the demo
 
 -- Generate tutorial files before compiling the doc.
 function typeset_demo_tasks()
@@ -189,13 +189,13 @@ function gen_snippets()
                 -- Find TeX style definition, see Coding Style 3.1.2
                 local def_param = string.match(line, "\\def" .. in_macro .. "([#%d]*)")
                 -- Find LaTeX style definition, see Coding Style 3.1.3
-                local comm_param, param_default = string.match(line, "\\[renew|provide|new]*%a+{" .. in_macro .. "}%[(%d)%]([%[%a*@*\\*%]]*)")
+                local comm_decl, comm_param, param_default = string.match(line, "\\(%a+){" .. in_macro .. "}%[?(%d?)%]?(%[?%a*@*\\*%]?)")
                 if def_param ~= nil then
                     def_param = string.gsub(def_param, "#(%d)", "{$%1}")
                     macro_body = macro_body .. "\\" .. in_macro .. def_param
                     captured = 1
-                elseif comm_param ~= nil then
-                    comm_param = tonumber(comm_param)
+                elseif comm_decl ~= nil and (string.find(comm_decl, "new") ~= nil or string.find(comm_decl, "provide") ~= nil) then
+                    comm_param = tonumber(comm_param) or 0
                     if string.sub(in_macro,1,1) == "\\" then
                         macro_body = macro_body .. "\\" .. in_macro
                         captured = 2
@@ -203,14 +203,17 @@ function gen_snippets()
                         macro_body = macro_body .. "\\n\\\\begin{" .. in_macro .. "}"
                         captured = 3
                     end
-                    if param_default ~= "" then
-                        param_default = string.gsub(string.sub(param_default, 2, -2),"\\","\\\\") -- remove square brackets
-                        macro_body = macro_body .. "[${1:" .. param_default .. "}]"
-                    else
-                        macro_body = macro_body .. "{$1}"
-                    end
-                    for i=2,comm_param do
-                        macro_body = macro_body .. "{$" .. i  .."}"
+                    if comm_param > 0 then
+                        -- Command has parameters.
+                        if param_default ~= "" then
+                            param_default = string.gsub(string.sub(param_default, 2, -2),"\\","\\\\") -- remove square brackets
+                            macro_body = macro_body .. "[${1:" .. param_default .. "}]"
+                        else
+                            macro_body = macro_body .. "{$1}"
+                        end
+                        for i=2,comm_param do
+                            macro_body = macro_body .. "{$" .. i  .."}"
+                        end
                     end
                     if captured == 3 then   -- close the environment
                         macro_body = macro_body .. "\\n\\t$" .. comm_param + 1 .. "\\n\\\\end{" .. in_macro .. "}\\n"

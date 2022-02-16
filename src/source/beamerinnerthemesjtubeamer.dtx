@@ -16,7 +16,7 @@
 % \iffalse
 %<*package>
 \NeedsTeXFormat{LaTeX2e}
-\ProvidesPackage{beamerinnerthemesjtubeamer}[2022/01/01 sjtubeamer inner theme v2.5.0]
+\ProvidesPackage{beamerinnerthemesjtubeamer}[2022/02/16 sjtubeamer inner theme v2.5.1]
 %</package>
 % \fi
 % \CheckSum{0}
@@ -54,16 +54,16 @@
 %  \begin{macro}{\sjtubeamer@inner@cover}
 %    \begin{macrocode}
 %<*maxplus>
-\DeclareOptionBeamer{maxplus}{\def\sjtubeamer@inner@cover{maxplus}}
+\DefineOption{inner}{cover}{maxplus}
 %</maxplus>
 %<*max>
-\DeclareOptionBeamer{max}{\def\sjtubeamer@inner@cover{max}}
+\DefineOption{inner}{cover}{max}
 %</max>
 %<*min>
-\DeclareOptionBeamer{min}{\def\sjtubeamer@inner@cover{min}}
+\DefineOption{inner}{cover}{min}
 %</min>
 %<*my>
-\DeclareOptionBeamer{my}{\def\sjtubeamer@inner@cover{my}} % reserved for customization
+\DefineOption{inner}{cover}{my} % reserved for customization
 %</my>
 \ExecuteOptionsBeamer{
 %<*maxplus>
@@ -84,8 +84,8 @@
 %
 %  \begin{macro}{\sjtubeamer@inner@lang}
 %    \begin{macrocode}
-\DefineOption{inner}{lang}{cn}
-\DefineOption{inner}{lang}{en}
+\DeclareOptionBeamer{cn}{\def\sjtubeamer@inner@lang{cn}}
+\DeclareOptionBeamer{en}{\def\sjtubeamer@inner@lang{en}}
 \@ifclassloaded{ctexbeamer}{\ExecuteOptionsBeamer{cn}}{
   \ExecuteOptionsBeamer{en}}
 %    \end{macrocode}
@@ -101,6 +101,10 @@
 %
 %    \begin{macrocode}
 \ProcessOptionsBeamer
+%    \end{macrocode}
+%
+%    \begin{macrocode}
+\PassOptionsToPackage{\sjtubeamer@inner@lang}{sjtucover}
 %    \end{macrocode}
 %
 %   Hard-coded color for blocks. A replica of color theme.
@@ -220,6 +224,10 @@
 %    \end{macrocode}
 %  \end{macro}
 %
+%   Load Cover Library to get the customized cover.
+%    \begin{macrocode}
+\RequirePackage{sjtucover}
+%    \end{macrocode}
 %
 %  Initialize sidebar width to 0pt as no sidebar required, which will be overwritten in outer theme.
 %    \begin{macrocode}
@@ -246,188 +254,71 @@
 %    \end{macrocode}
 %  \end{macro}
 %
-%  \begin{macro}{\titlepage}
-%   Call the title page template to make a title page. This is a patch for the original \verb"\titlepage" command, to fit with the logo color system.
+% \begin{macro}{\definecover}
+%  Command generator for \verb"\maketitle" and \verb"\makebottom", which will receive an optional command for selecting different theme. Redefinition on \verb"\beamer@writeslideentrty" locally will remove the corresponding navigation dot for miniframe outer theme.
+%  This command receives one parameter for the cover type like ``title'' or ``bottom''.
 %    \begin{macrocode}
-\def\titlepage{
-  \coverpage{title page}
-}
+\def\definecover#1{
 %    \end{macrocode}
-%  \end{macro}
-%
-%  \begin{macro}{\maketitle}
-%  Patch make title command. It will receive an optional argument for switching different type of title page. The set on beamer template is inside a group, so the setting is locale.
+%  This command will also generate an auxilary interface like \verb"\titlepage" or \verb"\bottompage", which mainly for overriding the default definition on those macros.
 %    \begin{macrocode}
-\renewcommand{\maketitle}[1][\sjtubeamer@inner@cover]{
-  {
-    \setbeamertemplate{title page}[#1]
-    \ifbeamer@inframe\titlepage\else
-      \begin{frame}[plain]
-        \titlepage
-      \end{frame}\fi
+  \expandafter\def\csname #1page\endcsname{
+    \coverpage{#1 page}
+  }
+%    \end{macrocode}
+% To avoid the check of \verb"\renewcommand" and to fullfill the same purpose of overriding the original definition like what \verb"\def" does. If the command is not defined, it will get defined as an empty macro first before going into the definition stage in \LaTeX{} command style, in order to use the optional argument.
+%    \begin{macrocode}
+  \ifcsname make#1\endcsname\else
+    \expandafter\def\csname make#1\endcsname{}
+  \fi
+  \expandafter\renewcommand\csname make#1\endcsname[1][\sjtubeamer@inner@cover]{
+    {
+      \def\beamer@writeslidentry{\clearpage\beamer@notesactions}
+      \setbeamertemplate{#1 page}[##1]
+      \ifbeamer@inframe\csname #1page\endcsname\else
+        \begin{frame}[plain]
+          \csname #1page\endcsname
+        \end{frame}\fi
+    }
   }
 }
 %    \end{macrocode}
 %  \end{macro}
 %
-%  \begin{macro}{\bottompage}
-%   Call the bottom page template to make a bottom page.
 %    \begin{macrocode}
-\def\bottompage{
-  \coverpage{bottom page}
-}
-%    \end{macrocode}
-%  \end{macro}
-%
-%  \begin{macro}{\bottomthanks}
-%  The "Thank You" caption in the bottom page.
-%    \begin{macrocode}
-\if\EqualOption{inner}{lang}{cn}%
-  \def\bottomthanks{谢\,谢}
-\else%
-  \def\bottomthanks{Thank You}
-\fi%
-%    \end{macrocode}
-%  \end{macro}
-%
-%  \begin{macro}{\makebottom}
-%   Make the bottom page. Not a built-in command.
-%   Redefinition on \verb"\beamer@writeslideentrty" locally will remove the corresponding navigation dot for miniframe outer theme. This is not necessary for title page, since it should not belong to any sections.
-%    \begin{macrocode}
-\newcommand{\makebottom}[1][\sjtubeamer@inner@cover]{
-  {
-    \def\beamer@writeslidentry{\clearpage\beamer@notesactions}
-    \setbeamertemplate{bottom page}[#1][\bottomthanks]
-    \ifbeamer@inframe\bottompage\else
-      \begin{frame}[plain]
-        \bottompage
-      \end{frame}\fi
-  }
-}
-%    \end{macrocode}
-%  \end{macro}
-%
-%   Load Cover Library to get the customized cover.
-%    \begin{macrocode}
-\RequirePackage{sjtucover}
+\definecover{title}
+\definecover{bottom}
 %    \end{macrocode}
 %
-%   Initialize the title page and bottom page when the package is loaded.
+%   Initialize the title page and bottom page.
 %    \begin{macrocode}
 \setbeamertemplate{title page}[\sjtubeamer@inner@cover]
-\setbeamertemplate{bottom page}[\sjtubeamer@inner@cover][Thanks]
+\setbeamertemplate{bottom page}[\sjtubeamer@inner@cover]
 %    \end{macrocode}
 %
-% \subsubsection{Part Page}
-%  \begin{macro}{\partpage}
-%   Define the \verb"part page" beamer template.
-%    \begin{macrocode}
-\defbeamertemplate*{part page}{sjtubeamer}[1][]
-{
-  \vfill
-  \vskip 8pt
-  \begingroup
-%    \end{macrocode}
-%   Print the number of this part. If it is in Chinese, the translated version is printed.
-%    \begin{macrocode}
-  \begin{beamercolorbox}[sep=16pt,right,#1]{part title}
-    \hfill\usebeamerfont{part name}
-    \if\EqualOption{inner}{lang}{cn}%
-    第~\insertromanpartnumber~部分
-    \else%
-    \partname~\insertromanpartnumber
-    \fi%
-    \par\vskip4pt
-    \usebeamerfont{part title}\insertpart\par
-%    \end{macrocode}
-%   Since navigation bar is packaged, to modify the color, you have to change the \verb"section in head/foot" beamer color. Here, the first move is to save the current color to a temporary variable. After the insertion, the previous color should be restored.
-%    \begin{macrocode}
-    \hbox to \textwidth{
-      \usebeamerfont{footline}%
-      \setbeamercolor{tempcolor}{fg=section in head/foot.fg}
-      \setbeamercolor{section in head/foot}{use=palette primary,
-        fg=palette primary.fg,bg=}
-      \hfill
-      \insertnavigation{0.4\textwidth}
-      \hspace*{1cm}
-      \setbeamercolor{section in head/foot}{fg=tempcolor.fg}
-    }
-  \end{beamercolorbox}
-  \endgroup
-  \vfill
-}
-%    \end{macrocode}
-%  \end{macro}
+% \subsubsection{Sectioning Page}
+%   Set up commmand for part page, section page and subsection page.
 %
-%  \begin{macro}{\part}
-%   Redirect the part command to make a part page.
-%   Redefinition on \verb"\beamer@writeslideentrty" locally will remove the corresponding navigation dot like what it has been done in the bottom page.
+%    \begin{macrocode}
+\definecover{part}
+\definecover{section}
+\definecover{subsection}
+%    \end{macrocode}
+%
+%  Initialize the sectioning page.
+%    \begin{macrocode}
+\setbeamertemplate{part page}[min]
+\setbeamertemplate{section page}[min]
+\setbeamertemplate{subsection page}[min]
+%    \end{macrocode}
+%
+%  Make a part page for each part by default. 
+%  For section and subsection page, we recommend to use the corresponding \verb"\sectionpage" and \verb"\subsectionpage" manually in the main file to be compatible with the syntax of beamer.
 %    \begin{macrocode}
 \AtBeginPart{
-  {
-    \def\beamer@writeslidentry{\clearpage\beamer@notesactions}
-    \begin{frame}[plain]
-      \partpage
-    \end{frame}
-  }
+  \makepart
 }
 %    \end{macrocode}
-%  \end{macro}
-%
-% \subsubsection{Section Page \& Subsection Page}
-%   Define the common \verb"\sectionblock" command to make the section block.
-%    \begin{macrocode}
-\def\sectionblock#1{
-  \begin{beamercolorbox}[sep=12pt,right,#1]{section title}
-    \usebeamerfont{section name}
-    \if\EqualOption{inner}{lang}{cn}%
-    第~\insertsectionnumber~节
-    \else%
-    \sectionname~\insertsectionnumber
-    \fi%
-    \par\vskip4pt
-    \usebeamerfont{section title}\insertsection\par
-  \end{beamercolorbox}
-}
-%    \end{macrocode}
-%
-%  \begin{macro}{\sectionpage}
-%   Define the \verb"section page" beamer template.
-%    \begin{macrocode}
-\defbeamertemplate*{section page}{sjtubeamer}[1][]
-{
-  \vfill
-  \begingroup
-  \sectionblock{#1}
-  \endgroup
-  \vfill
-}
-%    \end{macrocode}
-%  \end{macro}
-%
-%  \begin{macro}{\subsectionpage}
-%   Define the \verb"subection page" beamer template.
-%    \begin{macrocode}
-\defbeamertemplate*{subsection page}{sjtubeamer}[1][]
-{
-  \vfill
-  \begingroup
-  \sectionblock{#1}
-  \begin{beamercolorbox}[sep=8pt,right,#1]{subsection title}
-    \usebeamerfont{subsection name}
-    \if\EqualOption{inner}{lang}{cn}%
-    第~\insertsubsectionnumber~小节
-    \else%
-    \subsectionname~\insertsubsectionnumber
-    \fi%
-    \par\vskip 4pt
-    \usebeamerfont{subsection title}\insertsubsection\par
-  \end{beamercolorbox}
-  \endgroup
-  \vfill
-}
-%    \end{macrocode}
-%  \end{macro}
 %
 % \subsubsection{Itemize Environments}
 %
