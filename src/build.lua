@@ -196,7 +196,6 @@ function gen_snippets()
                     captured = 1
                 elseif comm_decl ~= nil and (string.find(comm_decl, "new") ~= nil or string.find(comm_decl, "provide") ~= nil) then
                     comm_param = tonumber(comm_param) or 0
-                    print(line .. " " .. comm_decl .. " " .. comm_param .. " " .. param_default)
                     if string.sub(in_macro,1,1) == "\\" then
                         macro_body = macro_body .. "\\" .. in_macro
                         captured = 2
