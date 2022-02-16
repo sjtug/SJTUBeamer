@@ -527,8 +527,41 @@
 %    \end{macrocode}
 %
 %  \subsubsection{Part Page}
+%
+%  \paragraph{maxplus.}
+%    \begin{macrocode}
+%<*maxplus>
+\defbeamertemplate*{part page}{maxplus}[1][]
+{
+  \nointerlineskip
+  \vbox{}
+  \usebeamercolor{palette primary}
+  \def\sjtubeamer@logocolor{palette primary.fg}
+  \begin{tikzpicture}[overlay]
+    \fill [palette primary.bg] (-0.2*\the\paperwidth,-1*\the\paperheight)
+    rectangle (1*\the\paperwidth, 0.3*\the\paperheight);
+    \node [right] at (-0.2*\the\paperwidth, -0.48*\the\paperheight) {\resizebox{1.25\paperwidth}{!}{\sjtugate}};
+  \end{tikzpicture}
+  \vfil
+  \begingroup
+    \usebeamercolor[fg]{part title}
+    \usebeamerfont{part name}
+    \if\EqualOption{cover}{lang}{cn}%
+      第~\insertromanpartnumber~部分
+    \else%
+      \partname~\insertromanpartnumber
+    \fi%
+    \par\vskip4pt
+    \usebeamerfont{part title}\insertpart\par
+  \endgroup
+  \vfill
+}
+%</maxplus>
+%    \end{macrocode}
+%
 %  \paragraph{min.}
 %    \begin{macrocode}
+%<*min>
 \defbeamertemplate*{part page}{min}[1][]
 {
   \vfill
@@ -564,6 +597,7 @@
   \endgroup
   \vfill
 }
+%</min>
 %    \end{macrocode}
 %
 %  \subsubsection{Section Page \& Subsection Page}
