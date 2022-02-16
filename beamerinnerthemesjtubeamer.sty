@@ -133,79 +133,14 @@
 \definemakecover{bottom}
 \setbeamertemplate{title page}[\sjtubeamer@inner@cover]
 \setbeamertemplate{bottom page}[\sjtubeamer@inner@cover]
-\defbeamertemplate*{part page}{sjtubeamer}[1][]
-{
-  \vfill
-  \vskip 8pt
-  \begingroup
-  \begin{beamercolorbox}[sep=16pt,right,#1]{part title}
-    \hfill\usebeamerfont{part name}
-    \if\EqualOption{inner}{lang}{cn}%
-    第~\insertromanpartnumber~部分
-    \else%
-    \partname~\insertromanpartnumber
-    \fi%
-    \par\vskip4pt
-    \usebeamerfont{part title}\insertpart\par
-    \hbox to \textwidth{
-      \usebeamerfont{footline}%
-      \setbeamercolor{tempcolor}{fg=section in head/foot.fg}
-      \setbeamercolor{section in head/foot}{use=palette primary,
-        fg=palette primary.fg,bg=}
-      \hfill
-      \insertnavigation{0.4\textwidth}
-      \hspace*{1cm}
-      \setbeamercolor{section in head/foot}{fg=tempcolor.fg}
-    }
-  \end{beamercolorbox}
-  \endgroup
-  \vfill
-}
+\definemakecover{part}
+\definemakecover{section}
+\definemakecover{subsection}
+\setbeamertemplate{part page}[min]
+\setbeamertemplate{section page}[min]
+\setbeamertemplate{subsection page}[min]
 \AtBeginPart{
-  {
-    \def\beamer@writeslidentry{\clearpage\beamer@notesactions}
-    \begin{frame}[plain]
-      \partpage
-    \end{frame}
-  }
-}
-\def\sectionblock#1{
-  \begin{beamercolorbox}[sep=12pt,right,#1]{section title}
-    \usebeamerfont{section name}
-    \if\EqualOption{inner}{lang}{cn}%
-    第~\insertsectionnumber~节
-    \else%
-    \sectionname~\insertsectionnumber
-    \fi%
-    \par\vskip4pt
-    \usebeamerfont{section title}\insertsection\par
-  \end{beamercolorbox}
-}
-\defbeamertemplate*{section page}{sjtubeamer}[1][]
-{
-  \vfill
-  \begingroup
-  \sectionblock{#1}
-  \endgroup
-  \vfill
-}
-\defbeamertemplate*{subsection page}{sjtubeamer}[1][]
-{
-  \vfill
-  \begingroup
-  \sectionblock{#1}
-  \begin{beamercolorbox}[sep=8pt,right,#1]{subsection title}
-    \usebeamerfont{subsection name}
-    \if\EqualOption{inner}{lang}{cn}%
-    第~\insertsubsectionnumber~小节
-    \else%
-    \subsectionname~\insertsubsectionnumber
-    \fi%
-    \par\vskip 4pt
-    \usebeamerfont{subsection title}\insertsubsection\par
-  \end{beamercolorbox}
-  \endgroup
-  \vfill
+  \makepart
 }
 \useinnertheme{circles}
 \if\EqualOption{inner}{cover}{min}\else
