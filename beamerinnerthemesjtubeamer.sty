@@ -111,7 +111,7 @@
     \fi
   }
 }
-\def\definemakecover#1{
+\def\definecover#1{
   \expandafter\def\csname #1page\endcsname{
     \coverpage{#1 page}
   }
@@ -129,13 +129,13 @@
     }
   }
 }
-\definemakecover{title}
-\definemakecover{bottom}
+\definecover{title}
+\definecover{bottom}
 \setbeamertemplate{title page}[\sjtubeamer@inner@cover]
 \setbeamertemplate{bottom page}[\sjtubeamer@inner@cover]
-\definemakecover{part}
-\definemakecover{section}
-\definemakecover{subsection}
+\definecover{part}
+\definecover{section}
+\definecover{subsection}
 \setbeamertemplate{part page}[min]
 \setbeamertemplate{section page}[min]
 \setbeamertemplate{subsection page}[min]

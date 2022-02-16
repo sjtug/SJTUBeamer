@@ -59,10 +59,10 @@
 		"body": "\\coverpage{$1}",
 		"description": "Common command for \\titlepage and \\bottompage. Disable externalization for generating title page and bottom page, locally.\nSince the definition on \\sjtubeamer@logocolor is defined in a group, the stack is not necessary to store the value.\n"
 	},
-	"definemakecover": {
+	"definecover": {
 		"scope": "doctex,tex",
-		"prefix": "\\definemakecover",
-		"body": "\\definemakecover{$1}",
+		"prefix": "\\definecover",
+		"body": "\\definecover{$1}",
 		"description": "Command generator for \\maketitle and \\makebottom, which will receive an optional command for selecting different theme. Redefinition on \\beamer@writeslideentrty locally will remove the corresponding navigation dot for miniframe outer theme.\nThis command receives one parameter for the cover type like ``title'' or ``bottom''.\n"
 	},
 	"highlight": {
