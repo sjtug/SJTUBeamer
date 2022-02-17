@@ -29,12 +29,6 @@
 		"body": "\\sjtubeamer@inner@color",
 		"description": ""
 	},
-	"logo": {
-		"scope": "doctex,tex,latex",
-		"prefix": "\\logo",
-		"body": "\\logo{$1}",
-		"description": "Define logo.\n"
-	},
 	"bgcenterbox": {
 		"scope": "doctex,tex,latex",
 		"prefix": "\\bgcenterbox",
@@ -45,7 +39,7 @@
 		"scope": "doctex,tex,latex",
 		"prefix": "\\titlegraphic",
 		"body": "\\titlegraphic{$1}",
-		"description": " Define the title grahic image.\n\n NOTICE: if you are using your own title graphic, please use png image with predefined color and transparency. Since it is beyond the control of logo color system. Or you could use the provided command in the sjtuvi library to create your own masked picture in order to follow the logo color system (The provided picture should be white and transparent in the background).\n\nmax theme has the background.\n\\setbeamertemplate{background}{} after loading the theme will disable it.\n"
+		"description": " Define the title grahic image.\n\n TODO: TO BE DEPRECATED: NOTICE: if you are using your own title graphic, please use png image with predefined color and transparency. Since it is beyond the control of logo color system. Or you could use the provided command in the sjtuvi library to create your own masked picture in order to follow the logo color system (The provided picture should be white and transparent in the background).\n\nmax theme has the background.\n\\setbeamertemplate{background}{} after loading the theme will disable it.\n"
 	},
 	"coverpage": {
 		"scope": "doctex,tex",

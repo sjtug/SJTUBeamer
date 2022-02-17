@@ -58,16 +58,6 @@
 \tcbuselibrary{skins}
 \tcbuselibrary{listingsutf8}
 \tcbset{shield externalize}
-\usebeamercolor{palette primary}
-\if\EqualOption{inner}{cover}{max}
-  \logo{\resizebox{!}{1cm}{\sjtubadge}}
-\else
-  \if\EqualOption{inner}{lang}{cn}
-    \logo{\resizebox{!}{0.7cm}{\cnlogo}}
-  \else
-    \logo{\resizebox{!}{0.7cm}{\enlogo}}
-  \fi
-\fi
 \newcommand{\bgcenterbox}[1]{
   \parbox[c][1.1\paperheight][c]{\paperwidth}{
     \centering\resizebox{\paperwidth}{!}{#1}
@@ -96,6 +86,7 @@
   \fi
 \fi
 \RequirePackage{sjtucover}
+\setbeamertemplate{logo}[\sjtubeamer@inner@cover]
 \newdimen\beamer@sidebarwidth
 \beamer@sidebarwidth=0pt
 \def\coverpage#1{

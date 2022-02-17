@@ -42,6 +42,27 @@
 \ProcessOptionsBeamer
 %    \end{macrocode}
 %
+%   \subsubsection{Logo}
+%   \paragraph{max.}
+%    \begin{macrocode}
+%<*max>
+\defbeamertemplate*{logo}{max}{\resizebox{!}{1cm}{\sjtubadge}}
+%</max>
+%    \end{macrocode}
+%
+%   \paragraph{default.}
+%    \begin{macrocode}
+\if\EqualOption{cover}{lang}{cn}
+  \defbeamertemplate*{logo}{default}{\resizebox{!}{0.7cm}{\cnlogo}}
+\else
+  \defbeamertemplate*{logo}{default}{\resizebox{!}{0.7cm}{\enlogo}}
+\fi
+%    \end{macrocode}
+%
+%    \subsubsection{Title Graphic}
+%    \paragraph{max.}
+%
+%
 %   \subsubsection{Title Page}
 %  
 %   \paragraph{maxplus.}

@@ -25,6 +25,12 @@
 \@ifclassloaded{ctexbeamer}{\ExecuteOptionsBeamer{cn}}{
   \ExecuteOptionsBeamer{en}}
 \ProcessOptionsBeamer
+\defbeamertemplate*{logo}{max}{\resizebox{!}{1cm}{\sjtubadge}}
+\if\EqualOption{cover}{lang}{cn}
+  \defbeamertemplate*{logo}{default}{\resizebox{!}{0.7cm}{\cnlogo}}
+\else
+  \defbeamertemplate*{logo}{default}{\resizebox{!}{0.7cm}{\enlogo}}
+\fi
 \defbeamertemplate*{title page}{maxplus}[1][]
 {
   \nointerlineskip%
@@ -222,8 +228,6 @@
   % and in the main.tex:
   %    \usetheme[my]{sjtubeamer}\usepackage{mycover}
   %
-  % Remember the change on logo color is temporary,
-  % which will be restored after rendering this page.
 }
 \if\EqualOption{cover}{lang}{cn}%
   \newcommand{\bottomthanks}{谢\,谢}
