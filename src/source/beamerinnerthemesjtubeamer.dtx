@@ -122,13 +122,6 @@
 \fi
 %    \end{macrocode}
 %
-%  \begin{macro}{\sjtubeamer@logocolor}
-%   Change the color variable that controls the logo color to current main color of this theme. Since this template doesn't design a dark background for the contents (it is really not easy to handle with the contents for a dark background).
-%    \begin{macrocode}
-\def\sjtubeamer@logocolor{cprimary}
-%    \end{macrocode}
-%  \end{macro}
-%
 %   \subsubsection{Load Packages}
 %
 %   Introduce the library from tcolorbox to make code blocks.
@@ -178,7 +171,7 @@
 %  \begin{macro}{\titlegraphic}
 % Define the title grahic image.
 %
-% NOTICE: if you are using your own title graphic, please use png image with predefined color and transparency. Since it is beyond the control of logo color system. Or you could use the provided command in the sjtuvi library to create your own masked picture in order to follow the logo color system (The provided picture should be white and transparent in the background).
+% TODO: TO BE DEPRECATED: NOTICE: if you are using your own title graphic, please use png image with predefined color and transparency. Since it is beyond the control of logo color system. Or you could use the provided command in the sjtuvi library to create your own masked picture in order to follow the logo color system (The provided picture should be white and transparent in the background).
 %
 %    max theme has the background.
 %    \verb"\setbeamertemplate{background}{}" after loading the theme will disable it.
@@ -237,7 +230,6 @@
 %
 %  \begin{macro}{\coverpage}
 %  Common command for \verb"\titlepage" and \verb"\bottompage". Disable externalization for generating title page and bottom page, locally.
-%  Since the definition on \verb"\sjtubeamer@logocolor" is defined in a group, the stack is not necessary to store the value.
 %    \begin{macrocode}
 \def\coverpage#1{
   {

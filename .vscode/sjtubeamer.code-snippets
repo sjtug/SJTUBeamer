@@ -29,12 +29,6 @@
 		"body": "\\sjtubeamer@inner@color",
 		"description": ""
 	},
-	"sjtubeamer@logocolor": {
-		"scope": "doctex,tex",
-		"prefix": "\\sjtubeamer@logocolor",
-		"body": "\\sjtubeamer@logocolor",
-		"description": "Change the color variable that controls the logo color to current main color of this theme. Since this template doesn't design a dark background for the contents (it is really not easy to handle with the contents for a dark background).\n"
-	},
 	"logo": {
 		"scope": "doctex,tex,latex",
 		"prefix": "\\logo",
@@ -57,7 +51,7 @@
 		"scope": "doctex,tex",
 		"prefix": "\\coverpage",
 		"body": "\\coverpage{$1}",
-		"description": "Common command for \\titlepage and \\bottompage. Disable externalization for generating title page and bottom page, locally.\nSince the definition on \\sjtubeamer@logocolor is defined in a group, the stack is not necessary to store the value.\n"
+		"description": "Common command for \\titlepage and \\bottompage. Disable externalization for generating title page and bottom page, locally.\n"
 	},
 	"definecover": {
 		"scope": "doctex,tex",

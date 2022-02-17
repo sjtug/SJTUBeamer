@@ -65,19 +65,18 @@
       \node {\includegraphics[height=1.5cm]{#1/#2}};
     \end{tikzfadingfrompicture}
   \fi
-  \expandafter\providecommand\csname #2\endcsname[1][\sjtubeamer@logocolor]{
+  \expandafter\providecommand\csname #2\endcsname[1][]{
     % ##1: override color, or opacity=... (optional)
     \tikzexternaldisable
     \begin{tikzpicture}
       \begin{scope}
         \clip ({-1.0+#3},{-1.0+#4}) rectangle ({1.0-#3},{1.0-#4});
-        \fill [\sjtubeamer@logocolor, ##1, path fading=#2]
+        \fill [##1, path fading=#2]
           (-1,-1) rectangle (1,1);
       \end{scope}
     \end{tikzpicture}
   }
 }
-\def\sjtubeamer@logocolor{sjtuRedPrimary}
 \definelogo{sjtubadge}{0}{0}
 \definelogo{cnlogo}{0.13}{0.75}
 \definelogo{enlogo}{0.13}{0.75}
