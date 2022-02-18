@@ -129,9 +129,11 @@
   \useoutertheme[footline=institutetitle]{miniframes}
 %    \end{macrocode}
 % Sidebar. Use the default template for \verb"frametitle" in sidebar, since there has already been a logo in the top left corner.
+% And it will use the logo position configuration \verb"topright" for sidebar to remove the logo in the bottom right corner.
 %    \begin{macrocode}
 \else\if\EqualOption{outer}{nav}{sidebar}
     \useoutertheme{sidebar}
+    \def\sjtubeamer@outer@logopos{topright}
     \AtBeginDocument{
       \setbeamertemplate{frametitle}[sidebar theme]
     }
