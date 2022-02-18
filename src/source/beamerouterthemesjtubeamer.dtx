@@ -144,11 +144,19 @@
   \fi\fi
 %    \end{macrocode}
 %
+%   Color patch for default outer theme.
+%    \begin{macrocode}
+\if\EqualOption{outer}{nav}{default}
+  \setbeamercolor{frametitle}{use=palette primary,
+    bg=palette primary.bg,fg=palette primary.fg}
+\else
+%    \end{macrocode}
 %   Color patch for sidebar, shadow, and smoothtrees.
 %   WARNING: This cannot be moved to the color theme, since the color was set in the outer theme itself. And the outer theme is the last theme to be loaded.
 %    \begin{macrocode}
-\setbeamercolor{frametitle}{use=titlelike,bg=white,fg=titlelike.fg}
-\setbeamercolor{frametitle right}{parent=subsection in head/foot}
+  \setbeamercolor{frametitle}{use=titlelike,bg=white,fg=titlelike.fg}
+  \setbeamercolor{frametitle right}{parent=subsection in head/foot}
+\fi
 %    \end{macrocode}
 %
 % \subsubsection{Bottombar}
