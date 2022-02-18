@@ -51,8 +51,8 @@
       yshift=-0.53\paperheight]
     \pgfmathsetlengthmacro{\outslant}{1.02\paperwidth}
     \node[inner sep=0, outer sep=0]
-    at (0.57\paperwidth,0.5\paperheight){
-      \resizebox{!}{1.06\paperheight}{\inserttitlegraphic}};
+      at (0.57\paperwidth,0.5\paperheight){
+        \resizebox{!}{1.06\paperheight}{\vphantom{-}\inserttitlegraphic}};
     \fill[color=white] (0,0) rectangle(1.1\paperwidth,3.9);
     \fill[color=bg]  (0,-0.1\paperheight) rectangle(1.1\paperwidth,3.88);
     \node[anchor=north west, text width=.8\paperwidth]
@@ -72,7 +72,7 @@
     };
     \node[anchor=south east, inner sep=0, outer sep=0] at (\outslant,0.5){
       \usebeamercolor[fg]{palatte primary}
-      \resizebox{!}{1cm}{\usebeamertemplate{logo}}
+      \resizebox{!}{1cm}{\vphantom{-}\usebeamertemplate{logo}}
     };
   \end{tikzpicture}
   \endgroup
@@ -156,7 +156,7 @@
   \begin{beamercolorbox}{palette primary}
     \vskip8pt
     \hbox{
-      \hskip-4pt{\resizebox{!}{1cm}{\usebeamertemplate{logo}}}
+      \hskip-4pt{\resizebox{!}{1cm}{\vphantom{-}\usebeamertemplate{logo}}}
       \ifx\insertinstitute\@empty%
       \else
       \ifx\insertlogo\@empty%
@@ -267,7 +267,7 @@
         (-0.66\paperwidth,0.06\paperheight)
         rectangle (0.43\paperwidth,0.53\paperheight);
         \node[white] at (-0.45\paperwidth,0.3\paperheight)
-        {\resizebox{!}{0.115\paperheight}{\usebeamertemplate{logo}}};
+        {\resizebox{!}{0.115\paperheight}{\vphantom{-}\usebeamertemplate{logo}}};
         \draw[white] (-0.66\paperwidth,0.1\paperheight)
         -- (0.43\paperwidth,0.1\paperheight);
       \end{scope}
@@ -306,7 +306,7 @@
       \node[black] at (\midw,-0.65\paperheight) {
         \resizebox{1.25\paperwidth}{!}{\inserttitlegraphic}};
       \node at (\midw,-0.2\paperheight) {
-        \resizebox{3cm}{!}{\usebeamertemplate{logo}}};
+        \resizebox{3cm}{!}{\hphantom{-}\usebeamertemplate{logo}}};
       \node at (\midw,-0.45\paperheight) {
         \usebeamercolor[bg]{palette primary}
         \LARGE \bfseries\bottomthanks};
@@ -339,7 +339,7 @@
   \usebeamercolor[fg]{palette primary}
   \begingroup
   \raggedleft
-  \resizebox{!}{1cm}{\usebeamertemplate{logo}}
+  \resizebox{!}{1cm}{\vphantom{-}\usebeamertemplate{logo}}
   \vfill
   \vskip6em
   \begin{beamercolorbox}[sep=8pt]{title}
