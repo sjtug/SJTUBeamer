@@ -27,7 +27,6 @@ Current document `main.tex` is an example documentation of *How to Use LaTeX to 
 %   miniframes infolines  sidebar*
 %   default    smoothbars split	 
 %   shadow     tree       smoothtree
-% *siderbar is recommended to be used with max option.
 
 % \tikzexternalize[prefix=build/]
 % To cache the tikz picture, please uncomment the previous line.

@@ -16,7 +16,7 @@
 % \iffalse
 %<*package>
 \NeedsTeXFormat{LaTeX2e}
-\ProvidesPackage{beamerouterthemesjtubeamer}[2022/02/18 sjtubeamer outer theme v2.5.2]
+\ProvidesPackage{beamerouterthemesjtubeamer}[2022/02/19 sjtubeamer outer theme v2.5.3]
 %</package>
 % \fi
 % \CheckSum{0}
@@ -68,12 +68,12 @@
 \beamer@compresstrue
 %    \end{macrocode}
 %
-% \subsubsection{Frame Title}
+% \subsubsection{Frame Title}\label{sec:frametitle}
 %
 %
 %   Define the beamer template \verb"frametitle" to add a logo in the right of the frametitle (top right corner) for \verb"topright" option. If it is not \verb"topright" option, then the default \verb"frametitle" template is used.
 %
-%   \verb"smoothbars", \verb"smoothtree" and \verb"shadow" theme use a different frame title insertion mechanism so that the redefinition on \verb"frametitle" should be done just after the document starts. This overwrites the original definition of those outer theme and may cause a certain degree of style lost.
+%   \verb"smoothbars", \verb"smoothtree" and \verb"shadow" theme use a different frame title insertion mechanism in \verb"beamer" class so that the redefinition on \verb"frametitle" should be done just after the document starts. This overwrites the original definition of those outer theme and may cause a certain degree of style lost.
 %    \begin{macrocode}
 \if\EqualOption{outer}{logopos}{topright}
   \AtBeginDocument{
@@ -128,15 +128,26 @@
 \if\EqualOption{outer}{nav}{miniframes}
   \useoutertheme[footline=institutetitle]{miniframes}
 %    \end{macrocode}
-% Sidebar. Use the default template for \verb"frametitle" in sidebar, since there has already been a logo in the top left corner.
+% Sidebar.
 %    \begin{macrocode}
 \else\if\EqualOption{outer}{nav}{sidebar}
     \useoutertheme{sidebar}
+%    \end{macrocode}
+% Since the logo area in the sidebar theme is square, the default configuration for \verb"\logo" will be \verb"\sjtubadge" no matter what kind of cover processed in the inner theme. If you want to modify the logo later, change the logo manually after loading the theme.
+%    \begin{macrocode}
+    \logo{\resizebox{!}{1cm}{\sjtubadge}}
+%    \end{macrocode}
+% And it will use the logo position configuration \verb"topright" for sidebar to remove the logo in the bottom right corner. The config will not be modified after the outer theme is loaded.
+%    \begin{macrocode}
+    \def\sjtubeamer@outer@logopos{topright}
+%    \end{macrocode}
+% Use the default template for \verb"frametitle" in sidebar, since there has already been a logo in the top left corner. The setup has to be done after document starts since the previous set of \verb"frametitle" template is also set up after document as is shown in Section \ref{sec:frametitle}. Appending on this hook will override the previous setup.
+%    \begin{macrocode}
     \AtBeginDocument{
       \setbeamertemplate{frametitle}[sidebar theme]
     }
 %    \end{macrocode}
-% If it is other theme, change the beamercolor to fit smooth* theme.
+% If it is the other theme, change the beamercolor to fit smooth* theme.
 %    \begin{macrocode}
   \else
     \useoutertheme{\sjtubeamer@outer@nav}
@@ -144,11 +155,33 @@
   \fi\fi
 %    \end{macrocode}
 %
+%   Color patch for default outer theme.
+%    \begin{macrocode}
+\if\EqualOption{outer}{nav}{default}
+  \setbeamercolor{frametitle}{use=palette primary,
+    bg=palette primary.bg,fg=palette primary.fg}
+%    \end{macrocode}
+% Since \verb"infolines" outer theme in \verb"beamer" class has redefined the beamer color below which doesn't confirm the standing-free principle, the redefined color will override after the outer theme is loaded. 
+% \verb"structure" beamer color stores the \verb"cprimary". Set the color relative to this for decoupling reasons.
+%    \begin{macrocode}
+\else\if\EqualOption{outer}{nav}{infolines}
+  \setbeamercolor{author in head/foot}{use=structure,fg=white,bg=structure}
+  \setbeamercolor{title in head/foot}{use=structure,fg=structure,bg=structure!10}
+  \setbeamercolor{date in head/foot}{use=structure,fg=structure,bg=structure!20}
+  \setbeamercolor{section in head/foot}{parent=author in head/foot}
+  \setbeamercolor{subsection in head/foot}{parent=date in head/foot}
+%    \end{macrocode}
+% And \verb"infolines" also resize the text margin, we reset the margin to the default size in order to avoid unwanted shift in covers.
+%    \begin{macrocode}
+  \setbeamersize{text margin left=1cm,text margin right=1cm}
+%    \end{macrocode}
 %   Color patch for sidebar, shadow, and smoothtrees.
 %   WARNING: This cannot be moved to the color theme, since the color was set in the outer theme itself. And the outer theme is the last theme to be loaded.
 %    \begin{macrocode}
-\setbeamercolor{frametitle}{use=titlelike,bg=white,fg=titlelike.fg}
-\setbeamercolor{frametitle right}{parent=subsection in head/foot}
+\else
+  \setbeamercolor{frametitle}{use=titlelike,bg=white,fg=titlelike.fg}
+  \setbeamercolor{frametitle right}{parent=subsection in head/foot}
+\fi\fi
 %    \end{macrocode}
 %
 % \subsubsection{Bottombar}

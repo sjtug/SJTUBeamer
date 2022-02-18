@@ -21,7 +21,7 @@
 %% limitations under the License.
 %% ------------------------------------------------------------------------
 \NeedsTeXFormat{LaTeX2e}
-\ProvidesPackage{beamerouterthemesjtubeamer}[2022/02/18 sjtubeamer outer theme v2.5.2]
+\ProvidesPackage{beamerouterthemesjtubeamer}[2022/02/19 sjtubeamer outer theme v2.5.3]
 \RequirePackage{sjtuvi}
 \DefineOption{outer}{nav}{miniframes}
 \DefineOption{outer}{nav}{infolines}
@@ -83,6 +83,8 @@
   \useoutertheme[footline=institutetitle]{miniframes}
 \else\if\EqualOption{outer}{nav}{sidebar}
     \useoutertheme{sidebar}
+    \logo{\resizebox{!}{1cm}{\sjtubadge}}
+    \def\sjtubeamer@outer@logopos{topright}
     \AtBeginDocument{
       \setbeamertemplate{frametitle}[sidebar theme]
     }
@@ -90,8 +92,20 @@
     \useoutertheme{\sjtubeamer@outer@nav}
     \setbeamercolor{title in head/foot}{use=structure,bg=white,fg=structure.fg}
   \fi\fi
-\setbeamercolor{frametitle}{use=titlelike,bg=white,fg=titlelike.fg}
-\setbeamercolor{frametitle right}{parent=subsection in head/foot}
+\if\EqualOption{outer}{nav}{default}
+  \setbeamercolor{frametitle}{use=palette primary,
+    bg=palette primary.bg,fg=palette primary.fg}
+\else\if\EqualOption{outer}{nav}{infolines}
+  \setbeamercolor{author in head/foot}{use=structure,fg=white,bg=structure}
+  \setbeamercolor{title in head/foot}{use=structure,fg=structure,bg=structure!10}
+  \setbeamercolor{date in head/foot}{use=structure,fg=structure,bg=structure!20}
+  \setbeamercolor{section in head/foot}{parent=author in head/foot}
+  \setbeamercolor{subsection in head/foot}{parent=date in head/foot}
+  \setbeamersize{text margin left=1cm,text margin right=1cm}
+\else
+  \setbeamercolor{frametitle}{use=titlelike,bg=white,fg=titlelike.fg}
+  \setbeamercolor{frametitle right}{parent=subsection in head/foot}
+\fi\fi
 \setbeamertemplate{sidebar right}{}
 \addtobeamertemplate{navigation symbols}{}{
   \hbox{
