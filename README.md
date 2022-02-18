@@ -29,7 +29,6 @@ SJTUBeamer 是上海交通大学的非官方 Beamer 模版。您可以使用 SJT
 %   miniframes infolines  sidebar* 
 %   default    smoothbars split	 
 %   shadow     tree       smoothtree
-% *siderbar 推荐与 max 一起使用。
 
 % \tikzexternalize[prefix=build/]
 % 如果您需要缓存 tikz 图像，请取消注释上一行，并在编译选项中添加 -shell-escape。
