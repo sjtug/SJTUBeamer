@@ -68,7 +68,7 @@
 \beamer@compresstrue
 %    \end{macrocode}
 %
-% \subsubsection{Frame Title}
+% \subsubsection{Frame Title}\label{sec:frametitle}
 %
 %
 %   Define the beamer template \verb"frametitle" to add a logo in the right of the frametitle (top right corner) for \verb"topright" option. If it is not \verb"topright" option, then the default \verb"frametitle" template is used.
@@ -133,15 +133,15 @@
 \else\if\EqualOption{outer}{nav}{sidebar}
     \useoutertheme{sidebar}
 %    \end{macrocode}
-% Since the logo area in the sidebar theme is square, so the default configuration for \verb"\logo" will be \verb"\sjtubadge" no matter what kind of cover processed in the inner theme. If you want to modify the logo later, change the logo manually after loading the theme.
+% Since the logo area in the sidebar theme is square, the default configuration for \verb"\logo" will be \verb"\sjtubadge" no matter what kind of cover processed in the inner theme. If you want to modify the logo later, change the logo manually after loading the theme.
 %    \begin{macrocode}
     \logo{\resizebox{!}{1cm}{\sjtubadge}}
 %    \end{macrocode}
-% And it will use the logo position configuration \verb"topright" for sidebar to remove the logo in the bottom right corner. The config could not be modified after the outer theme is loaded.
+% And it will use the logo position configuration \verb"topright" for sidebar to remove the logo in the bottom right corner. The config will not be modified after the outer theme is loaded.
 %    \begin{macrocode}
     \def\sjtubeamer@outer@logopos{topright}
 %    \end{macrocode}
-% Use the default template for \verb"frametitle" in sidebar, since there has already been a logo in the top left corner. The setup has to be after document starts since the previous set of \verb"frametitle" template is also set up after document as is shown above. Appending on this hook will override the previous setup.
+% Use the default template for \verb"frametitle" in sidebar, since there has already been a logo in the top left corner. The setup has to be done after document starts since the previous set of \verb"frametitle" template is also set up after document as is shown in Section \ref{sec:frametitle}. Appending on this hook will override the previous setup.
 %    \begin{macrocode}
     \AtBeginDocument{
       \setbeamertemplate{frametitle}[sidebar theme]
