@@ -170,11 +170,15 @@
   \setbeamercolor{date in head/foot}{use=structure,fg=structure,bg=structure!20}
   \setbeamercolor{section in head/foot}{parent=author in head/foot}
   \setbeamercolor{subsection in head/foot}{parent=date in head/foot}
-\else
+%    \end{macrocode}
+% And \verb"infolines" also resize the text margin, we reset the margin to the default size in order to avoid unwanted shift in covers.
+%    \begin{macrocode}
+  \setbeamersize{text margin left=1cm,text margin right=1cm}
 %    \end{macrocode}
 %   Color patch for sidebar, shadow, and smoothtrees.
 %   WARNING: This cannot be moved to the color theme, since the color was set in the outer theme itself. And the outer theme is the last theme to be loaded.
 %    \begin{macrocode}
+\else
   \setbeamercolor{frametitle}{use=titlelike,bg=white,fg=titlelike.fg}
   \setbeamercolor{frametitle right}{parent=subsection in head/foot}
 \fi\fi
