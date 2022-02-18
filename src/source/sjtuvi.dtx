@@ -13,7 +13,7 @@
 % \iffalse
 %<*package>
 \NeedsTeXFormat{LaTeX2e}
-\ProvidesPackage{sjtuvi}[2022/02/16 Visual Identity System library for sjtubeamer v2.5.1]
+\ProvidesPackage{sjtuvi}[2022/02/18 Visual Identity System library for sjtubeamer v2.5.2]
 %</package>
 % \fi
 % \CheckSum{0}
@@ -133,13 +133,13 @@
       \node {\includegraphics[height=1.5cm]{#1/#2}};
     \end{tikzfadingfrompicture}
   \fi
-  \expandafter\providecommand\csname #2\endcsname[1][\sjtubeamer@logocolor]{
+  \expandafter\providecommand\csname #2\endcsname[1][]{
     % ##1: override color, or opacity=... (optional)
     \tikzexternaldisable
     \begin{tikzpicture}
       \begin{scope}
         \clip ({-1.0+#3},{-1.0+#4}) rectangle ({1.0-#3},{1.0-#4});
-        \fill [\sjtubeamer@logocolor, ##1, path fading=#2]
+        \fill [##1, path fading=#2]
           (-1,-1) rectangle (1,1);
       \end{scope}
     \end{tikzpicture}
@@ -148,10 +148,6 @@
 %    \end{macrocode}
 % \end{macro}
 %
-%   WARNING: This library will define the initial color to sjtuRedPrimary, remember to change the variable after using this package!
-%    \begin{macrocode}
-\def\sjtubeamer@logocolor{sjtuRedPrimary}
-%    \end{macrocode}
 %    Define the required logo.
 %    \begin{macrocode}
 \definelogo{sjtubadge}{0}{0}

@@ -21,7 +21,7 @@
 %% limitations under the License.
 %% ------------------------------------------------------------------------
 \NeedsTeXFormat{LaTeX2e}
-\ProvidesPackage{beamerouterthemesjtubeamer}[2022/02/16 sjtubeamer outer theme v2.5.1]
+\ProvidesPackage{beamerouterthemesjtubeamer}[2022/02/18 sjtubeamer outer theme v2.5.2]
 \RequirePackage{sjtuvi}
 \DefineOption{outer}{nav}{miniframes}
 \DefineOption{outer}{nav}{infolines}
@@ -70,7 +70,7 @@
         \begingroup
         \ifx\insertframesubtitle\@empty\vskip-2.5ex%
         \else\vskip-3.5ex\fi%
-        \resizebox{!}{0.7cm}{\vphantom{-}\insertlogo}\hspace*{5pt}%
+        \resizebox{!}{0.7cm}{\vphantom{-}\usebeamertemplate{logo}}\hspace*{5pt}%
         \endgroup%
         \ifx\insertframesubtitle\@empty%
         \else\vskip0.5ex\fi%

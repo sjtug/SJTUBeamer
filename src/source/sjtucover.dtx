@@ -13,7 +13,7 @@
 % \iffalse
 %<*package>
 \NeedsTeXFormat{LaTeX2e}
-\ProvidesPackage{sjtucover}[2022/02/16 cover library for sjtubeamer v2.5.1]
+\ProvidesPackage{sjtucover}[2022/02/18 cover library for sjtubeamer v2.5.2]
 %</package>
 % \fi
 % \CheckSum{0}
@@ -42,6 +42,56 @@
 \ProcessOptionsBeamer
 %    \end{macrocode}
 %
+%   \subsubsection{Logo}
+%   \paragraph{max.}
+%    \begin{macrocode}
+%<*max>
+\defbeamertemplate*{logo}{max}{\resizebox{!}{1cm}{\sjtubadge}}
+%</max>
+%    \end{macrocode}
+%
+%   \paragraph{default.}
+%    \begin{macrocode}
+\if\EqualOption{cover}{lang}{cn}
+  \defbeamertemplate*{logo}{default}{\resizebox{!}{0.7cm}{\cnlogo}}
+\else
+  \defbeamertemplate*{logo}{default}{\resizebox{!}{0.7cm}{\enlogo}}
+\fi
+%    \end{macrocode}
+%
+%    \subsubsection{Title Graphic}
+%    \paragraph{maxplus.}
+%    \begin{macrocode}
+%<*maxplus>
+\defbeamertemplate*{titlegraphic}{maxplus}{\includegraphics{vi/sjtuphoto.jpg}}
+%</maxplus>
+%    \end{macrocode}
+%
+%    \paragraph{max.}
+%    \begin{macrocode}
+%<*max>
+\defbeamertemplate*{titlegraphic}{max}{\sjtubg[opacity=0.2]}
+%</max>
+%    \end{macrocode}
+%
+%    \paragraph{min.}
+%    \begin{macrocode}
+%<*min>
+\defbeamertemplate*{titlegraphic}{min}{\includegraphics{vi/sjtuphoto.jpg}}
+%</min>
+%    \end{macrocode}
+%
+%    \paragraph{my.}
+%    \begin{macrocode}
+%<*my>
+\defbeamertemplate*{titlegraphic}{my}{
+  %
+  % Developer could define your title graphic here for "my"...
+  %
+}
+%</my>
+%    \end{macrocode}
+%
 %   \subsubsection{Title Page}
 %  
 %   \paragraph{maxplus.}
@@ -54,14 +104,13 @@
   \vfill
   \begingroup
   \usebeamercolor{palette primary}% 
-  \def\sjtubeamer@logocolor{palette primary.fg}
   \begin{tikzpicture}[overlay,
       xshift=-0.12\paperwidth,
       yshift=-0.53\paperheight]
     \pgfmathsetlengthmacro{\outslant}{1.02\paperwidth}
     \node[inner sep=0, outer sep=0]
-    at (0.57\paperwidth,0.5\paperheight){
-      \resizebox{!}{1.06\paperheight}{\inserttitlegraphic}};
+      at (0.57\paperwidth,0.5\paperheight){
+        \resizebox{!}{1.06\paperheight}{\vphantom{-}\inserttitlegraphic}};
     \fill[color=white] (0,0) rectangle(1.1\paperwidth,3.9);
     \fill[color=bg]  (0,-0.1\paperheight) rectangle(1.1\paperwidth,3.88);
     \node[anchor=north west, text width=.8\paperwidth]
@@ -80,7 +129,8 @@
         {\usebeamercolor[fg]{date}\small\insertdate}%
     };
     \node[anchor=south east, inner sep=0, outer sep=0] at (\outslant,0.5){
-      \resizebox{!}{1cm}{\insertlogo}
+      \usebeamercolor[fg]{palatte primary}
+      \resizebox{!}{1cm}{\vphantom{-}\usebeamertemplate{logo}}
     };
   \end{tikzpicture}
   \endgroup
@@ -97,11 +147,10 @@
   \nointerlineskip
   \vbox{}
   \usebeamercolor{palette primary}
-  \def\sjtubeamer@logocolor{palette primary.fg}
   \begin{tikzpicture}[overlay]
     \fill [palette primary.bg] (-0.2*\the\paperwidth,-1*\the\paperheight)
     rectangle (1*\the\paperwidth, 0.3*\the\paperheight);
-    \node [inner sep=0pt]
+    \node [palette primary.fg, inner sep=0pt]
     at (0.45\paperwidth-6pt,-0.4*\the\paperheight)
     {\resizebox{1.3\paperwidth}{!}{\inserttitlegraphic}};
   \end{tikzpicture}
@@ -136,7 +185,6 @@
 %
 %   \paragraph{min.}
 %   Declare two fadings: center fade and fade right. The center fade provides a radial fading on the right side of the title page. The fade right provides a linear fading to avoid the collision on the text in the left.
-%   WARNING: Now it is not used in the titlepage.
 %    \begin{macrocode}
 %<*min>
 \tikzfading[
@@ -163,7 +211,6 @@
 %   Use TikZ rectangle also avoids the unexpected shift because the risk of redefining the internal command is avoided. If there is any text before the title page, the \verb"\maketitle" will start from a new page.
 %    \begin{macrocode}
   \usebeamercolor{palette primary}
-  \def\sjtubeamer@logocolor{palette primary.fg}
   \begin{tikzpicture}[overlay]
     \fill [palette primary.bg] (-0.2*\the\paperwidth,-1*\the\paperheight)
     rectangle (1*\the\paperwidth, 0.2*\the\paperheight);
@@ -201,11 +248,10 @@
 %   The institute is in \TeX{} code for typesetting. \verb"\beamer@shortinstitute" meta is used to avoid compressing on \verb"\par", while \verb"\insertinstitute" will force the input to spread on one signle line. The mode to use is depended on the \verb"language" option. Super small font could be made by \verb"fontsize".
 %   Here, we use the option from inner to get the language setting, if this package is used independently, only chinese mode is available.
 %    \begin{macrocode}
-  \usebeamercolor{titlelike}
-  \begin{beamercolorbox}{logo}
+  \begin{beamercolorbox}{palette primary}
     \vskip8pt
     \hbox{
-      \hskip-4pt{\resizebox{!}{1cm}{\insertlogo}}
+      \hskip-4pt{\resizebox{!}{1cm}{\vphantom{-}\usebeamertemplate{logo}}}
       \ifx\insertinstitute\@empty%
       \else
       \ifx\insertlogo\@empty%
@@ -297,10 +343,6 @@
   % and in the main.tex:
   %    \usetheme[my]{sjtubeamer}\usepackage{mycover}
   %
-  % Remember the change on logo color is temporary,
-  % which will be restored after rendering this page.
-  \usebeamercolor{palette primary}
-  \def\sjtubeamer@logocolor{palette primary.fg}
 }
 %</my>
 %    \end{macrocode}
@@ -338,7 +380,6 @@
   \vfill
   \begin{beamercolorbox}[sep=0pt]{empty}
     \usebeamercolor{structure}
-    \def\sjtubeamer@logocolor{white}
     \begin{tikzpicture}[overlay,xshift=0.54\paperwidth,yshift=-0.41\paperheight]
       \begin{scope}
         \clip (-0.66\paperwidth,0.06\paperheight)
@@ -348,8 +389,8 @@
         \fill[structure.fg!50!black,path fading=fade right img]
         (-0.66\paperwidth,0.06\paperheight)
         rectangle (0.43\paperwidth,0.53\paperheight);
-        \node at (-0.45\paperwidth,0.3\paperheight)
-        {\resizebox{!}{0.115\paperheight}{\insertlogo}};
+        \node[white] at (-0.45\paperwidth,0.3\paperheight)
+        {\resizebox{!}{0.115\paperheight}{\vphantom{-}\usebeamertemplate{logo}}};
         \draw[white] (-0.66\paperwidth,0.1\paperheight)
         -- (0.43\paperwidth,0.1\paperheight);
       \end{scope}
@@ -391,12 +432,10 @@
       -- (\rightw,-0.59\paperheight)
       -- (\rightw,-0.53\paperheight)
       -- (\midw,-0.68\paperheight) -- cycle;
-      \node at (\midw,-0.65\paperheight) {
-        \def\sjtubeamer@logocolor{black}
+      \node[black] at (\midw,-0.65\paperheight) {
         \resizebox{1.25\paperwidth}{!}{\inserttitlegraphic}};
       \node at (\midw,-0.2\paperheight) {
-        \def\sjtubeamer@logocolor{palette primary.bg}
-        \resizebox{3cm}{!}{\insertlogo}};
+        \resizebox{3cm}{!}{\hphantom{-}\usebeamertemplate{logo}}};
       \node at (\midw,-0.45\paperheight) {
         \usebeamercolor[bg]{palette primary}
         \LARGE \bfseries\bottomthanks};
@@ -420,7 +459,6 @@
 %    \begin{macrocode}
   \usebeamercolor{palette primary}
   \usebeamercolor{palette secondary}
-  \def\sjtubeamer@logocolor{palette primary.fg}
   \begin{tikzpicture}[overlay,yshift=-80pt]
     \def\w{\the\paperwidth}%
     \def\h{\the\paperheight}%
@@ -442,16 +480,16 @@
 %   Insert the logo in the crossing center of the overlapping circles.
 %    \begin{macrocode}
   \vfill
+  \usebeamercolor[fg]{palette primary}
   \begingroup
   \raggedleft
-  \resizebox{!}{1cm}{\insertlogo}
+  \resizebox{!}{1cm}{\vphantom{-}\usebeamertemplate{logo}}
 %    \end{macrocode}
 %   Inset the ``thank you'' quote and the title of this beamer. Notice that three \verb"\vfill" divide the frame into three portions with final adjust using \verb"\vskip".
 %    \begin{macrocode}
   \vfill
   \vskip6em
   \begin{beamercolorbox}[sep=8pt]{title}
-    \usebeamercolor[fg]{palette primary}
     \usebeamerfont{title}\noindent\bottomthanks
     \vskip1em%
     \usebeamerfont{subtitle}
@@ -484,10 +522,6 @@
   % and in the main.tex:
   %    \usetheme[my]{sjtubeamer}\usepackage{mycover}
   %
-  % Remember the change on logo color is temporary,
-  % which will be restored after rendering this page.
-  \usebeamercolor{palette primary}
-  \def\sjtubeamer@logocolor{palette primary.fg}
 }
 %</my>
 %    \end{macrocode}

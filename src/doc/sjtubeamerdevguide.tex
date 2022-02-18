@@ -266,8 +266,8 @@ Kernel function means that it is not recommended to be used by end users.
 \paragraph{If your definition has an optional parameter, use \LaTeX\ style.} The maximum number of the optional parameter is 1 only. You cannot have more optional parameters. Give the default optional parameter in the second square brackets.
 
 \begin{lstlisting}
-\expandafter\providecommand\csname #1\endcsname
-    [1][\sjtubeamer@logocolor]{}
+\expandafter\providecommand\csname #2\endcsname
+    [1][]{}
     \end{lstlisting}
 
 \subparagraph{Pros:} Using this method could get an optional parameter.
@@ -305,7 +305,7 @@ Global variable means that it will be used across modules.
 \end{itemize}
 
 \begin{lstlisting}
-\def\sjtubeamer@logocolor{sjtuRedPrimary}
+\def\sjtubeamer@inner@lang{en}
     \end{lstlisting}
 
 \subparagraph{Pros:} Make a clear visual indication of the variable type and avoid duplicates with other packages.
@@ -388,22 +388,20 @@ Paste it and change \verb"my" to your name of your template. And add the precomp
 
 \subparagraph{Decision:} Follow the rule to submit your template.
 
-\subsubsection{Logo Color System}
+\subsubsection{Logo Insertion}\label{sec:logoins}
 
-\paragraph{Change the variable to change the logo color.} This will change the \emph{temporary} variable of the logo color to fit with different scenarios.
+Use a \verb"\resizebox" to resize the logo into the required width and height. If you want to keep one dimension in the same ratio, use the placeholder \verb"!".
 
-\begin{lstlisting}
-\def\sjtubeamer@logocolor{palette primary.fg}
-    \end{lstlisting}
-
-What's more, you should always use the placeholder to insert your logo, surrounded by a size constraint.
+If you want to protect the logo color as the color definition in beamer color \verb"logo.fg", use \verb"\insertlogo".
 \begin{lstlisting}
 \resizebox{!}{1cm}{\insertlogo}
     \end{lstlisting}
 
-\begin{warn}
-  Logo and title graphic share this variable in the color system. Be sure to change the color before you make those placeholders.
-\end{warn}
+Otherwise, if you want to use the color that is current to the text, use \verb"\usebeamertemplate{logo}". If you want to modify the current text color, either use \verb"\usebeamercolor" for beamer color, or \verb"\color" for regular xcolor.
+\begin{lstlisting}
+\usebeamercolor[fg]{palette primary}
+\resizebox{!}{1cm}{\usebeamertemplate{logo}}
+    \end{lstlisting}
 
 \subsection{Comment}
 
@@ -517,20 +515,18 @@ The table shows the flow of parameter passing.
   \texttt{\textbackslash{}maketitle{[}maxplus{]}}\par
   ~~$\hookrightarrow $set title template to \texttt{maxplus}\par
   ~~\hspace*{2em}\texttt{\textbackslash{}titlepage}\par
-  ~~\hspace*{2em} $\hookrightarrow $ store the old \texttt{\textbackslash{}...@logocolor}\par
   ~~\hspace*{4em} in sidebar mode, make a left shift\par
   ~~\hspace*{4em} $\hookrightarrow $ insert the defined title page (in \verb"sjtucover.sty")\par
-  ~~\hspace*{4em}restore \texttt{\textbackslash{}...@logocolor}\par
   ~~\hspace*{1em}restore title template back to \texttt{\textbackslash{}...@inner@cover}
 \end{figure}
 
-Now, a sandbox in \verb"sjtucover.sty" is created. The modification on logo color is temporary and your page insertion aside from the current theme is also temporary.
+Now, a sandbox in \verb"sjtucover.sty" is created.
 
 \begin{warn}
   When drawing in the sandbox through Ti\emph{k}Z, make sure to use \texttt{overlay} option for adjustment. It will avoid the shift of your cover when using \texttt{sidebar} theme.
 \end{warn}
 
-Since large source code may cause a performance drop on compiling. We have figure out a precompiling mechanism to reduce the templates it generates. See Section \ref{sec:precompile}.
+Since large source code may cause a performance drop on compiling. We have figured out a precompiling mechanism to reduce the templates it generates. See Section \ref{sec:precompile}.
 
 You could also make your customized style by using \texttt{my} option to setup all components from scratch without leaving the \themename\ ecosystem with all those utilities.
 
@@ -542,7 +538,7 @@ errors, you have to assign the placeholder for a correct resizing. And if you re
 
 You could refer to the user guide for a sample file. And the loading on the package is not that necessary as long as you load the theme before it is loaded, which is only for the sake of completeness.
 
-\subsection{Logo Color System}
+\subsection{Logo System}
 
 \themename\ has its own color model on logo. The main macro is \verb"\definelogo", which will generate a macro on its file name.
 
@@ -564,13 +560,13 @@ However, this only creates a square mask. We have to crop it for some rectangula
     \node at (4,0) {$\rightarrow$};
 
     \node [blue] at (6,0) {\LARGE Logo};
-    \node at (6,-1.5) {\verb"\logo[blue]"};
+    \node at (6,-1.5) {\verb"\logo[cprimary]"};
   \end{tikzpicture}
 \end{figure}
 
-And the logo color is controlled by a global variable \verb"\sjtubeamer@logocolor". It can be overridden by an optional parameter when you insert your logo.
+Remember, you have to store the picture in a specific folder to create a mask. It is by default \verb"vi". You could use the optional argument of \verb"\definelogo" for switching to another folder.
 
-Remember, you have to store the picture in the \texttt{vi/} folder to create a mask.
+The logo color is now controlled by the current text color. See Section \ref{sec:logoins} for how to modify the logo color for \verb"\insertlogo". Otherwise, the generated command can also receive an optional command for overriding color or changing the opacity or using any supported Ti\emph{k}Z argument for \verb"\fill". Sometimes, you need to specify the color for your logo object.
 
 \section{Compatibility}
 

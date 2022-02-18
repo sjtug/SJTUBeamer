@@ -16,7 +16,7 @@
 % \iffalse
 %<*package>
 \NeedsTeXFormat{LaTeX2e}
-\ProvidesPackage{beamerouterthemesjtubeamer}[2022/02/16 sjtubeamer outer theme v2.5.1]
+\ProvidesPackage{beamerouterthemesjtubeamer}[2022/02/18 sjtubeamer outer theme v2.5.2]
 %</package>
 % \fi
 % \CheckSum{0}
@@ -110,7 +110,7 @@
 %    \end{macrocode}
 % Insert the outer logo with 0.7cm height. \verb"\vphantom" here is to create a phantom box to make sure the \verb"\resizebox" has a non-zero height box input. The calculation is fixed for a 0.7cm height logo placeholder.
 %    \begin{macrocode}
-        \resizebox{!}{0.7cm}{\vphantom{-}\insertlogo}\hspace*{5pt}%
+        \resizebox{!}{0.7cm}{\vphantom{-}\usebeamertemplate{logo}}\hspace*{5pt}%
         \endgroup%
         \ifx\insertframesubtitle\@empty%
         \else\vskip0.5ex\fi%

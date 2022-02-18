@@ -463,7 +463,7 @@ fontupper=\sffamily,colupper=white}
 
 \begin{commentlist}
   \item 使用 \texttt{\textbackslash{}logo} 设定徽标。在主题处使用 \verb"topright" 或 \verb"bottomright" 选项强制指定徽标的位置为右上角（\verb"max"默认）或左下角（\verb"maxplus" 和 \verb"min"）。
-  \item 可以使用自定义的徽标，但是不归 \themename 颜色系统管理$^*$，此时推荐使用亮色主题以提供亮色徽标背景。或参见\href{run:sjtubeamerdevguide.pdf}{开发指南}第 3.4 节创造可变颜色徽标$^*$。
+  \item 可以使用自定义的徽标，可以使用外部图片，或参见\href{run:sjtubeamerdevguide.pdf}{开发指南}第 3.4 节创造可变颜色徽标$^*$。后者可以采用可选参数改变颜色，比如 \texttt{\textbackslash{}cnlogo[cprimary]}。
 \end{commentlist}
 
 \chapter{头图}
@@ -475,7 +475,7 @@ fontupper=\sffamily,colupper=white}
 \begin{commentlist}
   \item 使用 \texttt{\textbackslash{}titlegraphic} 设定头图，需要在封面图输出前进行赋值。
   \item 每个主题的头图位置不同，特别要注意默认的 \texttt{max} 主题的头图是淡色背景图。
-  \item 对头图可以不设定大小，因为会自动占满占位符。
+  \item 对头图可以不设定大小，因为会自动填满占位符。
 \end{commentlist}
 
 \chapter{背景}

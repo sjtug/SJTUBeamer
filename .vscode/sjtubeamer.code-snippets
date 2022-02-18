@@ -29,35 +29,17 @@
 		"body": "\\sjtubeamer@inner@color",
 		"description": ""
 	},
-	"sjtubeamer@logocolor": {
-		"scope": "doctex,tex",
-		"prefix": "\\sjtubeamer@logocolor",
-		"body": "\\sjtubeamer@logocolor",
-		"description": "Change the color variable that controls the logo color to current main color of this theme. Since this template doesn't design a dark background for the contents (it is really not easy to handle with the contents for a dark background).\n"
-	},
-	"logo": {
-		"scope": "doctex,tex,latex",
-		"prefix": "\\logo",
-		"body": "\\logo{$1}",
-		"description": "Define logo.\n"
-	},
 	"bgcenterbox": {
 		"scope": "doctex,tex,latex",
 		"prefix": "\\bgcenterbox",
 		"body": "\\bgcenterbox{$1}",
-		"description": "Define a command for USERS to make a centered background box easily. \nThe change on color is now deprecated.\n"
-	},
-	"titlegraphic": {
-		"scope": "doctex,tex,latex",
-		"prefix": "\\titlegraphic",
-		"body": "\\titlegraphic{$1}",
-		"description": " Define the title grahic image.\n\n NOTICE: if you are using your own title graphic, please use png image with predefined color and transparency. Since it is beyond the control of logo color system. Or you could use the provided command in the sjtuvi library to create your own masked picture in order to follow the logo color system (The provided picture should be white and transparent in the background).\n\nmax theme has the background.\n\\setbeamertemplate{background}{} after loading the theme will disable it.\n"
+		"description": "Define a command to make a centered background box easily.\n"
 	},
 	"coverpage": {
 		"scope": "doctex,tex",
 		"prefix": "\\coverpage",
 		"body": "\\coverpage{$1}",
-		"description": "Common command for \\titlepage and \\bottompage. Disable externalization for generating title page and bottom page, locally.\nSince the definition on \\sjtubeamer@logocolor is defined in a group, the stack is not necessary to store the value.\n"
+		"description": "Common command for \\titlepage and \\bottompage. Disable externalization for generating title page and bottom page, locally.\n"
 	},
 	"definecover": {
 		"scope": "doctex,tex",
