@@ -160,6 +160,16 @@
 \if\EqualOption{outer}{nav}{default}
   \setbeamercolor{frametitle}{use=palette primary,
     bg=palette primary.bg,fg=palette primary.fg}
+%    \end{macrocode}
+% Since \verb"infolines" outer theme in \verb"beamer" class has redefined the beamer color below which doesn't confirm the standing-free principle, the redefined color will override after the outer theme is loaded. 
+% \verb"structure" beamer color stores the \verb"cprimary". Set the color relative to this for decoupling reasons.
+%    \begin{macrocode}
+\else\if\EqualOption{outer}{nav}{infolines}
+  \setbeamercolor{author in head/foot}{use=structure,fg=white,bg=structure}
+  \setbeamercolor{title in head/foot}{use=structure,fg=structure,bg=structure!10}
+  \setbeamercolor{date in head/foot}{use=structure,fg=structure,bg=structure!20}
+  \setbeamercolor{section in head/foot}{parent=author in head/foot}
+  \setbeamercolor{subsection in head/foot}{parent=date in head/foot}
 \else
 %    \end{macrocode}
 %   Color patch for sidebar, shadow, and smoothtrees.
@@ -167,7 +177,7 @@
 %    \begin{macrocode}
   \setbeamercolor{frametitle}{use=titlelike,bg=white,fg=titlelike.fg}
   \setbeamercolor{frametitle right}{parent=subsection in head/foot}
-\fi
+\fi\fi
 %    \end{macrocode}
 %
 % \subsubsection{Bottombar}
