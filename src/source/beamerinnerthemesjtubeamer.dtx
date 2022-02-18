@@ -122,7 +122,7 @@
 \fi
 %    \end{macrocode}
 %
-%   \subsubsection{Load Packages}
+%   \subsubsection{Load Packages}\label{sec:innerload}
 %
 %   Introduce the library from tcolorbox to make code blocks.
 %   \verb"listingsutf8" is used to receive UTF-8 input. 
@@ -134,11 +134,20 @@
 \tcbset{shield externalize}
 %    \end{macrocode}
 %
-% \subsubsection{Title Page \& Bottom Page}
+%   Load Cover Library to get the customized cover.
+%    \begin{macrocode}
+\RequirePackage{sjtucover}
+%    \end{macrocode}
+%
+%   \subsubsection{Logo \& Title Graphic}
+%
+%   Set up logo for this cover.
+%    \begin{macrocode}
+\setbeamertemplate{logo}[\sjtubeamer@inner@cover]
+%    \end{macrocode}
 %
 %  \begin{macro}{\bgcenterbox}
-%   Define a command for USERS to make a centered background box easily. 
-%   The change on color is now deprecated.
+%   Define a command to make a centered background box easily.
 %    \begin{macrocode}
 \newcommand{\bgcenterbox}[1]{
   \parbox[c][1.1\paperheight][c]{\paperwidth}{
@@ -148,64 +157,32 @@
 %    \end{macrocode}
 %  \end{macro}
 %
-%  \begin{macro}{\titlegraphic}
-% Define the title grahic image.
-%
-% TODO: TO BE DEPRECATED: NOTICE: if you are using your own title graphic, please use png image with predefined color and transparency. Since it is beyond the control of logo color system. Or you could use the provided command in the sjtuvi library to create your own masked picture in order to follow the logo color system (The provided picture should be white and transparent in the background).
-%
-%    max theme has the background.
-%    \verb"\setbeamertemplate{background}{}" after loading the theme will disable it.
+%   max theme has the background.
+%   \verb"\setbeamertemplate{background}{}" after loading the theme will disable it.
 %    \begin{macrocode}
-%<*maxplus>
-\if\EqualOption{inner}{cover}{maxplus}
-  \titlegraphic{\includegraphics{vi/sjtuphoto.jpg}}
-\else
-%</maxplus>
-%<*max>
-  \if\EqualOption{inner}{cover}{max}
-    \usebeamercolor{palatte primary}
-    \titlegraphic{\sjtubg[opacity=0.2]}
-    \setbeamertemplate{background}
+\if\EqualOption{inner}{cover}{max}
+  \setbeamertemplate{background}
     {\bgcenterbox{\sjtubg[cprimary!50,opacity=0.2]}}
-  \else
-%</max>
-%<*min>
-    \if\EqualOption{inner}{cover}{min}
-      \titlegraphic{\includegraphics{vi/sjtuphoto.jpg}}
-    \else
-%</min>
-%<*my>
-      \if\EqualOption{inner}{cover}{my}
-        %
-        % Developer could define your title graphic here for "my"...
-        %
-        \titlegraphic{}
-      \else
-%</my>
-%<*my>
-      \fi
-%</my>
-%<*min>
-    \fi
-%</min>
-%<*max>
-  \fi
-%</max>
-%<*maxplus>
 \fi
-%</maxplus>
-%    \end{macrocode}
-%  \end{macro}
-%
-%   Load Cover Library to get the customized cover.
-%    \begin{macrocode}
-\RequirePackage{sjtucover}
 %    \end{macrocode}
 %
-%   Set logo for this cover.
+%   Redefine the \verb"\titlegraphic" command in \verb"beamer" to implement it into the beamer template management system, as is been done in \verb"\logo".
+%   The original definition of \verb"\titlegraphic" is to set the command \verb"\inserttitlegraphic" as its parameter directly.
 %    \begin{macrocode}
-\setbeamertemplate{logo}[\sjtubeamer@inner@cover]
+\def\titlegraphic{\setbeamertemplate{titlegraphic}}
 %    \end{macrocode}
+%   Redefine the \verb"\inserttitlegraphic" command to use the template \verb"titlegraphic" directly, using the current color setup without forming a group (not \verb"\usebeamertemplate*").
+%    \begin{macrocode}
+\def\inserttitlegraphic{\usebeamertemplate{titlegraphic}}
+%    \end{macrocode}
+%
+%   Set up titlegraphic for this cover.
+%    \begin{macrocode}
+\setbeamertemplate{titlegraphic}[\sjtubeamer@inner@cover]
+%    \end{macrocode}
+%
+% \subsubsection{Covers.}
+%  This part set up title page, section page, part page, section page and subsection page for this cover based on the library \verb"sjtucover" loaded in section \ref{sec:innerload}.
 %
 %  Initialize sidebar width to 0pt as no sidebar required, which will be overwritten in outer theme.
 %    \begin{macrocode}
@@ -262,6 +239,7 @@
 %    \end{macrocode}
 %  \end{macro}
 %
+%   Set up commmand for title page and bottom page.
 %    \begin{macrocode}
 \definecover{title}
 \definecover{bottom}
@@ -273,9 +251,7 @@
 \setbeamertemplate{bottom page}[\sjtubeamer@inner@cover]
 %    \end{macrocode}
 %
-% \subsubsection{Sectioning Page}
 %   Set up commmand for part page, section page and subsection page.
-%
 %    \begin{macrocode}
 \definecover{part}
 \definecover{section}

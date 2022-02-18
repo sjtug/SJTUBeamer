@@ -58,35 +58,20 @@
 \tcbuselibrary{skins}
 \tcbuselibrary{listingsutf8}
 \tcbset{shield externalize}
+\RequirePackage{sjtucover}
+\setbeamertemplate{logo}[\sjtubeamer@inner@cover]
 \newcommand{\bgcenterbox}[1]{
   \parbox[c][1.1\paperheight][c]{\paperwidth}{
     \centering\resizebox{\paperwidth}{!}{#1}
   }
 }
-\if\EqualOption{inner}{cover}{maxplus}
-  \titlegraphic{\includegraphics{vi/sjtuphoto.jpg}}
-\else
-  \if\EqualOption{inner}{cover}{max}
-    \usebeamercolor{palatte primary}
-    \titlegraphic{\sjtubg[opacity=0.2]}
-    \setbeamertemplate{background}
+\if\EqualOption{inner}{cover}{max}
+  \setbeamertemplate{background}
     {\bgcenterbox{\sjtubg[cprimary!50,opacity=0.2]}}
-  \else
-    \if\EqualOption{inner}{cover}{min}
-      \titlegraphic{\includegraphics{vi/sjtuphoto.jpg}}
-    \else
-      \if\EqualOption{inner}{cover}{my}
-        %
-        % Developer could define your title graphic here for "my"...
-        %
-        \titlegraphic{}
-      \else
-      \fi
-    \fi
-  \fi
 \fi
-\RequirePackage{sjtucover}
-\setbeamertemplate{logo}[\sjtubeamer@inner@cover]
+\def\titlegraphic{\setbeamertemplate{titlegraphic}}
+\def\inserttitlegraphic{\usebeamertemplate{titlegraphic}}
+\setbeamertemplate{titlegraphic}[\sjtubeamer@inner@cover]
 \newdimen\beamer@sidebarwidth
 \beamer@sidebarwidth=0pt
 \def\coverpage#1{

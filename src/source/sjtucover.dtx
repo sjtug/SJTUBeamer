@@ -60,8 +60,37 @@
 %    \end{macrocode}
 %
 %    \subsubsection{Title Graphic}
-%    \paragraph{max.}
+%    \paragraph{maxplus.}
+%    \begin{macrocode}
+%<*maxplus>
+\defbeamertemplate*{titlegraphic}{maxplus}{\includegraphics{vi/sjtuphoto.jpg}}
+%</maxplus>
+%    \end{macrocode}
 %
+%    \paragraph{max.}
+%    \begin{macrocode}
+%<*max>
+\defbeamertemplate*{titlegraphic}{max}{\sjtubg[opacity=0.2]}
+%</max>
+%    \end{macrocode}
+%
+%    \paragraph{min.}
+%    \begin{macrocode}
+%<*min>
+\defbeamertemplate*{titlegraphic}{min}{\includegraphics{vi/sjtuphoto.jpg}}
+%</min>
+%    \end{macrocode}
+%
+%    \paragraph{my.}
+%    \begin{macrocode}
+%<*my>
+\defbeamertemplate*{titlegraphic}{my}{
+  %
+  % Developer could define your title graphic here for "my"...
+  %
+}
+%</my>
+%    \end{macrocode}
 %
 %   \subsubsection{Title Page}
 %  
@@ -156,7 +185,6 @@
 %
 %   \paragraph{min.}
 %   Declare two fadings: center fade and fade right. The center fade provides a radial fading on the right side of the title page. The fade right provides a linear fading to avoid the collision on the text in the left.
-%   WARNING: Now it is not used in the titlepage.
 %    \begin{macrocode}
 %<*min>
 \tikzfading[
