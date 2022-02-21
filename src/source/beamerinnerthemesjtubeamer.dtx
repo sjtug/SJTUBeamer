@@ -298,28 +298,24 @@
 % \begin{macro}{\highlight}
 %   Highlight the given text. Create a \verb"structure" color background block with white text.
 %   Receives one optional paramenter to specify the background color. If you want to modify the color of the text, use \verb"\color{}" command or \verb"\textcolor{}{}" command for your text.
-%   For a general use, use \verb"\colorbox{}{}" from \verb"xcolor" directly.
+%   For a general use and better control, use \verb"\colorbox{}{}" from \verb"xcolor" directly.
 %    \begin{macrocode}
 \newcommand{\highlight}[2][structure]{\textcolor{white}{\colorbox{#1}{#2}}}
 %    \end{macrocode}
 %   Since \verb"structure" is globally available, we can use it to set the background color without introducing first.
+%   We decided to use a dark background rather than the traditional light highlight marker like color, since the former one is better for presentation highlighting and the later one is more like the overlay effect in \verb"beamer".
 % \end{macro}
 %
 % \begin{macro}{\paragraph}
 %   Making a new paragraph through dark background color and white forground, which confirms the visual identity system on making use of vi shapes.
 %   Since beamer has deleted \verb"\paragraph" macro in this class, this template defines a macro for that to indicate it is another point and more paragraph-like. It is useful for the migration from \verb"article" class.
+%   If it is the end of paragraph, the trailing space will be removed by \TeX{}. The additional newline after this command will be get an output rather than the original sectioning command.
 %    \begin{macrocode}
-\def\paragraph{
+\providecommand{\paragraph}[1]{\textcolor{white}{\colorbox{structure}{#1}}\hspace{0.5em}}
 %    \end{macrocode}
-%   Though we could define \verb"\paragraph" like \verb"\highlight" above, we decided to use the orginal \LaTeX{} definition on \verb"\paragraph".
-%   Because the the internal macro \verb"\@startsection" will remove the following spaces and newlines, which is the behavior of \LaTeX{} paragraph as the sectioning command.
-%    \begin{macrocode}
-  \@startsection{paragraph}{4}{\z@}
-                {3.25ex \@plus1ex \@minus.2ex}
-                {-1em}%
-                {\color{white}\colorbox{structure}}
-}
-%    \end{macrocode}
+%   NOTE: We could use the original \LaTeX{} on \verb"\paragraph" macro to make it more like a sectioning command. Though we could get benefit from removing all the trailing newline after this command, the caveats are obvious.
+%   Like a sectioning command, it will goes to the auxilary file \verb".toc". Since the \verb"beamer" class has a different mechanism on treating Table of Contents, the output contents for paragraph will be inconsistent. It is afraid to not only add burden on processing and also unexpected behavior for beamer in \verb"\tableofcontents" and more.
+%   And a sectioning command cannot go anywhere, especially in an environment like \verb"center" and \verb"itemize" lists. The best practice for \LaTeX{} is not using \verb"\paragraph" and \verb"\subparagraph". As mentioned, The macro here is mainly for migration compatibility to create a similar output. You could use \verb"\alert" or \verb"\highlight" (a more general one, \verb"\colorbox") for highlighting the text.
 % \end{macro}
 %
 % \begin{macro}{stampbox}
@@ -346,7 +342,7 @@
 %    \end{macrocode}
 % \end{macro}
 %
-%   Declare the basic listing highlighter. \verb"columns" is set to \verb"flexible" to avoid ugly grid alignment. \verb"breaklines" is set to enable line wrapping.
+%   Declare the basic listings highlighter. \verb"columns" is set to \verb"flexible" to avoid ugly grid alignment. \verb"breaklines" is set to enable line wrapping.
 %    \begin{macrocode}
 \lstset{
   basicstyle=\ttfamily\small,
