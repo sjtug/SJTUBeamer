@@ -296,20 +296,29 @@
 %    \end{macrocode}
 %
 % \begin{macro}{\highlight}
-%   Highlight the given text. Create a light primary color background block without modifying the text color. This method is more familiar with the usual way on highlighting.
-%   Since \verb"structure" is globally available, we can use it to set the background color without introducing first. Set to 10\% of the structure to make enough contrast even if it is in a block (which is 30\% light).
-%   Receives one optional paramenter to specify the background color. If you want to modify the color it is highlighted, modify the text color manually.
+%   Highlight the given text. Create a \verb"structure" color background block with white text.
+%   Receives one optional paramenter to specify the background color. If you want to modify the color of the text, use \verb"\color{}" command or \verb"\textcolor{}{}" command for your text.
+%   For a general use, use \verb"\colorbox{}{}" from \verb"xcolor" directly.
 %    \begin{macrocode}
-\newcommand{\highlight}[2][structure!10]{\colorbox{#1}{#2}}
+\newcommand{\highlight}[2][structure]{\textcolor{white}{\colorbox{#1}{#2}}}
 %    \end{macrocode}
+%   Since \verb"structure" is globally available, we can use it to set the background color without introducing first.
 % \end{macro}
 %
 % \begin{macro}{\paragraph}
-%   Making contrast through dark background color and white forground, which confirms the visual identity system on making use of vi shapes.
+%   Making a new paragraph through dark background color and white forground, which confirms the visual identity system on making use of vi shapes.
 %   Since beamer has deleted \verb"\paragraph" macro in this class, this template defines a macro for that to indicate it is another point and more paragraph-like. It is useful for the migration from \verb"article" class.
-%   If it is the end of paragraph, the trailing space will be removed by \TeX{}.
 %    \begin{macrocode}
-\providecommand{\paragraph}[1]{\textcolor{white}{\colorbox{structure}{#1}}\hspace{0.5em}}
+\def\paragraph{
+%    \end{macrocode}
+%   Though we could define \verb"\paragraph" like \verb"\highlight" above, we decided to use the orginal \LaTeX{} definition on \verb"\paragraph".
+%   Because the the internal macro \verb"\@startsection" will remove the following spaces and newlines, which is the behavior of \LaTeX{} paragraph as the sectioning command.
+%    \begin{macrocode}
+  \@startsection{paragraph}{4}{\z@}
+                {3.25ex \@plus1ex \@minus.2ex}
+                {-1em}%
+                {\color{white}\colorbox{structure}}
+}
 %    \end{macrocode}
 % \end{macro}
 %
