@@ -296,30 +296,20 @@
 %    \end{macrocode}
 %
 % \begin{macro}{\highlight}
-%   Highlight the given text. Create a primary color background block with white as foreground.
+%   Highlight the given text. Create a light primary color background block without modifying the text color. This method is more familiar with the usual way on highlighting.
+%   Since \verb"structure" is globally available, we can use it to set the background color without introducing first. Set to 10\% of the structure to make enough contrast even if it is in a block (which is 30\% light).
+%   Receives one optional paramenter to specify the background color. If you want to modify the color it is highlighted, modify the text color manually.
 %    \begin{macrocode}
-\newtcbox{\highlight}[1][cprimary]{
-  on line,
-  arc=0pt,
-  colback=#1,
-  colupper=white,
-  boxrule=0pt,
-  boxsep=0pt,
-  left=4pt,
-  right=4pt,
-  top=2pt,
-  bottom=2pt
-}
+\newcommand{\highlight}[2][structure!10]{\colorbox{#1}{#2}}
 %    \end{macrocode}
 % \end{macro}
 %
 % \begin{macro}{\paragraph}
-%   Use \verb"\highlight" macro for making contrast.
+%   Making contrast through dark background color and white forground, which confirms the visual identity system on making use of vi shapes.
 %   Since beamer has deleted \verb"\paragraph" macro in this class, this template defines a macro for that to indicate it is another point and more paragraph-like. It is useful for the migration from \verb"article" class.
+%   If it is the end of paragraph, the trailing space will be removed by \TeX{}.
 %    \begin{macrocode}
-\providecommand{\paragraph}[1]{
-  \highlight{#1}~
-}
+\providecommand{\paragraph}[1]{\textcolor{white}{\colorbox{structure}{#1}}\hspace{0.5em}}
 %    \end{macrocode}
 % \end{macro}
 %
