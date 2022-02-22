@@ -314,12 +314,13 @@
 \providecommand{\paragraph}[1]{\textcolor{white}{\colorbox{structure}{#1}}\hspace{0.5em}}
 %    \end{macrocode}
 %   NOTE: We could use the original \LaTeX{} on \verb"\paragraph" macro to make it more like a sectioning command. Though we could get benefit from removing all the trailing newline after this command, the caveats are obvious.
-%   Like a sectioning command, it will goes to the auxilary file \verb".toc". Since the \verb"beamer" class has a different mechanism on treating Table of Contents, the output contents for paragraph will be inconsistent. It is afraid to not only add burden on processing and also unexpected behavior for beamer in \verb"\tableofcontents" and more.
+%   Like a sectioning command, it will goes to the auxilary file \verb".toc". Since the \verb"beamer" class has a different mechanism on treating Table of Contents, the output contents for paragraph will be inconsistent. It is afraid that not only extra burden on processing will be made, but also unexpected behavior for beamer in \verb"\tableofcontents" will shown.
 %   And a sectioning command cannot go anywhere, especially in an environment like \verb"center" and \verb"itemize" lists. The best practice for \LaTeX{} is not using \verb"\paragraph" and \verb"\subparagraph". As mentioned, The macro here is mainly for migration compatibility to create a similar output. You could use \verb"\alert" or \verb"\highlight" (a more general one, \verb"\colorbox") for highlighting the text.
 % \end{macro}
 %
 % \begin{macro}{stampbox}
 %   Make a stampbox border, which is a decoration advice from SJTU VI. It has the dependency on \verb"stampline" from \verb"sjtuvi" package.
+%   TODO: use tikzpicture to refactor the code.
 %    \begin{macrocode}
 \newtcolorbox{stampbox}[1][cprimary]{%
   capture=hbox,
@@ -373,12 +374,13 @@
   sharp corners,
   top=0mm,
   bottom=0mm,
+  right*=0.5mm,
   title=#2,
   colback=cprimary!5,
   colframe=cprimary!80,
   overlay={
     \begin{tcbclipinterior}\fill[cprimary!20]%
-      (frame.south west) rectangle ([xshift=5mm]frame.north west);
+      (frame.south west) rectangle ([xshift=5.5mm]frame.north west);
     \end{tcbclipinterior}
   }
 }
