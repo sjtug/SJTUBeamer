@@ -387,6 +387,15 @@
 %    \end{macrocode}
 % \end{macro}
 %
+% \begin{macro}{\highlightline}
+%    Highlight the current line with a light background. 
+%    It is useful for the codeblock environment with \verb"escapechar" option to insert the command for highlighting.
+%    \begin{macrocode}
+\providecommand{\highlightline}{\rlap{\color{ctertiary!40}\rule[-\dp\strutbox]{\linewidth}{\baselineskip}}}
+%    \end{macrocode}
+% \end{macro}
+%
+%
 %   Extra Support for pgfplots and pgfplotstable (if loaded in the main file).
 %    \begin{macrocode}
 \AtEndPreamble{%
