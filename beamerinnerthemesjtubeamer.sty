@@ -122,21 +122,8 @@
 \if\EqualOption{inner}{cover}{min}\else
   \setbeamertemplate{blocks}[rounded]
 \fi
-\newtcbox{\highlight}[1][cprimary]{
-  on line,
-  arc=0pt,
-  colback=#1,
-  colupper=white,
-  boxrule=0pt,
-  boxsep=0pt,
-  left=4pt,
-  right=4pt,
-  top=2pt,
-  bottom=2pt
-}
-\providecommand{\paragraph}[1]{
-  \highlight{#1}~
-}
+\newcommand{\highlight}[2][structure]{\textcolor{white}{\colorbox{#1}{#2}}}
+\providecommand{\paragraph}[1]{\textcolor{white}{\colorbox{structure}{#1}}\hspace{0.5em}}
 \newtcolorbox{stampbox}[1][cprimary]{%
   capture=hbox,
   enhanced,
@@ -179,15 +166,17 @@
   sharp corners,
   top=0mm,
   bottom=0mm,
+  right*=0.5mm,
   title=#2,
   colback=cprimary!5,
   colframe=cprimary!80,
   overlay={
     \begin{tcbclipinterior}\fill[cprimary!20]%
-      (frame.south west) rectangle ([xshift=5mm]frame.north west);
+      (frame.south west) rectangle ([xshift=5.5mm]frame.north west);
     \end{tcbclipinterior}
   }
 }
+\providecommand{\highlightline}{\rlap{\color{ctertiary!40}\rule[-\dp\strutbox]{\linewidth}{\baselineskip}}}
 \AtEndPreamble{%
   \@ifpackageloaded{pgfplots}{%
     \pgfplotsset{

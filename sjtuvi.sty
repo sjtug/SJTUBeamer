@@ -42,6 +42,7 @@
 \usetikzlibrary{fadings}
 \usetikzlibrary{decorations.pathmorphing}
 \usetikzlibrary{external}
+\usetikzlibrary{backgrounds}
 \definecolor{sjtuRedPrimary}{RGB}{167,32,56}         %engred
 \definecolor{sjtuRedSecondary}{RGB}{240,131,0}       %orange
 \definecolor{sjtuRedTertiary}{RGB}{253,208,0}        %yellow
@@ -84,6 +85,33 @@
 \definelogo{vlogo}{0.8}{0.13}
 \definelogo{sjtubg}{0.3}{0.5}
 \def\sjtubeamer@compatible@false{false}
+\def\getheightofnode#1#2{%
+  \pgfextracty{#1}{\pgfpointanchor{#2}{north}}%
+  \pgfextracty{\pgf@ya}{\pgfpointanchor{#2}{south}}%
+  \addtolength{#1}{-\pgf@ya}
+}
+\providecommand{\stamptext}[2][structure]{
+  {
+    \tikzset{external/export=false}
+    \begin{tikzpicture}[baseline=(nodetext.base)]
+      \node [white] (nodetext) at (0,0) {#2};
+      \newlength{\s}
+      \getheightofnode{\s}{nodetext}
+      \scoped[on background layer]
+        \fill [#1]
+          (-1.25*\s,0)
+          -- (-0.85*\s,0.3*\s)
+          -- (-0.85*\s,0.5*\s)
+          -- (0.85*\s,0.5*\s)
+          -- (0.85*\s,0.3*\s)
+          -- (1.25*\s,0)
+          -- (0.85*\s,-0.3*\s)
+          -- (0.85*\s,-0.5*\s)
+          -- (-0.85*\s,-0.5*\s)
+          -- (-0.85*\s,-0.3*\s) -- cycle;
+    \end{tikzpicture}
+  }
+}
 \ifx\sjtubeamer@compatible\sjtubeamer@compatible@false
 \else
   \usetikzlibrary{patterns.meta}

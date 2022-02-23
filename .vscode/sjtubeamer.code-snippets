@@ -50,14 +50,14 @@
 	"highlight": {
 		"scope": "doctex,tex,latex",
 		"prefix": "\\highlight",
-		"body": "\\highlight[${1:cprimary}]{$2}",
-		"description": "Highlight the given text. Create a primary color background block with white as foreground.\n"
+		"body": "\\highlight[${1:structure}]{$2}",
+		"description": "Highlight the given text. Create a structure color background block with white text.\nReceives one optional paramenter to specify the background color. If you want to modify the color of the text, use \\color{} command or \\textcolor{}{} command for your text.\nFor a general use and better control, use \\colorbox{}{} from xcolor directly.\n"
 	},
 	"paragraph": {
 		"scope": "doctex,tex,latex",
 		"prefix": "\\paragraph",
 		"body": "\\paragraph{$1}",
-		"description": "Use \\highlight macro for making contrast.\nSince beamer has deleted \\paragraph macro in this class, this template defines a macro for that to indicate it is another point and more paragraph-like. It is useful for the migration from article class.\n"
+		"description": "Making a new paragraph through dark background color and white forground, which confirms the visual identity system on making use of vi shapes.\nSince beamer has deleted \\paragraph macro in this class, this template defines a macro for that to indicate it is another point and more paragraph-like. It is useful for the migration from article class.\nIf it is the end of paragraph, the trailing space will be removed by \\TeX{}. The additional newline after this command will be get an output rather than the original sectioning command.\n"
 	},
 	"stampbox": {
 		"scope": "doctex,tex,latex",
@@ -70,6 +70,12 @@
 		"prefix": "\n\\begin{codeblock",
 		"body": "\n\\begin{codeblock}[${1:}]{$2}\n\t$3\n\\end{codeblock}\n",
 		"description": "Code block environment is made for presenting code in an obvious way. Two parameters are required. The first parameter is passed to listing, which mostly sets the language to highlight, see the listings package for more details. And the second parameter receives the title to make.\n"
+	},
+	"highlightline": {
+		"scope": "doctex,tex,latex",
+		"prefix": "\\highlightline",
+		"body": "\\highlightline",
+		"description": "Highlight the current line with a light background. \nIt is useful for the codeblock environment with escapechar option to insert the command for highlighting. For example, set the optional argument escapechar=|, and insert |\\highlightline| at the first position in the line you want to highlight.\n"
 	},
 	"sjtubeamer@outer@nav": {
 		"scope": "doctex,tex",
@@ -184,6 +190,18 @@
 		"prefix": "\\sjtubeamer@compatible",
 		"body": "\\sjtubeamer@compatible",
 		"description": ""
+	},
+	"getheightofnode": {
+		"scope": "doctex,tex",
+		"prefix": "\\getheightofnode",
+		"body": "\\getheightofnode{$1}{$2}",
+		"description": "A helper macro to get the height of a tikz node \\#2 and store it in length \\#1. You have to declare the length \\#1 first by using \\newlength.\n"
+	},
+	"stamptext": {
+		"scope": "doctex,tex,latex",
+		"prefix": "\\stamptext",
+		"body": "\\stamptext[${1:structure}]{$2}",
+		"description": "Make a stamp unit surround the text. Similar to \\highlight command in inner theme with limitations on number of characters.\nUse one Chinese character or at most two English characters for the argument.\nUse an optional argument to set the background color, default is structure. Avoid using this macro if you are not in beamer class, or use a defined color for background.\n"
 	},
 	"stamp": {
 		"scope": "doctex,tex,latex",

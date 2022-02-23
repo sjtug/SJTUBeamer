@@ -84,11 +84,13 @@
 %   \verb"fadings" provides the method to create a fading mask; 
 %   \verb"decoration.pathmorphing" provides the interface to user-define a decoration.
 %   \verb"external" provides the way for tikz externalization, which will reduce the number of repetitive rendering with the cached pdf.
+%   \verb"backgrounds" provides the way to make a scope as a background to draw later.
 %    \begin{macrocode}
 \RequirePackage{tikz}
 \usetikzlibrary{fadings}
 \usetikzlibrary{decorations.pathmorphing}
 \usetikzlibrary{external}
+\usetikzlibrary{backgrounds}
 %    \end{macrocode}
 %
 % \subsubsection{Color Definition}
@@ -167,31 +169,49 @@
 %    \end{macrocode}
 % \end{macro}
 %
-% \begin{macro}{\stamptext}
-%    Make a stamp unit surround the text.
-%    Use one Chinese character or at most two English characters for the argument.
+% \begin{macro}{\getheightofnode}
+%    A helper macro to get the height of a tikz node \#2 and store it in length \#1. You have to declare the length \#1 first by using \verb"\newlength".
 %    \begin{macrocode}
-\providecommand{\stamptext}[2][]{
+\def\getheightofnode#1#2{%
+  \pgfextracty{#1}{\pgfpointanchor{#2}{north}}%
+  \pgfextracty{\pgf@ya}{\pgfpointanchor{#2}{south}}%
+  \addtolength{#1}{-\pgf@ya}
+}
+%    \end{macrocode}
+%    The macro is similar to \verb"\tcbsetmacroheightofnode" from \verb"skins" library of \verb"tcolorbox", but for decoupling reasons, use a native pgf command to calculate that without loading \verb"tcolorbox" in this style file.
+% \end{macro}
+%
+% \begin{macro}{\stamptext}
+%    Make a stamp unit surround the text. Similar to \verb"\highlight" command in inner theme with limitations on number of characters.
+%    Use one Chinese character or at most two English characters for the argument.
+%    Use an optional argument to set the background color, default is \verb"structure". Avoid using this macro if you are not in \verb"beamer" class, or use a defined color for background.
+%    \begin{macrocode}
+\providecommand{\stamptext}[2][structure]{
   {
     \tikzset{external/export=false}
     \begin{tikzpicture}[baseline=(nodetext.base)]
-      \def\s{2cm}
-      \fill [structure]
-        (-0.25*\s,0)
-        -- (-0.17*\s,0.06*\s)
-        -- (-0.17*\s,0.1*\s)
-        -- (0.17*\s,0.1*\s)
-        -- (0.17*\s,0.06*\s)
-        -- (0.25*\s,0)
-        -- (0.17*\s,-0.06*\s)
-        -- (0.17*\s,-0.1*\s)
-        -- (-0.17*\s,-0.1*\s)
-        -- (-0.17*\s,-0.06*\s) -- cycle;
       \node [white] (nodetext) at (0,0) {#2};
+      \newlength{\s}
+      \getheightofnode{\s}{nodetext}
+      \scoped[on background layer]
+        \fill [#1]
+          (-1.25*\s,0)
+          -- (-0.85*\s,0.3*\s)
+          -- (-0.85*\s,0.5*\s)
+          -- (0.85*\s,0.5*\s)
+          -- (0.85*\s,0.3*\s)
+          -- (1.25*\s,0)
+          -- (0.85*\s,-0.3*\s)
+          -- (0.85*\s,-0.5*\s)
+          -- (-0.85*\s,-0.5*\s)
+          -- (-0.85*\s,-0.3*\s) -- cycle;
     \end{tikzpicture} 
   }
 }
 %    \end{macrocode}
+%    Unlike \verb"\highlight" to make use of \verb"\colorbox" from \verb"xcolor". \verb"\stamptext" has to use Ti\emph{k}Z for drawing the vi shape. And the vi rules that the shape could not be resized to a different aspect ratio. So the only available mode is scaling.
+%    The tradeof is that the text length has to be limited.
+%    Use a group to disable caching.
 % \end{macro}
 %
 % \begin{macro}{stamp}
