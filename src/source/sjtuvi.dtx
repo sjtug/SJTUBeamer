@@ -167,6 +167,33 @@
 %    \end{macrocode}
 % \end{macro}
 %
+% \begin{macro}{\stamptext}
+%    Make a stamp unit surround the text.
+%    Use one Chinese character or at most two English characters for the argument.
+%    \begin{macrocode}
+\providecommand{\stamptext}[2][]{
+  {
+    \tikzset{external/export=false}
+    \begin{tikzpicture}[baseline=(nodetext.base)]
+      \def\s{2cm}
+      \fill [structure]
+        (-0.25*\s,0)
+        -- (-0.17*\s,0.06*\s)
+        -- (-0.17*\s,0.1*\s)
+        -- (0.17*\s,0.1*\s)
+        -- (0.17*\s,0.06*\s)
+        -- (0.25*\s,0)
+        -- (0.17*\s,-0.06*\s)
+        -- (0.17*\s,-0.1*\s)
+        -- (-0.17*\s,-0.1*\s)
+        -- (-0.17*\s,-0.06*\s) -- cycle;
+      \node [white] (nodetext) at (0,0) {#2};
+    \end{tikzpicture} 
+  }
+}
+%    \end{macrocode}
+% \end{macro}
+%
 % \begin{macro}{stamp}
 %	  Declare stamp pattern to make a stamp array.
 %
@@ -222,6 +249,7 @@
   }
 \fi
 %    \end{macrocode}
+%    Avoid using macro in code section for performance reasons.
 % \end{macro}
 %
 % \begin{macro}{\stamparray}

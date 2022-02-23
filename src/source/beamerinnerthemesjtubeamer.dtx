@@ -313,14 +313,13 @@
 %    \begin{macrocode}
 \providecommand{\paragraph}[1]{\textcolor{white}{\colorbox{structure}{#1}}\hspace{0.5em}}
 %    \end{macrocode}
-%   NOTE: We could use the original \LaTeX{} on \verb"\paragraph" macro to make it more like a sectioning command. Though we could get benefit from removing all the trailing newline after this command, the caveats are obvious.
-%   Like a sectioning command, it will goes to the auxilary file \verb".toc". Since the \verb"beamer" class has a different mechanism on treating Table of Contents, the output contents for paragraph will be inconsistent. It is afraid that not only extra burden on processing will be made, but also unexpected behavior for beamer in \verb"\tableofcontents" will shown.
+%   NOTE: We could use the original \LaTeX{} macro \verb"\@startsection" on \verb"\paragraph" to make it more like a sectioning command. Though we could get benefit from removing all the trailing newline after this command, the caveats are obvious.
+%   Like a sectioning command, it will goes to the auxilary file \verb".toc". Since the \verb"beamer" class has a different mechanism on treating Table of Contents, the output contents for paragraph will be inconsistent. It is afraid that not only extra burden on processing will be made, but also unexpected behavior for beamer in \verb"\tableofcontents" will occur.
 %   And a sectioning command cannot go anywhere, especially in an environment like \verb"center" and \verb"itemize" lists. The best practice for \LaTeX{} is not using \verb"\paragraph" and \verb"\subparagraph". As mentioned, The macro here is mainly for migration compatibility to create a similar output. You could use \verb"\alert" or \verb"\highlight" (a more general one, \verb"\colorbox") for highlighting the text.
 % \end{macro}
 %
 % \begin{macro}{stampbox}
 %   Make a stampbox border, which is a decoration advice from SJTU VI. It has the dependency on \verb"stampline" from \verb"sjtuvi" package.
-%   TODO: use tikzpicture to refactor the code.
 %    \begin{macrocode}
 \newtcolorbox{stampbox}[1][cprimary]{%
   capture=hbox,
@@ -389,12 +388,12 @@
 %
 % \begin{macro}{\highlightline}
 %    Highlight the current line with a light background. 
-%    It is useful for the codeblock environment with \verb"escapechar" option to insert the command for highlighting.
+%    It is useful for the codeblock environment with \verb"escapechar" option to insert the command for highlighting. For example, set the optional argument \verb"escapechar=|", and insert \verb"|\highlightline|" at the first position in the line you want to highlight.
 %    \begin{macrocode}
 \providecommand{\highlightline}{\rlap{\color{ctertiary!40}\rule[-\dp\strutbox]{\linewidth}{\baselineskip}}}
 %    \end{macrocode}
+%    For better support in code environment, you should try out the \verb"highlightlines" in minted package, but performance drop is expected.
 % \end{macro}
-%
 %
 %   Extra Support for pgfplots and pgfplotstable (if loaded in the main file).
 %    \begin{macrocode}
