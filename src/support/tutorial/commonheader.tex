@@ -3,16 +3,11 @@
 \makeatletter
 \def\sjtubeamer@compatible{false}
 \makeatother
-\usepackage{sjtuvi}     % contains TikZ
-\usepackage{sjtucover}
+\usepackage{sjtuvi}     % contains TikZ. 
+\usepackage[cn]{sjtucover}    % temporarily use cn config, since the justification will first check if it is ctexbeamer then use caching.
 \usepackage{tcolorbox}
 \tcbuselibrary{skins}
 \tcbuselibrary{listingsutf8}
-\makeatletter
-\AtEndPreamble{     % patch the langauge if it is ctexbeamer
-    \def\bottomthanks{谢\,谢}
-}
-\makeatother
 \begin{document}
 % intentionally left blank
 \end{document}

@@ -16,7 +16,7 @@
 % \iffalse
 %<*package>
 \NeedsTeXFormat{LaTeX2e}
-\ProvidesPackage{beamerinnerthemesjtubeamer}[2022/02/19 sjtubeamer inner theme v2.5.3]
+\ProvidesPackage{beamerinnerthemesjtubeamer}[2022/02/24 sjtubeamer inner theme v2.5.4]
 %</package>
 % \fi
 % \CheckSum{0}
@@ -296,31 +296,26 @@
 %    \end{macrocode}
 %
 % \begin{macro}{\highlight}
-%   Highlight the given text. Create a primary color background block with white as foreground.
+%   Highlight the given text. Create a \verb"structure" color background block with white text.
+%   Receives one optional paramenter to specify the background color. If you want to modify the color of the text, use \verb"\color{}" command or \verb"\textcolor{}{}" command for your text.
+%   For a general use and better control, use \verb"\colorbox{}{}" from \verb"xcolor" directly.
 %    \begin{macrocode}
-\newtcbox{\highlight}[1][cprimary]{
-  on line,
-  arc=0pt,
-  colback=#1,
-  colupper=white,
-  boxrule=0pt,
-  boxsep=0pt,
-  left=4pt,
-  right=4pt,
-  top=2pt,
-  bottom=2pt
-}
+\newcommand{\highlight}[2][structure]{\textcolor{white}{\colorbox{#1}{#2}}}
 %    \end{macrocode}
+%   Since \verb"structure" is globally available, we can use it to set the background color without introducing first.
+%   We decided to use a dark background rather than the traditional light highlight marker like color, since the former one is better for presentation highlighting and the later one is more like the overlay effect in \verb"beamer".
 % \end{macro}
 %
 % \begin{macro}{\paragraph}
-%   Use \verb"\highlight" macro for making contrast.
+%   Making a new paragraph through dark background color and white forground, which confirms the visual identity system on making use of vi shapes.
 %   Since beamer has deleted \verb"\paragraph" macro in this class, this template defines a macro for that to indicate it is another point and more paragraph-like. It is useful for the migration from \verb"article" class.
+%   If it is the end of paragraph, the trailing space will be removed by \TeX{}. The additional newline after this command will be get an output rather than the original sectioning command.
 %    \begin{macrocode}
-\providecommand{\paragraph}[1]{
-  \highlight{#1}~
-}
+\providecommand{\paragraph}[1]{\textcolor{white}{\colorbox{structure}{#1}}\space}
 %    \end{macrocode}
+%   NOTE: We could use the original \LaTeX{} macro \verb"\@startsection" on \verb"\paragraph" to make it more like a sectioning command. Though we could get benefit from removing all the trailing newline after this command, the caveats are obvious.
+%   Like a sectioning command, it will goes to the auxilary file \verb".toc". Since the \verb"beamer" class has a different mechanism on treating Table of Contents, the output contents for paragraph will be inconsistent. It is afraid that not only extra burden on processing will be made, but also unexpected behavior for beamer in \verb"\tableofcontents" will occur.
+%   And a sectioning command cannot go anywhere, especially in an environment like \verb"center" and \verb"itemize" lists. The best practice for \LaTeX{} is not using \verb"\paragraph" and \verb"\subparagraph". As mentioned, The macro here is mainly for migration compatibility to create a similar output. You could use \verb"\alert" or \verb"\highlight" (a more general one, \verb"\colorbox") for highlighting the text.
 % \end{macro}
 %
 % \begin{macro}{stampbox}
@@ -347,7 +342,7 @@
 %    \end{macrocode}
 % \end{macro}
 %
-%   Declare the basic listing highlighter. \verb"columns" is set to \verb"flexible" to avoid ugly grid alignment. \verb"breaklines" is set to enable line wrapping.
+%   Declare the basic listings highlighter. \verb"columns" is set to \verb"flexible" to avoid ugly grid alignment. \verb"breaklines" is set to enable line wrapping.
 %    \begin{macrocode}
 \lstset{
   basicstyle=\ttfamily\small,
@@ -378,16 +373,26 @@
   sharp corners,
   top=0mm,
   bottom=0mm,
+  right*=0.5mm,
   title=#2,
   colback=cprimary!5,
   colframe=cprimary!80,
   overlay={
     \begin{tcbclipinterior}\fill[cprimary!20]%
-      (frame.south west) rectangle ([xshift=5mm]frame.north west);
+      (frame.south west) rectangle ([xshift=5.5mm]frame.north west);
     \end{tcbclipinterior}
   }
 }
 %    \end{macrocode}
+% \end{macro}
+%
+% \begin{macro}{\highlightline}
+%    Highlight the current line with a light background. 
+%    It is useful for the codeblock environment with \verb"escapechar" option to insert the command for highlighting. For example, set the optional argument \verb"escapechar=|", and insert \verb"|\highlightline|" at the first position in the line you want to highlight.
+%    \begin{macrocode}
+\providecommand{\highlightline}{\rlap{\color{ctertiary!40}\rule[-\dp\strutbox]{\linewidth}{\baselineskip}}}
+%    \end{macrocode}
+%    For better support in code environment, you should try out the \verb"highlightlines" in minted package, but performance drop is expected.
 % \end{macro}
 %
 %   Extra Support for pgfplots and pgfplotstable (if loaded in the main file).

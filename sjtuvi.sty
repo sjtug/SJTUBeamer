@@ -18,7 +18,7 @@
 %% see https://vi.sjtu.edu.cn/index.php/articles/bulletin/16.
 %% ------------------------------------------------------------------------
 \NeedsTeXFormat{LaTeX2e}
-\ProvidesPackage{sjtuvi}[2022/02/19 Visual Identity System library for sjtubeamer v2.5.3]
+\ProvidesPackage{sjtuvi}[2022/02/24 Visual Identity System library for sjtubeamer v2.5.4]
 \def\DefineOption#1#2#3{
   % #1: package
   % #2: key
@@ -42,6 +42,7 @@
 \usetikzlibrary{fadings}
 \usetikzlibrary{decorations.pathmorphing}
 \usetikzlibrary{external}
+\usetikzlibrary{backgrounds}
 \definecolor{sjtuRedPrimary}{RGB}{167,32,56}         %engred
 \definecolor{sjtuRedSecondary}{RGB}{240,131,0}       %orange
 \definecolor{sjtuRedTertiary}{RGB}{253,208,0}        %yellow
@@ -83,6 +84,31 @@
 \definelogo{dlogo}{0}{0}
 \definelogo{vlogo}{0.8}{0.13}
 \definelogo{sjtubg}{0.3}{0.5}
+\providecommand{\stamptext}[2][structure]{
+  {
+    \providecolor{#1}{named}{sjtuRedPrimary}
+    \tikzset{external/export=false}
+    \begin{tikzpicture}[baseline=(nodetext.base)]
+      \node [white] (nodetext) at (0,0) {#2};
+      \newlength{\s}
+      \pgfextracty{\s}{\pgfpointanchor{nodetext}{north}}%
+      \pgfextracty{\pgf@ya}{\pgfpointanchor{nodetext}{south}}%
+      \addtolength{\s}{-\pgf@ya}
+      \scoped[on background layer]
+        \fill [#1]
+          (-1.25*\s,0)
+          -- (-0.85*\s,0.3*\s)
+          -- (-0.85*\s,0.5*\s)
+          -- (0.85*\s,0.5*\s)
+          -- (0.85*\s,0.3*\s)
+          -- (1.25*\s,0)
+          -- (0.85*\s,-0.3*\s)
+          -- (0.85*\s,-0.5*\s)
+          -- (-0.85*\s,-0.5*\s)
+          -- (-0.85*\s,-0.3*\s) -- cycle;
+    \end{tikzpicture}
+  }
+}
 \def\sjtubeamer@compatible@false{false}
 \ifx\sjtubeamer@compatible\sjtubeamer@compatible@false
 \else
