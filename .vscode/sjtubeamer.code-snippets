@@ -185,23 +185,17 @@
 		"body": "\\definelogo[${1:vi}]{$2}{$3}{$4}",
 		"description": "Define a mask picture to make its different color variants.\nThe first argument assigns the file name and the second sets the horizontal cropping and the third sets the vertical cropping. Notice that the cropping is symmetrical (double the length). When the horizontal cropping is greater than the vertical cropping, the mask will be placed by its height, otherwise by its width. The domain for both cropping parameters is 0 to 1.\nYou should define a logo \\definelogo{mylogo}{<hc>}{<vc>} then use it in the contents like:\n\\mylogo[white], where the optional parameter could be the override color beyond the control of main logo color system or opacity=... to identify the opacity you want or any other parameter for a TikZ node.\nRemember, the picture should be in the vi/ folder by default. If you want to use some other file in other folder, add an optional paramter like \\definelogo[folder]{file}{0}{0} will get the folder/file.\nThe externalization will be disabled when using this system to generate logos, locally.\n"
 	},
+	"stamptext": {
+		"scope": "doctex,tex,latex",
+		"prefix": "\\stamptext",
+		"body": "\\stamptext[${1:structure}]{$2}",
+		"description": "Use one Chinese character or at most two English characters for the text argument.\nMake a stamp unit surround the text. Similar to \\highlight command in inner theme with limitations on number of characters.\nUse an optional argument to set the background color, default is structure. Avoid using this macro if you are not in beamer class, or use a defined color for background.\n"
+	},
 	"sjtubeamer@compatible": {
 		"scope": "doctex,tex",
 		"prefix": "\\sjtubeamer@compatible",
 		"body": "\\sjtubeamer@compatible",
 		"description": ""
-	},
-	"getheightofnode": {
-		"scope": "doctex,tex",
-		"prefix": "\\getheightofnode",
-		"body": "\\getheightofnode{$1}{$2}",
-		"description": "A helper macro to get the height of a tikz node \\#2 and store it in length \\#1. You have to declare the length \\#1 first by using \\newlength.\n"
-	},
-	"stamptext": {
-		"scope": "doctex,tex,latex",
-		"prefix": "\\stamptext",
-		"body": "\\stamptext[${1:structure}]{$2}",
-		"description": "Make a stamp unit surround the text. Similar to \\highlight command in inner theme with limitations on number of characters.\nUse one Chinese character or at most two English characters for the argument.\nUse an optional argument to set the background color, default is structure. Avoid using this macro if you are not in beamer class, or use a defined color for background.\n"
 	},
 	"stamp": {
 		"scope": "doctex,tex,latex",

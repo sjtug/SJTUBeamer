@@ -18,7 +18,7 @@
 %% see https://vi.sjtu.edu.cn/index.php/articles/bulletin/16.
 %% ------------------------------------------------------------------------
 \NeedsTeXFormat{LaTeX2e}
-\ProvidesPackage{sjtuvi}[2022/02/19 Visual Identity System library for sjtubeamer v2.5.3]
+\ProvidesPackage{sjtuvi}[2022/02/24 Visual Identity System library for sjtubeamer v2.5.4]
 \def\DefineOption#1#2#3{
   % #1: package
   % #2: key
@@ -84,19 +84,15 @@
 \definelogo{dlogo}{0}{0}
 \definelogo{vlogo}{0.8}{0.13}
 \definelogo{sjtubg}{0.3}{0.5}
-\def\sjtubeamer@compatible@false{false}
-\def\getheightofnode#1#2{%
-  \pgfextracty{#1}{\pgfpointanchor{#2}{north}}%
-  \pgfextracty{\pgf@ya}{\pgfpointanchor{#2}{south}}%
-  \addtolength{#1}{-\pgf@ya}
-}
 \providecommand{\stamptext}[2][structure]{
   {
     \tikzset{external/export=false}
     \begin{tikzpicture}[baseline=(nodetext.base)]
       \node [white] (nodetext) at (0,0) {#2};
       \newlength{\s}
-      \getheightofnode{\s}{nodetext}
+      \pgfextracty{\s}{\pgfpointanchor{nodetext}{north}}%
+      \pgfextracty{\pgf@ya}{\pgfpointanchor{nodetext}{south}}%
+      \addtolength{\s}{-\pgf@ya}
       \scoped[on background layer]
         \fill [#1]
           (-1.25*\s,0)
@@ -112,6 +108,7 @@
     \end{tikzpicture}
   }
 }
+\def\sjtubeamer@compatible@false{false}
 \ifx\sjtubeamer@compatible\sjtubeamer@compatible@false
 \else
   \usetikzlibrary{patterns.meta}
