@@ -392,8 +392,9 @@
 % \begin{macro}{\highlightline}
 %    Highlight the current line with a light background. 
 %    It is useful for the codeblock environment with \verb"escapechar" option to insert the command for highlighting. For example, set the optional argument \verb"escapechar=|", and insert \verb"|\highlightline|" at the first position in the line you want to highlight.
+%    You could use overlay specification for this macro.
 %    \begin{macrocode}
-\providecommand{\highlightline}{\rlap{\color{structure!25}\rule[-\dp\strutbox]{\linewidth}{\baselineskip}}}
+\newcommand<>{\highlightline}{\only#1{\rlap{\color{structure!25}\rule[-\dp\strutbox]{\linewidth}{\baselineskip}}}}
 %    \end{macrocode}
 %    For better support in code environment, you should try out the \verb"highlightlines" in minted package, but performance drop is expected.
 % \end{macro}
