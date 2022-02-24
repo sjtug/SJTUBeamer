@@ -86,6 +86,7 @@
 \definelogo{sjtubg}{0.3}{0.5}
 \providecommand{\stamptext}[2][structure]{
   {
+    \providecolor{#1}{named}{sjtuRedPrimary}
     \tikzset{external/export=false}
     \begin{tikzpicture}[baseline=(nodetext.base)]
       \node [white] (nodetext) at (0,0) {#2};

@@ -311,7 +311,7 @@
 %   Since beamer has deleted \verb"\paragraph" macro in this class, this template defines a macro for that to indicate it is another point and more paragraph-like. It is useful for the migration from \verb"article" class.
 %   If it is the end of paragraph, the trailing space will be removed by \TeX{}. The additional newline after this command will be get an output rather than the original sectioning command.
 %    \begin{macrocode}
-\providecommand{\paragraph}[1]{\textcolor{white}{\colorbox{structure}{#1}}\hspace{0.5em}}
+\providecommand{\paragraph}[1]{\textcolor{white}{\colorbox{structure}{#1}}\space}
 %    \end{macrocode}
 %   NOTE: We could use the original \LaTeX{} macro \verb"\@startsection" on \verb"\paragraph" to make it more like a sectioning command. Though we could get benefit from removing all the trailing newline after this command, the caveats are obvious.
 %   Like a sectioning command, it will goes to the auxilary file \verb".toc". Since the \verb"beamer" class has a different mechanism on treating Table of Contents, the output contents for paragraph will be inconsistent. It is afraid that not only extra burden on processing will be made, but also unexpected behavior for beamer in \verb"\tableofcontents" will occur.

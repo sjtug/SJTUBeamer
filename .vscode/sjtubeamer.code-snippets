@@ -189,7 +189,7 @@
 		"scope": "doctex,tex,latex",
 		"prefix": "\\stamptext",
 		"body": "\\stamptext[${1:structure}]{$2}",
-		"description": "Use one Chinese character or at most two English characters for the text argument.\nMake a stamp unit surround the text. Similar to \\highlight command in inner theme with limitations on number of characters.\nUse an optional argument to set the background color, default is structure. Avoid using this macro if you are not in beamer class, or use a defined color for background.\n"
+		"description": "Use one Chinese character or at most two English characters for the text argument.\nMake a stamp unit surround the text. Similar to \\highlight command in inner theme with limitations on number of characters.\nUse an optional argument to set the background color, default is structure or sjtuRedPrimary.\n"
 	},
 	"sjtubeamer@compatible": {
 		"scope": "doctex,tex",

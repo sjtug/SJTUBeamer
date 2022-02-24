@@ -166,10 +166,17 @@
 % \begin{macro}{\stamptext}
 %    Use one Chinese character or at most two English characters for the text argument.
 %    Make a stamp unit surround the text. Similar to \verb"\highlight" command in inner theme with limitations on number of characters.
-%    Use an optional argument to set the background color, default is \verb"structure". Avoid using this macro if you are not in \verb"beamer" class, or use a defined color for background.
+%    Use an optional argument to set the background color, default is \verb"structure" or \verb"sjtuRedPrimary".
 %    \begin{macrocode}
 \providecommand{\stamptext}[2][structure]{
   {
+%    \end{macrocode}
+%    If the color is not defined, it will fallback to color \verb"sjtuRedPrimary" in this pacakge. Notice if your color is not defined, it will not get an error through this manner.
+%    \begin{macrocode}
+    \providecolor{#1}{named}{sjtuRedPrimary}
+%    \end{macrocode}
+%    Disable caching in this group.
+%    \begin{macrocode}
     \tikzset{external/export=false}
     \begin{tikzpicture}[baseline=(nodetext.base)]
       \node [white] (nodetext) at (0,0) {#2};
@@ -201,7 +208,6 @@
 %    \end{macrocode}
 %    Unlike \verb"\highlight" to make use of \verb"\colorbox" from \verb"xcolor". \verb"\stamptext" has to use Ti\emph{k}Z for drawing the vi shape. And the vi rules that the shape could not be resized to a different aspect ratio. So the only available mode is scaling.
 %    The tradeof is that the text length has to be limited.
-%    Use a group to disable caching.
 % \end{macro}
 %
 % \begin{macro}{\sjtubeamer@compatible}
