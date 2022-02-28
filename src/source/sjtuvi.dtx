@@ -212,6 +212,7 @@
 %
 % \begin{macro}{\sjtubeamer@compatible}
 % For \TeX Live 2018 and even older, it is \emph{not} compatible to use the patterns.meta library for making user-defined patterns. And fading is not available for caching. Please consider \verb"\def\sjtubeamer@compatible{false}" to match the following condition checking. Remember to use \verb"\makeatletter" and \verb"\makeatother" in \LaTeX{}.
+% TODO: Get it into an option, not a macro. We have to consider the transmission model.
 %    \begin{macrocode}
 \def\sjtubeamer@compatible@false{false}
 %    \end{macrocode}

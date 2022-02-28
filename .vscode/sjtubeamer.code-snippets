@@ -39,7 +39,7 @@
 		"scope": "doctex,tex",
 		"prefix": "\\coverpage",
 		"body": "\\coverpage{$1}",
-		"description": "Common command for \\titlepage and \\bottompage. Disable externalization for generating title page and bottom page, locally.\n"
+		"description": "Common command for \\titlepage and \\bottompage, and more.\n"
 	},
 	"definecover": {
 		"scope": "doctex,tex",
@@ -74,8 +74,8 @@
 	"highlightline": {
 		"scope": "doctex,tex,latex",
 		"prefix": "\\highlightline",
-		"body": "\\highlightline",
-		"description": "Highlight the current line with a light background. \nIt is useful for the codeblock environment with escapechar option to insert the command for highlighting. For example, set the optional argument escapechar=|, and insert |\\highlightline| at the first position in the line you want to highlight.\n"
+		"body": "\\highlightline{$1}",
+		"description": "Highlight the current line with a light background. \nIt is useful for the codeblock environment with escapechar option to insert the command for highlighting. For example, set the optional argument escapechar=|, and insert |\\highlightline| at the first position in the line you want to highlight.\nYou could use overlay specification for this macro.\n"
 	},
 	"codeblockinput": {
 		"scope": "doctex,tex,latex",

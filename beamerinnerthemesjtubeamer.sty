@@ -79,6 +79,7 @@
 \def\coverpage#1{
   {
     \tikzset{external/export=false}
+    \setlength{\parindent}{0em}
     \ifdim\beamer@sidebarwidth=0pt %
       \usebeamertemplate*{#1}
     \else
@@ -204,6 +205,7 @@
     \end{tcbclipinterior}
   }
 }
+\newcommand<>{\highlightline}{\only#1{\rlap{\color{structure!25}\rule[-\dp\strutbox]{\linewidth}{\baselineskip}}}}
 \AtEndPreamble{%
   \@ifpackageloaded{pgfplots}{%
     \pgfplotsset{

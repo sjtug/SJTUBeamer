@@ -193,11 +193,21 @@
 %    \end{macrocode}
 %
 %  \begin{macro}{\coverpage}
-%  Common command for \verb"\titlepage" and \verb"\bottompage". Disable externalization for generating title page and bottom page, locally.
+%  Common command for \verb"\titlepage" and \verb"\bottompage", and more.
 %    \begin{macrocode}
 \def\coverpage#1{
   {
+%    \end{macrocode}
+%  Disable externalization for generating title page and bottom page, locally.
+%    \begin{macrocode}
     \tikzset{external/export=false}
+%    \end{macrocode}
+%  Set the \verb"parindent" to 0pt to avoid unwanted shift if indent is set.
+%    \begin{macrocode}
+    \setlength{\parindent}{0em}
+%    \end{macrocode}
+%   Check if it is in sidebar mode to make necessary shift for cover pages.
+%    \begin{macrocode}
     \ifdim\beamer@sidebarwidth=0pt %
       \usebeamertemplate*{#1}
     \else
