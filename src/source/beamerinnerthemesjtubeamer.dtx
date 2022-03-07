@@ -309,8 +309,9 @@
 %   Highlight the given text. Create a \verb"structure" color background block with white text.
 %   Receives one optional paramenter to specify the background color. If you want to modify the color of the text, use \verb"\color{}" command or \verb"\textcolor{}{}" command for your text.
 %   For a general use and better control, use \verb"\colorbox{}{}" from \verb"xcolor" directly.
+%   Overlay option can be specified as well.
 %    \begin{macrocode}
-\newcommand{\highlight}[2][structure]{\textcolor{white}{\colorbox{#1}{#2}}}
+\newcommand<>{\highlight}[2][structure]{\only#3{\textcolor{white}{\colorbox{#1}{#2}}}}
 %    \end{macrocode}
 %   Since \verb"structure" is globally available, we can use it to set the background color without introducing first.
 %   We decided to use a dark background rather than the traditional light highlight marker like color, since the former one is better for presentation highlighting and the later one is more like the overlay effect in \verb"beamer".
