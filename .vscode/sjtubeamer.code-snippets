@@ -50,8 +50,8 @@
 	"highlight": {
 		"scope": "doctex,tex,latex",
 		"prefix": "\\highlight",
-		"body": "\\highlight[${1:structure}]{$2}",
-		"description": "Highlight the given text. Create a structure color background block with white text.\nReceives one optional paramenter to specify the background color. If you want to modify the color of the text, use \\color{} command or \\textcolor{}{} command for your text.\nFor a general use and better control, use \\colorbox{}{} from xcolor directly.\n"
+		"body": "\\highlight<$3>[${1:structure}]{$2}",
+		"description": "Highlight the given text. Create a structure color background block with white text.\nReceives one optional paramenter to specify the background color. If you want to modify the color of the text, use \\color{} command or \\textcolor{}{} command for your text.\nFor a general use and better control, use \\colorbox{}{} from xcolor directly.\nOverlay option can be specified as well.\n"
 	},
 	"paragraph": {
 		"scope": "doctex,tex,latex",
@@ -74,7 +74,7 @@
 	"highlightline": {
 		"scope": "doctex,tex,latex",
 		"prefix": "\\highlightline",
-		"body": "\\highlightline{$1}",
+		"body": "\\highlightline<$1>",
 		"description": "Highlight the current line with a light background. \nIt is useful for the codeblock environment with escapechar option to insert the command for highlighting. For example, set the optional argument escapechar=|, and insert |\\highlightline| at the first position in the line you want to highlight.\nYou could use overlay specification for this macro.\n"
 	},
 	"codeblockinput": {
