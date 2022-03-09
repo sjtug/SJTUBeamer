@@ -1,0 +1,102 @@
+%% ------------------------------------------------------------------------
+%% Copyright (C) 2022 LogCreative
+%% 
+%% Licensed under the Apache License, Version 2.0 (the "License");
+%% you may not use this file except in compliance with the License.
+%% You may obtain a copy of the License at
+%% 
+%%     http://www.apache.org/licenses/LICENSE-2.0
+%% 
+%% Unless required by applicable law or agreed to in writing, software
+%% distributed under the License is distributed on an "AS IS" BASIS,
+%% WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+%% See the License for the specific language governing permissions and
+%% limitations under the License.
+%% ------------------------------------------------------------------------
+\ProvidesFile{sjtubeamerthememinted.ltx}[2022/03/09 Minted implementations for codeblock]
+% 启用 minted
+\tcbuselibrary{minted}
+% 设定 minted 基础样式：
+% *  字号 小
+% *  高亮颜色
+% *  自动断行
+% *  自动缩进
+\setminted{
+  fontsize=\small,
+  highlightcolor=ctertiary!40,
+  breaklines,
+  autogobble
+}
+% 更改编号颜色
+\renewcommand{\theFancyVerbLine}{\ttfamily
+  \textcolor{cprimary!80}{\scriptsize
+  \oldstylenums{\arabic{FancyVerbLine}}}}
+% 使用现有的高亮色彩主题，minted 自定义高亮颜色并不方便。
+\usemintedstyle{colorful}
+\if\EqualOption{minted}{codeblock}{true}
+  % 如果 codeblock 选项被指定，则重载 codeblock 环境。
+  % 由于 minted 需要强制参数：语言
+  % 所以会设定一个全局变量用于设定 minted 语言，
+  % 以避免与原有的 codeblock 定义冲突。
+  \newcommand{\mintedlanguage}{latex}
+  % 如果需要更换语言，请在 codeblock 环境前重新设定这个变量。
+  %    \renewcommand{\mintedlanguage}{python}
+  % 请注意清理原有的 listings 选项，
+  % 它们不一定与 minted 选项兼容，
+  % 比如 language 选项。
+  \renewtcblisting{codeblock}[2][]{
+    listing only,
+    listing engine=minted,
+    minted language=\mintedlanguage,
+    minted options={
+      numbers=left,
+      numbersep=5pt,
+      #1,
+    },
+    enhanced,
+    sharp corners,
+    top=0mm,
+    bottom=0mm,
+    right*=0.5mm,
+    title=#2,
+    colback=cprimary!5,
+    colframe=cprimary!80,
+    overlay={
+      \begin{tcbclipinterior}\fill[cprimary!20]%
+        (frame.south west) rectangle ([xshift=5.5mm]frame.north west);
+      \end{tcbclipinterior}
+    }
+  }
+\fi
+% 添加 \codeblockinput 命令，用于从现有的文件中使用代码抄录。
+% 用法：
+%     \codeblockinput[minted 选项]{标题}{语言}{文件}
+\newtcbinputlisting{\codeblockinput}[4][]{
+  listing engine=minted,
+  listing file={#4},
+  title={#2},
+  minted language={#3},
+  minted options={
+    numbers=left,
+    numbersep=5pt,
+    #1,
+  },
+  listing only,
+  enhanced,
+  sharp corners,
+  top=0mm,
+  bottom=0mm,
+  right*=0.5mm,
+  title=#2,
+  colback=cprimary!5,
+  colframe=cprimary!80,
+  overlay={
+    \begin{tcbclipinterior}\fill[cprimary!20]%
+      (frame.south west) rectangle ([xshift=5.5mm]frame.north west);
+    \end{tcbclipinterior}
+  }
+}
+%
+% 注意使用该插件时，
+% 需要正确安装 minted 与 python Pygments，
+% 并在编译时启用 -shell-escape 选项。
