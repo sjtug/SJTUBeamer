@@ -6,7 +6,8 @@ for theme in ${themes[@]};
 do
     echo Compiling $theme documentation...
     cp contrib/$theme/$theme.tex ./$theme.tex
-    latexmk $@ -outdir=build $theme.tex
+    latexmk $@ $theme.tex
+    cp $theme.pdf build/$theme.pdf
     echo Compiling $theme preview ...
     sed -e "s|<theme>|$theme|g" src/doc/contrib.template.tex > build/contrib.$theme.tex
     latexmk $@ -outdir=build build/contrib.$theme.tex
