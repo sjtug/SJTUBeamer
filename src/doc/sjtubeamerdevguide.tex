@@ -133,7 +133,7 @@ However, we could not offer you more about \LaTeX{} or \TeX{} programming aside 
     \end{verbatim}
 You could operate the package by the following command. The build script is set in \verb"build.lua".
 
-\fcmd{l3build install} This command will install current version from \verb"source" to your \TeX{} distribution. Remember to update the \verb"l3build" to the latest version to avoid misbehaving. This command requires an argument \verb"--texmfhome" option to specify the install path, which could be obtained from Mik\TeX{} Console or the \verb"tlmgr". This command is useful if you want this template to be globally available for all documents on your computer.
+\fcmd{l3build install} This command will install current version from \verb"source" to your \TeX{} distribution. Remember to update the \verb"l3build" to the latest version to avoid misbehaving. This command requires an argument \verb"--texmfhome" option to specify the install path, which could be obtained from Mik\TeX{} Console or the \verb"tlmgr". Then, refresh the database of filenames in your TeX{} distribution. This command is useful if you want this template to be globally available for all documents on your computer.
 
 \fcmd{l3build unpack} This command will unpack the source code and create a sandbox environment in \verb"build/local". You can create your own test file to test certain features here. It is the most common command for testing a certain feature.
 
