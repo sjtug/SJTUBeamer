@@ -21,7 +21,7 @@
 %% limitations under the License.
 %% ------------------------------------------------------------------------
 \NeedsTeXFormat{LaTeX2e}
-\ProvidesPackage{beamerinnerthemesjtubeamer}[2022/02/24 sjtubeamer inner theme v2.5.4]
+\ProvidesPackage{beamerinnerthemesjtubeamer}[2022/03/09 sjtubeamer inner theme v2.5.5]
 \RequirePackage{sjtuvi}
 \RequirePackage{tcolorbox}
 \DefineOption{inner}{cover}{maxplus}
@@ -157,10 +157,10 @@
   listing only,
   listing engine=listings,
   listing options={
-    #1,%
     numbers=left,
     numberstyle=\color{cprimary!80}\ttfamily\scriptsize,
     numbersep=5pt,
+    #1,
   },
   enhanced,
   sharp corners,
@@ -176,7 +176,7 @@
     \end{tcbclipinterior}
   }
 }
-\providecommand{\highlightline}{\rlap{\color{ctertiary!40}\rule[-\dp\strutbox]{\linewidth}{\baselineskip}}}
+\providecommand{\highlightline}{\rlap{\color{structure!25}\rule[-\dp\strutbox]{\linewidth}{\baselineskip}}}
 \AtEndPreamble{%
   \@ifpackageloaded{pgfplots}{%
     \pgfplotsset{
