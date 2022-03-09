@@ -1,15 +1,17 @@
 \documentclass{ctexbeamer}
-\usetheme{sjtubeamer}
+\usetheme{sjtubeamer}     % 不必使用 my 选项
 \usemytheme[codeblock]{minted}   % 引入本插件，可以不使用 codeblock 参数
 \begin{document}
 \begin{frame}[fragile]  % frame 添加 fragile 选项
   \frametitle{minted 插件}
-  需要正确安装 \texttt{minted} 宏包，并在编译文件时使用 \texttt{-shell-escape} 标志。
+  需要正确安装 \texttt{minted} 宏包，并在编译文件时使用 \texttt{-shell-escape} 标志。\texttt{sjtubeamer} 前不必使用 \texttt{my} 选项。
   \codeblockinput[firstline=5,lastline=9]{使用示例}{latex}{minted.tex}
 \end{frame}
 \begin{frame}[fragile]
-  当插件被指定 \texttt{codeblock} 参数时，\texttt{codeblock} 环境也会使用 \texttt{minted} 引擎。请注意这里是如何改变抄录代码语言的。
-  \codeblockinput[firstline=14, lastline=24, highlightlines={16}]{重载的 codeblock 环境}{latex}{minted.tex}
+  当插件被指定 \texttt{codeblock} 参数时，
+  \codeblockinput[firstline=2,lastline=3]{}{latex}{minted.tex}
+  \texttt{codeblock} 环境也会使用 \texttt{minted} 引擎。请注意这里是如何改变抄录代码语言的。
+  \codeblockinput[firstline=16, lastline=19, highlightlines={17}]{重载的 codeblock 环境（部分）}{latex}{minted.tex}
 \end{frame}
 \begin{frame}[fragile]  % fragile
   \renewcommand{\mintedlanguage}{cpp} % 改变语言
