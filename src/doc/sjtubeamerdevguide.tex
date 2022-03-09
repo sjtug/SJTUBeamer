@@ -104,7 +104,7 @@ Since the plugin is suffixed by \verb".ltx" (an abbreviation of \LaTeX{}), which
   % do something here ...
 \fi
 \end{verbatim}
-For more information about the customized condition test, see Section \ref{sec:optdef}.
+For more information about the customized condition test, see Section \ref{sec:optdef}. We don't implement the parser for the key-value form, since it will increase the complexity.
 
 \themename{} has an internal macro on how to include external files in the contribution path. Use \verb"\getcontribdir{<plugin>}" to get the directory \verb"contrib/<plugin>" and \verb"\getcontribpath{<plugin>}{<file>}" to get the directory file path \verb"contrib/<plugin>/<file>". If you are writing the documentation \verb"<plugin>.tex", the macro could behave differently and sign a warning. And before writing the documentation, you could refer to Section \ref{sec:l3build} for how to install the theme to your computer.
 
