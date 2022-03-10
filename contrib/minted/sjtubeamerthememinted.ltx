@@ -13,7 +13,7 @@
 %% See the License for the specific language governing permissions and
 %% limitations under the License.
 %% ------------------------------------------------------------------------
-\ProvidesFile{sjtubeamerthememinted.ltx}[2022/03/09 Minted implementations for codeblock]
+\ProvidesFile{sjtubeamerthememinted.ltx}[2022/03/10 Minted implementations for codeblock]
 % 启用 minted
 \tcbuselibrary{minted}
 % 设定 minted 基础样式：
@@ -29,8 +29,7 @@
 }
 % 更改编号颜色
 \renewcommand{\theFancyVerbLine}{\ttfamily
-  \textcolor{cprimary!80}{\scriptsize
-  \oldstylenums{\arabic{FancyVerbLine}}}}
+  \textcolor{cprimary!80}{\scriptsize\arabic{FancyVerbLine}}}
 % 使用现有的高亮色彩主题，minted 自定义高亮颜色并不方便。
 \usemintedstyle{colorful}
 % 添加 codeblock* 环境，用于使用 minted 引擎。
