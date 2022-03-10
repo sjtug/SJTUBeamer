@@ -16,7 +16,7 @@
 % \iffalse
 %<*package>
 \NeedsTeXFormat{LaTeX2e}
-\ProvidesPackage{beamerinnerthemesjtubeamer}[2022/03/10 sjtubeamer inner theme v2.5.5]
+\ProvidesPackage{beamerinnerthemesjtubeamer}[2022/03/10 sjtubeamer inner theme v2.5.6]
 %</package>
 % \fi
 % \CheckSum{0}
@@ -126,13 +126,11 @@
 %
 %   Introduce the library from tcolorbox to make code blocks.
 %   \verb"listingsutf8" is used to receive UTF-8 input. 
-%   \verb"breakable" is used for potential codeblock breaking. (Not recommended)
 %   The global set on shield externalize will prevent tcolorbox from externalizing. 
 %    \begin{macrocode}
 \RequirePackage{tcolorbox}
 \tcbuselibrary{skins}
 \tcbuselibrary{listingsutf8}
-\tcbuselibrary{breakable}
 \tcbset{shield externalize}
 %    \end{macrocode}
 %
@@ -195,11 +193,21 @@
 %    \end{macrocode}
 %
 %  \begin{macro}{\coverpage}
-%  Common command for \verb"\titlepage" and \verb"\bottompage". Disable externalization for generating title page and bottom page, locally.
+%  Common command for \verb"\titlepage" and \verb"\bottompage", and more.
 %    \begin{macrocode}
 \def\coverpage#1{
   {
+%    \end{macrocode}
+%  Disable externalization for generating title page and bottom page, locally.
+%    \begin{macrocode}
     \tikzset{external/export=false}
+%    \end{macrocode}
+%  Set the \verb"parindent" to 0pt to avoid unwanted shift if indent is set.
+%    \begin{macrocode}
+    \setlength{\parindent}{0em}
+%    \end{macrocode}
+%   Check if it is in sidebar mode to make necessary shift for cover pages.
+%    \begin{macrocode}
     \ifdim\beamer@sidebarwidth=0pt %
       \usebeamertemplate*{#1}
     \else
@@ -301,8 +309,9 @@
 %   Highlight the given text. Create a \verb"structure" color background block with white text.
 %   Receives one optional paramenter to specify the background color. If you want to modify the color of the text, use \verb"\color{}" command or \verb"\textcolor{}{}" command for your text.
 %   For a general use and better control, use \verb"\colorbox{}{}" from \verb"xcolor" directly.
+%   Overlay option can be specified as well.
 %    \begin{macrocode}
-\newcommand{\highlight}[2][structure]{\textcolor{white}{\colorbox{#1}{#2}}}
+\newcommand<>{\highlight}[2][structure]{\only#3{\textcolor{white}{\colorbox{#1}{#2}}}}
 %    \end{macrocode}
 %   Since \verb"structure" is globally available, we can use it to set the background color without introducing first.
 %   We decided to use a dark background rather than the traditional light highlight marker like color, since the former one is better for presentation highlighting and the later one is more like the overlay effect in \verb"beamer".
@@ -363,7 +372,7 @@
 %   Code block environment is made for presenting code in an obvious way.
 %   The first optional parameter is passed to listing, which mostly sets the language to highlight, see the \verb"listings" package for more details. 
 %   The second required parameter receives the title to make.
-%   ADVANCED TIP: For longer typeset, remove the \verb"frame" environment around the code input for occupying cross the pages. If you use \verb"lstlisting" environment directly, no numbering is preset so you need to set the number manually for this basic command.
+%   ADVANCED TIP: For longer typeset, use \verb"lstlisting" environment directly and remove the \verb"frame" environment around the code input for occupying cross the pages. No numbering is preset so you need to set the number manually for this basic command.
 %    \begin{macrocode}
 \newtcblisting{codeblock}[2][]{
   listing only,
@@ -375,7 +384,6 @@
     #1,
   },
   enhanced,
-  breakable,
   sharp corners,
   top=0mm,
   bottom=0mm,
@@ -395,8 +403,9 @@
 % \begin{macro}{\highlightline}
 %    Highlight the current line with a light background. 
 %    It is useful for the codeblock environment with \verb"escapechar" option to insert the command for highlighting. For example, set the optional argument \verb"escapechar=|", and insert \verb"|\highlightline|" at the first position in the line you want to highlight.
+%    You could use overlay specification for this macro.
 %    \begin{macrocode}
-\providecommand{\highlightline}{\rlap{\color{structure!25}\rule[-\dp\strutbox]{\linewidth}{\baselineskip}}}
+\newcommand<>{\highlightline}{\only#1{\rlap{\color{structure!25}\rule[-\dp\strutbox]{\linewidth}{\baselineskip}}}}
 %    \end{macrocode}
 %    For better support in code environment, you should try out the \verb"highlightlines" in minted package, but performance drop is expected.
 % \end{macro}
@@ -406,7 +415,7 @@
 %   The first optional parameter is passed to listing.
 %   The second required parameter receives the title to make.
 %   The third required paramter receives the file to typeset.
-%   ADVANCED TIP: For longer typeset, remove the \verb"frame" environment around the code input for occupying cross the pages. If you use \verb"lstinputlisting" command directly, no numbering is preset so you need to set the number manually for this basic command.
+%   ADVANCED TIP: For longer typeset, use \verb"lstinputlisting" command directly and remove the \verb"frame" environment around the code input for occupying cross the pages. No numbering is preset so you need to set the number manually for this basic command.
 %    \begin{macrocode}
 \newtcbinputlisting{\codeblockinput}[3][]{
   listing only,
@@ -419,7 +428,6 @@
   },
   listing file=#3,
   enhanced,
-  breakable,
   sharp corners,
   top=0mm,
   bottom=0mm,

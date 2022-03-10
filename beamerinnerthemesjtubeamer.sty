@@ -21,7 +21,7 @@
 %% limitations under the License.
 %% ------------------------------------------------------------------------
 \NeedsTeXFormat{LaTeX2e}
-\ProvidesPackage{beamerinnerthemesjtubeamer}[2022/03/10 sjtubeamer inner theme v2.5.5]
+\ProvidesPackage{beamerinnerthemesjtubeamer}[2022/03/10 sjtubeamer inner theme v2.5.6]
 \RequirePackage{sjtuvi}
 \RequirePackage{tcolorbox}
 \DefineOption{inner}{cover}{maxplus}
@@ -57,7 +57,6 @@
 \RequirePackage{tcolorbox}
 \tcbuselibrary{skins}
 \tcbuselibrary{listingsutf8}
-\tcbuselibrary{breakable}
 \tcbset{shield externalize}
 \RequirePackage{sjtucover}
 \setbeamertemplate{logo}[\sjtubeamer@inner@cover]
@@ -79,6 +78,7 @@
 \def\coverpage#1{
   {
     \tikzset{external/export=false}
+    \setlength{\parindent}{0em}
     \ifdim\beamer@sidebarwidth=0pt %
       \usebeamertemplate*{#1}
     \else
@@ -123,7 +123,7 @@
 \if\EqualOption{inner}{cover}{min}\else
   \setbeamertemplate{blocks}[rounded]
 \fi
-\newcommand{\highlight}[2][structure]{\textcolor{white}{\colorbox{#1}{#2}}}
+\newcommand<>{\highlight}[2][structure]{\only#3{\textcolor{white}{\colorbox{#1}{#2}}}}
 \providecommand{\paragraph}[1]{\textcolor{white}{\colorbox{structure}{#1}}\space}
 \newtcolorbox{stampbox}[1][cprimary]{%
   capture=hbox,
@@ -164,7 +164,6 @@
     #1,
   },
   enhanced,
-  breakable,
   sharp corners,
   top=0mm,
   bottom=0mm,
@@ -178,7 +177,7 @@
     \end{tcbclipinterior}
   }
 }
-\providecommand{\highlightline}{\rlap{\color{structure!25}\rule[-\dp\strutbox]{\linewidth}{\baselineskip}}}
+\newcommand<>{\highlightline}{\only#1{\rlap{\color{structure!25}\rule[-\dp\strutbox]{\linewidth}{\baselineskip}}}}
 \newtcbinputlisting{\codeblockinput}[3][]{
   listing only,
   listing engine=listings,
@@ -190,7 +189,6 @@
   },
   listing file=#3,
   enhanced,
-  breakable,
   sharp corners,
   top=0mm,
   bottom=0mm,

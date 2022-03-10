@@ -39,7 +39,7 @@
 		"scope": "doctex,tex",
 		"prefix": "\\coverpage",
 		"body": "\\coverpage{$1}",
-		"description": "Common command for \\titlepage and \\bottompage. Disable externalization for generating title page and bottom page, locally.\n"
+		"description": "Common command for \\titlepage and \\bottompage, and more.\n"
 	},
 	"definecover": {
 		"scope": "doctex,tex",
@@ -50,8 +50,8 @@
 	"highlight": {
 		"scope": "doctex,tex,latex",
 		"prefix": "\\highlight",
-		"body": "\\highlight[${1:structure}]{$2}",
-		"description": "Highlight the given text. Create a structure color background block with white text.\nReceives one optional paramenter to specify the background color. If you want to modify the color of the text, use \\color{} command or \\textcolor{}{} command for your text.\nFor a general use and better control, use \\colorbox{}{} from xcolor directly.\n"
+		"body": "\\highlight<$3>[${1:structure}]{$2}",
+		"description": "Highlight the given text. Create a structure color background block with white text.\nReceives one optional paramenter to specify the background color. If you want to modify the color of the text, use \\color{} command or \\textcolor{}{} command for your text.\nFor a general use and better control, use \\colorbox{}{} from xcolor directly.\nOverlay option can be specified as well.\n"
 	},
 	"paragraph": {
 		"scope": "doctex,tex,latex",
@@ -69,19 +69,19 @@
 		"scope": "doctex,tex,latex",
 		"prefix": "\n\\begin{codeblock",
 		"body": "\n\\begin{codeblock}[${1:}]{$2}\n\t$3\n\\end{codeblock}\n",
-		"description": "Code block environment is made for presenting code in an obvious way.\nThe first optional parameter is passed to listing, which mostly sets the language to highlight, see the listings package for more details. \nThe second required parameter receives the title to make.\nADVANCED TIP: For longer typeset, remove the frame environment around the code input for occupying cross the pages. If you use lstlisting environment directly, no numbering is preset so you need to set the number manually for this basic command.\n"
+		"description": "Code block environment is made for presenting code in an obvious way.\nThe first optional parameter is passed to listing, which mostly sets the language to highlight, see the listings package for more details. \nThe second required parameter receives the title to make.\nADVANCED TIP: For longer typeset, use lstlisting environment directly and remove the frame environment around the code input for occupying cross the pages. No numbering is preset so you need to set the number manually for this basic command.\n"
 	},
 	"highlightline": {
 		"scope": "doctex,tex,latex",
 		"prefix": "\\highlightline",
-		"body": "\\highlightline",
-		"description": "Highlight the current line with a light background. \nIt is useful for the codeblock environment with escapechar option to insert the command for highlighting. For example, set the optional argument escapechar=|, and insert |\\highlightline| at the first position in the line you want to highlight.\n"
+		"body": "\\highlightline<$1>",
+		"description": "Highlight the current line with a light background. \nIt is useful for the codeblock environment with escapechar option to insert the command for highlighting. For example, set the optional argument escapechar=|, and insert |\\highlightline| at the first position in the line you want to highlight.\nYou could use overlay specification for this macro.\n"
 	},
 	"codeblockinput": {
 		"scope": "doctex,tex,latex",
 		"prefix": "\\codeblockinput",
 		"body": "\\codeblockinput[${1:}]{$2}{$3}{$4}",
-		"description": "Code block environment for external file input. The same style like codeblock.\nThe first optional parameter is passed to listing.\nThe second required parameter receives the title to make.\nThe third required paramter receives the file to typeset.\nADVANCED TIP: For longer typeset, remove the frame environment around the code input for occupying cross the pages. If you use lstinputlisting command directly, no numbering is preset so you need to set the number manually for this basic command.\n"
+		"description": "Code block environment for external file input. The same style like codeblock.\nThe first optional parameter is passed to listing.\nThe second required parameter receives the title to make.\nThe third required paramter receives the file to typeset.\nADVANCED TIP: For longer typeset, use lstinputlisting command directly and remove the frame environment around the code input for occupying cross the pages. No numbering is preset so you need to set the number manually for this basic command.\n"
 	},
 	"sjtubeamer@outer@nav": {
 		"scope": "doctex,tex",
