@@ -361,7 +361,7 @@
 %   Code block environment is made for presenting code in an obvious way.
 %   The first optional parameter is passed to listing, which mostly sets the language to highlight, see the \verb"listings" package for more details. 
 %   The second required parameter receives the title to make.
-%   ADVANCED TIP: For longer typeset, remove the \verb"frame" environment around the code input for occupying cross the pages. If you use \verb"lstlisting" environment directly, no numbering is preset so you need to set the number manually for this basic command.
+%   ADVANCED TIP: For longer typeset, use \verb"lstlisting" environment directly and remove the \verb"frame" environment around the code input for occupying cross the pages. No numbering is preset so you need to set the number manually for this basic command.
 %    \begin{macrocode}
 \newtcblisting{codeblock}[2][]{
   listing only,
@@ -403,7 +403,7 @@
 %   The first optional parameter is passed to listing.
 %   The second required parameter receives the title to make.
 %   The third required paramter receives the file to typeset.
-%   ADVANCED TIP: For longer typeset, remove the \verb"frame" environment around the code input for occupying cross the pages. If you use \verb"lstinputlisting" command directly, no numbering is preset so you need to set the number manually for this basic command.
+%   ADVANCED TIP: For longer typeset, use \verb"lstinputlisting" command directly and remove the \verb"frame" environment around the code input for occupying cross the pages. No numbering is preset so you need to set the number manually for this basic command.
 %    \begin{macrocode}
 \newtcbinputlisting{\codeblockinput}[3][]{
   listing only,
