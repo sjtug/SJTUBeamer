@@ -40,7 +40,7 @@
 %     \begin{codeblock*}[minted 选项]{标题}{语言}
 %
 %     \end{codeblock*}
-\newtcblisting{codeblock*}[3][]{
+\newtcblisting{codeblockminted}[3][]{
   listing only,
   listing engine=minted,
   minted language=#3,
@@ -66,7 +66,7 @@
 % 添加 \codeblockinput 命令，用于从现有的文件中使用代码抄录。
 % 用法：
 %     \codeblockinput[minted 选项]{标题}{语言}{文件}
-\newtcbinputlisting{\codeblockinput}[4][]{
+\newtcbinputlisting{\codeblockinputminted}[4][]{
   listing engine=minted,
   listing file={#4},
   title={#2},
