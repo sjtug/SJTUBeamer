@@ -1,6 +1,6 @@
 \documentclass{ctexbeamer}
 \usetheme{sjtubeamer}     % 不必使用 my 选项
-\usemytheme{minted}       % 引入本插件
+\usemytheme{minted}       % 引入本插件，可以添加 draft 选项
 \begin{document}
 \begin{frame}[fragile]  % frame 添加 fragile 选项
   \frametitle{minted 插件}
@@ -8,6 +8,7 @@
   \codeblockinput[firstline=5,lastline=9]{外部输入示例}{latex}{minted.tex}
 \end{frame}
 \begin{frame}[fragile]
+  你可以通过临时添加 \texttt{draft} 选项来减少编译时间。
   \codeblockinput[firstline=2, lastline=3]{}{latex}{minted.tex}
   不仅可以使用 \texttt{\textbackslash{}codeblockinput} 用于抄录外部文件，还可以使用 \texttt{codeblock*} 环境使用 \texttt{minted} 引擎抄录文件内代码。
   \codeblockinput[firstline=15, lastline=17]{codeblock* 环境（部分）}{latex}{minted.tex}

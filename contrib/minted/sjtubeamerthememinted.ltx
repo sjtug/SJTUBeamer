@@ -14,6 +14,9 @@
 %% limitations under the License.
 %% ------------------------------------------------------------------------
 \ProvidesFile{sjtubeamerthememinted.ltx}[2022/03/10 Minted implementations for codeblock]
+\if\EqualOption{minted}{draft}{true}
+  \PassOptionsToPackage{draft}{minted}
+\fi
 % 启用 minted
 \tcbuselibrary{minted}
 % 设定 minted 基础样式：
