@@ -69,7 +69,7 @@
 		"scope": "doctex,tex,latex",
 		"prefix": "\n\\begin{codeblock",
 		"body": "\n\\begin{codeblock}[${1:}]{$2}\n\t$3\n\\end{codeblock}\n",
-		"description": "Code block environment is made for presenting code in an obvious way.\nThe first optional parameter is passed to listing, which mostly sets the language to highlight, see the listings package for more details. \nThe second required parameter receives the title to make.\nADVANCED TIP: For longer typeset, remove the frame environment around the code input for occupying cross the pages. If you use lstlisting environment directly, no numbering is preset so you need to set the number manually for this basic command.\n"
+		"description": "Code block environment is made for presenting code in an obvious way.\nThe first optional parameter is passed to listing, which mostly sets the language to highlight, see the listings package for more details. \nThe second required parameter receives the title to make.\nADVANCED TIP: For longer typeset, use lstlisting environment directly and remove the frame environment around the code input for occupying cross the pages. No numbering is preset so you need to set the number manually for this basic command.\n"
 	},
 	"highlightline": {
 		"scope": "doctex,tex,latex",
@@ -81,7 +81,7 @@
 		"scope": "doctex,tex,latex",
 		"prefix": "\\codeblockinput",
 		"body": "\\codeblockinput[${1:}]{$2}{$3}{$4}",
-		"description": "Code block environment for external file input. The same style like codeblock.\nThe first optional parameter is passed to listing.\nThe second required parameter receives the title to make.\nThe third required paramter receives the file to typeset.\nADVANCED TIP: For longer typeset, remove the frame environment around the code input for occupying cross the pages. If you use lstinputlisting command directly, no numbering is preset so you need to set the number manually for this basic command.\n"
+		"description": "Code block environment for external file input. The same style like codeblock.\nThe first optional parameter is passed to listing.\nThe second required parameter receives the title to make.\nThe third required paramter receives the file to typeset.\nADVANCED TIP: For longer typeset, use lstinputlisting command directly and remove the frame environment around the code input for occupying cross the pages. No numbering is preset so you need to set the number manually for this basic command.\n"
 	},
 	"sjtubeamer@outer@nav": {
 		"scope": "doctex,tex",
