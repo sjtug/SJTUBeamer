@@ -21,7 +21,7 @@
 %% limitations under the License.
 %% ------------------------------------------------------------------------
 \NeedsTeXFormat{LaTeX2e}
-\ProvidesPackage{beamerinnerthemesjtubeamer}[2022/02/24 sjtubeamer inner theme v2.5.4]
+\ProvidesPackage{beamerinnerthemesjtubeamer}[2022/03/10 sjtubeamer inner theme v2.5.5]
 \RequirePackage{sjtuvi}
 \RequirePackage{tcolorbox}
 \DefineOption{inner}{cover}{maxplus}
@@ -57,6 +57,7 @@
 \RequirePackage{tcolorbox}
 \tcbuselibrary{skins}
 \tcbuselibrary{listingsutf8}
+\tcbuselibrary{breakable}
 \tcbset{shield externalize}
 \RequirePackage{sjtucover}
 \setbeamertemplate{logo}[\sjtubeamer@inner@cover]
@@ -157,12 +158,13 @@
   listing only,
   listing engine=listings,
   listing options={
-    #1,%
     numbers=left,
     numberstyle=\color{cprimary!80}\ttfamily\scriptsize,
     numbersep=5pt,
+    #1,
   },
   enhanced,
+  breakable,
   sharp corners,
   top=0mm,
   bottom=0mm,
@@ -176,7 +178,32 @@
     \end{tcbclipinterior}
   }
 }
-\providecommand{\highlightline}{\rlap{\color{ctertiary!40}\rule[-\dp\strutbox]{\linewidth}{\baselineskip}}}
+\providecommand{\highlightline}{\rlap{\color{structure!25}\rule[-\dp\strutbox]{\linewidth}{\baselineskip}}}
+\newtcbinputlisting{\codeblockinput}[3][]{
+  listing only,
+  listing engine=listings,
+  listing options={
+    numbers=left,
+    numberstyle=\color{cprimary!80}\ttfamily\scriptsize,
+    numbersep=5pt,
+    #1,
+  },
+  listing file=#3,
+  enhanced,
+  breakable,
+  sharp corners,
+  top=0mm,
+  bottom=0mm,
+  right*=0.5mm,
+  title=#2,
+  colback=cprimary!5,
+  colframe=cprimary!80,
+  overlay={
+    \begin{tcbclipinterior}\fill[cprimary!20]%
+      (frame.south west) rectangle ([xshift=5.5mm]frame.north west);
+    \end{tcbclipinterior}
+  }
+}
 \AtEndPreamble{%
   \@ifpackageloaded{pgfplots}{%
     \pgfplotsset{

@@ -2,7 +2,7 @@
 
 SJTUBeamer 现在已经开放插件接口，存放于根目录的 `contrib/` 文件夹中。如果您实现了自己的主题模板，或者是基于 SJTUBeamer API 的宏包，可以考虑通过下面的步骤向本存储库发 PR：
 1. fork 仓库，克隆自己的仓库到本地。
-2. 向你的电脑安装当前版本的 SJTUBeamer，`cd src && l3build install`，便于插件文档的编写。
+2. 向你的电脑安装当前版本的 SJTUBeamer，`cd src && l3build install`，在 TeX 发布版中刷新文件名数据库，便于插件文档的编写。
 3. 在 `contrib` 文件夹中新建一个插件文件夹 `<theme>`
 4. 在文件夹中至少应该有下面两个文件：
     - 插件入口 `contrib/<theme>/sjtubeamertheme<theme>.ltx`
@@ -22,7 +22,7 @@ SJTUBeamer 现在已经开放插件接口，存放于根目录的 `contrib/` 文
 SJTUBeamer is available for receiving plugins, which are stored in `contrib/` folder. If you want to contribute your own theme template or package based on SJTUBeamer API, you could make a pull request to this repo by the following steps:
 1. Fork this repository and clone your own version to the machine.
 2. Install the current version of `SJTUBeamer` to your computer for the convenience of writing documentation.
-`cd src && l3build install`.
+`cd src && l3build install`, then refresh the database of filenames in your TeX distribution.
 3. Create a new plugin folder `<theme>` in `contrib`.
 4. At least two files should be implemented in the folder:
     - Plugin entry point. `contrib/<theme>/sjtubeamertheme<theme>.ltx`

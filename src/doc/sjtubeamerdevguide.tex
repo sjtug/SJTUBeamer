@@ -104,7 +104,7 @@ Since the plugin is suffixed by \verb".ltx" (an abbreviation of \LaTeX{}), which
   % do something here ...
 \fi
 \end{verbatim}
-For more information about the customized condition test, see Section \ref{sec:optdef}.
+For more information about the customized condition test, see Section \ref{sec:optdef}. We don't implement the parser for the key-value form, since it will increase the complexity.
 
 \themename{} has an internal macro on how to include external files in the contribution path. Use \verb"\getcontribdir{<plugin>}" to get the directory \verb"contrib/<plugin>" and \verb"\getcontribpath{<plugin>}{<file>}" to get the directory file path \verb"contrib/<plugin>/<file>". If you are writing the documentation \verb"<plugin>.tex", the macro could behave differently and sign a warning. And before writing the documentation, you could refer to Section \ref{sec:l3build} for how to install the theme to your computer.
 
@@ -133,7 +133,7 @@ However, we could not offer you more about \LaTeX{} or \TeX{} programming aside 
     \end{verbatim}
 You could operate the package by the following command. The build script is set in \verb"build.lua".
 
-\fcmd{l3build install} This command will install current version from \verb"source" to your \TeX{} distribution. Remember to update the \verb"l3build" to the latest version to avoid misbehaving. This command requires an argument \verb"--texmfhome" option to specify the install path, which could be obtained from Mik\TeX{} Console or the \verb"tlmgr". This command is useful if you want this template to be globally available for all documents on your computer.
+\fcmd{l3build install} This command will install current version from \verb"source" to your \TeX{} distribution. Remember to update the \verb"l3build" to the latest version to avoid misbehaving. This command requires an argument \verb"--texmfhome" option to specify the install path, which could be obtained from Mik\TeX{} Console or the \verb"tlmgr". Then, refresh the database of filenames in your TeX{} distribution. This command is useful if you want this template to be globally available for all documents on your computer.
 
 \fcmd{l3build unpack} This command will unpack the source code and create a sandbox environment in \verb"build/local". You can create your own test file to test certain features here. It is the most common command for testing a certain feature.
 

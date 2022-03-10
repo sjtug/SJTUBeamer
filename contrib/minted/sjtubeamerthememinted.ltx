@@ -1,0 +1,99 @@
+%% ------------------------------------------------------------------------
+%% Copyright (C) 2022 LogCreative
+%% 
+%% Licensed under the Apache License, Version 2.0 (the "License");
+%% you may not use this file except in compliance with the License.
+%% You may obtain a copy of the License at
+%% 
+%%     http://www.apache.org/licenses/LICENSE-2.0
+%% 
+%% Unless required by applicable law or agreed to in writing, software
+%% distributed under the License is distributed on an "AS IS" BASIS,
+%% WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+%% See the License for the specific language governing permissions and
+%% limitations under the License.
+%% ------------------------------------------------------------------------
+\ProvidesFile{sjtubeamerthememinted.ltx}[2022/03/10 Minted implementations for codeblock]
+\if\EqualOption{minted}{draft}{true}
+  \PassOptionsToPackage{draft}{minted}
+\fi
+% 启用 minted
+\tcbuselibrary{minted}
+% 设定 minted 基础样式：
+% *  字号 小
+% *  高亮颜色
+% *  自动断行
+% *  自动缩进
+\setminted{
+  fontsize=\small,
+  highlightcolor=structure!25,
+  breaklines,
+  autogobble
+}
+% 更改编号颜色
+\renewcommand{\theFancyVerbLine}{\ttfamily
+  \textcolor{cprimary!80}{\scriptsize\arabic{FancyVerbLine}}}
+% 使用现有的高亮色彩主题，minted 自定义高亮颜色并不方便。
+\usemintedstyle{colorful}
+% 添加 codeblockminted 环境，用于使用 minted 引擎。
+% 用法：
+%     \begin{codeblockminted}[minted 选项]{标题}{语言}
+%
+%     \end{codeblockminted}
+\newtcblisting{codeblockminted}[3][]{
+  listing only,
+  listing engine=minted,
+  minted language=#3,
+  minted options={
+    numbers=left,
+    numbersep=5pt,
+    #1,
+  },
+  enhanced,
+  breakable,
+  sharp corners,
+  top=0mm,
+  bottom=0mm,
+  right*=0.5mm,
+  title=#2,
+  colback=cprimary!5,
+  colframe=cprimary!80,
+  overlay={
+    \begin{tcbclipinterior}\fill[cprimary!20]%
+      (frame.south west) rectangle ([xshift=5.5mm]frame.north west);
+    \end{tcbclipinterior}
+  }
+}
+% 添加 \codeblockinputminted 命令，用于从现有的文件中使用代码抄录。
+% 用法：
+%     \codeblockinputminted[minted 选项]{标题}{语言}{文件}
+\newtcbinputlisting{\codeblockinputminted}[4][]{
+  listing engine=minted,
+  listing file={#4},
+  title={#2},
+  minted language={#3},
+  minted options={
+    numbers=left,
+    numbersep=5pt,
+    #1,
+  },
+  listing only,
+  enhanced,
+  breakable,
+  sharp corners,
+  top=0mm,
+  bottom=0mm,
+  right*=0.5mm,
+  title=#2,
+  colback=cprimary!5,
+  colframe=cprimary!80,
+  overlay={
+    \begin{tcbclipinterior}\fill[cprimary!20]%
+      (frame.south west) rectangle ([xshift=5.5mm]frame.north west);
+    \end{tcbclipinterior}
+  }
+}
+%
+% 注意使用该插件时，
+% 需要正确安装 minted 与 python Pygments，
+% 并在编译时启用 -shell-escape 选项。

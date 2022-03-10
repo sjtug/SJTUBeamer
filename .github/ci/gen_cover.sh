@@ -22,8 +22,10 @@ for theme in contrib/*;
 do
     theme=${theme/contrib\//}
     echo Compiling $theme ...
-    cp contrib/$theme/$theme.tex build/$theme.tex
-    latexmk $@ -outdir=build build/$theme.tex
+    cp contrib/$theme/$theme.tex ./$theme.tex
+    # build at local dir and use -shell-escape to make minted happy.
+    latexmk $@ $theme.tex -shell-escape
+    cp $theme.pdf build/$theme.pdf
     echo \\includepdf{$theme.pdf}>>build/cover.tex
 done
 
