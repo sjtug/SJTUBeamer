@@ -1,4 +1,4 @@
-\documentclass{ctexbeamer}
+\documentclass[aspectsratio=169]{ctexbeamer}
 \usetheme{sjtubeamer}     % 不必使用 my 选项
 \usemytheme{minted}       % 引入本插件，可以添加 draft 选项
 \begin{document}
@@ -11,7 +11,7 @@
   你可以通过临时添加 \texttt{draft} 选项来减少编译时间。
   \codeblockinputminted[firstline=2, lastline=3]{}{latex}{minted.tex}
   不仅可以使用 \texttt{\textbackslash{}codeblockinputminted} 用于抄录外部文件，还可以使用 \texttt{codeblockminted} 环境使用 \texttt{minted} 引擎抄录文件内代码。
-  \codeblockinputminted[firstline=15, lastline=17]{codeblockminted 环境（部分）}{latex}{minted.tex}
+  \codeblockinputminted[firstline=16, lastline=18]{codeblockminted 环境（部分）}{latex}{minted.tex}
 \end{frame}
 \begin{frame}[fragile]  % fragile
   \begin{codeblockminted}[]{C++ 代码}{cpp}
