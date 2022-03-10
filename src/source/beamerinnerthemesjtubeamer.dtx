@@ -126,13 +126,11 @@
 %
 %   Introduce the library from tcolorbox to make code blocks.
 %   \verb"listingsutf8" is used to receive UTF-8 input. 
-%   \verb"breakable" is used for potential codeblock breaking. (Not recommended)
 %   The global set on shield externalize will prevent tcolorbox from externalizing. 
 %    \begin{macrocode}
 \RequirePackage{tcolorbox}
 \tcbuselibrary{skins}
 \tcbuselibrary{listingsutf8}
-\tcbuselibrary{breakable}
 \tcbset{shield externalize}
 %    \end{macrocode}
 %
@@ -375,7 +373,6 @@
     #1,
   },
   enhanced,
-  breakable,
   sharp corners,
   top=0mm,
   bottom=0mm,
@@ -419,7 +416,6 @@
   },
   listing file=#3,
   enhanced,
-  breakable,
   sharp corners,
   top=0mm,
   bottom=0mm,
