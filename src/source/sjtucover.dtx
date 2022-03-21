@@ -547,17 +547,18 @@
     \par\vskip4pt
     \usebeamerfont{part title}\insertpart\par
 %    \end{macrocode}
-%   Since navigation bar is packaged, to modify the color, you have to change the \verb"section in head/foot" beamer color. Here, the first move is to save the current color to a temporary variable. After the insertion, the previous color should be restored.
+%   Since navigation bar is packaged, to modify the color, you have to change the \verb"section in head/foot" beamer color. Here, use a group to make the temporary change. 
+%   Instead of using \verb"\insertnavigation" macro, use \verb"\insertsectionnavigationhorizontal" macro for a better control of long navigation bar.
 %    \begin{macrocode}
     \hbox to \textwidth{
-      \usebeamerfont{footline}%
-      \setbeamercolor{tempcolor}{fg=section in head/foot.fg}
-      \setbeamercolor{section in head/foot}{use=palette primary,
-        fg=palette primary.fg,bg=}
-      \hfill
-      \insertnavigation{0.4\textwidth}
-      \hspace*{1cm}
-      \setbeamercolor{section in head/foot}{fg=tempcolor.fg}
+      {
+        \usebeamerfont{footline}
+        \setbeamercolor{section in head/foot}{use=palette primary,
+          fg=palette primary.fg,bg=}
+        \let\navwidth\textwidth
+        \advance\navwidth by -32pt
+        \insertsectionnavigationhorizontal{\navwidth}{\hskip0pt plus1filll}{\hskip-.3cm}\hskip11pt
+      }
     }
   \end{beamercolorbox}
   \endgroup
