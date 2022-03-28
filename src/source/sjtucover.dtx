@@ -540,7 +540,7 @@
   \begin{tikzpicture}[overlay]
     \fill [palette primary.bg] (-0.2*\the\paperwidth,-1*\the\paperheight)
     rectangle (1*\the\paperwidth, 0.3*\the\paperheight);
-    \node [right, palette primary.fg] at (-0.2*\the\paperwidth, -0.48*\the\paperheight) {\resizebox{1.25\paperwidth}{!}{\sjtugate}};
+    \node [right, palette primary.fg] at (-0.2*\the\paperwidth, -0.6*\the\paperheight) {\resizebox{1.25\paperwidth}{!}{\sjtugate}};
   \end{tikzpicture}
   \vfil
   \begingroup
@@ -552,7 +552,22 @@
       \partname~\insertromanpartnumber
     \fi%
     \par\vskip4pt
-    \usebeamerfont{part title}\insertpart\par
+    {\usebeamerfont{part title}\insertpart\par}
+    \vskip10pt
+    {
+      \scriptsize
+%    \end{macrocode}
+% The workaround to insert the vertical section navigation.
+% \verb"\hfuzz" is locally set to ignore the overfull box.
+% \verb"\hbadness" is set to a value bigger than infinity (10000) to ignore the underfull box.
+% \verb"\hskip" is set for the compensation from the macro \verb"\insertsectionnavigation".
+% The width of section navigation is set to a small value to force the text to "flushleft".
+%    \begin{macrocode}
+      \hfuzz=100pt
+      \hbadness=100000
+      \hskip-0.3cm
+      \insertsectionnavigation{0.1\textwidth}
+    }
   \endgroup
   \vfill
 }
