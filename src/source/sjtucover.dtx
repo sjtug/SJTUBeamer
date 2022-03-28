@@ -637,6 +637,24 @@
 %</min>
 %    \end{macrocode}
 %
+%  \paragraph{my.}
+%    \begin{macrocode}
+%<*my>
+\defbeamertemplate*{part page}{my}[1][]
+{
+  %
+  % Developer could implement your own part page template here...
+  % or use "my" theme first, then implement your title page 
+  % in a different style file mycover.sty with:
+  %    \defbeamertemplate*{part page}{<another name>}[1][]{<Your implementation>}
+  %    \defbeamertemplatealias{part page}{my}{<another name>}
+  % and in the main.tex:
+  %    \usetheme[my]{sjtubeamer}\usepackage{mycover}
+  %
+}
+%</my>
+%    \end{macrocode}
+%
 %  \subsubsection{Section Page \& Subsection Page}
 %    \paragraph{min.}
 %  \begin{macro}{\sectionblock}
