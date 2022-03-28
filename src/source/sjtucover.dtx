@@ -583,12 +583,8 @@
   \begingroup
     \centering
     \usebeamerfont{part name}
-    \if\EqualOption{cover}{lang}{cn}%
-      第~\insertromanpartnumber~部分
-    \else%
-      \partname~\insertromanpartnumber
-    \fi%
-    \par\vskip4pt
+    \stamptext{\insertromanpartnumber}\\
+    \vskip4pt
     {
       \usebeamerfont{part title}
       \color{structure}
@@ -600,7 +596,7 @@
 }
 %</max>
 %    \end{macrocode}
-
+%
 %  \paragraph{min.}
 %    \begin{macrocode}
 %<*min>
