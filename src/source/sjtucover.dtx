@@ -526,6 +526,24 @@
 %</my>
 %    \end{macrocode}
 %
+%  \subsubsection{Name Translation}
+%
+%  \begin{macro}{\sjtubeamer@cover@partname}
+%    Use the partname based on different languages.
+%    If it is in \verb"ctexbeamer" class, then use the internal macro from \verb"ctexheading" in order to get the part style set from \verb"\ctexset".
+%    \begin{macrocode}
+\if\EqualOption{cover}{lang}{cn}%
+  \@ifclassloaded{ctexbeamer}{
+    \def\sjtubeamer@cover@partname{\CTEX@partname}
+  }{
+    \def\sjtubeamer@cover@partname{第~\insertromanpartnumber~部分}
+  }
+\else%
+  \def\sjtubeamer@cover@partname{\partname~\insertromanpartnumber}
+\fi%
+%    \end{macrocode}
+%  \end{macro}
+%
 %  \subsubsection{Part Page}
 %
 %  \paragraph{maxplus.}
@@ -546,11 +564,7 @@
   \begingroup
     \usebeamercolor[fg]{part title}
     \usebeamerfont{part name}
-    \if\EqualOption{cover}{lang}{cn}%
-      第~\insertromanpartnumber~部分
-    \else%
-      \partname~\insertromanpartnumber
-    \fi%
+    \sjtubeamer@cover@partname
     \par\vskip4pt
     {\usebeamerfont{part title}\insertpart\par}
     \vskip10pt
@@ -609,11 +623,7 @@
 %    \begin{macrocode}
   \begin{beamercolorbox}[sep=16pt,right,#1]{part title}
     \hfill\usebeamerfont{part name}
-    \if\EqualOption{cover}{lang}{cn}%
-      第~\insertromanpartnumber~部分
-    \else%
-      \partname~\insertromanpartnumber
-    \fi%
+    \sjtubeamer@cover@partname
     \par\vskip4pt
     \usebeamerfont{part title}\insertpart\par
 %    \end{macrocode}
