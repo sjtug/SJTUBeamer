@@ -169,6 +169,9 @@
 %    Make a stamp unit surround the text. Similar to \verb"\highlight" command in inner theme with limitations on number of characters.
 %    Use an optional argument to set the background color, default is \verb"structure" or \verb"sjtuRedPrimary".
 %    \begin{macrocode}
+\newlength{\s}
+%    \end{macrocode}
+%    \begin{macrocode}
 \providecommand{\stamptext}[2][structure]{
   {
 %    \end{macrocode}
@@ -184,7 +187,6 @@
 %    \end{macrocode}
 % Get the height of a tikz node \verb"nodetext" and store it in length \verb"\s". It is similar to \verb"\tcbsetmacroheightofnode" from \verb"skins" library of \verb"tcolorbox", but for decoupling reasons, use a native pgf command to calculate that without loading \verb"tcolorbox" in this style file.
 %    \begin{macrocode}
-      \newlength{\s}
       \pgfextracty{\s}{\pgfpointanchor{nodetext}{north}}%
       \pgfextracty{\pgf@ya}{\pgfpointanchor{nodetext}{south}}%
       \addtolength{\s}{-\pgf@ya}
