@@ -169,9 +169,6 @@
 %    Make a stamp unit surround the text. Similar to \verb"\highlight" command in inner theme with limitations on number of characters.
 %    Use an optional argument to set the background color, default is \verb"structure" or \verb"sjtuRedPrimary".
 %    \begin{macrocode}
-\newlength{\s}
-%    \end{macrocode}
-%    \begin{macrocode}
 \providecommand{\stamptext}[2][structure]{
   {
 %    \end{macrocode}
@@ -184,6 +181,10 @@
     \tikzset{external/export=false}
     \begin{tikzpicture}[baseline=(nodetext.base)]
       \node [white] (nodetext) at (0,0) {#2};
+%    \end{macrocode}
+% Use \verb"\newskip" instead of \verb"\newlength" to avoid the check of \LaTeX{} on the macro, since we have use this macro locally as intended.
+%    \begin{macrocode}
+      \newskip{\s}
 %    \end{macrocode}
 % Get the height of a tikz node \verb"nodetext" and store it in length \verb"\s". It is similar to \verb"\tcbsetmacroheightofnode" from \verb"skins" library of \verb"tcolorbox", but for decoupling reasons, use a native pgf command to calculate that without loading \verb"tcolorbox" in this style file.
 %    \begin{macrocode}
