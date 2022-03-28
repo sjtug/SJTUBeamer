@@ -574,6 +574,33 @@
 %</maxplus>
 %    \end{macrocode}
 %
+%  \paragraph{max.}
+%    \begin{macrocode}
+%<*max>
+\defbeamertemplate*{part page}{max}[1][]
+{
+  \vfill
+  \begingroup
+    \centering
+    \usebeamerfont{part name}
+    \if\EqualOption{cover}{lang}{cn}%
+      第~\insertromanpartnumber~部分
+    \else%
+      \partname~\insertromanpartnumber
+    \fi%
+    \par\vskip4pt
+    {
+      \usebeamerfont{part title}
+      \color{structure}
+      \insertpart
+      \par
+    }
+  \endgroup
+  \vfill
+}
+%</max>
+%    \end{macrocode}
+
 %  \paragraph{min.}
 %    \begin{macrocode}
 %<*min>
