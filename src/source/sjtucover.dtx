@@ -13,7 +13,7 @@
 % \iffalse
 %<*package>
 \NeedsTeXFormat{LaTeX2e}
-\ProvidesPackage{sjtucover}[2022/03/21 cover library for sjtubeamer v2.5.7]
+\ProvidesPackage{sjtucover}[2022/03/30 cover library for sjtubeamer v2.6.0]
 %</package>
 % \fi
 % \CheckSum{0}
@@ -339,7 +339,7 @@
   % or use "my" theme first, then implement your title page 
   % in a different style file mycover.sty with:
   %    \defbeamertemplate*{title page}{<another name>}[1][]{<Your implementation>}
-  %    \defbeamertemplatealias{title page}{my}{<another name>}
+  %    \setbeamertemplate{title page}[<another name>]
   % and in the main.tex:
   %    \usetheme[my]{sjtubeamer}\usepackage{mycover}
   %
@@ -518,7 +518,7 @@
   % or use "my" theme first, then implement your title page 
   % in a different style file mycover.sty with:
   %    \defbeamertemplate*{bottom page}{<another name>}[1][]{<Your implementation>}
-  %    \defbeamertemplatealias{bottom page}{my}{<another name>}
+  %    \setbeamertemplate{bottom page}[<another name>]
   % and in the main.tex:
   %    \usetheme[my]{sjtubeamer}\usepackage{mycover}
   %
@@ -817,7 +817,7 @@
   % or use "my" theme first, then implement your part page 
   % in a different style file mycover.sty with:
   %    \defbeamertemplate*{part page}{<another name>}[1][]{<Your implementation>}
-  %    \defbeamertemplatealias{part page}{my}{<another name>}
+  %    \setbeamertemplate{part page}[<another name>]
   % and in the main.tex:
   %    \usetheme[my]{sjtubeamer}\usepackage{mycover}
   %
@@ -829,7 +829,7 @@
   % or use "my" theme first, then implement your section page 
   % in a different style file mycover.sty with:
   %    \defbeamertemplate*{section page}{<another name>}[1][]{<Your implementation>}
-  %    \defbeamertemplatealias{section page}{my}{<another name>}
+  %    \setbeamertemplate{section page}[<another name>]
   % and in the main.tex:
   %    \usetheme[my]{sjtubeamer}\usepackage{mycover}
   %
@@ -841,7 +841,7 @@
   % or use "my" theme first, then implement your subsection page 
   % in a different style file mycover.sty with:
   %    \defbeamertemplate*{subsection page}{<another name>}[1][]{<Your implementation>}
-  %    \defbeamertemplatealias{subsection page}{my}{<another name>}
+  %    \setbeamertemplate{subsection page}[<another name>]
   % and in the main.tex:
   %    \usetheme[my]{sjtubeamer}\usepackage{mycover}
   %

@@ -45,7 +45,7 @@
 		"scope": "doctex,tex",
 		"prefix": "\\definecover",
 		"body": "\\definecover{$1}",
-		"description": "Command generator for \\maketitle and \\makebottom, which will receive an optional command for selecting different theme. Redefinition on \\beamer@writeslideentrty locally will remove the corresponding navigation dot for miniframe outer theme.\nThis command receives one parameter for the cover type like ``title'' or ``bottom''.\n"
+		"description": "Command generator for \\maketitle and \\makebottom. Redefinition on \\beamer@writeslideentrty locally will remove the corresponding navigation dot for miniframe outer theme.\nThis command receives one parameter for the cover type like ``title'' or ``bottom''.\n"
 	},
 	"highlight": {
 		"scope": "doctex,tex,latex",
@@ -159,7 +159,7 @@
 		"scope": "doctex,tex",
 		"prefix": "\\sjtubeamer@cover@sectionnumber",
 		"body": "\\sjtubeamer@cover@sectionnumber",
-		"description": "Section number based on different languages and whether the ctexbeamer class is loaded. \nIf ctexbeamer is loaded, you could modify the section/number by \\ctexset after the theme is loaded.\n"
+		"description": "Section number based on whether the ctexbeamer class is loaded. \nIf ctexbeamer is loaded, you could modify the section/number by \\ctexset after the theme is loaded.\n"
 	},
 	"sjtubeamer@cover@sectionname": {
 		"scope": "doctex,tex",
@@ -177,25 +177,19 @@
 		"scope": "doctex,tex",
 		"prefix": "\\sjtubeamer@cover@subsectionname",
 		"body": "\\sjtubeamer@cover@subsectionname",
-		"description": "Subsection name based on different languages and whether the ctexbeamer class is loaded.\nIf ctexbeamer is loaded, you could modify the subsection/name by \\ctexset after the theme is loaded.\nThe default value for subsection/name is modified to the full text description version instead of pure value version.\n"
+		"description": "Subsection name based on whether the ctexbeamer class is loaded.\nIf ctexbeamer is loaded, you could modify the subsection/name by \\ctexset after the theme is loaded.\nThe default value for subsection/name is modified to the full text description version instead of pure value version.\n"
 	},
-	"sectionblock": {
+	"definesecpage": {
 		"scope": "doctex,tex",
-		"prefix": "\\sectionblock",
-		"body": "\\sectionblock{$1}",
-		"description": "The common \\sectionblock command for making the section block.\n"
+		"prefix": "\\definesecpage",
+		"body": "\\definesecpage{$1}{$2}",
+		"description": "Define the beamer template for part page, section page, subsection page for cover style maxplus, max, min.\nUse a parent template sectioning page for the different variantions on different sectype (\\#1). sectioning page for different cover (\\#2) will be defined later.\n"
 	},
-	"sectionpage": {
-		"scope": "doctex,tex,latex",
-		"prefix": "\\sectionpage",
-		"body": "\\sectionpage{$1}",
-		"description": "Define the section page beamer template.\n"
-	},
-	"subsectionpage": {
-		"scope": "doctex,tex,latex",
-		"prefix": "\\subsectionpage",
-		"body": "\\subsectionpage{$1}",
-		"description": "Define the subection page beamer template.\n"
+	"ifbeamercolorwhite": {
+		"scope": "doctex,tex",
+		"prefix": "\\ifbeamercolorwhite",
+		"body": "\\ifbeamercolorwhite{$1}{$2}",
+		"description": "A helper function like \\ifbeamercolorempty to check if the color is white. Two mandantory parameters: \nThe first one indicates if it is fg or bg.\nThe second one is the beamer color name.\n"
 	},
 	"DefineOption": {
 		"scope": "doctex,tex",

@@ -530,7 +530,7 @@ Since large source code may cause a performance drop on compiling. We have figur
 
 You could also make your customized style by using \texttt{my} option to setup all components from scratch without leaving the \themename\ ecosystem with all those utilities.
 
-Developers mainly have two ways to add your template. One is to modify the source code directly where the placeholder for \texttt{my} style has been left blank already. The other is to use a new style file \texttt{my.sty} (whatever the filename) and load it after loading the theme in order to override the previous settings made by \themename\ itself. And you could use \texttt{\textbackslash{}defbeamertemplatealias} to assign \texttt{my} by other current template. Remember, the placeholder is all left blank, and if you encountered
+Developers mainly have two ways to add your template. One is to modify the source code directly where the placeholder for \texttt{my} style has been left blank already. The other is to use a new style file \texttt{my.sty} (whatever the filename) and load it after loading the theme in order to override the previous settings made by \themename\ itself. And you could use \texttt{\textbackslash{}setbeamertemplate\{part page\}[maxplus]} to assign the corresponding template to the existing version. Remember, the placeholder is all left blank, and if you encountered
 \begin{verbatim}
   Divided by zero
 \end{verbatim}

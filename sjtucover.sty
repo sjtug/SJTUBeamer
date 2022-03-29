@@ -18,7 +18,7 @@
 %% see https://vi.sjtu.edu.cn/index.php/articles/bulletin/16.
 %% ------------------------------------------------------------------------
 \NeedsTeXFormat{LaTeX2e}
-\ProvidesPackage{sjtucover}[2022/03/21 cover library for sjtubeamer v2.5.7]
+\ProvidesPackage{sjtucover}[2022/03/30 cover library for sjtubeamer v2.6.0]
 \RequirePackage{sjtuvi}
 \DefineOption{cover}{lang}{cn}
 \DefineOption{cover}{lang}{en}
@@ -232,7 +232,7 @@
   % or use "my" theme first, then implement your title page
   % in a different style file mycover.sty with:
   %    \defbeamertemplate*{title page}{<another name>}[1][]{<Your implementation>}
-  %    \defbeamertemplatealias{title page}{my}{<another name>}
+  %    \setbeamertemplate{title page}[<another name>]
   % and in the main.tex:
   %    \usetheme[my]{sjtubeamer}\usepackage{mycover}
   %
@@ -365,7 +365,7 @@
   % or use "my" theme first, then implement your title page
   % in a different style file mycover.sty with:
   %    \defbeamertemplate*{bottom page}{<another name>}[1][]{<Your implementation>}
-  %    \defbeamertemplatealias{bottom page}{my}{<another name>}
+  %    \setbeamertemplate{bottom page}[<another name>]
   % and in the main.tex:
   %    \usetheme[my]{sjtubeamer}\usepackage{mycover}
   %
@@ -396,118 +396,186 @@
     \def\sjtubeamer@cover@subsectionnumber{\insertsubsectionnumber}
     \def\sjtubeamer@cover@subsectionname{\subsectionname~\sjtubeamer@cover@subsectionnumber}
 \fi
-\defbeamertemplate*{part page}{maxplus}[1][]
+\def\definesecpage#1#2{
+  % #1: sectype (part, section, subsection)
+  % #2: cover   (maxplus, max, min)
+  \defbeamertemplate*{#1 page}{#2}[1][]{
+    {
+      \setbeamertemplate{sectioning page}[#2]{#1}
+      \usebeamertemplate{sectioning page}
+    }
+  }
+}
+\defbeamertemplate*{sectioning block}{maxplus}[1]
+{
+  \usebeamercolor[fg]{#1 title}
+  \usebeamerfont{#1 name}
+  \csname sjtubeamer@cover@#1name\endcsname
+  \par\vskip4pt
+  {\usebeamerfont{#1 title}\csname insert#1\endcsname\par}
+}
+\defbeamertemplate*{sectioning page}{maxplus}[1]
 {
   \nointerlineskip
   \vbox{}
-  \usebeamercolor{palette primary}
-  \def\sjtubeamer@logocolor{palette primary.fg}
+  \def\sjtubeamer@cover@sectype{#1}
+  \usebeamercolor{#1 title}
   \begin{tikzpicture}[overlay]
-    \fill [palette primary.bg] (-0.2*\the\paperwidth,-1*\the\paperheight)
+    \fill [bg] (-0.2*\the\paperwidth,-1*\the\paperheight)
     rectangle (1*\the\paperwidth, 0.3*\the\paperheight);
-    \node [right, palette primary.fg] at (-0.2*\the\paperwidth, -0.6*\the\paperheight)
+    \node [right, fg] at (-0.2*\the\paperwidth, -0.6*\the\paperheight)
     {\resizebox{1.25\paperwidth}{!}{\sjtugate}};
   \end{tikzpicture}
   \vfil
   \begingroup
-    \usebeamercolor[fg]{part title}
-    \usebeamerfont{part name}
-    \sjtubeamer@cover@partname
-    \par\vskip4pt
-    {\usebeamerfont{part title}\insertpart\par}
-    \vskip10pt
-    {
-      \scriptsize
-      \hfuzz=100pt
-      \hbadness=100000
-      \hskip-0.3cm
-      \insertsectionnavigation{0.5cm}
-    }
+    \if\EqualOption{cover}{sectype}{subsection}
+      \setbeamertemplate{sectioning block}[maxplus]{section}
+      \usebeamertemplate{sectioning block}
+      \vskip10pt
+    \fi
+    \setbeamertemplate{sectioning block}[maxplus]{#1}
+    \usebeamertemplate{sectioning block}
+    \if\EqualOption{cover}{sectype}{part}
+      \vskip10pt
+      {
+        \scriptsize
+        \hfuzz=100pt
+        \hbadness=100000
+        \hskip-0.3cm
+        \insertsectionnavigation{0.5cm}
+      }
+    \fi
   \endgroup
   \vfill
 }
-\defbeamertemplate*{part page}{max}[1][]
+\definesecpage{part}{maxplus}
+\definesecpage{section}{maxplus}
+\definesecpage{subsection}{maxplus}
+\def\ifbeamercolorwhite#1#2{%
+  % #1: fg or bg
+  % #2: beamer color name
+  \beamer@thc@prepcolor%
+  \beamer@thc@docolor{#2}%
+  \def\beamer@temp{white}%
+  \expandafter\ifx\csname beamer@thc@#1\endcsname\beamer@temp%
+    \expandafter\@firstoftwo%
+  \else%
+    \expandafter\@secondoftwo%
+  \fi%
+}
+\defbeamertemplate*{sectioning block}{max}[1]
+{
+  \usebeamercolor{#1 title}
+  \ifbeamercolorwhite{fg}{#1 title}{\color{bg}}{\color{fg}}
+  \stamptext[.]{\large\csname sjtubeamer@cover@#1number\endcsname}\\
+  \vskip8pt
+  {
+    \usebeamerfont{#1 title}
+    \csname insert#1\endcsname
+    \par
+  }
+}
+\defbeamertemplate*{sectioning page}{max}[1]
 {
   \vfill
   \begingroup
     \centering
-    \stamptext{\large\sjtubeamer@cover@partnumber}\\
-    \vskip8pt
-    {
-      \usebeamerfont{part title}
-      \color{structure}
-      \insertpart
-      \par
-    }
+    \def\sjtubeamer@cover@sectype{#1}
+    \if\EqualOption{cover}{sectype}{subsection}
+      \setbeamertemplate{sectioning block}[max]{section}
+      \usebeamertemplate{sectioning block}
+      \vskip16pt
+    \fi
+    \setbeamertemplate{sectioning block}[max]{#1}
+    \usebeamertemplate{sectioning block}
   \endgroup
   \vfill
 }
-\defbeamertemplate*{part page}{min}[1][]
+\definesecpage{part}{max}
+\definesecpage{section}{max}
+\definesecpage{subsection}{max}
+\defbeamertemplate*{sectioning block}{min}[1]
+{
+  \begin{beamercolorbox}[sep=12pt,right]{#1 title}
+    \usebeamerfont{#1 name}
+    \csname sjtubeamer@cover@#1name\endcsname
+    \par\vskip4pt
+    \usebeamerfont{#1 title}\csname insert#1\endcsname\par
+  \end{beamercolorbox}
+}
+\defbeamertemplate*{sectioning page}{min}[1]
 {
   \vfill
   \vskip 8pt
   \begingroup
-  \begin{beamercolorbox}[sep=16pt,right,#1]{part title}
-    \hfill\usebeamerfont{part name}
-    \sjtubeamer@cover@partname
-    \par\vskip4pt
-    \usebeamerfont{part title}\insertpart\par
-    \hbox to \textwidth{
-      {
-        \usebeamerfont{footline}
-        \setbeamercolor{section in head/foot}{use=palette primary,
-          fg=palette primary.fg,bg=}
-        \let\navwidth\textwidth
-        \advance\navwidth by -32pt
-        \insertsectionnavigationhorizontal{\navwidth}{\hskip0pt plus1filll}{\hskip-.3cm}
-        \hskip11pt
+  \def\sjtubeamer@cover@sectype{#1}
+  \if\EqualOption{cover}{sectype}{part}
+    \begin{beamercolorbox}[sep=16pt,right]{part title}
+      \hfill\usebeamerfont{part name}
+      \sjtubeamer@cover@partname
+      \par\vskip4pt
+      \usebeamerfont{part title}\insertpart\par
+      \hbox to \textwidth{
+        {
+          \usebeamerfont{footline}
+          \setbeamercolor{section in head/foot}{use=palette primary,
+            fg=palette primary.fg,bg=}
+          \let\navwidth\textwidth
+          \advance\navwidth by -32pt
+          \insertsectionnavigationhorizontal{\navwidth}{\hskip0pt plus1filll}{\hskip-.3cm}
+          \hskip11pt
+        }
       }
-    }
-  \end{beamercolorbox}
+    \end{beamercolorbox}
+  \else
+    \if\EqualOption{cover}{sectype}{subsection}
+      \setbeamertemplate{sectioning block}[min]{section}
+      \usebeamertemplate{sectioning block}
+    \fi
+    \setbeamertemplate{sectioning block}[min]{#1}
+    \usebeamertemplate{sectioning block}
+  \fi
   \endgroup
   \vfill
 }
+\definesecpage{part}{min}
+\definesecpage{section}{min}
+\definesecpage{subsection}{min}
 \defbeamertemplate*{part page}{my}[1][]
 {
   %
   % Developer could implement your own part page template here...
-  % or use "my" theme first, then implement your title page
+  % or use "my" theme first, then implement your part page
   % in a different style file mycover.sty with:
   %    \defbeamertemplate*{part page}{<another name>}[1][]{<Your implementation>}
-  %    \defbeamertemplatealias{part page}{my}{<another name>}
+  %    \setbeamertemplate{part page}[<another name>]
   % and in the main.tex:
   %    \usetheme[my]{sjtubeamer}\usepackage{mycover}
   %
 }
-\def\sectionblock#1{
-  \begin{beamercolorbox}[sep=12pt,right,#1]{section title}
-    \usebeamerfont{section name}
-    \sjtubeamer@cover@sectionname
-    \par\vskip4pt
-    \usebeamerfont{section title}\insertsection\par
-  \end{beamercolorbox}
-}
-\defbeamertemplate*{section page}{min}[1][]
+\defbeamertemplate*{section page}{my}[1][]
 {
-  \vfill
-  \begingroup
-  \sectionblock{#1}
-  \endgroup
-  \vfill
+  %
+  % Developer could implement your own section page template here...
+  % or use "my" theme first, then implement your section page
+  % in a different style file mycover.sty with:
+  %    \defbeamertemplate*{section page}{<another name>}[1][]{<Your implementation>}
+  %    \setbeamertemplate{section page}[<another name>]
+  % and in the main.tex:
+  %    \usetheme[my]{sjtubeamer}\usepackage{mycover}
+  %
 }
-\defbeamertemplate*{subsection page}{min}[1][]
+\defbeamertemplate*{subsection page}{my}[1][]
 {
-  \vfill
-  \begingroup
-  \sectionblock{#1}
-  \begin{beamercolorbox}[sep=8pt,right,#1]{subsection title}
-    \usebeamerfont{subsection name}
-    \sjtubeamer@cover@subsectionname
-    \par\vskip 4pt
-    \usebeamerfont{subsection title}\insertsubsection\par
-  \end{beamercolorbox}
-  \endgroup
-  \vfill
+  %
+  % Developer could implement your own subsection page template here...
+  % or use "my" theme first, then implement your subsection page
+  % in a different style file mycover.sty with:
+  %    \defbeamertemplate*{subsection page}{<another name>}[1][]{<Your implementation>}
+  %    \setbeamertemplate{subsection page}[<another name>]
+  % and in the main.tex:
+  %    \usetheme[my]{sjtubeamer}\usepackage{mycover}
+  %
 }
 \endinput
 %%
