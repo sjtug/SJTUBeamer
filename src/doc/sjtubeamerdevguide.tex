@@ -509,18 +509,18 @@ The table shows the flow of parameter passing.
 
 \subsection{Template Management}
 
-\themename\ has its own system on template management on title page and bottom page. A modified macro has been implemented to achive this. In a word, all variables will be stored on an artificial stack.
+\themename\ has its own system on template management on title page and bottom page. In a word, all variables will be stored on an artificial stack.
 
 \begin{figure}[h]
-  \texttt{\textbackslash{}maketitle{[}maxplus{]}}\par
-  ~~$\hookrightarrow $set title template to \texttt{maxplus}\par
+  \texttt{\textbackslash{}maketitle}\par
   ~~\hspace*{2em}\texttt{\textbackslash{}titlepage}\par
   ~~\hspace*{4em} in sidebar mode, make a left shift\par
   ~~\hspace*{4em} $\hookrightarrow $ insert the defined title page (in \verb"sjtucover.sty")\par
-  ~~\hspace*{1em}restore title template back to \texttt{\textbackslash{}...@inner@cover}
 \end{figure}
 
 Now, a sandbox in \verb"sjtucover.sty" is created.
+
+To use a different cover style, use \verb"\setbeamertemplate{title page}[maxplus]" before calling \verb"\maketitle". The same as \verb"bottom page", \verb"part page", \verb"section page" and \verb"subsection page". For the sake of simplicity, the later three templates could be modified by one parent template \verb"sectioning pages".
 
 \begin{warn}
   When drawing in the sandbox through Ti\emph{k}Z, make sure to use \texttt{overlay} option for adjustment. It will avoid the shift of your cover when using \texttt{sidebar} theme.

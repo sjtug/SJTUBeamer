@@ -17,28 +17,37 @@
 \subtitle{<options>,maxplus}
 \logo{\resizebox{!}{0.7cm}{\cnlogo}}
 \titlegraphic{\includegraphics{vi/sjtuphoto.jpg}}
-\maketitle[maxplus]
+\setbeamertemplate{title page}[maxplus]
+\maketitle
+\part{<options>,maxplus}
 \begin{frame}
   \frametitle{欢迎使用 SJTUBeamer}
 \end{frame}
-\makebottom[maxplus]
+\setbeamertemplate{bottom page}[maxplus]
+\makebottom
 
 \subtitle{<options>,min}
 \logo{\resizebox{!}{0.7cm}{\enlogo}}
 \titlegraphic{\includegraphics{vi/sjtuphoto.jpg}}
-\maketitle[min]
+\setbeamertemplate{title page}[min]
+\maketitle
+\part{<options>,min}
 \begin{frame}
   \frametitle{欢迎使用 SJTUBeamer}
 \end{frame}
-\makebottom[min]
+\setbeamertemplate{bottom page}[min]
+\makebottom
 
 \subtitle{<options>,max}
 \logo{\resizebox{!}{1cm}{\sjtubadge}}
 \titlegraphic{\sjtubg[opacity=0.2]}
-\maketitle[max]
+\setbeamertemplate{title page}[max]
+\maketitle
+\part{<options>,max}
 \begin{frame}
   \frametitle{欢迎使用 SJTUBeamer}
 \end{frame}
-\makebottom[max]
+\setbeamertemplate{bottom page}[max]
+\makebottom
 
 \end{document}
