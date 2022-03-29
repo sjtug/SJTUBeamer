@@ -248,7 +248,8 @@
 %   The institute is in \TeX{} code for typesetting. \verb"\beamer@shortinstitute" meta is used to avoid compressing on \verb"\par", while \verb"\insertinstitute" will force the input to spread on one signle line. The mode to use is depended on the \verb"language" option. Super small font could be made by \verb"fontsize".
 %   Here, we use the option from inner to get the language setting, if this package is used independently, only chinese mode is available.
 %    \begin{macrocode}
-  \begin{beamercolorbox}{palette primary}
+  \begin{beamercolorbox}{empty}
+    \usebeamercolor[fg]{palette primary}
     \vskip8pt
     \hbox{
       \hskip-4pt{\resizebox{!}{1cm}{\vphantom{-}\usebeamertemplate{logo}}}
