@@ -600,33 +600,62 @@
 \fi
 %    \end{macrocode}
 %
-%  \subsubsection{Part Page}
+%  \subsubsection{Sectioning Page}
+%
+%  \begin{macro}{\definesecpage}
+%  Define the beamer template for \verb"part page", \verb"section page", \verb"subsection page" for cover style \verb"maxplus", \verb"max", \verb"min".
+%  Use a parent template \verb"sectioning page" for the different variantions on different sectype (\#1). \verb"sectioning page" for different cover (\#2) will be defined later.
+%    \begin{macrocode}
+\def\definesecpage#1#2{
+  % #1: sectype (part, section, subsection)
+  % #2: cover   (maxplus, max, min)
+  \defbeamertemplate*{#1 page}{#2}[1][]{
+    {
+      \setbeamertemplate{sectioning page}[#2]{#1}
+      \usebeamertemplate{sectioning page}
+    }
+  }
+}
+%    \end{macrocode}
+%  A \verb"sectioning block" helper beamer template may also be introduced for the convinience of reuse the same basic block for subsectionpage.
+%  \end{macro}
 %
 %  \paragraph{maxplus.}
 %    \begin{macrocode}
 %<*maxplus>
-\defbeamertemplate*{part page}{maxplus}[1][]
+\defbeamertemplate*{sectioning block}{maxplus}[1]
+{
+  \usebeamercolor[fg]{#1 title}
+  \usebeamerfont{#1 name}
+  \csname sjtubeamer@cover@#1name\endcsname
+  \par\vskip4pt
+  {\usebeamerfont{#1 title}\csname insert#1\endcsname\par}
+}
+\defbeamertemplate*{sectioning page}{maxplus}[1]
 {
   \nointerlineskip
   \vbox{}
-  \usebeamercolor{palette primary}
-  \def\sjtubeamer@logocolor{palette primary.fg}
+  \def\sjtubeamer@cover@sectype{#1}
+  \usebeamercolor{#1 title}
   \begin{tikzpicture}[overlay]
-    \fill [palette primary.bg] (-0.2*\the\paperwidth,-1*\the\paperheight)
+    \fill [bg] (-0.2*\the\paperwidth,-1*\the\paperheight)
     rectangle (1*\the\paperwidth, 0.3*\the\paperheight);
-    \node [right, palette primary.fg] at (-0.2*\the\paperwidth, -0.6*\the\paperheight)
+    \node [right, fg] at (-0.2*\the\paperwidth, -0.6*\the\paperheight)
     {\resizebox{1.25\paperwidth}{!}{\sjtugate}};
   \end{tikzpicture}
   \vfil
   \begingroup
-    \usebeamercolor[fg]{part title}
-    \usebeamerfont{part name}
-    \sjtubeamer@cover@partname
-    \par\vskip4pt
-    {\usebeamerfont{part title}\insertpart\par}
-    \vskip10pt
-    {
-      \scriptsize
+    \if\EqualOption{cover}{sectype}{subsection}
+      \setbeamertemplate{sectioning block}[maxplus]{section}
+      \usebeamertemplate{sectioning block}
+      \vskip10pt
+    \fi
+    \setbeamertemplate{sectioning block}[maxplus]{#1}
+    \usebeamertemplate{sectioning block}
+    \if\EqualOption{cover}{sectype}{part}
+      \vskip10pt
+      {
+        \scriptsize
 %    \end{macrocode}
 % The workaround to insert the vertical section navigation.
 % \verb"\hfuzz" is locally set to ignore the overfull box.
@@ -634,74 +663,147 @@
 % \verb"\hskip" is set for the compensation from the macro \verb"\insertsectionnavigation".
 % The width of section navigation is set to a small value to force the text to ``flushleft'', but with the hyperlink area maintained.
 %    \begin{macrocode}
-      \hfuzz=100pt
-      \hbadness=100000
-      \hskip-0.3cm
-      \insertsectionnavigation{0.5cm}
-    }
+        \hfuzz=100pt
+        \hbadness=100000
+        \hskip-0.3cm
+        \insertsectionnavigation{0.5cm}
+      }
+    \fi
   \endgroup
   \vfill
 }
+%    \end{macrocode}
+%
+%    Overide the default beamer template of \verb"part page", \verb"section page", \verb"subsection page" for cover style \verb"maxplus".
+%    \begin{macrocode}
+\definesecpage{part}{maxplus}
+\definesecpage{section}{maxplus}
+\definesecpage{subsection}{maxplus}
 %</maxplus>
 %    \end{macrocode}
 %
+%
 %  \paragraph{max.}
+%
+%  \begin{macro}{\ifbeamercolorwhite}
+%   A helper function like \verb"\ifbeamercolorempty" to check if the color is white. Two mandantory parameters: 
+%   The first one indicates if it is fg or bg.
+%   The second one is the beamer color name.
+%    \begin{macrocode}
+\def\ifbeamercolorwhite#1#2{%
+  % #1: fg or bg
+  % #2: beamer color name
+  \beamer@thc@prepcolor%
+  \beamer@thc@docolor{#2}%
+  \def\beamer@temp{white}%
+  \expandafter\ifx\csname beamer@thc@#1\endcsname\beamer@temp%
+    \expandafter\@firstoftwo%
+  \else%
+    \expandafter\@secondoftwo%
+  \fi%
+}
+%    \end{macrocode}
+%  For decoupling reason, without passing the lum option (dark or light) to make judgement on the primary color which is not white. This might be helpful if you do not want the color to get changed by the lum option.
+%  \end{macro}
+%
 %    \begin{macrocode}
 %<*max>
-\defbeamertemplate*{part page}{max}[1][]
+\defbeamertemplate*{sectioning block}{max}[1]
+{
+  \usebeamercolor{#1 title}
+  \ifbeamercolorwhite{fg}{#1 title}{\color{bg}}{\color{fg}}
+  \stamptext[.]{\large\csname sjtubeamer@cover@#1number\endcsname}\\
+  \vskip8pt
+  {
+    \usebeamerfont{#1 title}
+    \csname insert#1\endcsname
+    \par
+  }
+}
+\defbeamertemplate*{sectioning page}{max}[1]
 {
   \vfill
   \begingroup
     \centering
-    \stamptext{\large\sjtubeamer@cover@partnumber}\\
-    \vskip8pt
-    {
-      \usebeamerfont{part title}
-      \color{structure}
-      \insertpart
-      \par
-    }
+    \def\sjtubeamer@cover@sectype{#1}
+    \if\EqualOption{cover}{sectype}{subsection}
+      \setbeamertemplate{sectioning block}[max]{section}
+      \usebeamertemplate{sectioning block}
+      \vskip16pt
+    \fi
+    \setbeamertemplate{sectioning block}[max]{#1}
+    \usebeamertemplate{sectioning block}
   \endgroup
   \vfill
 }
+%    \end{macrocode}
+%
+%    Overide the default beamer template of \verb"part page", \verb"section page", \verb"subsection page" for cover style \verb"max".
+%    \begin{macrocode}
+\definesecpage{part}{max}
+\definesecpage{section}{max}
+\definesecpage{subsection}{max}
 %</max>
 %    \end{macrocode}
 %
 %  \paragraph{min.}
 %    \begin{macrocode}
 %<*min>
-\defbeamertemplate*{part page}{min}[1][]
+\defbeamertemplate*{sectioning block}{min}[1]
+{
+  \begin{beamercolorbox}[sep=12pt,right]{#1 title}
+    \usebeamerfont{#1 name}
+    \csname sjtubeamer@cover@#1name\endcsname
+    \par\vskip4pt
+    \usebeamerfont{#1 title}\csname insert#1\endcsname\par
+  \end{beamercolorbox}
+}
+\defbeamertemplate*{sectioning page}{min}[1]
 {
   \vfill
   \vskip 8pt
   \begingroup
-%    \end{macrocode}
-%   Print the number of this part. If it is in Chinese, the translated version is printed.
-%    \begin{macrocode}
-  \begin{beamercolorbox}[sep=16pt,right,#1]{part title}
-    \hfill\usebeamerfont{part name}
-    \sjtubeamer@cover@partname
-    \par\vskip4pt
-    \usebeamerfont{part title}\insertpart\par
+  \def\sjtubeamer@cover@sectype{#1}
+  \if\EqualOption{cover}{sectype}{part}
+    \begin{beamercolorbox}[sep=16pt,right]{part title}
+      \hfill\usebeamerfont{part name}
+      \sjtubeamer@cover@partname
+      \par\vskip4pt
+      \usebeamerfont{part title}\insertpart\par
 %    \end{macrocode}
 %   Since navigation bar is packaged, to modify the color, you have to change the \verb"section in head/foot" beamer color. Here, use a group to make the temporary change. 
 %   Instead of using \verb"\insertnavigation" macro, use \verb"\insertsectionnavigationhorizontal" macro for a better control of long navigation bar.
 %    \begin{macrocode}
-    \hbox to \textwidth{
-      {
-        \usebeamerfont{footline}
-        \setbeamercolor{section in head/foot}{use=palette primary,
-          fg=palette primary.fg,bg=}
-        \let\navwidth\textwidth
-        \advance\navwidth by -32pt
-        \insertsectionnavigationhorizontal{\navwidth}{\hskip0pt plus1filll}{\hskip-.3cm}
-        \hskip11pt
+      \hbox to \textwidth{
+        {
+          \usebeamerfont{footline}
+          \setbeamercolor{section in head/foot}{use=palette primary,
+            fg=palette primary.fg,bg=}
+          \let\navwidth\textwidth
+          \advance\navwidth by -32pt
+          \insertsectionnavigationhorizontal{\navwidth}{\hskip0pt plus1filll}{\hskip-.3cm}
+          \hskip11pt
+        }
       }
-    }
-  \end{beamercolorbox}
+    \end{beamercolorbox}
+  \else
+    \if\EqualOption{cover}{sectype}{subsection}
+      \setbeamertemplate{sectioning block}[min]{section}
+      \usebeamertemplate{sectioning block}
+    \fi
+    \setbeamertemplate{sectioning block}[min]{#1}
+    \usebeamertemplate{sectioning block}
+  \fi
   \endgroup
   \vfill
 }
+%    \end{macrocode}
+%
+%    Overide the default beamer template of \verb"part page", \verb"section page", \verb"subsection page" for cover style \verb"min".
+%    \begin{macrocode}
+\definesecpage{part}{min}
+\definesecpage{section}{min}
+\definesecpage{subsection}{min}
 %</min>
 %    \end{macrocode}
 %
@@ -712,7 +814,7 @@
 {
   %
   % Developer could implement your own part page template here...
-  % or use "my" theme first, then implement your title page 
+  % or use "my" theme first, then implement your part page 
   % in a different style file mycover.sty with:
   %    \defbeamertemplate*{part page}{<another name>}[1][]{<Your implementation>}
   %    \defbeamertemplatealias{part page}{my}{<another name>}
@@ -720,58 +822,33 @@
   %    \usetheme[my]{sjtubeamer}\usepackage{mycover}
   %
 }
+\defbeamertemplate*{section page}{my}[1][]
+{
+  %
+  % Developer could implement your own section page template here...
+  % or use "my" theme first, then implement your section page 
+  % in a different style file mycover.sty with:
+  %    \defbeamertemplate*{section page}{<another name>}[1][]{<Your implementation>}
+  %    \defbeamertemplatealias{section page}{my}{<another name>}
+  % and in the main.tex:
+  %    \usetheme[my]{sjtubeamer}\usepackage{mycover}
+  %
+}
+\defbeamertemplate*{subsection page}{my}[1][]
+{
+  %
+  % Developer could implement your own subsection page template here...
+  % or use "my" theme first, then implement your subsection page 
+  % in a different style file mycover.sty with:
+  %    \defbeamertemplate*{subsection page}{<another name>}[1][]{<Your implementation>}
+  %    \defbeamertemplatealias{subsection page}{my}{<another name>}
+  % and in the main.tex:
+  %    \usetheme[my]{sjtubeamer}\usepackage{mycover}
+  %
+}
 %</my>
 %    \end{macrocode}
 %
-%  \subsubsection{Section Page \& Subsection Page}
-%    \paragraph{min.}
-%  \begin{macro}{\sectionblock}
-%  The common \verb"\sectionblock" command for making the section block.
-%    \begin{macrocode}
-\def\sectionblock#1{
-  \begin{beamercolorbox}[sep=12pt,right,#1]{section title}
-    \usebeamerfont{section name}
-    \sjtubeamer@cover@sectionname
-    \par\vskip4pt
-    \usebeamerfont{section title}\insertsection\par
-  \end{beamercolorbox}
-}
-%    \end{macrocode}
-%  \end{macro}
-%
-%  \begin{macro}{\sectionpage}
-%   Define the \verb"section page" beamer template.
-%    \begin{macrocode}
-\defbeamertemplate*{section page}{min}[1][]
-{
-  \vfill
-  \begingroup
-  \sectionblock{#1}
-  \endgroup
-  \vfill
-}
-%    \end{macrocode}
-%  \end{macro}
-%
-%  \begin{macro}{\subsectionpage}
-%   Define the \verb"subection page" beamer template.
-%    \begin{macrocode}
-\defbeamertemplate*{subsection page}{min}[1][]
-{
-  \vfill
-  \begingroup
-  \sectionblock{#1}
-  \begin{beamercolorbox}[sep=8pt,right,#1]{subsection title}
-    \usebeamerfont{subsection name}
-    \sjtubeamer@cover@subsectionname
-    \par\vskip 4pt
-    \usebeamerfont{subsection title}\insertsubsection\par
-  \end{beamercolorbox}
-  \endgroup
-  \vfill
-}
-%    \end{macrocode}
-%  \end{macro}
 %
 % \iffalse
 %</package>
