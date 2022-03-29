@@ -527,20 +527,75 @@
 %    \end{macrocode}
 %
 %  \subsubsection{Name Translation}
+%     Refer to the default configuration of \verb"ctexbeamer" for the following values. But this doesn't support \verb"\ctexset{}" to modify the headings, since it is not obvious to obtain the ``pure'' number value from the \verb"number" setting. 
+%     You could only redefine the internal macro to achieve that.
 %
-%  \begin{macro}{\sjtubeamer@cover@partname}
-%    Use the partname based on different languages.
-%    If it is in \verb"ctexbeamer" class, then use the internal macro from \verb"ctexheading" in order to get the part style set from \verb"\ctexset".
+%  \begin{macro}{\sjtubeamer@cover@partnumber}
+%    Part number based on different languages and whether the \verb"ctexbeamer" class is loaded.
 %    \begin{macrocode}
 \if\EqualOption{cover}{lang}{cn}%
   \@ifclassloaded{ctexbeamer}{
-    \def\sjtubeamer@cover@partname{\CTEX@partname}
-  }{
-    \def\sjtubeamer@cover@partname{第~\insertromanpartnumber~部分}
-  }
+%    \end{macrocode}
+%    \verb"\chinese" macro is only available in \verb"zhnumber" package, loaded by \verb"ctexbeamer".
+%    \begin{macrocode}
+    \def\sjtubeamer@cover@partnumber{\chinese{part}}
+  }{\def\sjtubeamer@cover@partnumber{\insertromanpartnumber}}
 \else%
-  \def\sjtubeamer@cover@partname{\partname~\insertromanpartnumber}
+  \def\sjtubeamer@cover@partnumber{\insertromanpartnumber}
+\fi
+%    \end{macrocode}
+%  \end{macro}
+%
+%  \begin{macro}{\sjtubeamer@cover@partname}
+%    Part name based on different languages and whether the \verb"ctexbeamer" class is loaded.
+%    \begin{macrocode}
+\if\EqualOption{cover}{lang}{cn}%
+  \@ifclassloaded{ctexbeamer}{
+    \def\sjtubeamer@cover@partname{第\sjtubeamer@cover@partnumber{}部分}
+  }{\def\sjtubeamer@cover@partname{第~\sjtubeamer@cover@partnumber~部分}}
+\else%
+  \def\sjtubeamer@cover@partname{\partname~\sjtubeamer@cover@partnumber}
 \fi%
+%    \end{macrocode}
+%  \end{macro}
+%
+%  \begin{macro}{\sjtubeamer@cover@sectionnumber}
+%    The section number definition.
+%    \begin{macrocode}
+\def\sjtubeamer@cover@sectionnumber{\insertsectionnumber}
+%    \end{macrocode}
+%  \end{macro}
+%
+%  \begin{macro}{\sjtubeamer@cover@sectionname}
+%    Section name based on different languages.
+%    \begin{macrocode}
+\if\EqualOption{cover}{lang}{cn}%
+  \def\sjtubeamer@cover@sectionname{第~\sjtubeamer@cover@sectionnumber~节}
+\else
+  \def\sjtubeamer@cover@sectionname{\sectionname~\sjtubeamer@cover@sectionnumber}
+\fi
+%    \end{macrocode}
+%  \end{macro}
+%
+%  \begin{macro}{\sjtubeamer@cover@subsectionnumber}
+%    Section number based on different languages.
+%    \begin{macrocode}
+\if\EqualOption{cover}{lang}{cn}%
+  \def\sjtubeamer@cover@subsectionnumber{\arabic{section}.\arabic{subsection}}
+\else
+  \def\sjtubeamer@cover@subsectionnumber{\insertsubsectionnumber}
+\fi
+%    \end{macrocode}
+%  \end{macro}
+%
+%  \begin{macro}{\sjtubeamer@cover@subsectionname}
+%    Subsection name based on different languages.
+%    \begin{macrocode}
+\if\EqualOption{cover}{lang}{cn}%
+  \def\sjtubeamer@cover@subsectionname{第~\sjtubeamer@cover@subsectionnumber~小节}
+\else
+  \def\sjtubeamer@cover@subsectionname{\subsectionname~\sjtubeamer@cover@subsectionnumber}
+\fi
 %    \end{macrocode}
 %  \end{macro}
 %
@@ -575,7 +630,7 @@
 % \verb"\hfuzz" is locally set to ignore the overfull box.
 % \verb"\hbadness" is set to a value bigger than infinity (10000) to ignore the underfull box.
 % \verb"\hskip" is set for the compensation from the macro \verb"\insertsectionnavigation".
-% The width of section navigation is set to a small value to force the text to ``flushleft''.
+% The width of section navigation is set to a small value to force the text to ``flushleft'', but with the hyperlink area maintained.
 %    \begin{macrocode}
       \hfuzz=100pt
       \hbadness=100000
@@ -596,7 +651,7 @@
   \vfill
   \begingroup
     \centering
-    \stamptext{\large\insertromanpartnumber}\\
+    \stamptext{\large\sjtubeamer@cover@partnumber}\\
     \vskip8pt
     {
       \usebeamerfont{part title}
@@ -673,11 +728,7 @@
 \def\sectionblock#1{
   \begin{beamercolorbox}[sep=12pt,right,#1]{section title}
     \usebeamerfont{section name}
-    \if\EqualOption{inner}{lang}{cn}%
-      第~\insertsectionnumber~节
-    \else%
-      \sectionname~\insertsectionnumber
-    \fi%
+    \sjtubeamer@cover@sectionname
     \par\vskip4pt
     \usebeamerfont{section title}\insertsection\par
   \end{beamercolorbox}
@@ -709,11 +760,7 @@
   \sectionblock{#1}
   \begin{beamercolorbox}[sep=8pt,right,#1]{subsection title}
     \usebeamerfont{subsection name}
-    \if\EqualOption{inner}{lang}{cn}%
-    第~\insertsubsectionnumber~小节
-    \else%
-    \subsectionname~\insertsubsectionnumber
-    \fi%
+    \sjtubeamer@cover@subsectionname
     \par\vskip 4pt
     \usebeamerfont{subsection title}\insertsubsection\par
   \end{beamercolorbox}
