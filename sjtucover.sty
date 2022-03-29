@@ -20,14 +20,14 @@
 \NeedsTeXFormat{LaTeX2e}
 \ProvidesPackage{sjtucover}[2022/03/30 cover library for sjtubeamer v2.6.0]
 \RequirePackage{sjtuvi}
-\DefineOption{cover}{lang}{cn}
+\DefineOption{cover}{lang}{zh}
 \DefineOption{cover}{lang}{en}
-\@ifclassloaded{ctexbeamer}{\ExecuteOptionsBeamer{cn}}{
+\@ifclassloaded{ctexbeamer}{\ExecuteOptionsBeamer{zh}}{
   \ExecuteOptionsBeamer{en}}
 \ProcessOptionsBeamer
 \defbeamertemplate*{logo}{max}{\resizebox{!}{1cm}{\sjtubadge}}
-\if\EqualOption{cover}{lang}{cn}
-  \defbeamertemplate*{logo}{default}{\resizebox{!}{0.7cm}{\cnlogo}}
+\if\EqualOption{cover}{lang}{zh}
+  \defbeamertemplate*{logo}{default}{\resizebox{!}{0.7cm}{\zhlogo}}
 \else
   \defbeamertemplate*{logo}{default}{\resizebox{!}{0.7cm}{\enlogo}}
 \fi
@@ -238,7 +238,7 @@
   %    \usetheme[my]{sjtubeamer}\usepackage{mycover}
   %
 }
-\if\EqualOption{cover}{lang}{cn}%
+\if\EqualOption{cover}{lang}{zh}%
   \newcommand{\bottomthanks}{谢\,谢}
 \else%
   \newcommand{\bottomthanks}{Thank You}
@@ -371,7 +371,7 @@
   %    \usetheme[my]{sjtubeamer}\usepackage{mycover}
   %
 }
-\if\EqualOption{cover}{lang}{cn}%
+\if\EqualOption{cover}{lang}{zh}%
   \@ifclassloaded{ctexbeamer}{
     \def\sjtubeamer@cover@partnumber{\CTEX@thepart}
     \def\sjtubeamer@cover@partname{\CTEX@partname}

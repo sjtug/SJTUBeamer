@@ -35,9 +35,9 @@
 %   \subsubsection{Define Option}
 %
 %    \begin{macrocode}
-\DefineOption{cover}{lang}{cn}
+\DefineOption{cover}{lang}{zh}
 \DefineOption{cover}{lang}{en}
-\@ifclassloaded{ctexbeamer}{\ExecuteOptionsBeamer{cn}}{
+\@ifclassloaded{ctexbeamer}{\ExecuteOptionsBeamer{zh}}{
   \ExecuteOptionsBeamer{en}}
 \ProcessOptionsBeamer
 %    \end{macrocode}
@@ -52,8 +52,8 @@
 %
 %   \paragraph{default.}
 %    \begin{macrocode}
-\if\EqualOption{cover}{lang}{cn}
-  \defbeamertemplate*{logo}{default}{\resizebox{!}{0.7cm}{\cnlogo}}
+\if\EqualOption{cover}{lang}{zh}
+  \defbeamertemplate*{logo}{default}{\resizebox{!}{0.7cm}{\zhlogo}}
 \else
   \defbeamertemplate*{logo}{default}{\resizebox{!}{0.7cm}{\enlogo}}
 \fi
@@ -353,7 +353,7 @@
 %  \begin{macro}{\bottomthanks}
 %  The "Thank You" caption in the bottom page. Redefine this command will change the bottom page caption.
 %    \begin{macrocode}
-\if\EqualOption{cover}{lang}{cn}%
+\if\EqualOption{cover}{lang}{zh}%
   \newcommand{\bottomthanks}{谢\,谢}
 \else%
   \newcommand{\bottomthanks}{Thank You}
@@ -530,7 +530,7 @@
 %  \subsubsection{Name Translation}
 %
 %    \begin{macrocode}
-\if\EqualOption{cover}{lang}{cn}%
+\if\EqualOption{cover}{lang}{zh}%
   \@ifclassloaded{ctexbeamer}{
 %    \end{macrocode}
 %  \begin{macro}{\sjtubeamer@cover@partnumber}
