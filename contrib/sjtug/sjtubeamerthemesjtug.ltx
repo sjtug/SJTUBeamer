@@ -75,8 +75,6 @@
   }
   \vfill
 }
-% 设置标题页
-\setbeamertemplate{title page}[sjtug]
 % 设置结束页
 \setbeamertemplate{bottom page}[min]
 % 设置部分页、节页和小节页
@@ -92,15 +90,19 @@
 % 更改徽标为含有当前章节名称
 \xdef\oldlogo{\expandbeamertemplate{logo}}
 \logo{\insertpart\oldlogo}
-% 重定义标题页命令以使用老徽标定义
+% 重定义标题页命令以局部使用老徽标定义
 \let\oldmaketitle=\maketitle
 \def\maketitle{
-  \logo{\oldlogo}
-  \oldmaketitle
+  {
+    \logo{\oldlogo}
+    \oldmaketitle
+  }
 }
-% 重定义结尾页命令以使用老徽标定义
+% 重定义结尾页命令以局部使用老徽标定义
 \let\oldmakebottom=\makebottom
 \def\makebottom{
-  \logo{\oldlogo}
-  \oldmakebottom
+  {
+    \logo{\oldlogo}
+    \oldmakebottom
+  }
 }
