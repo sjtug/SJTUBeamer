@@ -270,11 +270,15 @@
 \definecover{subsection}
 %    \end{macrocode}
 %
-%  Initialize the sectioning page.
+%  Initialize the sectioning pages. User could redefine the beamer template \verb"sectioning pages" to set up \verb"part page", \verb"section page", \verb"subsection page" in one line. User could also define them seperately as the commented code.
+%  NOTICE: no space around the comma in the children list.
 %    \begin{macrocode}
-\setbeamertemplate{part page}[\sjtubeamer@inner@cover]
-\setbeamertemplate{section page}[\sjtubeamer@inner@cover]
-\setbeamertemplate{subsection page}[\sjtubeamer@inner@cover]
+\defbeamertemplateparent{sectioning pages}{
+  part page,section page,subsection page}{}
+\setbeamertemplate{sectioning pages}[\sjtubeamer@inner@cover]
+ % \setbeamertemplate{part page}[\sjtubeamer@inner@cover]
+ % \setbeamertemplate{section page}[\sjtubeamer@inner@cover]
+ % \setbeamertemplate{subsection page}[\sjtubeamer@inner@cover]
 %    \end{macrocode}
 %
 %  Make a part page for each part by default. 
