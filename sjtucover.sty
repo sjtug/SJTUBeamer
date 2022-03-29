@@ -266,7 +266,7 @@
         \fill[structure.fg!50!black,path fading=fade right img]
         (-0.66\paperwidth,0.06\paperheight)
         rectangle (0.43\paperwidth,0.53\paperheight);
-        \node at (-0.45\paperwidth,0.3\paperheight)
+        \node[white] at (-0.45\paperwidth,0.3\paperheight)
         {\resizebox{!}{0.115\paperheight}{\vphantom{-}\usebeamertemplate{logo}}};
         \node [right, white] at (-0.75\paperwidth, 0.15\paperheight)
         {\resizebox{1.25\paperwidth}{!}{\sjtugate}};
@@ -370,6 +370,32 @@
   %    \usetheme[my]{sjtubeamer}\usepackage{mycover}
   %
 }
+\if\EqualOption{cover}{lang}{cn}%
+  \@ifclassloaded{ctexbeamer}{
+    \def\sjtubeamer@cover@partnumber{\CTEX@thepart}
+    \def\sjtubeamer@cover@partname{\CTEX@partname}
+    \def\sjtubeamer@cover@sectionnumber{\CTEX@thesection}
+    \ctexset{section/name={第~,~节}}
+    \def\sjtubeamer@cover@sectionname{\CTEX@sectionname}
+    \def\sjtubeamer@cover@subsectionnumber{\CTEX@thesubsection}
+    \ctexset{subsection/name={第~,~小节}}
+    \def\sjtubeamer@cover@subsectionname{\CTEX@subsectionname}
+  }{
+    \def\sjtubeamer@cover@partnumber{\insertromanpartnumber}
+    \def\sjtubeamer@cover@partname{第~\sjtubeamer@cover@partnumber~部分}
+    \def\sjtubeamer@cover@sectionnumber{\insertsectionnumber}
+    \def\sjtubeamer@cover@sectionname{第~\sjtubeamer@cover@sectionnumber~节}
+    \def\sjtubeamer@cover@subsectionnumber{\insertsubsectionnumber}
+    \def\sjtubeamer@cover@subsectionname{第~\sjtubeamer@cover@subsectionnumber~小节}
+  }
+\else%
+    \def\sjtubeamer@cover@partnumber{\insertromanpartnumber}
+    \def\sjtubeamer@cover@partname{\partname~\sjtubeamer@cover@partnumber}
+    \def\sjtubeamer@cover@sectionnumber{\insertsectionnumber}
+    \def\sjtubeamer@cover@sectionname{\sectionname~\sjtubeamer@cover@sectionnumber}
+    \def\sjtubeamer@cover@subsectionnumber{\insertsubsectionnumber}
+    \def\sjtubeamer@cover@subsectionname{\subsectionname~\sjtubeamer@cover@subsectionnumber}
+\fi
 \defbeamertemplate*{part page}{maxplus}[1][]
 {
   \nointerlineskip
@@ -379,19 +405,40 @@
   \begin{tikzpicture}[overlay]
     \fill [palette primary.bg] (-0.2*\the\paperwidth,-1*\the\paperheight)
     rectangle (1*\the\paperwidth, 0.3*\the\paperheight);
-    \node [right, palette primary.fg] at (-0.2*\the\paperwidth, -0.48*\the\paperheight) {\resizebox{1.25\paperwidth}{!}{\sjtugate}};
+    \node [right, palette primary.fg] at (-0.2*\the\paperwidth, -0.6*\the\paperheight)
+    {\resizebox{1.25\paperwidth}{!}{\sjtugate}};
   \end{tikzpicture}
   \vfil
   \begingroup
     \usebeamercolor[fg]{part title}
     \usebeamerfont{part name}
-    \if\EqualOption{cover}{lang}{cn}%
-      第~\insertromanpartnumber~部分
-    \else%
-      \partname~\insertromanpartnumber
-    \fi%
+    \sjtubeamer@cover@partname
     \par\vskip4pt
-    \usebeamerfont{part title}\insertpart\par
+    {\usebeamerfont{part title}\insertpart\par}
+    \vskip10pt
+    {
+      \scriptsize
+      \hfuzz=100pt
+      \hbadness=100000
+      \hskip-0.3cm
+      \insertsectionnavigation{0.5cm}
+    }
+  \endgroup
+  \vfill
+}
+\defbeamertemplate*{part page}{max}[1][]
+{
+  \vfill
+  \begingroup
+    \centering
+    \stamptext{\large\sjtubeamer@cover@partnumber}\\
+    \vskip8pt
+    {
+      \usebeamerfont{part title}
+      \color{structure}
+      \insertpart
+      \par
+    }
   \endgroup
   \vfill
 }
@@ -402,11 +449,7 @@
   \begingroup
   \begin{beamercolorbox}[sep=16pt,right,#1]{part title}
     \hfill\usebeamerfont{part name}
-    \if\EqualOption{cover}{lang}{cn}%
-      第~\insertromanpartnumber~部分
-    \else%
-      \partname~\insertromanpartnumber
-    \fi%
+    \sjtubeamer@cover@partname
     \par\vskip4pt
     \usebeamerfont{part title}\insertpart\par
     \hbox to \textwidth{
@@ -416,21 +459,30 @@
           fg=palette primary.fg,bg=}
         \let\navwidth\textwidth
         \advance\navwidth by -32pt
-        \insertsectionnavigationhorizontal{\navwidth}{\hskip0pt plus1filll}{\hskip-.3cm}\hskip11pt
+        \insertsectionnavigationhorizontal{\navwidth}{\hskip0pt plus1filll}{\hskip-.3cm}
+        \hskip11pt
       }
     }
   \end{beamercolorbox}
   \endgroup
   \vfill
 }
+\defbeamertemplate*{part page}{my}[1][]
+{
+  %
+  % Developer could implement your own part page template here...
+  % or use "my" theme first, then implement your title page
+  % in a different style file mycover.sty with:
+  %    \defbeamertemplate*{part page}{<another name>}[1][]{<Your implementation>}
+  %    \defbeamertemplatealias{part page}{my}{<another name>}
+  % and in the main.tex:
+  %    \usetheme[my]{sjtubeamer}\usepackage{mycover}
+  %
+}
 \def\sectionblock#1{
   \begin{beamercolorbox}[sep=12pt,right,#1]{section title}
     \usebeamerfont{section name}
-    \if\EqualOption{inner}{lang}{cn}%
-      第~\insertsectionnumber~节
-    \else%
-      \sectionname~\insertsectionnumber
-    \fi%
+    \sjtubeamer@cover@sectionname
     \par\vskip4pt
     \usebeamerfont{section title}\insertsection\par
   \end{beamercolorbox}
@@ -450,11 +502,7 @@
   \sectionblock{#1}
   \begin{beamercolorbox}[sep=8pt,right,#1]{subsection title}
     \usebeamerfont{subsection name}
-    \if\EqualOption{inner}{lang}{cn}%
-    第~\insertsubsectionnumber~小节
-    \else%
-    \subsectionname~\insertsubsectionnumber
-    \fi%
+    \sjtubeamer@cover@subsectionname
     \par\vskip 4pt
     \usebeamerfont{subsection title}\insertsubsection\par
   \end{beamercolorbox}

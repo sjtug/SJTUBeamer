@@ -143,6 +143,42 @@
 		"body": "\\bottomthanks",
 		"description": "The \"Thank You\" caption in the bottom page. Redefine this command will change the bottom page caption.\n"
 	},
+	"sjtubeamer@cover@partnumber": {
+		"scope": "doctex,tex",
+		"prefix": "\\sjtubeamer@cover@partnumber",
+		"body": "\\sjtubeamer@cover@partnumber",
+		"description": "Part number based on different languages and whether the ctexbeamer class is loaded. \nIf ctexbeamer is loaded, you could modify the part/number by \\ctexset after the theme is loaded.\n"
+	},
+	"sjtubeamer@cover@partname": {
+		"scope": "doctex,tex",
+		"prefix": "\\sjtubeamer@cover@partname",
+		"body": "\\sjtubeamer@cover@partname",
+		"description": "Part name based on different languages and whether the ctexbeamer class is loaded.\nIf ctexbeamer is loaded, you could modify the part/name by \\ctexset after the theme is loaded.\n"
+	},
+	"sjtubeamer@cover@sectionnumber": {
+		"scope": "doctex,tex",
+		"prefix": "\\sjtubeamer@cover@sectionnumber",
+		"body": "\\sjtubeamer@cover@sectionnumber",
+		"description": "Section number based on different languages and whether the ctexbeamer class is loaded. \nIf ctexbeamer is loaded, you could modify the section/number by \\ctexset after the theme is loaded.\n"
+	},
+	"sjtubeamer@cover@sectionname": {
+		"scope": "doctex,tex",
+		"prefix": "\\sjtubeamer@cover@sectionname",
+		"body": "\\sjtubeamer@cover@sectionname",
+		"description": "Section name based on different languages and whether the ctexbeamer class is loaded.\nIf ctexbeamer is loaded, you could modify the section/name by \\ctexset after the theme is loaded. \nThe default value for section/name is modified to the full text description version instead of pure value version.\n"
+	},
+	"sjtubeamer@cover@subsectionnumber": {
+		"scope": "doctex,tex",
+		"prefix": "\\sjtubeamer@cover@subsectionnumber",
+		"body": "\\sjtubeamer@cover@subsectionnumber",
+		"description": "Subsection number based on different languages and whether the ctexbeamer class is loaded. \nIf ctexbeamer is loaded, you could modify the subsection/number by \\ctexset after the theme is loaded.\n"
+	},
+	"sjtubeamer@cover@subsectionname": {
+		"scope": "doctex,tex",
+		"prefix": "\\sjtubeamer@cover@subsectionname",
+		"body": "\\sjtubeamer@cover@subsectionname",
+		"description": "Subsection name based on different languages and whether the ctexbeamer class is loaded.\nIf ctexbeamer is loaded, you could modify the subsection/name by \\ctexset after the theme is loaded.\nThe default value for subsection/name is modified to the full text description version instead of pure value version.\n"
+	},
 	"sectionblock": {
 		"scope": "doctex,tex",
 		"prefix": "\\sectionblock",
