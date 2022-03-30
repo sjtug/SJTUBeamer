@@ -582,7 +582,7 @@
 %    \begin{macrocode}
   }{
 %    \end{macrocode}
-%    The branch here is prepared just in case that the \verb"beamer" is loaded and \verb"ctex" package is manually loaded, with \verb"cn" option turned on.
+%    The branch here is prepared just in case that the \verb"beamer" is loaded and \verb"ctex" package is manually loaded, with \verb"zh" option turned on.
 %    \begin{macrocode}
     \def\sjtubeamer@cover@partnumber{\insertromanpartnumber}
     \def\sjtubeamer@cover@partname{第~\sjtubeamer@cover@partnumber~部分}
@@ -687,7 +687,7 @@
 %  \paragraph{max.}
 %
 %  \begin{macro}{\ifbeamercolorwhite}
-%   A helper function like \verb"\ifbeamercolorempty" to check if the color is white. Two mandantory parameters: 
+%   A helper function like \verb"\ifbeamercolorempty" to check if the color is white (only the literal layer, without any expansion). Two mandantory parameters: 
 %   The first one indicates if it is fg or bg.
 %   The second one is the beamer color name.
 %    \begin{macrocode}
@@ -704,6 +704,8 @@
   \fi%
 }
 %    \end{macrocode}
+%  COPYRIGHT NOTICE: This macro is modified from \verb"beamer" class under LPPL 1.3c license.
+%
 %  For decoupling reason, without passing the lum option (dark or light) to make judgement on the primary color which is not white. This might be helpful if you do not want the color to get changed by the lum option.
 %  \end{macro}
 %
