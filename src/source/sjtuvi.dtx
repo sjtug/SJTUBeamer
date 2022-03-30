@@ -182,7 +182,7 @@
     \begin{tikzpicture}[baseline=(nodetext.base)]
       \node [white] (nodetext) at (0,0) {#2};
 %    \end{macrocode}
-% Use \verb"\newskip" instead of \verb"\newlength" to avoid the check of \LaTeX{} on the macro, since we have use this macro locally as intended.
+% Use \verb"\newskip" instead of \verb"\newlength" to avoid the check of \LaTeX{} on the macro, since we have used this macro locally as intended.
 %    \begin{macrocode}
       \newskip{\s}
 %    \end{macrocode}
@@ -216,7 +216,7 @@
 %
 % \begin{macro}{\sjtubeamer@compatible}
 % For \TeX Live 2018 and even older, it is \emph{not} compatible to use the patterns.meta library for making user-defined patterns. And fading is not available for caching. Please consider \verb"\def\sjtubeamer@compatible{false}" to match the following condition checking. Remember to use \verb"\makeatletter" and \verb"\makeatother" in \LaTeX{}.
-% TODO: Get it into an option, not a macro. We have to consider the transmission model.
+% We didn't make it as an option since it will break the hierarchival structure of option definition. This is the bottom level of all style files, no advanced methods are provided in this layer.
 %    \begin{macrocode}
 \def\sjtubeamer@compatible@false{false}
 %    \end{macrocode}

@@ -509,7 +509,7 @@ The table shows the flow of parameter passing.
 
 \subsection{Template Management}
 
-\themename\ has its own system on template management on title page and bottom page. In a word, all variables will be stored on an artificial stack.
+About the cover defining method, \themename\ has unified five different covers into one way of definition --- \verb"\definecover{part}". This macro will generate two sub commands --- \verb"\partpage" and \verb"\makepart", which is used to override the original definition with some redundent macros. The difference between \verb"\make..." series and \verb"\...page" series is that the former will try to use a \verb"plain" frame in the first place.
 
 \begin{figure}[h]
   \texttt{\textbackslash{}maketitle}\par
@@ -521,6 +521,38 @@ The table shows the flow of parameter passing.
 Now, a sandbox in \verb"sjtucover.sty" is created.
 
 To use a different cover style, use \verb"\setbeamertemplate{title page}[maxplus]" before calling \verb"\maketitle". The same as \verb"bottom page", \verb"part page", \verb"section page" and \verb"subsection page". For the sake of simplicity, the later three templates could be modified by one parent template \verb"sectioning pages".
+
+The three types of \verb"sectioning pages" are structured in a way that the code could be better reused. A typical sectioning page beamer template definition is as follows.
+
+\begin{verbatim}
+  \defbeamertemplate*{sectioning block}{min}[1]{
+    % This will define the basic element of sectioning ...
+  }
+  \defbeamertemplate*{sectioning page}{min}[1]{
+    \def\sjtubeamer@cover@sectype{#1}
+    \if\EqualOption{cover}{sectype}{subsection}
+      \setbeamertemplate{sectioning block}[min]{section}
+      \usebeamertemplate{sectioning block}
+    \fi
+    \setbeamertemplate{sectioning block}[min]{#1}
+    \usebeamertemplate{sectioning block}
+    \if\EqualOption{cover}{sectype}{part}
+      % Some part page specials here ...
+    \fi
+  }
+\end{verbatim}
+
+\themename\ will show the section it belongs when typesetting the subsection page, so use \verb"sectioning block" helper template to achieve that. When you want to override the original \verb"part page" template, use \verb"\definesecpage{part}{min}" command.
+
+\begin{verbatim}
+  \definesecpage{part}{min}
+  \definesecpage{section}{min}
+  \definesecpage{subsection}{min}
+\end{verbatim}
+
+This will redirect to the target \verb"sectioning page" by setting the correct configuration before using it. This might seems redundent since it has to set every time it uses. It seems that the code takes time but actually not, since it is macro programming for \LaTeX{} and the canonical conditional changes will only redirect the name of the macro instead of actually push the full data into the register. It is also beneficial for a unified management with the provided macros from \verb"beamer" class.
+
+About numbering scheme, it uses internal variables like \verb"\sjtubeamer@cover@sectionnumber" to store that. To adapt to the \verb"ctexbeamer" class, once it is loaded, the macro will get redirect to the macros defined in \verb"ctexheading" (remember, if the package \verb"ctex" is loaded seperately, this package will not get loaded). As a result, user could use \verb"\ctexset" interface to modify the numbering style after the theme is loaded (since some modification to \verb"\ctexset" may be introduced in this theme). 
 
 \begin{warn}
   When drawing in the sandbox through Ti\emph{k}Z, make sure to use \texttt{overlay} option for adjustment. It will avoid the shift of your cover when using \texttt{sidebar} theme.
