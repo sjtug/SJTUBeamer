@@ -189,7 +189,7 @@
 		"scope": "doctex,tex",
 		"prefix": "\\ifbeamercolorwhite",
 		"body": "\\ifbeamercolorwhite{$1}{$2}",
-		"description": "A helper function like \\ifbeamercolorempty to check if the color is white. Two mandantory parameters: \nThe first one indicates if it is fg or bg.\nThe second one is the beamer color name.\n"
+		"description": "A helper function like \\ifbeamercolorempty to check if the color is white (only the literal layer, without any expansion). Two mandantory parameters: \nThe first one indicates if it is fg or bg.\nThe second one is the beamer color name.\n"
 	},
 	"DefineOption": {
 		"scope": "doctex,tex",
