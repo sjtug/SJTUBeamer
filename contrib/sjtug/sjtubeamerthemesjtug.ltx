@@ -14,7 +14,7 @@
 %% limitations under the License.
 %% ------------------------------------------------------------------------
 % 设置文件元数据
-\ProvidesFile{sjtubeamerthemesjtug.ltx}[2022/02/18 SJTUG subtheme for SJTUBeamer]
+\ProvidesFile{sjtubeamerthemesjtug.ltx}[2022/03/30 SJTUG subtheme for SJTUBeamer]
 % 设置组织名称
 \institute[SJTU Linux User Group]{上海交通大学 Linux 用户组}
 % 设置徽标
@@ -75,7 +75,34 @@
   }
   \vfill
 }
-% 设置标题页
-\defbeamertemplatealias{title page}{my}{sjtug}
 % 设置结束页
-\defbeamertemplatealias{bottom page}{my}{min}
+\setbeamertemplate{bottom page}[min]
+% 设置部分页、节页和小节页
+\setbeamertemplate{sectioning pages}[min]
+% 当然也可以分别设置：
+% \setbeamertemplate{part page}[min]
+% \setbeamertemplate{section page}[min]
+% \setbeamertemplate{subsection page}[min]
+
+% 下面不属于常规操作，会导致徽标不可更改，
+% 不使用时请注释掉
+%
+% 更改徽标为含有当前章节名称
+\xdef\oldlogo{\expandbeamertemplate{logo}}
+\logo{\insertpart\oldlogo}
+% 重定义标题页命令以局部使用老徽标定义
+\let\oldmaketitle=\maketitle
+\def\maketitle{
+  {
+    \logo{\oldlogo}
+    \oldmaketitle
+  }
+}
+% 重定义结尾页命令以局部使用老徽标定义
+\let\oldmakebottom=\makebottom
+\def\makebottom{
+  {
+    \logo{\oldlogo}
+    \oldmakebottom
+  }
+}

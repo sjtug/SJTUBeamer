@@ -21,7 +21,7 @@
 %% limitations under the License.
 %% ------------------------------------------------------------------------
 \NeedsTeXFormat{LaTeX2e}
-\ProvidesPackage{beamerinnerthemesjtubeamer}[2022/03/21 sjtubeamer inner theme v2.5.7]
+\ProvidesPackage{beamerinnerthemesjtubeamer}[2022/03/30 v2.6.0 sjtubeamer inner theme]
 \RequirePackage{sjtuvi}
 \RequirePackage{tcolorbox}
 \DefineOption{inner}{cover}{maxplus}
@@ -34,9 +34,9 @@
   my,
   max,
 }
-\DeclareOptionBeamer{cn}{\def\sjtubeamer@inner@lang{cn}}
+\DeclareOptionBeamer{zh}{\def\sjtubeamer@inner@lang{zh}}
 \DeclareOptionBeamer{en}{\def\sjtubeamer@inner@lang{en}}
-\@ifclassloaded{ctexbeamer}{\ExecuteOptionsBeamer{cn}}{
+\@ifclassloaded{ctexbeamer}{\ExecuteOptionsBeamer{zh}}{
   \ExecuteOptionsBeamer{en}}
 \DefineOption{inner}{color}{red}
 \DefineOption{inner}{color}{blue}
@@ -92,13 +92,9 @@
   \expandafter\def\csname #1page\endcsname{
     \coverpage{#1 page}
   }
-  \ifcsname make#1\endcsname\else
-    \expandafter\def\csname make#1\endcsname{}
-  \fi
-  \expandafter\renewcommand\csname make#1\endcsname[1][\sjtubeamer@inner@cover]{
+  \expandafter\def\csname make#1\endcsname{
     {
       \def\beamer@writeslidentry{\clearpage\beamer@notesactions}
-      \setbeamertemplate{#1 page}[##1]
       \ifbeamer@inframe\csname #1page\endcsname\else
         \begin{frame}[plain]
           \csname #1page\endcsname
@@ -113,9 +109,11 @@
 \definecover{part}
 \definecover{section}
 \definecover{subsection}
-\setbeamertemplate{part page}[min]
-\setbeamertemplate{section page}[min]
-\setbeamertemplate{subsection page}[min]
+\defbeamertemplateparent{sectioning pages}{part page,section page,subsection page}{}
+\setbeamertemplate{sectioning pages}[\sjtubeamer@inner@cover]
+ % \setbeamertemplate{part page}[\sjtubeamer@inner@cover]
+ % \setbeamertemplate{section page}[\sjtubeamer@inner@cover]
+ % \setbeamertemplate{subsection page}[\sjtubeamer@inner@cover]
 \AtBeginPart{
   \makepart
 }
@@ -161,6 +159,8 @@
     numbers=left,
     numberstyle=\color{cprimary!80}\ttfamily\scriptsize,
     numbersep=5pt,
+    aboveskip=0pt,
+    belowskip=0pt,
     #1,
   },
   enhanced,
@@ -185,6 +185,8 @@
     numbers=left,
     numberstyle=\color{cprimary!80}\ttfamily\scriptsize,
     numbersep=5pt,
+    aboveskip=0pt,
+    belowskip=0pt,
     #1,
   },
   listing file=#3,

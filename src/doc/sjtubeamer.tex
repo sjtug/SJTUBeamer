@@ -284,7 +284,7 @@ fontupper=\sffamily,colupper=white}
 
 \section{节次提示}
 
-而新式的方法是使用 \themename\ 优化后的节次页。
+而新式的方法是使用 \themename\ 优化后的节次页。现在节次页也会随主题的不同而有不同的样式。节次页的编号支持在加载主题之后使用 \texttt{\textbackslash{}ctexset} 来更改格式，详见 \href{https://mirrors.sjtug.sjtu.edu.cn/CTAN/language/chinese/ctex/ctex.pdf#7}{\CTeX{} 宏集手册}。
 
 \beamerdemo[4]{step7+.tex}
 
@@ -452,10 +452,14 @@ fontupper=\sffamily,colupper=white}
 \begin{tcbitemize}[raster rows=2, raster columns=3, raster every box/.style={center title, valign=center, halign=center,fonttitle=\ttfamily,colback=white}]
   \tcbitem[raster multicolumn=2,blankest]
   \begin{tcbitemize}[raster columns=2]
-    \tcbitem[title={\textbackslash{}cnlogo}] \moveleft 0.3cm\hbox{\resizebox{!}{1cm}{\cnlogo}}
-    \tcbitem[title={\textbackslash{}enlogo}] \moveleft 0.3cm\hbox{\resizebox{!}{1cm}{\enlogo}}
-    \tcbitem[title={\textbackslash{}sjtubadge},height=3.5cm] \resizebox{!}{2cm}{\sjtubadge\ }
-    \tcbitem[title={\textbackslash{}dlogo},height=3.5cm] \resizebox{3cm}{!}{\dlogo\ }
+    \tcbitem[title={\textbackslash{}zhlogo}]
+    \moveleft 0.3cm\hbox{\resizebox{!}{1cm}{\zhlogo}}
+    \tcbitem[title={\textbackslash{}enlogo}]
+    \moveleft 0.3cm\hbox{\resizebox{!}{1cm}{\enlogo}}
+    \tcbitem[title={\textbackslash{}sjtubadge},height=3.5cm]
+    \resizebox{!}{2cm}{\sjtubadge\ }
+    \tcbitem[title={\textbackslash{}dlogo},height=3.5cm]
+    \resizebox{3cm}{!}{\dlogo\ }
   \end{tcbitemize}
   \tcbitem[title={\textbackslash{}vlogo}] \resizebox{!}{4.8cm}{\vlogo\ }
 \end{tcbitemize}
@@ -464,7 +468,7 @@ fontupper=\sffamily,colupper=white}
 
 \begin{commentlist}
   \item 使用 \texttt{\textbackslash{}logo} 设定徽标。在主题处使用 \verb"topright" 或 \verb"bottomright" 选项强制指定徽标的位置为右上角（\verb"max"默认）或左下角（\verb"maxplus" 和 \verb"min"）。
-  \item 可以使用自定义的徽标，可以使用外部图片，或参见\href{run:sjtubeamerdevguide.pdf}{开发指南}第 3.4 节创造可变颜色徽标$^*$。后者可以采用可选参数改变颜色，比如 \texttt{\textbackslash{}cnlogo[cprimary]}。
+  \item 可以使用自定义的徽标，可以使用外部图片，或参见\href{run:sjtubeamerdevguide.pdf}{开发指南}第 3.4 节创造可变颜色徽标$^*$。后者可以采用可选参数改变颜色，比如 \texttt{\textbackslash{}zhlogo[cprimary]}。
 \end{commentlist}
 
 \chapter{头图}
@@ -506,7 +510,7 @@ fontupper=\sffamily,colupper=white}
 
 \begin{commentlist}
   \item 使用 \texttt{\textbackslash{}definecolor} 定义 \texttt{cprimary}、\texttt{csecondary}$^*$ 可以改变主题颜色。
-  \item 使用 \texttt{\textbackslash{}defbeamertemplatealias} 可以通过已有模板进行赋值，这里可以用于设置标题页与尾页的样式为现有样式。
+  \item 使用 \texttt{\textbackslash{}setbeamertemplate} 可以直接设置对应的标题页、结束页、节次页等为已经定义的模板。
   \item 更多设置请参见\href{run:sjtubeamerdevguide.pdf}{开发文档}第4.3节。
 \end{commentlist}
 

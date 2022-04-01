@@ -16,7 +16,7 @@
 % \iffalse
 %<*package>
 \NeedsTeXFormat{LaTeX2e}
-\ProvidesPackage{beamerinnerthemesjtubeamer}[2022/03/21 sjtubeamer inner theme v2.5.7]
+\ProvidesPackage{beamerinnerthemesjtubeamer}[2022/03/30 v2.6.0 sjtubeamer inner theme]
 %</package>
 % \fi
 % \CheckSum{0}
@@ -84,9 +84,9 @@
 %
 %  \begin{macro}{\sjtubeamer@inner@lang}
 %    \begin{macrocode}
-\DeclareOptionBeamer{cn}{\def\sjtubeamer@inner@lang{cn}}
+\DeclareOptionBeamer{zh}{\def\sjtubeamer@inner@lang{zh}}
 \DeclareOptionBeamer{en}{\def\sjtubeamer@inner@lang{en}}
-\@ifclassloaded{ctexbeamer}{\ExecuteOptionsBeamer{cn}}{
+\@ifclassloaded{ctexbeamer}{\ExecuteOptionsBeamer{zh}}{
   \ExecuteOptionsBeamer{en}}
 %    \end{macrocode}
 %  \end{macro}
@@ -221,7 +221,7 @@
 %  \end{macro}
 %
 % \begin{macro}{\definecover}
-%  Command generator for \verb"\maketitle" and \verb"\makebottom", which will receive an optional command for selecting different theme. Redefinition on \verb"\beamer@writeslideentrty" locally will remove the corresponding navigation dot for miniframe outer theme.
+%  Command generator for \verb"\maketitle" and \verb"\makebottom". Redefinition on \verb"\beamer@writeslideentrty" locally will remove the corresponding navigation dot for miniframe outer theme.
 %  This command receives one parameter for the cover type like ``title'' or ``bottom''.
 %    \begin{macrocode}
 \def\definecover#1{
@@ -231,16 +231,9 @@
   \expandafter\def\csname #1page\endcsname{
     \coverpage{#1 page}
   }
-%    \end{macrocode}
-% To avoid the check of \verb"\renewcommand" and to fullfill the same purpose of overriding the original definition like what \verb"\def" does. If the command is not defined, it will get defined as an empty macro first before going into the definition stage in \LaTeX{} command style, in order to use the optional argument.
-%    \begin{macrocode}
-  \ifcsname make#1\endcsname\else
-    \expandafter\def\csname make#1\endcsname{}
-  \fi
-  \expandafter\renewcommand\csname make#1\endcsname[1][\sjtubeamer@inner@cover]{
+  \expandafter\def\csname make#1\endcsname{
     {
       \def\beamer@writeslidentry{\clearpage\beamer@notesactions}
-      \setbeamertemplate{#1 page}[##1]
       \ifbeamer@inframe\csname #1page\endcsname\else
         \begin{frame}[plain]
           \csname #1page\endcsname
@@ -270,11 +263,14 @@
 \definecover{subsection}
 %    \end{macrocode}
 %
-%  Initialize the sectioning page.
+%  Initialize the sectioning pages. User could redefine the beamer template \verb"sectioning pages" to set up \verb"part page", \verb"section page", \verb"subsection page" in one line. User could also define them seperately as the commented code.
+%  NOTICE: no space around the comma in the children list. No par in the children list.
 %    \begin{macrocode}
-\setbeamertemplate{part page}[min]
-\setbeamertemplate{section page}[min]
-\setbeamertemplate{subsection page}[min]
+\defbeamertemplateparent{sectioning pages}{part page,section page,subsection page}{}
+\setbeamertemplate{sectioning pages}[\sjtubeamer@inner@cover]
+ % \setbeamertemplate{part page}[\sjtubeamer@inner@cover]
+ % \setbeamertemplate{section page}[\sjtubeamer@inner@cover]
+ % \setbeamertemplate{subsection page}[\sjtubeamer@inner@cover]
 %    \end{macrocode}
 %
 %  Make a part page for each part by default. 
@@ -381,6 +377,8 @@
     numbers=left,
     numberstyle=\color{cprimary!80}\ttfamily\scriptsize,
     numbersep=5pt,
+    aboveskip=0pt,
+    belowskip=0pt,
     #1,
   },
   enhanced,
@@ -424,6 +422,8 @@
     numbers=left,
     numberstyle=\color{cprimary!80}\ttfamily\scriptsize,
     numbersep=5pt,
+    aboveskip=0pt,
+    belowskip=0pt,
     #1,
   },
   listing file=#3,

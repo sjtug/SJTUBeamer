@@ -21,7 +21,7 @@
 %% limitations under the License.
 %% ------------------------------------------------------------------------
 \NeedsTeXFormat{LaTeX2e}
-\ProvidesPackage{beamerthemesjtubeamer}[2022/03/21 sjtubeamer parent theme v2.5.7]
+\ProvidesPackage{beamerthemesjtubeamer}[2022/03/30 v2.6.0 sjtubeamer parent theme]
 \DeclareOptionBeamer{maxplus}{
   \def\sjtubeamer@cover{maxplus}\def\sjtubeamer@logopos{topright}}
 \DeclareOptionBeamer{max}{
@@ -43,9 +43,9 @@
 \DeclareOptionBeamer{light}{\def\sjtubeamer@lum{light}}
 \DeclareOptionBeamer{dark}{\def\sjtubeamer@lum{dark}}
 \ExecuteOptionsBeamer{dark}
-\DeclareOptionBeamer{cn}{\def\sjtubeamer@lang{cn}}
+\DeclareOptionBeamer{zh}{\def\sjtubeamer@lang{zh}}
 \DeclareOptionBeamer{en}{\def\sjtubeamer@lang{en}}
-\@ifclassloaded{ctexbeamer}{\ExecuteOptionsBeamer{cn}}{
+\@ifclassloaded{ctexbeamer}{\ExecuteOptionsBeamer{zh}}{
   \ExecuteOptionsBeamer{en}}
 \DeclareOptionBeamer{miniframes}{\def\sjtubeamer@nav{miniframes}}
 \DeclareOptionBeamer{infolines}{\def\sjtubeamer@nav{infolines}}
