@@ -132,7 +132,7 @@ Edit `main.tex` and start to use.
   * Run `latexmk -xelatex main.tex` to compile
   * VSCode LaTeX Workshop: use “Recipe: latexmk (latexmkrc)” to compile
 
-The current stable version is v2.3.0。You could visit [the release page](https://github.com/sjtug/SJTUBeamer/releases) for the changelog and more details. Generally speaking, a release of SJTUBeamer has the following content:
+The current stable version is v2.6.0。You could visit [the release page](https://github.com/sjtug/SJTUBeamer/releases) for the changelog and more details. Generally speaking, a release of SJTUBeamer has the following content:
 
 * `sjtubeamer.pdf`: SJTUBeamer User Guide。**HIGHLY RECOMMENDED TO READ BEFORE YOU START👍👍👍**
 * `sjtubeamerdevguide.pdf`: SJTUBeamer Development Guide.
@@ -165,10 +165,10 @@ New contributors could add your name to the developer list in `sjtubeamerdevguid
 
 ## Appearance 🧐
 
-![cover-0](https://user-images.githubusercontent.com/4198311/132097433-3c44d6f6-47e1-4d38-95db-560252ec5817.png)
-![cover-1](https://user-images.githubusercontent.com/4198311/132097442-0994886f-3eb1-4935-a8f5-34f5516fcdc3.png)
-![cover-2](https://user-images.githubusercontent.com/4198311/132097445-6fbfeb22-8e19-4c48-ab1e-ba81672e7ba3.png)
-![cover-3](https://user-images.githubusercontent.com/4198311/132097448-f3c44794-3834-4c4f-8a9a-769098aad8a9.png)
+![cover_1](https://user-images.githubusercontent.com/61653082/160813366-5c7bd98b-dc3c-43ac-9cf4-1cb375228470.jpg)
+![cover_2](https://user-images.githubusercontent.com/61653082/160813386-8cb98131-0cae-456b-af1e-cec671e5fc8e.jpg)
+![cover_3](https://user-images.githubusercontent.com/61653082/160813414-9b43c4b3-4e6d-4f51-9c63-ff7a87eafcf7.jpg)
+![cover_4](https://user-images.githubusercontent.com/61653082/160813430-1c7647d4-6346-4fd8-b43f-e156b6234b0e.jpg)
 
 ## License
 
