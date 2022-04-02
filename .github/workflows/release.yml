@@ -17,6 +17,8 @@ jobs:
         with:
           run: |
             apk add zip diffutils
+            tlmgr update --self
+            tlmgr update l3build
             .github/ci/build_package.sh
         name: build package with XeLaTeX
       - uses: xu-cheng/texlive-action/full@v1
