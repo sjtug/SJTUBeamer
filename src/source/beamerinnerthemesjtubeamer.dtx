@@ -289,47 +289,29 @@
 %    \end{macrocode}
 %
 % \begin{macro}{bibliolist}
-%    Create a bibliography list manually with \verb"\item" for individuals rather than \verb"\bibitem".
+%    Create a bibliography list manually with \verb"\item" patched for \verb"\newblock".
 %    The mandantory parameter indicates the widest label among items, if you want to indicate the item label seperately.
-%    Otherwise, left the parameter blank for usual icon setting of \verb"bibliography item" template.
 %    \begin{macrocode}
 \newenvironment{bibliolist}[1]{
 %    \end{macrocode}
-%    If user specifies the \verb"text" beamer template for \verb"bibliography item", the style will fallback to \verb"article" in this environment. The \verb"text" style will try to use \verb"\insertbiblabel" for labels and the definition is override with the icon setting locally.
+%    Patch the \verb"\item" command in this environment, to redefine \verb"\newblock" and assign \verb"\newblock" after this command. The style will behave like \verb"\bibitem" but without the mandantory parameter for bib key.
 %    \begin{macrocode}
-  \def\insertbiblabel{{\setbeamertemplate{bibliography item}[article]\usebeamertemplate*{bibliography item}}}
-%    \end{macrocode}
-%    Sync with the list setting of \verb"thebibliography" environment in beamer.
-%    \begin{macrocode}
-  \list{\usebeamertemplate*{bibliography item}}
-       {\itemsep=0pt%
-        \partopsep=0pt%
-        \topsep=0pt%
-%    \end{macrocode}
-%    If the parameter is left empty, the list will get the default setting for \verb"\labelwidth", which is suitable enough for beamer icons.
-%    \begin{macrocode}
-        \def\widest{#1}
-        \ifx\widest\@empty\else
-          \settowidth\labelwidth{#1}
-          \leftmargin\labelwidth
-          \advance\leftmargin\labelsep
-        \fi}
-%    \end{macrocode}
-%    Sync with the penalty settings of \verb"thebibliography" environment in beamer. COPYRIGHT NOTICE: LPPL-1.3c License.
-%    \begin{macrocode}
-    \sloppy\raggedright
-    \clubpenalty10000
-    \@clubpenalty \clubpenalty
-    \widowpenalty10000%
-    \sfcode`\.\@m
+  \begin{thebibliography}{#1}
+    \def\item{\@ifnextchar\relax\beamer@origitem{%
+    \ifhmode
+      \unskip\unskip\par
+    \fi
+    \beamer@closeitem\gdef\beamer@closeitem{}%
+    \@ifnextchar<{\beamer@parseitem}{\beamer@itemcheckopt}}
+    \def\newblock{\beamer@newblock}\newblock%
+    }
 }{
-  \ifhmode\unskip\fi\endlist
+  \end{thebibliography}
 }
 %    \end{macrocode}
 %    This environment syncs with SJTUThesis. It is used to generate the customized look of bibliography list without the processing from \textsc{Bib}\TeX{} or \verb"biblatex", which could bring performance improvement.
-%    You can specify the style of the icon by \verb"\setbeamertemplate{bibliography item}[book]" or other predefined template provided by \verb"beamer" class like \verb"online". But it doesn't support \verb"text" beamer template. 
+%    You can specify the style of the icon by \verb"\setbeamertemplate{bibliography item}[book]" or other predefined template provided by \verb"beamer" class like \verb"online", \verb"triangle", \verb"text" (for square bracket enumeration).
 %    And such the setting should be done INSIDE the environment since \verb"beamer" will override the user setting on this template to text style at the begining of \verb"document" environment if it loads \verb"biblatex".
-%    For enumerate support, one can use manual enumeration in the list or use normal bibliography insertion method. This environment doesn't come with any counter support, since the \verb"beamer" class has no built-in counter style for \verb"bibliography item".
 % \end{macro}
 %
 % \subsubsection{Block Environments}

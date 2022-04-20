@@ -119,19 +119,17 @@
 }
 \useinnertheme{circles}
 \newenvironment{bibliolist}[1]{
-  \def\insertbiblabel{{\setbeamertemplate{bibliography item}[article]\usebeamertemplate*{bibliography item}}}
-  \list{\usebeamertemplate*{bibliography item}}
-       {\itemsep=0pt%
-        \partopsep=0pt%
-        \topsep=0pt%
-        \def\widest{#1}
-        \ifx\widest\@empty\else
-          \settowidth\labelwidth{#1}
-          \leftmargin\labelwidth
-          \advance\leftmargin\labelsep
-        \fi}
+  \begin{thebibliography}{#1}
+    \def\item{\@ifnextchar\relax\beamer@origitem{%
+    \ifhmode
+      \unskip\unskip\par
+    \fi
+    \beamer@closeitem\gdef\beamer@closeitem{}%
+    \@ifnextchar<{\beamer@parseitem}{\beamer@itemcheckopt}}
+    \def\newblock{\beamer@newblock}\newblock%
+    }
 }{
-  \ifhmode\unskip\fi\endlist
+  \end{thebibliography}
 }
 \if\EqualOption{inner}{cover}{min}\else
   \setbeamertemplate{blocks}[rounded]

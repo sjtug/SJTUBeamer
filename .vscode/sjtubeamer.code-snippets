@@ -51,7 +51,7 @@
 		"scope": "doctex,tex,latex",
 		"prefix": "\n\\begin{bibliolist",
 		"body": "\n\\begin{bibliolist}{$1}\n\t$2\n\\end{bibliolist}\n",
-		"description": "Create a bibliography list manually with \\item for individuals rather than \\bibitem.\nThe mandantory parameter indicates the widest label among items, if you want to indicate the item label seperately.\nOtherwise, left the parameter blank for usual icon setting of bibliography item template.\n"
+		"description": "Create a bibliography list manually with \\item patched for \\newblock.\nThe mandantory parameter indicates the widest label among items, if you want to indicate the item label seperately.\n"
 	},
 	"highlight": {
 		"scope": "doctex,tex,latex",
