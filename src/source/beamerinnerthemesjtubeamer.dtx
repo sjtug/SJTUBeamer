@@ -295,10 +295,20 @@
 \newenvironment{bibliolist}[1]{
 %    \end{macrocode}
 %    Patch the \verb"\item" command in this environment, to redefine \verb"\newblock" and assign \verb"\newblock" after this command. The style will behave like \verb"\bibitem" but without the mandantory parameter for bib key.
-%    Currently, we cannot modify the \verb"\item" directly since \verb"\bibitem" also depends on \verb"\item". The current workaround for this is to add \verb"\renewblock" command manually after \verb"\item".
 %    \begin{macrocode}
   \begin{thebibliography}{#1}
-    \def\renewblock{\def\newblock{\beamer@newblock}\newblock}
+%    \end{macrocode}
+%     Save the old definition for item.
+%    \begin{macrocode}
+    \let\olditem\item%
+%    \end{macrocode}
+%    Now define the item with new definition of \verb"\newblock" without interrupting the scan of next char for \verb"\item". Now, you could use \verb"\newblock" normally after \verb"\item" command with initialized \verb"\newblock".
+%    This will not interrupt the definition of \verb"\bibitem" since the same definition on \verb"\newblock" has been made --- just define the thing the same time twice.
+%    \begin{macrocode}
+    \def\item{\def\newblock{\beamer@newblock}\olditem}
+%    \end{macrocode}
+%    TODO: automatically append \verb"\newblock" after \verb"\item" command which behaves like \verb"\bibitem" without interrupting the scan of \verb"\@ifnextchar". Replace \verb"\bibitem" macro if necessary.
+%    \begin{macrocode}
 }{
   \end{thebibliography}
 }
