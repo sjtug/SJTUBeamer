@@ -295,16 +295,10 @@
 \newenvironment{bibliolist}[1]{
 %    \end{macrocode}
 %    Patch the \verb"\item" command in this environment, to redefine \verb"\newblock" and assign \verb"\newblock" after this command. The style will behave like \verb"\bibitem" but without the mandantory parameter for bib key.
+%    Currently, we cannot modify the \verb"\item" directly since \verb"\bibitem" also depends on \verb"\item". The current workaround for this is to add \verb"\renewblock" command manually after \verb"\item".
 %    \begin{macrocode}
   \begin{thebibliography}{#1}
-    \def\item{\@ifnextchar\relax\beamer@origitem{%
-    \ifhmode
-      \unskip\unskip\par
-    \fi
-    \beamer@closeitem\gdef\beamer@closeitem{}%
-    \@ifnextchar<{\beamer@parseitem}{\beamer@itemcheckopt}}
-    \def\newblock{\beamer@newblock}\newblock%
-    }
+    \def\renewblock{\def\newblock{\beamer@newblock}\newblock}
 }{
   \end{thebibliography}
 }
