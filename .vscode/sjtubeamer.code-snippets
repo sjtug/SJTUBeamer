@@ -47,6 +47,12 @@
 		"body": "\\definecover{$1}",
 		"description": "Command generator for \\maketitle and \\makebottom. Redefinition on \\beamer@writeslideentrty locally will remove the corresponding navigation dot for miniframe outer theme.\nThis command receives one parameter for the cover type like ``title'' or ``bottom''.\n"
 	},
+	"bibliolist": {
+		"scope": "doctex,tex,latex",
+		"prefix": "\n\\begin{bibliolist",
+		"body": "\n\\begin{bibliolist}{$1}\n\t$2\n\\end{bibliolist}\n",
+		"description": "Create a bibliography list manually with \\item for individuals rather than \\bibitem.\nThe mandantory parameter indicates the widest label among items, if you want to indicate the item label seperately.\nOtherwise, left the parameter blank for usual icon setting of bibliography item template.\n"
+	},
 	"highlight": {
 		"scope": "doctex,tex,latex",
 		"prefix": "\\highlight",
