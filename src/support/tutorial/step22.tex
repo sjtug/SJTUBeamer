@@ -1,0 +1,21 @@
+\documentclass[]{ctexbeamer}
+\usetheme{sjtubeamer}
+\tikzfading[name=fade cover,
+  left color=transparent!20,
+  right color=transparent!20
+]
+\setbeamertemplate{background}{
+\bgcenterbox{
+\begin{tikzpicture}
+\stamparray{16pt}{(0,0)}
+{(\paperwidth,\paperheight)}
+\fill[white, path fading=fade cover]
+  (0,0) rectangle (\paperwidth,\paperheight);
+\end{tikzpicture}
+}
+}
+\begin{document}
+\begin{frame}
+  背景采用了印记矩阵的设计。
+\end{frame}
+\end{document}

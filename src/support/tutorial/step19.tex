@@ -1,15 +1,24 @@
 \documentclass[]{ctexbeamer}
-\usetheme[min,blue,light]{sjtubeamer}
+\usetheme{sjtubeamer}
+\usetikzlibrary{math}
+\tikzexternalize[prefix=build/]
 \begin{document}
-\title{SJTUBeamer}
-\subtitle{使用教程}
-\author{}
-\institute[School of Electronic,
-  \\Information and Electrical Engineering]
-{电子信息与电气工程学院}
-\date{\today}
-\titlegraphic{
-  \includegraphics{../head.png}
-}
-\maketitle
+\begin{frame}
+  \frametitle{缓存插图}
+  \begin{tikzpicture}[scale=0.7]
+    \foreach \x in {1,...,7}{
+        \foreach \y in {\x,...,7}{
+            \draw (\x,\y-1)--(\x,\y);
+            \draw (\x+1,\y)--(\x,\y);
+          }
+      }
+    \foreach \x in {1,...,8}{
+        \pgfmathparse{int(\x-1)}
+        \foreach \y in {\pgfmathresult,...,7}{
+            \node[draw,circle,fill=white,scale=0.6]
+            at (\x,\y) {\x,\y};
+          }
+      }
+  \end{tikzpicture}
+\end{frame}
 \end{document}

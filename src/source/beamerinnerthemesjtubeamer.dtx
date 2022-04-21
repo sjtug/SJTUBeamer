@@ -308,14 +308,15 @@
 %    \begin{macrocode}
     \def\item{\def\newblock{\beamer@newblock}\olditem}
 %    \end{macrocode}
-%    User should insert items by \verb"\articleitem", \verb"\bookitem", \verb"\onlineitem" inside this environment, otherwise, the user should insert \verb"\newblock" after \verb"\item" manually, which breaks the use of \verb"\newblock" and not recommended.
+%    User should insert items by \verb"\articleitem", \verb"\bookitem", \verb"\onlineitem" inside this environment, otherwise, the user should insert \verb"\newblock" after \verb"\item" manually, which breaks the use of \verb"\newblock" and not recommended with the only use of migration from \textsc{SJTUThesis} with the same style.
+%    The commands like \verb"\articleitem" do not accept the optional parameter for a label since the first part of this command name has already indicates the label of this item. The command like \verb"\item" accepts the optional parameter for the label and will override the potential numeric numbering (you have to load \verb"biblatex" in the preamble or specify the \verb"bibliography item" beamer template to \verb"text" inside this environment) for this item without a bracket surrounding. The behavior is the same as \textsc{SJTUThesis}.
 %    The direct patch on \verb"\item" is hard since \verb"\bibitem" also depends on this command. As a matter of fact, the \verb"\item" itself cannot be cited and should not be numbered by the way otherwise user should use \verb"\bibitem" inside \verb"\thebibliography" environment directly.
 %    \begin{macrocode}
 }{
   \end{thebibliography}
 }
 %    \end{macrocode}
-%    This environment syncs with SJTUThesis. It is used to generate the customized look of bibliography list without the processing from \textsc{Bib}\TeX{} or \verb"biblatex", which could bring performance improvement.
+%    This environment syncs with \textsc{SJTUThesis}. It is used to generate the customized look of bibliography list without the processing from \textsc{Bib}\TeX{} or \verb"biblatex", which could bring performance improvement.
 %    You can specify the style of the icon by \verb"\setbeamertemplate{bibliography item}[book]" or other predefined template provided by \verb"beamer" class like \verb"online", \verb"triangle", \verb"text" (for square bracket enumeration).
 %    And such the setting should be done INSIDE the environment since \verb"beamer" will override the user setting on this template to text style at the begining of \verb"document" environment if it loads \verb"biblatex".
 % \end{macro}
