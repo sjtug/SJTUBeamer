@@ -384,7 +384,7 @@ fontupper=\sffamily,colupper=white}
 
 \section{Biber}
 
-\faApple\ \faLinux\ 如果使用的是 \hologo{XeLaTeX} 编译，可以使用 \texttt{biblatex} 宏包，并采用 \textsc{Biber} 进行引用处理。
+\faApple\ \faLinux\ 如果使用的是 \hologo{XeLaTeX} 编译，可以使用 \texttt{biblatex} 宏包，对于中文引用可以使用 \texttt{gb7714-2015} 样式，并采用 \textsc{Biber} 进行引用处理。
 
 \beamerdemo[1]{step14+-.tex}
 
@@ -405,12 +405,12 @@ fontupper=\sffamily,colupper=white}
 
 \section{手动输入}
 
-为了避免使用额外的文献管理程序，可以使用手动输入的方式排印文献列表。
+为了避免使用额外的文献数据库文件，可以手动输入文献列表。
 
 \beamerdemo[1]{step16+-.tex}
 
 \begin{commentlist}
-  \item \LaTeX{} 本身提供了 \texttt{thebibliography} 环境，环境的强制参数用于指定排版最长的标签（这里是两位数占位符），配套 \texttt{\textbackslash{}bibitem[标签]\{主键\}}，在 \texttt{beamer} 中需要辅以 \texttt{\textbackslash{}newblock} 来分隔作者、文章标题、书目与其他内容。
+  \item \LaTeX{} 本身提供了 \texttt{thebibliography} 环境，环境的强制参数用于指定排版最长的标签（这里是两位数占位符），配套 \texttt{\textbackslash{}bibitem[标签]\{主键\}}，在 \texttt{beamer} 中需要辅以 \texttt{\textbackslash{}newblock} 来分隔作者、文章标题、书目与其他内容。这里的主键可以在正文中引用。
   \item 在 \texttt{beamer} 中可以通过设定 \texttt{bibliography item} 模板为对应预设来更改图标，这里是 \texttt{text} 预设用于排印编号。也可以改为文章图标 \texttt{article}，图书图标 \texttt{book} 或网络图标 \texttt{online} 等。
   \item 为了与 \textsc{SJTUThesis} 兼容，引入 \texttt{bibliolist} 环境$^*$以避免使用 \texttt{\textbackslash{}bibitem} 命令，并添加对应的 \texttt{\textbackslash{}articleitem}, \texttt{\textbackslash{}bookitem}, \texttt{\textbackslash{}onlineitem} 用于切换不同的图标$^*$，并保持与 \texttt{\textbackslash{}bibitem} 相同的用法。
   \item 在 \texttt{bibliolist} 环境中也可以直接使用 \texttt{\textbackslash{}item} 以不使用 \texttt{\textbackslash{}newblock} 来分割条目中的不同部分，正如 \textsc{SJTUThesis} 所做的那样。但请不要与上一条中的图标命令混用。
