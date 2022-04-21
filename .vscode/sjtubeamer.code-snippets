@@ -51,7 +51,7 @@
 		"scope": "doctex,tex,latex",
 		"prefix": "\n\\begin{bibliolist",
 		"body": "\n\\begin{bibliolist}{$1}\n\t$2\n\\end{bibliolist}\n",
-		"description": "Create a bibliography list manually with \\item patched for \\newblock. \nYou can just use \\item without \\newblock command, or you could use \\newblock with \\articleitem, \\bookitem, \\onlineitem.\nThe mandantory parameter indicates the widest label among items, if you want to indicate the item label seperately.\n"
+		"description": "Create a bibliography list manually with \\item patched for \\newblock. \nYou can just use \\item without \\newblock command, or you could use \\newblock with \\articleitem, \\bookitem, \\onlineitem.\nThe mandantory parameter (usually 00) indicates the widest label among items, if you want to indicate the item label seperately.\n"
 	},
 	"articleitem": {
 		"scope": "doctex,tex,latex",
