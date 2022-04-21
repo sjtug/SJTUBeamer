@@ -307,7 +307,7 @@
 %    \begin{macrocode}
     \def\item{\def\newblock{\beamer@newblock}\olditem}
 %    \end{macrocode}
-%    TODO: automatically append \verb"\newblock" after \verb"\item" command which behaves like \verb"\bibitem" without interrupting the scan of \verb"\@ifnextchar". Replace \verb"\bibitem" macro if necessary.
+%    User should insert items by \verb"\articleitem", \verb"\bookitem", \verb"\onlineitem" inside this environment, otherwise, the user should insert \verb"\newblock" after \verb"\item" manually.
 %    \begin{macrocode}
 }{
   \end{thebibliography}
@@ -317,6 +317,33 @@
 %    You can specify the style of the icon by \verb"\setbeamertemplate{bibliography item}[book]" or other predefined template provided by \verb"beamer" class like \verb"online", \verb"triangle", \verb"text" (for square bracket enumeration).
 %    And such the setting should be done INSIDE the environment since \verb"beamer" will override the user setting on this template to text style at the begining of \verb"document" environment if it loads \verb"biblatex".
 % \end{macro}
+%
+%  \begin{macro}{\articleitem}
+%    \begin{macrocode}
+\newcommand{\articleitem}{%
+  \item[{\setbeamertemplate{bibliography item}[article]\usebeamertemplate{bibliography item}}]%
+  \def\newblock{\beamer@newblock}\newblock%
+}
+%    \end{macrocode}
+%  \end{macro}
+%
+%  \begin{macro}{\bookitem}
+%    \begin{macrocode}
+\newcommand{\bookitem}{%
+  \item[{\setbeamertemplate{bibliography item}[book]\usebeamertemplate{bibliography item}}]%
+  \def\newblock{\beamer@newblock}\newblock%
+}
+%    \end{macrocode}
+%  \end{macro}
+%
+%  \begin{macro}{\onlineitem}
+%    \begin{macrocode}
+\newcommand{\onlineitem}{%
+  \item[{\setbeamertemplate{bibliography item}[online]\usebeamertemplate{bibliography item}}]%
+  \def\newblock{\beamer@newblock}\newblock%
+}
+%    \end{macrocode}
+%  \end{macro}
 %
 % \subsubsection{Block Environments}
 %
