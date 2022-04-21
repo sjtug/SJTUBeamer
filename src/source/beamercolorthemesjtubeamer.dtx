@@ -168,6 +168,15 @@
 \setbeamercolor{alerted text}{fg=cprimary}
 %    \end{macrocode}
 %
+%   Change the color of \verb"bibliography entry author" to normal color and the color of \verb"bibliography entry title" to the structure color. 
+%   This is mainly adapt to the instinct that the article and the location should be the same category. And highlight the title instead of author.
+%   It is also useful to avoid the text be highlighted for input bibliography manually.
+%    \begin{macrocode}
+\setbeamercolor{bibliography entry author}{use=normal text,fg=normal text.fg}
+\setbeamercolor{bibliography entry title}{use=structure,fg=structure.fg}
+\setbeamercolor{bibliography entry location}{use=structure,fg=structure.fg!65!bg}
+\setbeamercolor{bibliography entry note}{use=normal text,fg=normal text.fg}
+%    \end{macrocode}
 %
 % \iffalse
 %</package>
