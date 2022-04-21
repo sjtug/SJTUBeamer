@@ -289,7 +289,8 @@
 %    \end{macrocode}
 %
 % \begin{macro}{bibliolist}
-%    Create a bibliography list manually with \verb"\item" patched for \verb"\newblock".
+%    Create a bibliography list manually with \verb"\item" patched for \verb"\newblock". 
+%    You can just use \verb"\item" without \verb"\newblock" command, or you could use \verb"\newblock" with \verb"\articleitem", \verb"\bookitem", \verb"\onlineitem".
 %    The mandantory parameter indicates the widest label among items, if you want to indicate the item label seperately.
 %    \begin{macrocode}
 \newenvironment{bibliolist}[1]{
@@ -302,12 +303,13 @@
 %    \begin{macrocode}
     \let\olditem\item%
 %    \end{macrocode}
-%    Now define the item with new definition of \verb"\newblock" without interrupting the scan of next char for \verb"\item". Now, you could use \verb"\newblock" normally after \verb"\item" command with initialized \verb"\newblock".
-%    This will not interrupt the definition of \verb"\bibitem" since the same definition on \verb"\newblock" has been made --- just define the thing the same time twice.
+%    Now define the item with new definition of \verb"\newblock" without interrupting the scan of next char for \verb"\item". Now, you could use \verb"\newblock" normally after \verb"\item" command with the initialized \verb"\newblock" state.
+%    This will not interrupt the definition of \verb"\bibitem" since the same definition on \verb"\newblock" has been made --- just define the thing the same time twice. Notice that the patch is NOT available for the regular \verb"thebibliography" command for compatibility reasons with other themes.
 %    \begin{macrocode}
     \def\item{\def\newblock{\beamer@newblock}\olditem}
 %    \end{macrocode}
-%    User should insert items by \verb"\articleitem", \verb"\bookitem", \verb"\onlineitem" inside this environment, otherwise, the user should insert \verb"\newblock" after \verb"\item" manually.
+%    User should insert items by \verb"\articleitem", \verb"\bookitem", \verb"\onlineitem" inside this environment, otherwise, the user should insert \verb"\newblock" after \verb"\item" manually, which breaks the use of \verb"\newblock" and not recommended.
+%    The direct patch on \verb"\item" is hard since \verb"\bibitem" also depends on this command. As a matter of fact, the \verb"\item" itself cannot be cited and should not be numbered by the way otherwise user should use \verb"\bibitem" inside \verb"\thebibliography" environment directly.
 %    \begin{macrocode}
 }{
   \end{thebibliography}
@@ -319,6 +321,8 @@
 % \end{macro}
 %
 %  \begin{macro}{\articleitem}
+%    Start a bibliography item with an article icon, it is recommended to use inside \verb"bibliolist" environment.
+%    Remember the newblock will be created after this item so you should use \verb"\newblock" to split different categories in the order of author, title, location and notes.
 %    \begin{macrocode}
 \newcommand{\articleitem}{%
   \item[{\setbeamertemplate{bibliography item}[article]\usebeamertemplate{bibliography item}}]%
@@ -328,6 +332,8 @@
 %  \end{macro}
 %
 %  \begin{macro}{\bookitem}
+%    Start a bibliography item with an book icon, it is recommended to use inside \verb"bibliolist" environment.
+%    Remember the newblock will be created after this item so you should use \verb"\newblock" to split different categories in the order of author, title, location and notes.
 %    \begin{macrocode}
 \newcommand{\bookitem}{%
   \item[{\setbeamertemplate{bibliography item}[book]\usebeamertemplate{bibliography item}}]%
@@ -337,6 +343,8 @@
 %  \end{macro}
 %
 %  \begin{macro}{\onlineitem}
+%    Start a bibliography item with an online icon, it is recommended to use inside \verb"bibliolist" environment. 
+%    Remember the newblock will be created after this item so you should use \verb"\newblock" to split different categories in the order of author, title, location and notes.
 %    \begin{macrocode}
 \newcommand{\onlineitem}{%
   \item[{\setbeamertemplate{bibliography item}[online]\usebeamertemplate{bibliography item}}]%

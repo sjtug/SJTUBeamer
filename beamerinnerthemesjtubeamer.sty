@@ -120,16 +120,22 @@
 \useinnertheme{circles}
 \newenvironment{bibliolist}[1]{
   \begin{thebibliography}{#1}
-    \def\item{\@ifnextchar\relax\beamer@origitem{%
-    \ifhmode
-      \unskip\unskip\par
-    \fi
-    \beamer@closeitem\gdef\beamer@closeitem{}%
-    \@ifnextchar<{\beamer@parseitem}{\beamer@itemcheckopt}}
-    \def\newblock{\beamer@newblock}\newblock%
-    }
+    \let\olditem\item%
+    \def\item{\def\newblock{\beamer@newblock}\olditem}
 }{
   \end{thebibliography}
+}
+\newcommand{\articleitem}{%
+  \item[{\setbeamertemplate{bibliography item}[article]\usebeamertemplate{bibliography item}}]%
+  \def\newblock{\beamer@newblock}\newblock%
+}
+\newcommand{\bookitem}{%
+  \item[{\setbeamertemplate{bibliography item}[book]\usebeamertemplate{bibliography item}}]%
+  \def\newblock{\beamer@newblock}\newblock%
+}
+\newcommand{\onlineitem}{%
+  \item[{\setbeamertemplate{bibliography item}[online]\usebeamertemplate{bibliography item}}]%
+  \def\newblock{\beamer@newblock}\newblock%
 }
 \if\EqualOption{inner}{cover}{min}\else
   \setbeamertemplate{blocks}[rounded]
