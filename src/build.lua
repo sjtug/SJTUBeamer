@@ -68,10 +68,11 @@ function compile_file(dir, cmd, filename)
     local errorlevel = 0
     errorlevel = run(dir, cmd .. " " .. filename)
     if string.find(filename,"+") ~= nil then
-        if string.find(filename,"--") ~= nil then
+        if string.find(filename,"_") ~= nil then
             errorlevel = bibtex(string.gsub(filename,".tex",""),dir)
             errorlevel = run(dir,cmd .. " " .. filename)
-        elseif string.find(filename,"-") ~= nil then
+        end
+        if string.find(filename,"-") ~= nil then
             -- biber after compiling the first time if it is marked as "-"
             errorlevel = biber(string.gsub(filename,".tex",""),dir)
             errorlevel = run(dir,cmd .. " " .. filename)
