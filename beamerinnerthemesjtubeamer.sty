@@ -21,7 +21,7 @@
 %% limitations under the License.
 %% ------------------------------------------------------------------------
 \NeedsTeXFormat{LaTeX2e}
-\ProvidesPackage{beamerinnerthemesjtubeamer}[2022/03/30 v2.6.0 sjtubeamer inner theme]
+\ProvidesPackage{beamerinnerthemesjtubeamer}[2022/04/21 v2.6.1 sjtubeamer inner theme]
 \RequirePackage{sjtuvi}
 \RequirePackage{tcolorbox}
 \DefineOption{inner}{cover}{maxplus}
@@ -118,6 +118,26 @@
   \makepart
 }
 \useinnertheme{circles}
+\newenvironment{bibliolist}[1]{
+  \begin{thebibliography}{#1}
+    \let\olditem\item%
+    \def\item{\def\newblock{\beamer@newblock}\olditem}
+  \setbeamertemplate{bibliography item}[text]
+}{
+  \end{thebibliography}
+}
+\newcommand{\articleitem}{%
+  \item[{\setbeamertemplate{bibliography item}[article]\usebeamertemplate{bibliography item}}]%
+  \def\newblock{\beamer@newblock}\newblock%
+}
+\newcommand{\bookitem}{%
+  \item[{\setbeamertemplate{bibliography item}[book]\usebeamertemplate{bibliography item}}]%
+  \def\newblock{\beamer@newblock}\newblock%
+}
+\newcommand{\onlineitem}{%
+  \item[{\setbeamertemplate{bibliography item}[online]\usebeamertemplate{bibliography item}}]%
+  \def\newblock{\beamer@newblock}\newblock%
+}
 \if\EqualOption{inner}{cover}{min}\else
   \setbeamertemplate{blocks}[rounded]
 \fi

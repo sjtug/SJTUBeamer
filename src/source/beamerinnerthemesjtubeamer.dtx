@@ -16,7 +16,7 @@
 % \iffalse
 %<*package>
 \NeedsTeXFormat{LaTeX2e}
-\ProvidesPackage{beamerinnerthemesjtubeamer}[2022/03/30 v2.6.0 sjtubeamer inner theme]
+\ProvidesPackage{beamerinnerthemesjtubeamer}[2022/04/21 v2.6.1 sjtubeamer inner theme]
 %</package>
 % \fi
 % \CheckSum{0}
@@ -287,6 +287,74 @@
 %    \begin{macrocode}
 \useinnertheme{circles}
 %    \end{macrocode}
+%
+% \begin{macro}{bibliolist}
+%    Create a bibliography list manually with \verb"\item" patched for \verb"\newblock". 
+%    You can just use \verb"\item" without \verb"\newblock" command, or you could use \verb"\newblock" with \verb"\articleitem", \verb"\bookitem", \verb"\onlineitem".
+%    The mandantory parameter (usually \verb"00") indicates the widest label among items, if you want to indicate the item label seperately.
+%    \begin{macrocode}
+\newenvironment{bibliolist}[1]{
+%    \end{macrocode}
+%    Patch the \verb"\item" command in this environment, to redefine \verb"\newblock" and assign \verb"\newblock" after this command. The style will behave like \verb"\bibitem" but without the mandantory parameter for bib key.
+%    \begin{macrocode}
+  \begin{thebibliography}{#1}
+%    \end{macrocode}
+%     Save the old definition for item.
+%    \begin{macrocode}
+    \let\olditem\item%
+%    \end{macrocode}
+%    Now define the item with new definition of \verb"\newblock" without interrupting the scan of next char for \verb"\item". Now, you could use \verb"\newblock" normally after \verb"\item" command with the initialized \verb"\newblock" state.
+%    This will not interrupt the definition of \verb"\bibitem" since the same definition on \verb"\newblock" has been made --- just define the thing the same time twice. Notice that the patch is NOT available for the regular \verb"thebibliography" command for compatibility reasons with other themes.
+%    \begin{macrocode}
+    \def\item{\def\newblock{\beamer@newblock}\olditem}
+%    \end{macrocode}
+%    User should insert items by \verb"\articleitem", \verb"\bookitem", \verb"\onlineitem" inside THIS environment, otherwise, the user should insert \verb"\newblock" after \verb"\item" manually, which breaks the use of \verb"\newblock" and not recommended with the only use of migration from \textsc{SJTUThesis} with the same style. Or not to use \verb"\newblock" for \verb"\item" at all.
+%    The commands like \verb"\articleitem" do not accept the optional parameter for a label since the first part of this command name has already indicates the label of this item. The command like \verb"\item" accepts the optional parameter for the label and will override the potential numeric numbering (you have to load \verb"biblatex" in the preamble or specify the \verb"bibliography item" beamer template to \verb"text" inside this environment) for this item without a bracket surrounding. The behavior is the same as \textsc{SJTUThesis}.
+%    The direct patch on \verb"\item" is hard since \verb"\bibitem" also depends on this command. As a matter of fact, the \verb"\item" itself cannot be cited and should not be numbered by the way otherwise user should use \verb"\bibitem" inside \verb"\thebibliography" environment directly.
+%    Set the beamer template of \verb"bibliography item" to \verb"text" locally to use the label of every item instead of the default icon outside the environment. This will also make the default behavior to make an bracket enumerate list.
+%    \begin{macrocode}
+  \setbeamertemplate{bibliography item}[text]
+}{
+  \end{thebibliography}
+}
+%    \end{macrocode}
+%    This environment syncs with \textsc{SJTUThesis}. It is used to generate the customized look of bibliography list without the processing from \textsc{Bib}\TeX{} or \verb"biblatex", which could bring performance improvement.
+%    You can specify the style of the icon by \verb"\setbeamertemplate{bibliography item}[book]" or other predefined template provided by \verb"beamer" class like \verb"online", \verb"triangle", \verb"text" (for square bracket enumeration).
+%    And such the setting should be done INSIDE the environment since \verb"beamer" will override the user setting on this template to text style at the begining of \verb"document" environment if it loads \verb"biblatex".
+% \end{macro}
+%
+%  \begin{macro}{\articleitem}
+%    Start a bibliography item with an article icon, it is recommended to use inside \verb"bibliolist" environment (or it will be not functional if the beamer template of \verb"bibliography item" is not \verb"text").
+%    Remember the newblock will be created after this item so you should use \verb"\newblock" to split different categories in the order of author, title, location and notes.
+%    \begin{macrocode}
+\newcommand{\articleitem}{%
+  \item[{\setbeamertemplate{bibliography item}[article]\usebeamertemplate{bibliography item}}]%
+  \def\newblock{\beamer@newblock}\newblock%
+}
+%    \end{macrocode}
+%  \end{macro}
+%
+%  \begin{macro}{\bookitem}
+%    Start a bibliography item with an book icon, it is recommended to use inside \verb"bibliolist" environment (or it will be not functional if the beamer template of \verb"bibliography item" is not \verb"text").
+%    Remember the newblock will be created after this item so you should use \verb"\newblock" to split different categories in the order of author, title, location and notes.
+%    \begin{macrocode}
+\newcommand{\bookitem}{%
+  \item[{\setbeamertemplate{bibliography item}[book]\usebeamertemplate{bibliography item}}]%
+  \def\newblock{\beamer@newblock}\newblock%
+}
+%    \end{macrocode}
+%  \end{macro}
+%
+%  \begin{macro}{\onlineitem}
+%    Start a bibliography item with an online icon, it is recommended to use inside \verb"bibliolist" environment (or it will be not functional if the beamer template of \verb"bibliography item" is not \verb"text"). 
+%    Remember the newblock will be created after this item so you should use \verb"\newblock" to split different categories in the order of author, title, location and notes.
+%    \begin{macrocode}
+\newcommand{\onlineitem}{%
+  \item[{\setbeamertemplate{bibliography item}[online]\usebeamertemplate{bibliography item}}]%
+  \def\newblock{\beamer@newblock}\newblock%
+}
+%    \end{macrocode}
+%  \end{macro}
 %
 % \subsubsection{Block Environments}
 %
