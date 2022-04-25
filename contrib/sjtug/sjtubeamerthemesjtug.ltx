@@ -106,3 +106,19 @@
     \oldmakebottom
   }
 }
+% 新的数字节标题环境
+\newenvironment{shadedsection}{
+  \newcommand{\shadedfont}[2][1pt]{
+  % ##1 (optional): shadow distance
+  % ##2: the text needed to be shaded
+    \hbox{\rlap{\color{gray}\hskip##1##2}##2}
+  }
+  \setcounter{section}{-1}
+  \newcommand{\updatelogo}{
+    \logo{
+      \raise.3ex\hbox{\tiny\insertsection}\shadedfont{\arabic{section}}
+    }
+  }
+  \let\oldsection=\section
+  \renewcommand{\section}[1]{\oldsection{##1}\updatelogo}
+}{}
