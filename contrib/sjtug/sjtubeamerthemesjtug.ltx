@@ -14,7 +14,7 @@
 %% limitations under the License.
 %% ------------------------------------------------------------------------
 % 设置文件元数据
-\ProvidesFile{sjtubeamerthemesjtug.ltx}[2022/03/30 SJTUG subtheme for SJTUBeamer]
+\ProvidesFile{sjtubeamerthemesjtug.ltx}[2022/04/27 SJTUG subtheme for SJTUBeamer]
 % 设置组织名称
 \institute[SJTU Linux User Group]{上海交通大学 Linux 用户组}
 % 设置徽标
@@ -106,3 +106,19 @@
     \oldmakebottom
   }
 }
+% 新的数字节标题环境
+\newenvironment{shadedsection}{
+  \newcommand{\shadedfont}[2][1pt]{
+  % ##1 (optional): shadow distance
+  % ##2: the text needed to be shaded
+    \hbox{\rlap{\color{gray}\hskip##1##2}##2}
+  }
+  \setcounter{section}{-1}
+  \newcommand{\updatelogo}{
+    \logo{
+      \raise.3ex\hbox{\tiny\insertsection}\shadedfont{\arabic{section}}
+    }
+  }
+  \let\oldsection=\section
+  \renewcommand{\section}[1]{\oldsection{##1}\updatelogo}
+}{}
