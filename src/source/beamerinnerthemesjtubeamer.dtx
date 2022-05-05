@@ -16,7 +16,7 @@
 % \iffalse
 %<*package>
 \NeedsTeXFormat{LaTeX2e}
-\ProvidesPackage{beamerinnerthemesjtubeamer}[2022/04/21 v2.6.1 sjtubeamer inner theme]
+\ProvidesPackage{beamerinnerthemesjtubeamer}[2022/05/05 v2.6.2 sjtubeamer inner theme]
 %</package>
 % \fi
 % \CheckSum{0}
@@ -314,6 +314,24 @@
 %    Set the beamer template of \verb"bibliography item" to \verb"text" locally to use the label of every item instead of the default icon outside the environment. This will also make the default behavior to make a bracket enumerate list.
 %    \begin{macrocode}
     \setbeamertemplate{bibliography item}[text]
+%    \end{macrocode}
+%   Define command for creating icon bib item: \verb"article", \verb"bookitem", \verb"onlineitem". These command indicates that the user will use \verb"\newblock" for seperating fields.
+%    \begin{macrocode}
+    \newcommand{\articleitem}{%
+      \item[{\setbeamertemplate{bibliography item}[article]\usebeamertemplate{bibliography item}}]%
+      \newblock%
+    }
+    \newcommand{\bookitem}{%
+      \item[{\setbeamertemplate{bibliography item}[book]\usebeamertemplate{bibliography item}}]%
+      \newblock%
+    }
+    \newcommand{\onlineitem}{%
+      \item[{\setbeamertemplate{bibliography item}[online]\usebeamertemplate{bibliography item}}]%
+      \newblock%
+    }
+%    \end{macrocode}
+%   Close the \verb"bibliolist" environment.
+%    \begin{macrocode}
 }{
   \end{thebibliography}
 }
@@ -323,38 +341,6 @@
 %    And such the setting should be done INSIDE the environment and \verb"thebibliography" since \verb"beamer" will override the user setting on this template to text style at the begining of \verb"document" environment if it loads \verb"biblatex".
 % \end{macro}
 %
-%  \begin{macro}{\articleitem}
-%    Start a bibliography item with an article icon, it is recommended to use inside \verb"bibliolist" environment (or it will not be functional if the beamer template of \verb"bibliography item" is not \verb"text").
-%    Remember the \verb"\newblock" will be created after this item so you should use \verb"\newblock" to split different categories in the order of author, title, location and notes.
-%    \begin{macrocode}
-\newcommand{\articleitem}{%
-  \item[{\setbeamertemplate{bibliography item}[article]\usebeamertemplate{bibliography item}}]%
-  \def\newblock{\beamer@newblock}\newblock%
-}
-%    \end{macrocode}
-%  \end{macro}
-%
-%  \begin{macro}{\bookitem}
-%    Start a bibliography item with an book icon, it is recommended to use inside \verb"bibliolist" environment (or it will not be functional if the beamer template of \verb"bibliography item" is not \verb"text").
-%    Remember the \verb"\newblock" will be created after this item so you should use \verb"\newblock" to split different categories in the order of author, title, location and notes.
-%    \begin{macrocode}
-\newcommand{\bookitem}{%
-  \item[{\setbeamertemplate{bibliography item}[book]\usebeamertemplate{bibliography item}}]%
-  \def\newblock{\beamer@newblock}\newblock%
-}
-%    \end{macrocode}
-%  \end{macro}
-%
-%  \begin{macro}{\onlineitem}
-%    Start a bibliography item with an online icon, it is recommended to use inside \verb"bibliolist" environment (or it will not be functional if the beamer template of \verb"bibliography item" is not \verb"text"). 
-%    Remember the \verb"\newblock" will be created after this item so you should use \verb"\newblock" to split different categories in the order of author, title, location and notes.
-%    \begin{macrocode}
-\newcommand{\onlineitem}{%
-  \item[{\setbeamertemplate{bibliography item}[online]\usebeamertemplate{bibliography item}}]%
-  \def\newblock{\beamer@newblock}\newblock%
-}
-%    \end{macrocode}
-%  \end{macro}
 %
 % \subsubsection{Block Environments}
 %

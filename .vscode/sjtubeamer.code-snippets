@@ -53,24 +53,6 @@
 		"body": "\n\\begin{bibliolist}{$1}\n\t$2\n\\end{bibliolist}\n",
 		"description": "Create a bibliography list manually with \\item patched for \\newblock. \nYou can just use \\item without \\newblock command, or you could use \\newblock with \\articleitem, \\bookitem, \\onlineitem.\nThe mandantory parameter (usually 00) indicates the widest label among items, if you want to indicate the item label seperately.\n"
 	},
-	"articleitem": {
-		"scope": "doctex,tex,latex",
-		"prefix": "\\articleitem",
-		"body": "\\articleitem",
-		"description": "Start a bibliography item with an article icon, it is recommended to use inside bibliolist environment (or it will not be functional if the beamer template of bibliography item is not text).\nRemember the \\newblock will be created after this item so you should use \\newblock to split different categories in the order of author, title, location and notes.\n"
-	},
-	"bookitem": {
-		"scope": "doctex,tex,latex",
-		"prefix": "\\bookitem",
-		"body": "\\bookitem",
-		"description": "Start a bibliography item with an book icon, it is recommended to use inside bibliolist environment (or it will not be functional if the beamer template of bibliography item is not text).\nRemember the \\newblock will be created after this item so you should use \\newblock to split different categories in the order of author, title, location and notes.\n"
-	},
-	"onlineitem": {
-		"scope": "doctex,tex,latex",
-		"prefix": "\\onlineitem",
-		"body": "\\onlineitem",
-		"description": "Start a bibliography item with an online icon, it is recommended to use inside bibliolist environment (or it will not be functional if the beamer template of bibliography item is not text). \nRemember the \\newblock will be created after this item so you should use \\newblock to split different categories in the order of author, title, location and notes.\n"
-	},
 	"highlight": {
 		"scope": "doctex,tex,latex",
 		"prefix": "\\highlight",

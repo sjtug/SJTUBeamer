@@ -13,7 +13,7 @@
 % \iffalse
 %<*package>
 \NeedsTeXFormat{LaTeX2e}
-\ProvidesPackage{sjtucover}[2022/04/21 v2.6.1 cover library for sjtubeamer]
+\ProvidesPackage{sjtucover}[2022/05/05 v2.6.2 cover library for sjtubeamer]
 %</package>
 % \fi
 % \CheckSum{0}
@@ -99,7 +99,6 @@
 %<*maxplus>
 \defbeamertemplate*{title page}{maxplus}[1][]
 {
-  \nointerlineskip%
   \vbox{}
   \vfill
   \begingroup
@@ -144,7 +143,6 @@
 %<*max>
 \defbeamertemplate*{title page}{max}[1][]
 {
-  \nointerlineskip
   \vbox{}
   \usebeamercolor{palette primary}
   \begin{tikzpicture}[overlay]
@@ -371,7 +369,6 @@
   right color=transparent!100]
 \defbeamertemplate*{bottom page}{maxplus}[1][]
 {
-  \nointerlineskip
   \vbox{}
   \begin{tikzpicture}[overlay]
     \usebeamercolor{palette primary}
@@ -411,7 +408,6 @@
 %<*max>
 \defbeamertemplate*{bottom page}{max}[1][]
 {
-  \nointerlineskip
   \vbox{}
   \usebeamercolor{palette primary}
   \usebeamercolor{structure}
@@ -634,7 +630,6 @@
 }
 \defbeamertemplate*{sectioning page}{maxplus}[1]
 {
-  \nointerlineskip
   \vbox{}
   \def\sjtubeamer@cover@sectype{#1}
   \usebeamercolor{#1 title}

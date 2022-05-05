@@ -306,11 +306,11 @@ fontupper=\sffamily,colupper=white}
 
 \chapter{播放}
 
-制作的演示文稿推荐使用 Adobe Acrobat 播放，浏览器内置的阅读器不支持一些额外功能。
+制作的演示文稿推荐使用 Adobe Acrobat 播放，浏览器内置的阅读器不支持一些额外功能。在使用 \texttt{\textbackslash{}note} 添加幻灯片备注时，推荐使用 Pympress 软件。
 
 \section{Adobe Acrobat}
 
-在 Adobe Acrobat Pro（或免费版本的 Adobe Acrobat Reader）打开演示文稿，在“视图”选单中选择“全屏模式”即可播放。
+在 Adobe Acrobat Pro（或免费版本的 \href{https://www.adobe.com/cn/acrobat/pdf-reader.html}{Adobe Acrobat Reader}）打开演示文稿，在“视图”选单中选择“全屏模式”即可播放。
 
 \begin{figure}[h]
   \centering
@@ -331,6 +331,15 @@ fontupper=\sffamily,colupper=white}
     \end{figure}
   \item[\faInternetExplorer] Edge 浏览器需要调整为“适应宽度”\fbox{\faArrowsAltH}，并使用 \fbox{\sffamily PageDown} 翻页。尽量不要使用该播放方法。
 \end{enumerate}
+
+\section{Pympress}
+
+\href{https://github.com/Cimbali/pympress}{Pympress} 是一个类似于 PowerPoint
+演示者视图的阅读器，在导言区添加
+\begin{verbatim}
+ \setbeameroption{show notes on second screen}
+\end{verbatim}
+以展示备注幻灯片（幻灯片内使用 \texttt{\textbackslash{}note} 标记备注内容）于每页右侧。使用该软件以自动地识别备注区域展示在演示者屏幕上。
 
 \part{进阶操作}
 
@@ -412,7 +421,7 @@ fontupper=\sffamily,colupper=white}
 \begin{commentlist}
   \item \LaTeX{} 本身提供了 \texttt{thebibliography} 环境，环境的强制参数用于指定排版最长的标签（这里是两位数占位符），配套 \texttt{\textbackslash{}bibitem[标签]\{主键\}}，在 \texttt{beamer} 中需要辅以 \texttt{\textbackslash{}newblock} 来分隔作者、文章标题、书目与其他内容。这里的主键可以在正文中引用。
   \item 在 \texttt{beamer} 中可以通过设定 \texttt{bibliography item} 模板为对应预设来更改图标，这里是 \texttt{text} 预设用于排印编号。也可以改为文章图标 \texttt{article}，图书图标 \texttt{book} 或网络图标 \texttt{online} 等。
-  \item 为了与 \textsc{SJTUThesis} 兼容，引入 \texttt{bibliolist} 环境$^*$以避免使用 \texttt{\textbackslash{}bibitem} 命令，并添加对应的 \texttt{\textbackslash{}articleitem}, \texttt{\textbackslash{}bookitem}, \texttt{\textbackslash{}onlineitem} 用于切换不同的图标$^*$，并保持与 \texttt{\textbackslash{}bibitem} 相同的用法。
+  \item 引入 \texttt{bibliolist} 环境$^*$以避免使用 \texttt{\textbackslash{}bibitem} 命令，并添加对应的 \texttt{\textbackslash{}articleitem}, \texttt{\textbackslash{}bookitem}, \texttt{\textbackslash{}onlineitem} 用于切换不同的图标$^*$，并保持与 \texttt{\textbackslash{}bibitem} 相同的用法（除了不能设定引用标签）。
   \item 在 \texttt{bibliolist} 环境中也可以直接使用 \texttt{\textbackslash{}item} 以不使用 \texttt{\textbackslash{}newblock} 来分割条目中的不同部分，正如 \textsc{SJTUThesis} 所做的那样。但请不要与上一条中的图标命令混用。
 \end{commentlist}
 
