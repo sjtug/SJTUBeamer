@@ -18,7 +18,7 @@
 %% see https://vi.sjtu.edu.cn/index.php/articles/bulletin/16.
 %% ------------------------------------------------------------------------
 \NeedsTeXFormat{LaTeX2e}
-\ProvidesPackage{sjtucover}[2022/04/21 v2.6.1 cover library for sjtubeamer]
+\ProvidesPackage{sjtucover}[2022/05/05 v2.6.2 cover library for sjtubeamer]
 \RequirePackage{sjtuvi}
 \DefineOption{cover}{lang}{zh}
 \DefineOption{cover}{lang}{en}
@@ -41,8 +41,6 @@
 }
 \defbeamertemplate*{title page}{maxplus}[1][]
 {
-  \nointerlineskip%
-  \vbox{}
   \vfill
   \begingroup
   \usebeamercolor{palette primary}%
@@ -80,8 +78,6 @@
 }
 \defbeamertemplate*{title page}{max}[1][]
 {
-  \nointerlineskip
-  \vbox{}
   \usebeamercolor{palette primary}
   \begin{tikzpicture}[overlay]
     \fill [palette primary.bg] (-0.2*\the\paperwidth,-1*\the\paperheight)
@@ -248,8 +244,6 @@
   right color=transparent!100]
 \defbeamertemplate*{bottom page}{maxplus}[1][]
 {
-  \nointerlineskip
-  \vbox{}
   \begin{tikzpicture}[overlay]
     \usebeamercolor{palette primary}
     \fill[palette primary.bg] (-0.2\paperwidth,-\paperheight)
@@ -282,8 +276,6 @@
 }
 \defbeamertemplate*{bottom page}{max}[1][]
 {
-  \nointerlineskip
-  \vbox{}
   \usebeamercolor{palette primary}
   \usebeamercolor{structure}
   \begin{beamercolorbox}[sep=0pt]{empty}
@@ -417,8 +409,6 @@
 }
 \defbeamertemplate*{sectioning page}{maxplus}[1]
 {
-  \nointerlineskip
-  \vbox{}
   \def\sjtubeamer@cover@sectype{#1}
   \usebeamercolor{#1 title}
   \begin{tikzpicture}[overlay]
