@@ -306,11 +306,11 @@ fontupper=\sffamily,colupper=white}
 
 \chapter{播放}
 
-制作的演示文稿推荐使用 Adobe Acrobat 播放，浏览器内置的阅读器不支持一些额外功能。
+制作的演示文稿推荐使用 Adobe Acrobat 播放，浏览器内置的阅读器不支持一些额外功能。在使用 \texttt{\textbackslash{}note} 添加幻灯片备注时，推荐使用 Pympress 软件。
 
 \section{Adobe Acrobat}
 
-在 Adobe Acrobat Pro（或免费版本的 Adobe Acrobat Reader）打开演示文稿，在“视图”选单中选择“全屏模式”即可播放。
+在 Adobe Acrobat Pro（或免费版本的 \href{https://www.adobe.com/cn/acrobat/pdf-reader.html}{Adobe Acrobat Reader}）打开演示文稿，在“视图”选单中选择“全屏模式”即可播放。
 
 \begin{figure}[h]
   \centering
@@ -331,6 +331,15 @@ fontupper=\sffamily,colupper=white}
     \end{figure}
   \item[\faInternetExplorer] Edge 浏览器需要调整为“适应宽度”\fbox{\faArrowsAltH}，并使用 \fbox{\sffamily PageDown} 翻页。尽量不要使用该播放方法。
 \end{enumerate}
+
+\section{Pympress}
+
+\href{https://github.com/Cimbali/pympress}{Pympress} 是一个类似于 PowerPoint
+演示者视图的阅读器，在导言区添加
+\begin{verbatim}
+ \setbeameroption{show notes on second screen}
+\end{verbatim}
+以展示备注幻灯片（幻灯片内使用 \texttt{\textbackslash{}note} 标记备注内容）于每页右侧。使用该软件以自动地识别备注区域展示在演示者屏幕上。
 
 \part{进阶操作}
 
