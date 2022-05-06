@@ -137,7 +137,7 @@
 		"body": "\\sjtubeamer@logopos",
 		"description": "Choose the override outer logo position. No default option will get executed since it has already been executed by the selection of \\sjtubeamer@cover.\n"
 	},
-	"usemytheme": {
+	"usesjtutheme": {
 		"scope": "doctex,tex,latex",
 		"prefix": "\\usesjtutheme",
 		"body": "\\usesjtutheme{$1}",
