@@ -79,7 +79,7 @@ However, you could not make a pull request from a mirror source. The recommended
 \begin{verbatim}
   \documentclass{ctexbeamer}
   \usetheme{sjtubeamer}
-  \usemytheme[<options>]{<plugin>}
+  \usesjtutheme[<options>]{<plugin>}
   \begin{document}
     % the main content goes here ...
   \end{document}
@@ -98,7 +98,7 @@ Since the plugin is suffixed by \verb".ltx" (an abbreviation of \LaTeX{}), which
 \makeatother
 \end{verbatim}
 
-\themename{} has an internal mechanism of passing the options. For example, if you pass \verb"debug" option to \verb"sjtug" plugin --- \verb"\usemytheme[debug]{sjtug}", you could judge the condition in the plugin file like:
+\themename{} has an internal mechanism of passing the options. For example, if you pass \verb"debug" option to \verb"sjtug" plugin --- \verb"\usesjtutheme[debug]{sjtug}", you could judge the condition in the plugin file like:
 \begin{verbatim}
 \if\EqualOption{sjtug}{debug}{true}
   % do something here ...
