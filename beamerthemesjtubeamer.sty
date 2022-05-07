@@ -91,6 +91,13 @@
     \input{\getcontribpath{\sjtubeamer@mythemename}{\sjtubeamer@mythemefile}}
   }
 }
+\providecommand{\usemytheme}[2][]{
+  \PackageWarning{sjtubeamer}{
+    `\usemytheme' is deprecated. \MessageBreak
+    Use `\usesjtutheme' instead
+  }
+  \usesjtutheme[#1]{#2}
+}
 \endinput
 %%
 %% End of file `beamerthemesjtubeamer.sty'.
