@@ -21,7 +21,7 @@
 %% limitations under the License.
 %% ------------------------------------------------------------------------
 \NeedsTeXFormat{LaTeX2e}
-\ProvidesPackage{beamerthemesjtubeamer}[2022/05/05 v2.6.2 sjtubeamer parent theme]
+\ProvidesPackage{beamerthemesjtubeamer}[2022/05/07 v2.7.0 sjtubeamer parent theme]
 \DeclareOptionBeamer{maxplus}{
   \def\sjtubeamer@cover{maxplus}\def\sjtubeamer@logopos{topright}}
 \DeclareOptionBeamer{max}{
@@ -72,7 +72,7 @@
 \usefonttheme{sjtubeamer}
 \useinnertheme{sjtubeamer}
 \useoutertheme{sjtubeamer}
-\newrobustcmd*\usemytheme[2][]{
+\newrobustcmd*\usesjtutheme[2][]{
   \def\sjtubeamer@mythemeoptions{#1}
   \def\sjtubeamer@mythemelist{#2}
   \@for\sjtubeamer@mythemename:=\sjtubeamer@mythemelist\do{
@@ -90,6 +90,13 @@
     }{}
     \input{\getcontribpath{\sjtubeamer@mythemename}{\sjtubeamer@mythemefile}}
   }
+}
+\providecommand{\usemytheme}[2][]{
+  \PackageWarning{sjtubeamer}{
+    `\usemytheme' is deprecated. \MessageBreak
+    Use `\usesjtutheme' instead
+  }
+  \usesjtutheme[#1]{#2}
 }
 \endinput
 %%

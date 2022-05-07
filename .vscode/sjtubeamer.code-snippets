@@ -137,11 +137,11 @@
 		"body": "\\sjtubeamer@logopos",
 		"description": "Choose the override outer logo position. No default option will get executed since it has already been executed by the selection of \\sjtubeamer@cover.\n"
 	},
-	"usemytheme": {
+	"usesjtutheme": {
 		"scope": "doctex,tex,latex",
-		"prefix": "\\usemytheme",
-		"body": "\\usemytheme{$1}",
-		"description": "When using my option, you could load other contrib sub-themes by this command. Use comma-seperated list to load multiple sub-themes in one line. The \\getcontribpath is defined in sjtuvi package loaded in inner theme.\n\nYou could pass options to all the sub-themes by writing in the square brackets. Then, in your sub-theme, you could use \\if\\EqualOption{<themename>}{<option>}{true} to check the condition.\n\nThis command will also first check the root directory for dependency. If it exists, the \\getcontribdir macro will be redefined. It is never recommended for placing the ltx in the same folder.\nRemember the contrib directory is permantly modified and the directory for other dependency may be missing due to this debug config. You may need to modify to \\renewcommand{\\getcontribdir}[1]{\\sjtubeamer@contribdir/#1} manually to recover to the standard configuration. We didn't put the last command into this since we only expect you to only use the debug option for only one contrib dependency --- the one needs to be documented. And you should run l3build install in the src folder for making the sjtubeamer main part into your texmf path. If you want to combine multiple dependencies, you should write and compile your documentation in the root folder. And our CI will move your documentation to the root first before checking.\n"
+		"prefix": "\\usesjtutheme",
+		"body": "\\usesjtutheme{$1}",
+		"description": "You could load other contrib plugin by this command. Use comma-seperated list to load multiple sub-themes in one line. The \\getcontribpath is defined in sjtuvi package loaded in inner theme.\n\nYou could pass options to all the sub-themes by writing in the square brackets. Then, in your sub-theme, you could use \\if\\EqualOption{<themename>}{<option>}{true} to check the condition.\n\n"
 	},
 	"bottomthanks": {
 		"scope": "doctex,tex,latex",
