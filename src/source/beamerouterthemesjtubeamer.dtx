@@ -77,18 +77,18 @@
 %    \begin{macrocode}
 \if\EqualOption{outer}{logopos}{topright}
   \AtBeginDocument{
-    \defbeamertemplate*{frametitle}{sjtubeamer}[1][left]
+    \defbeamertemplate*{frametitle}{sjtubeamer}[1][]
     {%
     \ifbeamercolorempty[bg]{frametitle}{}{\nointerlineskip}%
       \@tempdima=\textwidth%
       \advance\@tempdima by\beamer@leftmargin%
       \advance\@tempdima by\beamer@rightmargin%
-      \begin{beamercolorbox}[sep=0.3cm,#1,wd=\the\@tempdima]{frametitle}
+      \begin{beamercolorbox}[sep=0.15cm,leftskip=0.15cm,#1,wd=\the\@tempdima]{frametitle}
         \begingroup
         \usebeamerfont{frametitle}
         \vbox{}
         \ifx\insertframesubtitle\@empty\vskip-2pt%
-        \else\vskip-1ex\fi%
+        \else\vskip-5pt\fi%
         \if@tempswa\else\csname beamer@fte#1\endcsname\fi%
         \strut\insertframetitle\strut\par%
         {%
@@ -105,8 +105,8 @@
         \endgroup%
         \raggedleft%
         \begingroup
-        \ifx\insertframesubtitle\@empty\vskip-2.5ex%
-        \else\vskip-3.5ex\fi%
+        \ifx\insertframesubtitle\@empty\vskip-2.3ex%
+        \else\vskip-3.0ex\fi%
 %    \end{macrocode}
 % Insert the outer logo with 0.7cm height. \verb"\vphantom" here is to create a phantom box to make sure the \verb"\resizebox" has a non-zero height box input. The calculation is fixed for a 0.7cm height logo placeholder.
 %    \begin{macrocode}
