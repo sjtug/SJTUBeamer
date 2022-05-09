@@ -15,9 +15,9 @@
 
 \section{简介}
 
-\subsection{\TeX 与 \LaTeX}
+\subsection{\TeX{} 与 \LaTeX{}}
 
-\begin{frame}[fragile]{\TeX 与 \LaTeX}
+\begin{frame}[fragile]{\TeX{} 与 \LaTeX{}}
   \begin{columns}[T]
     \column{.8\textwidth}
     \begin{itemize}
@@ -41,9 +41,9 @@
             \end{itemize}
     \end{itemize}
     \column{.2\textwidth}
-    \includegraphics[height=.3\textheight]{Knuth.jpg}
+    \includegraphics[height=.4\textheight]{Knuth.jpg}
 
-    \includegraphics[height=.3\textheight]{Lamport.jpg}
+    \includegraphics[height=.4\textheight]{Lamport.jpg}
   \end{columns}
 \end{frame}
 
@@ -68,12 +68,12 @@
 \end{frame}
 
 \begin{frame}{\TeX{}排版举例：公式}
-  \begin{exampleblock}{无编号公式}
+  \begin{alertblock}{无编号公式}
     \begin{equation*}
       \mathcal{F}(\xi)=\int_{-\infty}^{\infty} f(x)\mathrm{e}^{-\mathrm{j}2\pi \xi x}\,\mathrm{d}x
     \end{equation*}
-  \end{exampleblock}
-  \begin{exampleblock}{多行多列公式}
+  \end{alertblock}
+  \begin{alertblock}{多行多列公式}
     % Taken from Mathmode.tex
     \begin{align}
       y      & =d                  & z & =1                  \\
@@ -81,11 +81,11 @@
       y_{12} & =bx^{2}+cx+d        & z & =x^{2}+x+1\nonumber \\
       y(x)   & =ax^{3}+bx^{2}+cx+d & z & =x^{3}+x^{2}+x+1
     \end{align}
-  \end{exampleblock}
+  \end{alertblock}
 \end{frame}
 
 \begin{frame}{\TeX{}排版举例：公式}
-  \begin{exampleblock}{编号多行公式}
+  \begin{alertblock}{编号多行公式}
     % Taken from Mathmode.tex
     \begin{multline}
       A=\lim_{n\rightarrow\infty}\Delta x\left(a^{2}+\left(a^{2}+2a\Delta x+\left(\Delta x\right)^{2}\right)\right.\label{eq:reset}\\
@@ -95,7 +95,7 @@
       \left.+\left(a^{2}+2\cdot(n-1)a\Delta x+(n-1)^{2}\left(\Delta x\right)^{2}\right)\right)\\
       =\frac{1}{3}\left(b^{3}-a^{3}\right)
     \end{multline}
-  \end{exampleblock}
+  \end{alertblock}
 \end{frame}
 
 \begin{frame}{\TeX{}排版举例：图形}
