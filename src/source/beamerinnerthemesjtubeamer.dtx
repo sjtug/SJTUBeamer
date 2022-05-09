@@ -16,7 +16,7 @@
 % \iffalse
 %<*package>
 \NeedsTeXFormat{LaTeX2e}
-\ProvidesPackage{beamerinnerthemesjtubeamer}[2022/05/07 v2.7.0 sjtubeamer inner theme]
+\ProvidesPackage{beamerinnerthemesjtubeamer}[2022/05/09 v2.7.1 sjtubeamer inner theme]
 %</package>
 % \fi
 % \CheckSum{0}
@@ -286,6 +286,14 @@
 %   Set the item marker to circle and set the marker for section and subsection in TOC (Table of Contents) to circle.
 %    \begin{macrocode}
 \useinnertheme{circles}
+%    \end{macrocode}
+%
+%  Patch beamer on \verb"itemize",\verb"enumerate",\verb"description" on the left margin.
+%    \begin{macrocode}
+\setlength\leftmargini{1.4em}
+\setlength\leftmarginii{1.4em}
+\setlength\leftmarginiii{1.4em}
+\setbeamersize{description width=0.24cm}
 %    \end{macrocode}
 %
 % \begin{macro}{bibliolist}
