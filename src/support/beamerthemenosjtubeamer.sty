@@ -1,0 +1,27 @@
+%% If you don't use SJTUBeamer theme,
+%% Use this theme and redirect the macros to dummy ones.
+%% What's more, you need to use XeLaTeX to compile.
+
+\usepackage{listingsutf8}
+\lstset{columns=flexible}
+\lstnewenvironment{codeblock}[2][]{\lstset{title=#2,#1}}{}
+\newcommand<>{\highlightline}{}
+\newcommand{\highlight}[2][]{\alert{#2}}
+\newcommand{\paragraph}[1]{\bfseries #1\hspace{.5em}}
+\usepackage{tikz}
+\newcommand{\stamptext}[1][red]{#1}
+\newenvironment{stampbox}[1][]{}{}
+\newcommand{\makebottom}{
+  \begin{frame}
+    \begin{center}
+      \Huge
+      Thank You!
+    \end{center}
+  \end{frame}
+}
+\newcommand{\stamparray}[3]{}
+\newenvironment{bibliolist}[1]{\begin{thebibliography}{#1}}{\end{thebibliography}}
+\newcommand{\articleitem}{\item}
+\newcommand{\bookitem}{\item}
+\newcommand{\onlineitem}{\item}
+\newenvironment{shadedsection}{}{}
