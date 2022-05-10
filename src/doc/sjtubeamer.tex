@@ -188,7 +188,8 @@ fontupper=\sffamily,colupper=white}
 
 
 \begin{commentlist}
-  \item 第一行载入 \texttt{ctex} 宏包提供的 \texttt{ctexbeamer} 文档类。如果不需要中文支持，可以直接使用 \texttt{beamer} 文档类。如果需要使用 16:9 的荧幕比例，可以参照示例 2 的相关参数。
+  \item 第一行载入 \texttt{ctex} 宏包提供的 \texttt{ctexbeamer} 文档类。如果需要使用 16:9 的荧幕比例，可以参照示例 2 的相关参数。
+  \item 如果不需要中文支持，可以直接使用 \texttt{beamer} 文档类。
   \item 第二行载入 \texttt{sjtubeamer} 主题。
   \item 使用 \texttt{document} 环境进入文档主体。
   \item 使用 \texttt{frame} 环境创建新的幻灯片（帧）。
@@ -380,7 +381,7 @@ fontupper=\sffamily,colupper=white}
 
 \begin{commentlist}
   \item \texttt{codeblock} 提供了带行号的代码抄录环境$^*$，第一个可选参数可以用于设置语言与其他抄录选项，第二个必选参数可以设置代码块的标题。
-  \item 需要清理抄录代码在源文件中的缩进，顶格输入。如果想要高亮某一行$^*$，设置 \verb"escapechar=|" 可选参数后，在该行开头顶格输入 \verb"|\highlightline|"。
+  \item 需要清理抄录代码在源文件中的缩进，顶格输入。如果想高亮某一行$^*$，设置 \verb"escapechar=|" 可选参数后，在该行开头顶格输入 \verb"|\highlightline|"。
   \item 你也可以直接使用 \texttt{\textbackslash{}codeblockinput}[选项]\{标题\}\{文件\} 用于抄录外部文件$^*$，但请通过 \verb"firstline" 和 \verb"lastline" 选项控制代码行数。
   \item 直接使用 \texttt{listings} 宏包提供的 \texttt{lstlisting} 环境与 \texttt{lstinputlisting} 命令依然可行，\themename\ 已经对其进行了一些预先的优化。
   \item[\faExclamationTriangle] 使用代码块的页其 \texttt{frame} 环境必须添加 \texttt{fragile} 参数。
@@ -565,7 +566,7 @@ fontupper=\sffamily,colupper=white}
     \textbackslash{}makebottom & \textbackslash{}emph          & \textbackslash{}highlight  \\
     \textbackslash{}paragraph  & codeblock                     & \textbackslash{}stamparray \\
     \textbackslash{}*logo      & \textbackslash{}sjtubadge     & stampbox                   \\
-    \textbackslash{}stamptext  & \textbackslash{}highlightline & \textbackslash{}usemytheme \\
+    \textbackslash{}stamptext  & \textbackslash{}highlightline & \textbackslash{}usesjtutheme \\
     \hline
   \end{tabular}
 \end{table}

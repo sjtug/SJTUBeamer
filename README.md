@@ -26,7 +26,7 @@ SJTUBeamer 是上海交通大学的非官方 Beamer 模版。您可以使用 SJT
 % 使用 red/blue 切换主色调
 % 使用 light/dark 切换亮/暗色模式
 % 使用外样式关键词以获得不同的边栏样式
-%   miniframes infolines  sidebar* 
+%   miniframes infolines  sidebar 
 %   default    smoothbars split	 
 %   shadow     tree       smoothtree
 

@@ -23,8 +23,8 @@ Current document `main.tex` is an example documentation of *How to Use LaTeX to 
 % use maxplus/max/min to change covers.
 % use red/blue to change main color.
 % use light/dark to change dominate color.
-% use the following keywords to make different sidebars:
-%   miniframes infolines  sidebar*
+% use the following keywords to make different navigations:
+%   miniframes infolines  sidebar
 %   default    smoothbars split	 
 %   shadow     tree       smoothtree
 

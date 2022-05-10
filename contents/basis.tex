@@ -85,7 +85,7 @@
 \end{frame}
 
 \begin{frame}[fragile]{\LaTeX{}“命令”}
-  \framesubtitle{\emph{宏} (Macro)、或者\emph{控制序列} (control sequence)}
+  \framesubtitle{宏 (Macro)、或者控制序列 (control sequence)}
   \begin{itemize}
     \item 简单命令
           \begin{itemize}
@@ -112,7 +112,7 @@
 \end{frame}
 
 \begin{frame}[fragile]{\LaTeX{} 常用命令}
-  \begin{exampleblock}{简单命令}
+  \begin{block}{简单命令}
     \centering
     \footnotesize
     \begin{tabular}{llll}
@@ -125,10 +125,10 @@
       \cmd{label}     & \cmd{cite}    & \cmd{ref}                                \\
       标号            & 引用参考文献  & 引用图表公式等                           \\\hline
     \end{tabular}
-  \end{exampleblock}
+  \end{block}
 \end{frame}
 \begin{frame}[fragile]{\LaTeX{} 常用环境}
-  \begin{exampleblock}{环境}
+  \begin{block}{环境}
     \centering
     \footnotesize
     \begin{tabular}{lll}
@@ -137,7 +137,7 @@
       \env{itemize} & \env{enumerate} & \env{description} \\
       无编号列表    & 编号列表        & 描述              \\\hline
     \end{tabular}
-  \end{exampleblock}
+  \end{block}
 \end{frame}
 %
 \begin{frame}{\LaTeX{}命令举例}
@@ -249,14 +249,14 @@ V = \frac{4}{3}\pi r^3
 \begin{frame}[fragile,label={frame:unicode-math}]{unicode-math：现代的数学输入方式}
   \LaTeX{} 的公式确实很强大，但是……符号有点难记？
 
-  \pkg{unicode-math} 宏包提供了几乎所见即所得的公式输入(\SJTUThesis 默认使用）：
+  \pkg{unicode-math} 宏包提供了几乎所见即所得的公式输入：
 
   \begin{itemize}
     \item 可直接输入各类符号对应的 Unicode 字符（需要使用 UTF-8 编码）：
 
           \begin{columns}[c]
             \begin{column}{0.45\textwidth}
-              \begin{lstlisting}[basicstyle=\ttfamily]
+              \begin{lstlisting}
 \begin{equation*}
 ∫ Γ(x) dx = ±∞
 \end{equation*}
@@ -273,7 +273,7 @@ V = \frac{4}{3}\pi r^3
 
   \begin{columns}[c]
     \begin{column}{0.45\textwidth}
-      \begin{lstlisting}[basicstyle=\ttfamily]
+      \begin{lstlisting}
 \begin{align*}
 \symbf{\beta} &= \beta \symbf{I} \\
 \symbf{a} &= a \symbf{I}
@@ -486,9 +486,9 @@ V = \frac{4}{3}\pi r^3
 \end{frame}
 
 \begin{frame}[fragile]
-  \frametitle{宏包推荐（\textbf{先读文档}后使用）}
-  \setlength{\leftmarginii}{1.5em}
+  \frametitle{宏包推荐（先读文档后使用）}
   \vspace{-1.5em}
+  \scriptsize
   \begin{multicols}{3}
     \begin{itemize}
       \item 必备
@@ -534,7 +534,7 @@ V = \frac{4}{3}\pi r^3
               \item \pkg{float}
               \item \pkg{pdfpages}
               \item \pkg{standalone}
-              \item \pkg{subfig}
+              \item \pkg{subfigure}
               \item \pkg{pgf}/\pkg{tikz}
               \item \pkg{pgfplots}
             \end{itemize}
@@ -610,7 +610,7 @@ V = \frac{4}{3}\pi r^3
 \end{frame}
 
 \begin{frame}[fragile]{论文排版举例}
-  \begin{exampleblock}{IEEE 期刊论文}
+  \begin{block}{IEEE 期刊论文}
     \begin{itemize}
       \item 获取模板：已随发行版自带
             \begin{itemize}
@@ -624,5 +624,5 @@ V = \frac{4}{3}\pi r^3
               \item 英文文献：\XeLaTeX{}、\pdfLaTeX{} 编译均可
             \end{itemize}
     \end{itemize}
-  \end{exampleblock}
+  \end{block}
 \end{frame}
