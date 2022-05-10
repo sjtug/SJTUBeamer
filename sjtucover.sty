@@ -18,7 +18,7 @@
 %% see https://vi.sjtu.edu.cn/index.php/articles/bulletin/16.
 %% ------------------------------------------------------------------------
 \NeedsTeXFormat{LaTeX2e}
-\ProvidesPackage{sjtucover}[2022/05/09 v2.7.1 cover library for sjtubeamer]
+\ProvidesPackage{sjtucover}[2022/05/10 v2.7.3 cover library for sjtubeamer]
 \RequirePackage{sjtuvi}
 \DefineOption{cover}{lang}{zh}
 \DefineOption{cover}{lang}{en}
@@ -418,8 +418,8 @@
   \usebeamercolor{#1 title}
   \begin{tikzpicture}[overlay]
     \fill [bg] (-0.2*\the\paperwidth,-1*\the\paperheight)
-    rectangle (1*\the\paperwidth, 0.3*\the\paperheight);
-    \node [right, fg] at (-0.2*\the\paperwidth, -0.6*\the\paperheight)
+    rectangle (1*\the\paperwidth, 0.4*\the\paperheight);
+    \node [right, fg] at (-0.2*\the\paperwidth, -0.5*\the\paperheight)
     {\resizebox{1.25\paperwidth}{!}{\sjtugate}};
   \end{tikzpicture}
   \vfil
