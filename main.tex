@@ -121,7 +121,7 @@
 \subject{LaTeX, 论文排版, SJTUThesis}
 
 \title[\SJTUBeamer 示例文档] % 页脚显示标题
-{\textbf{如何使用 \LaTeX 排版论文}} % 首页标题
+{\textbf{如何使用 \LaTeX{} 排版论文}} % 首页标题
 
 \subtitle{\SJTUBeamer 示例文档}
 
@@ -130,16 +130,16 @@
 % 使用节目录
 \AtBeginSection[]{
   \begin{frame}
-    \tableofcontents[currentsection] % 传统节目录             
-    % \sectionpage                   % 节页
+    % \tableofcontents[currentsection] % 传统节目录             
+    \sectionpage                   % 节页
   \end{frame}
 }
 
 % 使用小节目录
 \AtBeginSubsection[]{                  % 在每小节开始
   \begin{frame}
-    \tableofcontents[currentsection,currentsubsection] % 传统小节目录             
-    % \subsectionpage                                  % 小节页
+    % \tableofcontents[currentsection,currentsubsection] % 传统小节目录             
+    \subsectionpage                                  % 小节页
   \end{frame}
 }
 
