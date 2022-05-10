@@ -155,11 +155,15 @@
   \fi\fi
 %    \end{macrocode}
 %
-%   Color patch for default outer theme.
+%   Color patch for default outer theme. 
+%   And patch the margin to the legacy settings.
 %    \begin{macrocode}
 \if\EqualOption{outer}{nav}{default}
   \setbeamercolor{frametitle}{use=palette primary,
     bg=palette primary.bg,fg=palette primary.fg}
+  \AtBeginDocument{
+    \setbeamertemplate{frametitle}[sjtubeamer][leftskip=0cm,sep=0.3cm]
+  }
 %    \end{macrocode}
 % Since \verb"infolines" outer theme in \verb"beamer" class has redefined the beamer color below which doesn't confirm the standing-free principle, the redefined color will override after the outer theme is loaded. 
 % \verb"structure" beamer color stores the \verb"cprimary". Set the color relative to this for decoupling reasons.

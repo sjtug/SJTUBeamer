@@ -95,6 +95,9 @@
 \if\EqualOption{outer}{nav}{default}
   \setbeamercolor{frametitle}{use=palette primary,
     bg=palette primary.bg,fg=palette primary.fg}
+  \AtBeginDocument{
+    \setbeamertemplate{frametitle}[sjtubeamer][leftskip=0cm,sep=0.3cm]
+  }
 \else\if\EqualOption{outer}{nav}{infolines}
   \setbeamercolor{author in head/foot}{use=structure,fg=white,bg=structure}
   \setbeamercolor{title in head/foot}{use=structure,fg=structure,bg=structure!10}
