@@ -21,7 +21,7 @@
 %% limitations under the License.
 %% ------------------------------------------------------------------------
 \NeedsTeXFormat{LaTeX2e}
-\ProvidesPackage{beamerinnerthemesjtubeamer}[2022/05/07 v2.7.0 sjtubeamer inner theme]
+\ProvidesPackage{beamerinnerthemesjtubeamer}[2022/05/10 v2.7.3 sjtubeamer inner theme]
 \RequirePackage{sjtuvi}
 \RequirePackage{tcolorbox}
 \DefineOption{inner}{cover}{maxplus}
@@ -118,6 +118,10 @@
   \makepart
 }
 \useinnertheme{circles}
+\setlength\leftmargini{1.4em}
+\setlength\leftmarginii{1.4em}
+\setlength\leftmarginiii{1.4em}
+\setbeamersize{description width=0.24cm}
 \newenvironment{bibliolist}[1]{
   \begin{thebibliography}{#1}
     \let\olditem\item%

@@ -21,7 +21,7 @@
 %% limitations under the License.
 %% ------------------------------------------------------------------------
 \NeedsTeXFormat{LaTeX2e}
-\ProvidesPackage{beamerouterthemesjtubeamer}[2022/05/07 v2.7.0 sjtubeamer outer theme]
+\ProvidesPackage{beamerouterthemesjtubeamer}[2022/05/10 v2.7.3 sjtubeamer outer theme]
 \RequirePackage{sjtuvi}
 \DefineOption{outer}{nav}{miniframes}
 \DefineOption{outer}{nav}{infolines}
@@ -40,18 +40,18 @@
 \beamer@compresstrue
 \if\EqualOption{outer}{logopos}{topright}
   \AtBeginDocument{
-    \defbeamertemplate*{frametitle}{sjtubeamer}[1][left]
+    \defbeamertemplate*{frametitle}{sjtubeamer}[1][]
     {%
     \ifbeamercolorempty[bg]{frametitle}{}{\nointerlineskip}%
       \@tempdima=\textwidth%
       \advance\@tempdima by\beamer@leftmargin%
       \advance\@tempdima by\beamer@rightmargin%
-      \begin{beamercolorbox}[sep=0.3cm,#1,wd=\the\@tempdima]{frametitle}
+      \begin{beamercolorbox}[sep=0.15cm,leftskip=0.15cm,#1,wd=\the\@tempdima]{frametitle}
         \begingroup
         \usebeamerfont{frametitle}
         \vbox{}
         \ifx\insertframesubtitle\@empty\vskip-2pt%
-        \else\vskip-1ex\fi%
+        \else\vskip-5pt\fi%
         \if@tempswa\else\csname beamer@fte#1\endcsname\fi%
         \strut\insertframetitle\strut\par%
         {%
@@ -68,16 +68,21 @@
         \endgroup%
         \raggedleft%
         \begingroup
-        \ifx\insertframesubtitle\@empty\vskip-2.5ex%
-        \else\vskip-3.5ex\fi%
+        \ifx\insertframesubtitle\@empty\vskip-2.3ex%
+        \else\vskip-3.0ex\fi%
         \resizebox{!}{0.7cm}{\vphantom{-}\usebeamertemplate{logo}}\hspace*{5pt}%
         \endgroup%
         \ifx\insertframesubtitle\@empty%
-        \else\vskip0.5ex\fi%
+        \else\vskip0.6ex\fi%
         \if@tempswa\else\vskip-.3cm\fi%
       \end{beamercolorbox}%
     }
   }
+  \if\EqualOption{outer}{nav}{default}
+    \AtBeginDocument{
+      \setbeamertemplate{frametitle}[sjtubeamer][leftskip=0cm,sep=0.3cm]
+    }
+  \fi
 \fi
 \if\EqualOption{outer}{nav}{miniframes}
   \useoutertheme[footline=institutetitle]{miniframes}

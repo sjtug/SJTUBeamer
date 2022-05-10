@@ -380,7 +380,7 @@ fontupper=\sffamily,colupper=white}
 
 \begin{commentlist}
   \item \texttt{codeblock} 提供了带行号的代码抄录环境$^*$，第一个可选参数可以用于设置语言与其他抄录选项，第二个必选参数可以设置代码块的标题。
-  \item 需要清理抄录代码在源文件中的缩进，顶格输入。如果想要高亮某一行$^*$，请设置 \verb"escapechar=|" 可选参数后，在该行开头顶格输入 \verb"|\highlightline|"。
+  \item 需要清理抄录代码在源文件中的缩进，顶格输入。如果想要高亮某一行$^*$，设置 \verb"escapechar=|" 可选参数后，在该行开头顶格输入 \verb"|\highlightline|"。
   \item 你也可以直接使用 \texttt{\textbackslash{}codeblockinput}[选项]\{标题\}\{文件\} 用于抄录外部文件$^*$，但请通过 \verb"firstline" 和 \verb"lastline" 选项控制代码行数。
   \item 直接使用 \texttt{listings} 宏包提供的 \texttt{lstlisting} 环境与 \texttt{lstinputlisting} 命令依然可行，\themename\ 已经对其进行了一些预先的优化。
   \item[\faExclamationTriangle] 使用代码块的页其 \texttt{frame} 环境必须添加 \texttt{fragile} 参数。
@@ -421,7 +421,7 @@ fontupper=\sffamily,colupper=white}
 \begin{commentlist}
   \item \LaTeX{} 本身提供了 \texttt{thebibliography} 环境，环境的强制参数用于指定排版最长的标签（这里是两位数占位符），配套 \texttt{\textbackslash{}bibitem[标签]\{主键\}}，在 \texttt{beamer} 中需要辅以 \texttt{\textbackslash{}newblock} 来分隔作者、文章标题、书目与其他内容。这里的主键可以在正文中引用。
   \item 在 \texttt{beamer} 中可以通过设定 \texttt{bibliography item} 模板为对应预设来更改图标，这里是 \texttt{text} 预设用于排印编号。也可以改为文章图标 \texttt{article}，图书图标 \texttt{book} 或网络图标 \texttt{online} 等。
-  \item 引入 \texttt{bibliolist} 环境$^*$以避免使用 \texttt{\textbackslash{}bibitem} 命令，并添加对应的 \texttt{\textbackslash{}articleitem}, \texttt{\textbackslash{}bookitem}, \texttt{\textbackslash{}onlineitem} 用于切换不同的图标$^*$，并保持与 \texttt{\textbackslash{}bibitem} 相同的用法（除了不能设定引用标签）。
+  \item 引入 \texttt{bibliolist} 环境$^*$以避免使用 \texttt{\textbackslash{}bibitem} 命令，对于每一条引用添加对应的 \texttt{\textbackslash{}articleitem}, \texttt{\textbackslash{}bookitem}, \texttt{\textbackslash{}onlineitem} 用于切换不同的图标$^*$，并保持与 \texttt{\textbackslash{}bibitem} 相同的用法（除了不能设定引用标签）。
   \item 在 \texttt{bibliolist} 环境中也可以直接使用 \texttt{\textbackslash{}item} 以不使用 \texttt{\textbackslash{}newblock} 来分割条目中的不同部分，正如 \textsc{SJTUThesis} 所做的那样。但请不要与上一条中的图标命令混用。
 \end{commentlist}
 
