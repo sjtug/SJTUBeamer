@@ -151,18 +151,6 @@
 \setbeamercolor{frametitle right}{parent=subsection in head/foot}
 %    \end{macrocode}
 %
-%   Set the emphasized color and redefine the emphasizing command to make the text both italic for ASCII character and colored in the middle color of cprimary and csecondary.
-%
-%   The redefinition is required since beamer class has redefined the \verb"\emph" command to make it not nested.
-%
-%   For ASCII character, the italic part dominates, as it is quite different from the normal roman font. As for chinese character, the color part dominates, since it is often in bolder shape and changing to other font will make the layout messy.
-%    \begin{macrocode}
-\setbeamercolor{emph}{fg=black}
-\renewcommand<>{\emph}[1]{%
-  {\only#2{\usebeamercolor[fg]{emph}\itshape}#1}%
-}
-%    \end{macrocode}
-%
 %   As is native to beamer, you could also use \verb"\alert" command to highlight the text. The color is redirected to the cprimary.
 %    \begin{macrocode}
 \setbeamercolor{alerted text}{fg=cprimary}
