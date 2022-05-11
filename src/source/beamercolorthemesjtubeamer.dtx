@@ -153,11 +153,11 @@
 %
 %   Set the emphasized color and redefine the emphasizing command to make the text both italic for ASCII character and colored in the middle color of cprimary and csecondary.
 %
-%   The redefinition is required since beamer class has redefined the \verb"\emph" command to make it not nested. According to LearnLaTeX.org, the emphasized color is defined to make contrast in presentation.
+%   The redefinition is required since beamer class has redefined the \verb"\emph" command to make it not nested.
 %
 %   For ASCII character, the italic part dominates, as it is quite different from the normal roman font. As for chinese character, the color part dominates, since it is often in bolder shape and changing to other font will make the layout messy.
 %    \begin{macrocode}
-\setbeamercolor{emph}{fg=cprimary!50!csecondary}
+\setbeamercolor{emph}{fg=black}
 \renewcommand<>{\emph}[1]{%
   {\only#2{\usebeamercolor[fg]{emph}\itshape}#1}%
 }
