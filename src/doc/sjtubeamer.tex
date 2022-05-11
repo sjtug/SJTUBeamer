@@ -379,7 +379,7 @@ fontupper=\sffamily,colupper=white}
 \beamerdemo[1]{step10.tex}
 
 \begin{commentlist}
-  \item \cmd{alert} 会改变文字颜色为主题色。\cmd{emph} 会改变文字颜色的同时，还会将英文字体变为斜体$^*$。
+  \item \cmd{alert} 会改变文字颜色为主题色。\cmd{emph} 会将英文字体变为斜体。
   \item \cmd{paragraph} 和 \cmd{highlight} 都会在文字底部添加纯色方块$^*$，区别在于后者可以设置背景颜色。
   \item \cmd{stamptext} 可以用于生成以印记形为底的高亮小块$^*$，需要将高亮的文字数目控制在一个中文字或两个英文字。
 \end{commentlist}
@@ -592,9 +592,9 @@ fontupper=\sffamily,colupper=white}
   \centering
   \begin{tabular}{>{\ttfamily}c>{\ttfamily}c>{\ttfamily}c}
     \hline
-    \textbackslash{}makebottom & \textbackslash{}emph          & \textbackslash{}highlight  \\
-    \textbackslash{}paragraph  & codeblock                     & \textbackslash{}stamparray \\
-    \textbackslash{}*logo      & \textbackslash{}sjtubadge     & stampbox                   \\
+    \textbackslash{}makebottom & bibliolist                    & \textbackslash{}highlight    \\
+    \textbackslash{}paragraph  & codeblock                     & \textbackslash{}stamparray   \\
+    \textbackslash{}*logo      & \textbackslash{}sjtubadge     & stampbox                     \\
     \textbackslash{}stamptext  & \textbackslash{}highlightline & \textbackslash{}usesjtutheme \\
     \hline
   \end{tabular}
