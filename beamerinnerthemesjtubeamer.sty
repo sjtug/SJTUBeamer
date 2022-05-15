@@ -294,13 +294,10 @@
             r<{\end{pgfplotstablecoltype}}}
   }{}
   \if\EqualOption{inner}{lang}{zh}
-    \def\sjtubeamer@algorithmName{算法}
-  \else
-    \def\sjtubeamer@algorithmName{Algorithm}
+    \@ifpackageloaded{algorithm2e}{%
+      \SetAlgorithmName{算法}{算法}{算法索引}
+    }
   \fi
-  \@ifpackageloaded{algorithm2e}{%
-    \SetAlgorithmName{\sjtubeamer@algorithmName}{\sjtubeamer@algorithmName}{}
-  }
   \def\Hy@WarnOptionDisabled#1{
     \def\next{#1}%
     \ifx\next pdfauthor %
