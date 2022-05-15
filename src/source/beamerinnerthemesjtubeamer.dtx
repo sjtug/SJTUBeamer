@@ -585,13 +585,13 @@
             r<{\end{pgfplotstablecoltype}}}
   }{}
 %    \end{macrocode}
-%  Translate the name of ``Algorithm'' in algorithm2e if it is in \verb"zh" language. The name of procedure and function are not translated for the reason that it looks unprofessional to translate the dedicated use of the words. You could uncomment the lines if you want it translated.
+%  Translate the name of ``Algorithm'' in algorithm2e if it is in \verb"zh" language. The name of procedure and function are not translated for the reason that it looks unprofessional to translate the dedicated use of the words. 
+%  \verb"\algorithmname" is translated by \verb"ctex" package or \verb"ctexbeamer" class. If you use \verb"CJK", it will not get translated.
+%  The third paramter indicates the caption of the list of algorithms, but it is not often to be used in \verb"beamer" class.
 %    \begin{macrocode}
   \if\EqualOption{inner}{lang}{zh}
     \@ifpackageloaded{algorithm2e}{%
-      \SetAlgorithmName{算法}{算法}{算法索引}
-      % \SetAlgoProcName{过程}{过程}
-      % \SetAlgoFuncName{函数}{函数}
+      \SetAlgorithmName{\algorithmname}{\algorithmname}{\algorithmname{}索引}
     }
   \fi
 %    \end{macrocode}
