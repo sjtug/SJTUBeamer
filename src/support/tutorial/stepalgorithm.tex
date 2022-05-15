@@ -1,0 +1,21 @@
+\documentclass{ctexbeamer}
+\usetheme[min]{sjtubeamer}
+\usepackage[ruled, linesnumbered]{algorithm2e}
+\begin{document}
+\begin{frame}
+  \scalebox{0.5}{
+    \begin{algorithm}[H]
+      \caption{A* 多序列比对}\label{alg:astar}
+      \KwIn{$L$个字符串列表$S$,$\alpha$,$\delta$}
+      \KwOut{minimum cost}
+      \BlankLine
+      $dist[\cdot]\leftarrow\infty$\;
+      % 算法内容...
+      \Return{$\infty$}\;
+    \end{algorithm}
+  }
+  \begin{minipage}[c]{0.45\textwidth}
+    对该算法的说明。
+  \end{minipage}
+\end{frame}
+\end{document}

@@ -151,18 +151,7 @@ This command will also move the generated style files to the root directory.
 %     unpack $\rightarrow$ \verb"min.tex" $\rightarrow$ documentations
 % \end{center}
 Since the doc has a lot of dependencies (or unit tests), you can cache the demo files to \verb"support/tutorial" directory.
-\begin{verbatim}
-        cd support/tutorial
-        ./cache_pdf.sh
-    \end{verbatim}
-or you could remove all the cached files by
-\begin{verbatim}
-        ./clean_pdf.sh
-    \end{verbatim}
-and don't forget to back to the source code directory if you want to use \verb"l3build":
-\begin{verbatim}
-        cd ../..
-    \end{verbatim}
+Change the variable in \verb"build.lua": \verb"cachedemo=true" to cache the demo automatically, and remove the variable to clean the cached files.
 We highly recommend that using *nix to compile the doc.
 
 \fcmd{l3build save color} If you make some modification to the framework (except \verb"sjtucover") and change the result. To save the current result as a reference, run this command and \verb"color" could be exchanged by any of the test units above.

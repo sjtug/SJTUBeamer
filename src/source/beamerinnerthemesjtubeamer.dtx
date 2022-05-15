@@ -16,7 +16,7 @@
 % \iffalse
 %<*package>
 \NeedsTeXFormat{LaTeX2e}
-\ProvidesPackage{beamerinnerthemesjtubeamer}[2022/05/11 v2.8.0 sjtubeamer inner theme]
+\ProvidesPackage{beamerinnerthemesjtubeamer}[2022/05/15 v2.8.1 sjtubeamer inner theme]
 %</package>
 % \fi
 % \CheckSum{0}
@@ -417,7 +417,7 @@
   basicstyle=\ttfamily\small,
   keywordstyle=\color{cprimary},%
   stringstyle=\color{csecondary},%
-  commentstyle=\color{ctertiary!80!gray},%
+  commentstyle=\color{ctertiary!50!gray},%
   columns=flexible,
   extendedchars=false,
   showstringspaces=false,
@@ -584,6 +584,16 @@
     \newcolumntype{L}[1]{>{\begin{pgfplotstablecoltype}[#1]}
             r<{\end{pgfplotstablecoltype}}}
   }{}
+%    \end{macrocode}
+%  Translate the name of ``Algorithm'' in algorithm2e if it is in \verb"zh" language. The name of procedure and function are not translated for the reason that it looks unprofessional to translate the dedicated use of the words. 
+%  \verb"\algorithmname" is translated by \verb"ctex" package or \verb"ctexbeamer" class. If you use \verb"CJK", it will not get translated.
+%  The third paramter indicates the caption of the list of algorithms, but it is not often to be used in \verb"beamer" class.
+%    \begin{macrocode}
+  \if\EqualOption{inner}{lang}{zh}
+    \@ifpackageloaded{algorithm2e}{%
+      \SetAlgorithmName{\algorithmname}{\algorithmname}{\algorithmname{}索引}
+    }
+  \fi
 %    \end{macrocode}
 % Disable the warning from \verb"hyperref" which conflicts the setting in C\TeX{} or CJK. It has to be manually disabled.
 %    \begin{macrocode}
