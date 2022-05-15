@@ -585,11 +585,13 @@
             r<{\end{pgfplotstablecoltype}}}
   }{}
 %    \end{macrocode}
-%  Translate the name of ``Algorithm'' in algorithm2e if it is in \verb"zh" language.
+%  Translate the name of ``Algorithm'' in algorithm2e if it is in \verb"zh" language. The name of procedure and function are not translated for the reason that it looks unprofessional to translate the dedicated use of the words. You could uncomment the lines if you want it translated.
 %    \begin{macrocode}
   \if\EqualOption{inner}{lang}{zh}
     \@ifpackageloaded{algorithm2e}{%
       \SetAlgorithmName{算法}{算法}{算法索引}
+      % \SetAlgoProcName{过程}{过程}
+      % \SetAlgoFuncName{函数}{函数}
     }
   \fi
 %    \end{macrocode}
