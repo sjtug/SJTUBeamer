@@ -359,6 +359,8 @@ fontupper=\sffamily,colupper=white}
 \end{verbatim}
 以展示备注幻灯片（幻灯片内使用 \cmd{note} 标记备注内容）于每页右侧。使用该软件以自动地识别备注区域展示在演示者屏幕上。
 
+\examplecode{stepdual.tex}
+
 \begin{figure}[h]
   \centering
   \includegraphics[width=0.7\textwidth]{tutorial/stepdual.pdf}\\
@@ -399,16 +401,35 @@ fontupper=\sffamily,colupper=white}
 
 \chapter{代码}
 
+\section{代码抄录}
+
 \themename\ 提供了代码抄录的区块环境。
 
 \beamerdemo[1]{step13.tex}
 
 \begin{commentlist}
   \item \texttt{codeblock} 提供了带行号的代码抄录环境$^*$，第一个可选参数可以用于设置语言与其他抄录选项，第二个必选参数可以设置代码块的标题。
-  \item 需要清理抄录代码在源文件中的缩进，顶格输入。如果想高亮某一行$^*$，设置 \verb"escapechar=|" 可选参数后，在该行开头顶格输入 \verb"|\highlightline|"。
+  \item 需要清理抄录代码在源文件中的缩进，顶格输入。如果想高亮某一行$^*$，设置 \verb"escapechar=|" 可选参数后，该行开头顶格输入 \verb"|\highlightline|"。
   \item 你也可以直接使用 \cmd{codeblockinput}[选项]\{标题\}\{文件\} 用于抄录外部文件$^*$，但请通过 \verb"firstline" 和 \verb"lastline" 选项控制代码行数。
   \item 直接使用 \texttt{listings} 宏包提供的 \texttt{lstlisting} 环境与 \texttt{lstinputlisting} 命令依然可行，\themename\ 已经对其进行了一些预先的优化。
   \item[\faExclamationTriangle] 使用代码块的页其 \texttt{frame} 环境必须添加 \texttt{fragile} 参数。
+\end{commentlist}
+
+\section{伪代码}
+
+使用 \pkg{algorithm2e} 宏包编写伪代码。
+
+\begin{figure}[h]
+  \centering
+  \includegraphics[width=\textwidth]{tutorial/stepalgo.pdf}
+\end{figure}
+
+\examplecode{stepalgorithm.tex}
+
+\begin{commentlist}
+  \item \themename{} 对 \env{algorithm} 环境的标题在中文环境下进行了汉化$^*$，但是对于 \env{procedure} 和 \env{function} 则没有。
+  \item 如果算法过长，考虑使用 \cmd{scalebox} 对算法环境进行缩小。
+  \item 如果还需要在右侧添加说明，这时请使用 \env{minipage} 环境创建纵向盒子。
 \end{commentlist}
 
 
