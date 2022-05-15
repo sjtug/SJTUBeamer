@@ -21,7 +21,7 @@
 %% limitations under the License.
 %% ------------------------------------------------------------------------
 \NeedsTeXFormat{LaTeX2e}
-\ProvidesPackage{beamerinnerthemesjtubeamer}[2022/05/11 v2.8.1 sjtubeamer inner theme]
+\ProvidesPackage{beamerinnerthemesjtubeamer}[2022/05/15 v2.8.1 sjtubeamer inner theme]
 \RequirePackage{sjtuvi}
 \RequirePackage{tcolorbox}
 \DefineOption{inner}{cover}{maxplus}
@@ -293,6 +293,14 @@
     \newcolumntype{L}[1]{>{\begin{pgfplotstablecoltype}[#1]}
             r<{\end{pgfplotstablecoltype}}}
   }{}
+  \if\EqualOption{inner}{lang}{zh}
+    \def\sjtubeamer@algorithmName{算法}
+  \else
+    \def\sjtubeamer@algorithmName{Algorithm}
+  \fi
+  \@ifpackageloaded{algorithm2e}{%
+    \SetAlgorithmName{\sjtubeamer@algorithmName}{\sjtubeamer@algorithmName}{}
+  }
   \def\Hy@WarnOptionDisabled#1{
     \def\next{#1}%
     \ifx\next pdfauthor %
