@@ -21,7 +21,7 @@
 %% limitations under the License.
 %% ------------------------------------------------------------------------
 \NeedsTeXFormat{LaTeX2e}
-\ProvidesPackage{beamercolorthemesjtubeamer}[2022/05/11 v2.8.0 sjtubeamer color theme]
+\ProvidesPackage{beamercolorthemesjtubeamer}[2022/05/15 v2.8.1 sjtubeamer color theme]
 \RequirePackage{sjtuvi}
 \DefineOption{color}{color}{red}
 \DefineOption{color}{color}{blue}
@@ -82,10 +82,6 @@
 \setbeamercolor{page number in head/foot}{fg=white,bg=}
 \setbeamercolor{frametitle}{use=titlelike,bg=white,fg=titlelike.fg}
 \setbeamercolor{frametitle right}{parent=subsection in head/foot}
-\setbeamercolor{emph}{fg=cprimary!50!csecondary}
-\renewcommand<>{\emph}[1]{%
-  {\only#2{\usebeamercolor[fg]{emph}\itshape}#1}%
-}
 \setbeamercolor{alerted text}{fg=cprimary}
 \endinput
 %%

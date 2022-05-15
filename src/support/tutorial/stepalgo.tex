@@ -1,0 +1,45 @@
+\documentclass{ctexbeamer}
+\usetheme[min]{sjtubeamer}
+\usepackage[ruled, linesnumbered]{algorithm2e}
+\begin{document}
+\begin{frame}
+  \scalebox{0.5}{
+    \begin{algorithm}[H]
+      \caption{A* 多序列比对}\label{alg:astar}
+      \KwIn{$L$个字符串列表$S$,$\alpha$,$\delta$}
+      \KwOut{minimum cost}
+      \BlankLine
+      $dist[\cdot]\leftarrow\infty$\;
+      $move[\cdot]\leftarrow 0$\;
+      $dist[start]\leftarrow 0$\;
+      $move[start]\leftarrow 0$\;
+      $openSet\leftarrow\textsc{Min-Heap}()$\;
+      $openSet[start]=h(start)$\;
+      $closeSet\leftarrow \{\}$\;
+      \Repeat{$openSet$ is empty}{
+        $current\leftarrow openSet$.pop()\;
+        \If{$current$=$finish$}{
+          \Return{$dist[current]$}\;
+        }
+
+        $closeSet$.add($current$)\;
+        \ForEach{available move of $current$}{
+          $n\leftarrow$\texttt{pos}$+$\emph{available move}\;
+          $g=dist(\mathit{current})+cost(\text{\emph{available move}})$\;
+          \If{$g<dist[n]$}{
+            $move[n]\leftarrow$\emph{available move}\;
+            $dist[n]\leftarrow g$\;
+            \If{$n$ not in $closeSet$}{
+              $openSet[n]\leftarrow g+h(n)$\;
+            }
+          }
+        }
+      }
+      \Return{$\infty$}\;
+    \end{algorithm}
+  }
+  \begin{minipage}[c]{0.45\textwidth}
+    对该算法的说明。
+  \end{minipage}
+\end{frame}
+\end{document}
