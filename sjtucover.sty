@@ -18,7 +18,7 @@
 %% see https://vi.sjtu.edu.cn/index.php/articles/bulletin/16.
 %% ------------------------------------------------------------------------
 \NeedsTeXFormat{LaTeX2e}
-\ProvidesPackage{sjtucover}[2022/05/15 v2.8.1 cover library for sjtubeamer]
+\ProvidesPackage{sjtucover}[2022/05/16 v2.8.2 cover library for sjtubeamer]
 \RequirePackage{sjtuvi}
 \DefineOption{cover}{lang}{zh}
 \DefineOption{cover}{lang}{en}
@@ -160,7 +160,7 @@
       \else
       \ifx\insertlogo\@empty%
         \else
-        {\hskip0pt \vrule width0.5pt}\hskip3pt
+        {\hskip0pt\vrule width0.5pt}\hskip0pt
       \fi
       \if\EqualOption{inner}{lang}{en}
       \vbox to 1cm{
@@ -175,13 +175,13 @@
           \vfill
         }
       \else
-      \vbox{
+      \hskip3pt\vbox{
         \fontsize{13pt}{0pt}\selectfont
         \insertinstitute
-        \par\noindent\vskip0.15em
+        \par\noindent\vskip0.14em
         \fontsize{5pt}{0pt}\selectfont
         \textsc{\insertshortinstitute}
-        \baselineskip 3.2pt
+        \baselineskip 3.9pt
         \par~
       }
       \fi
