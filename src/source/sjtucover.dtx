@@ -864,13 +864,15 @@
   \hspace{0.3em}\inserttocsection\par\vspace{3pt}
 }
 %    \end{macrocode}
-%  Define the \verb"stamp" TOC style for subsection in toc, notice that there is no \verb"\stamptext" in subsection to fit the style of \verb"circle" subsection in toc style, only with the additional left margin to align with (slightly right of) section in toc.
+%  Define the \verb"stamp" TOC style for subsection in toc, notice that there is no \verb"\stamptext" in subsection, in order to fit the style of \verb"circle" subsection in toc style, only with the additional left margin to align with (slightly right of) section in toc.
 %    \begin{macrocode}
 \defbeamertemplate{subsection in toc}{stamp}{
   \vspace{3pt}\leavevmode\hspace{36mm}\inserttocsubsection\par
 }
 %    \end{macrocode}
-%  Define the \verb"stamp" TOC style for subsubsection in toc. Like it is in section in toc, only additional left margin is added with adaptation of the font style of subsubsection in toc.
+%  Define the \verb"stamp" TOC style for subsubsection in toc. Like it is in section in toc, only additional left margin is added with adaptation of the font style of subsubsection in toc. And subsubsection should never be used in beamer class, since there is no configuration for subsubsection in beamer to show. To control the visibility of subsubsection in toc,
+%  \begin{verbatim}\tableofcontents[subsubsectionstyle=hide]\end{verbatim}
+%  will hide all subsubsection in toc, since there is NO \verb"hideallsubsubsections" in beamer.
 %  COPYRIGHT NOTICE: reference to beamer class code with LPPL 1.3c License.
 %    \begin{macrocode}
 \defbeamertemplate{subsubsection in toc}{stamp}{
