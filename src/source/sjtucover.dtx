@@ -13,7 +13,7 @@
 % \iffalse
 %<*package>
 \NeedsTeXFormat{LaTeX2e}
-\ProvidesPackage{sjtucover}[2022/05/16 v2.8.2 cover library for sjtubeamer]
+\ProvidesPackage{sjtucover}[2022/05/17 v2.8.3 cover library for sjtubeamer]
 %</package>
 % \fi
 % \CheckSum{0}
@@ -860,14 +860,14 @@
 %  Futhermore, the subsection doesn't even have a stamp marker so that the three-stage structure could not be formed to make use of all three-stage colors. Just all use one color to create a better look.
 %    \begin{macrocode}
 \defbeamertemplate{section in toc}{stamp}{
-    \leavevmode\leftskip=8mm\stamptext[structure]{\inserttocsectionnumber}\hspace{0.3em}
-    \inserttocsection\par\vspace{3pt}
+  \leavevmode\leftskip=8mm\stamptext[structure]{\inserttocsectionnumber}
+  \hspace{0.3em}\inserttocsection\par\vspace{3pt}
 }
 %    \end{macrocode}
 %  Define the \verb"stamp" TOC style for subsection in toc, notice that there is no \verb"\stamptext" in subsection to fit the style of \verb"circle" subsection in toc style, only with the additional left margin to align with (slightly right of) section in toc.
 %    \begin{macrocode}
 \defbeamertemplate{subsection in toc}{stamp}{
-    \vspace{3pt}\leavevmode\hspace{36mm}\inserttocsubsection\par
+  \vspace{3pt}\leavevmode\hspace{36mm}\inserttocsubsection\par
 }
 %    \end{macrocode}
 %
