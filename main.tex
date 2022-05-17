@@ -131,7 +131,7 @@
 % 使用节目录
 \AtBeginSection[]{
   \begin{frame}
-    \tableofcontents[currentsection] % 传统节目录             
+    \tableofcontents[currentsection,subsectionstyle=show/show/hide] % 传统节目录             
     % \sectionpage                   % 节页
   \end{frame}
 }
@@ -139,7 +139,7 @@
 % 使用小节目录
 \AtBeginSubsection[]{                  % 在每小节开始
   \begin{frame}
-    \tableofcontents[currentsection,currentsubsection] % 传统小节目录             
+    \tableofcontents[currentsection,subsectionstyle=show/shaded/hide] % 传统小节目录             
     % \subsectionpage                                  % 小节页
   \end{frame}
 }
@@ -166,7 +166,7 @@
 \end{frame}
 
 \begin{frame}{目录}
-  \tableofcontents
+  \tableofcontents[hideallsubsections]
 \end{frame}
 
 \include{contents/introduction}
