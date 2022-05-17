@@ -131,7 +131,7 @@
 % 使用节目录
 \AtBeginSection[]{
   \begin{frame}
-    %% 使用传统节目录
+    %% 使用传统节目录，也可以将 subsectionstyle=... 换成 hideallsubsections 以隐藏所有小节信息
     \tableofcontents[currentsection,subsectionstyle=show/show/hide]
     %% 或者使用节页
     % \sectionpage
@@ -170,7 +170,7 @@
 \end{frame}
 
 \begin{frame}{目录}
-  \tableofcontents[hideallsubsections]
+  \tableofcontents[hideallsubsections]  % 隐藏所有小节信息
 \end{frame}
 
 \include{contents/introduction}
