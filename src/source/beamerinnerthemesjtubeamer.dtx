@@ -16,7 +16,7 @@
 % \iffalse
 %<*package>
 \NeedsTeXFormat{LaTeX2e}
-\ProvidesPackage{beamerinnerthemesjtubeamer}[2022/05/16 v2.8.2 sjtubeamer inner theme]
+\ProvidesPackage{beamerinnerthemesjtubeamer}[2022/05/17 v2.8.3 sjtubeamer inner theme]
 %</package>
 % \fi
 % \CheckSum{0}
@@ -283,10 +283,25 @@
 %
 % \subsubsection{Itemize Environments}
 %
-%   Set the item marker to circle and set the marker for section and subsection in TOC (Table of Contents) to circle.
+%   Set the item and enumerate style to circled one.
 %    \begin{macrocode}
-\useinnertheme{circles}
+\setbeamertemplate{items}[circle]
 %    \end{macrocode}
+%
+%   Set the marker for section and subsection in TOC (Table of Contents) to \verb"stamp" style provided in \verb"sjtucover".
+%   NOTICE: the recommended setup to use the following in full TOC
+%   \begin{verbatim}\tableofcontents[hideallsubsections]\end{verbatim}
+%   use the following in \verb"\AtBeginSection"
+%   \begin{verbatim}\tableofcontents[currentsection, subsectionstyle=show/show/hide]\end{verbatim}
+%   and use the following in \verb"\AtBeginSubsection"
+%   \begin{verbatim}\tableofcontents[currentsection, subsectionstyle=show/shaded/hide]\end{verbatim}
+%    \begin{macrocode}
+\setbeamertemplate{sections/subsections in toc}[stamp]
+%    \end{macrocode}
+%  Remember, if you want to restore the theme to original TOC style, just use
+%  \begin{verbatim}\setbeamertemplate{sections/subsections in toc}[circle]\end{verbatim}
+%  or load \verb"circles" inner theme.
+%  \begin{verbatim}\useinnertheme{circles}\end{verbatim}
 %
 %  Patch beamer on \verb"itemize",\verb"enumerate",\verb"description" on the left margin.
 %    \begin{macrocode}

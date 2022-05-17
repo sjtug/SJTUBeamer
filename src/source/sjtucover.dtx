@@ -13,7 +13,7 @@
 % \iffalse
 %<*package>
 \NeedsTeXFormat{LaTeX2e}
-\ProvidesPackage{sjtucover}[2022/05/16 v2.8.2 cover library for sjtubeamer]
+\ProvidesPackage{sjtucover}[2022/05/17 v2.8.3 cover library for sjtubeamer]
 %</package>
 % \fi
 % \CheckSum{0}
@@ -853,6 +853,36 @@
 %</my>
 %    \end{macrocode}
 %
+%   \subsubsection{Table of Contents Style}
+%  
+%   Define the \verb"stamp" TOC style for section in toc. Just use the structure color of marker to match the color like the style in \verb"circle" section in toc.
+%  This may mismatch with the definition of \verb"section page" of \verb"max" theme. But it surely the same color with \verb"part page". Reducing the number of the color used is a correct choice.
+%  Futhermore, the subsection doesn't even have a stamp marker so that the three-stage structure could not be formed to make use of all three-stage colors. Just all use one color to create a better look.
+%  At the end of this section block, a thin vspace is added to avoid the collision between the subsection and the stamptext.
+%  Some space before this section block is added, since there may be some users use \verb"multicols" environment in package \verb"multicol" to make a split list of TOC (which is not recommended by the way). this space will help to avoid the collision between the section and the previous subsection.
+%    \begin{macrocode}
+\defbeamertemplate{section in toc}{stamp}{
+  \vspace{2.5pt}\leavevmode\leftskip=8mm\stamptext[structure]{\inserttocsectionnumber}
+  \hspace{0.3em}\inserttocsection\par\vspace{0.5pt}
+}
+%    \end{macrocode}
+%  Define the \verb"stamp" TOC style for subsection in toc, notice that there is no \verb"\stamptext" in subsection, in order to fit the style of \verb"circle" subsection in toc style, only with the additional left margin to align with (slightly right of) section in toc. Add thin space at the start of every subsection in toc to add some line height.
+%    \begin{macrocode}
+\defbeamertemplate{subsection in toc}{stamp}{
+  \vspace{1.5pt}\leavevmode\hspace{36mm}\inserttocsubsection\par
+}
+%    \end{macrocode}
+%  Define the \verb"stamp" TOC style for subsubsection in toc. Like it is in section in toc, only additional left margin is added with adaptation of the font style of subsubsection in toc. And subsubsection should never be used in beamer class, since there is no configuration for subsubsection in beamer to show. To control the visibility of subsubsection in toc,
+%  \begin{verbatim}\tableofcontents[subsubsectionstyle=hide]\end{verbatim}
+%  will hide all subsubsection in toc, since there is NO \verb"hideallsubsubsections" in beamer.
+%  COPYRIGHT NOTICE: reference to beamer class code with LPPL 1.3c License.
+%    \begin{macrocode}
+\defbeamertemplate{subsubsection in toc}{stamp}{
+  \leavevmode\hspace{40mm}\normalsize\usebeamerfont{subsection in
+  toc}\usebeamerfont{subsubsection in toc}%
+  \inserttocsubsubsection\par
+}
+%    \end{macrocode}
 %
 % \iffalse
 %</package>

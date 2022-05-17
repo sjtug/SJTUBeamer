@@ -131,16 +131,20 @@
 % 使用节目录
 \AtBeginSection[]{
   \begin{frame}
-    \tableofcontents[currentsection] % 传统节目录             
-    % \sectionpage                   % 节页
+    %% 使用传统节目录，也可以将 subsectionstyle=... 换成 hideallsubsections 以隐藏所有小节信息
+    \tableofcontents[currentsection,subsectionstyle=show/show/hide]
+    %% 或者使用节页
+    % \sectionpage
   \end{frame}
 }
 
 % 使用小节目录
 \AtBeginSubsection[]{                  % 在每小节开始
   \begin{frame}
-    \tableofcontents[currentsection,currentsubsection] % 传统小节目录             
-    % \subsectionpage                                  % 小节页
+    %% 使用传统小节目录
+    \tableofcontents[currentsection,subsectionstyle=show/shaded/hide]
+    %% 或者使用小节页
+    % \subsectionpage
   \end{frame}
 }
 
@@ -166,7 +170,7 @@
 \end{frame}
 
 \begin{frame}{目录}
-  \tableofcontents
+  \tableofcontents[hideallsubsections]  % 隐藏所有小节信息
 \end{frame}
 
 \include{contents/introduction}
