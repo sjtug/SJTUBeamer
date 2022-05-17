@@ -870,6 +870,15 @@
   \vspace{3pt}\leavevmode\hspace{36mm}\inserttocsubsection\par
 }
 %    \end{macrocode}
+%  Define the \verb"stamp" TOC style for subsubsection in toc. Like it is in section in toc, only additional left margin is added with adaptation of the font style of subsubsection in toc.
+%  COPYRIGHT NOTICE: reference to beamer class code with LPPL 1.3c License.
+%    \begin{macrocode}
+\defbeamertemplate{subsubsection in toc}{stamp}{
+  \leavevmode\hspace{40mm}\normalsize\usebeamerfont{subsection in
+  toc}\usebeamerfont{subsubsection in toc}%
+  \inserttocsubsubsection\par
+}
+%    \end{macrocode}
 %
 % \iffalse
 %</package>
