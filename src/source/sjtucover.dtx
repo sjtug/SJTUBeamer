@@ -853,6 +853,17 @@
 %</my>
 %    \end{macrocode}
 %
+%   \subsubsection{Table of Contents Style}
+%  
+%    \begin{macrocode}
+\defbeamertemplate{section in toc}{stamp}{
+    \leavevmode\leftskip=8mm\stamptext[cprimary]{\inserttocsectionnumber}\hspace{0.3em}
+    \inserttocsection\par\vspace{3pt}
+}
+\defbeamertemplate{subsection in toc}{stamp}{
+    \vspace{3pt}\leavevmode\leftskip=30mm\hspace{0.8em}\inserttocsubsection\par
+}
+%    \end{macrocode}
 %
 % \iffalse
 %</package>
