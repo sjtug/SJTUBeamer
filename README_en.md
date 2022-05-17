@@ -48,7 +48,7 @@ Current document `main.tex` is an example documentation of *How to Use LaTeX to 
 \part{Intro}
 
 \AtBeginSection[]{
-  \begin{frame}          
+  \begin{frame}[plain]
     \sectionpage
   \end{frame}
 }
@@ -132,7 +132,7 @@ Edit `main.tex` and start to use.
   * Run `latexmk -xelatex main.tex` to compile
   * VSCode LaTeX Workshop: use “Recipe: latexmk (latexmkrc)” to compile
 
-The current stable version is v2.8.0。You could visit [the release page](https://github.com/sjtug/SJTUBeamer/releases) for the changelog and more details. Generally speaking, a release of SJTUBeamer has the following content:
+The current stable version is v2.9.0。You could visit [the release page](https://github.com/sjtug/SJTUBeamer/releases) for the changelog and more details. Generally speaking, a release of SJTUBeamer has the following content:
 
 * `sjtubeamer.pdf`: SJTUBeamer User Guide。**HIGHLY RECOMMENDED TO READ BEFORE YOU START👍👍👍**
 * `sjtubeamerdevguide.pdf`: SJTUBeamer Development Guide.

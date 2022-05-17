@@ -52,7 +52,7 @@ SJTUBeamer 是上海交通大学的非官方 Beamer 模版。您可以使用 SJT
 % 使用节目录
 \AtBeginSection[]{
   \begin{frame}
-    % \tableofcontents[currentsection]  % 传统节目录             
+    % \tableofcontents[currentsection,hideallsubsections]  % 传统节目录             
     \sectionpage                        % 节页
   \end{frame}
 }
@@ -137,7 +137,7 @@ int main(){
   * 之后通过 `latexmk -xelatex main.tex` 命令进行编译即可。
   * VSCode 用户可以使用 LaTeX Workshop 中的 “Recipe: latexmk (latexmkrc)” 进行编译。
 
-目前模版最新的稳定版是 v2.8.0。您可以在 [发布页](https://github.com/sjtug/SJTUBeamer/releases) 查看修改日志和更多资料。通常来说，SJTUBeamer 的一个稳定版本包括如下内容：
+目前模版最新的稳定版是 v2.9.0。您可以在 [发布页](https://github.com/sjtug/SJTUBeamer/releases) 查看修改日志和更多资料。通常来说，SJTUBeamer 的一个稳定版本包括如下内容：
 
 * `sjtubeamer.pdf`: **强烈推荐在使用前阅读一遍 👍👍👍** SJTUBeamer 用户文档。
 * `sjtubeamerdevguide.pdf`: SJTUBeamer 开发指南。
