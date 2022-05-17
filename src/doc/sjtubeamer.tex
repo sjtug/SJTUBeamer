@@ -283,7 +283,7 @@ fontupper=\sffamily,colupper=white}
 
 \section{单页目录}
 
-传统的插入目录的方法就是使用标准的目录命令。
+传统的插入目录的方法就是使用标准的目录命令，使用 \opt{hideallsubsections} 隐藏所有小节标题。
 
 \beamerdemo[1]{step6+.tex}
 
@@ -319,7 +319,10 @@ fontupper=\sffamily,colupper=white}
 
 \begin{commentlist}
   \item 如果想要在幻灯片列表环境产生类似的“渐进切换”效果，可以在 \texttt{itemize} 环境的每一条后使用 \cmd{pause} 命令。或者是 \cmd{begin\{itemize\}[<+->]}。
-  \item \cmd{tableofcontents[currentsection, currentsubsection]} 用于小节页。
+  \item \opt{subsectionstyle} 用于指定小节标题的显示策略，三个参数分别代表当前小节、本节中其他小节和其他节的小节该如何显示。\opt{show} 将显示，\opt{shaded} 将半显示，\opt{hide} 将隐藏。推荐对于 \themename\ 采用这种设置方法。
+  \item 如果想使用普通的圆形目录结构，在导言区添加\begin{verbatim}
+    \setbeamertemplate{sections/subsections in toc}[circle]
+  \end{verbatim}
 \end{commentlist}
 
 \chapter{播放}

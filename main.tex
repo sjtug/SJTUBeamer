@@ -131,16 +131,20 @@
 % 使用节目录
 \AtBeginSection[]{
   \begin{frame}
-    \tableofcontents[currentsection,subsectionstyle=show/show/hide] % 传统节目录             
-    % \sectionpage                   % 节页
+    %% 使用传统节目录
+    \tableofcontents[currentsection,subsectionstyle=show/show/hide]
+    %% 或者使用节页
+    % \sectionpage
   \end{frame}
 }
 
 % 使用小节目录
 \AtBeginSubsection[]{                  % 在每小节开始
   \begin{frame}
-    \tableofcontents[currentsection,subsectionstyle=show/shaded/hide] % 传统小节目录             
-    % \subsectionpage                                  % 小节页
+    %% 使用传统小节目录
+    \tableofcontents[currentsection,subsectionstyle=show/shaded/hide]
+    %% 或者使用小节页
+    % \subsectionpage
   \end{frame}
 }
 
