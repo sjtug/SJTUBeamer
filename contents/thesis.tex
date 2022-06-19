@@ -44,16 +44,16 @@
         \item 下载最新开发版（高级 / 想尝鲜 / 着急的用户）
               \begin{itemize}
                 \item \url{https://github.com/sjtug/SJTUThesis}
-                \item 切换到 |develop| 分支，点右边栏
+                \item 切换到 \verb|develop| 分支，点右边栏
                       \href{https://github.com/sjtug/SJTUThesis/archive/dev.zip}%
                       {Download ZIP} 按钮
               \end{itemize}
         \item 编译
               \begin{itemize}
-                \item 解压缩看文档 |README.md|
-                \item Windows: 双击 |Compile.bat| 脚本编译
-                \item Linux \& macOS: 使用 |Makefile|
-                \item 使用 |latexmk -xelatex main|
+                \item 解压缩看文档 \verb|README.md|
+                \item Windows: 双击 \verb|Compile.bat| 脚本编译
+                \item Linux \& macOS: 使用 \verb|Makefile|
+                \item 使用 \verb|latexmk -xelatex main|
               \end{itemize}
       \end{itemize}
     \end{column}
@@ -77,7 +77,7 @@
       \begin{lstlisting}[basicstyle=\ttfamily]
 \documentclass[type=master,review]{sjtuthesis}
   \end{lstlisting}
-    \item[fontset] 指定字体（推荐使用 |windows|）
+    \item[fontset] 指定字体（推荐使用 \verb|windows|）
       \begin{lstlisting}[basicstyle=\ttfamily]
 \documentclass[type=doctor,fontset=windows]{sjtuthesis}
   \end{lstlisting}
@@ -85,7 +85,7 @@
 \end{frame}
 
 \begin{frame}[fragile]{模板设置}
-  使用 |\sjtusetup| 命令指定论文各类设置：
+  使用 \verb|\sjtusetup| 命令指定论文各类设置：
   \begin{lstlisting}
 \sjtusetup{
   info = {
@@ -105,20 +105,20 @@
 \end{frame}
 
 \begin{frame}[fragile]{信息录入}
-  |info| 域完成论文基本信息录入
+  \verb|info| 域完成论文基本信息录入
   \begin{table}[h]
     \centering
     \footnotesize
     \begin{tabular}{lll} \toprule
       命令作用     & 中文对应选项                      & 英文对应选项      \\ \midrule
-      论文标题     & |title|                           & |title*|          \\
-      关键字列表   & |keywords|                        & |keywords*|       \\
-      作者姓名     & |author|                          & |author*|         \\
-      申请学位名称 & |degree|                          & |degree*|         \\
-      院系名称     & |department|                      & |department*|     \\
-      专业名称     & |major|                           & |major*|          \\
-      导师         & |supervisor|                      & |supervisor*|     \\
-      副导师       & |assisupervisor|                  & |assisupervisor*| \\
+      论文标题     & \verb|title|                           & \verb|title*|          \\
+      关键字列表   & \verb|keywords|                        & \verb|keywords*|       \\
+      作者姓名     & \verb|author|                          & \verb|author*|         \\
+      申请学位名称 & \verb|degree|                          & \verb|degree*|         \\
+      院系名称     & \verb|department|                      & \verb|department*|     \\
+      专业名称     & \verb|major|                           & \verb|major*|          \\
+      导师         & \verb|supervisor|                      & \verb|supervisor*|     \\
+      副导师       & \verb|assisupervisor|                  & \verb|assisupervisor*| \\
       日期         & \multicolumn{2}{c}{\texttt{date}}                     \\
       学号         & \multicolumn{2}{c}{\texttt{id}}                       \\ \bottomrule
     \end{tabular}
@@ -128,7 +128,7 @@
 \begin{frame}[fragile]{数学}
   \begin{itemize}
     \item 公式示例：\nolinkurl{contents/math_and_citations.tex}
-    \item \SJTUThesis{} 定义了常用的数学环境（需要手工引入 |amsthm| 宏包）：
+    \item \SJTUThesis{} 定义了常用的数学环境（需要手工引入 \verb|amsthm| 宏包）：
           \begin{table}[h]
             \centering
             \footnotesize
@@ -154,7 +154,7 @@
             \item 控制文献、引用样式：\pkg{natbib} 宏包
             \item 国标样式：\pkg{gbt7714} 宏包 \link{https://mirrors.sjtug.sjtu.edu.cn/ctan/biblio/bibtex/contrib/gbt7714/gbt7714.pdf}
           \end{itemize}
-    \item 现代方法：|biber| 后端 + \pkg{biblatex} 宏包
+    \item 现代方法：\verb|biber| 后端 + \pkg{biblatex} 宏包
           \begin{itemize}
             \item 国标样式：\pkg{biblatex-gbt7714-2015} 宏包 \link{https://mirrors.sjtug.sjtu.edu.cn/ctan/macros/latex/contrib/biblatex-contrib/biblatex-gb7714-2015/biblatex-gb7714-2015.pdf}
           \end{itemize}
@@ -164,7 +164,7 @@
 
 \begin{frame}[fragile]{参考文献（续）}
   \begin{itemize}
-    \item 生成 |.bib| 数据库
+    \item 生成 \verb|.bib| 数据库
           \begin{itemize}
             \item Google Scholar 可直接复制或者批量导出
             \item 用 Zotero、Jabref 等文献管理软件生成
@@ -188,13 +188,15 @@
     \item 常见问题
           \begin{itemize}
             \item 参考文献列表出错、缺少字体、无法编译、格式不对……
-            \item 阅读模板文档 |sjtuthesis.pdf| 和 SJTUThesis 示例文档代码
-            \item 查看 FAQ \link{https://github.com/sjtug/SJTUThesis/wiki/常见问题}
+            \item 阅读模板文档 \verb|sjtuthesis.pdf| 和 SJTUThesis 示例文档代码
+            \item 查看 Wiki \link{https://github.com/sjtug/SJTUThesis/wiki}
           \end{itemize}
+
     \item 主动提问
           \begin{itemize}
             \item GitHub Discussions 提问：\link{https://github.com/sjtug/SJTUThesis/discussions}
             \item GitHub Issues 报告 BUG：\link{https://github.com/sjtug/SJTUThesis/issues}
           \end{itemize}
+
   \end{itemize}
 \end{frame}
