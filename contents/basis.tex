@@ -25,7 +25,7 @@
             \item \pdfTeX{}：直接生成 PDF，支持 micro-typography
             \item \XeTeX{}：支持 Unicode、OpenType 与复杂文字编排（CTL）
             \item \LuaTeX{}：支持 Unicode，内联 Lua，支持 OpenType
-            \item (u)p\TeX{}：日本方面推动，生成 |.dvi|，（支持 Unicode）
+            \item (u)p\TeX{}：日本方面推动，生成 \verb|.dvi|，（支持 Unicode）
             \item Ap\TeX{}：底层 CJK 支持，内联 Ruby，Color Emoji
           \end{itemize}
 
@@ -53,17 +53,17 @@
     \item 命令行
 
           \begin{itemize}
-            \item |pdflatex|/|xelatex|/|lualatex| + |<文件名>[.tex]|
+            \item \verb|pdflatex|/\verb|xelatex|/\verb|lualatex| + \verb|<文件名>[.tex]|
             \item 多次编译：每次均需要读取并处理中间文件
-            \item 推荐 \pkg{latexmk}\footnote{\MiKTeX 用户需要自行安装 perl 解释器}：运行 |latexmk [<选项>] <文件名>| 即可自动完成所有工作
+            \item 推荐 \pkg{latexmk}\footnote{\MiKTeX 用户需要自行安装 perl 解释器}：运行 \verb|latexmk [<选项>] <文件名>| 即可自动完成所有工作
           \end{itemize}
 
     \item 编辑器
 
           \begin{itemize}
             \item 按钮的背后仍然是命令
-            \item |PATH| 环境变量：确定可执行文件的位置
-            \item VS Code + \LaTeX{} Workshop：配置 |tools| 和 |recipes|
+            \item \verb|PATH| 环境变量：确定可执行文件的位置
+            \item VS Code + \LaTeX{} Workshop：配置 \verb|tools| 和 \verb|recipes|
           \end{itemize}
   \end{itemize}
 \end{frame}
@@ -270,7 +270,7 @@ V = \frac{4}{3}\pi r^3
 %               \end{equation*}
 %             \end{column}
 %           \end{columns}
-%     \item 使用 |symbf| 等命令自动处理字母的粗体、斜体等变体，不必引入额外宏包。
+%     \item 使用 \verb|symbf| 等命令自动处理字母的粗体、斜体等变体，不必引入额外宏包。
 %   \end{itemize}
 
 %   \begin{columns}[c]
@@ -365,9 +365,9 @@ V = \frac{4}{3}\pi r^3
 \begin{frame}[fragile]{交叉引用与插入插图}
   \begin{itemize}
     \item 给对象命名：图片、表格、公式等\\
-          |\label{name}|
+          \verb|\label{name}|
     \item 引用对象\\
-          |\ref{name}|
+          \verb|\ref{name}|
   \end{itemize}
   \bigskip
 
@@ -427,12 +427,12 @@ V = \frac{4}{3}\pi r^3
   \begin{itemize}
     \item 初学者最“捉摸不透”的特性之一 \link{https://liam.page/2017/03/11/floats-in-LaTeX-basic}
     \item 图片和表格有时会很大，在插入的位置不一定放得下，因此需要浮动调整
-    \item 避免在文中使用「下图」「上图」的说法，而是使用图表的编号，例如 |图~\ref{fig:fig1}| 。
-    \item |\begin{figure}[<位置>] 图片 \end{figure}|
+    \item 避免在文中使用「下图」「上图」的说法，而是使用图表的编号，例如 \verb|图~\ref{fig:fig1}| 。
+    \item \verb|\begin{figure}[<位置>] 图片 \end{figure}|
           \begin{itemize}
             \item 位置参数指定浮动体摆放的偏好
-            \item |h| 当前位置(here), |t| 顶部(top), |b| 底部(bottom), |p| 单独成页(p)
-            \item |!h| 表示忽略一些限制，|H| 表示强制\alert{（强烈不建议，除非你知道自己在做什么）}
+            \item \verb|h| 当前位置(here), \verb|t| 顶部(top), \verb|b| 底部(bottom), \verb|p| 单独成页(p)
+            \item \verb|!h| 表示忽略一些限制，\verb|H| 表示强制\alert{（强烈不建议，除非你知道自己在做什么）}
           \end{itemize}
     \item 温馨提示：图标题一般在下方，表标题一般在上方
   \end{itemize}
@@ -460,10 +460,10 @@ V = \frac{4}{3}\pi r^3
     \item 插图格式
 
           \begin{itemize}
-            \item 矢量图：|.pdf|
-            \item 位图：|.jpg| 或 |.png|
+            \item 矢量图：\verb|.pdf|
+            \item 位图：\verb|.jpg| 或 \verb|.png|
             \item \alert{不再推荐 \texttt{.eps}}
-            \item 不（完全）支持 |.svg|、|.bmp|
+            \item 不（完全）支持 \verb|.svg|、\verb|.bmp|
           \end{itemize}
 
     \item 一些参考：\link{https://www.zhihu.com/question/21664179}
@@ -616,11 +616,11 @@ V = \frac{4}{3}\pi r^3
     \begin{itemize}
       \item 获取模板：已随发行版自带
             \begin{itemize}
-              \item 在安装目录 |<prefix>\texlive\2021\texmf-dist\doc\latex\IEEEtran|
-                    下找到 |bare_jrnl.tex|
+              \item 在安装目录 \verb|<prefix>\texlive\2021\texmf-dist\doc\latex\IEEEtran|
+                    下找到 \verb|bare_jrnl.tex|
               \item 复制到某个文件夹(比如个人存论文的目录)
             \end{itemize}
-      \item 编辑 |bare_jrnl.tex| 文件 (英文模板：不支持中文)
+      \item 编辑 \verb|bare_jrnl.tex| 文件 (英文模板：不支持中文)
       \item 编译
             \begin{itemize}
               \item 英文文献：\XeLaTeX{}、\pdfLaTeX{} 编译均可
