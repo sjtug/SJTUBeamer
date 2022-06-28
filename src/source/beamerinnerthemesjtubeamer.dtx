@@ -335,6 +335,7 @@
 %    The commands like \verb"\articleitem" do not accept the optional parameter for a label since the first part of this command name has already indicates the label of this item. The command like \verb"\item" accepts the optional parameter for the label and will override the numeric numbering for this item without a bracket surrounding. The behavior is the same as \textsc{SJTUThesis}.
 %    The direct patch on \verb"\item" is hard since \verb"\bibitem" also depends on this command. As a matter of fact, the \verb"\item" itself cannot be cited and should not be numbered by the way otherwise user should use \verb"\bibitem" inside \verb"\thebibliography" environment directly.
 %    Set the beamer template of \verb"bibliography item" to \verb"text" locally to use the label of every item instead of the default icon outside the environment. This will also make the default behavior to make a bracket enumerate list.
+%    But don't set \verb"bibliography item" style to \verb"text" in the preamble for the potential issue with \verb"biblatex-gb7714-2015ay" style.
 %    \begin{macrocode}
     \setbeamertemplate{bibliography item}[text]
 %    \end{macrocode}
