@@ -362,6 +362,7 @@
 %    This environment syncs with \textsc{SJTUThesis}. It is used to generate the customized look of bibliography list without the processing from \textsc{Bib}\TeX{} or \verb"biblatex", which could bring performance improvement.
 %    You can specify the style of the icon by \verb"\setbeamertemplate{bibliography item}[book]" or other predefined template provided by \verb"beamer" class like \verb"online", \verb"triangle", \verb"text" (for square bracket enumeration).
 %    And such the setting should be done INSIDE the environment and \verb"thebibliography" since \verb"beamer" will override the user setting on this template to text style at the begining of \verb"document" environment if it loads \verb"biblatex".
+%    And don't set \verb"bibliography item" style to \verb"text" in the preamble for the potential issue with \verb"biblatex-gb7714-2015ay" style, which is redundant.
 % \end{macro}
 %
 %

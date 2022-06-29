@@ -130,12 +130,12 @@ fontupper=\sffamily,colupper=white}
 \date{\today}
 % \maketitle
 
-\chapter*{\themename\ 介绍}
+\chapter*{\themename{} 介绍}
 
-\themename\ 是基于 \verb"beamer" 文档类的主题宏集。
+\themename{} 是基于 \cls{beamer} 文档类的主题宏集。
 
 \section*{何时应该使用这个主题？}
-众所周知，\LaTeX\ 是一种非常专业的排版语言，而 \cls{beamer} 是为了方便 \LaTeX{} 用户制作幻灯片而创造的宏包。为了获得专业的幻灯片文档，下面是可能需要使用 \cls{beamer} 的时机：
+众所周知，\LaTeX\ 是一种非常专业的排版语言，其中 \cls{beamer} 宏包是为了方便 \LaTeX{} 用户制作幻灯片而创造的宏包。为了获得专业的幻灯片文档，下面是一些使用 \cls{beamer} 的时机：
 \begin{enumerate}
   \item 重要正式的学术场合。
   \item 大型文档的构建（上百页）。
@@ -145,7 +145,7 @@ fontupper=\sffamily,colupper=white}
 而 \themename{} 为上海交通大学的 \LaTeX{} 用户提供了一些内置功能，以快速构建交大主题的幻灯片文档。
 
 \section*{何时不应该使用这个主题？}
-遗憾的是，\LaTeX{} 不是可见即可得的，编译需要花费时间。学习 \LaTeX{} 也需要花费时间。下面就是一些不推荐使用的情况：
+然而 \LaTeX{} 不是可见即可得的，编译需要花费时间，学习 \LaTeX{} 也需要花费时间。下面是一些不推荐使用的情况：
 \begin{enumerate}
   \item 幻灯片需要大量的美术，图形需要大量的动画。纵然 \LaTeX{} 支持矢量图的绘制，但是需要的编译时间也会成倍的增长，Ti\emph{k}Z 绘图更偏重于计算图形绘制。
   \item 文档较小，或者公式很少。这种情况使用 \cls{beamer} 略显多余，造轮子花费的时间可能不够划算。
@@ -161,10 +161,10 @@ fontupper=\sffamily,colupper=white}
 
 \section{运行环境}
 
-为了使用 \themename\ 的全部功能，请使用下者之一：
+为了使用 \themename{} 的全部功能，请使用下者之一：
 \begin{enumerate}
-  \item \href{https://mirrors.sjtug.sjtu.edu.cn/ctan/systems/win32/miktex/setup/windows-x64/}{MiK\TeX\ }
-  \item \href{https://mirrors.sjtug.sjtu.edu.cn/ctan/systems/texlive/Images/}{\TeX\ Live} 或 \href{https://mirrors.sjtug.sjtu.edu.cn/ctan/systems/mac/mactex/}{Mac\TeX{}} 2019 及以上版本
+  \item \href{https://mirrors.sjtug.sjtu.edu.cn/ctan/systems/win32/miktex/setup/windows-x64/}{MiK\TeX{}}
+  \item \href{https://mirrors.sjtug.sjtu.edu.cn/ctan/systems/texlive/Images/}{\TeX{} Live} 或 \href{https://mirrors.sjtug.sjtu.edu.cn/ctan/systems/mac/mactex/}{Mac\TeX{}} 2019 及以上版本
 \end{enumerate}
 
 % 上传至 Overleaf 后添加对应在线步骤
@@ -220,7 +220,7 @@ fontupper=\sffamily,colupper=white}
 
 \clearpage
 
-\themename 可以与 \texttt{beamer} 提供的九种外样式随意搭配。
+\themename{} 可以与 \cls{beamer} 提供的九种外样式随意搭配。
 
 \def\myincludepdf#1{
   \tcbincludepdf[title={#1},
@@ -249,12 +249,12 @@ fontupper=\sffamily,colupper=white}
 
 \chapter{草稿}
 
-在确定版式后，下一步就要输入文字填入内容了。由于 \LaTeX\ 的编译速度较慢，在打草稿的时候，我们推荐开启 \texttt{beamer} 文档类的 \texttt{draft} 模式，只关注于内容。在这种模式下，图片都不会被载入，而是使用一个占位符代替。
+在确定版式后，下一步就要输入文字填入内容了。由于 \LaTeX{} 的编译速度较慢，在打草稿的时候，我们推荐开启 \cls{beamer} 文档类的 \opt{draft} 模式，只关注于内容。在这种模式下，图片都不会被载入，而是使用一个占位符代替。
 
 \beamerdemo[1]{step3}
 
 \begin{commentlist}
-  \item 使用 \texttt{columns} 环境分栏，也可以采用 \texttt{multicol} 宏包提供的 \texttt{multicols} 环境。后者还兼容 \texttt{article} 文档类。
+  \item 使用 \env{columns} 环境分栏，也可以采用 \pkg{multicol} 宏包提供的 \env{multicols} 环境。后者还兼容 \cls{article} 文档类。
   \item 该模式也会关闭目录与引用的生成。
 \end{commentlist}
 
@@ -271,16 +271,16 @@ fontupper=\sffamily,colupper=white}
 \beamerdemo[1,2]{step5}
 
 \begin{commentlist}
-  \item 在载入模板时选择 \texttt{maxplus}, \texttt{max}, \texttt{min} 以使用不同的标题页结尾页模板。
-  \item 组织（\cmd{institute}）可选，\texttt{min}会根据二级机构的处理方法排列徽标。
+  \item 在载入模板时选择 \opt{maxplus}, \opt{max}, \opt{min} 以使用不同的标题页结尾页模板。
+  \item 组织（\cmd{institute}）可选，\opt{min}会根据二级机构的处理方法排列徽标。
   \item \cmd{maketitle} 可以制作标题页，\cmd{makebottom} 可以制作结束页$^*$。
-  \item$^*$ 标题页中 \cmd{thanks} 被禁用，\cmd{makebottom} 是 \themename\ 专有命令。
-  \item[\faExclamationTriangle] 将元数据写在 \texttt{document} 中可能会产生警告，可无视。
+  \item$^*$ 标题页中 \cmd{thanks} 被禁用，\cmd{makebottom} 是 \themename{} 专有命令。
+  \item[\faExclamationTriangle] 将元数据写在 \env{document} 中可能会产生警告，可无视。
 \end{commentlist}
 
 \chapter{目录}
 
-目录功能是 \texttt{beamer} 的特色之一。\themename\ 提供了两种插入目录的方法——两种方法也可以共同使用。
+目录功能是 \cls{beamer} 的特色之一。\themename{} 提供了两种插入目录的方法——两种方法也可以共同使用。
 
 \section{单页目录}
 
@@ -290,7 +290,7 @@ fontupper=\sffamily,colupper=white}
 
 \section{节次提示}
 
-而新式的方法是使用 \themename\ 优化后的节次页。现在节次页也会随主题的不同而有不同的样式。节次页的编号支持在加载主题之后使用 \cmd{ctexset} 来更改格式，详见 \href{https://mirrors.sjtug.sjtu.edu.cn/CTAN/language/chinese/ctex/ctex.pdf#7}{\CTeX{} 宏集手册}。
+而新式的方法是使用 \themename{} 优化后的节次页。现在节次页也会随主题的不同而有不同的样式。节次页的编号支持在加载主题之后使用 \cmd{ctexset} 来更改格式，详见 \href{https://mirrors.sjtug.sjtu.edu.cn/CTAN/language/chinese/ctex/ctex.pdf#7}{\CTeX{} 宏集手册}。
 
 \begin{beamerdemoraster}[1,2,3]{red}{step7s}
 \end{beamerdemoraster}
@@ -319,8 +319,8 @@ fontupper=\sffamily,colupper=white}
 \beamerdemo[1]{step9+.tex}
 
 \begin{commentlist}
-  \item 如果想要在幻灯片列表环境产生类似的“渐进切换”效果，可以在 \texttt{itemize} 环境的每一条后使用 \cmd{pause} 命令。或者是 \cmd{begin\{itemize\}[<+->]}。
-  \item \opt{subsectionstyle} 用于指定小节标题的显示策略，三个参数分别代表当前小节、本节中其他小节和其他节的小节该如何显示。\opt{show} 将显示，\opt{shaded} 将半显示，\opt{hide} 将隐藏。在 \themename\ 中推荐设置节目录为
+  \item 如果想要在幻灯片列表环境产生类似的“渐进切换”效果，可以在 \env{itemize} 环境的每一条后使用 \cmd{pause} 命令。或者是 \cmd{begin\{itemize\}[<+->]}。
+  \item \opt{subsectionstyle} 用于指定小节标题的显示策略，三个参数分别代表当前小节、本节中其他小节和其他节的小节该如何显示。\opt{show} 将显示，\opt{shaded} 将半显示，\opt{hide} 将隐藏。在 \themename{} 中推荐设置节目录为
   \begin{verbatim}\tableofcontents[currentsection, subsectionstyle=show/show/hide]\end{verbatim}
   也可以设置 \opt{hideallsubsections} 以隐藏所有小节标题与目录页保持一致
   \begin{verbatim}\tableofcontents[currentsection, hideallsubsections]\end{verbatim}
@@ -341,7 +341,7 @@ fontupper=\sffamily,colupper=white}
 \begin{figure}[h]
   \centering
   \begin{tcolorbox}[enhanced, title={视图(V)}, attach boxed title to top left, boxed title style={sharp corners}, sharp corners, tile, width=6cm]
-    \faTv\ 全屏模式(F)\hfill Ctrl+L
+    \faTv{} 全屏模式(F)\hfill Ctrl+L
   \end{tcolorbox}
 \end{figure}
 
@@ -380,7 +380,7 @@ fontupper=\sffamily,colupper=white}
 
 \chapter{强调}
 
-在 \themename\ 中有多种强调内容的方法。
+在 \themename{} 中有多种强调内容的方法。
 
 \section{文字强调}
 
@@ -403,24 +403,24 @@ fontupper=\sffamily,colupper=white}
 \beamerdemo[1]{step12.tex}
 
 \begin{commentlist}
-  \item \texttt{block}, \texttt{alertblock}, \texttt{exampleblock} 环境分别可以产生与主题色对应的三种盒子。\texttt{min} 主题的盒子非圆角$^*$。
-  \item \texttt{stampbox} 环境可以产生印记边框盒子$^*$，可以丰富视觉效果与统一视觉形象。可接受一个可选参数如 \texttt{[sjtuBluePrimary]} 产生其他颜色的边框。
+  \item \env{block}, \env{alertblock}, \env{exampleblock} 环境分别可以产生与主题色对应的三种盒子。\opt{min} 主题的盒子非圆角$^*$。
+  \item \env{stampbox} 环境可以产生印记边框盒子$^*$，可以丰富视觉效果与统一视觉形象。可接受一个可选参数如 \opt{[sjtuBluePrimary]} 产生其他颜色的边框。
 \end{commentlist}
 
 \chapter{代码}
 
 \section{代码抄录}
 
-\themename\ 提供了代码抄录的区块环境。
+\themename{} 提供了代码抄录的区块环境。
 
 \beamerdemo[1]{step13.tex}
 
 \begin{commentlist}
-  \item \texttt{codeblock} 提供了带行号的代码抄录环境$^*$，第一个可选参数可以用于设置语言与其他抄录选项，第二个必选参数可以设置代码块的标题。
+  \item \env{codeblock} 提供了带行号的代码抄录环境$^*$，第一个可选参数可以用于设置语言与其他抄录选项，第二个必选参数可以设置代码块的标题。
   \item 需要清理抄录代码在源文件中的缩进，顶格输入。若想高亮某一行$^*$，设置 \verb"escapechar=|" 可选参数后，该行开头顶格输入 \verb"|\highlightline|"。
-  \item 你也可以直接使用 \cmd{codeblockinput}[选项]\{标题\}\{文件\} 用于抄录外部文件$^*$，但请通过 \verb"firstline" 和 \verb"lastline" 选项控制代码行数。
-  \item 直接使用 \texttt{listings} 宏包提供的 \texttt{lstlisting} 环境与 \texttt{lstinputlisting} 命令依然可行，\themename\ 已经对其进行了一些预先的优化。
-  \item[\faExclamationTriangle] 使用代码块的页其 \texttt{frame} 环境必须添加 \texttt{fragile} 参数。
+  \item 你也可以直接使用 \cmd{codeblockinput}[选项]\{标题\}\{文件\} 用于抄录外部文件$^*$，但请通过 \opt{firstline} 和 \opt{lastline} 选项控制代码行数。
+  \item 直接使用 \pkg{listings} 宏包提供的 \env{lstlisting} 环境与 \env{lstinputlisting} 命令依然可行，\themename{} 已经对其进行了一些预先的优化。
+  \item[\faExclamationTriangle] 使用代码块的页其 \env{frame} 环境必须添加 \opt{fragile} 参数。
 \end{commentlist}
 
 \section{伪代码}
@@ -443,22 +443,23 @@ fontupper=\sffamily,colupper=white}
 
 \chapter{引用}
 
-方便地引用文献是 \texttt{beamer} 的另一大特色，推荐使用 \href{https://www.jabref.org/}{JabRef} 管理文献。\themename\ 对脚注的处理方式进行了一定的优化。
+方便地引用文献是 \cls{beamer} 的另一大特色，推荐使用 \href{https://www.jabref.org/}{JabRef} 管理文献。\themename{} 对脚注的处理方式进行了一定的优化。
 
 \section{Biber}
 
-\faApple\ \faLinux\ 如果使用的是 \hologo{XeLaTeX} 编译，可以使用 \texttt{biblatex} 宏包，对于中文引用可以使用 \texttt{gb7714-2015} 样式，并采用 \textsc{Biber} 进行引用处理。
+\faApple{} \faLinux{} 如果使用的是 \hologo{XeLaTeX} 编译，可以使用 \pkg{biblatex} 宏包，对于中文引用可以使用 \opt{gb7714-2015} 样式，并采用 \textsc{Biber} 进行引用处理。
 
 \beamerdemo[1]{step14+-.tex}
 
 \begin{commentlist}
   \item 使用 \cmd{footnote} 可以添加脚注。
-  \item 使用 \cmd{footfullcite} 进行脚注引用（\texttt{biblatex} 提供的命令）。
+  \item 使用 \cmd{footfullcite} 进行脚注引用（\pkg{biblatex} 提供的命令）。
+  \item 如果认为 \cmd{footfullcite} 引用过长，可以考虑配合 \opt{style=gb7714-2015ay} 的著者-出版年制使用标准引用命令 \cmd{cite}。
 \end{commentlist}
 
 \section{Bib\TeX{}}
 
-\faWindows 如果使用的是 \hologo{pdfLaTeX} 编译，需要使用 \texttt{gbt7714} 宏包，并采用老式的 \textsc{Bib\TeX{}} 进行引用处理。
+\faWindows 如果使用的是 \hologo{pdfLaTeX} 编译，需要使用 \pkg{gbt7714} 宏包，并采用老式的 \textsc{Bib\TeX{}} 进行引用处理。
 
 \beamerdemo[2]{step15+_.tex}
 
@@ -474,46 +475,46 @@ fontupper=\sffamily,colupper=white}
 \beamerdemo[1]{step16+-.tex}
 
 \begin{commentlist}
-  \item \LaTeX{} 本身提供了 \texttt{thebibliography} 环境，环境的强制参数用于指定排版最长的标签（这里是两位数占位符），配套 \cmd{bibitem[标签]\{主键\}}，在 \texttt{beamer} 中需要辅以 \cmd{newblock} 来分隔作者、文章标题、书目与其他内容。这里的主键可以在正文中引用。
-  \item 在 \texttt{beamer} 中可以通过设定 \texttt{bibliography item} 模板为对应预设来更改图标，这里是 \texttt{text} 预设用于排印编号。也可以改为文章图标 \texttt{article}，图书图标 \texttt{book} 或网络图标 \texttt{online} 等。
-  \item 引入 \texttt{bibliolist} 环境$^*$以避免使用 \cmd{bibitem} 命令，对于每一条引用添加对应的 \cmd{articleitem}, \cmd{bookitem}, \cmd{onlineitem} 用于切换不同的图标$^*$，并保持与 \cmd{bibitem} 相同的用法（除了不能设定引用标签）。
-  \item 在 \texttt{bibliolist} 环境中也可以直接使用 \cmd{item} 以不使用 \cmd{newblock} 来分割条目中的不同部分，正如 \textsc{SJTUThesis} 所做的那样。但请不要与上一条中的图标命令混用。
+  \item \LaTeX{} 本身提供了 \env{thebibliography} 环境，环境的强制参数用于指定排版最长的标签（这里是两位数占位符），配套 \cmd{bibitem[标签]\{主键\}}，在 \cls{beamer} 中需要辅以 \cmd{newblock} 来分隔作者、文章标题、书目与其他内容。这里的主键可以在正文中引用。
+  \item 在 \cls{beamer} 中可以通过设定 \opt{bibliography item} 模板为对应预设来更改图标，这里是 \opt{text} 预设用于排印编号。也可以改为文章图标 \opt{article}，图书图标 \opt{book} 或网络图标 \opt{online} 等。
+  \item 引入 \env{bibliolist} 环境$^*$以避免使用 \cmd{bibitem} 命令，对于每一条引用添加对应的 \cmd{articleitem}, \cmd{bookitem}, \cmd{onlineitem} 用于切换不同的图标$^*$，并保持与 \cmd{bibitem} 相同的用法（除了不能设定引用标签）。
+  \item 在 \env{bibliolist} 环境中也可以直接使用 \cmd{item} 以不使用 \cmd{newblock} 来分割条目中的不同部分，正如 \textsc{SJTUThesis} 所做的那样。但请不要与上一条中的图标命令混用。
 \end{commentlist}
 
 \chapter{图表}
 
-表格与统计图是展示数据最直观的方式，可以采用内建的方式插入风格统一的矢量图表。\themename\ 对此设定了一些预设。
+表格与统计图是展示数据最直观的方式，可以采用内建的方式插入风格统一的矢量图表。\themename{} 对此设定了一些预设。
 
 \section{表格}
 
-考虑到许多专业数据是直接存储在逗号分隔符（\texttt{.csv}）文件中的，便于数据内容的后续更改，用户可以采用 \texttt{pgfplotstable} 宏包从文件插入表格（中文表格需要使用 \hologo{XeLaTeX} 编译）。
+考虑到许多专业数据是直接存储在逗号分隔符（\texttt{.csv}）文件中的，便于数据内容的后续更改，用户可以采用 \pkg{pgfplotstable} 宏包从文件插入表格（中文表格需要使用 \hologo{XeLaTeX} 编译）。
 
 \beamerdemo[1]{step17.tex}
 
 \begin{commentlist}
-  \item 需要加载 \texttt{pgfplotstable} 宏包，表头变为主题色，采用三线表的样式。$^*$
+  \item 需要加载 \pkg{pgfplotstable} 宏包，表头变为主题色，采用三线表的样式。$^*$
   \item 也可以使用标准表格插入的方法，只是不会有这种优化。可以使用 \href{https://www.tablesgenerator.com/latex_tables}{Table Generator} 生成标准表格代码。
 \end{commentlist}
 
 \section{统计图}
 
-如果希望通过统计图更加直观地展示数据，可以使用 \texttt{pgfplots} 宏包插入统计图。
+如果希望通过统计图更加直观地展示数据，可以使用 \pkg{pgfplots} 宏包插入统计图。
 
 \beamerdemo[1]{step18.tex}
 
 \begin{commentlist}
-  \item 需要加载 \texttt{pgfplots} 宏包，必要时额外加载 \texttt{pgfplotstable} 宏包以读取文件数据。可以使用 \href{https://logcreative.github.io/PGFPlotsEdt/}{PGFPlots 统计绘图编辑器} 生成上述代码。
+  \item 需要加载 \pkg{pgfplots} 宏包，必要时额外加载 \pkg{pgfplotstable} 宏包以读取文件数据。可以使用 \href{https://logcreative.github.io/PGFPlotsEdt/}{PGFPlots 统计绘图编辑器} 生成上述代码。
 \end{commentlist}
 
 \section{缓存}
 
-如果你需要使用较多的 Ti\emph{k}Z 和 \texttt{pgfplots} 插图，可以考虑启用图像缓存，当图像没有被更改时会采用上一次的编译产物。\themename\ 已经保护了一些不必要缓存的元素。
+如果你需要使用较多的 Ti\emph{k}Z 和 \pkg{pgfplots} 插图，可以考虑启用图像缓存，当图像没有被更改时会采用上一次的编译产物。\themename{} 已经保护了一些不必要缓存的元素。
 
 \beamerdemo[1]{step19.tex}
 
 \begin{commentlist}
-  \item \themename\ 已经加载了 \verb"\usetikzlibrary{external}"。
-  \item[\faExclamationTriangle] 如果使用的是 Overleaf 这种在线 \LaTeX\ 编译器，您必须要在主文档内使用 \verb"\tikzexternalize[prefix=build/]" 命令，并且要在同级目录下新建 \verb"build/" 文件夹，其中应该还有一个占位文档（比如 \verb".gitkeep"）。可参见 \href{https://www.overleaf.com/learn/latex/Questions/I_have_a_lot_of_tikz%2C_matlab2tikz_or_pgfplots_figures%2C_so_I%27m_getting_a_compilation_timeout._Can_I_externalise_my_figures%3F}{相关说明}。
+  \item \themename{} 已经加载了 \verb"\usetikzlibrary{external}"。
+  \item[\faExclamationTriangle] 如果使用的是 Overleaf 这种在线 \LaTeX{} 编译器，您必须要在主文档内使用 \verb"\tikzexternalize[prefix=build/]" 命令，并且要在同级目录下新建 \verb"build/" 文件夹，其中应该还有一个占位文档（比如 \verb".gitkeep"）。可参见 \href{https://www.overleaf.com/learn/latex/Questions/I_have_a_lot_of_tikz%2C_matlab2tikz_or_pgfplots_figures%2C_so_I%27m_getting_a_compilation_timeout._Can_I_externalise_my_figures%3F}{相关说明}。
 \end{commentlist}
 
 \section{独立编译}
@@ -526,47 +527,47 @@ fontupper=\sffamily,colupper=white}
 \part{高级操作}
 \chapter{徽标}
 
-\themename\ 内置了一些徽标可供更换$^*$。
+\themename{} 内置了一些徽标可供更换$^*$。
 
-\faInfoCircle 徽标与相关元素版权归上海交通大学所有，仅供学习交流使用。
+\faInfoCircle{} 徽标与相关元素版权归上海交通大学所有，仅供学习交流使用。
 
 \begin{tcbitemize}[raster rows=2, raster columns=3, raster every box/.style={center title, valign=center, halign=center,fonttitle=\ttfamily,colback=white}]
   \tcbitem[raster multicolumn=2,blankest]
   \begin{tcbitemize}[raster columns=2]
-    \tcbitem[title={\textbackslash{}zhlogo}]
+    \tcbitem[title={\cmd{zhlogo}}]
     \moveleft 0.3cm\hbox{\resizebox{!}{1cm}{\zhlogo}}
-    \tcbitem[title={\textbackslash{}enlogo}]
+    \tcbitem[title={\cmd{enlogo}}]
     \moveleft 0.3cm\hbox{\resizebox{!}{1cm}{\enlogo}}
-    \tcbitem[title={\textbackslash{}sjtubadge},height=3.5cm]
-    \resizebox{!}{2cm}{\sjtubadge\ }
-    \tcbitem[title={\textbackslash{}dlogo},height=3.5cm]
-    \resizebox{3cm}{!}{\dlogo\ }
+    \tcbitem[title={\cmd{sjtubadge}},height=3.5cm]
+    \resizebox{!}{2cm}{\sjtubadge{}}
+    \tcbitem[title={\cmd{dlogo}},height=3.5cm]
+    \resizebox{3cm}{!}{\dlogo{}}
   \end{tcbitemize}
-  \tcbitem[title={\textbackslash{}vlogo}] \resizebox{!}{4.8cm}{\vlogo\ }
+  \tcbitem[title={\cmd{vlogo}}] \resizebox{!}{4.8cm}{\vlogo{}}
 \end{tcbitemize}
 
 \beamerdemo[1]{step20.tex}
 
 \begin{commentlist}
-  \item 使用 \cmd{logo} 设定徽标。在主题处使用 \verb"topright" 或 \verb"bottomright" 选项强制指定徽标的位置为右上角（\verb"max"默认）或左下角（\verb"maxplus" 和 \verb"min"）。
+  \item 使用 \cmd{logo} 设定徽标。在主题处使用 \opt{topright} 或 \opt{bottomright} 选项强制指定徽标的位置为右上角（\opt{max} 默认）或左下角（\opt{maxplus} 和 \opt{min}）。
   \item 可以使用自定义的徽标，可以使用外部图片，或参见\href{run:sjtubeamerdevguide.pdf}{开发指南}第 3.4 节创造可变颜色徽标$^*$。后者可以采用可选参数改变颜色，比如 \cmd{zhlogo[cprimary]}。
 \end{commentlist}
 
 \chapter{头图}
 
-可以更改 \themename\ 封面中的头图。
+可以更改 \themename{} 封面中的头图。
 
 \beamerdemo[1]{step21.tex}
 
 \begin{commentlist}
   \item 使用 \cmd{titlegraphic} 设定头图，需要在封面图输出前进行赋值。
-  \item 每个主题的头图位置不同，特别要注意默认的 \texttt{max} 主题的头图是淡色背景图。
+  \item 每个主题的头图位置不同，特别要注意默认的 \opt{max} 主题的头图是淡色背景图。
   \item 对头图可以不设定大小，因为会自动填满占位符。
 \end{commentlist}
 
 \chapter{背景}
 
-可以更改 \themename\ 的背景图。
+可以更改 \themename{} 的背景图。
 
 \beamerdemo[1]{step22.tex}
 
@@ -590,7 +591,7 @@ fontupper=\sffamily,colupper=white}
 \examplecode{my.sty}
 
 \begin{commentlist}
-  \item 使用 \cmd{definecolor} 定义 \texttt{cprimary}、\texttt{csecondary}$^*$ 可以改变主题颜色。
+  \item 使用 \cmd{definecolor} 定义 \opt{cprimary}、\opt{csecondary}$^*$ 可以改变主题颜色。
   \item 使用 \cmd{setbeamertemplate} 可以直接设置对应的标题页、结束页、节次页等为已经定义的模板。
   \item 更多设置请参见\href{run:sjtubeamerdevguide.pdf}{开发文档}第4.3节。
 \end{commentlist}
@@ -609,13 +610,13 @@ fontupper=\sffamily,colupper=white}
 
 \chapter{迁移}
 
-\section{从 Markdown 或 \texttt{article} 文档类迁移}
+\section{从 Markdown 或 \cls{article} 文档类迁移}
 
-如果稿子已经预先使用 Markdown 或 \texttt{article} 文档类完成，可以尝试使用 \href{https://logcreative.github.io/AutoBeamer/}{AutoBeamer} 幻灯片自动切分工具。这个方向迁移的关键在于充分利用 \texttt{beamer} 提供的 \texttt{allowframebreaks} 功能。
+如果稿子已经预先使用 Markdown 或 \cls{article} 文档类完成，可以尝试使用 \href{https://logcreative.github.io/AutoBeamer/}{AutoBeamer} 幻灯片自动切分工具。这个方向迁移的关键在于充分利用 \cls{beamer} 提供的 \opt{allowframebreaks} 功能。
 
 \section{迁移到其他主题}
 
-上文中所有 \themename\ 独占的功能都已经用星号 $^*$ 标记。在迁移到其他的主题时，您需要手动重定向这些独占命令。这些独占命令已经通过 VS Code Snippets 的形式提供代码补全提示。
+上文中所有 \themename{} 独占的功能都已经用星号 $^*$ 标记。在迁移到其他的主题时，您需要手动重定向这些独占命令。这些独占命令已经通过 VS Code Snippets 的形式提供代码补全提示。
 
 \begin{table}[h]
   \centering
@@ -646,11 +647,11 @@ fontupper=\sffamily,colupper=white}
 
 \chapter{贡献}
 
-欢迎向 \themename\ 贡献您的代码！
+欢迎向 \themename{} 贡献您的代码！
 
 \section{封面模板}
 
-如果您通过内部的 \texttt{my} 接口实现了自己的标题页和尾页模板，并且希望贡献到这个存储库让更多的人用到的话，欢迎进行 \href{https://github.com/sjtug/SJTUBeamer/pulls}{Pull Request} 提供自己创建的主题。
+如果您通过内部的 \opt{my} 接口实现了自己的标题页和尾页模板，并且希望贡献到这个存储库让更多的人用到的话，欢迎进行 \href{https://github.com/sjtug/SJTUBeamer/pulls}{Pull Request} 提供自己创建的主题。
 
 为达成这一点，您可能需要
 \begin{enumerate}
@@ -676,7 +677,7 @@ fontupper=\sffamily,colupper=white}
 
 \chapter*{许可证}
 
-\themename\ 符合 \href{https://github.com/sjtug/SJTUBeamer/blob/main/LICENSE}{Apache-2.0 开源许可}，不提供任何担保。
+\themename{} 符合 \href{https://github.com/sjtug/SJTUBeamer/blob/main/LICENSE}{Apache-2.0 开源许可}，不提供任何担保。
 
 \texttt{sjtuvi} 和 \texttt{sjtucover} 库及其附属徽标、图片不符合上述开源许可，由上海交通大学持有\href{https://vi.sjtu.edu.cn/index.php/articles/bulletin/16}{版权}。校属各单位及个人以经营为目的使用视觉形象识别系统，须向学校申请使用许可。校外单位及个人未经许可，不得制作或使用载有视觉形象识别系统的物品。
 

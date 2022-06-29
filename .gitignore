@@ -257,6 +257,7 @@ build-*.pdf
 build-*.tex
 
 *-ctan.zip
+*.tds.zip
 *.listing
 red.pdf
 blue.pdf

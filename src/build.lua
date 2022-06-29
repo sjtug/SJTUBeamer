@@ -295,7 +295,7 @@ function checkinit_hook()
             if not direxists(targetdir) then
                 mkdir(targetdir)
             end
-            cp("", unpackdir .. "/" .. src, targetdir)
+            cp("*", unpackdir .. "/" .. src, targetdir)
         else
             cp(src, unpackdir, "../")
         end
