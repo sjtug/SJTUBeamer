@@ -135,19 +135,20 @@
       \node {\includegraphics[height=1.5cm]{#1/#2}};
     \end{tikzfadingfrompicture}
   \fi
-  \expandafter\providecommand\csname #2\endcsname[1][]{
+  \expandafter\providecommand\csname #2\endcsname[1][]{%
     % ##1: override color, or opacity=... (optional)
-    \tikzexternaldisable
-    \begin{tikzpicture}
+    \tikzexternaldisable%
+    \begin{tikzpicture}%
       \begin{scope}
         \clip ({-1.0+#3},{-1.0+#4}) rectangle ({1.0-#3},{1.0-#4});
-        \fill [##1, path fading=#2]
-          (-1,-1) rectangle (1,1);
+        \fill [##1, path fading=#2] (-1,-1) rectangle (1,1);
       \end{scope}
-    \end{tikzpicture}
+    \end{tikzpicture}%
   }
 }
 %    \end{macrocode}
+% WARNING: when using \verb"\resizebox" or in some boxes, the end of the line will be treated as a space according to the \LaTeX{} rule, which may cause extra space when measuring the object.
+% Use \verb"%" symbol at the end of the line to avoid the unwanted space, which is recommended to all lines in the command or the start and the end of the outer environment.
 % \end{macro}
 %
 %    Define the required logo.
@@ -163,48 +164,51 @@
 %
 %  \begin{macro}{\secondaryinstlogo}
 %  Logo with secondary institute.
-%  TODO: remove hard-coded -4pt left adjustment.
+%  The first optional parameter is typically the English name for your institute. If it exists, will be typesetted below the main name.
+%  The second mandantory parameter is the main name for your institute.
+%  The third parameter is the logo of the left side, you could leave it as empty but mandantory.
 %    \begin{macrocode}
-\newcommand{\secondaryinstlogo}[3][]{
+\newcommand{\secondaryinstlogo}[3][]{%
   % #1: shortinst (optional)
   % #2: longinst
   % #3: logo
-  {
-    \def\shortinst{#1}
-    \def\longinst{#2}
-    \def\mylogo{#3}
-    \hbox{
-      \hskip-4pt\resizebox{!}{1cm}{\vphantom{-}#3}
-      \ifx\longinst\@empty%
+  \def\shortinst{#1}%
+  \def\longinst{#2}%
+  \def\mylogo{#3}%
+  \hbox to \textwidth{%
+    \resizebox{!}{1cm}{\vphantom{-}#3}%
+    \ifx\longinst\@empty%
+    \else%
+      \ifx\shortinst\@empty%
+        \ifx\mylogo\@empty\else%
+          \hskip0.31cm{\vrule width0.5pt}\hskip0.31cm%
+        \fi%
+        \vbox to 1cm{
+          \vfill
+          \vbox{
+            \offinterlineskip
+            \noindent \strut
+            \baselineskip 0pt \lineskip -2pt
+            \hbox{\scriptsize\textsc{#2}}
+            \strut
+          }
+          \vfill
+        }
       \else%
         \ifx\mylogo\@empty\else%
-          {\hskip0pt\vrule width0.5pt}\hskip10pt
+          \hskip0.23cm{\vrule width0.5pt}\hskip0.23cm%
         \fi%
-        \ifx\shortinst\@empty%
-          \vbox to 1cm{
-            \vfill
-            \vbox{
-              \offinterlineskip
-              \noindent \strut
-              \baselineskip 0pt \lineskip -2pt
-              \scriptsize\textsc{#2}
-              \strut
-            }
-            \vfill
-          }
-        \else%
-          \vbox{
-            \fontsize{13pt}{0pt}\selectfont
-            #2
-            \par\noindent\vskip0.14em
-            \fontsize{5pt}{0pt}\selectfont
-            \textsc{#1}
-            \baselineskip 3.9pt
-            \par~
-          }
-        \fi
+        \vbox{
+          \fontsize{13pt}{0pt}\selectfont
+          #2
+          \par\noindent\vskip0.14em
+          \fontsize{5pt}{0pt}\selectfont
+          \textsc{#1}
+          \baselineskip 3.9pt
+          \par~
+        }
       \fi
-    }
+    \fi
   }
 }
 %    \end{macrocode}

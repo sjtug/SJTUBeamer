@@ -127,7 +127,7 @@
         {\usebeamercolor[fg]{institute}\small\insertinstitute\par}
         {\usebeamercolor[fg]{date}\small\insertdate}%
     };
-    \node[anchor=south east, inner sep=0, outer sep=0] at (\outslant,0.5){
+    \node[anchor=south east, inner sep=0, outer sep=0] at ({\outslant-5pt},0.5){
       \usebeamercolor[fg]{palatte primary}
       \resizebox{!}{1cm}{\vphantom{-}\usebeamertemplate{logo}}
     };
@@ -246,15 +246,13 @@
 %   The institute is in \TeX{} code for typesetting. \verb"\beamer@shortinstitute" meta is used to avoid compressing on \verb"\par", while \verb"\insertinstitute" will force the input to spread on one signle line. The mode to use is depended on the \verb"language" option. Super small font could be made by \verb"fontsize".
 %   Here, we use the option from inner to get the language setting, if this package is used independently, only chinese mode is available.
 %    \begin{macrocode}
-  \begin{beamercolorbox}{empty}
+  \begin{beamercolorbox}[sep=8pt,#1]{empty}
     \usebeamercolor[fg]{palette primary}
-    \vskip8pt
     \if\EqualOption{inner}{lang}{en}
       \secondaryinstlogo{\beamer@shortinstitute}{\usebeamertemplate{logo}}
     \else
       \secondaryinstlogo[\insertshortinstitute]{\insertinstitute}{\usebeamertemplate{logo}}
     \fi
-    \vskip8pt
   \end{beamercolorbox}
 %    \end{macrocode}
 %   Insert title, subtitle, author, and date.
@@ -362,7 +360,7 @@
         \node[white] at (-0.45\paperwidth,0.3\paperheight)
         {\resizebox{!}{0.115\paperheight}{\vphantom{-}\usebeamertemplate{logo}}};
         \node [right, white] at (-0.75\paperwidth, 0.15\paperheight) 
-        {\resizebox{1.25\paperwidth}{!}{\sjtugate}};
+        {\resizebox{1.15\paperwidth}{!}{\sjtugate}};
       \end{scope}
       \node at (-0.13\paperwidth,0.7\paperheight) {
         \usebeamercolor[fg]{title}
@@ -609,7 +607,7 @@
     \fill [bg] (-0.2*\the\paperwidth,-1*\the\paperheight)
     rectangle (1*\the\paperwidth, 0.4*\the\paperheight);
     \node [right, fg] at (-0.2*\the\paperwidth, -0.5*\the\paperheight)
-    {\resizebox{1.25\paperwidth}{!}{\sjtugate}};
+    {\resizebox{1.15\paperwidth}{!}{\sjtugate}};
   \end{tikzpicture}
   \vfil
   \begingroup
