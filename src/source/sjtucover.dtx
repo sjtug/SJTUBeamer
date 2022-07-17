@@ -217,7 +217,7 @@
 %   WARNING: The pattern in the title page is now deprecated for the unstability of the \verb"fadings" library in TikZ. If you want to use the pattern, please uncomment the code segement manually. The interface of \verb"stamparry" is functional.
 %   If it is in draftmode or it is not compatible, no pattern will get rendered.
 %   Otherwise, the fade tile of stamp array will get covered on top of the background rectangle.
-%   \verb"stamparray" is defined in \verb"SJTUvi". Then, a fade right covers this array layer and a center fade covers the previous result.
+%   \verb"stamparray" is defined in \verb"sjtuvi". Then, a fade right covers this array layer and a center fade covers the previous result.
 %    \begin{macrocode}
   \ifx\sjtubeamer@compatible\sjtubeamer@compatible@false
   \else
@@ -249,39 +249,11 @@
   \begin{beamercolorbox}{empty}
     \usebeamercolor[fg]{palette primary}
     \vskip8pt
-    \hbox{
-      \hskip-4pt{\resizebox{!}{1cm}{\vphantom{-}\usebeamertemplate{logo}}}
-      \ifx\insertinstitute\@empty%
-      \else
-      \ifx\insertlogo\@empty%
-        \else
-        {\hskip0pt\vrule width0.5pt}\hskip0pt
-      \fi
-      \if\EqualOption{inner}{lang}{en}
-      \vbox to 1cm{
-          \vfill
-          \vbox{
-            \offinterlineskip
-            \noindent \strut
-            \baselineskip 0pt \lineskip -2pt
-            \scriptsize\textsc{\beamer@shortinstitute}
-            \strut
-          }
-          \vfill
-        }
-      \else
-      \hskip3pt\vbox{
-        \fontsize{13pt}{0pt}\selectfont
-        \insertinstitute
-        \par\noindent\vskip0.14em
-        \fontsize{5pt}{0pt}\selectfont
-        \textsc{\insertshortinstitute}
-        \baselineskip 3.9pt
-        \par~
-      }
-      \fi
-      \fi%
-    }
+    \if\EqualOption{inner}{lang}{en}
+      \secondaryinstlogo{\beamer@shortinstitute}{\usebeamertemplate{logo}}
+    \else
+      \secondaryinstlogo[\insertshortinstitute]{\insertinstitute}{\usebeamertemplate{logo}}
+    \fi
     \vskip8pt
   \end{beamercolorbox}
 %    \end{macrocode}
@@ -448,7 +420,7 @@
 \defbeamertemplate*{bottom page}{min}[1][]
 {
 %    \end{macrocode}
-%   Enter vertical mode.
+%   Leave vertical mode, which is equivalent to \verb"\leavevmode".
 %    \begin{macrocode}
   \vbox{}
 %    \end{macrocode}
