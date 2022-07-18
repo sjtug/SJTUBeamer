@@ -245,15 +245,22 @@
 %   \verb"resizebox" is used to adapt to all size of logo into 1cm height one. And it is the same in outer theme to make a 0.7cm logo. 
 %   The institute is in \TeX{} code for typesetting. \verb"\beamer@shortinstitute" meta is used to avoid compressing on \verb"\par", while \verb"\insertinstitute" will force the input to spread on one signle line. The mode to use is depended on the \verb"language" option. Super small font could be made by \verb"fontsize".
 %   Here, we use the option from inner to get the language setting, if this package is used independently, only chinese mode is available.
+%   FIXME: There is some bug when using EqualOption with the secondaryinstlogo. hskip is not working properly, and is placed inside the condition test.
 %    \begin{macrocode}
-  \begin{beamercolorbox}[sep=8pt,#1]{empty}
-    \usebeamercolor[fg]{palette primary}
-    \if\EqualOption{inner}{lang}{en}
+  \vskip8pt
+  \begin{beamercolorbox}[sep=0pt,#1]{empty}
+    \raggedright%
+    \hfuzz=130pt%
+    \usebeamercolor[fg]{palette primary}%
+    \if\EqualOption{inner}{lang}{en}%
+      \hspace*{8pt}%
       \secondaryinstlogo{\beamer@shortinstitute}{\usebeamertemplate{logo}}
-    \else
+    \else%
+      \hspace*{8pt}%
       \secondaryinstlogo[\insertshortinstitute]{\insertinstitute}{\usebeamertemplate{logo}}
-    \fi
+    \fi%
   \end{beamercolorbox}
+  \vskip8pt
 %    \end{macrocode}
 %   Insert title, subtitle, author, and date.
 %    \begin{macrocode}
