@@ -169,6 +169,7 @@
 %  The macro is defined as a ``star'' form which means you could pass a parameter that has linebreak \verb"\\".
 %  The second mandantory parameter is the main name for your institute.
 %  The third parameter is the logo of the left side, you could leave it as empty but mandantory.
+%  By default, this combination will occupy the whole row.
 %    \begin{macrocode}
 \newcommand*{\secondaryinstlogo}[3][]{%
   % #1: shortinst (optional)
@@ -182,6 +183,10 @@
 %   Remember the end of the line will be treated as a space in the paramter of \verb"hbox" (which is a \TeX{} primitive). To avoid that, add a \verb"%" at the end of the line.
 %    \begin{macrocode}
   \hbox{%
+%    \end{macrocode}
+%   Make sure the content is left aligned.
+%    \begin{macrocode}
+    \raggedright%
 %    \end{macrocode}
 %   Insert the resized logo. The empty logo is supported as we insert \verb"\vphantom" here.
 %    \begin{macrocode}
@@ -223,10 +228,13 @@
         \fi%
         \vbox{%
           \fontsize{13pt}{0pt}\selectfont
-          #2
+          \sffamily #2
           \par\noindent\vskip0.14em
           \fontsize{5pt}{0pt}\selectfont
-          \textsc{#1}
+          \scshape #1
+%    \end{macrocode}
+%   \verb"\baselineskip" will be applied to the next empty line, to make sure the bottom padding is relative to the baseline.
+%    \begin{macrocode}
           \baselineskip 3.9pt
           \par~
         }%
