@@ -247,8 +247,8 @@
 %   Here, we use the option from inner to get the language setting, if this package is used independently, only chinese mode is available.
 %   FIXME: There is some bug when using EqualOption with the secondaryinstlogo. hskip is not working properly, and is placed inside the condition test.
 %    \begin{macrocode}
-  \vskip8pt
   \begin{beamercolorbox}[sep=0pt,#1]{empty}
+    \vskip8pt
     \raggedright%
     \hfuzz=130pt%
     \usebeamercolor[fg]{palette primary}%
@@ -259,8 +259,8 @@
       \hspace*{8pt}%
       \secondaryinstlogo[\insertshortinstitute]{\insertinstitute}{\usebeamertemplate{logo}}
     \fi%
+    \vskip8pt
   \end{beamercolorbox}
-  \vskip8pt
 %    \end{macrocode}
 %   Insert title, subtitle, author, and date.
 %    \begin{macrocode}

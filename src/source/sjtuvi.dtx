@@ -221,21 +221,17 @@
         \ifx\mylogo\@empty\else%
           {\hskip0.23cm\vrule width0.5pt}\hskip0.23cm%
         \fi%
-        \vbox to 1cm{%
-%    \end{macrocode}
-%   Close the interlineskip to use hard-coded value between lines.
-%    \begin{macrocode}
-          \offinterlineskip
-          \vfill
-          \fontsize{13pt}{0pt}\selectfont #2
-          \vskip0.08cm
+        \vbox{%
+          \fontsize{13pt}{0pt}\selectfont
+          #2
+          \par\noindent\vskip0.14em
           \fontsize{5pt}{0pt}\selectfont
           \textsc{#1}
-          \vskip0.14cm
+          \baselineskip 3.9pt
+          \par~
         }%
       \fi
     \fi
-    \hss%
   }
 }
 %    \end{macrocode}
