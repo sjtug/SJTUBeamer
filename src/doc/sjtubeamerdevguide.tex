@@ -1,8 +1,7 @@
 \documentclass{ltxdoc}
 \usepackage[scheme=plain]{ctex}
-\usepackage[colorlinks]{hyperref}
-\usepackage[numbers, sort&compress]{natbib}
-\bibliographystyle{IEEEtran}
+\usepackage[style=ieee]{biblatex}
+\addbibresource{dev.bib}
 \usepackage{array}
 \usepackage{tcolorbox}
 \tcbuselibrary{skins}
@@ -34,6 +33,7 @@
 \usepackage{multicol}
 \usepackage{tikz}
 \usepackage{hologo}
+\usepackage[colorlinks]{hyperref}
 
 \def\fcmd#1{\paragraph{\fbox{\ttfamily #1}}}
 
@@ -741,6 +741,7 @@ More details about this experimental caching mechanism in \texttt{l3build doc}, 
 \DocInput{sjtuvi.dtx}
 
 \clearpage
-\bibliography{dev}
+
+\printbibliography
 
 \end{document}
