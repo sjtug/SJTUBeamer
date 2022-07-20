@@ -28,16 +28,18 @@
   \setbeamertemplate{headline}{
     \begin{beamercolorbox}[wd=\paperwidth,sep=0.02\paperwidth]{headline}
       \begin{columns}
-        \begin{column}{0.015\textwidth}
-        \end{column}
-        \begin{column}{0.16\textwidth}
-          \if\EqualOption{inner}{lang}{en}
-            \hspace*{0.02\paperwidth}\resizebox{!}{4cm}{\vphantom{-}\secondaryinstlogo{\insertshortinstitute}{\usebeamertemplate{logo}}}
+        \begin{column}{0.25\textwidth}
+          \if\EqualOption{poster}{sepinst}{true}
+            \hspace*{0.02\paperwidth}\resizebox{!}{4cm}{\vphantom{-}\usebeamertemplate{logo}}
           \else
-            \hspace*{0.02\paperwidth}\resizebox{!}{4cm}{\vphantom{-}\secondaryinstlogo[\insertshortinstitute]{\insertinstitute}{\usebeamertemplate{logo}}}
+            \if\EqualOption{inner}{lang}{en}
+              \hspace*{0.02\paperwidth}\resizebox{!}{4cm}{\vphantom{-}\secondaryinstlogo{\insertshortinstitute}{\usebeamertemplate{logo}}}
+            \else
+              \hspace*{0.02\paperwidth}\resizebox{!}{4cm}{\vphantom{-}\secondaryinstlogo[\insertshortinstitute]{\insertinstitute}{\usebeamertemplate{logo}}}
+            \fi
           \fi
         \end{column}
-        \begin{column}{0.6\textwidth}
+        \begin{column}{0.5\textwidth}
           \vfill
           \centering
           \usebeamercolor{title in headline}{%
@@ -48,7 +50,16 @@
           }
           \vfill
         \end{column}
-        \begin{column}{0.3\textwidth}
+        \begin{column}{0.25\textwidth}
+          \hfill
+          \if\EqualOption{poster}{sepinst}{true}
+            \if\EqualOption{inner}{lang}{en}
+              \resizebox{!}{4cm}{\vphantom{-}\secondaryinstlogo{\insertshortinstitute}{}}\hspace*{0.02\paperwidth}
+            \else
+              \resizebox{!}{4cm}{\vphantom{-}\secondaryinstlogo[\insertshortinstitute]{\insertinstitute}{}}\hspace*{0.02\paperwidth}
+            \fi
+          \else
+          \fi
         \end{column}
       \end{columns}
     \end{beamercolorbox}
