@@ -16,7 +16,7 @@
 % \iffalse
 %<*package>
 \NeedsTeXFormat{LaTeX2e}
-\ProvidesPackage{beamerouterthemesjtubeamer}[2022/05/18 v2.9.0 sjtubeamer outer theme]
+\ProvidesPackage{beamerouterthemesjtubeamer}[2022/07/19 v2.9.1 sjtubeamer outer theme]
 %</package>
 % \fi
 % \CheckSum{0}
@@ -79,7 +79,7 @@
   \AtBeginDocument{
     \defbeamertemplate*{frametitle}{sjtubeamer}[1][]
     {%
-    \ifbeamercolorempty[bg]{frametitle}{}{\nointerlineskip}%
+      \ifbeamercolorempty[bg]{frametitle}{}{\nointerlineskip}%
       \@tempdima=\textwidth%
       \advance\@tempdima by\beamer@leftmargin%
       \advance\@tempdima by\beamer@rightmargin%
@@ -110,7 +110,7 @@
 %    \end{macrocode}
 % Insert the outer logo with 0.7cm height. \verb"\vphantom" here is to create a phantom box to make sure the \verb"\resizebox" has a non-zero height box input. The calculation is fixed for a 0.7cm height logo placeholder.
 %    \begin{macrocode}
-        \resizebox{!}{0.7cm}{\vphantom{-}\usebeamertemplate{logo}}\hspace*{5pt}%
+        \resizebox{!}{0.7cm}{\vphantom{-}\usebeamertemplate{logo}}\hspace*{10pt}%
         \endgroup%
         \ifx\insertframesubtitle\@empty%
         \else\vskip0.6ex\fi%

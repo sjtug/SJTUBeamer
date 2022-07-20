@@ -18,7 +18,7 @@
 %% see https://vi.sjtu.edu.cn/index.php/articles/bulletin/16.
 %% ------------------------------------------------------------------------
 \NeedsTeXFormat{LaTeX2e}
-\ProvidesPackage{sjtucover}[2022/05/18 v2.9.0 cover library for sjtubeamer]
+\ProvidesPackage{sjtucover}[2022/07/19 v2.9.1 cover library for sjtubeamer]
 \RequirePackage{sjtuvi}
 \DefineOption{cover}{lang}{zh}
 \DefineOption{cover}{lang}{en}
@@ -69,7 +69,7 @@
         {\usebeamercolor[fg]{institute}\small\insertinstitute\par}
         {\usebeamercolor[fg]{date}\small\insertdate}%
     };
-    \node[anchor=south east, inner sep=0, outer sep=0] at (\outslant,0.5){
+    \node[anchor=south east, inner sep=0, outer sep=0] at ({\outslant-5pt},0.5){
       \usebeamercolor[fg]{palatte primary}
       \resizebox{!}{1cm}{\vphantom{-}\usebeamertemplate{logo}}
     };
@@ -151,42 +151,17 @@
   \vfill
   \begingroup
   \centering
-  \begin{beamercolorbox}{empty}
-    \usebeamercolor[fg]{palette primary}
+  \begin{beamercolorbox}[sep=0pt,#1]{empty}
     \vskip8pt
-    \hbox{
-      \hskip-4pt{\resizebox{!}{1cm}{\vphantom{-}\usebeamertemplate{logo}}}
-      \ifx\insertinstitute\@empty%
-      \else
-      \ifx\insertlogo\@empty%
-        \else
-        {\hskip0pt\vrule width0.5pt}\hskip0pt
-      \fi
-      \if\EqualOption{inner}{lang}{en}
-      \vbox to 1cm{
-          \vfill
-          \vbox{
-            \offinterlineskip
-            \noindent \strut
-            \baselineskip 0pt \lineskip -2pt
-            \scriptsize\textsc{\beamer@shortinstitute}
-            \strut
-          }
-          \vfill
-        }
-      \else
-      \hskip3pt\vbox{
-        \fontsize{13pt}{0pt}\selectfont
-        \insertinstitute
-        \par\noindent\vskip0.14em
-        \fontsize{5pt}{0pt}\selectfont
-        \textsc{\insertshortinstitute}
-        \baselineskip 3.9pt
-        \par~
-      }
-      \fi
-      \fi%
-    }
+    \hfuzz=130pt%
+    \usebeamercolor[fg]{palette primary}%
+    \if\EqualOption{inner}{lang}{en}%
+      \hspace*{8pt}%
+      \secondaryinstlogo{\beamer@shortinstitute}{\usebeamertemplate{logo}}
+    \else%
+      \hspace*{8pt}%
+      \secondaryinstlogo[\insertshortinstitute]{\insertinstitute}{\usebeamertemplate{logo}}
+    \fi%
     \vskip8pt
   \end{beamercolorbox}
   \begin{beamercolorbox}[sep=8pt,#1]{title}
@@ -267,7 +242,7 @@
         \node[white] at (-0.45\paperwidth,0.3\paperheight)
         {\resizebox{!}{0.115\paperheight}{\vphantom{-}\usebeamertemplate{logo}}};
         \node [right, white] at (-0.75\paperwidth, 0.15\paperheight)
-        {\resizebox{1.25\paperwidth}{!}{\sjtugate}};
+        {\resizebox{1.15\paperwidth}{!}{\sjtugate}};
       \end{scope}
       \node at (-0.13\paperwidth,0.7\paperheight) {
         \usebeamercolor[fg]{title}
@@ -420,7 +395,7 @@
     \fill [bg] (-0.2*\the\paperwidth,-1*\the\paperheight)
     rectangle (1*\the\paperwidth, 0.4*\the\paperheight);
     \node [right, fg] at (-0.2*\the\paperwidth, -0.5*\the\paperheight)
-    {\resizebox{1.25\paperwidth}{!}{\sjtugate}};
+    {\resizebox{1.15\paperwidth}{!}{\sjtugate}};
   \end{tikzpicture}
   \vfil
   \begingroup

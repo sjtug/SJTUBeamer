@@ -13,7 +13,7 @@
 % \iffalse
 %<*package>
 \NeedsTeXFormat{LaTeX2e}
-\ProvidesPackage{sjtucover}[2022/05/18 v2.9.0 cover library for sjtubeamer]
+\ProvidesPackage{sjtucover}[2022/07/19 v2.9.1 cover library for sjtubeamer]
 %</package>
 % \fi
 % \CheckSum{0}
@@ -127,7 +127,7 @@
         {\usebeamercolor[fg]{institute}\small\insertinstitute\par}
         {\usebeamercolor[fg]{date}\small\insertdate}%
     };
-    \node[anchor=south east, inner sep=0, outer sep=0] at (\outslant,0.5){
+    \node[anchor=south east, inner sep=0, outer sep=0] at ({\outslant-5pt},0.5){
       \usebeamercolor[fg]{palatte primary}
       \resizebox{!}{1cm}{\vphantom{-}\usebeamertemplate{logo}}
     };
@@ -217,7 +217,7 @@
 %   WARNING: The pattern in the title page is now deprecated for the unstability of the \verb"fadings" library in TikZ. If you want to use the pattern, please uncomment the code segement manually. The interface of \verb"stamparry" is functional.
 %   If it is in draftmode or it is not compatible, no pattern will get rendered.
 %   Otherwise, the fade tile of stamp array will get covered on top of the background rectangle.
-%   \verb"stamparray" is defined in \verb"SJTUvi". Then, a fade right covers this array layer and a center fade covers the previous result.
+%   \verb"stamparray" is defined in \verb"sjtuvi". Then, a fade right covers this array layer and a center fade covers the previous result.
 %    \begin{macrocode}
   \ifx\sjtubeamer@compatible\sjtubeamer@compatible@false
   \else
@@ -245,43 +245,19 @@
 %   \verb"resizebox" is used to adapt to all size of logo into 1cm height one. And it is the same in outer theme to make a 0.7cm logo. 
 %   The institute is in \TeX{} code for typesetting. \verb"\beamer@shortinstitute" meta is used to avoid compressing on \verb"\par", while \verb"\insertinstitute" will force the input to spread on one signle line. The mode to use is depended on the \verb"language" option. Super small font could be made by \verb"fontsize".
 %   Here, we use the option from inner to get the language setting, if this package is used independently, only chinese mode is available.
+%   Set \verb"\hfuzz" to 130pt to avoid the overfull hbox warning, the \verb"\hspace" should be placed in the branch body to make it work.
 %    \begin{macrocode}
-  \begin{beamercolorbox}{empty}
-    \usebeamercolor[fg]{palette primary}
+  \begin{beamercolorbox}[sep=0pt,#1]{empty}
     \vskip8pt
-    \hbox{
-      \hskip-4pt{\resizebox{!}{1cm}{\vphantom{-}\usebeamertemplate{logo}}}
-      \ifx\insertinstitute\@empty%
-      \else
-      \ifx\insertlogo\@empty%
-        \else
-        {\hskip0pt\vrule width0.5pt}\hskip0pt
-      \fi
-      \if\EqualOption{inner}{lang}{en}
-      \vbox to 1cm{
-          \vfill
-          \vbox{
-            \offinterlineskip
-            \noindent \strut
-            \baselineskip 0pt \lineskip -2pt
-            \scriptsize\textsc{\beamer@shortinstitute}
-            \strut
-          }
-          \vfill
-        }
-      \else
-      \hskip3pt\vbox{
-        \fontsize{13pt}{0pt}\selectfont
-        \insertinstitute
-        \par\noindent\vskip0.14em
-        \fontsize{5pt}{0pt}\selectfont
-        \textsc{\insertshortinstitute}
-        \baselineskip 3.9pt
-        \par~
-      }
-      \fi
-      \fi%
-    }
+    \hfuzz=130pt%
+    \usebeamercolor[fg]{palette primary}%
+    \if\EqualOption{inner}{lang}{en}%
+      \hspace*{8pt}%
+      \secondaryinstlogo{\beamer@shortinstitute}{\usebeamertemplate{logo}}
+    \else%
+      \hspace*{8pt}%
+      \secondaryinstlogo[\insertshortinstitute]{\insertinstitute}{\usebeamertemplate{logo}}
+    \fi%
     \vskip8pt
   \end{beamercolorbox}
 %    \end{macrocode}
@@ -390,7 +366,7 @@
         \node[white] at (-0.45\paperwidth,0.3\paperheight)
         {\resizebox{!}{0.115\paperheight}{\vphantom{-}\usebeamertemplate{logo}}};
         \node [right, white] at (-0.75\paperwidth, 0.15\paperheight) 
-        {\resizebox{1.25\paperwidth}{!}{\sjtugate}};
+        {\resizebox{1.15\paperwidth}{!}{\sjtugate}};
       \end{scope}
       \node at (-0.13\paperwidth,0.7\paperheight) {
         \usebeamercolor[fg]{title}
@@ -448,7 +424,7 @@
 \defbeamertemplate*{bottom page}{min}[1][]
 {
 %    \end{macrocode}
-%   Enter vertical mode.
+%   Leave vertical mode, which is equivalent to \verb"\leavevmode".
 %    \begin{macrocode}
   \vbox{}
 %    \end{macrocode}
@@ -637,7 +613,7 @@
     \fill [bg] (-0.2*\the\paperwidth,-1*\the\paperheight)
     rectangle (1*\the\paperwidth, 0.4*\the\paperheight);
     \node [right, fg] at (-0.2*\the\paperwidth, -0.5*\the\paperheight)
-    {\resizebox{1.25\paperwidth}{!}{\sjtugate}};
+    {\resizebox{1.15\paperwidth}{!}{\sjtugate}};
   \end{tikzpicture}
   \vfil
   \begingroup
