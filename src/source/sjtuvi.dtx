@@ -208,7 +208,7 @@
 %    \end{macrocode}
 %   You need to manually break the line for the main English name. The whole name will be typesetted centered vertically.
 %    \begin{macrocode}
-        \vbox to 1cm{%
+        \vbox to 1cm{\hsize 7cm%
           \vfill%
 %    \end{macrocode}
 %   Here, \verb"\baselineskip" is set to 0pt, which will always violate the rule that border distance between two lines should be greater than \verb"\lineskiplimit".
@@ -228,17 +228,19 @@
         \ifx\mylogo\@empty\else%
           {\hskip0.23cm\vrule width0.5pt}\hskip0.23cm%
         \fi%
-        \vbox{%
-          \fontsize{13pt}{0pt}\selectfont
-          \mdseries\sffamily #2
-          \par\noindent\vskip0.14em
-          \fontsize{5pt}{0pt}\selectfont
-          \scshape #1
-%    \end{macrocode}
-%   \verb"\baselineskip" will be applied to the next empty line, to make sure the bottom padding is relative to the baseline.
-%    \begin{macrocode}
-          \baselineskip 3.9pt
-          \par~
+        \vbox to 1cm{%
+          \vfill
+          \offinterlineskip
+          \hbox{%
+            \fontsize{13pt}{0pt}\selectfont%
+            \mdseries\sffamily #2%
+          }
+          \vskip0.08cm%
+          \hbox{%
+            \fontsize{5pt}{0pt}\selectfont%
+            \scshape #1%
+          }
+          \vskip-\prevdepth\vskip0.14cm%
         }%
       \fi
     \fi
