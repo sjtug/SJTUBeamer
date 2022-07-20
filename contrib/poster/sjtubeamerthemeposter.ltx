@@ -14,7 +14,7 @@
 %% limitations under the License.
 %% ------------------------------------------------------------------------
 % 设置文件元数据
-\ProvidesFile{sjtubeamerthemebeamerposter.ltx}[2022/07/15 Beamerposter adapter for SJTUBeamer]
+\ProvidesFile{sjtubeamerthemeposter.ltx}[2022/07/21 Beamerposter adapter for SJTUBeamer]
 \PassOptionsToPackage{orientation=portrait}{beamerposter}
 \if\EqualOption{beamerposter}{landscape}{true}
   \PassOptionsToPackage{orientation=landscape}{beamerposter}
@@ -24,6 +24,7 @@
 % 设置 headline 颜色跟随亮色/暗色
 \setbeamercolor{headline}{parent=palette primary}
 % 修改 headline，需要在文档起始处覆盖，防止 default 的行为
+% FIXME: @ in ltx file?
 \AtBeginDocument{
   \setbeamertemplate{headline}{
     \begin{beamercolorbox}[wd=\paperwidth,sep=0.02\paperwidth]{headline}
@@ -33,7 +34,7 @@
             \hspace*{0.02\paperwidth}\resizebox{!}{4cm}{\vphantom{-}\usebeamertemplate{logo}}
           \else
             \if\EqualOption{inner}{lang}{en}
-              \hspace*{0.02\paperwidth}\resizebox{!}{4cm}{\vphantom{-}\secondaryinstlogo{\insertshortinstitute}{\usebeamertemplate{logo}}}
+              \hspace*{0.02\paperwidth}\resizebox{!}{4cm}{\vphantom{-}\secondaryinstlogo{\csname beamer@shortinstitute\endcsname}{\usebeamertemplate{logo}}}
             \else
               \hspace*{0.02\paperwidth}\resizebox{!}{4cm}{\vphantom{-}\secondaryinstlogo[\insertshortinstitute]{\insertinstitute}{\usebeamertemplate{logo}}}
             \fi
@@ -54,7 +55,7 @@
           \hfill
           \if\EqualOption{poster}{sepinst}{true}
             \if\EqualOption{inner}{lang}{en}
-              \resizebox{!}{4cm}{\vphantom{-}\secondaryinstlogo{\insertshortinstitute}{}}\hspace*{0.02\paperwidth}
+              \resizebox{!}{4cm}{\vphantom{-}\secondaryinstlogo{\csname beamer@shortinstitute\endcsname}{}}\hspace*{0.02\paperwidth}
             \else
               \resizebox{!}{4cm}{\vphantom{-}\secondaryinstlogo[\insertshortinstitute]{\insertinstitute}{}}\hspace*{0.02\paperwidth}
             \fi
