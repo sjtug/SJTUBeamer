@@ -32,9 +32,9 @@
         \end{column}
         \begin{column}{0.16\textwidth}
           \if\EqualOption{inner}{lang}{en}
-            \resizebox{!}{6cm}{\vphantom{-}\secondaryinstlogo{\insertshortinstitute}{\usebeamertemplate{logo}}}
+            \hspace*{0.02\paperwidth}\resizebox{!}{4cm}{\vphantom{-}\secondaryinstlogo{\insertshortinstitute}{\usebeamertemplate{logo}}}
           \else
-            \resizebox{!}{6cm}{\vphantom{-}\secondaryinstlogo[\insertshortinstitute]{\insertinstitute}{\usebeamertemplate{logo}}}
+            \hspace*{0.02\paperwidth}\resizebox{!}{4cm}{\vphantom{-}\secondaryinstlogo[\insertshortinstitute]{\insertinstitute}{\usebeamertemplate{logo}}}
           \fi
         \end{column}
         \begin{column}{0.6\textwidth}
@@ -44,7 +44,7 @@
             \color{fg}\textbf{\LARGE{\inserttitle}}\vskip2.5ex
           }
           \usebeamercolor{author in headline}{%
-            \color{fg}\large{\insertauthor}\vskip1.2ex
+            \color{fg}\large{\insertauthor}
           }
           \vfill
         \end{column}
