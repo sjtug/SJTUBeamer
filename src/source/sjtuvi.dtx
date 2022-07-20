@@ -111,6 +111,11 @@
 %    \end{macrocode}
 %
 % \subsubsection{Declare Logo}
+%   Aquire package \verb"array" for better control on \verb"tabular".
+%    \begin{macrocode}
+\RequirePackage{array}
+%    \end{macrocode}
+%
 % \begin{macro}{\definelogo}
 %    Define a mask picture to make its different color variants.
 %    The first argument assigns the file name and the second sets the horizontal cropping and the third sets the vertical cropping. Notice that the cropping is symmetrical (double the length). When the horizontal cropping is greater than the vertical cropping, the mask will be placed by its height, otherwise by its width. The domain for both cropping parameters is 0 to 1.
@@ -167,7 +172,7 @@
 %  \begin{macro}{\secondaryinstlogo}
 %  Logo with secondary institute.
 %  The first optional parameter is typically the English name for your institute. If it exists, will be typesetted below the main name.
-%  The macro is defined as a ``star'' form which means you could pass a parameter that has linebreak \verb"\\".
+%  The macro is defined as a ``star'' form which means you could pass a parameter that has linebreak \verb"\\" but NOT \verb"\par".
 %  The second mandantory parameter is the main name for your institute.
 %  The third parameter is the logo of the left side, you could leave it as empty but mandantory.
 %  By default, this combination will occupy the whole row.
@@ -208,16 +213,26 @@
 %    \end{macrocode}
 %   You need to manually break the line for the main English name. The whole name will be typesetted centered vertically.
 %    \begin{macrocode}
-        \vbox to 1cm{\hsize 7cm%
+        \vbox to 1cm{%
           \vfill%
 %    \end{macrocode}
-%   Here, \verb"\baselineskip" is set to 0pt, which will always violate the rule that border distance between two lines should be greater than \verb"\lineskiplimit".
-%   And the \verb"\lineskip" will be applied to enlarge the distance. In this manner, the adjustment will be font-size free.
+%   Start a \verb"\hbox" inside the \verb"\vbox" to make sure that the box has a width that matches the content.
+%    \begin{macrocode}
+          \hbox{%
+%    \end{macrocode}
 %   Since \verb"\scshape" may not contain the boldface font weight, we manually set the font weight to \verb"\mdseries" to avoid the influence from the outside.
 %    \begin{macrocode}
-          \baselineskip 0pt\lineskip 2pt%
-          \noindent%
-          \fontsize{7.5pt}{0pt}\selectfont\mdseries\scshape #2%
+            \noindent%
+            \fontsize{7.5pt}{0pt}\selectfont\mdseries\scshape%
+%    \end{macrocode}
+%   Since the parameter could contain the breaklines \verb"\\", which is not function in the horizontal mode. To make the thing work, wrap it into the \verb"tabular" environment, and remove the left-right padding by \verb"@{}". Then the paramter could break lines.
+%   FIXME: Now it uses a phantom comma to emulate the a certain depth to increase the line height.
+%    \begin{macrocode}
+            \begin{tabular}{@{}l<{\vphantom{,}}@{}}#2\end{tabular}%
+          }%
+%    \end{macrocode}
+%   In this way, the behavior like textbox in MS Word could be achieved, with the combination of \verb"\hbox" and \verb"tabular" environment, to make sure the bounding box could be measured and the content could use normal \verb"\\" for breaking lines. But \verb"\par" is not acceptable so you should use the hard-breaking in the command parameter.
+%    \begin{macrocode}
           \vfill%
         }%
       \else%
@@ -231,6 +246,9 @@
         \vbox to 1cm{%
           \vfill
           \offinterlineskip
+%    \end{macrocode}
+%   Use \verb"\hbox" to make sure the width of the box is measurable.
+%    \begin{macrocode}
           \hbox{%
             \fontsize{13pt}{0pt}\selectfont%
             \mdseries\sffamily #2%
@@ -240,6 +258,9 @@
             \fontsize{5pt}{0pt}\selectfont%
             \scshape #1%
           }
+%    \end{macrocode}
+%   \verb"\prevdepth" is used to reduce the bottom padding by the depth of the previous line in case that the line has a comma.
+%    \begin{macrocode}
           \vskip-\prevdepth\vskip0.14cm%
         }%
       \fi
