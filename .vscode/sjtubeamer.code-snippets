@@ -86,7 +86,7 @@
 	"codeblockinput": {
 		"scope": "doctex,tex,latex",
 		"prefix": "\\codeblockinput",
-		"body": "\\codeblockinput[${1:}]{$2}{$3}{$4}",
+		"body": "\\codeblockinput[${1:}]{$2}{$3}",
 		"description": "Code block environment for external file input. The same style like codeblock.\nThe first optional parameter is passed to listing.\nThe second required parameter receives the title to make.\nThe third required paramter receives the file to typeset.\nADVANCED TIP: For longer typeset, use lstinputlisting command directly and remove the frame environment around the code input for occupying cross the pages. No numbering is preset so you need to set the number manually for this basic command.\n"
 	},
 	"sjtubeamer@outer@nav": {
