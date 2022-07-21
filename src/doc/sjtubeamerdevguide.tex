@@ -97,6 +97,10 @@ Since the plugin is suffixed by \verb".ltx" (an abbreviation of \LaTeX{}), which
   \def\foo@bar{bar of foo}
 \makeatother
 \end{verbatim}
+or you could just use \verb"\csname" and \verb"\endcsname" for temporary use:
+\begin{verbatim}
+  \def\csname foo@bar\endcsname{bar of foo}
+\end{verbatim}
 
 \themename{} has an internal mechanism of passing the options. For example, if you pass \verb"debug" option to \verb"sjtug" plugin --- \verb"\usesjtutheme[debug]{sjtug}", you could judge the condition in the plugin file like:
 \begin{verbatim}
