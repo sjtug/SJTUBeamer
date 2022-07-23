@@ -29,15 +29,16 @@
     \begin{beamercolorbox}[wd=\paperwidth,sep=0.02\paperwidth]{headline}
       \begin{columns}
         \begin{column}{0.25\textwidth}
-          \if\EqualOption{poster}{sepinst}{true}
-            \hspace*{0.02\paperwidth}\resizebox{!}{4cm}{\vphantom{-}\usebeamertemplate{logo}}
-          \else
-            \if\EqualOption{inner}{lang}{en}
-              \hspace*{0.02\paperwidth}\resizebox{!}{4cm}{\vphantom{-}\secondaryinstlogo{\csname beamer@shortinstitute\endcsname}{\usebeamertemplate{logo}}}
-            \else
-              \hspace*{0.02\paperwidth}\resizebox{!}{4cm}{\vphantom{-}\secondaryinstlogo[\insertshortinstitute]{\insertinstitute}{\usebeamertemplate{logo}}}
-            \fi
-          \fi
+          \hspace*{0.02\paperwidth}
+          \if\EqualOption{poster}{sepinst}{true}%
+            \resizebox{!}{4cm}{\vphantom{-}\usebeamertemplate{logo}}
+          \else%
+            \if\EqualOption{inner}{lang}{en}%
+              \resizebox{!}{4cm}{\vphantom{-}\secondaryinstlogo{\csname beamer@shortinstitute\endcsname}{\usebeamertemplate{logo}}}
+            \else%
+              \resizebox{!}{4cm}{\vphantom{-}\secondaryinstlogo[\insertshortinstitute]{\insertinstitute}{\usebeamertemplate{logo}}}
+            \fi%
+          \fi%
         \end{column}
         \begin{column}{0.5\textwidth}
           \vfill

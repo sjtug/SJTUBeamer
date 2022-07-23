@@ -1,0 +1,29 @@
+\documentclass{ctexbeamer}
+\usetheme{sjtubeamer}
+\usesjtutheme[sepinst]{poster}
+\begin{document}
+    \title{poster 子主题}
+    \author{作者}
+    \institute[Test Institute]{测试机构}
+    \begin{frame}[fragile]
+        \codeblockinput[firstnumber=3,firstline=3,lastline=3]{开始使用}{poster.tex}
+        \texttt{sepinst} 选项用于指定是否将机构部分分离放置。
+        \codeblockinput[firstnumber=7,firstline=7,lastline=7]{使用机构名称}{poster.tex}
+        在 \texttt{ctexbeamer} 文档类中，机构将采用中文样式，需要指定可选的机构英文全称。在 \texttt{beamer} 文档类中，将会直接使用可选参数的英文全称。如果需要使用图片作为机构名称，需要使用 0.95cm 高度的图标以居中显示，并放置在会被显示的参数上。
+        
+        \begin{codeblock}[]{中文组合徽标}
+% \documentclass{ctexbeamer}
+\institute[]{\resizebox{!}{0.95cm}{\zhlogo}}
+        \end{codeblock}
+
+        \secondaryinstlogo[]{\resizebox{!}{0.95cm}{\zhlogo}}{\sjtubadge}
+        
+        \begin{codeblock}[]{英文组合徽标}
+% \documentclass{beamer}
+\institute[\resizebox{!}{0.95cm}{\enlogo}]{}
+        \end{codeblock}
+
+        \secondaryinstlogo{\resizebox{!}{0.95cm}{\enlogo}}{\sjtubadge}
+        
+    \end{frame}
+\end{document}
