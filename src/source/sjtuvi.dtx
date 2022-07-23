@@ -30,11 +30,11 @@
 %  \begin{macro}{\DefineOption}
 %   Define the beamer option on the corresponding package, key and value.
 %    \begin{macrocode}
-\def\DefineOption#1#2#3{
+\def\DefineOption#1#2#3{%
   % #1: package
   % #2: key
   % #3: value
-  \DeclareOptionBeamer{#3}{\expandafter\def\csname sjtubeamer@#1@#2\endcsname{#3}}
+  \DeclareOptionBeamer{#3}{\expandafter\def\csname sjtubeamer@#1@#2\endcsname{#3}}%
 }
 %    \end{macrocode}
 %  \end{macro}
@@ -49,15 +49,15 @@
 %   \verb"\iffalse" doesn't need to be considered.
 %    \begin{macrocode}
 \def\EqualOption{TT\fi\ifEqualOption} % dummy trick to pass the condition test
-\def\ifEqualOption#1#2#3{
+\def\ifEqualOption#1#2#3{%
   % #1: package
   % #2: key
   % #3: value
-  \newif\iftempif
-  \edef\tempvar{\csname sjtubeamer@#1@#2\endcsname}
-  \def\tempvalue{#3}
-  \ifx\tempvar\tempvalue\tempiftrue\else\tempiffalse\fi
-  \iftempif
+  \newif\iftempif%
+  \edef\tempvar{\csname sjtubeamer@#1@#2\endcsname}%
+  \def\tempvalue{#3}%
+  \ifx\tempvar\tempvalue\tempiftrue\else\tempiffalse\fi%
+  \iftempif%
 }
 %    \end{macrocode}
 %  \end{macro}
@@ -138,7 +138,7 @@
   \expandafter\providecommand\csname #2\endcsname[1][]{%
     % ##1: override color, or opacity=... (optional)
     \tikzexternaldisable%
-    \begin{tikzpicture}%
+    \begin{tikzpicture}
       \begin{scope}
         \clip ({-1.0+#3},{-1.0+#4}) rectangle ({1.0-#3},{1.0-#4});
         \fill [##1, path fading=#2] (-1,-1) rectangle (1,1);
