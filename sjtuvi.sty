@@ -19,22 +19,22 @@
 %% ------------------------------------------------------------------------
 \NeedsTeXFormat{LaTeX2e}
 \ProvidesPackage{sjtuvi}[2022/07/19 v2.9.1 Visual Identity System library for sjtubeamer]
-\def\DefineOption#1#2#3{
+\def\DefineOption#1#2#3{%
   % #1: package
   % #2: key
   % #3: value
-  \DeclareOptionBeamer{#3}{\expandafter\def\csname sjtubeamer@#1@#2\endcsname{#3}}
+  \DeclareOptionBeamer{#3}{\expandafter\def\csname sjtubeamer@#1@#2\endcsname{#3}}%
 }
 \def\EqualOption{TT\fi\ifEqualOption} % dummy trick to pass the condition test
-\def\ifEqualOption#1#2#3{
+\def\ifEqualOption#1#2#3{%
   % #1: package
   % #2: key
   % #3: value
-  \newif\iftempif
-  \edef\tempvar{\csname sjtubeamer@#1@#2\endcsname}
-  \def\tempvalue{#3}
-  \ifx\tempvar\tempvalue\tempiftrue\else\tempiffalse\fi
-  \iftempif
+  \newif\iftempif%
+  \edef\tempvar{\csname sjtubeamer@#1@#2\endcsname}%
+  \def\tempvalue{#3}%
+  \ifx\tempvar\tempvalue\tempiftrue\else\tempiffalse\fi%
+  \iftempif%
 }
 \providecommand{\getcontribdir}[1]{contrib/#1}
 \providecommand{\getcontribpath}[2]{\getcontribdir{#1}/#2}
@@ -69,7 +69,7 @@
   \expandafter\providecommand\csname #2\endcsname[1][]{%
     % ##1: override color, or opacity=... (optional)
     \tikzexternaldisable%
-    \begin{tikzpicture}%
+    \begin{tikzpicture}
       \begin{scope}
         \clip ({-1.0+#3},{-1.0+#4}) rectangle ({1.0-#3},{1.0-#4});
         \fill [##1, path fading=#2] (-1,-1) rectangle (1,1);
