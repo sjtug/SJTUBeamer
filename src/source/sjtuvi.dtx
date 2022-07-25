@@ -226,10 +226,13 @@
             \fontsize{7.5pt}{0pt}\selectfont\mdseries\scshape%
 %    \end{macrocode}
 %   Since the parameter could contain the breaklines \verb"\\", which is not function in the horizontal mode. To make the thing work, wrap it into the \verb"tabular" environment, and remove the left-right padding by \verb"@{}". Then the paramter could break lines.
-%   FIXME: Now it uses a phantom comma to emulate the a certain depth to increase the line height.
+%   To increase the interlineskip in tabular, use a phantom vrule at the end of each line with the depth of 2pt. At the end of the tabular, we should decrease the vskip by 2pt since the last line should not have that depth to make sure the content is vertically centered.
 %    \begin{macrocode}
-            \begin{tabular}{@{}l<{\vphantom{,}}@{}}#2\end{tabular}%
+            \begin{tabular}{@{}l<{\vphantom{\vrule depth2pt}}@{}}
+              #2
+            \end{tabular}%
           }%
+          \vksip-2pt%
 %    \end{macrocode}
 %   In this way, the behavior like textbox in MS Word could be achieved, with the combination of \verb"\hbox" and \verb"tabular" environment, to make sure the bounding box could be measured and the content could use normal \verb"\\" for breaking lines. But \verb"\par" is not acceptable so you should use the hard-breaking in the command parameter.
 %    \begin{macrocode}
