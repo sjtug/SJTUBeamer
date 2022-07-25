@@ -6,7 +6,7 @@ This is the beamer template exclusively for Shanghai Jiaotong University student
 
 ## Starting Up 👋
 
-Current document `main.tex` is an example documentation of *How to Use LaTeX to Typeset Thesis*. You could replace the content with the following minimum working example:
+Current document `main.tex` is an example documentation of *How to Use* $\LaTeX$ *to Typeset Thesis*. You could replace the content with the following minimum working example:
 
 <details>
 
@@ -165,10 +165,15 @@ New contributors could add your name to the developer list in `sjtubeamerdevguid
 
 ## Appearance 🧐
 
-![cover_1](https://user-images.githubusercontent.com/61653082/160813366-5c7bd98b-dc3c-43ac-9cf4-1cb375228470.jpg)
-![cover_2](https://user-images.githubusercontent.com/61653082/160813386-8cb98131-0cae-456b-af1e-cec671e5fc8e.jpg)
-![cover_3](https://user-images.githubusercontent.com/61653082/160813414-9b43c4b3-4e6d-4f51-9c63-ff7a87eafcf7.jpg)
-![cover_4](https://user-images.githubusercontent.com/61653082/160813430-1c7647d4-6346-4fd8-b43f-e156b6234b0e.jpg)
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset="https://user-images.githubusercontent.com/61653082/160813366-5c7bd98b-dc3c-43ac-9cf4-1cb375228470.jpg">
+  <img alt="Red Cover" src="https://user-images.githubusercontent.com/61653082/160813386-8cb98131-0cae-456b-af1e-cec671e5fc8e.jpg">
+</picture>
+
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset="https://user-images.githubusercontent.com/61653082/160813414-9b43c4b3-4e6d-4f51-9c63-ff7a87eafcf7.jpg">
+  <img alt="Blue Cover" src="https://user-images.githubusercontent.com/61653082/160813430-1c7647d4-6346-4fd8-b43f-e156b6234b0e.jpg">
+</picture>
 
 ## License
 
