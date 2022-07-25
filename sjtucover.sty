@@ -151,18 +151,14 @@
   \vfill
   \begingroup
   \centering
-  \begin{beamercolorbox}[sep=0pt,#1]{empty}
-    \vskip8pt
+  \begin{beamercolorbox}[sep=8pt,#1]{empty}
     \hfuzz=130pt%
     \usebeamercolor[fg]{palette primary}%
     \if\EqualOption{cover}{lang}{en}%
-      \hspace*{8pt}%
       \secondaryinstlogo{\beamer@shortinstitute}{\usebeamertemplate{logo}}
     \else%
-      \hspace*{8pt}%
       \secondaryinstlogo[\insertshortinstitute]{\insertinstitute}{\usebeamertemplate{logo}}
     \fi%
-    \vskip8pt
   \end{beamercolorbox}
   \begin{beamercolorbox}[sep=8pt,#1]{title}
     \usebeamerfont{title}\inserttitle\par%
