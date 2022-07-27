@@ -4,8 +4,6 @@
 \def\colorblock#1{
     #1\hfill\tikz{\draw[black,fill=#1] (-1,-0.25) rectangle (1,0.25);}\par
 }
-\usepackage{silence}
-\WarningFilter{latexfont}{Font shape}  % KNOWN WARNING
 \begin{document}
     \START
     \begin{frame}
@@ -46,10 +44,12 @@
         \end{tikzpicture}
         \stamptext{Test}
     \end{frame}
+    \OMIT
     \begin{frame}
         \frametitle{Secondary Institute Logo}
         \secondaryinstlogo{Institute}{\phantom{-}}
         \secondaryinstlogo[Institute]{INSTITUTE}{\phantom{-}}
     \end{frame}
+    \TIMO
     \END
 \end{document}
