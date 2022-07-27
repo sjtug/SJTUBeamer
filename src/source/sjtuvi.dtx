@@ -221,12 +221,12 @@
           \hbox{%
 %    \end{macrocode}
 %   Since \verb"\scshape" may not contain the boldface font weight, we manually set the font weight to \verb"\mdseries" to avoid the influence from the outside.
-%   And there is no obvious rule about the font size of English institute. Choose a similar one for approporiate look.
+%   And there is no explicit rule about the font size of the English institute. Choose a similar one for approporiate look.
 %    \begin{macrocode}
             \noindent%
             \fontsize{7pt}{0pt}\selectfont\mdseries\scshape%
 %    \end{macrocode}
-%   Since the parameter could contain the breaklines \verb"\\", which is not function in the horizontal mode. To make the thing work, wrap it into the \verb"tabular" environment, and remove the left-right padding by \verb"@{}". Then the paramter could break lines.
+%   Since the parameter could contain the breaklines \verb"\\", which is not functional in the horizontal mode. To make the thing work, wrap it into the \verb"tabular" environment, and remove the left-right padding by \verb"@{}". Then the paramter could break lines.
 %   To increase the interlineskip in tabular, use a phantom vrule at the end of each line with the depth of 2pt. At the end of the tabular, we should decrease the vskip by 2pt since the last line should not have that depth to make sure the content is vertically centered.
 %    \begin{macrocode}
             \begin{tabular}{@{}l<{\vphantom{\vrule depth2pt}}@{}}
@@ -236,6 +236,7 @@
           \vskip-2pt%
 %    \end{macrocode}
 %   In this way, the behavior like textbox in MS Word could be achieved, with the combination of \verb"\hbox" and \verb"tabular" environment, to make sure the bounding box could be measured and the content could use normal \verb"\\" for breaking lines. But \verb"\par" is not acceptable so you should use the hard-breaking in the command parameter.
+%   But the benefit is also obvious, the width could be controlled and no more overfull hbox when inserting the institute. Since a \verb"\vbox" without \verb"\hsize" will make a box that occupy the whole line, but the width of the box should not be limited inexplicitly (no rule in SJTU VI). Futhermore, An alternative of using \verb"\parbox" has the same issue.
 %    \begin{macrocode}
           \vfill%
         }%
@@ -248,10 +249,16 @@
           {\hskip0.23cm\vrule width0.5pt}\hskip0.23cm%
         \fi%
         \vbox to 1cm{%
+%    \end{macrocode}
+%   Align the institute component to the bottom of the current vbox.
+%   And remove the interlineskip for precise measurement.
+%    \begin{macrocode}
           \vfill
           \offinterlineskip
 %    \end{macrocode}
 %   Use \verb"\hbox" to make sure the width of the box is measurable.
+%   \verb"\mdseries" will make sure that the font weight will not be influenced by the current configuration.
+%   A thin space between the line is inserted.
 %    \begin{macrocode}
           \hbox{%
             \fontsize{13pt}{0pt}\selectfont%
@@ -272,6 +279,7 @@
   }
 }
 %    \end{macrocode}
+%  NOTE: For the optional parameter, \verb"\insertshortinsititute" in beamer class will first call \verb"\beamer@setupshort" to locally redefine \verb"\\" to empty, then the inserted text will not contain the breaklines. To insert the version with the breaklines, \verb"\beamer@shortinstitute" should be used.
 %  \end{macro}
 %
 % \subsubsection{Shape Declarations}
