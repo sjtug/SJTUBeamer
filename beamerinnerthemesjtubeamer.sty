@@ -21,7 +21,7 @@
 %% limitations under the License.
 %% ------------------------------------------------------------------------
 \NeedsTeXFormat{LaTeX2e}
-\ProvidesPackage{beamerinnerthemesjtubeamer}[2022/07/19 v2.9.1 sjtubeamer inner theme]
+\ProvidesPackage{beamerinnerthemesjtubeamer}[2022/07/28 v2.9.2 sjtubeamer inner theme]
 \RequirePackage{sjtuvi}
 \RequirePackage{tcolorbox}
 \DefineOption{inner}{cover}{maxplus}
@@ -266,7 +266,6 @@
     }
   }{}
   \@ifpackageloaded{pgfplotstable}{%
-    \RequirePackage{array}
     \RequirePackage{colortbl}
     \RequirePackage{booktabs}
     \def\zapcolorreset{\let\reset@color\relax\ignorespaces}

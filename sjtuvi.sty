@@ -18,7 +18,7 @@
 %% see https://vi.sjtu.edu.cn/index.php/articles/bulletin/16.
 %% ------------------------------------------------------------------------
 \NeedsTeXFormat{LaTeX2e}
-\ProvidesPackage{sjtuvi}[2022/07/19 v2.9.1 Visual Identity System library for sjtubeamer]
+\ProvidesPackage{sjtuvi}[2022/07/28 v2.9.2 Visual Identity System library for sjtubeamer]
 \def\DefineOption#1#2#3{%
   % #1: package
   % #2: key
@@ -49,6 +49,7 @@
 \definecolor{sjtuBluePrimary}{RGB}{0,64,152}         %problue
 \definecolor{sjtuBlueSecondary}{RGB}{51,141,39}      %lightgreen
 \definecolor{sjtuBlueTertiary}{RGB}{0,81,78}         %lightgray
+\RequirePackage{array}
 \newcommand{\definelogo}[4][vi]{
   % #1: folder
   % #2: file from #1 folder
@@ -104,7 +105,7 @@
           \vfill%
           \hbox{%
             \noindent%
-            \fontsize{7.5pt}{0pt}\selectfont\mdseries\scshape%
+            \fontsize{7pt}{0pt}\selectfont\mdseries\scshape%
             \begin{tabular}{@{}l<{\vphantom{\vrule depth2pt}}@{}}
               #2
             \end{tabular}%
@@ -116,14 +117,19 @@
         \ifx\mylogo\@empty\else%
           {\hskip0.23cm\vrule width0.5pt}\hskip0.23cm%
         \fi%
-        \vbox{%
-          \fontsize{13pt}{0pt}\selectfont
-          \mdseries\sffamily #2
-          \par\noindent\vskip0.14em
-          \fontsize{5pt}{0pt}\selectfont
-          \scshape #1
-          \baselineskip 3.9pt
-          \par~
+        \vbox to 1cm{%
+          \vfill
+          \offinterlineskip
+          \hbox{%
+            \fontsize{13pt}{0pt}\selectfont%
+            \mdseries\sffamily #2%
+          }
+          \vskip0.08cm%
+          \hbox{%
+            \fontsize{5pt}{0pt}\selectfont%
+            \mdseries\scshape #1%
+          }
+          \vskip-\prevdepth\vskip0.14cm%
         }%
       \fi
     \fi

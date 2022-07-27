@@ -13,7 +13,7 @@
 % \iffalse
 %<*package>
 \NeedsTeXFormat{LaTeX2e}
-\ProvidesPackage{sjtucover}[2022/07/19 v2.9.1 cover library for sjtubeamer]
+\ProvidesPackage{sjtucover}[2022/07/28 v2.9.2 cover library for sjtubeamer]
 %</package>
 % \fi
 % \CheckSum{0}
@@ -245,10 +245,8 @@
 %   \verb"resizebox" is used to adapt to all size of logo into 1cm height one. And it is the same in outer theme to make a 0.7cm logo. 
 %   The institute is in \TeX{} code for typesetting. \verb"\beamer@shortinstitute" meta is used to avoid compressing on \verb"\par", while \verb"\insertinstitute" will force the input to spread on one signle line. The mode to use is depended on the \verb"language" option. Super small font could be made by \verb"fontsize".
 %   Here, we use the option from inner to get the language setting, if this package is used independently, only chinese mode is available.
-%   Set \verb"\hfuzz" to 130pt to avoid the overfull hbox warning.
 %    \begin{macrocode}
   \begin{beamercolorbox}[sep=8pt,#1]{empty}
-    \hfuzz=130pt%
     \usebeamercolor[fg]{palette primary}%
     \if\EqualOption{cover}{lang}{en}%
       \secondaryinstlogo{\beamer@shortinstitute}{\usebeamertemplate{logo}}
