@@ -231,7 +231,7 @@
 		"scope": "doctex,tex,latex",
 		"prefix": "\\secondaryinstlogo",
 		"body": "\\secondaryinstlogo[${1:}]{$2}{$3}",
-		"description": "Logo with secondary institute.\nThe first optional parameter is typically the English name for your institute. If it exists, will be typesetted below the main name.\nThe macro is defined as a ``star'' form which means you could pass a parameter that has linebreak \\\\ but NOT \\par.\nThe second mandantory parameter is the main name for your institute.\nThe third parameter is the logo of the left side, you could leave it as empty but mandantory.\nBy default, this combination will occupy the whole row.\n"
+		"description": "Logo with secondary institute.\nThe first optional parameter is typically the English name for your institute. If it exists, will be typesetted below the main name. SHOULD BE NO \\\\.\nThe second mandantory parameter is the main name for your institute. when the optional paramter is empty, you COULD USE \\\\ as linebreaks. BUT NOT \\par.\nThe third parameter is the logo of the left side, you could leave it as empty but mandantory.\nBy default, this combination will occupy the whole row.\n"
 	},
 	"stamptext": {
 		"scope": "doctex,tex,latex",

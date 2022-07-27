@@ -171,9 +171,8 @@
 %
 %  \begin{macro}{\secondaryinstlogo}
 %  Logo with secondary institute.
-%  The first optional parameter is typically the English name for your institute. If it exists, will be typesetted below the main name.
-%  The macro is defined as a ``star'' form which means you could pass a parameter that has linebreak \verb"\\" but NOT \verb"\par".
-%  The second mandantory parameter is the main name for your institute.
+%  The first optional parameter is typically the English name for your institute. If it exists, will be typesetted below the main name. SHOULD BE NO \verb"\\".
+%  The second mandantory parameter is the main name for your institute. when the optional paramter is empty, you COULD USE \verb"\\" as linebreaks. BUT NOT \verb"\par".
 %  The third parameter is the logo of the left side, you could leave it as empty but mandantory.
 %  By default, this combination will occupy the whole row.
 %    \begin{macrocode}
@@ -279,7 +278,9 @@
   }
 }
 %    \end{macrocode}
-%  NOTE: For the optional parameter, \verb"\insertshortinsititute" in beamer class will first call \verb"\beamer@setupshort" to locally redefine \verb"\\" to empty, then the inserted text will not contain the breaklines. To insert the version with the breaklines, \verb"\beamer@shortinstitute" should be used.
+%  NOTE: The macro is defined as a ``star'' form which means you could pass a parameter that has linebreak \verb"\\" but NOT \verb"\par".
+%  For the optional parameter, \verb"\insertshortinsititute" in beamer class will first call \verb"\beamer@setupshort" to locally redefine \verb"\\" to empty, then the inserted text will not contain the breaklines. To insert the version with the breaklines, \verb"\beamer@shortinstitute" should be used.
+%  And if you insert a picture as the secondary institute as the main parameter, resize it to a 0.95cm height one for vertical alignment. i.e., \verb"\resizebox{!}{0.95cm}{<pic>}".
 %  \end{macro}
 %
 % \subsubsection{Shape Declarations}
