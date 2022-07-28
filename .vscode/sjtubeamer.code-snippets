@@ -86,7 +86,7 @@
 	"codeblockinput": {
 		"scope": "doctex,tex,latex",
 		"prefix": "\\codeblockinput",
-		"body": "\\codeblockinput[${1:}]{$2}{$3}{$4}",
+		"body": "\\codeblockinput[${1:}]{$2}{$3}",
 		"description": "Code block environment for external file input. The same style like codeblock.\nThe first optional parameter is passed to listing.\nThe second required parameter receives the title to make.\nThe third required paramter receives the file to typeset.\nADVANCED TIP: For longer typeset, use lstinputlisting command directly and remove the frame environment around the code input for occupying cross the pages. No numbering is preset so you need to set the number manually for this basic command.\n"
 	},
 	"sjtubeamer@outer@nav": {
@@ -231,7 +231,7 @@
 		"scope": "doctex,tex,latex",
 		"prefix": "\\secondaryinstlogo",
 		"body": "\\secondaryinstlogo[${1:}]{$2}{$3}",
-		"description": "Logo with secondary institute.\nThe first optional parameter is typically the English name for your institute. If it exists, will be typesetted below the main name.\nThe macro is defined as a ``star'' form which means you could pass a parameter that has linebreak \\\\.\nThe second mandantory parameter is the main name for your institute.\nThe third parameter is the logo of the left side, you could leave it as empty but mandantory.\nBy default, this combination will occupy the whole row.\n"
+		"description": "Logo with secondary institute.\nThe first optional parameter is typically the English name for your institute. If it exists (Chinese style), will be typesetted below the main name. THERE SHOULD BE NO \\\\.\nThe second mandantory parameter is the main name for your institute. when the optional paramter is empty (English style), YOU COULD USE \\\\ as linebreaks. BUT NO \\par is allowed.\nThe third parameter is the logo on the left side, you could leave it as empty but it is mandantory.\nWhen it is in English style (no optional parameter), you could use a secondary logo picture as your institute, but remember to resize the height to 0.95cm.\n"
 	},
 	"stamptext": {
 		"scope": "doctex,tex,latex",

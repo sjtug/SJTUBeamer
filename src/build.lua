@@ -228,7 +228,9 @@ function gen_snippets()
                     end
                     if captured == 3 then   -- close the environment
                         macro_body = macro_body .. "\\n\\t$" .. comm_param + 1 .. "\\n\\\\end{" .. in_macro .. "}\\n"
-                    elseif string.find(comm_decl, "command") == nil then -- it is a definition method from 3rd party package, which often requires an applying region.
+                    elseif string.find(comm_decl, "command") == nil and string.find(comm_decl, "input") == nil then
+                        -- it is a definition method from 3rd party package, which often requires an applying region.
+                        -- except for \newtcbinputlisting
                         macro_body = macro_body .. "{$" .. comm_param + 1 .. "}"
                     end
                 -- Find begin macrocode environment, see Coding Style 3.3.2

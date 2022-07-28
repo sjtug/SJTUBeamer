@@ -529,15 +529,15 @@ fontupper=\sffamily,colupper=white}
 
 \themename{} 内置了一些徽标可供更换$^*$。
 
-\faInfoCircle{} 徽标与相关元素版权归上海交通大学所有，仅供学习交流使用。
+\section{校徽}
 
 \begin{tcbitemize}[raster rows=2, raster columns=3, raster every box/.style={center title, valign=center, halign=center,fonttitle=\ttfamily,colback=white}]
   \tcbitem[raster multicolumn=2,blankest]
   \begin{tcbitemize}[raster columns=2]
     \tcbitem[title={\cmd{zhlogo}}]
-    \moveleft 0.3cm\hbox{\resizebox{!}{1cm}{\zhlogo}}
+    \hbox{\resizebox{!}{1cm}{\zhlogo}}
     \tcbitem[title={\cmd{enlogo}}]
-    \moveleft 0.3cm\hbox{\resizebox{!}{1cm}{\enlogo}}
+    \hbox{\resizebox{!}{1cm}{\enlogo}}
     \tcbitem[title={\cmd{sjtubadge}},height=3.5cm]
     \resizebox{!}{2cm}{\sjtubadge{}}
     \tcbitem[title={\cmd{dlogo}},height=3.5cm]
@@ -552,6 +552,23 @@ fontupper=\sffamily,colupper=white}
   \item 使用 \cmd{logo} 设定徽标。在主题处使用 \opt{topright} 或 \opt{bottomright} 选项强制指定徽标的位置为右上角（\opt{max} 默认）或左下角（\opt{maxplus} 和 \opt{min}）。
   \item 可以使用自定义的徽标，可以使用外部图片，或参见\href{run:sjtubeamerdevguide.pdf}{开发指南}第 3.4 节创造可变颜色徽标$^*$。后者可以采用可选参数改变颜色，比如 \cmd{zhlogo[cprimary]}。
 \end{commentlist}
+
+\section{二级机构组合}
+
+也可以使用中文样式、英文样式与图片样式的二级机构组合。
+
+\begin{tcbitemize}[raster rows=3, raster columns=1, raster every box/.style={center title, valign=center, halign=center,fonttitle=\ttfamily,colback=white}]
+  \tcbitem[title={\cmd{secondaryinstlogo[$\langle\textit{en}\rangle$]\{$\langle\textit{zh}\rangle$\}\{$\langle\textit{logo}\rangle$\}}}] \resizebox{!}{1cm}{\secondaryinstlogo[School of Electronic, Information and Electrical Engineering]{电子信息与电气工程学院}{\zhlogo{}}}
+  \tcbitem[title={\cmd{secondaryinstlogo\{$\langle\textit{en}\rangle$\}\{$\langle\textit{logo}\rangle$\}}}] \resizebox{!}{1cm}{\secondaryinstlogo{School of Electronic, \\ Information and Electrical Engineering}{\enlogo{}}}
+  \tcbitem[title={\cmd{secondaryinstlogo\{\cmd{resizebox}\{!\}\{0.95cm\}\{$\langle\textit{logo2}\rangle$\}\}\{$\langle\textit{logo}\rangle$\}}}] \resizebox{!}{1cm}{\secondaryinstlogo{\resizebox{!}{0.95cm}{\includegraphics{sjtug.pdf}}}{\sjtubadge{}}} 
+\end{tcbitemize}
+
+\begin{commentlist}
+  \item 只有在不含可选参数的情况下（英文样式），可以在主要机构名中使用 \textbackslash\textbackslash{} 对机构名进行换行。
+  \item 注意与 \cmd{institute} 设置上的区别，非必要情况下最好直接使用 \cmd{institute} 生成二级机构组合（比如 \opt{min} 样式的封面页）。
+\end{commentlist}
+
+\faInfoCircle{} 徽标与相关元素版权归上海交通大学所有，仅供学习交流使用。
 
 \chapter{头图}
 
@@ -634,9 +651,9 @@ fontupper=\sffamily,colupper=white}
 
 \begin{table}[h]
   \centering
-  \begin{tabular}{>{\sffamily}c>{\sffamily}c}
+  \begin{tabular}{>{\sffamily}c>{\sffamily}c>{\sffamily}c}
     \hline
-    tikz & tcolorbox \\
+    tikz & tcolorbox & array\\
     \hline
   \end{tabular}
 \end{table}
