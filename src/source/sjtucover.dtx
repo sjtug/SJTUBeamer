@@ -245,9 +245,11 @@
 %   \verb"resizebox" is used to adapt to all size of logo into 1cm height one. And it is the same in outer theme to make a 0.7cm logo. 
 %   The institute is in \TeX{} code for typesetting. \verb"\beamer@shortinstitute" meta is used to avoid compressing on \verb"\par", while \verb"\insertinstitute" will force the input to spread on one signle line. The mode to use is depended on the \verb"language" option. Super small font could be made by \verb"fontsize".
 %   NOTE: When you use the picture as the secondary institute, make sure it is the parameter that will be displayed. For \verb"zh" option, the optional parameter should leaved as empty explicitly, i.e., \verb"\institute[]{<pic>}", otherwise the shortinstitute will be the same as the main parameter. For \verb"en" option, the optional parameter should be the picture, i.e., \verb"\institute[<pic>]{}". The picture should be 0.95cm in height, as noted in \verb"\secondaryinstlogo" in \verb"sjtuvi".
+%   FIXME: since the logo has some tiny margin, the left alignment seems not so perfect. Hence a -0.6pt visual compensation is added to address the issue. This will be fixed in the future through a better clip and safe margin control on \verb"\definelogo".
 %    \begin{macrocode}
   \begin{beamercolorbox}[sep=8pt,#1]{empty}
     \usebeamercolor[fg]{palette primary}%
+    \hspace*{-0.6pt}%
     \if\EqualOption{cover}{lang}{en}%
       \secondaryinstlogo{\beamer@shortinstitute}{\usebeamertemplate{logo}}
     \else%
