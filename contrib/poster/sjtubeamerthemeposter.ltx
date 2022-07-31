@@ -55,10 +55,11 @@
           \if\EqualOption{poster}{sepinst}{true}
             \hfill
             \if\EqualOption{inner}{lang}{en}
-              \resizebox{!}{4cm}{\vphantom{-}\secondaryinstlogo{\csname beamer@shortinstitute\endcsname}{}}\hspace*{0.02\paperwidth}
+              \resizebox{!}{4cm}{\vphantom{-}\secondaryinstlogo{\csname beamer@shortinstitute\endcsname}{}}
             \else
-              \resizebox{!}{4cm}{\vphantom{-}\secondaryinstlogo[\insertshortinstitute]{\insertinstitute}{}}\hspace*{0.02\paperwidth}
+              \resizebox{!}{4cm}{\vphantom{-}\secondaryinstlogo[\insertshortinstitute]{\insertinstitute}{}}
             \fi
+            \hspace*{0.03\paperwidth}
           \else
             \begin{tikzpicture}[overlay]
               \if\EqualOption{poster}{landscape}{true}
@@ -77,4 +78,13 @@
       \end{columns}
     \end{beamercolorbox}
   }
+}
+% 设置底栏
+\setbeamercolor{footline}{parent=palette primary}
+\setbeamertemplate{footline}{%
+  \resizebox{\paperwidth}{!}{\sjtugate[cprimary]}\vskip-6cm\par
+    \begin{beamercolorbox}[wd=\paperwidth]{footline}
+      \small\vskip1.5ex\hspace*{0.02\paperwidth}\insertsection\hfill
+      \insertsubsection\hspace*{0.02\paperwidth}\vskip2.1ex
+    \end{beamercolorbox}
 }

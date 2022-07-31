@@ -1,12 +1,15 @@
 \documentclass{ctexbeamer}
 \usetheme{sjtubeamer}
-% \usesjtutheme[sepinst]{poster}
+\usesjtutheme[sepinst]{poster}
 % \usesjtutheme[landscape]{poster}
-\usesjtutheme{poster}
+% \usesjtutheme{poster}
+\usepackage{lua-visual-debug}
 \begin{document}
     \title{poster 子主题}
     \author{作者}
     \institute[Test Institute]{测试机构}
+    \section{左脚注}
+    \subsection{右脚注}
     \begin{frame}[fragile]
         \codeblockinput[firstnumber=3,firstline=3,lastline=3]{开始使用}{poster.tex}
         \texttt{sepinst} 选项用于指定是否将机构部分分离放置。
@@ -26,6 +29,5 @@
         \end{codeblock}
 
         \secondaryinstlogo{\resizebox{!}{0.95cm}{\enlogo}}{\sjtubadge}
-        
     \end{frame}
 \end{document}
