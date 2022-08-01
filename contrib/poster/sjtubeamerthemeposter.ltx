@@ -80,6 +80,7 @@
   }
 }
 % 设置底栏
+% TODO: hide when no section and subsection
 \setbeamercolor{footline}{parent=palette primary}
 \setbeamertemplate{footline}{%
   \resizebox{\paperwidth}{!}{\sjtugate[cprimary]}\vskip-6cm\par
@@ -87,4 +88,44 @@
       \small\vskip1.5ex\hspace*{0.02\paperwidth}\insertsection\hfill
       \insertsubsection\hspace*{0.02\paperwidth}\vskip2.1ex
     \end{beamercolorbox}
+}
+% 重置区块间隙
+\setbeamertemplate{block begin}{
+  \vskip.75ex
+  \begin{beamercolorbox}[colsep*=.75ex]{block title}%
+    \usebeamerfont*{block title}\insertblocktitle
+  \end{beamercolorbox}%
+  {\ifbeamercolorempty[bg]{block body}{}{\nointerlineskip\vskip-0.5pt}}%
+  \usebeamerfont{block body}%
+  \begin{beamercolorbox}[colsep*=.75ex,vmode]{block body}%
+    \ifbeamercolorempty[bg]{block body}{\vskip-.25ex}{\vskip-.75ex}\vbox{}%
+}
+\setbeamertemplate{block end}{
+  \end{beamercolorbox}
+}
+\setbeamertemplate{block alerted begin}{
+  \vskip.75ex
+  \begin{beamercolorbox}[colsep*=.75ex]{block title alerted}%
+    \usebeamerfont*{block title}\insertblocktitle
+  \end{beamercolorbox}%
+  {\ifbeamercolorempty[bg]{block body}{}{\nointerlineskip\vskip-0.5pt}}%
+  \usebeamerfont{block body}%
+  \begin{beamercolorbox}[colsep*=.75ex,vmode]{block body alerted}%
+    \ifbeamercolorempty[bg]{block body}{\vskip-.25ex}{\vskip-.75ex}\vbox{}%
+}
+\setbeamertemplate{block alerted end}{
+  \end{beamercolorbox}
+}
+\setbeamertemplate{block example begin}{
+  \vskip.75ex
+  \begin{beamercolorbox}[colsep*=.75ex]{block title example}%
+    \usebeamerfont*{block title}\insertblocktitle
+  \end{beamercolorbox}%
+  {\ifbeamercolorempty[bg]{block body}{}{\nointerlineskip\vskip-0.5pt}}%
+  \usebeamerfont{block body}%
+  \begin{beamercolorbox}[colsep*=.75ex,vmode]{block body example}%
+    \ifbeamercolorempty[bg]{block body}{\vskip-.25ex}{\vskip-.75ex}\vbox{}%
+}
+\setbeamertemplate{block example end}{
+  \end{beamercolorbox}
 }
