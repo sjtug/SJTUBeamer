@@ -249,18 +249,18 @@
 		"scope": "doctex,tex,latex",
 		"prefix": "stamp",
 		"body": "stamp",
-		"description": "Declare stamp pattern to make a stamp array.\n\nThe newest version of TikZ provides the interface to user-define a pattern. Obeying compatibility philosophy, use \\pgfkeyvalueof interface to get parameters in a standard way. The unit is first tested in a standalone file and previewed by TikZEdt.\n"
+		"description": "Declare stamp pattern to make a stamp array.\n"
 	},
 	"stamparray": {
 		"scope": "doctex,tex,latex",
 		"prefix": "\\stamparray",
 		"body": "\\stamparray{$1}{$2}{$3}",
-		"description": " Create the stamp array in the TikZ environment.\n\n Notice \\TeX{} is not good at handling parameters. Always remember to store it into a temporary variable. Register \\pgfmathresult will store the result of \\pgfmathparse.\n"
+		"description": " Create the stamp array in the TikZ environment.\n"
 	},
 	"stampline": {
 		"scope": "doctex,tex,latex",
 		"prefix": "stampline",
 		"body": "stampline",
-		"description": "Declare a decoration to make a loop stampline.\n\nNotice that auto corner on length is open to avoid spikes where the state hasn't meet final yet.\n"
+		"description": "Declare a decoration to make a loop stampline.\n"
 	},
 }
