@@ -172,11 +172,11 @@
 %  \begin{macro}{\secondaryinstlogo}
 %  Logo with secondary institute.
 %  The first optional parameter is typically the English name for your institute. If it exists (Chinese style), will be typesetted below the main name. THERE SHOULD BE NO \verb"\\".
-%  The second mandantory parameter is the main name for your institute. when the optional paramter is empty (English style), YOU COULD USE \verb"\\" as linebreaks. BUT NO \verb"\par" is allowed.
+%  The second mandantory parameter is the main name for your institute. when the optional paramter is empty (English style), YOU COULD USE \verb"\\" as linebreaks.
 %  The third parameter is the logo on the left side, you could leave it as empty but it is mandantory.
 %  When it is in English style (no optional parameter), you could use a secondary logo picture as your institute, but remember to resize the height to 0.95cm.
 %    \begin{macrocode}
-\newcommand*{\secondaryinstlogo}[3][]{%
+\newcommand{\secondaryinstlogo}[3][]{%
   % #1: shortinst (optional)
   % #2: longinst
   % #3: logo
@@ -280,8 +280,9 @@
   }%
 }
 %    \end{macrocode}
-%  NOTE: The macro is defined as a ``star'' form which means you could pass a parameter that has linebreak \verb"\\" but NOT \verb"\par".
+%  NOTE: This macro is not defined in ``star'' form, but the paramter could have linebreaks \verb"\\" but no \verb"\par". When another alternative --- could accept \verb"\par" --- comes up, the macro will be redefined in ``star'' form.
 %  For the optional parameter, \verb"\insertshortinsititute" in beamer class will first call \verb"\beamer@setupshort" to locally redefine \verb"\\" to empty, then the inserted text will not contain the breaklines. To insert the version with the breaklines, \verb"\beamer@shortinstitute" should be used.
+%  It is still recommended to use \verb"\institute" directly when it will lead to this combination logo. Since the form of paramter could be more unified in the optional paramter where you could always keep the breaklines \verb"\\". In this parameter, you could not keep breaklines \verb"\\" if you pass a optional parameter. Anything that violates the SJTU VI rule in this command will turn in an error.
 %  And if you insert a picture as the secondary institute as the main parameter, resize it to a 0.95cm height one for vertical alignment. i.e., \verb"\resizebox{!}{0.95cm}{<pic>}".
 %  \end{macro}
 %
