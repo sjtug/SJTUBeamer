@@ -5,29 +5,41 @@
 % \usesjtutheme{poster}
 \usepackage{lua-visual-debug}
 \begin{document}
-    \title{poster 子主题}
-    \author{作者}
-    \institute[Test Institute]{测试机构}
-    \section{左脚注}
-    \subsection{右脚注}
-    \begin{frame}[fragile]
-        \codeblockinput[firstnumber=3,firstline=3,lastline=3]{开始使用}{poster.tex}
-        \texttt{sepinst} 选项用于指定是否将机构部分分离放置。
-        \codeblockinput[firstnumber=7,firstline=7,lastline=7]{使用机构名称}{poster.tex}
-        在 \texttt{ctexbeamer} 文档类中，机构将采用中文样式，需要指定可选的机构英文全称。在 \texttt{beamer} 文档类中，将会直接使用可选参数的英文全称。如果需要使用图片作为机构名称，需要使用 0.95cm 高度的图标以居中显示，并放置在会被显示的参数上。
+  \title{poster 子主题}
+  \author{作者}
+  \institute[Test Institute]{测试机构}
+  \section{左脚注}
+  \subsection{右脚注}
+  \begin{frame}[fragile]
+    \begin{columns}
+      \begin{column}{0.45\textwidth}
+        \begin{block}{选项}
+          \texttt{poster} 子主题拥有一些选项。
+          \begin{description}
+            \item[\texttt{sepinst}] 分离徽标与机构于两侧
+            \item[\texttt{landscape}] 横向海报 
+          \end{description}
+        \end{block}
+        \begin{alertblock}{脚注}
+          使用 \texttt{\textbackslash{}section} 和 \texttt{\textbackslash{}subsection} 设定左脚注和右脚注。
+        \end{alertblock}
+        \begin{exampleblock}{区块}
+          仍然可以使用内置的 \texttt{block}, \texttt{alertblock}, \texttt{exampleblock} 插入对应的区块。
+        \end{exampleblock}
+      \end{column}
+      \begin{column}{0.45\textwidth}
         
-        \begin{codeblock}[]{中文组合徽标}
-% \documentclass{ctexbeamer}
-\institute[]{\resizebox{!}{0.95cm}{\zhlogo}}
-        \end{codeblock}
-
-        \secondaryinstlogo[]{\resizebox{!}{0.95cm}{\zhlogo}}{\sjtubadge}
+        \begin{stampblock}{印记区块}
+          使用 \texttt{stampblock} 环境插入带有印记图案的区块，编号会自动递增。
+        \end{stampblock}
         
-        \begin{codeblock}[]{英文组合徽标}
-% \documentclass{beamer}
-\institute[\resizebox{!}{0.95cm}{\enlogo}]{}
+        
+        \begin{codeblock}[escapechar=|]{代码块}
+% 应当减少代码块的使用，增加了标题栏的高度。
         \end{codeblock}
+        
 
-        \secondaryinstlogo{\resizebox{!}{0.95cm}{\enlogo}}{\sjtubadge}
-    \end{frame}
+      \end{column}
+    \end{columns}
+  \end{frame}
 \end{document}
