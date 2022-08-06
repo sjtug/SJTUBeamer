@@ -79,15 +79,30 @@
     \end{beamercolorbox}
   }
 }
-% 设置底栏
-% TODO: hide when no section and subsection
+% 新的命令 设置底栏 \footline[左脚注]{右脚注}
+\newif\ifposterfootline
+\def\posterrightfootline{}
+\def\posterleftfootline{}
+\providecommand{\footline}[2][]{
+  \def\posterleftfootline{#1}
+  \def\posterrightfootline{#2}
+}
+% 底栏为空时不会出现
 \setbeamercolor{footline}{parent=palette primary}
 \setbeamertemplate{footline}{%
   \resizebox{\paperwidth}{!}{\sjtugate[cprimary]}\vskip-6cm\par
+  \posterfootlinetrue
+  \ifx\posterleftfootline\relax
+    \ifx\posterrightfootline\relax
+      \posterfootlinefalse
+    \fi
+  \fi
+  \ifposterfootline
     \begin{beamercolorbox}[wd=\paperwidth]{footline}
-      \small\vskip1.5ex\hspace*{0.02\paperwidth}\insertsection\hfill
-      \insertsubsection\hspace*{0.02\paperwidth}\vskip3ex
+      \small\vskip1.5ex\hspace*{0.02\paperwidth}\posterleftfootline\hfill
+      \posterrightfootline\hspace*{0.02\paperwidth}\vskip3ex
     \end{beamercolorbox}
+  \fi
 }
 % 重置区块间隙
 \setbeamertemplate{block begin}{
