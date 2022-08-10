@@ -21,7 +21,7 @@
 %% limitations under the License.
 %% ------------------------------------------------------------------------
 \NeedsTeXFormat{LaTeX2e}
-\ProvidesPackage{beamerinnerthemesjtubeamer}[2022/07/28 v2.9.2 sjtubeamer inner theme]
+\ProvidesPackage{beamerinnerthemesjtubeamer}[2022/08/11 v2.9.3 sjtubeamer inner theme]
 \RequirePackage{sjtuvi}
 \RequirePackage{tcolorbox}
 \DefineOption{inner}{cover}{maxplus}
@@ -166,6 +166,23 @@
     decorate
   }
 }
+\newcounter{stampblockcnt}
+\newenvironment<>{stampblock}[2][]{%
+  \begin{actionenv}#3%
+    \def\stampnum{#1}%
+    \def\insertblocktitle{#2}%
+    \ifx\stampnum\@empty%
+      \stepcounter{stampblockcnt}%
+      \def\stampnum{\arabic{stampblockcnt}}%
+    \fi%
+    \begin{beamercolorbox}[wd=\textwidth]{empty}%
+      {\leavevmode\centering\noindent\bfseries\stamptext[structure]{\stampnum}\alert{\insertblocktitle}\par\vskip1ex}
+      {\usebeamercolor[fg]{structure}\hrule}
+      \vskip1ex
+  }
+  {\par%
+    \end{beamercolorbox}%
+  \end{actionenv}}
 \lstset{
   basicstyle=\ttfamily\small,
   keywordstyle=\color{cprimary},%

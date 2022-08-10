@@ -71,6 +71,12 @@
 		"body": "\n\\begin{stampbox}[${1:cprimary}]\n\t$2\n\\end{stampbox}\n",
 		"description": "Make a stampbox border, which is a decoration advice from SJTU VI. It has the dependency on stampline from sjtuvi package.\n"
 	},
+	"stampblock": {
+		"scope": "doctex,tex,latex",
+		"prefix": "\n\\begin{stampblock",
+		"body": "\n\\begin{stampblock}<$3>[${1:}]{$2}\n\t$3\n\\end{stampblock}\n",
+		"description": "Create a block with title decorated by the stamp shape with incremental numbering.\nA mandantory parameter is needed for the title.\nAn optional parameter is for the customized numbering.\nOverlay could be specified.\n"
+	},
 	"codeblock": {
 		"scope": "doctex,tex,latex",
 		"prefix": "\n\\begin{codeblock",
