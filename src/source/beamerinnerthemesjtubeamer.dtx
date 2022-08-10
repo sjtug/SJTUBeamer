@@ -427,6 +427,40 @@
 %    \end{macrocode}
 % \end{macro}
 %
+%  \begin{macro}{stampblock}
+%  Create a block with title decorated by the stamp shape with incremental numbering.
+%  A mandantory parameter is needed for the title.
+%  An optional parameter is for the customized numbering.
+%  Overlay could be specified.
+%    \begin{macrocode}
+\newcounter{stampblockcnt}
+%    \end{macrocode}
+%  A stampblockcnt counter is declared for global numbering for stampblock.
+%  The stampblock is similar to the block environment declaration without customizable beamer template.
+%    \begin{macrocode}
+\newenvironment<>{stampblock}[2][]{%
+  \begin{actionenv}#3%
+    \def\stampnum{#1}%
+    \def\insertblocktitle{#2}%
+%    \end{macrocode}
+%  If the optional paramter is empty, the counter will be stepped and shown.
+%    \begin{macrocode}
+    \ifx\stampnum\@empty%
+      \stepcounter{stampblockcnt}%
+      \def\stampnum{\arabic{stampblockcnt}}%
+    \fi%
+    \begin{beamercolorbox}[wd=\textwidth]{empty}%
+      {\leavevmode\centering\noindent\bfseries\stamptext[structure]{\stampnum}\alert{\insertblocktitle}\par\vskip1ex}
+      {\usebeamercolor[fg]{structure}\hrule}
+      \vskip1ex
+  }
+  {\par%
+    \end{beamercolorbox}%
+  \end{actionenv}}
+%    \end{macrocode}
+%  This macro is orginally prepared for poster. It is also useful for side-by-side comparision in one slide.
+%  \end{macro}
+%
 %   Declare the basic listings highlighter. \verb"columns" is set to \verb"flexible" to avoid ugly grid alignment. \verb"breaklines" is set to enable line wrapping.
 %    \begin{macrocode}
 \lstset{
