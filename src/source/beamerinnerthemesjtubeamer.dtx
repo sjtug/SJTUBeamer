@@ -449,16 +449,18 @@
       \stepcounter{stampblockcnt}%
       \def\stampnum{\arabic{stampblockcnt}}%
     \fi%
-    \begin{beamercolorbox}[wd=\textwidth]{empty}%
-      {\leavevmode\centering\noindent\bfseries\stamptext[structure]{\stampnum}\alert{\insertblocktitle}\par\vskip1ex}
-      {\usebeamercolor[fg]{structure}\hrule}
+    \par\vskip\medskipamount%
+    \begin{beamercolorbox}[colsep*=.75ex]{block body stamp}%
+      {\leavevmode\centering\hskip-2em\bfseries\stamptext[structure]{\stampnum}\alert{\insertblocktitle}\par\vskip1ex}
+      {\usebeamercolor[fg]{structure}\hrule\@height.4pt}
       \vskip1ex
   }
   {\par%
-    \end{beamercolorbox}%
+    \end{beamercolorbox}\vskip\smallskipamount%
   \end{actionenv}}
 %    \end{macrocode}
 %  This macro is orginally prepared for poster. It is also useful for side-by-side comparision in one slide.
+%  COPYRIGHT NOTICE: Reference to code from beamr class and beamerauxtheme.
 %  \end{macro}
 %
 %   Declare the basic listings highlighter. \verb"columns" is set to \verb"flexible" to avoid ugly grid alignment. \verb"breaklines" is set to enable line wrapping.
