@@ -341,15 +341,18 @@
 %   Define command for creating icon bib item: \verb"article", \verb"bookitem", \verb"onlineitem". These command indicates that the user will use \verb"\newblock" for seperating fields.
 %    \begin{macrocode}
     \newcommand{\articleitem}{%
-      \item[{\setbeamertemplate{bibliography item}[article]\usebeamertemplate{bibliography item}}]%
+      \item[{\setbeamertemplate{bibliography item}[article]%
+      \usebeamertemplate{bibliography item}}]%
       \newblock%
     }
     \newcommand{\bookitem}{%
-      \item[{\setbeamertemplate{bibliography item}[book]\usebeamertemplate{bibliography item}}]%
+      \item[{\setbeamertemplate{bibliography item}[book]%
+      \usebeamertemplate{bibliography item}}]%
       \newblock%
     }
     \newcommand{\onlineitem}{%
-      \item[{\setbeamertemplate{bibliography item}[online]\usebeamertemplate{bibliography item}}]%
+      \item[{\setbeamertemplate{bibliography item}[online]%
+      \usebeamertemplate{bibliography item}}]%
       \newblock%
     }
 %    \end{macrocode}
@@ -385,7 +388,9 @@
 %   For a general use and better control, use \verb"\colorbox{}{}" from \verb"xcolor" directly.
 %   Overlay option can be specified as well.
 %    \begin{macrocode}
-\newcommand<>{\highlight}[2][structure]{\only#3{\textcolor{white}{\colorbox{#1}{#2}}}}
+\newcommand<>{\highlight}[2][structure]{%
+  \only#3{%
+    \textcolor{white}{\colorbox{#1}{#2}}}}
 %    \end{macrocode}
 %   Since \verb"structure" is globally available, we can use it to set the background color without introducing first.
 %   We decided to use a dark background rather than the traditional light highlight marker like color, since the former one is better for presentation highlighting and the later one is more like the overlay effect in \verb"beamer".
@@ -436,12 +441,14 @@
 \newcounter{stampblockcnt}
 %    \end{macrocode}
 %  A stampblockcnt counter is declared for global numbering for stampblock.
-%  Next, declare the beamer template for the basic element. Notice that the visual compenstion is added for the title line to look centered.
+%  Next, declare the beamer template for the basic element. Notice that the visual compenstion is added for the title line to be looked centered.
 %    \begin{macrocode}
 \defbeamertemplate*{block stamp begin}{sjtubeamer}{
   \par\vskip\medskipamount%
   \begin{beamercolorbox}[colsep*=.75ex]{block body stamp}%
-    {\leavevmode\centering\hskip-2em\bfseries\stamptext[structure]{\insertstampnum}\alert{\insertblocktitle}\par\vskip1ex}
+    {\leavevmode\centering\hskip-2em\bfseries%
+    \stamptext[structure]{\insertstampnum}%
+    \alert{\insertblocktitle}\par\vskip1ex}
     {\usebeamercolor[fg]{structure}\hrule\@height.4pt}
     \vskip1ex
 }
@@ -455,6 +462,7 @@
 \setbeamertemplate{block stamp end}[sjtubeamer]
 %    \end{macrocode}
 %  The stampblock is similar to the block environment declaration.
+%  If the optional paramter is empty, the counter will be stepped and shown by default.
 %    \begin{macrocode}
 \newenvironment<>{stampblock}[2][%
   \stepcounter{stampblockcnt}%
@@ -465,9 +473,6 @@
 %    \begin{macrocode}
     \def\insertstampnum{#1}%
     \def\insertblocktitle{#2}%
-%    \end{macrocode}
-%  If the optional paramter is empty, the counter will be stepped and shown.
-%    \begin{macrocode}
     \usebeamertemplate{block stamp begin}}
   {\par%
     \usebeamertemplate{block stamp end}%
@@ -531,7 +536,11 @@
 %    It is useful for the codeblock environment with \verb"escapechar" option to insert the command for highlighting. For example, set the optional argument \verb"escapechar=|", and insert \verb"|\highlightline|" at the first position in the line you want to highlight.
 %    You could use overlay specification for this macro.
 %    \begin{macrocode}
-\newcommand<>{\highlightline}{\only#1{\rlap{\color{structure!25}\rule[-\dp\strutbox]{\linewidth}{\baselineskip}}}}
+\newcommand<>{\highlightline}{%
+  \only#1{%
+    \rlap{%
+      \color{structure!25}%
+      \rule[-\dp\strutbox]{\linewidth}{\baselineskip}}}}
 %    \end{macrocode}
 %    For better support in code environment, you should try out the \verb"highlightlines" in minted package, but performance drop is expected.
 % \end{macro}
