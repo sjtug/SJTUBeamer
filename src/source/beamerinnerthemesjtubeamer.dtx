@@ -436,27 +436,41 @@
 \newcounter{stampblockcnt}
 %    \end{macrocode}
 %  A stampblockcnt counter is declared for global numbering for stampblock.
-%  The stampblock is similar to the block environment declaration without customizable beamer template.
+%  Next, declare the beamer template for the basic element. Notice that the visual compenstion is added for the title line to look centered.
 %    \begin{macrocode}
-\newenvironment<>{stampblock}[2][]{%
+\defbeamertemplate*{block stamp begin}{sjtubeamer}{
+  \par\vskip\medskipamount%
+  \begin{beamercolorbox}[colsep*=.75ex]{block body stamp}%
+    {\leavevmode\centering\hskip-2em\bfseries\stamptext[structure]{\insertstampnum}\alert{\insertblocktitle}\par\vskip1ex}
+    {\usebeamercolor[fg]{structure}\hrule\@height.4pt}
+    \vskip1ex
+}
+\defbeamertemplate*{block stamp end}{sjtubeamer}{
+  \end{beamercolorbox}\vskip\smallskipamount%
+}
+%    \end{macrocode}
+%  Set the template to the defined ones.
+%    \begin{macrocode}
+\setbeamertemplate{block stamp begin}[sjtubeamer]
+\setbeamertemplate{block stamp end}[sjtubeamer]
+%    \end{macrocode}
+%  The stampblock is similar to the block environment declaration.
+%    \begin{macrocode}
+\newenvironment<>{stampblock}[2][%
+  \stepcounter{stampblockcnt}%
+  \arabic{stampblockcnt}]{%
   \begin{actionenv}#3%
-    \def\stampnum{#1}%
+%    \end{macrocode}
+%  Define \verb"\insertstampnum" just like \verb"\insertblocktitle" for passing the paramter.
+%    \begin{macrocode}
+    \def\insertstampnum{#1}%
     \def\insertblocktitle{#2}%
 %    \end{macrocode}
 %  If the optional paramter is empty, the counter will be stepped and shown.
 %    \begin{macrocode}
-    \ifx\stampnum\@empty%
-      \stepcounter{stampblockcnt}%
-      \def\stampnum{\arabic{stampblockcnt}}%
-    \fi%
-    \par\vskip\medskipamount%
-    \begin{beamercolorbox}[colsep*=.75ex]{block body stamp}%
-      {\leavevmode\centering\hskip-2em\bfseries\stamptext[structure]{\stampnum}\alert{\insertblocktitle}\par\vskip1ex}
-      {\usebeamercolor[fg]{structure}\hrule\@height.4pt}
-      \vskip1ex
-  }
+    \usebeamertemplate{block stamp begin}}
   {\par%
-    \end{beamercolorbox}\vskip\smallskipamount%
+    \usebeamertemplate{block stamp end}%
   \end{actionenv}}
 %    \end{macrocode}
 %  This macro is orginally prepared for poster. It is also useful for side-by-side comparision in one slide.
