@@ -305,3 +305,26 @@ function checkinit_hook()
 
     return 0
 end
+
+if options["target"] == "cache-demo" then
+    local tutorialdir = docfiledir .. "/tutorial"
+    print("Demo files in " .. tutorialdir .. " will be cached.")
+    print("Use l3build clean-demo to clean the cache. (" .. module ..")")
+    os.exit(0)
+end
+
+if options["target"] == "clean-demo" then
+    local tutorialdir = docfiledir .. "/tutorial"
+    print("Clean the cached demo in " .. tutorialdir .. ". (" .. module .. ")")
+    os.exit(0)
+end
+
+if options["target"] == "add-demo" then
+    if options["names"] == nil or #options["names"] > 1 then
+        print("Error: Please specify one and only one demo number. (" .. module .. ")")
+        os.exit(1)
+    end
+    local tutorialdir = docfiledir .. "/tutorial"
+    print("Add step" .. options["names"][1] .. ".tex to " .. tutorialdir .. ". (" .. module .. ")")
+    os.exit(0)
+end
