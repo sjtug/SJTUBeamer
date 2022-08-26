@@ -88,12 +88,6 @@ function compile_file(dir, cmd, filename)
     return errorlevel
 end
 
-
--- NOTICE: if you want to save the tourial step pdf,
---         please uncomment the following line.
-
-cachedemo        = true -- cache the demo
-
 -- Generate tutorial files before compiling the doc.
 function typeset_demo_tasks()
     local errorlevel = 0
@@ -101,7 +95,7 @@ function typeset_demo_tasks()
 
     print("============================================================")
     print("If you want to save the previous demo files")
-    print("Please modify the cachedemo variable in build.lua file.")
+    print("Use \"l3build cache-demo\" command (" .. module .. ")")
     print("============================================================")
     
     print("Compiling precompiled header...")
@@ -120,12 +114,6 @@ function typeset_demo_tasks()
         cp(file, unpackdir, tutorialdir)
     end
     local typesetcommand = typesetexe .. " " .. typesetopts   -- patch l3build
-    local cachedemo = cachedemo or false
-    if not cachedemo then
-        -- delete the cache
-        rm(tutorialdir, "step*.pdf")
-        rm(supportdir .. "/tutorial", "step*.pdf")
-    end
     for _, p in ipairs(filelist(tutorialdir, "step*.tex")) do
         local pdffilename = string.gsub(p,".tex",".pdf")
         if p == "step0.tex" then
@@ -150,7 +138,7 @@ function typeset_demo_tasks()
 
                     errorlevel = compile_file(tutorialdir, typesetcommand, cachedfilename)
                     if errorlevel ~= 0 then
-                        print(pdffilename .. " compilation failed.")
+                        print("!" .. pdffilename .. " compilation failed.")
                         return errorlevel
                     end
                     errorlevel = ren(tutorialdir, "tmp" .. pdffilename, pdffilename)
@@ -158,16 +146,12 @@ function typeset_demo_tasks()
                     -- fallback to standard compilation.
                     errorlevel = compile_file(tutorialdir, typesetcommand, p)
                     if errorlevel ~= 0 then
-                        print(pdffilename .. " compilation failed.")
+                        print("! " .. pdffilename .. " compilation failed.")
                         return errorlevel
                     end
                 end
-                if cachedemo then
-                    -- cache the demo
-                    cp(pdffilename, tutorialdir, supportdir .. "/tutorial")
-                end
             else
-                print(pdffilename .. " exists.")
+                print("Reuse: " .. pdffilename)
             end
         end
     end
