@@ -420,20 +420,9 @@ if options["target"] == "add-demo" then
 
         -- The new demo file will be created.
         local newdemofilename = "step" .. demonum .. ".tex"
-        local newdemofile = io.open(tutorialsuppdir .. "/" .. newdemofilename, "w")
-        newdemofile:write(
-            "\\documentclass{ctexbeamer}\n",
-            "\\usetheme[]{sjtubeamer}\n\n",
-            "% preamble...\n\n",
-            "\\begin{document}\n",
-            "\\begin{frame}\n\n",
-            "  % content ...\n\n",
-            "\\end{frame}\n",
-            "\\end{document}\n"
-        )
-        newdemofile:close()
-        print("Create: " .. newdemofilename)
-        print("Edit your new demo there.")
+        cp("step.template.tex", supportdir, tutorialsuppdir)
+        ren(tutorialsuppdir, "step.template.tex", newdemofilename)
+        print("Create: " .. newdemofilename .. ", Edit your new demo there.")
         print("You could rename the demo file for different compilation processes:")
         print("  +: add 1 more (xe)latex compilation;\n  -: add 1 more biber;\n  _: add 1 more bibtex")
 
