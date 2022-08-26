@@ -133,6 +133,8 @@ However, we could not offer you more about \LaTeX{} or \TeX{} programming aside 
     \end{verbatim}
 You could operate the package by the following command. The build script is set in \verb"build.lua".
 
+\subsubsection{Built-In Commands}\label{sec:builtincmd}
+
 \fcmd{l3build install} This command will install current version from \verb"source" to your \TeX{} distribution. Remember to update the \verb"l3build" to the latest version to avoid misbehaving. This command requires an argument \verb"--texmfhome" option to specify the install path, which could be obtained from Mik\TeX{} Console or the \verb"tlmgr". Then, refresh the database of filenames in your TeX{} distribution. This command is useful if you want this template to be globally available for all documents on your computer.
 
 \fcmd{l3build unpack} This command will unpack the source code and create a sandbox environment in \verb"build/local". You can create your own test file to test certain features here. It is the most common command for testing a certain feature.
@@ -150,9 +152,9 @@ This command will also move the generated style files to the root directory.
 % \begin{center}
 %     unpack $\rightarrow$ \verb"min.tex" $\rightarrow$ documentations
 % \end{center}
-Since the doc has a lot of dependencies (or unit tests), you can cache the demo files to \verb"support/tutorial" directory.
-Change the variable in \verb"build.lua": \verb"cachedemo=true" to cache the demo automatically, and remove the variable to clean the cached files.
-We highly recommend that using *nix to compile the doc.
+Since the doc has a lot of dependencies (or unit tests), you can cache the demo files to \verb"support/tutorial" directory. This could be done by the exclusive \verb"l3build cache-demo" in Section \ref{sec:exclcmd}.
+% Change the variable in \verb"build.lua": \verb"cachedemo=true" to cache the demo automatically, and remove the variable to clean the cached files.
+% We highly recommend that using *nix to compile the doc.
 
 \fcmd{l3build save color} If you make some modification to the framework (except \verb"sjtucover") and change the result. To save the current result as a reference, run this command and \verb"color" could be exchanged by any of the test units above.
 
@@ -166,6 +168,28 @@ More information about \verb"l3build", please refer to
 \begin{verbatim}
         texdoc l3build
     \end{verbatim}
+
+\subsubsection{Exclusive Commands}\label{sec:exclcmd}
+
+We add a couple of exclusive commands to \verb"l3build" for a better development experience. These commands are not available in other projects.
+
+\fcmd{l3build cache-demo} This could be used after \texttt{l3build doc} mentioned in Section \ref{sec:builtincmd} to cache the generated pdf files that starts with \verb"step". After this command, these pdf's will be copied to \verb"support/tutorial" directory and will be futher reused in the next epoch of \verb"l3build doc". To clean the cached demo pdf's, use \texttt{l3build clean-demo}.
+
+\fcmd{l3build clean-demo} This command will clean the pdf files cached by \texttt{l3build cache-demo}. It is also recommended to clean all the cached files before \texttt{l3build add-demo [demonum]}.
+
+\fcmd{l3build add-demo 20} This command will add a new demo file \texttt{step20.tex} in \texttt{support/tutorial} folder. If the new filename has been occupied, all the demo files with larger number will be renamed (the number will be incremented in an descending demo number order) to leave the place for the new file. Notably, the number in the user documentation \texttt{doc/sjtubeamer.tex} will also be changed. If the corresponding pdf's are cached, they will get deleted since they are outdated. You need to insert the description of the new demo in the user documentation later in an appropriate position.
+
+The file will be generated based on the template \verb"support/step.template.tex". You could change the demo filename to add compilation steps in the future \verb"l3build doc" generations. For example, \verb"step20+.tex" will add another \LaTeX{}\footnote{To decrease the time of compilation, the documentaion will be compiled in \hologo{pdfLaTeX} on Windows and \hologo{XeLaTeX} on Linux and MacOS. For more pre-compilation techniques that we used in \themename{}, see Section \ref*{sec:precompile}.} compilation round.
+
+\begin{table}[h]
+  \begin{tabular}{cl}
+    Symbol                  & Description                                                        \\
+    \verb"+" & add another \LaTeX{} round.                                        \\
+    \multicolumn{2}{c}{\small{\itshape (The following symbols need a premised \texttt{+})}}      \\
+    \verb"-" & add biber compilation before the next \LaTeX{} round.              \\
+    \verb"_" & add \textsc{Bib}\TeX{} compilation before the next \LaTeX{} round.
+  \end{tabular}
+\end{table}
 
 \subsection{Customize Generation}\label{sec:precompile}
 
