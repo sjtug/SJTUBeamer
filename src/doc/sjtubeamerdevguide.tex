@@ -238,8 +238,6 @@ For those who are familiar with \verb"makefile" system, the following command mi
   You could download \href{https://mirrors.sjtug.sjtu.edu.cn/ctan/support/latexindent.zip}{\ttfamily latexindent} and link the executable path \verb"latex-workshop.latexindent.path" in Visual Studio Code.
 \end{warn}
 
-\clearpage
-
 \section{Coding Style}
 
 This section gives a contribution code on coding style. Every contributor should follow this coding style if you want to make a pull request to this project. And following the coding style strictly will make the Doc\TeX{} compiler for Visual Studio Code snippets run properly.
@@ -438,6 +436,20 @@ Comment means that the ignored lines in the Doc\TeX{} source code.
 %    \begin{macrocode}
 ...
 %    \end{macrocode}\end{lstlisting}
+
+\subsubsection{An Example}
+
+Notably, the contents before the \emph{first} \verb"macrocode" environment in \verb"macro" environment will be treated as the description of this macro. When generating the Visual Studio Code snippets, the description will be shown. The searching on the command in \verb"macrocode" environments will decide the parameter number and the default parameter in the code snipptes as well. If you want to add some notes to this macro, add them before the end of the \verb"macro" environment. You could use multiple \verb"macrocode" environments in order to add comments between the code lines.
+
+\begin{lstlisting}[showspaces=true]
+%  \begin{macro}{\foobar}
+%  <Description of this macro>
+%    \begin{macrocode}
+<Macro code>
+%    \end{macrocode}
+%  <Some notes about this macro>
+%  \end{macro}
+\end{lstlisting}
 
 \section{Framework}\label{sec:framework}
 
