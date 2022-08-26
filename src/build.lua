@@ -359,6 +359,10 @@ if options["target"] == "add-demo" then
 
     -- The added demo number.
     local demonum = tonumber(options["names"][1])
+    if demonum == nil then
+        print("Error: \"" .. options["names"][1] .. "\" is not a valid number.")
+        os.exit(1)
+    end
 
     local function adddemo(demonum)
         local tutorialsuppdir = supportdir .. "/tutorial"
