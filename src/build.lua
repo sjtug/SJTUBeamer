@@ -6,7 +6,12 @@ sourcefiledir    = "source"
 sourcefiles      = {"*.ins","*.dtx","vi/"}
 installfiles     = {"*.sty","vi/"}
 
-docfiledir       = "doc"
+maindir          = "."
+docfiledir       = maindir .. "/doc"
+supportdir       = maindir .. "/support"
+
+builddir         = maindir .. "/build"
+typesetdir       = builddir .. "/doc"
 
 if os.type == "windows" then
     typesetexe       = "pdflatex"
@@ -87,7 +92,7 @@ end
 -- NOTICE: if you want to save the tourial step pdf,
 --         please uncomment the following line.
 
--- cachedemo        = true -- cache the demo
+cachedemo        = true -- cache the demo
 
 -- Generate tutorial files before compiling the doc.
 function typeset_demo_tasks()
@@ -306,25 +311,118 @@ function checkinit_hook()
     return 0
 end
 
+-- usage: l3build cache-demo
+-- description: cache the demo pdf files after l3build doc.
 if options["target"] == "cache-demo" then
-    local tutorialdir = docfiledir .. "/tutorial"
-    print("Demo files in " .. tutorialdir .. " will be cached.")
+    print("Use this command after l3build doc.")
     print("Use l3build clean-demo to clean the cache. (" .. module ..")")
+
+    local function cachedemo()
+        local tutorialdir = typesetdir .. "/tutorial"
+        local targetdir = supportdir .. "/tutorial"
+        print("Demo files in " .. tutorialdir .. " will be cached to " .. targetdir)
+        local cachedcnt = 0
+        local totalcnt = 0
+        for _, p in ipairs(filelist(tutorialdir, "step*.tex")) do
+            local pdffilename = string.gsub(p,".tex",".pdf")
+            totalcnt = totalcnt + 1
+            if fileexists(tutorialdir .. "/" .. pdffilename) then
+                cp(pdffilename, tutorialdir, targetdir)
+                print("Cached: " .. pdffilename)
+                cachedcnt = cachedcnt + 1
+            else
+                print("NO: " .. pdffilename)
+            end
+        end
+        print("Cached/Total: " .. cachedcnt .. "/" .. totalcnt)
+    end
+
+    cachedemo()
     os.exit(0)
 end
 
+-- usage: l3build clean-demo
+-- description: clean the cached demo pdf files from l3build cache-demo.
 if options["target"] == "clean-demo" then
-    local tutorialdir = docfiledir .. "/tutorial"
-    print("Clean the cached demo in " .. tutorialdir .. ". (" .. module .. ")")
+
+    local function cleandemo()
+        local tutorialdir = typesetdir .. "/tutorial"
+        print("Clean the cached demo in " .. tutorialdir .. ". (" .. module .. ")")
+        local cleancnt = 0
+        for _, p in ipairs(filelist(tutorialdir, "step*.pdf")) do
+            rm(tutorialdir, p)
+            rm(supportdir .. "/tutorial", p)
+            cleancnt = cleancnt + 1
+            print("Clean: " .. p)
+        end
+        print("Clean: " .. cleancnt)
+    end
+
+    cleandemo()
     os.exit(0)
 end
 
+-- usage: l3build add-demo [demonum]
+-- description: add step[demonum].tex to the tutorial directory.
 if options["target"] == "add-demo" then
     if options["names"] == nil or #options["names"] > 1 then
         print("Error: Please specify one and only one demo number. (" .. module .. ")")
         os.exit(1)
     end
-    local tutorialdir = docfiledir .. "/tutorial"
-    print("Add step" .. options["names"][1] .. ".tex to " .. tutorialdir .. ". (" .. module .. ")")
+
+    local demonum = tonumber(options["names"][1])
+
+    local function adddemo(demonum)
+        local tutorialsuppdir = supportdir .. "/tutorial"
+        print("Add step" .. options["names"][1] .. ".tex to " .. tutorialsuppdir .. ". (" .. module .. ")")
+
+        local actionlist = {}
+        local renflag = false
+
+        for _, p in ipairs(filelist(tutorialsuppdir, "step*.tex")) do
+            curdemonum = tonumber(string.sub(p, 5, -5))
+            if curdemonum ~= nil then   -- exclude something like "step2tb.tex"
+                if curdemonum >= demonum then
+                    table.insert(actionlist, curdemonum)
+                end
+                if curdemonum == demonum then
+                    renflag = true
+                end
+            end
+        end
+
+        if renflag then
+            table.sort(actionlist, function(i,j)
+                return i > j
+            end)
+            for _, num in ipairs(actionlist) do
+                local oldcachepdf = "step" .. num .. ".pdf"
+                if fileexists(tutorialsuppdir .. "/" .. oldcachepdf) then
+                    rm(tutorialsuppdir, oldcachepdf)
+                    print(oldcachepdf .. " cache is deleted.")
+                end
+                ren(tutorialsuppdir, "step" .. num .. ".tex", "step" .. num + 1 .. ".tex")
+                -- TODO: modify the number in sjtubeamer.tex
+
+                print("step" .. num .. " -> " .. "step" .. num + 1)
+            end
+        end
+
+        local newdemofilename = "step" .. demonum .. ".tex"
+        local newdemofile = io.open(tutorialsuppdir .. "/" .. newdemofilename, "w")
+        newdemofile:write(
+            "\\documentclass{ctexbeamer}\n",
+            "\\usetheme{sjtubeamer}\n\n",
+            "% preamble...\n\n",
+            "\\begin{document}\n\n",
+            "  % content ...\n\n",
+            "\\end{document}\n"
+        )
+        newdemofile:close()
+        print(newdemofilename .. " is created. Edit your new demo there.")
+
+    end
+
+    adddemo(demonum)
     os.exit(0)
 end
