@@ -402,9 +402,19 @@ if options["target"] == "add-demo" then
                     print(oldcachepdf .. " cache is deleted.")
                 end
                 ren(tutorialsuppdir, "step" .. num .. ".tex", "step" .. num + 1 .. ".tex")
-                -- TODO: modify the number in sjtubeamer.tex
+                
+                -- modify the number in sjtubeamer.tex
+                local usrdoc = docfiledir .. "/sjtubeamer.tex"
+                local usrdocfile = io.open(usrdoc, 'r')
+                local usrdoccontent = usrdocfile:read("a")
+                usrdocfile:close()
+                local cnt
+                usrdoccontent, cnt = string.gsub(usrdoccontent, "step" .. num, "step" .. num + 1)
+                local usrdocfile = io.open(usrdoc, "w+")
+                usrdocfile:write(usrdoccontent)
+                usrdocfile:close()
 
-                print("step" .. num .. " -> " .. "step" .. num + 1)
+                print("step" .. num .. " -> " .. "step" .. num + 1 .. " Doc replaced: " .. cnt)
             end
         end
 
