@@ -422,7 +422,7 @@ if options["target"] == "add-demo" then
         local newdemofilename = "step" .. demonum .. ".tex"
         cp("step.template.tex", supportdir, tutorialsuppdir)
         ren(tutorialsuppdir, "step.template.tex", newdemofilename)
-        print("Create: " .. newdemofilename .. ", Edit your new demo there.")
+        print("Create: " .. tutorialsuppdir .. "/" .. newdemofilename .. ", Edit your new demo there.")
         print("You could rename the demo file for different compilation processes:")
         print("  +: add 1 more (xe)latex compilation;\n  -: add 1 more biber;\n  _: add 1 more bibtex")
 
