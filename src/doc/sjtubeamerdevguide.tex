@@ -179,7 +179,7 @@ We add a couple of exclusive commands to \verb"l3build" for a better development
 
 \fcmd{l3build add-demo 20} This command will add a new demo file \texttt{step20.tex} in \texttt{support/tutorial} folder. If the new filename has been occupied, all the demo files with larger number will be renamed (the number will be incremented in an descending demo number order) to leave the place for the new file. Notably, the number in the user documentation \texttt{doc/sjtubeamer.tex} will also be changed. If the corresponding pdf's are cached, they will get deleted since they are outdated. You need to insert the description of the new demo in the user documentation later in an appropriate position.
 
-The file will be generated based on the template \verb"support/step.template.tex". You could change the demo filename to add compilation steps in the future \verb"l3build doc" generations. For example, \verb"step20+.tex" will add another \LaTeX{}\footnote{To decrease the time of compilation, the documentaion will be compiled in \hologo{pdfLaTeX} on Windows and \hologo{XeLaTeX} on Linux and MacOS. For more pre-compilation techniques that we used in \themename{}, see Section \ref*{sec:precompile}.} compilation round.
+The file will be generated based on the template \verb"support/step.template.tex". You could change the demo filename to add compilation steps in the future \verb"l3build doc" generations. For example, \verb"step20+.tex" will add another \LaTeX{}\footnote{To decrease the time of compilation, the documentaion will be compiled in \hologo{pdfLaTeX} on Windows and \hologo{XeLaTeX} on Linux and MacOS. For more pre-compilation techniques that we used in \themename{}, see Section \ref{sec:precompilation}.} compilation round.
 
 \begin{table}[h]
   \begin{tabular}{cl}
@@ -699,7 +699,7 @@ For compatibility issues, you need to define the \verb"\sjtubeamer@compatible" v
   Test       & $\surd$ & $\surd$ & $\surd$ & $\surd$ & $\circ$ & $\circ$ & $\circ$ & $\circ$ &      \\
 \end{tabular}
 
-\subsection{Pre-Compilation}
+\subsection{Pre-Compilation}\label{sec:precompilation}
 
 \themename\ is relatively a large project for developers. To boost up the compilation on 20+ unit tests, we introduced \texttt{mylatexformat} to cache the precompiled common header. However, this method comes with compatibility issues in that it only supports old packages \emph{without} using \texttt{fontspec} to load OpenType fonts.
 
