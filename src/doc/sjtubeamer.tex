@@ -115,7 +115,7 @@ fontupper=\sffamily,colupper=white}
         left=0pt,right=0pt,top=0pt,bottom=0pt,boxsep=0pt,boxrule=0.6pt,
         toptitle=1mm,bottomtitle=1mm,drop lifted shadow,center title,
         graphics pages={#1}]
-        \tcbincludepdf{tutorial/#3.pdf}
+        \tcbincludepdf{tutorial/#3}
     \end{tcbraster}
 }{}
 
@@ -189,7 +189,7 @@ fontupper=\sffamily,colupper=white}
 
 下面的代码可以用于测试 \themename{} 是否可以正常使用。
 
-\beamerdemo[1]{step1}
+\beamerdemo[1]{step1.tex}
 
 
 \begin{commentlist}
@@ -209,13 +209,13 @@ fontupper=\sffamily,colupper=white}
 
 \noindent{\ttfamily\hfil\hspace*{-.5cm} + maxplus \hfil\hfil\hspace*{-.5cm}  + max \hfil\hfil + min \hfil}\par
 \vspace*{-.2cm}
-\begin{beamerdemoraster}[1,3,5,2,4,6]{red}{step2tb}
+\begin{beamerdemoraster}[1,3,5,2,4,6]{red}{step2tb.pdf}
 \end{beamerdemoraster}
 
-\begin{beamerdemoraster}[1,2,3]{blue}{step2bd}\marginpar{\ttfamily\raisebox{1.8cm}{+ blue}}\marginpar{\ttfamily\raisebox{-1.8cm}{+ light}}
+\begin{beamerdemoraster}[1,2,3]{blue}{step2bd.pdf}\marginpar{\ttfamily\raisebox{1.8cm}{+ blue}}\marginpar{\ttfamily\raisebox{-1.8cm}{+ light}}
 \end{beamerdemoraster}
 \vspace*{-.2cm}
-\begin{beamerdemoraster}[1,2,3]{blue}{step2bl}
+\begin{beamerdemoraster}[1,2,3]{blue}{step2bl.pdf}
 \end{beamerdemoraster}
 
 \clearpage
@@ -229,29 +229,29 @@ fontupper=\sffamily,colupper=white}
     bottom=0pt,boxsep=0pt,boxrule=0.6pt,
     toptitle=1mm,bottomtitle=1mm,drop lifted shadow,
     center title,fonttitle=\ttfamily]
-  {tutorial/step2#1.pdf}
+  {tutorial/#1}
 }
 \begin{tcbitemize}[raster columns=3, raster equal height,
     left=0pt,right=0pt,top=0pt,
     bottom=0pt,boxsep=0pt,boxrule=0pt]
-  \tcbitem \myincludepdf{miniframes}
-  \tcbitem \myincludepdf{default}
-  \tcbitem \myincludepdf{infolines}
-  \tcbitem \myincludepdf{smoothbars}
-  \tcbitem \myincludepdf{sidebar}
-  \tcbitem \myincludepdf{split}
-  \tcbitem \myincludepdf{shadow}
-  \tcbitem \myincludepdf{tree}
-  \tcbitem \myincludepdf{smoothtree}
+  \tcbitem \myincludepdf{step2miniframes.pdf}
+  \tcbitem \myincludepdf{step2default.pdf}
+  \tcbitem \myincludepdf{step2infolines.pdf}
+  \tcbitem \myincludepdf{step2smoothbars.pdf}
+  \tcbitem \myincludepdf{step2sidebar.pdf}
+  \tcbitem \myincludepdf{step2split.pdf}
+  \tcbitem \myincludepdf{step2shadow.pdf}
+  \tcbitem \myincludepdf{step2tree.pdf}
+  \tcbitem \myincludepdf{step2smoothtree.pdf}
 \end{tcbitemize}
 
-\beamerdemo[1]{step2}
+\beamerdemo[1]{step2.tex}
 
 \chapter{草稿}
 
 在确定版式后，下一步就要输入文字填入内容了。由于 \LaTeX{} 的编译速度较慢，在打草稿的时候，我们推荐开启 \cls{beamer} 文档类的 \opt{draft} 模式，只关注于内容。在这种模式下，图片都不会被载入，而是使用一个占位符代替。
 
-\beamerdemo[1]{step3}
+\beamerdemo[1]{step3.tex}
 
 \begin{commentlist}
   \item 使用 \env{columns} 环境分栏，也可以采用 \pkg{multicol} 宏包提供的 \env{multicols} 环境。后者还兼容 \cls{article} 文档类。
@@ -262,13 +262,13 @@ fontupper=\sffamily,colupper=white}
 
 当然，如果演示文稿的内容过长的话，推荐分成许多个文件编写。最后通过一个主文件拼接起来。如果暂时想专心编写某一部分的内容，可以直接注释掉其他部分的入口。
 
-\beamerdemo[1]{step4}
+\beamerdemo[1]{step4.tex}
 
 \chapter{封面}
 
 当内容完成之后，就可以制作封面和封底了。在此之前需要先填写该文档的元数据信息：标题、副标题、作者、组织、日期。
 
-\beamerdemo[1,2]{step5}
+\beamerdemo[1,2]{step5.tex}
 
 \begin{commentlist}
   \item 在载入模板时选择 \opt{maxplus}, \opt{max}, \opt{min} 以使用不同的标题页结尾页模板。
@@ -292,7 +292,7 @@ fontupper=\sffamily,colupper=white}
 
 而新式的方法是使用 \themename{} 优化后的节次页。现在节次页也会随主题的不同而有不同的样式。节次页的编号支持在加载主题之后使用 \cmd{ctexset} 来更改格式，详见 \href{https://mirrors.sjtug.sjtu.edu.cn/CTAN/language/chinese/ctex/ctex.pdf#7}{\CTeX{} 宏集手册}。
 
-\begin{beamerdemoraster}[1,2,3]{red}{step7s}
+\begin{beamerdemoraster}[1,2,3]{red}{step7s.pdf}
 \end{beamerdemoraster}
 
 \beamerdemo[4]{step7+.tex}

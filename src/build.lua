@@ -6,7 +6,12 @@ sourcefiledir    = "source"
 sourcefiles      = {"*.ins","*.dtx","vi/"}
 installfiles     = {"*.sty","vi/"}
 
-docfiledir       = "doc"
+maindir          = "."
+docfiledir       = maindir .. "/doc"
+supportdir       = maindir .. "/support"
+
+builddir         = maindir .. "/build"
+typesetdir       = builddir .. "/doc"
 
 if os.type == "windows" then
     typesetexe       = "pdflatex"
@@ -83,12 +88,6 @@ function compile_file(dir, cmd, filename)
     return errorlevel
 end
 
-
--- NOTICE: if you want to save the tourial step pdf,
---         please uncomment the following line.
-
--- cachedemo        = true -- cache the demo
-
 -- Generate tutorial files before compiling the doc.
 function typeset_demo_tasks()
     local errorlevel = 0
@@ -96,7 +95,7 @@ function typeset_demo_tasks()
 
     print("============================================================")
     print("If you want to save the previous demo files")
-    print("Please modify the cachedemo variable in build.lua file.")
+    print("Use \"l3build cache-demo\" command (" .. module .. ")")
     print("============================================================")
     
     print("Compiling precompiled header...")
@@ -115,12 +114,6 @@ function typeset_demo_tasks()
         cp(file, unpackdir, tutorialdir)
     end
     local typesetcommand = typesetexe .. " " .. typesetopts   -- patch l3build
-    local cachedemo = cachedemo or false
-    if not cachedemo then
-        -- delete the cache
-        rm(tutorialdir, "step*.pdf")
-        rm(supportdir .. "/tutorial", "step*.pdf")
-    end
     for _, p in ipairs(filelist(tutorialdir, "step*.tex")) do
         local pdffilename = string.gsub(p,".tex",".pdf")
         if p == "step0.tex" then
@@ -145,7 +138,7 @@ function typeset_demo_tasks()
 
                     errorlevel = compile_file(tutorialdir, typesetcommand, cachedfilename)
                     if errorlevel ~= 0 then
-                        print(pdffilename .. " compilation failed.")
+                        print("!" .. pdffilename .. " compilation failed.")
                         return errorlevel
                     end
                     errorlevel = ren(tutorialdir, "tmp" .. pdffilename, pdffilename)
@@ -153,16 +146,12 @@ function typeset_demo_tasks()
                     -- fallback to standard compilation.
                     errorlevel = compile_file(tutorialdir, typesetcommand, p)
                     if errorlevel ~= 0 then
-                        print(pdffilename .. " compilation failed.")
+                        print("! " .. pdffilename .. " compilation failed.")
                         return errorlevel
                     end
                 end
-                if cachedemo then
-                    -- cache the demo
-                    cp(pdffilename, tutorialdir, supportdir .. "/tutorial")
-                end
             else
-                print(pdffilename .. " exists.")
+                print("Reuse: " .. pdffilename)
             end
         end
     end
@@ -304,4 +293,145 @@ function checkinit_hook()
     end
 
     return 0
+end
+
+-- usage: l3build cache-demo
+-- description: cache the demo pdf files after l3build doc.
+if options["target"] == "cache-demo" then
+    print("Use this command after l3build doc.")
+    print("Use l3build clean-demo to clean the cache. (" .. module ..")")
+
+    local function cachedemo()
+        local tutorialdir = typesetdir .. "/tutorial"
+        local targetdir = supportdir .. "/tutorial"
+        print("Demo files in " .. tutorialdir .. " will be cached to " .. targetdir)
+        local cachedcnt = 0
+        local totalcnt = 0
+        -- Cache the pdf corresponding to the tex file
+        for _, p in ipairs(filelist(tutorialdir, "step*.tex")) do
+            local pdffilename = string.gsub(p,".tex",".pdf")
+            totalcnt = totalcnt + 1
+            if fileexists(tutorialdir .. "/" .. pdffilename) then
+                -- Move the pdf to the support dir
+                cp(pdffilename, tutorialdir, targetdir)
+                print("Cached: " .. pdffilename)
+                cachedcnt = cachedcnt + 1
+            else
+                print("NO: " .. pdffilename)
+            end
+        end
+        print("Cached/Total: " .. cachedcnt .. "/" .. totalcnt)
+    end
+
+    cachedemo()
+    os.exit(0)
+end
+
+-- usage: l3build clean-demo
+-- description: clean the cached demo pdf files from l3build cache-demo.
+if options["target"] == "clean-demo" then
+
+    local function cleandemo()
+        local tutorialdir = typesetdir .. "/tutorial"
+        print("Clean the cached demo in " .. tutorialdir .. ". (" .. module .. ")")
+        local cleancnt = 0
+        for _, p in ipairs(filelist(tutorialdir, "step*.pdf")) do
+            -- Remove the pdf in the build dir and the support dir.
+            rm(tutorialdir, p)
+            rm(supportdir .. "/tutorial", p)
+            cleancnt = cleancnt + 1
+            print("Clean: " .. p)
+        end
+        print("Clean: " .. cleancnt)
+    end
+
+    cleandemo()
+    os.exit(0)
+end
+
+-- usage: l3build add-demo [demonum]
+-- description: add step[demonum].tex to the tutorial directory.
+if options["target"] == "add-demo" then
+    if options["names"] == nil or #options["names"] > 1 then
+        print("Error: Please specify one and only one demo number. (" .. module .. ")")
+        os.exit(1)
+    end
+
+    -- The added demo number.
+    local demonum = tonumber(options["names"][1])
+    if demonum == nil then
+        print("Error: \"" .. options["names"][1] .. "\" is not a valid number.")
+        os.exit(1)
+    end
+
+    local function adddemo(demonum)
+        local tutorialsuppdir = supportdir .. "/tutorial"
+        print("Add step" .. options["names"][1] .. ".tex to " .. tutorialsuppdir .. ". (" .. module .. ")")
+
+        -- Record the demo number which is not less than the added number
+        local actionlist = {}
+        local renflag = false
+        for _, p in ipairs(filelist(tutorialsuppdir, "step*.tex")) do
+            local curdemoid = string.sub(p, 5, -5)
+            local curdemonum = tonumber(string.gmatch(curdemoid, "%d+")())
+            if curdemonum ~= nil then   -- exclude something like "stepalgo.tex"
+                if curdemonum >= demonum then
+                    table.insert(actionlist, {curdemonum, curdemoid})
+                end
+                if curdemonum == demonum then
+                    renflag = true
+                end
+            end
+        end
+
+        -- If the target added demo file exists,
+        -- The demo with larger demo number will be renamed in an descending order. Like a "refactor" action.
+        if renflag then
+            table.sort(actionlist, function(i,j)
+                if i[1] > j[1] then
+                    return true
+                end
+                if i[1] == j[1] then
+                   return #i[2] > #j[2] -- the longer one should be first replaced.
+                end
+                return false
+            end)
+            for _, num in ipairs(actionlist) do
+                local oldid = num[2]
+                local num = num[1]
+                local oldcachepdf = "step" .. oldid .. ".pdf"
+                if fileexists(tutorialsuppdir .. "/" .. oldcachepdf) then
+                    rm(tutorialsuppdir, oldcachepdf)
+                    print(oldcachepdf .. " cache is deleted.")
+                end
+                local newid = string.gsub(oldid, num, num + 1)
+                ren(tutorialsuppdir, "step" .. oldid .. ".tex", "step" .. newid .. ".tex")
+                
+                -- modify the number in sjtubeamer.tex
+                local usrdoc = docfiledir .. "/sjtubeamer.tex"
+                local usrdocfile = io.open(usrdoc, 'r')
+                local usrdoccontent = usrdocfile:read("a")
+                usrdocfile:close()
+                local cnt
+                usrdoccontent, cnt = string.gsub(usrdoccontent, "step" .. string.gsub(string.gsub(oldid,"%+","%%+"),"%-","%%-") .. "%.", "step" .. newid .. ".") -- avoid the magical character insertion
+                local usrdocfile = io.open(usrdoc, "w+")
+                usrdocfile:write(usrdoccontent)
+                usrdocfile:close()
+
+                print("step" .. oldid .. " -> " .. "step" .. newid .. " Doc replaced: " .. cnt)
+            end
+        end
+
+        -- The new demo file will be created.
+        local newdemofilename = "step" .. demonum .. ".tex"
+        cp("step.template.tex", supportdir, tutorialsuppdir)
+        ren(tutorialsuppdir, "step.template.tex", newdemofilename)
+        print("Create: " .. tutorialsuppdir .. "/" .. newdemofilename .. ", Edit your new demo there.")
+        print("You could rename the demo file for different compilation processes:")
+        print("  +: add 1 more (xe)latex compilation;\n  -: add 1 more biber;\n  _: add 1 more bibtex")
+
+    end
+
+    adddemo(demonum)
+    os.exit(0)
 end
