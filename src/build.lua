@@ -307,10 +307,12 @@ if options["target"] == "cache-demo" then
         print("Demo files in " .. tutorialdir .. " will be cached to " .. targetdir)
         local cachedcnt = 0
         local totalcnt = 0
+        -- Cache the pdf corresponding to the tex file
         for _, p in ipairs(filelist(tutorialdir, "step*.tex")) do
             local pdffilename = string.gsub(p,".tex",".pdf")
             totalcnt = totalcnt + 1
             if fileexists(tutorialdir .. "/" .. pdffilename) then
+                -- Move the pdf to the support dir
                 cp(pdffilename, tutorialdir, targetdir)
                 print("Cached: " .. pdffilename)
                 cachedcnt = cachedcnt + 1
@@ -334,6 +336,7 @@ if options["target"] == "clean-demo" then
         print("Clean the cached demo in " .. tutorialdir .. ". (" .. module .. ")")
         local cleancnt = 0
         for _, p in ipairs(filelist(tutorialdir, "step*.pdf")) do
+            -- Remove the pdf in the build dir and the support dir.
             rm(tutorialdir, p)
             rm(supportdir .. "/tutorial", p)
             cleancnt = cleancnt + 1
@@ -354,20 +357,22 @@ if options["target"] == "add-demo" then
         os.exit(1)
     end
 
+    -- The added demo number.
     local demonum = tonumber(options["names"][1])
 
     local function adddemo(demonum)
         local tutorialsuppdir = supportdir .. "/tutorial"
         print("Add step" .. options["names"][1] .. ".tex to " .. tutorialsuppdir .. ". (" .. module .. ")")
 
+        -- Record the demo number which is not less than the added number
         local actionlist = {}
         local renflag = false
-
         for _, p in ipairs(filelist(tutorialsuppdir, "step*.tex")) do
-            curdemonum = tonumber(string.sub(p, 5, -5))
-            if curdemonum ~= nil then   -- exclude something like "step2tb.tex"
+            local curdemoid = string.sub(p, 5, -5)
+            local curdemonum = tonumber(string.gmatch(curdemoid, "%d+")())
+            if curdemonum ~= nil then   -- exclude something like "stepalgo.tex"
                 if curdemonum >= demonum then
-                    table.insert(actionlist, curdemonum)
+                    table.insert(actionlist, {curdemonum, curdemoid})
                 end
                 if curdemonum == demonum then
                     renflag = true
@@ -375,17 +380,28 @@ if options["target"] == "add-demo" then
             end
         end
 
+        -- If the target added demo file exists,
+        -- The demo with larger demo number will be renamed in an descending order. Like a "refactor" action.
         if renflag then
             table.sort(actionlist, function(i,j)
-                return i > j
+                if i[1] > j[1] then
+                    return true
+                end
+                if i[1] == j[1] then
+                   return #i[2] > #j[2] -- the longer one should be first replaced.
+                end
+                return false
             end)
             for _, num in ipairs(actionlist) do
-                local oldcachepdf = "step" .. num .. ".pdf"
+                local oldid = num[2]
+                local num = num[1]
+                local oldcachepdf = "step" .. oldid .. ".pdf"
                 if fileexists(tutorialsuppdir .. "/" .. oldcachepdf) then
                     rm(tutorialsuppdir, oldcachepdf)
                     print(oldcachepdf .. " cache is deleted.")
                 end
-                ren(tutorialsuppdir, "step" .. num .. ".tex", "step" .. num + 1 .. ".tex")
+                local newid = string.gsub(oldid, num, num + 1)
+                ren(tutorialsuppdir, "step" .. oldid .. ".tex", "step" .. newid .. ".tex")
                 
                 -- modify the number in sjtubeamer.tex
                 local usrdoc = docfiledir .. "/sjtubeamer.tex"
@@ -393,27 +409,33 @@ if options["target"] == "add-demo" then
                 local usrdoccontent = usrdocfile:read("a")
                 usrdocfile:close()
                 local cnt
-                usrdoccontent, cnt = string.gsub(usrdoccontent, "step" .. num, "step" .. num + 1)
+                usrdoccontent, cnt = string.gsub(usrdoccontent, "step" .. string.gsub(string.gsub(oldid,"%+","%%+"),"%-","%%-") .. "%.", "step" .. newid .. ".") -- avoid the magical character insertion
                 local usrdocfile = io.open(usrdoc, "w+")
                 usrdocfile:write(usrdoccontent)
                 usrdocfile:close()
 
-                print("step" .. num .. " -> " .. "step" .. num + 1 .. " Doc replaced: " .. cnt)
+                print("step" .. oldid .. " -> " .. "step" .. newid .. " Doc replaced: " .. cnt)
             end
         end
 
+        -- The new demo file will be created.
         local newdemofilename = "step" .. demonum .. ".tex"
         local newdemofile = io.open(tutorialsuppdir .. "/" .. newdemofilename, "w")
         newdemofile:write(
             "\\documentclass{ctexbeamer}\n",
-            "\\usetheme{sjtubeamer}\n\n",
+            "\\usetheme[]{sjtubeamer}\n\n",
             "% preamble...\n\n",
-            "\\begin{document}\n\n",
+            "\\begin{document}\n",
+            "\\begin{frame}\n\n",
             "  % content ...\n\n",
+            "\\end{frame}\n",
             "\\end{document}\n"
         )
         newdemofile:close()
-        print(newdemofilename .. " is created. Edit your new demo there.")
+        print("Create: " .. newdemofilename)
+        print("Edit your new demo there.")
+        print("You could rename the demo file for different compilation processes:")
+        print("  +: add 1 more (xe)latex compilation;\n  -: add 1 more biber;\n  _: add 1 more bibtex")
 
     end
 
