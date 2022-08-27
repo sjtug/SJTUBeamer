@@ -21,7 +21,7 @@
 %% limitations under the License.
 %% ------------------------------------------------------------------------
 \NeedsTeXFormat{LaTeX2e}
-\ProvidesPackage{beamerinnerthemesjtubeamer}[2022/08/11 v2.9.3 sjtubeamer inner theme]
+\ProvidesPackage{beamerinnerthemesjtubeamer}[2022/08/27 v2.9.3 sjtubeamer inner theme]
 \RequirePackage{sjtuvi}
 \RequirePackage{tcolorbox}
 \DefineOption{inner}{cover}{maxplus}
@@ -129,15 +129,18 @@
     \def\item{\def\newblock{\beamer@newblock}\olditem}
     \setbeamertemplate{bibliography item}[text]
     \newcommand{\articleitem}{%
-      \item[{\setbeamertemplate{bibliography item}[article]\usebeamertemplate{bibliography item}}]%
+      \item[{\setbeamertemplate{bibliography item}[article]%
+      \usebeamertemplate{bibliography item}}]%
       \newblock%
     }
     \newcommand{\bookitem}{%
-      \item[{\setbeamertemplate{bibliography item}[book]\usebeamertemplate{bibliography item}}]%
+      \item[{\setbeamertemplate{bibliography item}[book]%
+      \usebeamertemplate{bibliography item}}]%
       \newblock%
     }
     \newcommand{\onlineitem}{%
-      \item[{\setbeamertemplate{bibliography item}[online]\usebeamertemplate{bibliography item}}]%
+      \item[{\setbeamertemplate{bibliography item}[online]%
+      \usebeamertemplate{bibliography item}}]%
       \newblock%
     }
 }{
@@ -146,7 +149,9 @@
 \if\EqualOption{inner}{cover}{min}\else
   \setbeamertemplate{blocks}[rounded]
 \fi
-\newcommand<>{\highlight}[2][structure]{\only#3{\textcolor{white}{\colorbox{#1}{#2}}}}
+\newcommand<>{\highlight}[2][structure]{%
+  \only#3{%
+    \textcolor{white}{\colorbox{#1}{#2}}}}
 \providecommand{\paragraph}[1]{\textcolor{white}{\colorbox{structure}{#1}}\space}
 \newtcolorbox{stampbox}[1][cprimary]{%
   capture=hbox,
@@ -167,21 +172,29 @@
   }
 }
 \newcounter{stampblockcnt}
-\newenvironment<>{stampblock}[2][]{%
+\defbeamertemplate*{block stamp begin}{sjtubeamer}{
+  \par\vskip\medskipamount%
+  \begin{beamercolorbox}[colsep*=.75ex]{block body stamp}%
+    {\leavevmode\centering\hskip-2em\bfseries%
+    \stamptext[structure]{\insertstampnum}%
+    \alert{\insertblocktitle}\par\vskip1ex}
+    {\usebeamercolor[fg]{structure}\hrule\@height.4pt}
+    \vskip1ex
+}
+\defbeamertemplate*{block stamp end}{sjtubeamer}{
+  \end{beamercolorbox}\vskip\smallskipamount%
+}
+\setbeamertemplate{block stamp begin}[sjtubeamer]
+\setbeamertemplate{block stamp end}[sjtubeamer]
+\newenvironment<>{stampblock}[2][%
+  \stepcounter{stampblockcnt}%
+  \arabic{stampblockcnt}]{%
   \begin{actionenv}#3%
-    \def\stampnum{#1}%
+    \def\insertstampnum{#1}%
     \def\insertblocktitle{#2}%
-    \ifx\stampnum\@empty%
-      \stepcounter{stampblockcnt}%
-      \def\stampnum{\arabic{stampblockcnt}}%
-    \fi%
-    \begin{beamercolorbox}[wd=\textwidth]{empty}%
-      {\leavevmode\centering\noindent\bfseries\stamptext[structure]{\stampnum}\alert{\insertblocktitle}\par\vskip1ex}
-      {\usebeamercolor[fg]{structure}\hrule}
-      \vskip1ex
-  }
+    \usebeamertemplate{block stamp begin}}
   {\par%
-    \end{beamercolorbox}%
+    \usebeamertemplate{block stamp end}%
   \end{actionenv}}
 \lstset{
   basicstyle=\ttfamily\small,
@@ -219,7 +232,11 @@
     \end{tcbclipinterior}
   }
 }
-\newcommand<>{\highlightline}{\only#1{\rlap{\color{structure!25}\rule[-\dp\strutbox]{\linewidth}{\baselineskip}}}}
+\newcommand<>{\highlightline}{%
+  \only#1{%
+    \rlap{%
+      \color{structure!25}%
+      \rule[-\dp\strutbox]{\linewidth}{\baselineskip}}}}
 \newtcbinputlisting{\codeblockinput}[3][]{
   listing only,
   listing engine=listings,
