@@ -1,8 +1,8 @@
 \documentclass{ctexbeamer}
 \usetheme[red]{sjtubeamer}
-% \usesjtutheme[sepinst]{poster}
+\usesjtutheme[sepinst]{poster}
 % \usesjtutheme[landscape]{poster}
-\usesjtutheme{poster}
+% \usesjtutheme{poster}
 \usepackage{lua-visual-debug}
 \begin{document}
   \title{poster 子主题}
@@ -37,8 +37,17 @@
         \begin{codeblock}[escapechar=|]{代码块}
 % 应当减少代码块的使用，增加了标题栏的高度。
         \end{codeblock}
-        
 
+        \begin{columns}[b]
+          \begin{column}{.5\textwidth}
+            \begin{stampbox}
+              \includegraphics[width=16cm]{sjtuphoto.jpg}
+            \end{stampbox}
+          \end{column}
+          \begin{column}{.5\textwidth}
+            $\leftarrow$ 你仍然可以使用 \texttt{stampbox} 环境插入带边框的图片\vspace{1ex}
+          \end{column}
+        \end{columns}
       \end{column}
     \end{columns}
   \end{frame}
