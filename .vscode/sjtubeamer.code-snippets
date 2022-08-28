@@ -71,6 +71,12 @@
 		"body": "\n\\begin{stampbox}[${1:cprimary}]\n\t$2\n\\end{stampbox}\n",
 		"description": "Make a stampbox border, which is a decoration advice from SJTU VI. It has the dependency on stampline from sjtuvi package.\n"
 	},
+	"stampblock": {
+		"scope": "doctex,tex,latex",
+		"prefix": "\n\\begin{stampblock",
+		"body": "\n\\begin{stampblock}<$3>[${1:}]{$2}\n\t$3\n\\end{stampblock}\n",
+		"description": "Create a block with title decorated by the stamp shape with incremental numbering.\nA mandantory parameter is needed for the title.\nAn optional parameter is for the customized numbering.\nOverlay could be specified.\n"
+	},
 	"codeblock": {
 		"scope": "doctex,tex,latex",
 		"prefix": "\n\\begin{codeblock",
@@ -231,7 +237,7 @@
 		"scope": "doctex,tex,latex",
 		"prefix": "\\secondaryinstlogo",
 		"body": "\\secondaryinstlogo[${1:}]{$2}{$3}",
-		"description": "Logo with secondary institute.\nThe first optional parameter is typically the English name for your institute. If it exists (Chinese style), will be typesetted below the main name. THERE SHOULD BE NO \\\\.\nThe second mandantory parameter is the main name for your institute. when the optional paramter is empty (English style), YOU COULD USE \\\\ as linebreaks. BUT NO \\par is allowed.\nThe third parameter is the logo on the left side, you could leave it as empty but it is mandantory.\nWhen it is in English style (no optional parameter), you could use a secondary logo picture as your institute, but remember to resize the height to 0.95cm.\n"
+		"description": "Logo with secondary institute.\nThe first optional parameter is typically the English name for your institute. If it exists (Chinese style), will be typesetted below the main name. THERE SHOULD BE NO \\\\.\nThe second mandantory parameter is the main name for your institute. when the optional paramter is empty (English style), YOU COULD USE \\\\ as linebreaks.\nThe third parameter is the logo on the left side, you could leave it as empty but it is mandantory.\nWhen it is in English style (no optional parameter), you could use a secondary logo picture as your institute, but remember to resize the height to 0.95cm.\n"
 	},
 	"stamptext": {
 		"scope": "doctex,tex,latex",
@@ -249,18 +255,18 @@
 		"scope": "doctex,tex,latex",
 		"prefix": "stamp",
 		"body": "stamp",
-		"description": "Declare stamp pattern to make a stamp array.\n\nThe newest version of TikZ provides the interface to user-define a pattern. Obeying compatibility philosophy, use \\pgfkeyvalueof interface to get parameters in a standard way. The unit is first tested in a standalone file and previewed by TikZEdt.\n"
+		"description": "Declare stamp pattern to make a stamp array.\n"
 	},
 	"stamparray": {
 		"scope": "doctex,tex,latex",
 		"prefix": "\\stamparray",
 		"body": "\\stamparray{$1}{$2}{$3}",
-		"description": " Create the stamp array in the TikZ environment.\n\n Notice \\TeX{} is not good at handling parameters. Always remember to store it into a temporary variable. Register \\pgfmathresult will store the result of \\pgfmathparse.\n"
+		"description": " Create the stamp array in the TikZ environment.\n"
 	},
 	"stampline": {
 		"scope": "doctex,tex,latex",
 		"prefix": "stampline",
 		"body": "stampline",
-		"description": "Declare a decoration to make a loop stampline.\n\nNotice that auto corner on length is open to avoid spikes where the state hasn't meet final yet.\n"
+		"description": "Declare a decoration to make a loop stampline.\n"
 	},
 }

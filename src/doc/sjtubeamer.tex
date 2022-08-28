@@ -407,13 +407,21 @@ fontupper=\sffamily,colupper=white}
   \item \env{stampbox} 环境可以产生印记边框盒子$^*$，可以丰富视觉效果与统一视觉形象。可接受一个可选参数如 \opt{[sjtuBluePrimary]} 产生其他颜色的边框。
 \end{commentlist}
 
+\themename{} 也提供了印记区块环境。
+
+\beamerdemo[1]{step13.tex}
+
+\begin{commentlist}
+  \item \env{stampblock} 用于生成印记区块环境，可以通过可选参数指定编号内容，可选参数缺省时为递增编号。该环境可以与 \env{columns} 配合使用，顶端对齐两列对比两种内容。必要时也可以添加覆盖参数，例如 \verb"<1>"。
+\end{commentlist}
+
 \chapter{代码}
 
 \section{代码抄录}
 
 \themename{} 提供了代码抄录的区块环境。
 
-\beamerdemo[1]{step13.tex}
+\beamerdemo[1]{step14.tex}
 
 \begin{commentlist}
   \item \env{codeblock} 提供了带行号的代码抄录环境$^*$，第一个可选参数可以用于设置语言与其他抄录选项，第二个必选参数可以设置代码块的标题。
@@ -449,7 +457,7 @@ fontupper=\sffamily,colupper=white}
 
 \faApple{} \faLinux{} 如果使用的是 \hologo{XeLaTeX} 编译，可以使用 \pkg{biblatex} 宏包，对于中文引用可以使用 \opt{gb7714-2015} 样式，并采用 \textsc{Biber} 进行引用处理。
 
-\beamerdemo[1]{step14+-.tex}
+\beamerdemo[1]{step15+-.tex}
 
 \begin{commentlist}
   \item 使用 \cmd{footnote} 可以添加脚注。
@@ -461,7 +469,7 @@ fontupper=\sffamily,colupper=white}
 
 \faWindows 如果使用的是 \hologo{pdfLaTeX} 编译，需要使用 \pkg{gbt7714} 宏包，并采用老式的 \textsc{Bib\TeX{}} 进行引用处理。
 
-\beamerdemo[2]{step15+_.tex}
+\beamerdemo[2]{step16+_.tex}
 
 \begin{commentlist}
   \item 对帧使用 \verb"allowframebreaks" 参数可以对过长的内容自动换页。
@@ -472,7 +480,7 @@ fontupper=\sffamily,colupper=white}
 
 为了避免使用额外的文献数据库文件，可以手动输入文献列表。
 
-\beamerdemo[1]{step16+-.tex}
+\beamerdemo[1]{step17+-.tex}
 
 \begin{commentlist}
   \item \LaTeX{} 本身提供了 \env{thebibliography} 环境，环境的强制参数用于指定排版最长的标签（这里是两位数占位符），配套 \cmd{bibitem[标签]\{主键\}}，在 \cls{beamer} 中需要辅以 \cmd{newblock} 来分隔作者、文章标题、书目与其他内容。这里的主键可以在正文中引用。
@@ -489,7 +497,7 @@ fontupper=\sffamily,colupper=white}
 
 考虑到许多专业数据是直接存储在逗号分隔符（\texttt{.csv}）文件中的，便于数据内容的后续更改，用户可以采用 \pkg{pgfplotstable} 宏包从文件插入表格（中文表格需要使用 \hologo{XeLaTeX} 编译）。
 
-\beamerdemo[1]{step17.tex}
+\beamerdemo[1]{step18.tex}
 
 \begin{commentlist}
   \item 需要加载 \pkg{pgfplotstable} 宏包，表头变为主题色，采用三线表的样式。$^*$
@@ -500,7 +508,7 @@ fontupper=\sffamily,colupper=white}
 
 如果希望通过统计图更加直观地展示数据，可以使用 \pkg{pgfplots} 宏包插入统计图。
 
-\beamerdemo[1]{step18.tex}
+\beamerdemo[1]{step19.tex}
 
 \begin{commentlist}
   \item 需要加载 \pkg{pgfplots} 宏包，必要时额外加载 \pkg{pgfplotstable} 宏包以读取文件数据。可以使用 \href{https://logcreative.github.io/PGFPlotsEdt/}{PGFPlots 统计绘图编辑器} 生成上述代码。
@@ -510,7 +518,7 @@ fontupper=\sffamily,colupper=white}
 
 如果你需要使用较多的 Ti\emph{k}Z 和 \pkg{pgfplots} 插图，可以考虑启用图像缓存，当图像没有被更改时会采用上一次的编译产物。\themename{} 已经保护了一些不必要缓存的元素。
 
-\beamerdemo[1]{step19.tex}
+\beamerdemo[1]{step20.tex}
 
 \begin{commentlist}
   \item \themename{} 已经加载了 \verb"\usetikzlibrary{external}"。
@@ -546,7 +554,7 @@ fontupper=\sffamily,colupper=white}
   \tcbitem[title={\cmd{vlogo}}] \resizebox{!}{4.8cm}{\vlogo{}}
 \end{tcbitemize}
 
-\beamerdemo[1]{step20.tex}
+\beamerdemo[1]{step21.tex}
 
 \begin{commentlist}
   \item 使用 \cmd{logo} 设定徽标。在主题处使用 \opt{topright} 或 \opt{bottomright} 选项强制指定徽标的位置为右上角（\opt{max} 默认）或左下角（\opt{maxplus} 和 \opt{min}）。
@@ -574,7 +582,7 @@ fontupper=\sffamily,colupper=white}
 
 可以更改 \themename{} 封面中的头图。
 
-\beamerdemo[1]{step21.tex}
+\beamerdemo[1]{step22.tex}
 
 \begin{commentlist}
   \item 使用 \cmd{titlegraphic} 设定头图，需要在封面图输出前进行赋值。
@@ -586,7 +594,7 @@ fontupper=\sffamily,colupper=white}
 
 可以更改 \themename{} 的背景图。
 
-\beamerdemo[1]{step22.tex}
+\beamerdemo[1]{step23.tex}
 
 \begin{commentlist}
   \item \cmd{setbeamertemplate\{background\}\{\}} 可以设定背景图。如果设定为空，将会清除现在已经设定的背景图。请在主题加载完成后设定。
@@ -601,7 +609,7 @@ fontupper=\sffamily,colupper=white}
 
 上面的自定义配置可以全部写入一个样式文件中，以在加载主题后加载这个自定义样式文件。采用 \texttt{my} 选项可以从零开始打造这些配置。
 
-\beamerdemo[1]{step23.tex}
+\beamerdemo[1]{step24.tex}
 
 其中 \verb"\usepackage{my}" 即加载了同级目录下的 \verb"my.sty" 自定样式文件。
 

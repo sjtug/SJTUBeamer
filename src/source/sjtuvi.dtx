@@ -13,7 +13,7 @@
 % \iffalse
 %<*package>
 \NeedsTeXFormat{LaTeX2e}
-\ProvidesPackage{sjtuvi}[2022/07/28 v2.9.2 Visual Identity System library for sjtubeamer]
+\ProvidesPackage{sjtuvi}[2022/08/27 v2.9.3 Visual Identity System library for sjtubeamer]
 %</package>
 % \fi
 % \CheckSum{0}
@@ -172,11 +172,11 @@
 %  \begin{macro}{\secondaryinstlogo}
 %  Logo with secondary institute.
 %  The first optional parameter is typically the English name for your institute. If it exists (Chinese style), will be typesetted below the main name. THERE SHOULD BE NO \verb"\\".
-%  The second mandantory parameter is the main name for your institute. when the optional paramter is empty (English style), YOU COULD USE \verb"\\" as linebreaks. BUT NO \verb"\par" is allowed.
+%  The second mandantory parameter is the main name for your institute. when the optional paramter is empty (English style), YOU COULD USE \verb"\\" as linebreaks.
 %  The third parameter is the logo on the left side, you could leave it as empty but it is mandantory.
 %  When it is in English style (no optional parameter), you could use a secondary logo picture as your institute, but remember to resize the height to 0.95cm.
 %    \begin{macrocode}
-\newcommand*{\secondaryinstlogo}[3][]{%
+\newcommand{\secondaryinstlogo}[3][]{%
   % #1: shortinst (optional)
   % #2: longinst
   % #3: logo
@@ -275,13 +275,14 @@
 %    \begin{macrocode}
           \vskip-\prevdepth\vskip0.14cm%
         }%
-      \fi
-    \fi
-  }
+      \fi%
+    \fi%
+  }%
 }
 %    \end{macrocode}
-%  NOTE: The macro is defined as a ``star'' form which means you could pass a parameter that has linebreak \verb"\\" but NOT \verb"\par".
+%  NOTE: This macro is not defined in ``star'' form, but the paramter could have linebreaks \verb"\\" but no \verb"\par". When another alternative --- could accept \verb"\par" --- comes up, the macro will be redefined in ``star'' form.
 %  For the optional parameter, \verb"\insertshortinsititute" in beamer class will first call \verb"\beamer@setupshort" to locally redefine \verb"\\" to empty, then the inserted text will not contain the breaklines. To insert the version with the breaklines, \verb"\beamer@shortinstitute" should be used.
+%  It is still recommended to use \verb"\institute" directly when it will lead to this combination logo. Since the form of the paramter could be more unified in the optional paramter where you could always keep the breaklines \verb"\\". In this parameter, you could not keep breaklines \verb"\\" if you pass an optional parameter. i.e., anything that violates the SJTU VI rule in this command will turn into an error.
 %  And if you insert a picture as the secondary institute as the main parameter, resize it to a 0.95cm height one for vertical alignment. i.e., \verb"\resizebox{!}{0.95cm}{<pic>}".
 %  \end{macro}
 %
@@ -339,16 +340,14 @@
 %
 % \begin{macro}{\sjtubeamer@compatible}
 % For \TeX Live 2018 and even older, it is \emph{not} compatible to use the patterns.meta library for making user-defined patterns. And fading is not available for caching. Please consider \verb"\def\sjtubeamer@compatible{false}" to match the following condition checking. Remember to use \verb"\makeatletter" and \verb"\makeatother" in \LaTeX{}.
-% We didn't make it as an option since it will break the hierarchival structure of option definition. This is the bottom level of all style files, no advanced methods are provided in this layer.
 %    \begin{macrocode}
 \def\sjtubeamer@compatible@false{false}
 %    \end{macrocode}
+% We didn't make it as an option since it will break the hierarchival structure of option definition. This is the bottom level of all style files, no advanced methods are provided in this layer.
 % \end{macro}
 %
 % \begin{macro}{stamp}
 %	  Declare stamp pattern to make a stamp array.
-%
-%	  The newest version of TikZ provides the interface to user-define a pattern. Obeying compatibility philosophy, use \verb"\pgfkeyvalueof" interface to get parameters in a standard way. The unit is first tested in a standalone file and previewed by TikZEdt.
 %    \begin{macrocode}
 \ifx\sjtubeamer@compatible\sjtubeamer@compatible@false
 \else
@@ -400,13 +399,12 @@
   }
 \fi
 %    \end{macrocode}
-%    Avoid calling macros in code section for performance reasons.
+%   Avoid calling macros in code section for performance reasons.
+%	  The newest version of TikZ provides the interface to user-define a pattern. Obeying compatibility philosophy, use \verb"\pgfkeyvalueof" interface to get parameters in a standard way. The unit is first tested in a standalone file and previewed by TikZEdt.
 % \end{macro}
 %
 % \begin{macro}{\stamparray}
 % Create the stamp array in the TikZ environment.
-%
-% Notice \TeX{} is not good at handling parameters. Always remember to store it into a temporary variable. Register \verb"\pgfmathresult" will store the result of \verb"\pgfmathparse".
 %    \begin{macrocode}
 \ifx\sjtubeamer@compatible\sjtubeamer@compatible@false
   \providecommand{\stamparray}[3]{}
@@ -426,12 +424,11 @@
   }
 \fi
 %    \end{macrocode}
+% NOTICE: \TeX{} is not good at handling parameters. Always remember to store it into a temporary variable. Register \verb"\pgfmathresult" will store the result of \verb"\pgfmathparse".
 % \end{macro}
 %
 % \begin{macro}{stampline}
 %   Declare a decoration to make a loop stampline.
-%
-%   Notice that \verb"auto corner on length" is open to avoid spikes where the state hasn't meet \verb"final" yet.
 %    \begin{macrocode}
 \pgfdeclaredecoration{stampline}{initial}
 {
@@ -454,6 +451,7 @@
   }
 }
 %    \end{macrocode}
+% NOTICE: that \verb"auto corner on length" is open to avoid spikes where the state hasn't meet \verb"final" yet.
 % \end{macro}
 %
 %
