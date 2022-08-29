@@ -114,6 +114,9 @@
   \usebeamerfont{block body}%
   \begin{beamercolorbox}[colsep*=.75ex,vmode]{block body}%
     \ifbeamercolorempty[bg]{block body}{\vskip-.25ex}{\vskip-.75ex}\vbox{}%
+  \if\EqualOption{poster}{noindent}{true}\else%
+    \setlength{\parindent}{2em}%
+  \fi%
 }
 \setbeamertemplate{block end}{
   \end{beamercolorbox}
@@ -127,6 +130,9 @@
   \usebeamerfont{block body}%
   \begin{beamercolorbox}[colsep*=.75ex,vmode]{block body alerted}%
     \ifbeamercolorempty[bg]{block body}{\vskip-.25ex}{\vskip-.75ex}\vbox{}%
+  \if\EqualOption{poster}{noindent}{true}\else%
+    \setlength{\parindent}{2em}%
+  \fi%
 }
 \setbeamertemplate{block alerted end}{
   \end{beamercolorbox}
@@ -140,6 +146,9 @@
   \usebeamerfont{block body}%
   \begin{beamercolorbox}[colsep*=.75ex,vmode]{block body example}%
     \ifbeamercolorempty[bg]{block body}{\vskip-.25ex}{\vskip-.75ex}\vbox{}%
+  \if\EqualOption{poster}{noindent}{true}\else%
+    \setlength{\parindent}{2em}%
+  \fi%
 }
 \setbeamertemplate{block example end}{
   \end{beamercolorbox}
@@ -165,3 +174,17 @@
     decorate
   }
 }
+\if\EqualOption{poster}{noindent}{true}\else%
+  % 首行缩进
+  \setlength{\parindent}{2em}%
+  \setbeamertemplate{block stamp begin}{%
+  \par\vskip\medskipamount%
+  \begin{beamercolorbox}[colsep*=.75ex]{block body stamp}%
+    {\leavevmode\centering\hskip-2em\bfseries%
+    \stamptext[structure]{\insertstampnum}%
+    \alert{\insertblocktitle}\par\vskip1ex}%
+    {\usebeamercolor[fg]{structure}{\hrule height.4pt}}%
+    \vskip1ex%
+    \setlength{\parindent}{2em}%
+}
+\fi%
