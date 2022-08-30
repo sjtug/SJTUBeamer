@@ -177,6 +177,7 @@
 \if\EqualOption{poster}{noindent}{true}\else%
   % 首行缩进
   \setlength{\parindent}{2em}%
+  % 重定义 stampblock 的首行缩进
   \setbeamertemplate{block stamp begin}{%
   \par\vskip\medskipamount%
   \begin{beamercolorbox}[colsep*=.75ex]{block body stamp}%
@@ -188,3 +189,10 @@
     \setlength{\parindent}{2em}%
 }
 \fi%
+% 重设引用条目同名图标大小
+\pgfdeclareimage[height=24pt]{beamericonbook}{beamericonbook}
+\pgfdeclareimage[height=24pt]{beamericonbookshaded}{beamericonbook.20}
+\pgfdeclareimage[height=28pt]{beamericonarticle}{beamericonarticle}
+\pgfdeclareimage[height=28pt]{beamericonarticleshaded}{beamericonarticle.20}
+\pgfdeclareimage[height=28pt]{beamericononline}{beamericononline}
+\pgfdeclareimage[height=28pt]{beamericononlineshaded}{beamericononline.20}
