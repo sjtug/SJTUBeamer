@@ -21,7 +21,7 @@
 %% limitations under the License.
 %% ------------------------------------------------------------------------
 \NeedsTeXFormat{LaTeX2e}
-\ProvidesPackage{beamerinnerthemesjtubeamer}[2022/08/27 v2.9.3 sjtubeamer inner theme]
+\ProvidesPackage{beamerinnerthemesjtubeamer}[2022/09/05 v2.9.4 sjtubeamer inner theme]
 \RequirePackage{sjtuvi}
 \RequirePackage{tcolorbox}
 \DefineOption{inner}{cover}{maxplus}
@@ -196,6 +196,7 @@
   {\par%
     \usebeamertemplate{block stamp end}%
   \end{actionenv}}
+\AtBeginEnvironment{frame}{\setcounter{stampblockcnt}{0}}
 \lstset{
   basicstyle=\ttfamily\small,
   keywordstyle=\color{cprimary},%
