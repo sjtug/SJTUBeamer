@@ -190,9 +190,12 @@
 }
 \fi%
 % 重设引用条目同名图标大小
-\pgfdeclareimage[height=24pt]{beamericonbook}{beamericonbook}
-\pgfdeclareimage[height=24pt]{beamericonbookshaded}{beamericonbook.20}
-\pgfdeclareimage[height=28pt]{beamericonarticle}{beamericonarticle}
-\pgfdeclareimage[height=28pt]{beamericonarticleshaded}{beamericonarticle.20}
-\pgfdeclareimage[height=28pt]{beamericononline}{beamericononline}
-\pgfdeclareimage[height=28pt]{beamericononlineshaded}{beamericononline.20}
+\pgfdeclareimage[height=26pt]{beamericonbook}{beamericonbook}
+\pgfdeclareimage[height=26pt]{beamericonbookshaded}{beamericonbook.20}
+\pgfdeclareimage[height=34pt]{beamericonarticle}{beamericonarticle}
+\pgfdeclareimage[height=34pt]{beamericonarticleshaded}{beamericonarticle.20}
+\pgfdeclareimage[height=32pt]{beamericononline}{beamericononline}
+\pgfdeclareimage[height=32pt]{beamericononlineshaded}{beamericononline.20}
+% 为了防止无法悬挂对齐的情形，直接使用 text 模式的 bibliography item
+% 可以改为正常的 article, book, online 等。
+\setbeamertemplate{bibliography item}[text]
