@@ -412,7 +412,8 @@ fontupper=\sffamily,colupper=white}
 \beamerdemo[1]{step13.tex}
 
 \begin{commentlist}
-  \item \env{stampblock} 用于生成印记区块环境，可以通过可选参数指定编号内容，可选参数缺省时为递增编号。该环境可以与 \env{columns} 配合使用，顶端对齐两列对比两种内容。必要时也可以添加覆盖参数，例如 \verb"<1>"。
+  \item \env{stampblock} 用于生成印记区块环境，可以通过可选参数指定编号内容，可选参数缺省时为每帧内部从 1 开始的递增编号。该环境可以与 \env{columns} 配合使用，顶端对齐两列对比两种内容。
+  \item 必要时也可以在可选参数前添加覆盖参数，例如 \verb"<1>[1]{标题}"。此时请指定可选参数编号内容 \verb"[1]"，否则覆盖帧内的区块编号也会意料外地递增。
 \end{commentlist}
 
 \chapter{代码}
