@@ -1,9 +1,11 @@
 \documentclass{ctexbeamer}
 \usetheme[red]{sjtubeamer}
-\usesjtutheme[sepinst]{poster}
+\usesjtutheme{poster}
 % \usesjtutheme[landscape]{poster}
-% \usesjtutheme{poster}
-\usepackage{lua-visual-debug}
+% \usesjtutheme[sepinst]{poster}
+% \usesjtutheme[noindent]{poster}
+\usepackage[style=gb7714-2015]{biblatex}
+\addbibresource{\getcontribpath{poster}{ref.bib}}
 \begin{document}
   \title{poster 子主题}
   \author{作者}
@@ -11,17 +13,75 @@
   \institute[Test Institute]{测试机构}
   \footline[左脚注]{右脚注}
   \begin{frame}[fragile]
+    \begin{columns}[T]
+      \begin{column}{.45\textwidth}
+
+        \begin{stampblock}{主题概述}
+          \texttt{poster} 子主题基于 \texttt{beamerposter} 宏包\cite{beamerposter}，对 SJTUBeamer 进行适配以制作海报，展示您的成果。
+          \codeblockinput[firstline=1,lastline=3]{开始使用}{poster.tex}
+        \end{stampblock}
+
+        \begin{stampblock}{风格建议}
+          建议使用 \texttt{stampblock} 环境分割不同的区块。你也可以使用 \texttt{block} 环境分割不同的区块。相较于普通 \texttt{beamer} 幻灯片文字较少的情形，\texttt{poster} 更有可能会写入大段文字，所以默认情况下这些区块内部会有首行缩进。由于 \texttt{column} 环境内部不受外部首行缩进的影响，所以不推荐之间在 \texttt{column} 环境中书写内容，而应该再套一层 \texttt{stampblock} 或 \texttt{block}。
+          
+          可以插入图片来丰富你的海报内容，但请注意由于海报的纸张尺寸较大，像一些高 DPI 显示的场景一样，会对文字大小进行缩放，但是度量上却没有发生变化，请注意要使用相对于平时更大的度量插入图片。
+
+          不推荐直接插入 Ti\emph{k}Z 的代码，推荐使用 \texttt{standalone} 文档类产生 PDF 文件后再插入，否则会导致图片内的文字过大而排版错乱。
+        \end{stampblock}
+
+      \end{column}
+      \begin{column}{.45\textwidth}
+        
+        \begin{stampblock}{多栏对齐}
+          推荐使用 \texttt{columns} 环境分割多栏，环境可选选项可以用于指定顶部对齐 \texttt{t}，居中对齐 \texttt{c}，底部对齐 \texttt{b}。
+          \codeblockinput[firstline=16,lastline=16,firstnumber=1]{多栏}{poster.tex}
+        \end{stampblock}
+        
+        
+        \begin{stampblock}{参考文献}
+        
+          可以使用图标样式的参考文献。
+
+          \begin{bibliolist}{00}
+            \onlineitem \textsc{Tantau T}, \textsc{Wright J}, and \textsc{Mileti\'c V}.\newblock
+            The beamer class: User Guide for version 3.67[OL].\newblock
+            2022. \url{https://github.com/josephwright/beamer}
+            \articleitem \textsc{上海交通大学}.\newblock
+            上海交通大学视觉形象识别系统[OL].\newblock
+            2016. \url{https://vi.sjtu.edu.cn}
+            \bookitem \textsc{Knuth DE}.\newblock
+            The \TeX{}book[M].\newblock
+            Addison-Wesley. 1986.
+          \end{bibliolist}
+
+          你也可以使用 \texttt{biblatex} 插入参考文献。
+
+          \printbibliography
+          
+        \end{stampblock}
+        
+      \end{column}
+    \end{columns}
+
+    % 分割线
+    \vspace*{2cm}
+    \begin{tikzpicture}
+      \draw[cprimary,decoration=stampline,segment length=1cm,decorate] (0,0) -- (0.94\textwidth,0);
+    \end{tikzpicture}
+    \vspace*{2cm}
+
     \begin{columns}
       \begin{column}{0.45\textwidth}
         \begin{block}{选项}
           \texttt{poster} 子主题拥有一些选项。
           \begin{description}
             \item[\texttt{sepinst}] 分离徽标与机构于两侧
-            \item[\texttt{landscape}] 横向海报 
+            \item[\texttt{landscape}] 横向海报
+            \item[\texttt{noindent}] 首行不缩进  
           \end{description}
         \end{block}
         \begin{alertblock}{脚注}
-          使用 \texttt{\textbackslash{}section} 和 \texttt{\textbackslash{}subsection} 设定左脚注和右脚注。
+          使用 \texttt{\textbackslash{}footline[左脚注]\{右脚注\}} 设定左脚注和右脚注。
         \end{alertblock}
         \begin{exampleblock}{区块}
           仍然可以使用内置的 \texttt{block}, \texttt{alertblock}, \texttt{exampleblock} 插入对应的区块。
@@ -29,10 +89,9 @@
       \end{column}
       \begin{column}{0.45\textwidth}
         
-        \begin{stampblock}{印记区块}
+        \begin{stampblock}[a]{印记区块}
           使用 \texttt{stampblock} 环境插入带有印记图案的区块，编号会自动递增。
         \end{stampblock}
-        
         
         \begin{codeblock}[escapechar=|]{代码块}
 % 应当减少代码块的使用，增加了标题栏的高度。
