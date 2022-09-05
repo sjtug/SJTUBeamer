@@ -90,11 +90,12 @@
       \begin{column}{0.45\textwidth}
         
         \begin{stampblock}[a]{印记区块}
-          使用 \texttt{stampblock} 环境插入带有印记图案的区块，编号会自动递增。
+          使用 \texttt{stampblock} 环境插入带有印记图案的区块，编号会自动递增。你也可以通过指定可选参数来设置编号内容。
         \end{stampblock}
         
-        \begin{codeblock}[escapechar=|]{代码块}
+        \begin{codeblock}[numbers=none]{代码块}
 % 应当减少代码块的使用，增加了标题栏的高度。
+% 关闭代码行号编号可以在 codeblock 上添加选项 numbers=none
         \end{codeblock}
 
         \begin{columns}[b]
