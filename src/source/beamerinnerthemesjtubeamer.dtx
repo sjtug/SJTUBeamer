@@ -453,7 +453,7 @@
     \vskip1ex
 }
 \defbeamertemplate*{block stamp end}{sjtubeamer}{
-  \end{beamercolorbox}\vskip 2ex%
+  \end{beamercolorbox}\vskip2ex%
 }
 %    \end{macrocode}
 %  Set the template to the defined ones.
@@ -480,7 +480,8 @@
 %    \end{macrocode}
 %  If you want to reset the counter from the beginning of every frame, uncomment or add the following line into your preamble:
 %    \begin{macrocode}
-  % \AtBeginEnvironment{\setcounter{stampblockcnt}{0}}
+  %% If you want to reset the counter for each frame:
+  % \AtBeginEnvironment{frame}{\setcounter{stampblockcnt}{0}}
 %    \end{macrocode}
 %  We choose not to make it as a default action, since it is harder to remove this line for users if it is intended to make the counter continous among frames.
 %  This macro is orginally prepared for poster. It is also useful for side-by-side comparision in one slide.
