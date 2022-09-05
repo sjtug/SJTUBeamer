@@ -478,6 +478,11 @@
     \usebeamertemplate{block stamp end}%
   \end{actionenv}}
 %    \end{macrocode}
+%  If you want to reset the counter from the beginning of every frame, uncomment or add the following line into your preamble:
+%    \begin{macrocode}
+  % \AtBeginEnvironment{\setcounter{stampblockcnt}{0}}
+%    \end{macrocode}
+%  We choose not to make it as a default action, since it is harder to remove this line for users if it is intended to make the counter continous among frames.
 %  This macro is orginally prepared for poster. It is also useful for side-by-side comparision in one slide.
 %  COPYRIGHT NOTICE: Reference to code from beamr class and beamerauxtheme.
 %  \end{macro}
