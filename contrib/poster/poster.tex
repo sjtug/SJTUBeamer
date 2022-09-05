@@ -4,8 +4,10 @@
 % \usesjtutheme[landscape]{poster}
 % \usesjtutheme[sepinst]{poster}
 % \usesjtutheme[noindent]{poster}
+\usepackage{subcaption}
 \usepackage[style=gb7714-2015]{biblatex}
 \addbibresource{\getcontribpath{poster}{ref.bib}}
+\usepackage{zhlipsum}
 \begin{document}
   \title{poster 子主题}
   \author{作者}
@@ -29,14 +31,40 @@
           不推荐直接插入 Ti\emph{k}Z 的代码，推荐使用 \texttt{standalone} 文档类产生 PDF 文件后再插入，否则会导致图片内的文字过大而排版错乱。
         \end{stampblock}
 
-      \end{column}
-      \begin{column}{.45\textwidth}
-        
         \begin{stampblock}{多栏对齐}
           推荐使用 \texttt{columns} 环境分割多栏，环境可选选项可以用于指定顶部对齐 \texttt{t}，居中对齐 \texttt{c}，底部对齐 \texttt{b}。
           \codeblockinput[firstline=16,lastline=16,firstnumber=1]{多栏}{poster.tex}
         \end{stampblock}
-        
+
+      \end{column}
+      \begin{column}{.45\textwidth}
+
+        \begin{stampblock}{图文混排}
+          由于 \texttt{beamer} 关闭了浮动体浮动，所以推荐使用多栏分割的方式实现图文混排。
+          或者是多图并排放置。
+          \begin{columns}
+            \begin{column}{0.7\textwidth}
+              上海交通大学的东大门---紫气东来门，简称庙门，位于上海市闵行区莲花南路 4800 号。
+            \end{column}
+            \begin{column}{0.3\textwidth}
+              \begin{figure}
+                \includegraphics[width=\textwidth]{sjtuphoto.jpg}
+                \caption{庙门}
+              \end{figure}
+            \end{column}
+          \end{columns}
+          \begin{figure}
+            \begin{subfigure}{0.4\textwidth}
+              \resizebox{\textwidth}{!}{\secondaryinstlogo[Test Institute]{测试机构}{\zhlogo}}
+              \caption{中文}
+            \end{subfigure}\hspace*{20pt}
+            \begin{subfigure}{0.4\textwidth}
+              \resizebox{\textwidth}{!}{\secondaryinstlogo[]{Test Institute}{\enlogo}}
+              \caption{英文}
+            \end{subfigure}
+            \caption{二级机构徽标}
+          \end{figure}
+        \end{stampblock}
         
         \begin{stampblock}{参考文献}
         
@@ -110,5 +138,31 @@
         \end{columns}
       \end{column}
     \end{columns}
+  \end{frame}
+  \title{}
+  \author{}
+  \logo{}
+  \institute[]{}
+  \begin{frame}
+    \begin{columns}
+
+    \begin{column}{.5\textwidth}
+    \begin{stampblock}{测试}
+      \zhlipsum[1]
+    \end{stampblock}
+
+    \begin{stampblock}{测试}
+      \zhlipsum[2]
+    \end{stampblock}
+
+    \vspace*{0.5ex}
+
+    \begin{stampblock}{测试}
+      \zhlipsum[3]
+    \end{stampblock}
+  \end{column}
+
+  \end{columns}
+    
   \end{frame}
 \end{document}
