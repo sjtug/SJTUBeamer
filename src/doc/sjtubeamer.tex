@@ -222,27 +222,27 @@ fontupper=\sffamily,colupper=white}
 
 \themename{} 可以与 \cls{beamer} 提供的九种外样式随意搭配。
 
-\def\myincludepdf#1{
+\def\myincludepdf#1#2{
   \tcbincludepdf[title={#1},
     colframe=red!50!black,colback=red!10!white,
     colbacktitle=red!50!white,left=0pt,right=0pt,top=0pt,
     bottom=0pt,boxsep=0pt,boxrule=0.6pt,
     toptitle=1mm,bottomtitle=1mm,drop lifted shadow,
     center title,fonttitle=\ttfamily]
-  {tutorial/#1}
+  {tutorial/#2}
 }
 \begin{tcbitemize}[raster columns=3, raster equal height,
     left=0pt,right=0pt,top=0pt,
     bottom=0pt,boxsep=0pt,boxrule=0pt]
-  \tcbitem \myincludepdf{step2miniframes.pdf}
-  \tcbitem \myincludepdf{step2default.pdf}
-  \tcbitem \myincludepdf{step2infolines.pdf}
-  \tcbitem \myincludepdf{step2smoothbars.pdf}
-  \tcbitem \myincludepdf{step2sidebar.pdf}
-  \tcbitem \myincludepdf{step2split.pdf}
-  \tcbitem \myincludepdf{step2shadow.pdf}
-  \tcbitem \myincludepdf{step2tree.pdf}
-  \tcbitem \myincludepdf{step2smoothtree.pdf}
+  \tcbitem \myincludepdf{miniframes}{step2miniframes.pdf}
+  \tcbitem \myincludepdf{default}{step2default.pdf}
+  \tcbitem \myincludepdf{infolines}{step2infolines.pdf}
+  \tcbitem \myincludepdf{smoothbars}{step2smoothbars.pdf}
+  \tcbitem \myincludepdf{sidebar}{step2sidebar.pdf}
+  \tcbitem \myincludepdf{split}{step2split.pdf}
+  \tcbitem \myincludepdf{shadow}{step2shadow.pdf}
+  \tcbitem \myincludepdf{tree}{step2tree.pdf}
+  \tcbitem \myincludepdf{smoothtree}{step2smoothtree.pdf}
 \end{tcbitemize}
 
 \beamerdemo[1]{step2.tex}
@@ -412,7 +412,12 @@ fontupper=\sffamily,colupper=white}
 \beamerdemo[1]{step13.tex}
 
 \begin{commentlist}
-  \item \env{stampblock} 用于生成印记区块环境，可以通过可选参数指定编号内容，可选参数缺省时为递增编号。该环境可以与 \env{columns} 配合使用，顶端对齐两列对比两种内容。必要时也可以添加覆盖参数，例如 \verb"<1>"。
+  \item \env{stampblock} 用于生成印记区块环境，可以通过可选参数指定编号内容，可选参数缺省时为递增编号。该环境可以与 \env{columns} 配合使用，顶端对齐两列对比两种内容。
+  \item 必要时也可以在可选参数前添加覆盖参数，例如 \verb"<1>[1]{标题}"。此时请指定可选参数编号内容 \verb"[1]"，否则覆盖帧内的区块编号也会意料外地递增。
+  \item 如果需要每帧开始从 1 开始计数，可以在导言区添加
+  \begin{verbatim}
+    \AtBeginEnvironment{frame}{\setcounter{stampblockcnt}{0}}
+  \end{verbatim}
 \end{commentlist}
 
 \chapter{代码}

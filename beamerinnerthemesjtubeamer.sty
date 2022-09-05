@@ -21,7 +21,7 @@
 %% limitations under the License.
 %% ------------------------------------------------------------------------
 \NeedsTeXFormat{LaTeX2e}
-\ProvidesPackage{beamerinnerthemesjtubeamer}[2022/08/27 v2.9.3 sjtubeamer inner theme]
+\ProvidesPackage{beamerinnerthemesjtubeamer}[2022/09/05 v2.9.4 sjtubeamer inner theme]
 \RequirePackage{sjtuvi}
 \RequirePackage{tcolorbox}
 \DefineOption{inner}{cover}{maxplus}
@@ -182,7 +182,7 @@
     \vskip1ex
 }
 \defbeamertemplate*{block stamp end}{sjtubeamer}{
-  \end{beamercolorbox}\vskip\smallskipamount%
+  \end{beamercolorbox}\vskip2.5ex%
 }
 \setbeamertemplate{block stamp begin}[sjtubeamer]
 \setbeamertemplate{block stamp end}[sjtubeamer]
@@ -196,6 +196,8 @@
   {\par%
     \usebeamertemplate{block stamp end}%
   \end{actionenv}}
+  %% If you want to reset the counter for each frame:
+  % \AtBeginEnvironment{frame}{\setcounter{stampblockcnt}{0}}
 \lstset{
   basicstyle=\ttfamily\small,
   keywordstyle=\color{cprimary},%

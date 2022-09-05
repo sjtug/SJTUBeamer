@@ -75,7 +75,7 @@
 		"scope": "doctex,tex,latex",
 		"prefix": "\n\\begin{stampblock",
 		"body": "\n\\begin{stampblock}<$3>[${1:}]{$2}\n\t$3\n\\end{stampblock}\n",
-		"description": "Create a block with title decorated by the stamp shape with incremental numbering.\nA mandantory parameter is needed for the title.\nAn optional parameter is for the customized numbering.\nOverlay could be specified.\n"
+		"description": "Create a block with title decorated by the stamp shape with incremental numbering.\nA mandantory parameter is needed for the title.\nAn optional parameter is for the customized numbering.\nOverlay could be specified. In this scenario, the optional parameter must be specified in case of the unexpected increment of the counter.\n"
 	},
 	"codeblock": {
 		"scope": "doctex,tex,latex",

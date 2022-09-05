@@ -16,7 +16,7 @@
 % \iffalse
 %<*package>
 \NeedsTeXFormat{LaTeX2e}
-\ProvidesPackage{beamerinnerthemesjtubeamer}[2022/08/27 v2.9.3 sjtubeamer inner theme]
+\ProvidesPackage{beamerinnerthemesjtubeamer}[2022/09/05 v2.9.4 sjtubeamer inner theme]
 %</package>
 % \fi
 % \CheckSum{0}
@@ -436,7 +436,7 @@
 %  Create a block with title decorated by the stamp shape with incremental numbering.
 %  A mandantory parameter is needed for the title.
 %  An optional parameter is for the customized numbering.
-%  Overlay could be specified.
+%  Overlay could be specified. In this scenario, the optional parameter must be specified in case of the unexpected increment of the counter.
 %    \begin{macrocode}
 \newcounter{stampblockcnt}
 %    \end{macrocode}
@@ -453,7 +453,7 @@
     \vskip1ex
 }
 \defbeamertemplate*{block stamp end}{sjtubeamer}{
-  \end{beamercolorbox}\vskip\smallskipamount%
+  \end{beamercolorbox}\vskip2.5ex%
 }
 %    \end{macrocode}
 %  Set the template to the defined ones.
@@ -478,6 +478,12 @@
     \usebeamertemplate{block stamp end}%
   \end{actionenv}}
 %    \end{macrocode}
+%  If you want to reset the counter from the beginning of every frame, uncomment or add the following line into your preamble:
+%    \begin{macrocode}
+  %% If you want to reset the counter for each frame:
+  % \AtBeginEnvironment{frame}{\setcounter{stampblockcnt}{0}}
+%    \end{macrocode}
+%  We choose not to make it as a default action, since it is harder to remove this line for users if it is intended to make the counter continous among frames.
 %  This macro is orginally prepared for poster. It is also useful for side-by-side comparision in one slide.
 %  COPYRIGHT NOTICE: Reference to code from beamr class and beamerauxtheme.
 %  \end{macro}

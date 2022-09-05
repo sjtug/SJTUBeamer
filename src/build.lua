@@ -396,6 +396,13 @@ if options["target"] == "add-demo" then
                 end
                 return false
             end)
+
+            -- read sjtubeamer.tex
+            local usrdoc = docfiledir .. "/sjtubeamer.tex"
+            local usrdocfile = io.open(usrdoc, 'r')
+            local usrdoccontent = usrdocfile:read("a")
+            usrdocfile:close()
+
             for _, num in ipairs(actionlist) do
                 local oldid = num[2]
                 local num = num[1]
@@ -407,19 +414,17 @@ if options["target"] == "add-demo" then
                 local newid = string.gsub(oldid, num, num + 1)
                 ren(tutorialsuppdir, "step" .. oldid .. ".tex", "step" .. newid .. ".tex")
                 
-                -- modify the number in sjtubeamer.tex
-                local usrdoc = docfiledir .. "/sjtubeamer.tex"
-                local usrdocfile = io.open(usrdoc, 'r')
-                local usrdoccontent = usrdocfile:read("a")
-                usrdocfile:close()
+                -- modify the number in usr doc content.
                 local cnt
                 usrdoccontent, cnt = string.gsub(usrdoccontent, "step" .. string.gsub(string.gsub(oldid,"%+","%%+"),"%-","%%-") .. "%.", "step" .. newid .. ".") -- avoid the magical character insertion
-                local usrdocfile = io.open(usrdoc, "w+")
-                usrdocfile:write(usrdoccontent)
-                usrdocfile:close()
 
                 print("step" .. oldid .. " -> " .. "step" .. newid .. " Doc replaced: " .. cnt)
             end
+
+            -- write sjtubeamer.tex
+            local usrdocfile = io.open(usrdoc, "w+")
+            usrdocfile:write(usrdoccontent)
+            usrdocfile:close()
         end
 
         -- The new demo file will be created.
