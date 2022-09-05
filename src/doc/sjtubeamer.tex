@@ -222,27 +222,27 @@ fontupper=\sffamily,colupper=white}
 
 \themename{} 可以与 \cls{beamer} 提供的九种外样式随意搭配。
 
-\def\myincludepdf#1{
+\def\myincludepdf#1#2{
   \tcbincludepdf[title={#1},
     colframe=red!50!black,colback=red!10!white,
     colbacktitle=red!50!white,left=0pt,right=0pt,top=0pt,
     bottom=0pt,boxsep=0pt,boxrule=0.6pt,
     toptitle=1mm,bottomtitle=1mm,drop lifted shadow,
     center title,fonttitle=\ttfamily]
-  {tutorial/#1}
+  {tutorial/#2}
 }
 \begin{tcbitemize}[raster columns=3, raster equal height,
     left=0pt,right=0pt,top=0pt,
     bottom=0pt,boxsep=0pt,boxrule=0pt]
-  \tcbitem \myincludepdf{step2miniframes.pdf}
-  \tcbitem \myincludepdf{step2default.pdf}
-  \tcbitem \myincludepdf{step2infolines.pdf}
-  \tcbitem \myincludepdf{step2smoothbars.pdf}
-  \tcbitem \myincludepdf{step2sidebar.pdf}
-  \tcbitem \myincludepdf{step2split.pdf}
-  \tcbitem \myincludepdf{step2shadow.pdf}
-  \tcbitem \myincludepdf{step2tree.pdf}
-  \tcbitem \myincludepdf{step2smoothtree.pdf}
+  \tcbitem \myincludepdf{miniframes}{step2miniframes.pdf}
+  \tcbitem \myincludepdf{default}{step2default.pdf}
+  \tcbitem \myincludepdf{infolines}{step2infolines.pdf}
+  \tcbitem \myincludepdf{smoothbars}{step2smoothbars.pdf}
+  \tcbitem \myincludepdf{sidebar}{step2sidebar.pdf}
+  \tcbitem \myincludepdf{split}{step2split.pdf}
+  \tcbitem \myincludepdf{shadow}{step2shadow.pdf}
+  \tcbitem \myincludepdf{tree}{step2tree.pdf}
+  \tcbitem \myincludepdf{smoothtree}{step2smoothtree.pdf}
 \end{tcbitemize}
 
 \beamerdemo[1]{step2.tex}
