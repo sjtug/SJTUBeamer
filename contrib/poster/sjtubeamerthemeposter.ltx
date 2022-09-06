@@ -114,9 +114,6 @@
   \usebeamerfont{block body}%
   \begin{beamercolorbox}[colsep*=.75ex,vmode]{block body}%
     \ifbeamercolorempty[bg]{block body}{\vskip-.25ex}{\vskip-.75ex}\vbox{}%
-  \if\EqualOption{poster}{noindent}{true}\else%
-    \setlength{\parindent}{2em}%
-  \fi%
 }
 \setbeamertemplate{block end}{
   \end{beamercolorbox}
@@ -130,9 +127,6 @@
   \usebeamerfont{block body}%
   \begin{beamercolorbox}[colsep*=.75ex,vmode]{block body alerted}%
     \ifbeamercolorempty[bg]{block body}{\vskip-.25ex}{\vskip-.75ex}\vbox{}%
-  \if\EqualOption{poster}{noindent}{true}\else%
-    \setlength{\parindent}{2em}%
-  \fi%
 }
 \setbeamertemplate{block alerted end}{
   \end{beamercolorbox}
@@ -146,29 +140,30 @@
   \usebeamerfont{block body}%
   \begin{beamercolorbox}[colsep*=.75ex,vmode]{block body example}%
     \ifbeamercolorempty[bg]{block body}{\vskip-.25ex}{\vskip-.75ex}\vbox{}%
-  \if\EqualOption{poster}{noindent}{true}\else%
-    \setlength{\parindent}{2em}%
-  \fi%
 }
 \setbeamertemplate{block example end}{
   \end{beamercolorbox}
 }
+\if\EqualOption{poster}{noindent}{true}\else%
+  \addtobeamertemplate{block begin}{}{%
+    \setlength{\parindent}{2em}%
+  }
+  \addtobeamertemplate{block alerted begin}{}{%
+    \setlength{\parindent}{2em}%
+  }
+  \addtobeamertemplate{block example begin}{}{%
+    \setlength{\parindent}{2em}%
+  }
+\fi%
 % tcolorbox 设定
 \tcbset{toptitle=2.5mm,bottomtitle=2.5mm}
 \if\EqualOption{poster}{noindent}{true}\else%
   % 首行缩进
   \setlength{\parindent}{2em}%
   % 重定义 stampblock 的首行缩进
-  \setbeamertemplate{block stamp begin}{%
-  \par\vskip\medskipamount%
-  \begin{beamercolorbox}[colsep*=.75ex]{block body stamp}%
-    {\leavevmode\centering\hskip-2em\bfseries%
-    \stamptext[structure]{\insertstampnum}%
-    \alert{\insertblocktitle}\par\vskip1ex}%
-    {\usebeamercolor[fg]{structure}{\hrule height.4pt}}%
-    \vskip1ex%
+  \addtobeamertemplate{block stamp begin}{}{%
     \setlength{\parindent}{2em}%
-}
+  }
 \fi%
 % 重设引用条目同名图标大小
 \pgfdeclareimage[height=26pt]{beamericonbook}{beamericonbook}
