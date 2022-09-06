@@ -196,6 +196,10 @@
 %   Insert the resized logo. The empty logo is supported as we insert \verb"\vphantom" here.
 %    \begin{macrocode}
     \resizebox{!}{1cm}{\vphantom{-}#3}%
+%    \end{macrocode}
+%   Set a box for judging if the logo is empty.
+%    \begin{macrocode}
+    \setbox0=\hbox{\mylogo\unskip}%
     \ifx\longinst\@empty%
 %    \end{macrocode}
 %   If the long institute name is empty the right part will not be typesetted.
@@ -206,7 +210,7 @@
 %   If the short institute is empty, the English version of the combined logo will be configured.
 %   The margin around the vrule is 0.31cm in this manner.
 %    \begin{macrocode}
-        \ifx\mylogo\@empty\else%
+        \ifdim\wd0=0pt\else%
           {\hskip0.31cm\vrule width0.5pt}\hskip0.31cm%
         \fi%
 %    \end{macrocode}
@@ -244,7 +248,7 @@
 %   If the short institute name is not empty, the short name will be typesetted below the long name.
 %   The margin around the vrule is 0.23cm in this manner.
 %    \begin{macrocode}
-        \ifx\mylogo\@empty\else%
+        \ifdim\wd0=0pt\else%
           {\hskip0.23cm\vrule width0.5pt}\hskip0.23cm%
         \fi%
         \vbox to 1cm{%
