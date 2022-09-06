@@ -155,25 +155,6 @@
 }
 % tcolorbox 设定
 \tcbset{toptitle=2.5mm,bottomtitle=2.5mm}
-% 重定义 stampbox
-\renewtcolorbox{stampbox}[1][cprimary]{%
-  capture=hbox,
-  enhanced,
-  frame empty,
-  interior empty,
-  sharp corners,
-  top=16pt,bottom=16pt,left=16pt,right=16pt,
-  borderline={20pt}{0pt}{
-    #1,
-    line width=1pt,
-    decoration={
-      stampline,
-      segment length=40pt,
-      path has corners=true,
-    },
-    decorate
-  }
-}
 \if\EqualOption{poster}{noindent}{true}\else%
   % 首行缩进
   \setlength{\parindent}{2em}%
