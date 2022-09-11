@@ -41,14 +41,9 @@
 %
 %  \begin{macro}{\EqualOption}
 %   To check if the option on package, key is equal to value.
-%
-%   Here, a dummy trick is used to pass the if condition.
-%   Since \LaTeX\ handles \verb"\if" differently.
-%   \verb"\iftrue" will eliminate the nearest \verb"\else" and \verb"\fi" but remains other extra \verb"\fi" and throws errors.
-%   To avoid this, if the macro is expanded after \verb"\if", \verb"T=T", the condition holds and finish the current pair. And continues to process the real defined macro. This solution is somehow to combat against the \LaTeX\ compiler. In modern \LaTeX3, it is not so nasty to deal with neseted conditions. 
-%   \verb"\iffalse" doesn't need to be considered.
+%   \verb"\if\EqualOption{<package>}{<key>}{<value>}<action>\fi"
 %    \begin{macrocode}
-\def\EqualOption{TT\fi\ifEqualOption} % dummy trick to pass the condition test
+\def\EqualOption{TT\fi\ifEqualOption}
 \def\ifEqualOption#1#2#3{%
   % #1: package
   % #2: key
@@ -60,7 +55,30 @@
   \iftempif%
 }
 %    \end{macrocode}
+%   Here, a dummy trick is used to pass the if condition, inspired by \url{https://tex.stackexchange.com/a/117190/253485}. \verb"\EqualOption" is the interface to use, while \verb"\ifEqualOption" is the internal macro.
+%   Since \LaTeX\ handles \verb"\if" differently.
+%   \verb"\iftrue" will eliminate the nearest \verb"\else" and \verb"\fi" but remains other extra \verb"\fi" and throws errors.
+%   To avoid this, if the macro is expanded after \verb"\if", \verb"T=T", the condition holds and finish the current pair. And continues to process the real defined macro. This solution is somehow to combat against the \LaTeX\ compiler. In modern \LaTeX3, it is not so nasty to deal with neseted conditions. 
+%   \verb"\iffalse" doesn't need to be considered.
 %  NOTICE: the line-end \verb"%" is necessary, otherwise the eaten space or some errors could occur.
+%  \end{macro}
+%
+%  \begin{macro}{\IsEmpty}
+%    To check the expanded parameter is empty based on the box width.
+%    \verb"\if\IsEmpty{<test>}<action>\fi"
+%    \begin{macrocode}
+\def\IsEmpty{TT\fi\ifIsEmpty}
+\def\ifIsEmpty#1{%
+  \newif\iftempif%
+  \setbox0=\hbox{#1\unskip}%
+  \ifdim\wd0=0pt \tempiftrue\else\tempiffalse\fi%
+  \iftempif%
+}
+%    \end{macrocode}
+%  Almost the same as \verb"\EqualOption" construction. You should use the macro \verb"\IsEmpty" instead of \verb"\ifIsEmpty" directly to avoid the error from nested condition tests.
+%  Even though there are \verb"\ifdefempty" and \verb"\ifdefvoid" in \verb"etoolbox", they are not capable of judging the expanded empty macros, i.e., if you define \verb"\def\aaa{\bbb}" while \verb"\def\bbb{}", \verb"\ifdefempty{\aaa}" will return false even though its expanded version is empty.
+%  Originally, we use \verb"\ifx\insertinstitute\@empty" when the macro is not abstracted, as it has been done in beamer class. But it doesn't work here with the same issue above. Because macro like \verb"\insertinstitute" is more like a state machine. When the user set \verb"\institute[]{}", it will check if the paramter is empty, and if it is, \verb"\def\insertinstitute{}" will be manually set without any nested macros. Unfortunately, as a macro, the paramter should not be limited to certain scenarios.
+%  This macro is inspired by \url{https://tex.stackexchange.com/a/53091/253485}, we could typeset the macro out and determine whether it is empty by its box width. \verb"\unskip" here will treat all trailing spaces as empty in case that macro forgets to insert the trailing \verb"%" and has breaklines, which is not intended.
 %  \end{macro}
 %
 %  \begin{macro}{\getcontribdir}
@@ -180,9 +198,6 @@
   % #1: shortinst (optional)
   % #2: longinst
   % #3: logo
-  \def\shortinst{#1}%
-  \def\longinst{#2}%
-  \def\mylogo{#3}%
 %    \end{macrocode}
 %   Start a hbox as a container. 
 %   Remember the end of the line will be treated as a space in the paramter of \verb"hbox" (which is a \TeX{} primitive). To avoid that, add a \verb"%" at the end of the line.
@@ -196,21 +211,17 @@
 %   Insert the resized logo. The empty logo is supported as we insert \verb"\vphantom" here.
 %    \begin{macrocode}
     \resizebox{!}{1cm}{\vphantom{-}#3}%
-%    \end{macrocode}
-%   Set a box for judging if the logo is empty.
-%    \begin{macrocode}
-    \setbox0=\hbox{\mylogo\unskip}%
-    \ifx\longinst\@empty%
+    \if\IsEmpty{#2}%
 %    \end{macrocode}
 %   If the long institute name is empty the right part will not be typesetted.
 %    \begin{macrocode}
     \else%
-      \ifx\shortinst\@empty%
+      \if\IsEmpty{#1}%
 %    \end{macrocode}
 %   If the short institute is empty, the English version of the combined logo will be configured.
 %   The margin around the vrule is 0.31cm in this manner.
 %    \begin{macrocode}
-        \ifdim\wd0=0pt\else%
+        \if\IsEmpty{#3}\else%
           {\hskip0.31cm\vrule width0.5pt}\hskip0.31cm%
         \fi%
 %    \end{macrocode}
@@ -248,7 +259,7 @@
 %   If the short institute name is not empty, the short name will be typesetted below the long name.
 %   The margin around the vrule is 0.23cm in this manner.
 %    \begin{macrocode}
-        \ifdim\wd0=0pt\else%
+        \if\IsEmpty{#3}\else%
           {\hskip0.23cm\vrule width0.5pt}\hskip0.23cm%
         \fi%
         \vbox to 1cm{%
