@@ -39,8 +39,9 @@
 \def\IsEmpty{TT\fi\ifIsEmpty}
 \def\ifIsEmpty#1{%
   \newif\iftempif%
-  \setbox0=\hbox\bgroup\def\\{}#1\unskip\egroup%
-  \ifdim\wd0=0pt \tempiftrue\else\tempiffalse\fi%
+  \newbox\sjtubeamer@tempbox%
+  \setbox\sjtubeamer@tempbox=\hbox\bgroup\def\\{}#1\unskip\egroup%
+  \ifdim\wd\sjtubeamer@tempbox=0pt \tempiftrue\else\tempiffalse\fi%
   \iftempif%
 }
 \providecommand{\getcontribdir}[1]{contrib/#1}
