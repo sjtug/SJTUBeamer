@@ -213,7 +213,13 @@
 		"scope": "doctex,tex",
 		"prefix": "\\EqualOption",
 		"body": "\\EqualOption",
-		"description": "To check if the option on package, key is equal to value.\n\nHere, a dummy trick is used to pass the if condition.\nSince \\LaTeX\\ handles \\if differently.\n\\iftrue will eliminate the nearest \\else and \\fi but remains other extra \\fi and throws errors.\nTo avoid this, if the macro is expanded after \\if, T=T, the condition holds and finish the current pair. And continues to process the real defined macro. This solution is somehow to combat against the \\LaTeX\\ compiler. In modern \\LaTeX3, it is not so nasty to deal with neseted conditions. \n\\iffalse doesn't need to be considered.\n"
+		"description": "To check if the option on package, key is equal to value.\n\\if\\EqualOption{<package>}{<key>}{<value>}<action>\\fi\n"
+	},
+	"IsEmpty": {
+		"scope": "doctex,tex",
+		"prefix": "\\IsEmpty",
+		"body": "\\IsEmpty",
+		"description": "To check the expanded parameter is empty based on the box width. \\\\ will be treated as empty.\n\\if\\IsEmpty{<test>}<action>\\fi\n"
 	},
 	"getcontribdir": {
 		"scope": "doctex,tex,latex",

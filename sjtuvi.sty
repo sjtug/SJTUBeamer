@@ -18,14 +18,14 @@
 %% see https://vi.sjtu.edu.cn/index.php/articles/bulletin/16.
 %% ------------------------------------------------------------------------
 \NeedsTeXFormat{LaTeX2e}
-\ProvidesPackage{sjtuvi}[2022/09/05 v2.9.4 Visual Identity System library for sjtubeamer]
+\ProvidesPackage{sjtuvi}[2022/09/11 v2.9.5 Visual Identity System library for sjtubeamer]
 \def\DefineOption#1#2#3{%
   % #1: package
   % #2: key
   % #3: value
   \DeclareOptionBeamer{#3}{\expandafter\def\csname sjtubeamer@#1@#2\endcsname{#3}}%
 }
-\def\EqualOption{TT\fi\ifEqualOption} % dummy trick to pass the condition test
+\def\EqualOption{TT\fi\ifEqualOption}
 \def\ifEqualOption#1#2#3{%
   % #1: package
   % #2: key
@@ -34,6 +34,13 @@
   \edef\tempvar{\csname sjtubeamer@#1@#2\endcsname}%
   \def\tempvalue{#3}%
   \ifx\tempvar\tempvalue\tempiftrue\else\tempiffalse\fi%
+  \iftempif%
+}
+\def\IsEmpty{TT\fi\ifIsEmpty}
+\def\ifIsEmpty#1{%
+  \newif\iftempif%
+  \setbox0=\hbox\bgroup\def\\{}#1\unskip\egroup%
+  \ifdim\wd0=0pt \tempiftrue\else\tempiffalse\fi%
   \iftempif%
 }
 \providecommand{\getcontribdir}[1]{contrib/#1}
@@ -89,16 +96,13 @@
   % #1: shortinst (optional)
   % #2: longinst
   % #3: logo
-  \def\shortinst{#1}%
-  \def\longinst{#2}%
-  \def\mylogo{#3}%
   \hbox{%
     \raggedright%
     \resizebox{!}{1cm}{\vphantom{-}#3}%
-    \ifx\longinst\@empty%
+    \if\IsEmpty{#2}%
     \else%
-      \ifx\shortinst\@empty%
-        \ifx\mylogo\@empty\else%
+      \if\IsEmpty{#1}%
+        \if\IsEmpty{#3}\else%
           {\hskip0.31cm\vrule width0.5pt}\hskip0.31cm%
         \fi%
         \vbox to 1cm{%
@@ -114,7 +118,7 @@
           \vfill%
         }%
       \else%
-        \ifx\mylogo\@empty\else%
+        \if\IsEmpty{#3}\else%
           {\hskip0.23cm\vrule width0.5pt}\hskip0.23cm%
         \fi%
         \vbox to 1cm{%
