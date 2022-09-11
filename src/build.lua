@@ -385,7 +385,7 @@ if options["target"] == "add-demo" then
         end
 
         -- If the target added demo file exists,
-        -- The demo with larger demo number will be renamed in an descending order. Like a "refactor" action.
+        -- The demo with larger demo number will be renamed in a descending order. Like a "refactor" action.
         if renflag then
             table.sort(actionlist, function(i,j)
                 if i[1] > j[1] then
