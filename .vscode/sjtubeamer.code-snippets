@@ -203,6 +203,24 @@
 		"body": "\\ifbeamercolorwhite{$1}{$2}",
 		"description": "A helper function like \\ifbeamercolorempty to check if the color is white (only the literal layer, without any expansion). Two mandantory parameters: \nThe first one indicates if it is fg or bg.\nThe second one is the beamer color name.\n"
 	},
+	"ifsjtubeamer@tempif": {
+		"scope": "doctex,tex",
+		"prefix": "\\ifsjtubeamer@tempif",
+		"body": "\\ifsjtubeamer@tempif",
+		"description": "\\ifsjtubeamer@tempif is for customized condition tests --- \\EqualOption and \\IsEmpty.\n"
+	},
+	"sjtubeamer@tempbox": {
+		"scope": "doctex,tex",
+		"prefix": "\\sjtubeamer@tempbox",
+		"body": "\\sjtubeamer@tempbox",
+		"description": "\\sjtubeamer@tempbox is for \\IsEmpty to detect the width of the paramter.\n"
+	},
+	"sjtubeamer@h": {
+		"scope": "doctex,tex",
+		"prefix": "\\sjtubeamer@h",
+		"body": "\\sjtubeamer@h",
+		"description": "\\sjtubeamer@h is for \\stamptext to measure the height of the parameter.\n"
+	},
 	"DefineOption": {
 		"scope": "doctex,tex",
 		"prefix": "\\DefineOption",
@@ -213,7 +231,13 @@
 		"scope": "doctex,tex",
 		"prefix": "\\EqualOption",
 		"body": "\\EqualOption",
-		"description": "To check if the option on package, key is equal to value.\n\nHere, a dummy trick is used to pass the if condition.\nSince \\LaTeX\\ handles \\if differently.\n\\iftrue will eliminate the nearest \\else and \\fi but remains other extra \\fi and throws errors.\nTo avoid this, if the macro is expanded after \\if, T=T, the condition holds and finish the current pair. And continues to process the real defined macro. This solution is somehow to combat against the \\LaTeX\\ compiler. In modern \\LaTeX3, it is not so nasty to deal with neseted conditions. \n\\iffalse doesn't need to be considered.\n"
+		"description": "To check if the option on package, key is equal to value.\n\\if\\EqualOption{<package>}{<key>}{<value>}<action>\\fi\n"
+	},
+	"IsEmpty": {
+		"scope": "doctex,tex",
+		"prefix": "\\IsEmpty",
+		"body": "\\IsEmpty",
+		"description": "To check the expanded parameter is empty based on the box width. \\\\ will be treated as empty.\n\\if\\IsEmpty{<test>}<action>\\fi\n"
 	},
 	"getcontribdir": {
 		"scope": "doctex,tex,latex",

@@ -47,9 +47,26 @@
     \OMIT
     \begin{frame}
         \frametitle{Secondary Institute Logo}
-        \secondaryinstlogo{Institute}{\phantom{-}}
-        \secondaryinstlogo[Institute]{INSTITUTE}{\phantom{-}}
+        \secondaryinstlogo{Institute Line\\ Institute Line}{\phantom{-}}
+        \secondaryinstlogo[Institute Line\\ Institute Line]{Institute Line\\ Institute Line}{\phantom{-}}
     \end{frame}
     \TIMO
+    \begin{frame}
+        \frametitle{Condition Tests}
+        \TEST{EqualOption}{
+            \if\EqualOption{sjtuvi}{test}{true}\TRUE\else\FALSE\fi
+        }
+        \TEST{IsEmpty}{
+            \def\aaa{}
+            \def\bbb{\aaa}
+            \def\ccc{a\\b}
+            \if\IsEmpty{\aaa}\TRUE\else\FALSE\fi
+            \if\IsEmpty{\bbb}\TRUE\else\FALSE\fi
+            \if\IsEmpty{   }\TRUE\else\FALSE\fi
+            \if\IsEmpty{  \\  }\TRUE\else\FALSE\fi
+            \if\IsEmpty{\\  }\TRUE\else\FALSE\fi
+            \if\IsEmpty{\ccc}\TRUE\else\FALSE\fi
+        }
+    \end{frame}
     \END
 \end{document}
