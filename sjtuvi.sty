@@ -19,6 +19,9 @@
 %% ------------------------------------------------------------------------
 \NeedsTeXFormat{LaTeX2e}
 \ProvidesPackage{sjtuvi}[2022/09/11 v2.9.5 Visual Identity System library for sjtubeamer]
+\newif\ifsjtubeamer@tempif%
+\newbox\sjtubeamer@tempbox%
+\newskip\sjtubeamer@h%
 \def\DefineOption#1#2#3{%
   % #1: package
   % #2: key
@@ -30,19 +33,17 @@
   % #1: package
   % #2: key
   % #3: value
-  \newif\iftempif%
   \edef\tempvar{\csname sjtubeamer@#1@#2\endcsname}%
   \def\tempvalue{#3}%
-  \ifx\tempvar\tempvalue\tempiftrue\else\tempiffalse\fi%
-  \iftempif%
+  \ifx\tempvar\tempvalue\sjtubeamer@tempiftrue\else\sjtubeamer@tempiffalse\fi%
+  \ifsjtubeamer@tempif%
 }
 \def\IsEmpty{TT\fi\ifIsEmpty}
 \def\ifIsEmpty#1{%
-  \newif\iftempif%
-  \newbox\sjtubeamer@tempbox%
   \setbox\sjtubeamer@tempbox=\hbox\bgroup\def\\{}#1\unskip\egroup%
-  \ifdim\wd\sjtubeamer@tempbox=0pt \tempiftrue\else\tempiffalse\fi%
-  \iftempif%
+  \ifdim\wd\sjtubeamer@tempbox=0pt \sjtubeamer@tempiftrue%
+  \else\sjtubeamer@tempiffalse\fi%
+  \ifsjtubeamer@tempif%
 }
 \providecommand{\getcontribdir}[1]{contrib/#1}
 \providecommand{\getcontribpath}[2]{\getcontribdir{#1}/#2}
@@ -147,22 +148,21 @@
     \tikzset{external/export=false}
     \begin{tikzpicture}[baseline=(nodetext.base)]
       \node [white] (nodetext) at (0,0) {#2};
-      \newskip{\s}
-      \pgfextracty{\s}{\pgfpointanchor{nodetext}{north}}%
+      \pgfextracty{\sjtubeamer@h}{\pgfpointanchor{nodetext}{north}}%
       \pgfextracty{\pgf@ya}{\pgfpointanchor{nodetext}{south}}%
-      \addtolength{\s}{-\pgf@ya}
+      \addtolength{\sjtubeamer@h}{-\pgf@ya}
       \scoped[on background layer]
         \fill [#1]
-          (-1.25*\s,0)
-          -- (-0.85*\s,0.3*\s)
-          -- (-0.85*\s,0.5*\s)
-          -- (0.85*\s,0.5*\s)
-          -- (0.85*\s,0.3*\s)
-          -- (1.25*\s,0)
-          -- (0.85*\s,-0.3*\s)
-          -- (0.85*\s,-0.5*\s)
-          -- (-0.85*\s,-0.5*\s)
-          -- (-0.85*\s,-0.3*\s) -- cycle;
+          (-1.25*\sjtubeamer@h,0)
+          -- (-0.85*\sjtubeamer@h,0.3*\sjtubeamer@h)
+          -- (-0.85*\sjtubeamer@h,0.5*\sjtubeamer@h)
+          -- (0.85*\sjtubeamer@h,0.5*\sjtubeamer@h)
+          -- (0.85*\sjtubeamer@h,0.3*\sjtubeamer@h)
+          -- (1.25*\sjtubeamer@h,0)
+          -- (0.85*\sjtubeamer@h,-0.3*\sjtubeamer@h)
+          -- (0.85*\sjtubeamer@h,-0.5*\sjtubeamer@h)
+          -- (-0.85*\sjtubeamer@h,-0.5*\sjtubeamer@h)
+          -- (-0.85*\sjtubeamer@h,-0.3*\sjtubeamer@h) -- cycle;
     \end{tikzpicture}
   }
 }
@@ -199,20 +199,20 @@
         0.8*\pgfkeysvalueof{/pgf/pattern keys/size}
         )},
     code={
-        \def\s{\pgfkeysvalueof{/pgf/pattern keys/size}}%
-        \tikzset{x=0.5*\s,y=0.2*\s}
+        \def\sjtubeamer@s{\pgfkeysvalueof{/pgf/pattern keys/size}}%
+        \tikzset{x=0.5*\sjtubeamer@s,y=0.2*\sjtubeamer@s}
         \fill[xshift=\pgfkeysvalueof{/pgf/pattern keys/xshift},
           yshift=\pgfkeysvalueof{/pgf/pattern keys/yshift}]
-        (-0.25*\s,0)
-        -- (-0.17*\s,0.06*\s)
-        -- (-0.17*\s,0.1*\s)
-        -- (0.17*\s,0.1*\s)
-        -- (0.17*\s,0.06*\s)
-        -- (0.25*\s,0)
-        -- (0.17*\s,-0.06*\s)
-        -- (0.17*\s,-0.1*\s)
-        -- (-0.17*\s,-0.1*\s)
-        -- (-0.17*\s,-0.06*\s) -- cycle;
+        (-0.25*\sjtubeamer@s,0)
+        -- (-0.17*\sjtubeamer@s,0.06*\sjtubeamer@s)
+        -- (-0.17*\sjtubeamer@s,0.1*\sjtubeamer@s)
+        -- (0.17*\sjtubeamer@s,0.1*\sjtubeamer@s)
+        -- (0.17*\sjtubeamer@s,0.06*\sjtubeamer@s)
+        -- (0.25*\sjtubeamer@s,0)
+        -- (0.17*\sjtubeamer@s,-0.06*\sjtubeamer@s)
+        -- (0.17*\sjtubeamer@s,-0.1*\sjtubeamer@s)
+        -- (-0.17*\sjtubeamer@s,-0.1*\sjtubeamer@s)
+        -- (-0.17*\sjtubeamer@s,-0.06*\sjtubeamer@s) -- cycle;
       }
   }
 \fi
@@ -226,9 +226,9 @@
     \usebeamercolor{palette primary}
     \fill [pattern={stamp[size=#1]},
       pattern color=bg!50!fg] #2 rectangle #3;
-    \def\s{#1}%
-    \pgfmathparse{0.5*\s}\let\xs=\pgfmathresult%
-    \pgfmathparse{-0.4*\s}\let\ys=\pgfmathresult%
+    \def\sjtubeamer@s{#1}%
+    \pgfmathparse{0.5*\sjtubeamer@s}\let\xs=\pgfmathresult%
+    \pgfmathparse{-0.4*\sjtubeamer@s}\let\ys=\pgfmathresult%
     \fill [pattern={stamp[size=#1,xshift=\xs, yshift=\ys]},
       pattern color=bg!50!fg] #2 rectangle #3;
   }
@@ -239,14 +239,14 @@
     width=\pgfdecorationsegmentlength,
     auto corner on length=\pgfdecorationsegmentlength]
   {
-    \def\l{\pgfdecorationsegmentlength}%
-    \pgfpathlineto{\pgfpoint{0.25*\l}{0pt}}
-    \pgfpathlineto{\pgfpoint{0.33*\l}{0.06*\l}}
-    \pgfpathlineto{\pgfpoint{0.33*\l}{0.1*\l}}
-    \pgfpathlineto{\pgfpoint{0.67*\l}{0.1*\l}}
-    \pgfpathlineto{\pgfpoint{0.67*\l}{0.06*\l}}
-    \pgfpathlineto{\pgfpoint{0.75*\l}{0pt}}
-    \pgfpathlineto{\pgfpoint{\l}{0pt}}
+    \def\sjtubeamer@l{\pgfdecorationsegmentlength}%
+    \pgfpathlineto{\pgfpoint{0.25*\sjtubeamer@l}{0pt}}
+    \pgfpathlineto{\pgfpoint{0.33*\sjtubeamer@l}{0.06*\sjtubeamer@l}}
+    \pgfpathlineto{\pgfpoint{0.33*\sjtubeamer@l}{0.1*\sjtubeamer@l}}
+    \pgfpathlineto{\pgfpoint{0.67*\sjtubeamer@l}{0.1*\sjtubeamer@l}}
+    \pgfpathlineto{\pgfpoint{0.67*\sjtubeamer@l}{0.06*\sjtubeamer@l}}
+    \pgfpathlineto{\pgfpoint{0.75*\sjtubeamer@l}{0pt}}
+    \pgfpathlineto{\pgfpoint{\sjtubeamer@l}{0pt}}
   }
   \state{final}
   {

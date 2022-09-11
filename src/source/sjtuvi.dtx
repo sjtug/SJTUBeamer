@@ -25,6 +25,23 @@
 % \subsection{SJTU VI Library}
 %   This library provides the definition of basic elements in SJTU VI, including color, logo and some shapes. 
 %
+%   \subsubsection{Variable Declarations}
+%
+%   Special variables will be declared globally. These macros are only used internally.
+%   \verb"\ifsjtubeamer@tempif" is for customized condition tests --- \verb"\EqualOption" and \verb"\IsEmpty".
+%    \begin{macrocode}
+\newif\ifsjtubeamer@tempif%
+%    \end{macrocode}
+%   \verb"\sjtubeamer@tempbox" is for \verb"\IsEmpty" to detect the width of the paramter.
+%    \begin{macrocode}
+\newbox\sjtubeamer@tempbox%
+%    \end{macrocode}
+%   \verb"\sjtubeamer@h" is for \verb"\stamptext" to measure the height of the parameter.
+%    \begin{macrocode}
+\newskip\sjtubeamer@h%
+%    \end{macrocode}
+%
+%
 %   \subsubsection{Utilities}
 %
 %  \begin{macro}{\DefineOption}
@@ -48,11 +65,10 @@
   % #1: package
   % #2: key
   % #3: value
-  \newif\iftempif%
   \edef\tempvar{\csname sjtubeamer@#1@#2\endcsname}%
   \def\tempvalue{#3}%
-  \ifx\tempvar\tempvalue\tempiftrue\else\tempiffalse\fi%
-  \iftempif%
+  \ifx\tempvar\tempvalue\sjtubeamer@tempiftrue\else\sjtubeamer@tempiffalse\fi%
+  \ifsjtubeamer@tempif%
 }
 %    \end{macrocode}
 %   Here, a dummy trick is used to pass the if condition, inspired by \url{https://tex.stackexchange.com/a/117190/253485}. \verb"\EqualOption" is the interface to use, while \verb"\ifEqualOption" is the internal macro.
@@ -69,11 +85,10 @@
 %    \begin{macrocode}
 \def\IsEmpty{TT\fi\ifIsEmpty}
 \def\ifIsEmpty#1{%
-  \newif\iftempif%
-  \newbox\sjtubeamer@tempbox%
   \setbox\sjtubeamer@tempbox=\hbox\bgroup\def\\{}#1\unskip\egroup%
-  \ifdim\wd\sjtubeamer@tempbox=0pt \tempiftrue\else\tempiffalse\fi%
-  \iftempif%
+  \ifdim\wd\sjtubeamer@tempbox=0pt \sjtubeamer@tempiftrue%
+  \else\sjtubeamer@tempiffalse\fi%
+  \ifsjtubeamer@tempif%
 }
 %    \end{macrocode}
 %  Almost the same as \verb"\EqualOption" construction. You should use the macro \verb"\IsEmpty" instead of \verb"\ifIsEmpty" directly to avoid the error from nested condition tests.
@@ -328,30 +343,26 @@
     \begin{tikzpicture}[baseline=(nodetext.base)]
       \node [white] (nodetext) at (0,0) {#2};
 %    \end{macrocode}
-% Use \verb"\newskip" instead of \verb"\newlength" to avoid the check of \LaTeX{} on the macro, since we have used this macro locally as intended.
-%    \begin{macrocode}
-      \newskip{\s}
-%    \end{macrocode}
 % Get the height of a tikz node \verb"nodetext" and store it in length \verb"\s". It is similar to \verb"\tcbsetmacroheightofnode" from \verb"skins" library of \verb"tcolorbox", but for decoupling reasons, use a native pgf command to calculate that without loading \verb"tcolorbox" in this style file.
 %    \begin{macrocode}
-      \pgfextracty{\s}{\pgfpointanchor{nodetext}{north}}%
+      \pgfextracty{\sjtubeamer@h}{\pgfpointanchor{nodetext}{north}}%
       \pgfextracty{\pgf@ya}{\pgfpointanchor{nodetext}{south}}%
-      \addtolength{\s}{-\pgf@ya}
+      \addtolength{\sjtubeamer@h}{-\pgf@ya}
 %    \end{macrocode}
 % Use a scope with \verb"on background layer" to adjust the order of rendering.
 %    \begin{macrocode}
       \scoped[on background layer]
         \fill [#1]
-          (-1.25*\s,0)
-          -- (-0.85*\s,0.3*\s)
-          -- (-0.85*\s,0.5*\s)
-          -- (0.85*\s,0.5*\s)
-          -- (0.85*\s,0.3*\s)
-          -- (1.25*\s,0)
-          -- (0.85*\s,-0.3*\s)
-          -- (0.85*\s,-0.5*\s)
-          -- (-0.85*\s,-0.5*\s)
-          -- (-0.85*\s,-0.3*\s) -- cycle;
+          (-1.25*\sjtubeamer@h,0)
+          -- (-0.85*\sjtubeamer@h,0.3*\sjtubeamer@h)
+          -- (-0.85*\sjtubeamer@h,0.5*\sjtubeamer@h)
+          -- (0.85*\sjtubeamer@h,0.5*\sjtubeamer@h)
+          -- (0.85*\sjtubeamer@h,0.3*\sjtubeamer@h)
+          -- (1.25*\sjtubeamer@h,0)
+          -- (0.85*\sjtubeamer@h,-0.3*\sjtubeamer@h)
+          -- (0.85*\sjtubeamer@h,-0.5*\sjtubeamer@h)
+          -- (-0.85*\sjtubeamer@h,-0.5*\sjtubeamer@h)
+          -- (-0.85*\sjtubeamer@h,-0.3*\sjtubeamer@h) -- cycle;
     \end{tikzpicture} 
   }
 }
@@ -403,20 +414,20 @@
         0.8*\pgfkeysvalueof{/pgf/pattern keys/size}
         )},
     code={
-        \def\s{\pgfkeysvalueof{/pgf/pattern keys/size}}%
-        \tikzset{x=0.5*\s,y=0.2*\s}
+        \def\sjtubeamer@s{\pgfkeysvalueof{/pgf/pattern keys/size}}%
+        \tikzset{x=0.5*\sjtubeamer@s,y=0.2*\sjtubeamer@s}
         \fill[xshift=\pgfkeysvalueof{/pgf/pattern keys/xshift},
           yshift=\pgfkeysvalueof{/pgf/pattern keys/yshift}]
-        (-0.25*\s,0)
-        -- (-0.17*\s,0.06*\s)
-        -- (-0.17*\s,0.1*\s)
-        -- (0.17*\s,0.1*\s)
-        -- (0.17*\s,0.06*\s)
-        -- (0.25*\s,0)
-        -- (0.17*\s,-0.06*\s)
-        -- (0.17*\s,-0.1*\s)
-        -- (-0.17*\s,-0.1*\s)
-        -- (-0.17*\s,-0.06*\s) -- cycle;
+        (-0.25*\sjtubeamer@s,0)
+        -- (-0.17*\sjtubeamer@s,0.06*\sjtubeamer@s)
+        -- (-0.17*\sjtubeamer@s,0.1*\sjtubeamer@s)
+        -- (0.17*\sjtubeamer@s,0.1*\sjtubeamer@s)
+        -- (0.17*\sjtubeamer@s,0.06*\sjtubeamer@s)
+        -- (0.25*\sjtubeamer@s,0)
+        -- (0.17*\sjtubeamer@s,-0.06*\sjtubeamer@s)
+        -- (0.17*\sjtubeamer@s,-0.1*\sjtubeamer@s)
+        -- (-0.17*\sjtubeamer@s,-0.1*\sjtubeamer@s)
+        -- (-0.17*\sjtubeamer@s,-0.06*\sjtubeamer@s) -- cycle;
       }
   }
 \fi
@@ -438,9 +449,9 @@
     \usebeamercolor{palette primary}
     \fill [pattern={stamp[size=#1]},
       pattern color=bg!50!fg] #2 rectangle #3;
-    \def\s{#1}%
-    \pgfmathparse{0.5*\s}\let\xs=\pgfmathresult%
-    \pgfmathparse{-0.4*\s}\let\ys=\pgfmathresult%
+    \def\sjtubeamer@s{#1}%
+    \pgfmathparse{0.5*\sjtubeamer@s}\let\xs=\pgfmathresult%
+    \pgfmathparse{-0.4*\sjtubeamer@s}\let\ys=\pgfmathresult%
     \fill [pattern={stamp[size=#1,xshift=\xs, yshift=\ys]},
       pattern color=bg!50!fg] #2 rectangle #3;
   }
@@ -458,14 +469,14 @@
     width=\pgfdecorationsegmentlength,
     auto corner on length=\pgfdecorationsegmentlength]
   {
-    \def\l{\pgfdecorationsegmentlength}%
-    \pgfpathlineto{\pgfpoint{0.25*\l}{0pt}}
-    \pgfpathlineto{\pgfpoint{0.33*\l}{0.06*\l}}
-    \pgfpathlineto{\pgfpoint{0.33*\l}{0.1*\l}}
-    \pgfpathlineto{\pgfpoint{0.67*\l}{0.1*\l}}
-    \pgfpathlineto{\pgfpoint{0.67*\l}{0.06*\l}}
-    \pgfpathlineto{\pgfpoint{0.75*\l}{0pt}}
-    \pgfpathlineto{\pgfpoint{\l}{0pt}}
+    \def\sjtubeamer@l{\pgfdecorationsegmentlength}%
+    \pgfpathlineto{\pgfpoint{0.25*\sjtubeamer@l}{0pt}}
+    \pgfpathlineto{\pgfpoint{0.33*\sjtubeamer@l}{0.06*\sjtubeamer@l}}
+    \pgfpathlineto{\pgfpoint{0.33*\sjtubeamer@l}{0.1*\sjtubeamer@l}}
+    \pgfpathlineto{\pgfpoint{0.67*\sjtubeamer@l}{0.1*\sjtubeamer@l}}
+    \pgfpathlineto{\pgfpoint{0.67*\sjtubeamer@l}{0.06*\sjtubeamer@l}}
+    \pgfpathlineto{\pgfpoint{0.75*\sjtubeamer@l}{0pt}}
+    \pgfpathlineto{\pgfpoint{\sjtubeamer@l}{0pt}}
   }
   \state{final}
   {
