@@ -203,6 +203,24 @@
 		"body": "\\ifbeamercolorwhite{$1}{$2}",
 		"description": "A helper function like \\ifbeamercolorempty to check if the color is white (only the literal layer, without any expansion). Two mandantory parameters: \nThe first one indicates if it is fg or bg.\nThe second one is the beamer color name.\n"
 	},
+	"ifsjtubeamer@tempif": {
+		"scope": "doctex,tex",
+		"prefix": "\\ifsjtubeamer@tempif",
+		"body": "\\ifsjtubeamer@tempif",
+		"description": "\\ifsjtubeamer@tempif is for customized condition tests --- \\EqualOption and \\IsEmpty.\n"
+	},
+	"sjtubeamer@tempbox": {
+		"scope": "doctex,tex",
+		"prefix": "\\sjtubeamer@tempbox",
+		"body": "\\sjtubeamer@tempbox",
+		"description": "\\sjtubeamer@tempbox is for \\IsEmpty to detect the width of the paramter.\n"
+	},
+	"sjtubeamer@h": {
+		"scope": "doctex,tex",
+		"prefix": "\\sjtubeamer@h",
+		"body": "\\sjtubeamer@h",
+		"description": "\\sjtubeamer@h is for \\stamptext to measure the height of the parameter.\n"
+	},
 	"DefineOption": {
 		"scope": "doctex,tex",
 		"prefix": "\\DefineOption",

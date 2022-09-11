@@ -28,18 +28,27 @@
 %   \subsubsection{Variable Declarations}
 %
 %   Special variables will be declared globally. These macros are only used internally.
+%
+%  \begin{macro}{\ifsjtubeamer@tempif}
 %   \verb"\ifsjtubeamer@tempif" is for customized condition tests --- \verb"\EqualOption" and \verb"\IsEmpty".
 %    \begin{macrocode}
 \newif\ifsjtubeamer@tempif%
 %    \end{macrocode}
+%  \end{macro}
+%
+%  \begin{macro}{\sjtubeamer@tempbox}
 %   \verb"\sjtubeamer@tempbox" is for \verb"\IsEmpty" to detect the width of the paramter.
 %    \begin{macrocode}
 \newbox\sjtubeamer@tempbox%
 %    \end{macrocode}
+%   \end{macro}
+%
+%   \begin{macro}{\sjtubeamer@h}
 %   \verb"\sjtubeamer@h" is for \verb"\stamptext" to measure the height of the parameter.
 %    \begin{macrocode}
 \newskip\sjtubeamer@h%
 %    \end{macrocode}
+%   \end{macro}
 %
 %
 %   \subsubsection{Utilities}
@@ -92,7 +101,6 @@
 }
 %    \end{macrocode}
 %  Almost the same as \verb"\EqualOption" construction. You should use the macro \verb"\IsEmpty" instead of \verb"\ifIsEmpty" directly to avoid the error from nested condition tests.
-%  The internal box \verb"\sjtubeamer@tempbox" is declared to detect the width of the parameter.
 %  Even though there are \verb"\ifdefempty" and \verb"\ifdefvoid" in package \verb"etoolbox", they are not capable of judging the expanded empty macros, i.e., if you define \verb"\def\aaa{\bbb}" while \verb"\def\bbb{}", \verb"\ifdefempty{\aaa}" will return false even though its expanded version is empty.
 %  Originally, we use \verb"\ifx\insertinstitute\@empty" when the macro is not abstracted, as it has been done in beamer class. But it doesn't work here with the same issue above. Because macro like \verb"\insertinstitute" is more like a state machine. When the user set \verb"\institute[]{}", it will check if the paramter is empty, and if it is, \verb"\def\insertinstitute{}" will be manually set without any nested macros. Unfortunately, as a macro, the paramter should not be limited to certain scenarios.
 %  This macro is inspired by \url{https://tex.stackexchange.com/a/53091/253485}, we could typeset the macro out and determine whether it is empty by its box width. Like \verb"\beamer@setupshort" in beamer class, redefine \verb"\\" to nothing in the condition test, since it cannot show up in the horizontal mode and shoule be treated as an empty charater. \verb"\unskip" here will treat all trailing spaces as empty in case that macro forgets to insert the trailing \verb"%" and has breaklines, which is not intended.
