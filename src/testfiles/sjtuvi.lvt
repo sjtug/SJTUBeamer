@@ -59,15 +59,13 @@
         \TEST{IsEmpty}{
             \def\aaa{}
             \def\bbb{\aaa}
-            \def\ccc{  }
-            \def\ddd{\\  }
-            \def\eee{a\\b}
+            \def\ccc{a\\b}
             \if\IsEmpty{\aaa}\TRUE\else\FALSE\fi
             \if\IsEmpty{\bbb}\TRUE\else\FALSE\fi
             \if\IsEmpty{   }\TRUE\else\FALSE\fi
             \if\IsEmpty{  \\  }\TRUE\else\FALSE\fi
             \if\IsEmpty{\\  }\TRUE\else\FALSE\fi
-            \if\IsEmpty{\eee}\TRUE\else\FALSE\fi
+            \if\IsEmpty{\ccc}\TRUE\else\FALSE\fi
         }
     \end{frame}
     \END
