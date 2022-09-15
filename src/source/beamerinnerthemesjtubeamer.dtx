@@ -186,10 +186,10 @@
 % \subsubsection{Covers}
 %  This part set up title page, section page, part page, section page and subsection page for this cover based on the library \verb"sjtucover" loaded in section \ref{sec:innerload}.
 %
-%  Initialize sidebar width to 0pt as no sidebar required, which will be overwritten in outer theme.
+%  Initialize sidebar width to 0em as no sidebar required, which will be overwritten in outer theme.
 %    \begin{macrocode}
 \newdimen\beamer@sidebarwidth
-\beamer@sidebarwidth=0pt
+\beamer@sidebarwidth=0em
 %    \end{macrocode}
 %
 %  \begin{macro}{\coverpage}
@@ -202,13 +202,13 @@
 %    \begin{macrocode}
     \tikzset{external/export=false}
 %    \end{macrocode}
-%  Set the \verb"parindent" to 0pt to avoid unwanted shift if indent is set.
+%  Set the \verb"parindent" to 0em to avoid unwanted shift if indent is set.
 %    \begin{macrocode}
     \setlength{\parindent}{0em}
 %    \end{macrocode}
 %   Check if it is in sidebar mode to make necessary shift for cover pages.
 %    \begin{macrocode}
-    \ifdim\beamer@sidebarwidth=0pt %
+    \ifdim\beamer@sidebarwidth=0em %
       \usebeamertemplate*{#1}
     \else
       \hspace*{-0.5\beamer@sidebarwidth}\parbox[t]{\textwidth}{
@@ -308,7 +308,7 @@
 \setlength\leftmargini{1.4em}
 \setlength\leftmarginii{1.4em}
 \setlength\leftmarginiii{1.4em}
-\setbeamersize{description width=0.24cm}
+\setbeamersize{description width=0.72em}
 %    \end{macrocode}
 %
 % \begin{macro}{bibliolist}
@@ -449,7 +449,7 @@
     {\leavevmode\centering\hskip-2em\bfseries%
     \stamptext[structure]{\insertstampnum}%
     \alert{\insertblocktitle}\par\vskip1ex}
-    {\usebeamercolor[fg]{structure}\hrule\@height.4pt}
+    {\usebeamercolor[fg]{structure}\hrule\@height.04em}
     \vskip1ex
 }
 \defbeamertemplate*{block stamp end}{sjtubeamer}{
