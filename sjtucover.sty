@@ -18,7 +18,7 @@
 %% see https://vi.sjtu.edu.cn/index.php/articles/bulletin/16.
 %% ------------------------------------------------------------------------
 \NeedsTeXFormat{LaTeX2e}
-\ProvidesPackage{sjtucover}[2022/09/11 v2.9.5 cover library for sjtubeamer]
+\ProvidesPackage{sjtucover}[2022/09/20 v2.9.6 cover library for sjtubeamer]
 \RequirePackage{sjtuvi}
 \DefineOption{cover}{lang}{zh}
 \DefineOption{cover}{lang}{en}
@@ -546,18 +546,6 @@
   % and in the main.tex:
   %    \usetheme[my]{sjtubeamer}\usepackage{mycover}
   %
-}
-\defbeamertemplate{section in toc}{stamp}{
-  \vspace{2.5pt}\leavevmode\leftskip=8mm\stamptext[structure]{\inserttocsectionnumber}
-  \hspace{0.3em}\inserttocsection\par\vspace{0.5pt}
-}
-\defbeamertemplate{subsection in toc}{stamp}{
-  \vspace{1.5pt}\leavevmode\hspace{36mm}\inserttocsubsection\par
-}
-\defbeamertemplate{subsubsection in toc}{stamp}{
-  \leavevmode\hspace{40mm}\normalsize\usebeamerfont{subsection in
-  toc}\usebeamerfont{subsubsection in toc}%
-  \inserttocsubsubsection\par
 }
 \endinput
 %%

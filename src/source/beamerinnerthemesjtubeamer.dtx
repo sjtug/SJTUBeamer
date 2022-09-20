@@ -16,7 +16,7 @@
 % \iffalse
 %<*package>
 \NeedsTeXFormat{LaTeX2e}
-\ProvidesPackage{beamerinnerthemesjtubeamer}[2022/09/11 v2.9.5 sjtubeamer inner theme]
+\ProvidesPackage{beamerinnerthemesjtubeamer}[2022/09/20 v2.9.6 sjtubeamer inner theme]
 %</package>
 % \fi
 % \CheckSum{0}
@@ -186,10 +186,10 @@
 % \subsubsection{Covers}
 %  This part set up title page, section page, part page, section page and subsection page for this cover based on the library \verb"sjtucover" loaded in section \ref{sec:innerload}.
 %
-%  Initialize sidebar width to 0pt as no sidebar required, which will be overwritten in outer theme.
+%  Initialize sidebar width to 0em as no sidebar required, which will be overwritten in outer theme.
 %    \begin{macrocode}
 \newdimen\beamer@sidebarwidth
-\beamer@sidebarwidth=0pt
+\beamer@sidebarwidth=0em
 %    \end{macrocode}
 %
 %  \begin{macro}{\coverpage}
@@ -202,13 +202,13 @@
 %    \begin{macrocode}
     \tikzset{external/export=false}
 %    \end{macrocode}
-%  Set the \verb"parindent" to 0pt to avoid unwanted shift if indent is set.
+%  Set the \verb"parindent" to 0em to avoid unwanted shift if indent is set.
 %    \begin{macrocode}
     \setlength{\parindent}{0em}
 %    \end{macrocode}
 %   Check if it is in sidebar mode to make necessary shift for cover pages.
 %    \begin{macrocode}
-    \ifdim\beamer@sidebarwidth=0pt %
+    \ifdim\beamer@sidebarwidth=0em %
       \usebeamertemplate*{#1}
     \else
       \hspace*{-0.5\beamer@sidebarwidth}\parbox[t]{\textwidth}{
@@ -281,6 +281,7 @@
 }
 %    \end{macrocode}
 %
+%
 % \subsubsection{Itemize Environments}
 %
 %   Set the item and enumerate style to circled one.
@@ -288,7 +289,43 @@
 \setbeamertemplate{items}[circle]
 %    \end{macrocode}
 %
-%   Set the marker for section and subsection in TOC (Table of Contents) to \verb"stamp" style provided in \verb"sjtucover".
+%  Patch beamer on \verb"itemize",\verb"enumerate",\verb"description" on the left margin.
+%    \begin{macrocode}
+\setlength\leftmargini{1.4em}
+\setlength\leftmarginii{1.4em}
+\setlength\leftmarginiii{1.4em}
+\setbeamersize{description width=0.72em}
+%    \end{macrocode}
+%
+%   Define the \verb"stamp" TOC style for section in toc. Just use the structure color of marker to match the color like the style in \verb"circle" section in toc.
+%  This may mismatch with the definition of \verb"section page" of \verb"max" theme. But it surely the same color with \verb"part page". Reducing the number of the color used is a correct choice.
+%  Futhermore, the subsection doesn't even have a stamp marker so that the three-stage structure could not be formed to make use of all three-stage colors. Just all use one color to create a better look.
+%  At the end of this section block, a thin vspace is added to avoid the collision between the subsection and the stamptext.
+%  Some space before this section block is added, since there may be some users use \verb"multicols" environment in package \verb"multicol" to make a split list of TOC (which is not recommended by the way). this space will help to avoid the collision between the section and the previous subsection.
+%    \begin{macrocode}
+\defbeamertemplate{section in toc}{stamp}{
+  \vspace{2.5pt}\leavevmode\leftskip=8mm\stamptext[structure]{\inserttocsectionnumber}
+  \hspace{0.3em}\inserttocsection\par\vspace{0.5pt}
+}
+%    \end{macrocode}
+%  Define the \verb"stamp" TOC style for subsection in toc, notice that there is no \verb"\stamptext" in subsection, in order to fit the style of \verb"circle" subsection in toc style, only with the additional left margin to align with (slightly right of) section in toc. Add thin space at the start of every subsection in toc to add some line height.
+%    \begin{macrocode}
+\defbeamertemplate{subsection in toc}{stamp}{
+  \vspace{1.5pt}\leavevmode\hspace{36mm}\inserttocsubsection\par
+}
+%    \end{macrocode}
+%  Define the \verb"stamp" TOC style for subsubsection in toc. Like it is in section in toc, only additional left margin is added with adaptation of the font style of subsubsection in toc. And subsubsection should never be used in beamer class, since there is no configuration for subsubsection in beamer to show. To control the visibility of subsubsection in toc,
+%  \begin{verbatim}\tableofcontents[subsubsectionstyle=hide]\end{verbatim}
+%  will hide all subsubsection in toc, since there is NO \verb"hideallsubsubsections" in beamer.
+%  COPYRIGHT NOTICE: reference to beamer class code with LPPL 1.3c License.
+%    \begin{macrocode}
+\defbeamertemplate{subsubsection in toc}{stamp}{
+  \leavevmode\hspace{40mm}\normalsize\usebeamerfont{subsection in toc}%
+  \usebeamerfont{subsubsection in toc}%
+  \inserttocsubsubsection\par
+}
+%    \end{macrocode}
+%   Set the marker for section and subsection in TOC (Table of Contents) to \verb"stamp" style.
 %   NOTICE: the recommended setup to use the following in full TOC
 %   \begin{verbatim}\tableofcontents[hideallsubsections]\end{verbatim}
 %   use the following in \verb"\AtBeginSection"
@@ -302,14 +339,6 @@
 %  \begin{verbatim}\setbeamertemplate{sections/subsections in toc}[circle]\end{verbatim}
 %  or load \verb"circles" inner theme.
 %  \begin{verbatim}\useinnertheme{circles}\end{verbatim}
-%
-%  Patch beamer on \verb"itemize",\verb"enumerate",\verb"description" on the left margin.
-%    \begin{macrocode}
-\setlength\leftmargini{1.4em}
-\setlength\leftmarginii{1.4em}
-\setlength\leftmarginiii{1.4em}
-\setbeamersize{description width=0.24cm}
-%    \end{macrocode}
 %
 % \begin{macro}{bibliolist}
 %    Create a bibliography list manually with \verb"\item" patched for \verb"\newblock". 
@@ -417,13 +446,13 @@
   frame empty,
   interior empty,
   sharp corners,
-  top=2pt,bottom=2pt,left=2pt,right=2pt,
-  borderline={4pt}{0pt}{
+  top=0.2em,bottom=0.2em,left=0.2em,right=0.2em,
+  borderline={0.4em}{0em}{
     #1,
-    line width=0.5pt,
+    line width=0.05em,
     decoration={
       stampline,
-      segment length=8pt,
+      segment length=0.8em,
       path has corners=true,
     },
     decorate
@@ -449,7 +478,7 @@
     {\leavevmode\centering\hskip-2em\bfseries%
     \stamptext[structure]{\insertstampnum}%
     \alert{\insertblocktitle}\par\vskip1ex}
-    {\usebeamercolor[fg]{structure}\hrule\@height.4pt}
+    {\usebeamercolor[fg]{structure}\hrule\@height.04em}
     \vskip1ex
 }
 \defbeamertemplate*{block stamp end}{sjtubeamer}{
