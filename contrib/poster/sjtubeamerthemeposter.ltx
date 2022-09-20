@@ -144,17 +144,6 @@
 \setbeamertemplate{block example end}{
   \end{beamercolorbox}
 }
-\if\EqualOption{poster}{noindent}{true}\else%
-  \addtobeamertemplate{block begin}{}{%
-    \setlength{\parindent}{2em}%
-  }
-  \addtobeamertemplate{block alerted begin}{}{%
-    \setlength{\parindent}{2em}%
-  }
-  \addtobeamertemplate{block example begin}{}{%
-    \setlength{\parindent}{2em}%
-  }
-\fi%
 % tcolorbox 设定
 \tcbset{toptitle=2.5mm,bottomtitle=2.5mm}
 \if\EqualOption{poster}{noindent}{true}\else%
@@ -162,6 +151,16 @@
   \setlength{\parindent}{2em}%
   % 重定义 stampblock 的首行缩进
   \addtobeamertemplate{block stamp begin}{}{%
+    \setlength{\parindent}{2em}%
+  }
+  % 重定义 block 的缩进
+  \addtobeamertemplate{block begin}{}{%
+    \setlength{\parindent}{2em}%
+  }
+  \addtobeamertemplate{block alerted begin}{}{%
+    \setlength{\parindent}{2em}%
+  }
+  \addtobeamertemplate{block example begin}{}{%
     \setlength{\parindent}{2em}%
   }
 \fi%
