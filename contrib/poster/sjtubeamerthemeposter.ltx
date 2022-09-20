@@ -1,0 +1,177 @@
+%% ------------------------------------------------------------------------
+%% Copyright (C) 2022 LogCreative
+%% 
+%% Licensed under the Apache License, Version 2.0 (the "License");
+%% you may not use this file except in compliance with the License.
+%% You may obtain a copy of the License at
+%% 
+%%     http://www.apache.org/licenses/LICENSE-2.0
+%% 
+%% Unless required by applicable law or agreed to in writing, software
+%% distributed under the License is distributed on an "AS IS" BASIS,
+%% WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+%% See the License for the specific language governing permissions and
+%% limitations under the License.
+%% ------------------------------------------------------------------------
+% 设置文件元数据
+\ProvidesFile{sjtubeamerthemeposter.ltx}[2022/09/20 Beamerposter adapter for SJTUBeamer]
+\PassOptionsToPackage{orientation=portrait}{beamerposter}
+\if\EqualOption{poster}{landscape}{true}
+  \PassOptionsToPackage{orientation=landscape}{beamerposter}
+\fi
+% 加载 beamerposter
+\usepackage[size=a0,scale=1.4]{beamerposter}
+% 设置 headline 颜色跟随亮色/暗色
+\setbeamercolor{headline}{parent=palette primary}
+\AtBeginDocument{
+  % 修改 headline，需要在文档起始处覆盖，防止 default 的行为
+  \setbeamertemplate{headline}{
+    \begin{beamercolorbox}[wd=\paperwidth,sep=0.02\paperwidth]{headline}
+      \begin{columns}
+        \begin{column}{0.25\textwidth}
+          \hspace*{0.02\paperwidth}
+          \if\EqualOption{poster}{sepinst}{true}%
+            \resizebox{!}{4cm}{\vphantom{-}\usebeamertemplate{logo}}
+          \else%
+            \if\EqualOption{inner}{lang}{en}%
+              \resizebox{!}{4cm}{\vphantom{-}\secondaryinstlogo{\csname beamer@shortinstitute\endcsname}{\usebeamertemplate{logo}}}
+            \else%
+              \resizebox{!}{4cm}{\vphantom{-}\secondaryinstlogo[\insertshortinstitute]{\insertinstitute}{\usebeamertemplate{logo}}}
+            \fi%
+          \fi%
+        \end{column}
+        \begin{column}{0.5\textwidth}
+          \vfill
+          \centering
+          \usebeamercolor{title in headline}{%
+            \color{fg}\textbf{\LARGE{\inserttitle}}\vskip2.5ex
+          }
+          \usebeamercolor{author in headline}{%
+            \color{fg}\large{\insertauthor}
+          }
+          \vfill
+        \end{column}
+        \begin{column}{0.25\textwidth}
+          \if\EqualOption{poster}{sepinst}{true}
+            \hfill
+            \if\EqualOption{inner}{lang}{en}
+              \resizebox{!}{4cm}{\vphantom{-}\secondaryinstlogo{\csname beamer@shortinstitute\endcsname}{}}
+            \else
+              \resizebox{!}{4cm}{\vphantom{-}\secondaryinstlogo[\insertshortinstitute]{\insertinstitute}{}}
+            \fi
+            \hspace*{0.03\paperwidth}
+          \else
+            \begin{tikzpicture}[overlay]
+              \if\EqualOption{poster}{landscape}{true}
+                \def\stampheight{0.05}
+                \def\stampsize{60pt}
+              \else
+                \def\stampheight{0.03}
+                \def\stampsize{50pt}
+              \fi
+              \usebeamercolor{palette primary}
+              \stamparray{\stampsize}{(-0.05\paperwidth,-\stampheight\paperheight)}{(\paperwidth,\stampheight\paperheight)}
+              \fill[bg, path fading=fade right] (-0.05\paperwidth, -\stampheight\paperheight) rectangle (\paperwidth, \stampheight\paperheight);
+            \end{tikzpicture}
+          \fi
+        \end{column}
+      \end{columns}
+    \end{beamercolorbox}
+  }
+}
+% 新的命令 设置底栏 \footline[左脚注]{右脚注}
+\newif\ifposterfootline
+\def\posterrightfootline{}
+\def\posterleftfootline{}
+\providecommand{\footline}[2][]{
+  \def\posterleftfootline{#1}
+  \def\posterrightfootline{#2}
+}
+% 底栏为空时不会出现
+\setbeamercolor{footline}{parent=palette primary}
+\setbeamertemplate{footline}{%
+  \resizebox{\paperwidth}{!}{\sjtugate[cprimary]}\vskip-6cm\par
+  \posterfootlinetrue
+  \ifx\posterleftfootline\relax
+    \ifx\posterrightfootline\relax
+      \posterfootlinefalse
+    \fi
+  \fi
+  \ifposterfootline
+    \begin{beamercolorbox}[wd=\paperwidth]{footline}
+      \small\vskip1.5ex\hspace*{0.02\paperwidth}\posterleftfootline\hfill
+      \posterrightfootline\hspace*{0.02\paperwidth}\vskip3ex
+    \end{beamercolorbox}
+  \fi
+}
+% 重置区块间隙
+\setbeamertemplate{block begin}{
+  \vskip.75ex
+  \begin{beamercolorbox}[colsep*=.75ex]{block title}%
+    \usebeamerfont*{block title}\insertblocktitle
+  \end{beamercolorbox}%
+  {\ifbeamercolorempty[bg]{block body}{}{\nointerlineskip\vskip-0.5pt}}%
+  \usebeamerfont{block body}%
+  \begin{beamercolorbox}[colsep*=.75ex,vmode]{block body}%
+    \ifbeamercolorempty[bg]{block body}{\vskip-.25ex}{\vskip-.75ex}\vbox{}%
+}
+\setbeamertemplate{block end}{
+  \end{beamercolorbox}
+}
+\setbeamertemplate{block alerted begin}{
+  \vskip.75ex
+  \begin{beamercolorbox}[colsep*=.75ex]{block title alerted}%
+    \usebeamerfont*{block title}\insertblocktitle
+  \end{beamercolorbox}%
+  {\ifbeamercolorempty[bg]{block body}{}{\nointerlineskip\vskip-0.5pt}}%
+  \usebeamerfont{block body}%
+  \begin{beamercolorbox}[colsep*=.75ex,vmode]{block body alerted}%
+    \ifbeamercolorempty[bg]{block body}{\vskip-.25ex}{\vskip-.75ex}\vbox{}%
+}
+\setbeamertemplate{block alerted end}{
+  \end{beamercolorbox}
+}
+\setbeamertemplate{block example begin}{
+  \vskip.75ex
+  \begin{beamercolorbox}[colsep*=.75ex]{block title example}%
+    \usebeamerfont*{block title}\insertblocktitle
+  \end{beamercolorbox}%
+  {\ifbeamercolorempty[bg]{block body}{}{\nointerlineskip\vskip-0.5pt}}%
+  \usebeamerfont{block body}%
+  \begin{beamercolorbox}[colsep*=.75ex,vmode]{block body example}%
+    \ifbeamercolorempty[bg]{block body}{\vskip-.25ex}{\vskip-.75ex}\vbox{}%
+}
+\setbeamertemplate{block example end}{
+  \end{beamercolorbox}
+}
+% tcolorbox 设定
+\tcbset{toptitle=2.5mm,bottomtitle=2.5mm}
+\if\EqualOption{poster}{noindent}{true}\else%
+  % 首行缩进
+  \setlength{\parindent}{2em}%
+  % 重定义 stampblock 的首行缩进
+  \addtobeamertemplate{block stamp begin}{}{%
+    \setlength{\parindent}{2em}%
+  }
+  % 重定义 block 的缩进
+  \addtobeamertemplate{block begin}{}{%
+    \setlength{\parindent}{2em}%
+  }
+  \addtobeamertemplate{block alerted begin}{}{%
+    \setlength{\parindent}{2em}%
+  }
+  \addtobeamertemplate{block example begin}{}{%
+    \setlength{\parindent}{2em}%
+  }
+\fi%
+% 重设引用条目同名图标大小
+\pgfdeclareimage[height=26pt]{beamericonbook}{beamericonbook}
+\pgfdeclareimage[height=26pt]{beamericonbookshaded}{beamericonbook.20}
+\pgfdeclareimage[height=34pt]{beamericonarticle}{beamericonarticle}
+\pgfdeclareimage[height=34pt]{beamericonarticleshaded}{beamericonarticle.20}
+\pgfdeclareimage[height=32pt]{beamericononline}{beamericononline}
+\pgfdeclareimage[height=32pt]{beamericononlineshaded}{beamericononline.20}
+% 为了防止无法悬挂对齐的情形，直接使用 text 模式的 bibliography item
+% 可以改为正常的 article, book, online 等。
+% 注意！如果使用 gb7714-2015ay 样式，请手动删除本行。 
+\setbeamertemplate{bibliography item}[text]
