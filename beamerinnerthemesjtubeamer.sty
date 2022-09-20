@@ -21,7 +21,7 @@
 %% limitations under the License.
 %% ------------------------------------------------------------------------
 \NeedsTeXFormat{LaTeX2e}
-\ProvidesPackage{beamerinnerthemesjtubeamer}[2022/09/11 v2.9.5 sjtubeamer inner theme]
+\ProvidesPackage{beamerinnerthemesjtubeamer}[2022/09/20 v2.9.6 sjtubeamer inner theme]
 \RequirePackage{sjtuvi}
 \RequirePackage{tcolorbox}
 \DefineOption{inner}{cover}{maxplus}
@@ -74,12 +74,12 @@
 \setbeamertemplate{titlegraphic}{}
 \setbeamertemplate{titlegraphic}[\sjtubeamer@inner@cover]
 \newdimen\beamer@sidebarwidth
-\beamer@sidebarwidth=0pt
+\beamer@sidebarwidth=0em
 \def\coverpage#1{
   {
     \tikzset{external/export=false}
     \setlength{\parindent}{0em}
-    \ifdim\beamer@sidebarwidth=0pt %
+    \ifdim\beamer@sidebarwidth=0em %
       \usebeamertemplate*{#1}
     \else
       \hspace*{-0.5\beamer@sidebarwidth}\parbox[t]{\textwidth}{
@@ -118,11 +118,23 @@
   \makepart
 }
 \setbeamertemplate{items}[circle]
-\setbeamertemplate{sections/subsections in toc}[stamp]
 \setlength\leftmargini{1.4em}
 \setlength\leftmarginii{1.4em}
 \setlength\leftmarginiii{1.4em}
-\setbeamersize{description width=0.24cm}
+\setbeamersize{description width=0.72em}
+\defbeamertemplate{section in toc}{stamp}{
+  \vspace{2.5pt}\leavevmode\leftskip=8mm\stamptext[structure]{\inserttocsectionnumber}
+  \hspace{0.3em}\inserttocsection\par\vspace{0.5pt}
+}
+\defbeamertemplate{subsection in toc}{stamp}{
+  \vspace{1.5pt}\leavevmode\hspace{36mm}\inserttocsubsection\par
+}
+\defbeamertemplate{subsubsection in toc}{stamp}{
+  \leavevmode\hspace{40mm}\normalsize\usebeamerfont{subsection in toc}%
+  \usebeamerfont{subsubsection in toc}%
+  \inserttocsubsubsection\par
+}
+\setbeamertemplate{sections/subsections in toc}[stamp]
 \newenvironment{bibliolist}[1]{
   \begin{thebibliography}{#1}
     \let\olditem\item%
@@ -159,13 +171,13 @@
   frame empty,
   interior empty,
   sharp corners,
-  top=2pt,bottom=2pt,left=2pt,right=2pt,
-  borderline={4pt}{0pt}{
+  top=0.2em,bottom=0.2em,left=0.2em,right=0.2em,
+  borderline={0.4em}{0em}{
     #1,
-    line width=0.5pt,
+    line width=0.05em,
     decoration={
       stampline,
-      segment length=8pt,
+      segment length=0.8em,
       path has corners=true,
     },
     decorate
@@ -178,7 +190,7 @@
     {\leavevmode\centering\hskip-2em\bfseries%
     \stamptext[structure]{\insertstampnum}%
     \alert{\insertblocktitle}\par\vskip1ex}
-    {\usebeamercolor[fg]{structure}\hrule\@height.4pt}
+    {\usebeamercolor[fg]{structure}\hrule\@height.04em}
     \vskip1ex
 }
 \defbeamertemplate*{block stamp end}{sjtubeamer}{
