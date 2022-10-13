@@ -74,6 +74,8 @@
 %   Define the beamer template \verb"frametitle" to add a logo in the right of the frametitle (top right corner) for \verb"topright" option. If it is not \verb"topright" option, then the default \verb"frametitle" template is used.
 %
 %   \verb"smoothbars", \verb"smoothtree" and \verb"shadow" theme use a different frame title insertion mechanism in \verb"beamer" class so that the redefinition on \verb"frametitle" should be done just after the document starts. This overwrites the original definition of those outer theme and may cause a certain degree of style lost.
+%
+%  COPYRIGHT NOTICE: Some codes are the same as \verb"beamer" class under LPPL 1.3c license.
 %    \begin{macrocode}
 \if\EqualOption{outer}{logopos}{topright}
   \AtBeginDocument{
@@ -87,6 +89,9 @@
         \begingroup
         \usebeamerfont{frametitle}
         \vbox{}
+%    \end{macrocode}
+%   Lift the left part a little bit.
+%    \begin{macrocode}
         \ifx\insertframesubtitle\@empty\vskip-0.65ex%
         \else\vskip-0.85ex\fi%
         \if@tempswa\else\csname beamer@fte#1\endcsname\fi%
@@ -103,6 +108,9 @@
         }%
         \vskip-1ex%
         \endgroup%
+%    \end{macrocode}
+%   Start the right logo part. Lift the logo up, relative to the end position of the left part.
+%    \begin{macrocode}
         \raggedleft%
         \begingroup
         \ifx\insertframesubtitle\@empty\vskip-2.1ex%
@@ -120,6 +128,7 @@
   }
 %    \end{macrocode}
 %  Make a larger height of frametitle when it is in \verb"default" navigation configuration. This could only be made when it is in \verb"topright" logo position mode.
+%  TODO: Make it more consistent when it is under \verb"bottomright" mode. The default behavior of \verb"beamer" class will make the top margin slightly larger than the bottom margin, which causes assymetry.
 %    \begin{macrocode}
   \if\EqualOption{outer}{nav}{default}
     \AtBeginDocument{
