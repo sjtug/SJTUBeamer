@@ -279,18 +279,18 @@
 		"scope": "doctex,tex,latex",
 		"prefix": "stamp",
 		"body": "stamp",
-		"description": "Declare stamp pattern to make a stamp array.\n"
+		"description": "Make a stamp array. Use option [pattern={stamp[size=8pt,xshift=4pt,yshift=4pt]}] on TikZ fill element.\n"
 	},
 	"stamparray": {
 		"scope": "doctex,tex,latex",
 		"prefix": "\\stamparray",
 		"body": "\\stamparray{$1}{$2}{$3}",
-		"description": " Create the stamp array in the TikZ environment.\n"
+		"description": " Create the stamp array in the TikZ environment.\n The first element is the pattern size.\n The second element is the starting point. Formatted in (0,0).\n The third element is the ending point. Formatted in (0,0).\n"
 	},
 	"stampline": {
 		"scope": "doctex,tex,latex",
 		"prefix": "stampline",
 		"body": "stampline",
-		"description": "Declare a decoration to make a loop stampline.\n"
+		"description": "A decoration to make a loop stampline. Use option to draw the stampline onTikZ draw element [decoration=stampline, segment length=1cm, decorate].\n"
 	},
 }
