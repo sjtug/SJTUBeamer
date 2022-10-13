@@ -87,8 +87,8 @@
         \begingroup
         \usebeamerfont{frametitle}
         \vbox{}
-        \ifx\insertframesubtitle\@empty\vskip-2pt%
-        \else\vskip-5pt\fi%
+        \ifx\insertframesubtitle\@empty\vskip-0.65ex%
+        \else\vskip-0.85ex\fi%
         \if@tempswa\else\csname beamer@fte#1\endcsname\fi%
         \strut\insertframetitle\strut\par%
         {%
@@ -105,12 +105,12 @@
         \endgroup%
         \raggedleft%
         \begingroup
-        \ifx\insertframesubtitle\@empty\vskip-2.3ex%
-        \else\vskip-3.0ex\fi%
+        \ifx\insertframesubtitle\@empty\vskip-2.1ex%
+        \else\vskip-3.05ex\fi%
 %    \end{macrocode}
-% Insert the outer logo with 0.7cm height. \verb"\vphantom" here is to create a phantom box to make sure the \verb"\resizebox" has a non-zero height box input. The calculation is fixed for a 0.7cm height logo placeholder.
+% Insert the outer logo with 3ex height. \verb"\vphantom" here is to create a phantom box to make sure the \verb"\resizebox" has a non-zero height box input. The calculation is fixed for a 3ex height logo placeholder.
 %    \begin{macrocode}
-        \resizebox{!}{0.7cm}{\vphantom{-}\usebeamertemplate{logo}}\hspace*{10pt}%
+        \resizebox{!}{3ex}{\vphantom{-}\usebeamertemplate{logo}}\hspace*{10pt}%
         \endgroup%
         \ifx\insertframesubtitle\@empty%
         \else\vskip0.6ex\fi%
