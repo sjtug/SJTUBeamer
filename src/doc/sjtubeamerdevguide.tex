@@ -366,7 +366,7 @@ The coding style in this section is applicable for the following file:
 
 \subsubsection{Use Beamer Variable}
 
-\paragraph{Use beamer variable to set color and font.} \verb"beamer" class provides interfaces for using current configuration of color and font, see the documentation of \verb"beamer" class
+\paragraph{Use beamer variable to set color and font.} \verb"beamer" class provides interfaces for using the current configuration of color and font, see the documentation of \verb"beamer" class
 \begin{verbatim}
         texdoc beamer
     \end{verbatim}
@@ -439,7 +439,7 @@ Comment means that the ignored lines in the Doc\TeX{} source code.
 
 \subsubsection{An Example}
 
-Notably, the contents before the \emph{first} \verb"macrocode" environment in \verb"macro" environment will be treated as the description of this macro. When generating the Visual Studio Code snippets, the description will be shown. The searching on the command in \verb"macrocode" environments will decide the parameter number and the default parameter in the code snipptes as well. If you want to add some notes to this macro, add them before the end of the \verb"macro" environment. You could use multiple \verb"macrocode" environments in order to add comments between the code lines.
+Notably, the contents before the \emph{first} \verb"macrocode" environment in \verb"macro" environment will be treated as the description of this macro. When generating the Visual Studio Code snippets, the description will be shown. The searching on the command in \verb"macrocode" environments will decide the parameter number and the default parameter in the code snippets as well. If you want to add some notes to this macro, add them before the end of the \verb"macro" environment. You could use multiple \verb"macrocode" environments in order to add comments between the code lines.
 
 \begin{lstlisting}[showspaces=true]
 %  \begin{macro}{\foobar}
@@ -453,12 +453,12 @@ Notably, the contents before the \emph{first} \verb"macrocode" environment in \v
 
 \section{Framework}\label{sec:framework}
 
-\themename\ is a modular presentation framework.
+\themename\ is a modular presentation framework. The minimal working files are listed below. If you want to install \themename{} manually, add these files into the searching directory of \TeX{} and refresh the filename directory.
 
 \begin{figure}[h]
   \framebox[\textwidth]{\ttfamily main.tex}
 
-  \framebox[\textwidth]{loaded contrib}
+  \framebox[\textwidth]{\ttfamily contrib/**/sjtubeamertheme*.ltx}
 
   \framebox[\textwidth]{\ttfamily beamerthemesjtubeamer.sty}
 
@@ -468,12 +468,12 @@ Notably, the contents before the \emph{first} \verb"macrocode" environment in \v
 
   \framebox[0.75\textwidth]{\ttfamily sjtuvi.sty}
 
-  \framebox[0.75\textwidth]{\ttfamily logo.pdf}
+  \framebox[0.75\textwidth]{\ttfamily vi/*.pdf}
 \end{figure}
 
 \subsection{Decoupling}
 
-The framework is designed to be used seperately to meet the \verb"beamer" class requirements on \verb"theme". And any line in the following should be also available for compilation:
+The framework is designed to be used separately to meet the \verb"beamer" class requirements on \verb"theme". And any line in the following should be also available for compilation:
 \begin{verbatim}
         \usetheme{sjtubeamer}
         \usecolortheme{sjtubeamer}
@@ -534,7 +534,7 @@ The table shows the flow of parameter passing.
 
 \subsection{Template Management}
 
-About the cover defining method, \themename\ has unified five different covers into one way of definition --- \verb"\definecover{part}". This macro will generate two sub commands --- \verb"\partpage" and \verb"\makepart", which is used to override the original definition with some redundent macros. The difference between \verb"\make..." series and \verb"\...page" series is that the former will try to use a \verb"plain" frame in the first place.
+About the cover defining method, \themename\ has unified five different covers into one way of definition --- \verb"\definecover{part}". This macro will generate two subcommands --- \verb"\partpage" and \verb"\makepart", which is used to override the original definition with some redundant macros. The difference between \verb"\make..." series and \verb"\...page" series is that the former will try to use a \verb"plain" frame in the first place.
 
 \begin{figure}[h]
   \texttt{\textbackslash{}maketitle}\par
@@ -577,7 +577,7 @@ The three types of \verb"sectioning pages" are structured in a way that the code
 
 This will redirect to the target \verb"sectioning page" by setting the correct configuration before using it. This might seems redundant since it has to be set every time it uses. It seems that the code takes time but actually not, since it is macro programming for \LaTeX{} and the canonical conditional changes will only redirect the name of the macro instead of actually pushing the full data into the register. It is also beneficial for unified management with the provided macros from \verb"beamer" class.
 
-About the numbering scheme, it uses internal variables like \verb"\sjtubeamer@cover@sectionnumber" to store that. To adapt to the \verb"ctexbeamer" class, once it is loaded, the macro will get redirected to the macros defined in \verb"ctexheading" (remember, if the package \verb"ctex" is loaded separately, this package will not get loaded). As a result, the user could use \verb"\ctexset" interface to modify the numbering style after the theme is loaded (since some modification to \verb"\ctexset" may be introduced in this theme).
+About the numbering scheme, it uses internal variables to store that, like \verb"\sjtubeamer@cover@sectionnumber". To adapt to the \verb"ctexbeamer" class, once it is loaded, the macro will get redirected to the macros defined in \verb"ctexheading" (remember, if the package \verb"ctex" is loaded separately, this package will not get loaded). As a result, the user could use \verb"\ctexset" interface to modify the numbering style after the theme is loaded (since some modification to \verb"\ctexset" may be introduced in this theme).
 
 \begin{warn}
   When drawing in the sandbox through Ti\emph{k}Z, make sure to use \texttt{overlay} option for adjustment. It will avoid the shift of your cover when using \texttt{sidebar} theme.
@@ -597,7 +597,7 @@ You could refer to the user guide for a sample file. And the loading on the pack
 
 \subsection{Logo System}
 
-\themename\ has its own color model on logo. The main macro is \verb"\definelogo", which will generate a macro on its file name.
+\themename\ has its own color model on the logo. The main macro is \verb"\definelogo", which will generate a macro on its file name.
 
 TikZ provides an environment to create our own path fading from picture: \verb"tikzfadingfrompicture", where you could define your fading in a $(-1,-1)$ to $(1,1)$ rectangle area. Fill the background to black and insert a white logo in the middle will create a mask. Set the path fading to the name of this mask will apply to your new TikZ shape.
 
@@ -678,7 +678,32 @@ As always, we strongly recommend compiling the document through \hologo{XeLaTeX}
 \begin{enumerate}
   \item \textbf{Use \textsf{beamer} interface.} As is mentioned in Section \ref{sec:beamer}, \themename{} will not create its macro unless there is no substitute in the current version of \textsf{beamer} or it is a common method to implement some features. A good example for this is to make a bottom page, \themename{} mimicked \verb"\maketitle" command to implement \verb"\makebottom" command. A good outcome is that the style file could be separately used with low coupling.
   \item \textbf{Use mainstream packages.} Mentioned in Section \ref{sec:mainstream}, mainstream packages are widely accepted in many engines. Some top-level marcos are used to increase the readability of the source code, i.e., \textsc{pgf} is lengthy and hard to be maintained.
-  \item \textbf{Use old-fashioned \TeX{} code.} If there is a nice way to implement in \TeX{}, then go \TeX{}. \TeX{} is a box-based typesetting system, which may be mentioned in many Computer Science books. And \LaTeX{} is on top of that to provide clear-to-read macros. In some scenarios, the native \verb"\vbox" and \verb"\hbox" command could help calculate the position of characters in a more controllable way. But it is certainly painful to learn. The \TeX{} Book\cite{texbook} is the classic to learn that, but Notes On Programming in \TeX{}\cite{texnote} is more recommended in modern \LaTeX{}.
+  \item \textbf{Use old-fashioned \TeX{} code.} If there is a nice way to implement in \TeX{}, then go \TeX{}. \TeX{} is a box-based typesetting system, which may be mentioned in many Computer Science books. And \LaTeX{} is on top of that to provide clear-to-read macros. In some scenarios, the native \verb"\vbox" and \verb"\hbox" commands could help calculate the position of characters in a more controllable way. But it is certainly painful to learn. The \TeX{} Book\cite{texbook} is the classic to learn that, but Notes On Programming in \TeX{}\cite{texnote} is more recommended in modern \LaTeX{}.
+\end{enumerate}
+
+\subsection{Adaptive Layout}
+
+\themename{} aims at adapting to as many layouts as possible. Since \themename{} is a decoupled modular part, the layout could be changed due to external package options. And it should be natively decoupled or adaptive to the context through adaptive codes instead of hard-coded condition tests.
+
+\begin{enumerate}
+  \item \textbf{Options from \texttt{beamer} class to change the size.} \themename{} is based on \verb"beamer" class in the bottom layer. Users could pass options like \verb"12pt" to change the overall font size or \verb"aspectratio=169" to change the slide size to \verb"beamer". This could damage the layout of the components like \verb"frametitle", covers if its measurement is in unit \verb"cm" or \verb"pt" if it is not font adaptive. We recommend using \verb"em" in width and \verb"ex" in height to make it font adaptive. Since the default font size of \verb"beamer" is 10pt, the following conversion on measurement could be indicated \cite{texbook} when transplanting components from other templates:
+
+        \begin{tabular}{lll}
+                                   & 1em    & 1ex    \\
+          \verb"\rm" & 10pt   & 4.3pt  \\
+          \verb"\bf" & 11.5pt & 4.44pt \\
+          \verb"\tt" & 10.5pt & 4.3pt  \\
+        \end{tabular} \vrule
+        \begin{tabular}{>{\ttfamily}ll}
+          pt & point                       \\
+          pc & pica (1 pc = 12 pt)         \\
+          in & inch (1 in = 72.27 pt)      \\
+          cm & centimeter (2.54 cm = 1 in)
+        \end{tabular}
+
+        However, it is not always meant to use font adaptive \verb"em" and \verb"ex" everywhere in your code. You should be aware of some spaces should not be adaptive such as the spacing in the drawings. And when it comes to the change of aspect ratio, the result should be calculated from the width and height geometry instead of hard-coded measurement in most cases.
+  \item \textbf{Options from \texttt{ctexbeamer} class to change the format.} Users could also use \verb"\ctexset{}" provided by \verb"ctexbeamer" to change the format of the section number or change the font by \verb"fontset=ubuntu". \themename{} has adapted to some of the \verb"ctexset" options but the majority of them have not been adapted since the meaning could get changed from \verb"article" class to \verb"beamer" class. Some name translations are subject to change from other packages like \verb"algorithm2e". In this scenario, use \verb"\@ifpackageloaded{}" macro to patch the code manually. And sometimes the package will get loaded later of the theme, so you are most likely to make the condition test in \verb"\AtBeginDocument{}".
+  \item \textbf{Modifications from contribution plugins.} The plugin itself may also change the layout in some ways. For example, the \verb"poster" plugin needs to change the font measurement and emulate the high DPI behavior. The more adaptive the upstream code is, the easier modifications of the plugin are. Keep it in mind to adapt to as many cases as possible.
 \end{enumerate}
 
 \subsection{Old \TeX\ Distribution}
@@ -703,7 +728,7 @@ For compatibility issues, you need to define the \verb"\sjtubeamer@compatible" v
 
 \themename\ is relatively a large project for developers. To boost up the compilation on 20+ unit tests, we introduced \texttt{mylatexformat} to cache the precompiled common header. However, this method comes with compatibility issues in that it only supports old packages \emph{without} using \texttt{fontspec} to load OpenType fonts.
 
-To dump the format on beamer, we have to reset the encoding to the old 7-bit default\cite{mylatexot1}. Since some sans fonts use a newer version. And it is not available for C\TeX{} in \hologo{XeLaTeX}, since it uses \texttt{fontspec} to load the font. What's more, if we decided to load \texttt{ctex} after loading \texttt{ctexbeamer}, the load on \texttt{ctex} will be skipped\cite{ctex}. And \themename\ has done some of the work similar to \texttt{ctexbeamer}. As a result, we need to split the document class loading line \texttt{\textbackslash documentclass\{ctexbeamer\}} into two parts, which means the loading time on \texttt{ctex} will not be saved:
+To dump the format on \verb"beamer", we have to reset the encoding to the old 7-bit default\cite{mylatexot1}. Since some sans fonts use a newer version. And it is not available for C\TeX{} in \hologo{XeLaTeX}, since it uses \texttt{fontspec} to load the font. What's more, if we decided to load \texttt{ctex} after loading \texttt{ctexbeamer}, the load on \texttt{ctex} will be skipped\cite{ctex}. And \themename\ has done some of the work similar to \texttt{ctexbeamer}. As a result, we need to split the document class loading line \texttt{\textbackslash documentclass\{ctexbeamer\}} into two parts, which means the loading time on \texttt{ctex} will not be saved:
 \begin{verbatim}
 %--- static -----
 \RequirePackage[OT1]{fontenc}

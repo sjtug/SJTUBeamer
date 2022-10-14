@@ -16,7 +16,7 @@
 % \iffalse
 %<*package>
 \NeedsTeXFormat{LaTeX2e}
-\ProvidesPackage{beamerouterthemesjtubeamer}[2022/09/20 v2.9.6 sjtubeamer outer theme]
+\ProvidesPackage{beamerouterthemesjtubeamer}[2022/10/13 v2.9.7 sjtubeamer outer theme]
 %</package>
 % \fi
 % \CheckSum{0}
@@ -74,6 +74,8 @@
 %   Define the beamer template \verb"frametitle" to add a logo in the right of the frametitle (top right corner) for \verb"topright" option. If it is not \verb"topright" option, then the default \verb"frametitle" template is used.
 %
 %   \verb"smoothbars", \verb"smoothtree" and \verb"shadow" theme use a different frame title insertion mechanism in \verb"beamer" class so that the redefinition on \verb"frametitle" should be done just after the document starts. This overwrites the original definition of those outer theme and may cause a certain degree of style lost.
+%
+%  COPYRIGHT NOTICE: Some codes are the same as \verb"beamer" class under LPPL 1.3c license.
 %    \begin{macrocode}
 \if\EqualOption{outer}{logopos}{topright}
   \AtBeginDocument{
@@ -87,8 +89,11 @@
         \begingroup
         \usebeamerfont{frametitle}
         \vbox{}
-        \ifx\insertframesubtitle\@empty\vskip-2pt%
-        \else\vskip-5pt\fi%
+%    \end{macrocode}
+%   Lift the left part a little bit.
+%    \begin{macrocode}
+        \ifx\insertframesubtitle\@empty\vskip-0.6ex%
+        \else\vskip-0.85ex\fi%
         \if@tempswa\else\csname beamer@fte#1\endcsname\fi%
         \strut\insertframetitle\strut\par%
         {%
@@ -103,14 +108,17 @@
         }%
         \vskip-1ex%
         \endgroup%
+%    \end{macrocode}
+%   Start the right logo part. Lift the logo up, relative to the end position of the left part.
+%    \begin{macrocode}
         \raggedleft%
         \begingroup
-        \ifx\insertframesubtitle\@empty\vskip-2.3ex%
-        \else\vskip-3.0ex\fi%
+        \ifx\insertframesubtitle\@empty\vskip-2.1ex%
+        \else\vskip-3.05ex\fi%
 %    \end{macrocode}
-% Insert the outer logo with 0.7cm height. \verb"\vphantom" here is to create a phantom box to make sure the \verb"\resizebox" has a non-zero height box input. The calculation is fixed for a 0.7cm height logo placeholder.
+% Insert the outer logo with 3ex height. \verb"\vphantom" here is to create a phantom box to make sure the \verb"\resizebox" has a non-zero height box input. The calculation is fixed for a 3ex height logo placeholder.
 %    \begin{macrocode}
-        \resizebox{!}{0.7cm}{\vphantom{-}\usebeamertemplate{logo}}\hspace*{10pt}%
+        \resizebox{!}{3ex}{\vphantom{-}\usebeamertemplate{logo}}\hspace*{10pt}%
         \endgroup%
         \ifx\insertframesubtitle\@empty%
         \else\vskip0.6ex\fi%
@@ -120,6 +128,7 @@
   }
 %    \end{macrocode}
 %  Make a larger height of frametitle when it is in \verb"default" navigation configuration. This could only be made when it is in \verb"topright" logo position mode.
+%  TODO: Make it more consistent when it is under \verb"bottomright" mode. The default behavior of \verb"beamer" class will make the top margin slightly larger than the bottom margin, which causes assymetry.
 %    \begin{macrocode}
   \if\EqualOption{outer}{nav}{default}
     \AtBeginDocument{

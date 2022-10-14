@@ -55,13 +55,9 @@ function update_tag(file,content,tagname,tagdate)
     local now = os.date("%Y/%m/%d")
     if string.match(file,"%.dtx$") then
         content = string.gsub(content,
-            "\n\\ProvidesPackage" .. "({%w+})%[" .. iso .. " v%d%.%d%.%d ([^%]]+)]",
+            "\n\\ProvidesPackage" .. "({%w+})%[" .. iso .. " v%d+%.%d+%.%d+ ([^%]]+)]",
             "\n\\ProvidesPackage%1[" .. now .. " " .. tagname .. " %2]")
         return content
-    elseif string.match(file,"%.tex$") then
-        return string.gsub(content,
-            "\n\\date%{%d%.%d ([^%}]+)%}\n",
-            "\n\\date{" .. tagname .. " %1}\n")
     end
     return content
 end

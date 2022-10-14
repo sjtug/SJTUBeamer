@@ -13,7 +13,7 @@
 % \iffalse
 %<*package>
 \NeedsTeXFormat{LaTeX2e}
-\ProvidesPackage{sjtuvi}[2022/09/20 v2.9.6 Visual Identity System library for sjtubeamer]
+\ProvidesPackage{sjtuvi}[2022/10/13 v2.9.7 Visual Identity System library for sjtubeamer]
 %</package>
 % \fi
 % \CheckSum{0}
@@ -388,7 +388,7 @@
 % \end{macro}
 %
 % \begin{macro}{stamp}
-%	  Declare stamp pattern to make a stamp array.
+%	  Make a stamp array. Use option \verb"[pattern={stamp[size=8pt,xshift=4pt,yshift=4pt]}]" on TikZ fill element.
 %    \begin{macrocode}
 \ifx\sjtubeamer@compatible\sjtubeamer@compatible@false
 \else
@@ -446,6 +446,9 @@
 %
 % \begin{macro}{\stamparray}
 % Create the stamp array in the TikZ environment.
+% The first element is the pattern size.
+% The second element is the starting point. Formatted in \verb"(0,0)".
+% The third element is the ending point. Formatted in \verb"(0,0)".
 %    \begin{macrocode}
 \ifx\sjtubeamer@compatible\sjtubeamer@compatible@false
   \providecommand{\stamparray}[3]{}
@@ -469,7 +472,7 @@
 % \end{macro}
 %
 % \begin{macro}{stampline}
-%   Declare a decoration to make a loop stampline.
+%   A decoration to make a loop stampline. Use option to draw the stampline on  TikZ draw element \verb"[decoration=stampline, segment length=1cm, decorate]".
 %    \begin{macrocode}
 \pgfdeclaredecoration{stampline}{initial}
 {

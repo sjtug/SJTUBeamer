@@ -193,7 +193,7 @@ fontupper=\sffamily,colupper=white}
 
 
 \begin{commentlist}
-  \item 第一行载入 \pkg{ctex} 宏包提供的 \cls{ctexbeamer} 文档类。如果需要使用 16:9 的荧幕比例，可以参照示例 2 的相关参数。
+  \item 第一行载入 \pkg{ctex} 宏包提供的 \cls{ctexbeamer} 文档类。如果需要使用 16:9 的荧幕比例，可以参照示例 2 的相关参数。也可以添加诸如 \opt{9pt}, \opt{10pt}, \opt{11pt}, \opt{12pt} 之类的全局字体大小参数。
   \item 如果不需要中文支持，可以直接使用 \cls{beamer} 文档类。
   \item 第二行载入 \cls{sjtubeamer} 主题。
   \item 使用 \env{document} 环境进入文档主体。
@@ -374,6 +374,10 @@ fontupper=\sffamily,colupper=white}
   \includegraphics[width=0.7\textwidth]{tutorial/stepdual.pdf}\\
   放映视图\hspace{6em}演示者视图
 \end{figure}
+
+\begin{commentlist}
+  \item 如果在使用该选项时通过 \hologo{XeLaTeX} 编译出现问题，请使用 \hologo{LuaLaTeX} 或 \hologo{pdfLaTeX} 编译。
+\end{commentlist}
 
 
 \part{进阶操作}
