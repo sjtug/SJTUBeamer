@@ -465,12 +465,23 @@
 % Insert a stampline with the length textwidth.
 %    \begin{macrocode}
 \newcommand{\stamphrule}{
+%    \end{macrocode}
+%  Start with 0.5 baselineskip to make the line vertically centered.
+%    \begin{macrocode}
+  \vskip0.5\baselineskip%
+%    \end{macrocode}
+%  Disable interlineskip for the next environment.
+%    \begin{macrocode}
+  \nointerlineskip%
+%    \end{macrocode}
+%  Draw the stamphrule based on the decoration stampline, with the same segment width as stampbox.
+%    \begin{macrocode}
   \begin{tikzpicture}
-    \draw[cprimary,decoration=stampline,segment length=0.8em,decorate] (0,0) -- (\hsize,0);
+    \draw[cprimary, decoration=stampline, segment length=0.8em, decorate]
+      (0,0) -- (\hsize,0);
   \end{tikzpicture}
 }
 %    \end{macrocode}
-% NOTE: No line-end \% is intended.
 % \end{macro}
 %
 %  \begin{macro}{stampblock}
