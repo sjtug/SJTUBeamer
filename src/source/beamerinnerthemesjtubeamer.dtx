@@ -463,8 +463,9 @@
 %
 % \begin{macro}{\stamphrule}
 % Insert a stampline with the length textwidth.
+% The optional paramter indicates the color of the stampline.
 %    \begin{macrocode}
-\newcommand{\stamphrule}{
+\newcommand{\stamphrule}[1][cprimary]{%
 %    \end{macrocode}
 %  Start with 0.5 baselineskip to make the line vertically centered.
 %    \begin{macrocode}
@@ -477,11 +478,16 @@
 %  Draw the stamphrule based on the decoration stampline, with the same segment width as stampbox.
 %    \begin{macrocode}
   \begin{tikzpicture}
-    \draw[cprimary, decoration=stampline, segment length=0.8em, decorate]
+    \draw[#1, decoration=stampline, segment length=0.8em, decorate]
       (0,0) -- (\hsize,0);
-  \end{tikzpicture}
+  \end{tikzpicture}%
+%    \end{macrocode}
+%  The final par here is to avoid line height abnormality from the optional paramter. If there is no \verb"\par" and there is the optional parameter, the following text will have a larger line height.
+%    \begin{macrocode}
+  \par%
 }
 %    \end{macrocode}
+%  NOTE: As a matter of fact, the user could pass more paramters to the \verb"\draw" command other than the color.
 % \end{macro}
 %
 %  \begin{macro}{stampblock}
