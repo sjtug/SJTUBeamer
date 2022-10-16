@@ -467,6 +467,10 @@
 %    \begin{macrocode}
 \newcommand{\stamphrule}[1][cprimary]{%
 %    \end{macrocode}
+%  Eliminate the previous depth to avoid inconsistency.
+%    \begin{macrocode}
+  \vskip-\prevdepth%
+%    \end{macrocode}
 %  Start with 0.5 baselineskip to make the line vertically centered.
 %    \begin{macrocode}
   \vskip0.5\baselineskip%
@@ -489,7 +493,7 @@
 %    \end{macrocode}
 %  NOTE: As a matter of fact, the user could pass more paramters to the \verb"\draw" command other than the color.
 % \end{macro}
-%  You may wonder why there is no \verb"\stampvrule". It is because the current line width is easy to be accessed by \verb"\hsize". However, \verb"\vsize" is the page height. \verb"\vrule" is a \TeX{} primitive where the default for height is the height of the enclosing \verb"\hbox". The developer could not implement it in this macro-programming layer. The developer could only get the previous depth by \verb"\prevdepth" at best (and it is not usable in restricted horizontal mode). The user could make a vertical line in the \verb"columns" environment and between \verb"column" environments like this:
+%  You may wonder why there is no \verb"\stampvrule". It is because the current line width is easy to be accessed by \verb"\hsize". And \verb"\stamphrule" is just an emulation of \verb"\hrule". However, \verb"\vsize" is the page height. \verb"\vrule" is a \TeX{} primitive where the default for height is the height of the enclosing \verb"\hbox". The developer could not implement it in this macro-programming layer. The developer could only get the previous depth by \verb"\prevdepth" at best (and it is not usable in restricted horizontal mode). The user could make a vertical line in the \verb"columns" environment and between \verb"column" environments like this:
 %  \begin{verbatim}\vrule\hfill\end{verbatim}
 %  where \verb"\hfill" is to match the definition of the original \verb"column" environment to make it centered horizontally.
 %  And as a macro, it can not get the information from the previous context for futher measuring. Otherwise, the user could set the box of the previous column, and the height of the vertical line will be the height of the previous column and make a vertical shift by half of the height. In this scenario, you can not measure the height of vbox since the result will be 0 in a group.
