@@ -467,6 +467,10 @@
 %    \begin{macrocode}
 \newcommand{\stamphrule}[1][cprimary]{%
 %    \end{macrocode}
+%  In case it is not the horizontal mode.
+%    \begin{macrocode}
+  \leavevmode%
+%    \end{macrocode}
 %  Eliminate the previous depth to avoid inconsistency.
 %    \begin{macrocode}
   \vskip-\prevdepth%
@@ -503,6 +507,7 @@
 }
 %    \end{macrocode}
 %  NOTE: As a matter of fact, the user could pass more paramters to the \verb"\draw" command other than the color.
+%  FIXME: It still behaves differently with \verb"\hrule" in \verb"poster" subtheme, \verb"\hsize" will be too large.
 % \end{macro}
 %  You may wonder why there is no \verb"\stampvrule". It is because the current line width is easy to be accessed by \verb"\hsize". And \verb"\stamphrule" is just an emulation of \verb"\hrule". However, \verb"\vsize" is the page height. \verb"\vrule" is a \TeX{} primitive where the default for height is the height of the enclosing \verb"\hbox". The developer could not implement it in this macro-programming layer. The developer could only get the previous depth by \verb"\prevdepth" at best (and it is not usable in restricted horizontal mode). The user could make a vertical line in the \verb"columns" environment and between \verb"column" environments like this:
 %  \begin{verbatim}\vrule\hfill\end{verbatim}
