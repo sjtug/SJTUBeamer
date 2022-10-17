@@ -21,7 +21,7 @@
 %% limitations under the License.
 %% ------------------------------------------------------------------------
 \NeedsTeXFormat{LaTeX2e}
-\ProvidesPackage{beamerinnerthemesjtubeamer}[2022/10/13 v2.9.7 sjtubeamer inner theme]
+\ProvidesPackage{beamerinnerthemesjtubeamer}[2022/10/17 v2.9.8 sjtubeamer inner theme]
 \RequirePackage{sjtuvi}
 \RequirePackage{tcolorbox}
 \DefineOption{inner}{cover}{maxplus}
@@ -182,6 +182,24 @@
     },
     decorate
   }
+}
+\newcommand{\stamphrule}[1][cprimary]{%
+  \leavevmode%
+  \vskip-\prevdepth%
+  \vskip0.5\baselineskip%
+  {%
+    \tikzset{external/export=false}%
+    \nointerlineskip%
+    \begin{tikzpicture}
+      \draw[
+        line width=0.05em,
+        decoration=stampline,
+        segment length=0.8em,
+        decorate,
+        #1
+      ] (0,0) -- ({\hsize-0.05em},0);
+    \end{tikzpicture}%
+  }\par%
 }
 \newcounter{stampblockcnt}
 \defbeamertemplate*{block stamp begin}{sjtubeamer}{

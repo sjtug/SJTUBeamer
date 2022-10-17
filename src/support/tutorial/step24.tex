@@ -1,14 +1,21 @@
-\documentclass{ctexbeamer}
-\usetheme[my]{sjtubeamer}
-\usepackage{my}
+\documentclass[]{ctexbeamer}
+\usetheme{sjtubeamer}
+\tikzfading[name=fade cover,
+  left color=transparent!20,
+  right color=transparent!20
+]
+\setbeamertemplate{background}{
+\bgcenterbox{
+\begin{tikzpicture}
+\stamparray{16pt}{(0,0)}
+{(\paperwidth,\paperheight)}
+\fill[white, path fading=fade cover]
+  (0,0) rectangle (\paperwidth,\paperheight);
+\end{tikzpicture}
+}
+}
 \begin{document}
 \begin{frame}
-  \frametitle{使用自定主题}
-  \begin{itemize}
-    \item 可以通过使用 \texttt{my} 选项
-    \item 加载自定义的 \texttt{my} 包
-    \item 使用自定义的 \texttt{vi} 徽标
-    \item 来使用自定主题
-  \end{itemize}
+  背景采用了印记矩阵的设计。
 \end{frame}
 \end{document}

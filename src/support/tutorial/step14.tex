@@ -1,18 +1,19 @@
 \documentclass{ctexbeamer}
 \usetheme[min]{sjtubeamer}
 \begin{document}
-\begin{frame}[fragile]
-  \frametitle{代码块}
-  \begin{codeblock}
-    [language=c++]
-    {C++代码}
-    #include<iostream>
-
-    int main(){
-        // Console Output
-        std::cout << "Hello, SJTU!" << std::endl;
-        return 0;
-      }
-  \end{codeblock}
+\begin{frame}
+  \begin{columns}[T]
+    \begin{column}{.5\textwidth}
+      \alert{\textbf{Word}}
+      \stamphrule
+      Microsoft\textsuperscript{\circledR{}} Word 所见即所得，适合短文档的快捷编辑，适用性广，功能丰富。
+    \end{column}
+    \textcolor{cprimary}{\vrule}\hfill
+    \begin{column}{.5\textwidth}
+      \alert{\textbf{\LaTeX{}}}
+      \stamphrule
+      \LaTeX{} 更适合长文档的结构性编辑，命令个性化便捷，排版文档美观正式。
+    \end{column}
+  \end{columns}
 \end{frame}
 \end{document}

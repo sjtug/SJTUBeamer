@@ -220,7 +220,7 @@ If you are a Windows user\footnote{Windows 10 users could also install WSL (Wind
     \end{verbatim}
 and copy the corresponding generated files to the root directory.
 
-\subsection{Check Integration}
+\subsection{Continous Integration}
 
 All other scripts in the folder \verb".github/ci" could also be checked in your local machine to make sure you can pass the CI on GitHub Actions.
 
@@ -683,10 +683,10 @@ As always, we strongly recommend compiling the document through \hologo{XeLaTeX}
 
 \subsection{Adaptive Layout}
 
-\themename{} aims at adapting to as many layouts as possible. Since \themename{} is a decoupled modular part, the layout could be changed due to external package options. And it should be natively decoupled or adaptive to the context through adaptive codes instead of hard-coded condition tests.
+\themename{} aims at adapting to as many layouts as possible. Since \themename{} is a decoupled modular part, the layout could be changed due to external package options. And it should be natively decoupled or adaptive to the context through adaptive codes instead of code with no hooks.
 
 \begin{enumerate}
-  \item \textbf{Options from \texttt{beamer} class to change the size.} \themename{} is based on \verb"beamer" class in the bottom layer. Users could pass options like \verb"12pt" to change the overall font size or \verb"aspectratio=169" to change the slide size to \verb"beamer". This could damage the layout of the components like \verb"frametitle", covers if its measurement is in unit \verb"cm" or \verb"pt" if it is not font adaptive. We recommend using \verb"em" in width and \verb"ex" in height to make it font adaptive. Since the default font size of \verb"beamer" is 10pt, the following conversion on measurement could be indicated \cite{texbook} when transplanting components from other templates:
+  \item \textbf{Options from \texttt{beamer} class to change the size.} \themename{} is based on \verb"beamer" class in the bottom layer. Users could pass options to \verb"beamer" class like \verb"12pt" to change the overall font size or \verb"aspectratio=169" to change the slide size. This could damage the layout of the components like \verb"frametitle", covers if its measurement is in unit \verb"cm" or \verb"pt" which is not font adaptive. We recommend using \verb"em" in width and \verb"ex" in height to make it font adaptive. Since the default font size of \verb"beamer" is 10pt, the following conversion on measurement could be inferred \cite{texbook}. Make the coversion when transplanting components from other templates:
 
         \begin{tabular}{lll}
                                    & 1em    & 1ex    \\
@@ -702,7 +702,8 @@ As always, we strongly recommend compiling the document through \hologo{XeLaTeX}
         \end{tabular}
 
         However, it is not always meant to use font adaptive \verb"em" and \verb"ex" everywhere in your code. You should be aware of some spaces should not be adaptive such as the spacing in the drawings. And when it comes to the change of aspect ratio, the result should be calculated from the width and height geometry instead of hard-coded measurement in most cases.
-  \item \textbf{Options from \texttt{ctexbeamer} class to change the format.} Users could also use \verb"\ctexset{}" provided by \verb"ctexbeamer" to change the format of the section number or change the font by \verb"fontset=ubuntu". \themename{} has adapted to some of the \verb"ctexset" options but the majority of them have not been adapted since the meaning could get changed from \verb"article" class to \verb"beamer" class. Some name translations are subject to change from other packages like \verb"algorithm2e". In this scenario, use \verb"\@ifpackageloaded{}" macro to patch the code manually. And sometimes the package will get loaded later of the theme, so you are most likely to make the condition test in \verb"\AtBeginDocument{}".
+  \item \textbf{Themes from \texttt{beamer} class.} \themename{} has adapted to most of the outer themes provided by \texttt{beamer} class by passing the corresponding option. \themename{} aims at providing consistent layouts through different outer styles. So, there are some modifications corresponding to different outer styles after one of them is loaded. 
+  \item \textbf{Options from \texttt{ctexbeamer} class to change the format.} Users could also use \verb"\ctexset{}" provided by \verb"ctexbeamer" to change the format of the section number or change the font by \verb"fontset=ubuntu". \themename{} has adapted to some of the \verb"ctexset" options but the majority of them have not been adapted since the meaning could get changed from \verb"article" class to \verb"beamer" class. Some name translations are required to change from other packages like \verb"algorithm2e". In this scenario, use \verb"\@ifpackageloaded{}" macro to patch the code manually. And sometimes the package will get loaded after the theme, so you are most likely to do the patch in \verb"\AtBeginDocument{}".
   \item \textbf{Modifications from contribution plugins.} The plugin itself may also change the layout in some ways. For example, the \verb"poster" plugin needs to change the font measurement and emulate the high DPI behavior. The more adaptive the upstream code is, the easier modifications of the plugin are. Keep it in mind to adapt to as many cases as possible.
 \end{enumerate}
 

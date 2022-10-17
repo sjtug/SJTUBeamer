@@ -71,6 +71,12 @@
 		"body": "\n\\begin{stampbox}[${1:cprimary}]\n\t$2\n\\end{stampbox}\n",
 		"description": "Make a stampbox border, which is a decoration advice from SJTU VI. It has the dependency on stampline from sjtuvi package.\n"
 	},
+	"stamphrule": {
+		"scope": "doctex,tex,latex",
+		"prefix": "\\stamphrule",
+		"body": "\\stamphrule[${1:cprimary}]",
+		"description": "Insert a stampline with the length textwidth.\nThe optional paramter indicates the color of the stampline.\n"
+	},
 	"stampblock": {
 		"scope": "doctex,tex,latex",
 		"prefix": "\n\\begin{stampblock",
