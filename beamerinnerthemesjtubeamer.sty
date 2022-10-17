@@ -183,6 +183,21 @@
     decorate
   }
 }
+\newcommand{\stamphrule}[1][cprimary]{%
+  \vskip-\prevdepth%
+  \vskip0.5\baselineskip%
+  \nointerlineskip%
+  \begin{tikzpicture}
+    \draw[
+      line width=0.05em,
+      decoration=stampline,
+      segment length=0.8em,
+      decorate,
+      #1
+    ] (0,0) -- ({\hsize-0.05em},0);
+  \end{tikzpicture}%
+  \par%
+}
 \newcounter{stampblockcnt}
 \defbeamertemplate*{block stamp begin}{sjtubeamer}{
   \par\vskip\medskipamount%

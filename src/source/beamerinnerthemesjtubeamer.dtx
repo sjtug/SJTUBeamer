@@ -480,10 +480,16 @@
   \nointerlineskip%
 %    \end{macrocode}
 %  Draw the stamphrule based on the decoration stampline, with the same segment width as stampbox.
+%  Here, the width is reduced by the line width 0.05em for the reason that PGF will make a padding of half of the line width to the bonding box of the line, according to \url{https://tex.stackexchange.com/a/654553/253485}. It will cause a overfull hbox by the line width (0.05em). Instead of trimming the bounding box, we just reduce the overall width by the line width since there is only one line in the tikzpicture.
 %    \begin{macrocode}
   \begin{tikzpicture}
-    \draw[#1, decoration=stampline, segment length=0.8em, decorate]
-      (0,0) -- (\hsize,0);
+    \draw[
+      line width=0.05em,
+      decoration=stampline,
+      segment length=0.8em,
+      decorate,
+      #1
+    ] (0,0) -- ({\hsize-0.05em},0);
   \end{tikzpicture}%
 %    \end{macrocode}
 %  The final par here is to avoid line height abnormality from the optional paramter. If there is no \verb"\par" and there is the optional parameter, the following text will have a larger line height.

@@ -13,6 +13,7 @@
         \begin{stampbox}
             Test for a stampbox.
         \end{stampbox}
+        \stamphrule
     \end{frame}
     \OMIT
     \begin{frame}[fragile]
