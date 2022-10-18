@@ -18,7 +18,7 @@
 %% see https://vi.sjtu.edu.cn/index.php/articles/bulletin/16.
 %% ------------------------------------------------------------------------
 \NeedsTeXFormat{LaTeX2e}
-\ProvidesPackage{sjtucover}[2022/10/17 v2.9.8 cover library for sjtubeamer]
+\ProvidesPackage{sjtucover}[2022/10/19 v2.9.9 cover library for sjtubeamer]
 \RequirePackage{sjtuvi}
 \DefineOption{cover}{lang}{zh}
 \DefineOption{cover}{lang}{en}
@@ -178,12 +178,12 @@
   \usebeamercolor{palette primary}%
   \ifx\inserttitlegraphic\@empty%
   \else
-    \begin{tikzpicture}[overlay,yshift=0.77em]
-      \node (pic) [fg, above left] at (0.88*\the\paperwidth,0)
+    \begin{tikzpicture}[overlay, yshift=1.2em]
+      \node (pic) [fg, above left, inner sep=0.32em] at (0.86\paperwidth,0)
       {\resizebox{0.3\paperwidth}{!}{\inserttitlegraphic}};
       \draw[decoration={
             stampline,
-            segment length=8pt,
+            segment length=0.8em,
             path has corners=true,
           },decorate,fg]
       (pic.north west) --
