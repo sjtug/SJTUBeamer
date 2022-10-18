@@ -276,16 +276,17 @@
   \end{beamercolorbox}
 %    \end{macrocode}
 %   Here insert the titlegraphic. The node position is set to \verb"above left" to make sure the bottom of the picture is aligned to the bottom of the date line.
+%   The size specification should be the same as \verb"stampbox" in the inner theme. Since we need a finer control on the position of the picture and the inner theme is the upper layer of this style file, the whole thing should be reimplemented here.
 %    \begin{macrocode}
   \usebeamercolor{palette primary}% 
   \ifx\inserttitlegraphic\@empty%
   \else
-    \begin{tikzpicture}[overlay,yshift=0.77em]
-      \node (pic) [fg, above left] at (0.88*\the\paperwidth,0)
+    \begin{tikzpicture}[overlay, yshift=1.2em]
+      \node (pic) [fg, above left, inner sep=0.32em] at (0.86\paperwidth,0)
       {\resizebox{0.3\paperwidth}{!}{\inserttitlegraphic}};
       \draw[decoration={
             stampline,
-            segment length=8pt,
+            segment length=0.8em,
             path has corners=true,
           },decorate,fg]
       (pic.north west) --
