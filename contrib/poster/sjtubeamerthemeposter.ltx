@@ -14,7 +14,7 @@
 %% limitations under the License.
 %% ------------------------------------------------------------------------
 % 设置文件元数据
-\ProvidesFile{sjtubeamerthemeposter.ltx}[2022/09/20 Beamerposter adapter for SJTUBeamer]
+\ProvidesFile{sjtubeamerthemeposter.ltx}[2022/10/18 Beamerposter adapter for SJTUBeamer]
 \PassOptionsToPackage{orientation=portrait}{beamerposter}
 \if\EqualOption{poster}{landscape}{true}
   \PassOptionsToPackage{orientation=landscape}{beamerposter}
@@ -143,6 +143,18 @@
 }
 \setbeamertemplate{block example end}{
   \end{beamercolorbox}
+}
+% 在正文环境内（不包含小栏）
+% 需要使用 \posterstamphrule[cprimary] 插入较短的分割线。
+% 该分割线自带两边 2ex 的纵向间距。
+\newcommand{\posterstamphrule}[1][cprimary]{%
+  \vskip2ex%
+  \vskip-0.5\baselineskip%
+  \begin{minipage}{0.94\textwidth}%
+    \leavevmode%
+    \stamphrule[#1]%
+  \end{minipage}%
+  \vskip2ex%
 }
 % tcolorbox 设定
 \tcbset{toptitle=2.5mm,bottomtitle=2.5mm}
