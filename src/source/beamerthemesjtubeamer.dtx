@@ -218,18 +218,6 @@
 %  This command will also first check the root directory for dependency. If it exists, the \verb"\getcontribdir" macro will be redefined. It is never recommended for placing the ltx in the same folder.
 %  Remember the contrib directory is permantly modified and the directory for other dependency may be missing due to this debug config. You may need to modify to \verb"\renewcommand{\getcontribdir}[1]{\sjtubeamer@contribdir/#1}" manually to recover to the standard configuration. We didn't put the last command into this since we only expect you to only use the debug option for only one contrib dependency --- the one needs to be documented. And you should run \verb"l3build install" in the \verb"src" folder for making the sjtubeamer main part into your texmf path. If you want to combine multiple dependencies, you should write and compile your documentation in the root folder. And our CI will move your documentation to the root first before checking.
 %
-%  Add deprecated warning to \verb"\usemytheme". 
-%  \verb"\providecommand" will do nothing if the macro is defined to avoid the conflicts.
-%  TODO: Will get removed in v3.
-%    \begin{macrocode}
-\providecommand{\usemytheme}[2][]{
-  \PackageWarning{sjtubeamer}{
-    `\usemytheme' is deprecated. \MessageBreak
-    Use `\usesjtutheme' instead
-  }
-  \usesjtutheme[#1]{#2}
-}
-%    \end{macrocode}
 %
 %  \end{macro}
 %
