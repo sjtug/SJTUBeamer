@@ -21,7 +21,7 @@
 %% limitations under the License.
 %% ------------------------------------------------------------------------
 \NeedsTeXFormat{LaTeX2e}
-\ProvidesPackage{beamerouterthemesjtubeamer}[2022/10/17 v2.9.8 sjtubeamer outer theme]
+\ProvidesPackage{beamerouterthemesjtubeamer}[2022/10/19 v2.9.9 sjtubeamer outer theme]
 \RequirePackage{sjtuvi}
 \DefineOption{outer}{nav}{miniframes}
 \DefineOption{outer}{nav}{infolines}
@@ -50,8 +50,8 @@
         \begingroup
         \usebeamerfont{frametitle}
         \vbox{}
-        \ifx\insertframesubtitle\@empty\vskip-0.6ex%
-        \else\vskip-0.85ex\fi%
+        \ifx\insertframesubtitle\@empty\vskip-0.5ex%
+        \else\vskip-0.7ex\fi%
         \if@tempswa\else\csname beamer@fte#1\endcsname\fi%
         \strut\insertframetitle\strut\par%
         {%
@@ -68,12 +68,12 @@
         \endgroup%
         \raggedleft%
         \begingroup
-        \ifx\insertframesubtitle\@empty\vskip-2.1ex%
+        \ifx\insertframesubtitle\@empty\vskip-2.2ex%
         \else\vskip-3.05ex\fi%
         \resizebox{!}{3ex}{\vphantom{-}\usebeamertemplate{logo}}\hspace*{10pt}%
         \endgroup%
         \ifx\insertframesubtitle\@empty%
-        \else\vskip0.6ex\fi%
+        \else\vskip0.75ex\fi%
         \if@tempswa\else\vskip-.3cm\fi%
       \end{beamercolorbox}%
     }

@@ -16,7 +16,7 @@
 % \iffalse
 %<*package>
 \NeedsTeXFormat{LaTeX2e}
-\ProvidesPackage{beamerinnerthemesjtubeamer}[2022/10/17 v2.9.8 sjtubeamer inner theme]
+\ProvidesPackage{beamerinnerthemesjtubeamer}[2022/10/19 v2.9.9 sjtubeamer inner theme]
 %</package>
 % \fi
 % \CheckSum{0}
@@ -438,7 +438,8 @@
 % \end{macro}
 %
 % \begin{macro}{stampbox}
-%   Make a stampbox border, which is a decoration advice from SJTU VI. It has the dependency on \verb"stampline" from \verb"sjtuvi" package.
+%   Make a box with stampline border.
+%   The optional paramter indicates the color of the border line.
 %    \begin{macrocode}
 \newtcolorbox{stampbox}[1][cprimary]{%
   capture=hbox,
@@ -446,10 +447,10 @@
   frame empty,
   interior empty,
   sharp corners,
-  top=0.2em,bottom=0.2em,left=0.2em,right=0.2em,
-  borderline={0.4em}{0em}{
+  top=0.24em,bottom=0.24em,left=0.24em,right=0.24em,
+  boxsep=0em,
+  borderline={0.05em}{0em}{
     #1,
-    line width=0.05em,
     decoration={
       stampline,
       segment length=0.8em,
@@ -459,6 +460,9 @@
   }
 }
 %    \end{macrocode}
+%  NOTE: It is a decoration advice from SJTU VI. It has the dependency on \verb"stampline" from \verb"sjtuvi" package.
+%  SJTU VI regulates that the padding of the stampbox should be the twice the height of the stamp element. According to the definition from \verb"sjtuvi", the height of the element will be $0.2\times$segement width, or here is 0.16em, i.e., the total padding should be 0.32em. However, when using \verb"borderline" to draw the border, the base padding will be the same height of the line decoration, i.e., 0.08em. As a result, the padding should be $0.32-0.08=0.24$ em. With the \verb"boxsep" set to 0em (to avoid extra padding).
+%  The line width of the stampline has been indicated by the first paramter of the borderline and should not be put in the third paramter.
 % \end{macro}
 %
 % \begin{macro}{\stamphrule}
@@ -467,10 +471,7 @@
 %    \begin{macrocode}
 \newcommand{\stamphrule}[1][cprimary]{%
 %    \end{macrocode}
-%  In case it is not the horizontal mode.
-%    \begin{macrocode}
-  \leavevmode%
-%    \end{macrocode}
+%  It is not necessary to \verb"\leavevmode" here, which may cause extra space if there is a blank line before this command.
 %  Eliminate the previous depth to avoid inconsistency.
 %    \begin{macrocode}
   \vskip-\prevdepth%
@@ -507,7 +508,6 @@
 }
 %    \end{macrocode}
 %  NOTE: As a matter of fact, the user could pass more paramters to the \verb"\draw" command other than the color.
-%  FIXME: It still behaves differently with \verb"\hrule" in \verb"poster" subtheme, \verb"\hsize" will be too large.
 % \end{macro}
 %  You may wonder why there is no \verb"\stampvrule". It is because the current line width is easy to be accessed by \verb"\hsize". And \verb"\stamphrule" is just an emulation of \verb"\hrule". However, \verb"\vsize" is the page height. \verb"\vrule" is a \TeX{} primitive where the default for height is the height of the enclosing \verb"\hbox". The developer could not implement it in this macro-programming layer. The developer could only get the previous depth by \verb"\prevdepth" at best (and it is not usable in restricted horizontal mode). The user could make a vertical line in the \verb"columns" environment and between \verb"column" environments like this:
 %  \begin{verbatim}\vrule\hfill\end{verbatim}

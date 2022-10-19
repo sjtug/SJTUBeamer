@@ -21,7 +21,7 @@
 %% limitations under the License.
 %% ------------------------------------------------------------------------
 \NeedsTeXFormat{LaTeX2e}
-\ProvidesPackage{beamerinnerthemesjtubeamer}[2022/10/17 v2.9.8 sjtubeamer inner theme]
+\ProvidesPackage{beamerinnerthemesjtubeamer}[2022/10/19 v2.9.9 sjtubeamer inner theme]
 \RequirePackage{sjtuvi}
 \RequirePackage{tcolorbox}
 \DefineOption{inner}{cover}{maxplus}
@@ -171,10 +171,10 @@
   frame empty,
   interior empty,
   sharp corners,
-  top=0.2em,bottom=0.2em,left=0.2em,right=0.2em,
-  borderline={0.4em}{0em}{
+  top=0.24em,bottom=0.24em,left=0.24em,right=0.24em,
+  boxsep=0em,
+  borderline={0.05em}{0em}{
     #1,
-    line width=0.05em,
     decoration={
       stampline,
       segment length=0.8em,
@@ -184,7 +184,6 @@
   }
 }
 \newcommand{\stamphrule}[1][cprimary]{%
-  \leavevmode%
   \vskip-\prevdepth%
   \vskip0.5\baselineskip%
   {%

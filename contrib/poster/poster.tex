@@ -91,12 +91,8 @@
       \end{column}
     \end{columns}
 
-    % 分割线
-    \vspace*{2cm}
-    \begin{tikzpicture}
-      \draw[cprimary,decoration=stampline,segment length=1cm,decorate] (0,0) -- (0.94\textwidth,0);
-    \end{tikzpicture}
-    \vspace*{2cm}
+    % 正文中的分割线使用 \posterstamphrule
+    \posterstamphrule[cprimary]
 
     \begin{columns}
       \begin{column}{0.45\textwidth}
@@ -134,6 +130,8 @@
           \end{column}
           \begin{column}{.5\textwidth}
             $\leftarrow$ 你仍然可以使用 \texttt{stampbox} 环境插入带边框的图片\vspace{1ex}
+            % column 环境中的分割线仍然使用 \stamphrule
+            \stamphrule
           \end{column}
         \end{columns}
       \end{column}
