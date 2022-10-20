@@ -1,2 +1,9 @@
 # This is the configuration used by latexindent.pl
 defaultIndent: "  "
+noIndentBlock:
+  verbatim: 1
+  lstlisting: 1
+  codeblock: 1
+modifyLineBreaks:
+  textWrapOptions:
+    columns: 50
