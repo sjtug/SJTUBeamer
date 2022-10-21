@@ -6,4 +6,4 @@ noIndentBlock:
   codeblock: 1
 modifyLineBreaks:
   textWrapOptions:
-    columns: 50
+    columns: 80
