@@ -25,10 +25,14 @@
   \end{itemize}
   \begin{figure}[htbp]
     \centering
-    \includegraphics[height=.4\textheight]{sjtuthesis-bachelor-crop.pdf}\hspace{6pt}
-    \includegraphics[height=.4\textheight]{sjtuthesis-master-crop.pdf}\hspace{6pt}
-    \includegraphics[height=.4\textheight]{sjtuthesis-doctor-crop.pdf}\hspace{6pt}
-    \includegraphics[height=.4\textheight]{sjtuthesis-course-crop.pdf}
+    \includegraphics[height=.4\textheight]
+    {sjtuthesis-bachelor-crop.pdf}\hspace{6pt}
+    \includegraphics[height=.4\textheight]
+    {sjtuthesis-master-crop.pdf}\hspace{6pt}
+    \includegraphics[height=.4\textheight]
+    {sjtuthesis-doctor-crop.pdf}\hspace{6pt}
+    \includegraphics[height=.4\textheight]
+    {sjtuthesis-course-crop.pdf}
   \end{figure}
 \end{frame}
 
@@ -38,14 +42,20 @@
       \begin{itemize}
         \item 下载最新版（推荐）
               \begin{itemize}
-                \item GitHub Releases \link{https://github.com/sjtug/SJTUThesis/releases}
-                \item OverLeaf \link{https://www.overleaf.com/latex/templates/sjtuthesis-latex-thesis-template-for-shanghai-jiao-tong-university/mkdwbyjbtfgg?r=b3b31f49&rm=d&rs=b}
+                \item GitHub Releases
+                      \link{https://github.com/sjtug/SJTUThesis/releases}
+                \item OverLeaf
+                      \link{https://www.overleaf.com/latex/templates/
+                        sjtuthesis-latex-thesis-template
+                        -for-shanghai-jiao-tong-university/
+                        mkdwbyjbtfgg?r=b3b31f49&rm=d&rs=b}
               \end{itemize}
         \item 下载最新开发版（高级 / 想尝鲜 / 着急的用户）
               \begin{itemize}
                 \item \url{https://github.com/sjtug/SJTUThesis}
                 \item 切换到 \verb|develop| 分支，点右边栏
-                      \href{https://github.com/sjtug/SJTUThesis/archive/dev.zip}%
+                      \href{https://github.com/sjtug/SJTUThesis/
+                        archive/dev.zip}%
                       {Download ZIP} 按钮
               \end{itemize}
         \item 编译
@@ -70,15 +80,15 @@
 \begin{frame}[fragile]{模板选项}
   \begin{description}
     \item[type] 指定论文类型（本科/硕士/博士/课程）
-      \begin{lstlisting}[basicstyle=\ttfamily]
+          \begin{lstlisting}[basicstyle=\ttfamily]
 \documentclass[type=bachelor]{sjtuthesis}
   \end{lstlisting}
     \item[review] 开启盲审模式
-      \begin{lstlisting}[basicstyle=\ttfamily]
+          \begin{lstlisting}[basicstyle=\ttfamily]
 \documentclass[type=master,review]{sjtuthesis}
   \end{lstlisting}
     \item[fontset] 指定字体（推荐使用 \verb|windows|）
-      \begin{lstlisting}[basicstyle=\ttfamily]
+          \begin{lstlisting}[basicstyle=\ttfamily]
 \documentclass[type=doctor,fontset=windows]{sjtuthesis}
   \end{lstlisting}
   \end{description}
@@ -110,17 +120,26 @@
     \centering
     \footnotesize
     \begin{tabular}{lll} \toprule
-      命令作用     & 中文对应选项                      & 英文对应选项      \\ \midrule
-      论文标题     & \verb|title|                           & \verb|title*|          \\
-      关键字列表   & \verb|keywords|                        & \verb|keywords*|       \\
-      作者姓名     & \verb|author|                          & \verb|author*|         \\
-      申请学位名称 & \verb|degree|                          & \verb|degree*|         \\
-      院系名称     & \verb|department|                      & \verb|department*|     \\
-      专业名称     & \verb|major|                           & \verb|major*|          \\
-      导师         & \verb|supervisor|                      & \verb|supervisor*|     \\
-      副导师       & \verb|assisupervisor|                  & \verb|assisupervisor*| \\
-      日期         & \multicolumn{2}{c}{\texttt{date}}                     \\
-      学号         & \multicolumn{2}{c}{\texttt{id}}                       \\ \bottomrule
+      命令作用     & 中文对应选项                      & 英文对应选项 \\ \midrule
+      论文标题     & \verb|title|            &
+      \verb|title*|                                         \\
+      关键字列表   & \verb|keywords|           &
+      \verb|keywords*|                                         \\
+      作者姓名     & \verb|author|           &
+      \verb|author*|                                         \\
+      申请学位名称 & \verb|degree|           &
+      \verb|degree*|                                         \\
+      院系名称     & \verb|department|           &
+      \verb|department*|                                         \\
+      专业名称     & \verb|major|           &
+      \verb|major*|                                         \\
+      导师         & \verb|supervisor|           &
+      \verb|supervisor*|                                         \\
+      副导师       & \verb|assisupervisor|           &
+      \verb|assisupervisor*|                                         \\
+      日期         & \multicolumn{2}{c}{\texttt{date}}                \\
+      学号         & \multicolumn{2}{c}{\texttt{id}}                  \\
+      \bottomrule
     \end{tabular}
   \end{table}
 \end{frame}
@@ -133,13 +152,21 @@
             \centering
             \footnotesize
             \begin{tabular}{*{7}{l}}\toprule
-              assumption & axiom   & conjecture & corollary   & definition & example  & exercise \\
-              假设       & 公理    & 猜想       & 推论        & 定义       & 例       & 练习     \\\midrule
-              lemma      & problem & proof      & proposition & remark     & solution & theorem  \\
-              引理       & 问题    & 证明       & 命题        & 注         & 解       & 定理     \\\bottomrule
+              assumption & axiom    & conjecture & corollary   & definition &
+              example    & exercise
+              \\
+              假设       & 公理     & 猜想       & 推论        & 定义       & 例 & 练习
+              \\\midrule
+              lemma      & problem  & proof      & proposition & remark     &
+              solution   & theorem
+              \\
+              引理       & 问题     & 证明       & 命题        & 注         & 解 &
+              定理
+              \\\bottomrule
             \end{tabular}
           \end{table}
-    \item \SJTUThesis{} 可以通过指定 \texttt{unimath} 选项以使用 \pkg{unicode-math} 进行数学输入（\ref{frame:unicode-math} 页），注意与传统方式的区别
+    \item \SJTUThesis{} 可以通过指定 \texttt{unimath} 选项以使用 \pkg{unicode-math}
+          进行数学输入（\ref{frame:unicode-math} 页），注意与传统方式的区别
   \end{itemize}
 \end{frame}
 
@@ -152,11 +179,16 @@
     \item 传统方法：\BibTeX 后端
           \begin{itemize}
             \item 控制文献、引用样式：\pkg{natbib} 宏包
-            \item 国标样式：\pkg{gbt7714} 宏包 \link{https://mirrors.sjtug.sjtu.edu.cn/ctan/biblio/bibtex/contrib/gbt7714/gbt7714.pdf}
+            \item 国标样式：\pkg{gbt7714} 宏包
+                  \link{https://mirrors.sjtug.sjtu.edu.cn/ctan/
+                    biblio/bibtex/contrib/gbt7714/gbt7714.pdf}
           \end{itemize}
     \item 现代方法：\verb|biber| 后端 + \pkg{biblatex} 宏包
           \begin{itemize}
-            \item 国标样式：\pkg{biblatex-gbt7714-2015} 宏包 \link{https://mirrors.sjtug.sjtu.edu.cn/ctan/macros/latex/contrib/biblatex-contrib/biblatex-gb7714-2015/biblatex-gb7714-2015.pdf}
+            \item 国标样式：\pkg{biblatex-gbt7714-2015} 宏包
+                  \link{https://mirrors.sjtug.sjtu.edu.cn/ctan/
+                    macros/latex/contrib/biblatex-contrib/
+                    biblatex-gb7714-2015/biblatex-gb7714-2015.pdf}
           \end{itemize}
     \item 需要多轮编译——再次推荐 latexmk
   \end{itemize}
@@ -194,8 +226,10 @@
 
     \item 主动提问
           \begin{itemize}
-            \item GitHub Discussions 提问：\link{https://github.com/sjtug/SJTUThesis/discussions}
-            \item GitHub Issues 报告 BUG：\link{https://github.com/sjtug/SJTUThesis/issues}
+            \item GitHub Discussions
+                  提问：\link{https://github.com/sjtug/SJTUThesis/discussions}
+            \item GitHub Issues 报告
+                  BUG：\link{https://github.com/sjtug/SJTUThesis/issues}
           \end{itemize}
 
   \end{itemize}

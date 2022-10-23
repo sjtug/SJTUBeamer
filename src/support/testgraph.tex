@@ -13,12 +13,15 @@
       legend columns=2,
       grid,
       minor tick num=1]
-    \pgfplotstableread {test.csv}{\foo};           % read table
+    \pgfplotstableread {test.csv}{\foo};
+    % read table
     \addplot+ [only marks,mark options={scale=0.8}] table[y=Quick] {\foo};
     \addplot+ [only marks,mark options={scale=0.8}] table[y=Cocktail] {\foo};
-    \pgfplotsset{cycle list shift=-2};                 % start the cycle list from beginning
+    \pgfplotsset{cycle list shift=-2};
+    % start the cycle list from the beginning
     \addplot+ [no markers,domain=1:9,] {1.502*x*ln(x)};
     \addplot+ [no markers,domain=1:9,] {0.4453*x*x-0.1365*x-0.473};
-    \legend{Quick,Cocktail,}                           % only mark the first two series
+    \legend{Quick,Cocktail,}
+    % only mark the first two series
   \end{axis}
 \end{tikzpicture}
