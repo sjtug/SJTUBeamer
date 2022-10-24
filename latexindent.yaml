@@ -1,7 +1,23 @@
 # This is the configuration used by latexindent.pl
 defaultIndent: "  "
 verbatimEnvironments:
-  codeblock: 1
+  codeblock: 1            # \begin{codeblock}
+verbatimCommands:
+  url: 1
+  link: 1
+  href: 1
 modifyLineBreaks:
   textWrapOptions:
     columns: 80
+  commands:
+    url:
+      CommandStartsOnOwnLine: -1
+    link:
+      CommandStartsOnOwnLine: -1
+    href:
+      CommandStartsOnOwnLine: -1
+# replacements:
+#   - 
+#     substitution: s/\n*(\h*)\\(url|link|href)\{/\n$1\\$2\{/g
+onlyOneBackUp: 1
+dos2unixlinebreaks: 1
