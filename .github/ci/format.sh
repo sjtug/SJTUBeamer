@@ -2,6 +2,4 @@
 
 set -e
 
-git ls-files | grep .tex$
-
 git ls-files | grep .tex$ | xargs -n1 latexindent -w $@
