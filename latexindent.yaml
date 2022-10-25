@@ -4,31 +4,31 @@ defaultIndent: "  "
 # codeblock is defined by sjtubeamer for code typesetting.
 # codeblockminted is defined by minted plugin.
 verbatimEnvironments:
-  codeblock: 1
-  codeblockminted: 1
+	codeblock: 1
+	codeblockminted: 1
 
 # In case that the indent for the command.
 verbatimCommands:
-  url: 1
-  link: 1
-  href: 1
+	url: 1
+	link: 1
+	href: 1
 
 # Apply to -m option
 # Chinese docs are restricted to 50 characters first.
 modifyLineBreaks:
-  textWrapOptions:
-    columns: 80
+	textWrapOptions:
+		columns: 80
 
 # Apply to -r option
 # First remove the additional new line before \url, \link, \href.
 # Then remove the new line in the url.
 replacements:
-  -
-    substitution: s/\n+(\h*)\\(url|link|href)\{/\n$1\\$2\{/g
-    when: after
-  -
-    substitution: s/\\(url|link|href)\{([^\}]*)\n\s*([^\}]*)\}/\\$1\{$2$3\}/g
-    when: after
+	-
+		substitution: s/\n+(\h*)\\(url|link|href)\{/\n$1\\$2\{/g
+		when: after
+	-
+		substitution: s/\\(url|link|href)\{([^\}]*)\n\s*([^\}]*)\}/\\$1\{$2$3\}/g
+		when: after
 
 # Don't generate too many backups.
 onlyOneBackUp: 1
