@@ -100,4 +100,5 @@ jobs:
             make format-dev
       - name: check if generated files are of latest version
         run: |
+          cat build/latexindent.yaml.bak
           git diff --exit-code
