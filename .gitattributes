@@ -13,7 +13,6 @@
 .github export-ignore
 .gitattributes export-ignore
 .gitignore export-ignore
-*.yaml export-ignore
 
 # generated sty file
 beamercolorthemesjtubeamer.sty linguist-generated=true
