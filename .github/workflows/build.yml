@@ -97,7 +97,6 @@ jobs:
         with:
           run: |
             apk add diffutils git make
-            cat latexindent.yaml
             make format-dev
       - name: check if generated files are of latest version
         run: |
