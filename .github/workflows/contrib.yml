@@ -8,6 +8,8 @@ on:
     branches:
       - main
       - develop
+    types:
+      - 'review_requested'
     paths:
       - 'contrib/**'
 
