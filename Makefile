@@ -2,7 +2,7 @@
 # User commands
 # ----------------
 
-LATEXINDENT_ARGS=-l=latexindent.yaml -c build -m -r -sl -t
+LATEXINDENT_ARGS=-l latexindent.yaml -c build -sl -t
 LATEXMK_ARGS=-halt-on-error -time -xelatex -outdir=build -shell-escape
 
 all: build
