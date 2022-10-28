@@ -97,6 +97,7 @@ jobs:
         with:
           run: |
             apk add diffutils findutils git make
+            git config --global --add safe.directory /github/workspace
             make format-dev
       - name: check if generated files are of latest version
         run: |
