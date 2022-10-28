@@ -72,8 +72,8 @@ faster speed by making use of the SJTUG mirror source\footnote{You should
 \begin{verbatim}
   git clone https://mirror.sjtu.edu.cn/git/SJTUBeamer.git/
 \end{verbatim}
-After this, to pick up the update from the \verb"main" branch, you
-could simply use the command
+After this, to pick up the update from the \verb"main" branch, you could simply
+use the command
 \begin{verbatim}
   git pull
 \end{verbatim}
@@ -109,12 +109,11 @@ line (\themename\ caller).
   \hfil$\leftarrow$\hfil$\leftarrow$\hfil
 \end{figure}
 
-Since the plugin is suffixed by \verb".ltx" (an abbreviation of
-\LaTeX{}), which means that it is not recommended to use
-\verb"@"
-in the variable. The plugin is more of a configuration than a basic \LaTeX{}
-package. If you are stuck on using such a variable, remember to surround your
-lines inside the character-escaped environment:
+Since the plugin is suffixed by \verb".ltx" (an abbreviation of \LaTeX{}),
+which means that it is not recommended to use \verb"@" in the variable. The
+plugin is more of a configuration than a basic \LaTeX{} package. If you are
+stuck on using such a variable, remember to surround your lines inside the
+character-escaped environment:
 \begin{verbatim}
   \makeatletter
     \def\foo@bar{bar of foo}
@@ -159,12 +158,12 @@ references.
 \themename\ has three different types of checking:
 \begin{description}
   \item[Regression test] To test the decoupling properties of the modules.
-        \texttt{l3build check}
+    \texttt{l3build check}
   \item[Unit test] To test each function separately by compiling documentation.
-        \texttt{l3build doc}
-  \item[CI] To make an overall check by compiling a real-world presentation. It
-        is often completed in GitHub Actions when you are pulling a request.
-        \texttt{l3build ctan}
+    \texttt{l3build doc}
+  \item[CI] To make an overall check by compiling a real-world presentation. It is
+    often completed in GitHub Actions when you are pulling a request.
+    \texttt{l3build ctan}
 \end{description}
 
 \subsection{l3build}\label{sec:l3build}
@@ -264,25 +263,25 @@ are cached, they will get deleted since they are outdated. You need to insert
 the description of the new demo in the user documentation later in an
 appropriate position.
 
-The file will be generated based on the template \verb"support/step.template.tex". You
-could change the demo filename to add compilation steps in the future
-\verb"l3build doc" generations. For example, \verb"step20+.tex" will
-add another \LaTeX{}\footnote{To decrease the time of compilation, the
-  documentation will be compiled in \hologo{pdfLaTeX} on Windows and
-  \hologo{XeLaTeX} on Linux and macOS. For more pre-compilation techniques that
-  we used in \themename{}, see Section \ref{sec:precompilation}.} compilation
-round.
+The file will be generated based on the template
+\verb"support/step.template.tex". You could change the demo filename to add
+compilation steps in the future \verb"l3build doc" generations. For example,
+\verb"step20+.tex" will add another \LaTeX{}\footnote{To decrease the time of
+  compilation, the documentation will be compiled in \hologo{pdfLaTeX} on Windows
+  and \hologo{XeLaTeX} on Linux and macOS. For more pre-compilation techniques
+  that we used in \themename{}, see Section \ref{sec:precompilation}.}
+compilation round.
 
 \begin{table}[h]
   \begin{tabular}{cl}
-    Symbol                  & Description
+    Symbol   & Description
     \\
     \verb"+" & add another \LaTeX{} round.
     \\
     \multicolumn{2}{c}{\small{\itshape (The following symbols need a premised
-        \texttt{+})}}                                                        \\
+    \texttt{+})}}                                             \\
     \verb"-" & add biber compilation before the next \LaTeX{}
-    round.                                                                   \\
+    round.                                                    \\
     \verb"_" & add \textsc{Bib}\TeX{} compilation before the
     next \LaTeX{} round.
   \end{tabular}
@@ -292,8 +291,8 @@ round.
 
 \subsection{Customize Generation}\label{sec:precompile}
 
-In \verb"source/beamerthemesjtubeamer.ins", you could customize what templates you want to
-output on the line:
+In \verb"source/beamerthemesjtubeamer.ins", you could customize what templates
+you want to output on the line:
 \begin{verbatim}
   \def\preserveoption{,maxplus,max,min,my} 
 \end{verbatim}
@@ -311,12 +310,11 @@ your own version of this template.
 
 \subsection{Pull Request}
 
-Before making a pull request, please refresh the root \verb".sty"
-files first in order to pass CI. In fact, if you are using
-\verb"l3build", we have embedded this action in
-\verb"l3build check" (which is included in \verb"l3build ctan"). But we
-still recommend that you should make a final run on the script. Switch to the
-main directory:
+Before making a pull request, please refresh the root \verb".sty" files first
+in order to pass CI. In fact, if you are using \verb"l3build", we have embedded
+this action in \verb"l3build check" (which is included in \verb"l3build ctan").
+But we still recommend that you should make a final run on the script. Switch
+to the main directory:
 \begin{verbatim}
   cd ..
 \end{verbatim}
@@ -328,8 +326,8 @@ Then, run the bash code on *nix.
 If you are a Windows user\footnote{Windows 10 users could also install WSL
   (Windows Subsystem for Linux) in order to use the Linux environment
   conveniently. This also provides a faster speed on compiling.} and your
-\verb"l3build" distribution is not 2021/08/28 and later, please use
-the old extracting method in \verb"src/source":
+\verb"l3build" distribution is not 2021/08/28 and later, please use the old
+extracting method in \verb"src/source":
 \begin{verbatim}
   latex beamerthemesjtubeamer.ins
 \end{verbatim}
@@ -337,11 +335,11 @@ and copy the corresponding generated files to the root directory.
 
 \subsection{Continuous Integration}
 
-All other scripts in the folder \verb".github/ci" could also be checked
-in your local machine to make sure you can pass the CI on GitHub Actions.
+All other scripts in the folder \verb".github/ci" could also be checked in your
+local machine to make sure you can pass the CI on GitHub Actions.
 
-For those who are familiar with \verb"makefile" system, the following
-commands might be helpful to build the package under the root directory:
+For those who are familiar with \verb"makefile" system, the following commands
+might be helpful to build the package under the root directory:
 
 \fcmd{make generate} This command will unpack the Doc\TeX{} files into style
 files and update the generated files in the root directory.
@@ -364,9 +362,9 @@ indent. In order to improve the code quality.
 \section{Coding Style}
 
 This section gives a contribution code on coding style. Every contributor
-should follow this coding style to make a pull request for this
-project. And following the coding style strictly will make the Doc\TeX{}
-compiler for Visual Studio Code snippets run properly.
+should follow this coding style to make a pull request for this project. And
+following the coding style strictly will make the Doc\TeX{} compiler for Visual
+Studio Code snippets run properly.
 
 \subsection{Framework Code}
 
@@ -383,31 +381,29 @@ The coding style in this section is applicable for the following files:
 \subsubsection{Support Version}
 
 We only support \TeX{} or \LaTeXe{} code on these files. No \LaTeX3 code
-supported since \verb"beamer" is not written in \LaTeX3 and
-this template has a major dependency on \verb"beamer" class.
+supported since \verb"beamer" is not written in \LaTeX3 and this template has a
+major dependency on \verb"beamer" class.
 
 \subsubsection{Kernel Function Definition}
 
 The kernel function means that it is not recommended to be used by end users.
 
-\paragraph{If your definition parameters are mandatory, use \TeX\ style.} This
-gives you better flexibility on the definition. And in this scenario, please
-use a \emph{unique} command name for your function.
+\paragraph{If your definition parameters are mandatory, use \TeX\ style.} This gives you better flexibility on the definition. And in this scenario,
+please use a \emph{unique} command name for your function.
 
 \begin{lstlisting}
 \def\EqualOption#1#2#3{}
 \end{lstlisting}
 
-\subparagraph{Pros:} Using the bottom layer on \TeX{} gives better processing
-speed. And making the parameter declared obviously will make the code more
-readable, so as the end-user.
+\subparagraph{Pros:} Using the bottom layer on \TeX{} gives better processing speed. And making the
+parameter declared obviously will make the code more readable, so as the
+end-user.
 
-\subparagraph{Cons:} Using \TeX{} \verb"\def" method will skip the
-defined macro check provided by \LaTeX{}, which may cause macro conflict
-between different packages.
+\subparagraph{Cons:} Using \TeX{} \verb"\def" method will skip the defined macro check provided by
+\LaTeX{}, which may cause macro conflict between different packages.
 
-\subparagraph{Decision:} Use complicated names if you want to avoid naming
-conflicts on function. This template won't provide a mandatory rule on this.
+\subparagraph{Decision:} Use complicated names if you want to avoid naming conflicts on function. This
+template won't provide a mandatory rule on this.
 
 \paragraph{If your definition has an optional parameter, use \LaTeX\ style.}
 The maximum number of the optional parameter is 1 only. You cannot have more
@@ -420,31 +416,29 @@ brackets.
 
 \subparagraph{Pros:} Using this method could get an optional parameter.
 
-\subparagraph{Cons:} This method is less readable. And have to decide to use
-\verb"\newcommand" (check on duplicate functions) or
-\verb"\providecommand" (no effect if defined).
+\subparagraph{Cons:} This method is less readable. And have to decide to use \verb"\newcommand"
+(check on duplicate functions) or \verb"\providecommand" (no effect if
+defined).
 
-\subparagraph{Decision:} Just use this method if you want an optional
-parameter. You should not write a function with more than one optional
-parameter.
+\subparagraph{Decision:} Just use this method if you want an optional parameter. You should not write a
+function with more than one optional parameter.
 
 \subsubsection{Interface Function Definition}
 
 Interface function means that the function will be used by end users.
 
-\paragraph{Use \LaTeX\ style on function definition.} This gives a clear visual
-indication of the type of this function.
+\paragraph{Use \LaTeX\ style on function definition.} This gives a clear visual indication of the type of this function.
 
 \begin{lstlisting}
 \newcommand{\stamparray}[3]{}
     \end{lstlisting}
 
-\subparagraph{Pros:} This method will avoid the conflict on packages. Or it is
-easy to debug to know which package conflicts.
+\subparagraph{Pros:} This method will avoid the conflict on packages. Or it is easy to debug to know
+which package conflicts.
 
-\subparagraph{Cons:} This method will limit some features \TeX{} provides and
-you may not pass the compilation if you switch some \verb"\def" to
-\verb"\newcommand" or \verb"\providecommand".
+\subparagraph{Cons:} This method will limit some features \TeX{} provides and you may not pass the
+compilation if you switch some \verb"\def" to \verb"\newcommand" or
+\verb"\providecommand".
 
 \subparagraph{Decision:} Use unique name on interface function.
 
@@ -456,8 +450,8 @@ Global variable means that it will be used across modules.
 
 \begin{itemize}
   \item Start with the project name \verb"sjtubeamer".
-  \item Split by \verb"@" symbol and move to the next level.
-        (only for the middle layer)
+  \item Split by \verb"@" symbol and move to the next level. (only for the middle
+        layer)
   \item The final level should be the variable name itself.
 \end{itemize}
 
@@ -465,18 +459,17 @@ Global variable means that it will be used across modules.
 \def\sjtubeamer@inner@lang{en}
 \end{lstlisting}
 
-\subparagraph{Pros:} Make a clear visual indication of the variable type and
-avoid duplicates with other packages.
+\subparagraph{Pros:} Make a clear visual indication of the variable type and avoid duplicates with
+other packages.
 
-\subparagraph{Cons:} A long name may make the typing experience troubling and
-easy to make faults (hard to check).
+\subparagraph{Cons:} A long name may make the typing experience troubling and easy to make faults
+(hard to check).
 
-\subparagraph{Decision:} You should avoid using global variables, which will
-only be useful if you are making communication between modules. If a bug
-occurs, it is hard to track in \LaTeX{}. As a matter of fact, only the
-parameter in the function can be called a \emph{local variable} (with an
-immediate substitution). All variables defined by \verb"\def" will
-be stored in the global register.
+\subparagraph{Decision:} You should avoid using global variables, which will only be useful if you are
+making communication between modules. If a bug occurs, it is hard to track in
+\LaTeX{}. As a matter of fact, only the parameter in the function can be called
+a \emph{local variable} (with an immediate substitution). All variables defined
+by \verb"\def" will be stored in the global register.
 
 \subsubsection{Leaf Option Definition}\label{sec:optdef}
 
@@ -484,15 +477,15 @@ Leaf option means it is an option that will not be passed to the next level or
 could be used immediately in this module.
 
 \paragraph{Define the package option by an exclusive command, which will define
-  a global variable the same as above.} This will create an option on this
-package, in package \#1, module \#2, and variable \#3.
+  a global variable the same as above.} This will create an option on this package, in package \#1, module \#2, and
+variable \#3.
 
 \begin{lstlisting}
 \DefineOption{color}{color}{red}
     \end{lstlisting}
 which will define \verb"\def\sjtubeamer@color@color{red}" when it receives
-\verb"red" option. It is called a leaf option since it will be
-used in pair with the following condition test:
+\verb"red" option. It is called a leaf option since it will be used in pair
+with the following condition test:
 
 \begin{lstlisting}
 \if\EqualOption{color}{color}{red}\fi
@@ -504,20 +497,19 @@ which will check if the option is \verb"red".
 The communication option means it will be a global option passed between
 modules.
 
-\paragraph{Declare the variable in an obvious way.} Use \verb"beamer"
-macro to declare an option that will not be used in this module.
+\paragraph{Declare the variable in an obvious way.} Use \verb"beamer" macro to declare an option that will not be used in this
+module.
 
 \begin{lstlisting}
 \DeclareOptionBeamer{red}{\def\sjtubeamer@color{red}}
 \end{lstlisting}
 
-\subparagraph{Pros:} We are making difference between leaf options and
-communication options in order to not mess up the communication model. It will
-make the code much simpler.
+\subparagraph{Pros:} We are making difference between leaf options and communication options in
+order to not mess up the communication model. It will make the code much
+simpler.
 
-\subparagraph{Cons:} It is not using \verb"kvoptions" package for a
-standard option receiver. The developer has to read the implementation of the
-macros in \verb"sjtuvi".
+\subparagraph{Cons:} It is not using \verb"kvoptions" package for a standard option receiver. The
+developer has to read the implementation of the macros in \verb"sjtuvi".
 
 \subparagraph{Decision:} Use our \emph{dialect} of option representation.
 
@@ -541,20 +533,17 @@ font, see the documentation of \verb"beamer" class
 \usebeamercolor{palette primary}
 \end{lstlisting}
 
-\subparagraph{Pros:} Using native macro will provide much more flexibility for
-your cover template. It is essential to make your template fit in the
-color/font management system.
+\subparagraph{Pros:} Using native macro will provide much more flexibility for your cover template.
+It is essential to make your template fit in the color/font management system.
 
-\subparagraph{Cons:} Developer has to learn how to use these macros and some
-are not interested in that.
+\subparagraph{Cons:} Developer has to learn how to use these macros and some are not interested in
+that.
 
-\subparagraph{Decision:} To make a pull request, you should always avoid using
-fixed color/font.
+\subparagraph{Decision:} To make a pull request, you should always avoid using fixed color/font.
 
 \subsubsection{New Option Declaration}
 
-\paragraph{Copy every region in every file that is marked as \texttt{my} and
-  pastes just below it.} The region is marked as
+\paragraph{Copy every region in every file that is marked as \texttt{my} and pastes just below it.} The region is marked as
 
 \begin{verbatim}
   <*my>
@@ -562,22 +551,21 @@ fixed color/font.
   </my>
 \end{verbatim}
 
-Paste it and change \verb"my" to the name of your template. And
-add the precompiling option mentioned in Section \ref{sec:precompile}.
+Paste it and change \verb"my" to the name of your template. And add the
+precompiling option mentioned in Section \ref{sec:precompile}.
 
-\subparagraph{Pros:} This is useful for template management and end-user could
-select what template to be precompiled.
+\subparagraph{Pros:} This is useful for template management and end-user could select what template
+to be precompiled.
 
-\subparagraph{Cons:} This is not so handy to search every file. We are working
-on an automated tool for developers to achieve that.
+\subparagraph{Cons:} This is not so handy to search every file. We are working on an automated tool
+for developers to achieve that.
 
 \subparagraph{Decision:} Follow the rule to submit your template.
 
 \subsubsection{Logo Insertion}\label{sec:logoins}
 
-Use a \verb"\resizebox" to resize the logo to the required width and
-height. If you want to keep one dimension in the same ratio, use the
-placeholder \verb"!".
+Use a \verb"\resizebox" to resize the logo to the required width and height. If
+you want to keep one dimension in the same ratio, use the placeholder \verb"!".
 
 If you want to protect the logo color as the color definition in beamer color
 \verb"logo.fg", use \verb"\insertlogo".
@@ -586,8 +574,8 @@ If you want to protect the logo color as the color definition in beamer color
 \end{lstlisting}
 
 Otherwise, if you want to use the color that is current to the text, use
-\verb"\usebeamertemplate{logo}". If you want to modify the current text color, either
-use \verb"\usebeamercolor" for beamer color, or \verb"\color" for
+\verb"\usebeamertemplate{logo}". If you want to modify the current text color,
+either use \verb"\usebeamercolor" for beamer color, or \verb"\color" for
 regular xcolor.
 \begin{lstlisting}
 \usebeamercolor[fg]{palette primary}
@@ -612,8 +600,7 @@ This environment has one parameter to indicate the name of the macro.
 \subsubsection{Macrocode}
 
 \paragraph{To insert source code, you should surround your code with macrocode
-  environment.} This environment must start with four spaces after
-\verb"%".
+  environment.} This environment must start with four spaces after \verb"%".
 
 \begin{lstlisting}[showspaces=true]
 %    \begin{macrocode}
@@ -623,15 +610,14 @@ This environment has one parameter to indicate the name of the macro.
 
 \subsubsection{An Example}
 
-Notably, the contents before the \emph{first} \verb"macrocode"
-environment in \verb"macro" environment will be treated as the
-description of this macro. When generating the Visual Studio Code snippets, the
-description will be shown. The searching on the command in
-\verb"macrocode" environments will decide the parameter number and the
-default parameter in the code snippets as well. If you want to add some notes
-to this macro, add them before the end of the \verb"macro"
-environment. You could use multiple \verb"macrocode" environments in
-order to add comments between the code lines.
+Notably, the contents before the \emph{first} \verb"macrocode" environment in
+\verb"macro" environment will be treated as the description of this macro. When
+generating the Visual Studio Code snippets, the description will be shown. The
+searching on the command in \verb"macrocode" environments will decide the
+parameter number and the default parameter in the code snippets as well. If you
+want to add some notes to this macro, add them before the end of the
+\verb"macro" environment. You could use multiple \verb"macrocode" environments
+in order to add comments between the code lines.
 
 \begin{lstlisting}[showspaces=true]
 %  \begin{macro}{\foobar}
@@ -662,9 +648,7 @@ into the searching directory of \TeX{} and refresh the filename directory.
     outertheme.sty}\framebox[0.25\textwidth]{\ttfamily fonttheme.sty}
 
   \parbox[t]{0.25\textwidth}{\centering
-    $\downarrow$}\framebox[0.25\textwidth]{\ttfamily
-    sjtucover.sty}\parbox[t]{0.25\textwidth}{\centering
-    $\downarrow$}\hspace*{0.25\textwidth}
+    $\downarrow$}\framebox[0.25\textwidth]{\ttfamily sjtucover.sty}\parbox[t]{0.25\textwidth}{\centering $\downarrow$}\hspace*{0.25\textwidth}
 
   \framebox[0.75\textwidth]{\ttfamily sjtuvi.sty}
 
@@ -673,9 +657,9 @@ into the searching directory of \TeX{} and refresh the filename directory.
 
 \subsection{Decoupling}
 
-The framework is designed to be used separately to meet the
-\verb"beamer" class requirements on \verb"theme". And any
-line in the following should be also available for compilation:
+The framework is designed to be used separately to meet the \verb"beamer" class
+requirements on \verb"theme". And any line in the following should be also
+available for compilation:
 \begin{verbatim}
   \usetheme{sjtubeamer}
   \usecolortheme{sjtubeamer}
@@ -761,11 +745,10 @@ The table shows the flow of parameter passing.
 
 About the cover defining method, \themename\ has unified five different covers
 into one way of definition --- \verb"\definecover{part}". This macro will
-generate two subcommands --- \verb"\partpage" and
-\verb"\makepart", which is used to override the original definition
-with some redundant macros. The difference between \verb"\make..."
-series and \verb"\...page" series is that the former will try to use a
-\verb"plain" frame in the first place.
+generate two subcommands --- \verb"\partpage" and \verb"\makepart", which is
+used to override the original definition with some redundant macros. The
+difference between \verb"\make..." series and \verb"\...page" series is that
+the former will try to use a \verb"plain" frame in the first place.
 
 \begin{figure}[h]
   \texttt{\textbackslash{}maketitle}\par
@@ -777,11 +760,12 @@ series and \verb"\...page" series is that the former will try to use a
 
 Now, a sandbox in \verb"sjtucover.sty" is created.
 
-To use a different cover style, use \verb"\setbeamertemplate{title page}[maxplus]" before calling
-\verb"\maketitle". The same as \verb"bottom page",
-\verb"part page", \verb"section page" and
-\verb"subsection page". For the sake of simplicity, the latter three
-templates could be modified by one parent template \verb"sectioning pages".
+To use a different cover style, use
+\verb"\setbeamertemplate{title page}[maxplus]" before calling
+\verb"\maketitle". The same as \verb"bottom page", \verb"part page",
+\verb"section page" and \verb"subsection page". For the sake of simplicity, the
+latter three templates could be modified by one parent template
+\verb"sectioning pages".
 
 The three types of \verb"sectioning pages" are structured in a way that the
 code could be better reused. A typical sectioning page beamer template
@@ -816,22 +800,22 @@ want to override the original \verb"part page" template, use
   \definesecpage{subsection}{min}
 \end{verbatim}
 
-This will redirect to the target \verb"sectioning page" by setting the
-correct configuration before using it. This might seems redundant since it has
-to be set every time it uses. It seems that the code takes time but actually
-not, since it is macro programming for \LaTeX{} and the canonical conditional
+This will redirect to the target \verb"sectioning page" by setting the correct
+configuration before using it. This might seems redundant since it has to be
+set every time it uses. It seems that the code takes time but actually not,
+since it is macro programming for \LaTeX{} and the canonical conditional
 changes will only redirect the name of the macro instead of actually pushing
 the full data into the register. It is also beneficial for unified management
 with the provided macros from \verb"beamer" class.
 
 About the numbering scheme, it uses internal variables to store that, like
-\verb"\sjtubeamer@cover@sectionnumber". To adapt to the \verb"ctexbeamer" class, once
-it is loaded, the macro will get redirected to the macros defined in
-\verb"ctexheading" (remember, if the package \verb"ctex" is
-loaded separately, this package will not get loaded). As a result, the user
-could use \verb"\ctexset" interface to modify the numbering style
-after the theme is loaded (since some modification to \verb"\ctexset"
-may be introduced in this theme).
+\verb"\sjtubeamer@cover@sectionnumber". To adapt to the \verb"ctexbeamer"
+class, once it is loaded, the macro will get redirected to the macros defined
+in \verb"ctexheading" (remember, if the package \verb"ctex" is loaded
+separately, this package will not get loaded). As a result, the user could use
+\verb"\ctexset" interface to modify the numbering style after the theme is
+loaded (since some modification to \verb"\ctexset" may be introduced in this
+theme).
 
 \begin{warn}
   When drawing in the sandbox through Ti\emph{k}Z, make sure to use
@@ -872,9 +856,9 @@ loaded, which is only for the sake of completeness.
 \verb"\definelogo", which will generate a macro on its file name.
 
 TikZ provides an environment to create our own path fading from picture:
-\verb"tikzfadingfrompicture", where you could define your fading in a $(-1,-1)$ to
-$(1,1)$ rectangle area. Fill the background to black and insert a white logo in
-the middle will create a mask. Set the path fading to the name of this mask
+\verb"tikzfadingfrompicture", where you could define your fading in a $(-1,-1)$
+to $(1,1)$ rectangle area. Fill the background to black and insert a white logo
+in the middle will create a mask. Set the path fading to the name of this mask
 will apply to your new TikZ shape.
 
 However, this only creates a square mask. We have to crop it for some
@@ -901,15 +885,15 @@ And crop the area symmetrically.
 \end{figure}
 
 Remember, you have to store the picture in a specific folder to create a mask.
-It is by default \verb"vi". You could use the optional argument
-of \verb"\definelogo" for switching to another folder.
+It is by default \verb"vi". You could use the optional argument of
+\verb"\definelogo" for switching to another folder.
 
 The logo color is now controlled by the current text color. See Section
-\ref{sec:logoins} for how to modify the logo color for
-\verb"\insertlogo". Otherwise, the generated command can also receive an
-optional command for overriding color or changing the opacity or using any
-supported Ti\emph{k}Z argument for \verb"\fill". Sometimes, you
-need to specify the color for your logo object.
+\ref{sec:logoins} for how to modify the logo color for \verb"\insertlogo".
+Otherwise, the generated command can also receive an optional command for
+overriding color or changing the opacity or using any supported Ti\emph{k}Z
+argument for \verb"\fill". Sometimes, you need to specify the color for your
+logo object.
 
 \section{Compatibility}
 
@@ -927,8 +911,7 @@ shown in Section \ref{sec:framework}.
 And there are more APIs in \textsf{beamer} for each corresponding theme style.
 Here is good material about it for a lead-in\cite{tex2017}, which provides a
 brief overview. And this part is only focusing on the implementation of
-\themename{}.
-There are mainly three ways to modify a theme:
+\themename{}. There are mainly three ways to modify a theme:
 \begin{enumerate}
   \item \textbf{Want to use presets.} Read Part
         \uppercase\expandafter{\romannumeral3} in the documentation of
@@ -938,8 +921,8 @@ There are mainly three ways to modify a theme:
         \begin{verbatim}
           texdoc beame
         \end{verbatim}
-        Then, you could choose to use some preset theme, or call the macro to
-        control the appearance of each component.
+        Then, you could choose to use some preset theme, or call the macro to control
+        the appearance of each component.
   \item \textbf{Want a complete modification.} Read the source code of
         \textsf{beamer} package \cite{beamerman}.
         If no additional theme is used,
@@ -985,8 +968,7 @@ elegant way to make colorful boxes in the current \LaTeX{} system.
 
 \subsection{Engine Support}
 To be clear, \themename{} is not adapted to all kinds of compilers in the
-current
-\LaTeX{} world.
+current \LaTeX{} world.
 \begin{table}[h]
   \begin{center}
     \begin{tabular}{ccc}
@@ -1005,9 +987,9 @@ current
 
 As always, we strongly recommend compiling the document through
 \hologo{XeLaTeX} in Mac and Linux Operating Systems, and pdf\LaTeX{} in
-Windows. And Lua\LaTeX{} is pretty slow with \verb"beamer" class,
-which is not recommended. But it has \verb"lua-visual-debug" package for
-developers to check the bounding box of each component to check errors.
+Windows. And Lua\LaTeX{} is pretty slow with \verb"beamer" class, which is not
+recommended. But it has \verb"lua-visual-debug" package for developers to check
+the bounding box of each component to check errors.
 
 \themename{} make its effort on engine support in the following ways:
 \begin{enumerate}
@@ -1065,7 +1047,7 @@ the context through adaptive codes instead of code with no hooks.
         transplanting components from other templates:
 
         \begin{tabular}{lll}
-                                   & 1em    & 1ex    \\
+                     & 1em    & 1ex    \\
           \verb"\rm" & 10pt   & 4.3pt  \\
           \verb"\bf" & 11.5pt & 4.44pt \\
           \verb"\tt" & 10.5pt & 4.3pt  \\
@@ -1077,14 +1059,11 @@ the context through adaptive codes instead of code with no hooks.
           cm & centimeter (2.54 cm = 1 in)
         \end{tabular}
 
-        However, it is not always meant to use font adaptive
-        \verb"em" and \verb"ex" everywhere in
-        your code. You should be aware of some spaces should not be adaptive
-        such as the spacing in the drawings. And when it comes to the change of
-        aspect
-        ratio, the result should be calculated from the width and height
-        geometry
-        instead of hard-coded measurement in most cases.
+        However, it is not always meant to use font adaptive \verb"em" and \verb"ex"
+        everywhere in your code. You should be aware of some spaces should not be
+        adaptive such as the spacing in the drawings. And when it comes to the change
+        of aspect ratio, the result should be calculated from the width and height
+        geometry instead of hard-coded measurement in most cases.
   \item \textbf{Themes from \texttt{beamer} class.} \themename{} has adapted to
         most of the outer themes provided by \texttt{beamer} class by passing
         the corresponding option. \themename{} aims at providing consistent
@@ -1122,8 +1101,8 @@ distribution. However, in some cases, an older \TeX\ distribution needs to be
 supported.
 
 For compatibility issues, you need to define the \verb"\sjtubeamer@compatible"
-variable to \verb"false" to close the related rendering before
-the theme is loaded.
+variable to \verb"false" to close the related rendering before the theme is
+loaded.
 
 \begin{verbatim}
   \makeatletter
@@ -1149,9 +1128,9 @@ the precompiled common header. However, this method comes with compatibility
 issues in that it only supports old packages \emph{without} using
 \texttt{fontspec} to load OpenType fonts.
 
-To dump the format on \verb"beamer", we have to reset the encoding
-to the old 7-bit default\cite{mylatexot1}. Since some sans fonts use a newer
-version. And it is not available for C\TeX{} in \hologo{XeLaTeX}, since it uses
+To dump the format on \verb"beamer", we have to reset the encoding to the old
+7-bit default\cite{mylatexot1}. Since some sans fonts use a newer version. And
+it is not available for C\TeX{} in \hologo{XeLaTeX}, since it uses
 \texttt{fontspec} to load the font. What's more, if we decided to load
 \texttt{ctex} after loading \texttt{ctexbeamer}, the load on \texttt{ctex} will
 be skipped\cite{ctex}. And \themename\ has done some work similar to
@@ -1197,16 +1176,14 @@ see \texttt{build.lua}.
 
   Copyright (C) 2021,2022 SJTUG
 
-  Licensed under the Apache License, Version 2.0 (the "License");
-  you may not use this file except in compliance with the License.
-  You may obtain a copy of the License at
-  \url{http://www.apache.org/licenses/LICENSE-2.0}
+  Licensed under the Apache License, Version 2.0 (the "License"); you may not use
+  this file except in compliance with the License. You may obtain a copy of the
+  License at \url{http://www.apache.org/licenses/LICENSE-2.0}
 
-  Unless required by applicable law or agreed to in writing, software
-  distributed under the License is distributed on an "AS IS" BASIS,
-  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-  See the License for the specific language governing permissions and
-  limitations under the License.
+  Unless required by applicable law or agreed to in writing, software distributed
+  under the License is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR
+  CONDITIONS OF ANY KIND, either express or implied. See the License for the
+  specific language governing permissions and limitations under the License.
 
 \end{quotation}
 
@@ -1221,16 +1198,13 @@ see \texttt{build.lua}.
   \scriptsize
   Copyright (C) Shanghai Jiao Tong University
 
-  The definition in this file is referred to the Visual Identity System
-  from Shanghai Jiao Tong University (SJTU).
-  See \url{https://vi.sjtu.edu.cn} for more
+  The definition in this file is referred to the Visual Identity System from
+  Shanghai Jiao Tong University (SJTU). See \url{https://vi.sjtu.edu.cn} for more
   information.
 
-  SJTUG implements the design but doesn't hold the copyright.
-  Any commercial usage in this file should be acknowledged by
-  the administration of SJTU.
-  For more information about the license,
-  see
+  SJTUG implements the design but doesn't hold the copyright. Any commercial
+  usage in this file should be acknowledged by the administration of SJTU. For
+  more information about the license, see
   \url{https://vi.sjtu.edu.cn/index.php/articles/bulletin/16}.
 \end{quotation}
 
