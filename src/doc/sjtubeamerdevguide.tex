@@ -122,7 +122,8 @@ character-escaped environment:
 
 \themename{} has an internal mechanism of passing the options. For example, if
 you pass \verb"debug" option to \verb"sjtug" plugin ---
-\verb"\usesjtutheme[debug]{sjtug}", you could judge the condition in the plugin file like:
+\verb"\usesjtutheme[debug]{sjtug}",
+you could judge the condition in the plugin file like:
 \begin{verbatim}
   \if\EqualOption{sjtug}{debug}{true}
     % do something here ...
@@ -134,10 +135,10 @@ it will increase the complexity.
 
 \themename{} has an internal macro on how to include external files in the
 contribution path. Use \verb"\getcontribdir{<plugin>}" to get the directory
-\verb"contrib/<plugin>" and \verb"\getcontribpath{<plugin>}{<file>}" to get the directory file
-path \verb"contrib/<plugin>/<file>". If you are writing the documentation
-\verb"<plugin>.tex", the macro could behave differently and sign a warning.
-And before writing the documentation, you could refer to Section
+\verb"contrib/<plugin>" and \verb"\getcontribpath{<plugin>}{<file>}" to get the
+directory file path \verb"contrib/<plugin>/<file>". If you are writing the
+documentation \verb"<plugin>.tex", the macro could behave differently and sign
+a warning. And before writing the documentation, you could refer to Section
 \ref{sec:l3build} for how to install the theme on your computer.
 
 \begin{warn}
@@ -388,21 +389,25 @@ major dependency on \verb"beamer" class.
 
 The kernel function means that it is not recommended to be used by end users.
 
-\paragraph{If your definition parameters are mandatory, use \TeX\ style.} This gives you better flexibility on the definition. And in this scenario,
+\paragraph{If your definition parameters are mandatory, use \TeX\ style.}
+This gives you better flexibility on the definition. And in this scenario,
 please use a \emph{unique} command name for your function.
 
 \begin{lstlisting}
 \def\EqualOption#1#2#3{}
 \end{lstlisting}
 
-\subparagraph{Pros:} Using the bottom layer on \TeX{} gives better processing speed. And making the
+\subparagraph{Pros:}
+Using the bottom layer on \TeX{} gives better processing speed. And making the
 parameter declared obviously will make the code more readable, so as the
 end-user.
 
-\subparagraph{Cons:} Using \TeX{} \verb"\def" method will skip the defined macro check provided by
+\subparagraph{Cons:}
+Using \TeX{} \verb"\def" method will skip the defined macro check provided by
 \LaTeX{}, which may cause macro conflict between different packages.
 
-\subparagraph{Decision:} Use complicated names if you want to avoid naming conflicts on function. This
+\subparagraph{Decision:}
+Use complicated names if you want to avoid naming conflicts on function. This
 template won't provide a mandatory rule on this.
 
 \paragraph{If your definition has an optional parameter, use \LaTeX\ style.}
@@ -414,33 +419,40 @@ brackets.
 \expandafter\providecommand\csname #2\endcsname[1][]{}
 \end{lstlisting}
 
-\subparagraph{Pros:} Using this method could get an optional parameter.
+\subparagraph{Pros:}
+Using this method could get an optional parameter.
 
-\subparagraph{Cons:} This method is less readable. And have to decide to use \verb"\newcommand"
+\subparagraph{Cons:}
+This method is less readable. And have to decide to use \verb"\newcommand"
 (check on duplicate functions) or \verb"\providecommand" (no effect if
 defined).
 
-\subparagraph{Decision:} Just use this method if you want an optional parameter. You should not write a
+\subparagraph{Decision:}
+Just use this method if you want an optional parameter. You should not write a
 function with more than one optional parameter.
 
 \subsubsection{Interface Function Definition}
 
 Interface function means that the function will be used by end users.
 
-\paragraph{Use \LaTeX\ style on function definition.} This gives a clear visual indication of the type of this function.
+\paragraph{Use \LaTeX\ style on function definition.}
+This gives a clear visual indication of the type of this function.
 
 \begin{lstlisting}
 \newcommand{\stamparray}[3]{}
     \end{lstlisting}
 
-\subparagraph{Pros:} This method will avoid the conflict on packages. Or it is easy to debug to know
+\subparagraph{Pros:}
+This method will avoid the conflict on packages. Or it is easy to debug to know
 which package conflicts.
 
-\subparagraph{Cons:} This method will limit some features \TeX{} provides and you may not pass the
+\subparagraph{Cons:}
+This method will limit some features \TeX{} provides and you may not pass the
 compilation if you switch some \verb"\def" to \verb"\newcommand" or
 \verb"\providecommand".
 
-\subparagraph{Decision:} Use unique name on interface function.
+\subparagraph{Decision:}
+Use unique name on interface function.
 
 \subsubsection{Global Variable Definition}
 
@@ -459,13 +471,16 @@ Global variable means that it will be used across modules.
 \def\sjtubeamer@inner@lang{en}
 \end{lstlisting}
 
-\subparagraph{Pros:} Make a clear visual indication of the variable type and avoid duplicates with
+\subparagraph{Pros:}
+Make a clear visual indication of the variable type and avoid duplicates with
 other packages.
 
-\subparagraph{Cons:} A long name may make the typing experience troubling and easy to make faults
+\subparagraph{Cons:}
+A long name may make the typing experience troubling and easy to make faults
 (hard to check).
 
-\subparagraph{Decision:} You should avoid using global variables, which will only be useful if you are
+\subparagraph{Decision:}
+You should avoid using global variables, which will only be useful if you are
 making communication between modules. If a bug occurs, it is hard to track in
 \LaTeX{}. As a matter of fact, only the parameter in the function can be called
 a \emph{local variable} (with an immediate substitution). All variables defined
@@ -477,7 +492,8 @@ Leaf option means it is an option that will not be passed to the next level or
 could be used immediately in this module.
 
 \paragraph{Define the package option by an exclusive command, which will define
-  a global variable the same as above.} This will create an option on this package, in package \#1, module \#2, and
+  a global variable the same as above.}
+This will create an option on this package, in package \#1, module \#2, and
 variable \#3.
 
 \begin{lstlisting}
@@ -497,21 +513,25 @@ which will check if the option is \verb"red".
 The communication option means it will be a global option passed between
 modules.
 
-\paragraph{Declare the variable in an obvious way.} Use \verb"beamer" macro to declare an option that will not be used in this
+\paragraph{Declare the variable in an obvious way.}
+Use \verb"beamer" macro to declare an option that will not be used in this
 module.
 
 \begin{lstlisting}
 \DeclareOptionBeamer{red}{\def\sjtubeamer@color{red}}
 \end{lstlisting}
 
-\subparagraph{Pros:} We are making difference between leaf options and communication options in
+\subparagraph{Pros:}
+We are making difference between leaf options and communication options in
 order to not mess up the communication model. It will make the code much
 simpler.
 
-\subparagraph{Cons:} It is not using \verb"kvoptions" package for a standard option receiver. The
+\subparagraph{Cons:}
+It is not using \verb"kvoptions" package for a standard option receiver. The
 developer has to read the implementation of the macros in \verb"sjtuvi".
 
-\subparagraph{Decision:} Use our \emph{dialect} of option representation.
+\subparagraph{Decision:}
+Use our \emph{dialect} of option representation.
 
 \subsection{Cover Code}
 
@@ -522,9 +542,9 @@ The coding style in this section is applicable to the following file:
 
 \subsubsection{Use Beamer Variable}
 
-\paragraph{Use beamer variable to set color and font.} \verb"beamer"
-class provides interfaces for using the current configuration of color and
-font, see the documentation of \verb"beamer" class
+\paragraph{Use beamer variable to set color and font.}
+\verb"beamer" class provides interfaces for using the current configuration
+of color and font, see the documentation of \verb"beamer" class
 \begin{verbatim}
   texdoc beamer
 \end{verbatim}
@@ -533,13 +553,16 @@ font, see the documentation of \verb"beamer" class
 \usebeamercolor{palette primary}
 \end{lstlisting}
 
-\subparagraph{Pros:} Using native macro will provide much more flexibility for your cover template.
+\subparagraph{Pros:}
+Using native macro will provide much more flexibility for your cover template.
 It is essential to make your template fit in the color/font management system.
 
-\subparagraph{Cons:} Developer has to learn how to use these macros and some are not interested in
+\subparagraph{Cons:}
+Developer has to learn how to use these macros and some are not interested in
 that.
 
-\subparagraph{Decision:} To make a pull request, you should always avoid using fixed color/font.
+\subparagraph{Decision:}
+To make a pull request, you should always avoid using fixed color/font.
 
 \subsubsection{New Option Declaration}
 
@@ -554,13 +577,16 @@ that.
 Paste it and change \verb"my" to the name of your template. And add the
 precompiling option mentioned in Section \ref{sec:precompile}.
 
-\subparagraph{Pros:} This is useful for template management and end-user could select what template
+\subparagraph{Pros:}
+This is useful for template management and end-user could select what template
 to be precompiled.
 
-\subparagraph{Cons:} This is not so handy to search every file. We are working on an automated tool
+\subparagraph{Cons:}
+This is not so handy to search every file. We are working on an automated tool
 for developers to achieve that.
 
-\subparagraph{Decision:} Follow the rule to submit your template.
+\subparagraph{Decision:}
+Follow the rule to submit your template.
 
 \subsubsection{Logo Insertion}\label{sec:logoins}
 
@@ -600,7 +626,8 @@ This environment has one parameter to indicate the name of the macro.
 \subsubsection{Macrocode}
 
 \paragraph{To insert source code, you should surround your code with macrocode
-  environment.} This environment must start with four spaces after \verb"%".
+  environment.}
+This environment must start with four spaces after \verb"%".
 
 \begin{lstlisting}[showspaces=true]
 %    \begin{macrocode}
@@ -647,8 +674,9 @@ into the searching directory of \TeX{} and refresh the filename directory.
     innertheme.sty}\framebox[0.25\textwidth]{\ttfamily
     outertheme.sty}\framebox[0.25\textwidth]{\ttfamily fonttheme.sty}
 
-  \parbox[t]{0.25\textwidth}{\centering
-    $\downarrow$}\framebox[0.25\textwidth]{\ttfamily sjtucover.sty}\parbox[t]{0.25\textwidth}{\centering $\downarrow$}\hspace*{0.25\textwidth}
+  \parbox[t]{0.25\textwidth}{\centering $\downarrow$}
+  \framebox[0.25\textwidth]{\ttfamily sjtucover.sty}
+  \parbox[t]{0.25\textwidth}{\centering $\downarrow$} \hspace*{0.25\textwidth}
 
   \framebox[0.75\textwidth]{\ttfamily sjtuvi.sty}
 
