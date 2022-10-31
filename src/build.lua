@@ -471,7 +471,7 @@ if options["target"] == "add-contrib" then
                 )
             local author = io.popen("git config --get user.name",'r')  -- get author info
             if author ~= nil then
-                pluginfilecontent = string.gsub(pluginfilecontent, '<Author>', author:read('*a'))
+                pluginfilecontent = string.gsub(pluginfilecontent, '<author>', author:read('*a'))
             end
             author:close()
             pluginfile = io.open(pluginpath, 'w')
