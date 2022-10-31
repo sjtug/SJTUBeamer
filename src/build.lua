@@ -469,11 +469,14 @@ if options["target"] == "add-contrib" then
                         "0000/00/00",os.date("%Y/%m/%d")),
                             "newcontrib", pluginname
                 )
-            local author = io.popen("git config --get user.name",'r')  -- get author info
-            if author ~= nil then
-                pluginfilecontent = string.gsub(pluginfilecontent, '<author>', author:read('*a'))
+            local errorlevel = os.execute("git --version")
+            if errorlevel == 0 then
+                local author = io.popen("git config --get user.name",'r')  -- get author info
+                if author ~= nil then
+                    pluginfilecontent = string.gsub(pluginfilecontent, '<author>', author:read('*a'))
+                end
+                author:close()
             end
-            author:close()
             pluginfile = io.open(pluginpath, 'w')
             pluginfile:write(pluginfilecontent)
             pluginfile:close()
