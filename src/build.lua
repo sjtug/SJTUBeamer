@@ -458,7 +458,7 @@ if options["target"] == "add-contrib" then
             -- make plugin directory
             mkdir(plugindir)
 
-            -- generate plugin document itself
+            -- generate plugin itself
             cp("sjtubeamerthemenewcontrib.template.ltx", supportdir, plugindir)
             ren(plugindir, "sjtubeamerthemenewcontrib.template.ltx", "sjtubeamertheme" .. pluginname .. ".ltx")
             local pluginpath = plugindir .. "/" .. "sjtubeamertheme" .. pluginname .. ".ltx"
@@ -506,6 +506,9 @@ if options["target"] == "add-contrib" then
             print(pluginname .. " plugin is created.")
             print("  > Plugin itself: " .. pluginpath)
             print("  > Plugin documentation: " ..plugindocpath)
+            print("To debug the plugin, install the current version of sjtubeamer globally first by:")
+            print("  l3build install")
+            print("Then compile the documentation in the contrib directory: " .. plugindir)
         else
             print("Error: " .. pluginname .. " has already existed.")
             os.exit(1)
