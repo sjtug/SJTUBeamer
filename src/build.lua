@@ -439,6 +439,9 @@ if options["target"] == "add-demo" then
     os.exit(0)
 end
 
+-- contrib directory
+contribdir = "../contrib"
+
 -- usage: l3build add-contrib [pluginname]
 -- description: initialize a plugin called [pluginname].
 if options["target"] == "add-contrib" then
@@ -450,7 +453,6 @@ if options["target"] == "add-contrib" then
     local pluginname = options["names"][1]
 
     local function addcontrib(pluginname)
-        local contribdir = "../contrib"
         local plugindir = contribdir .. "/" .. pluginname
         if not direxists(plugindir) then
             -- make plugin directory
