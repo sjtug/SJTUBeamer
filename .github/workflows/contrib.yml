@@ -16,6 +16,8 @@ name: Contrib
 jobs:
   build-contrib:
     runs-on: ubuntu-latest
+    # ignore the commit with [contrib skip] tag.
+    if: "!contains(github.event.head_commit.message, 'contrib skip')"
     # permission to the environment will 
     # need to be approved by one of the collaborators
     environment: IMGUR
@@ -24,10 +26,6 @@ jobs:
         name: checkout code
         with:
           fetch-depth: 0
-      - uses: mstachniuk/ci-skip@v1
-        with:
-          commit-filter: 'contrib skip;skip contrib'
-          commit-filter-separator: ';'
       - name: get newly contributed package (pull request)
         if: github.event_name == 'pull_request'
         run: |
