@@ -16,6 +16,7 @@ name: Contrib
 jobs:
   build-contrib:
     runs-on: ubuntu-latest
+    if: "!contains(github.event.head_commit.message, 'contrib skip')"
     # permission to the environment will 
     # need to be approved by one of the collaborators
     environment: IMGUR
