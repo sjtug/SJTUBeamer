@@ -469,13 +469,21 @@ if options["target"] == "add-contrib" then
                         "0000/00/00",os.date("%Y/%m/%d")),
                             "newcontrib", pluginname
                 )
+            -- get information from git
+            -- no swap when no git
+            print('Trying to get author and email information from:')
             local errorlevel = os.execute("git --version")
             if errorlevel == 0 then
                 local author = io.popen("git config --get user.name",'r')  -- get author info
                 if author ~= nil then
-                    pluginfilecontent = string.gsub(pluginfilecontent, '<author>', author:read('*a'))
+                    pluginfilecontent = string.gsub(pluginfilecontent, '<author>', author:read('*l'))
                 end
                 author:close()
+                local email = io.popen("git config --get user.email",'r') -- get author email
+                if email ~= nil then
+                    pluginfilecontent = string.gsub(pluginfilecontent, '<email>', '<' .. email:read('*l') .. '>')
+                end
+                email:close()
             end
             pluginfile = io.open(pluginpath, 'w')
             pluginfile:write(pluginfilecontent)
