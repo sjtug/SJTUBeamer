@@ -191,6 +191,8 @@ The file will be generated based on the template \verb"support/step.template.tex
   \end{tabular}
 \end{table}
 
+\fcmd{l3build add-contrib test} This command will create a plugin called \texttt{test} in the directory \texttt{../contrib}. This command will grab the information from \texttt{git} to fill the blanks of ``author'' and ``email'' (left blank when no git is installed).
+
 \subsection{Customize Generation}\label{sec:precompile}
 
 In \verb"source/beamerthemesjtubeamer.ins", you could customize what templates you want to output on the line:

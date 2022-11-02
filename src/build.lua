@@ -412,7 +412,9 @@ if options["target"] == "add-demo" then
                 
                 -- modify the number in usr doc content.
                 local cnt
-                usrdoccontent, cnt = string.gsub(usrdoccontent, "step" .. string.gsub(string.gsub(oldid,"%+","%%+"),"%-","%%-") .. "%.", "step" .. newid .. ".") -- avoid the magical character insertion
+                usrdoccontent, cnt = string.gsub(usrdoccontent, "step" .. 
+                string.gsub(string.gsub(oldid,"%+","%%+"),"%-","%%-") .. 
+                "%.", "step" .. newid .. ".") -- avoid the magical character insertion
 
                 print("step" .. oldid .. " -> " .. "step" .. newid .. " Doc replaced: " .. cnt)
             end
@@ -434,5 +436,85 @@ if options["target"] == "add-demo" then
     end
 
     adddemo(demonum)
+    os.exit(0)
+end
+
+-- contrib directory
+contribdir = "../contrib"
+
+-- usage: l3build add-contrib [pluginname]
+-- description: initialize a plugin called [pluginname].
+if options["target"] == "add-contrib" then
+    if options["names"] == nil or #options["names"] > 1 then
+        print("Error: Please specify one and only one contrib name. (" .. module .. ")")
+        os.exit(1)
+    end
+
+    local pluginname = options["names"][1]
+
+    local function addcontrib(pluginname)
+        local plugindir = contribdir .. "/" .. pluginname
+        if not direxists(plugindir) then
+            -- make plugin directory
+            mkdir(plugindir)
+
+            -- generate plugin itself
+            cp("sjtubeamerthemenewcontrib.template.ltx", supportdir, plugindir)
+            ren(plugindir, "sjtubeamerthemenewcontrib.template.ltx", "sjtubeamertheme" .. pluginname .. ".ltx")
+            local pluginpath = plugindir .. "/" .. "sjtubeamertheme" .. pluginname .. ".ltx"
+            local pluginfile = io.open(pluginpath, 'r')
+            local pluginfilecontent = pluginfile:read('a')
+            pluginfile:close()
+            pluginfilecontent = string.gsub(
+                string.gsub(
+                    string.gsub(pluginfilecontent, "<year>", os.date("%Y")),
+                        "0000/00/00",os.date("%Y/%m/%d")),
+                            "newcontrib", pluginname
+                )
+            -- get information from git
+            -- no swap when no git
+            print('Trying to get author and email information from:')
+            local errorlevel = os.execute("git --version")
+            if errorlevel == 0 then
+                local author = io.popen("git config --get user.name",'r')  -- get author info
+                if author ~= nil then
+                    pluginfilecontent = string.gsub(pluginfilecontent, '<author>', author:read('*l'))
+                end
+                author:close()
+                local email = io.popen("git config --get user.email",'r') -- get author email
+                if email ~= nil then
+                    pluginfilecontent = string.gsub(pluginfilecontent, '<email>', '<' .. email:read('*l') .. '>')
+                end
+                email:close()
+            end
+            pluginfile = io.open(pluginpath, 'w')
+            pluginfile:write(pluginfilecontent)
+            pluginfile:close()
+
+            -- generate plugin documentation
+            cp("newcontrib.template.tex", supportdir, plugindir)
+            ren(plugindir, "newcontrib.template.tex", pluginname .. ".tex")
+            local plugindocpath = plugindir .. "/" .. pluginname .. ".tex"
+            local plugindocfile = io.open(plugindocpath, 'r')
+            local plugindoccontent = plugindocfile:read('a')
+            plugindocfile:close()
+            plugindoccontent = string.gsub(plugindoccontent, "newcontrib", pluginname)
+            plugindocfile = io.open(plugindocpath, 'w')
+            plugindocfile:write(plugindoccontent)
+            plugindocfile:close()
+
+            print(pluginname .. " plugin is created.")
+            print("  > Plugin itself: " .. pluginpath)
+            print("  > Plugin documentation: " ..plugindocpath)
+            print("To debug the plugin, install the current version of sjtubeamer globally first by:")
+            print("  l3build install")
+            print("Then compile the documentation in the contrib directory: " .. plugindir)
+        else
+            print("Error: " .. pluginname .. " has already existed.")
+            os.exit(1)
+        end
+    end
+
+    addcontrib(pluginname)
     os.exit(0)
 end
