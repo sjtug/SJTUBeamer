@@ -1072,10 +1072,14 @@ the context through adaptive codes instead of code with no hooks.
         \verb"pt" which is not font adaptive.
         We recommend using \verb"em" in width and
         \verb"ex" in height to make it font adaptive.
-        Since the default font size of \verb"beamer" is 10pt,
+        Since the default font size of \verb"beamer" is 11pt,
         the following conversion on measurement could
         be inferred \cite{texbook}. Make the conversion when
-        transplanting components from other templates:
+        transplanting components from other templates (However, the first table
+        is only used for 10pt, or \verb"cmr10" font. For the default font size
+        11pt, try to use a bigger absolute measurement):
+
+        % TODO: calculate the 11pt sans font result.
 
         \begin{tabular}{lll}
                      & 1em    & 1ex    \\
