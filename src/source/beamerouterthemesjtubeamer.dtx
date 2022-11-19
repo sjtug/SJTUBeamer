@@ -106,7 +106,11 @@
           }%
           \fi
         }%
-        \vskip-1ex%
+%    \end{macrocode}
+%   Move to the baseline of the text, but the adjustment is still not so perfect since we made a trade-off for macnew fontset and fandol fontset, where the former one is higher than the latter one.
+%   TODO: refactor the logo insertion, and define the baseline for the logo, and then make the two columns vertically centered without any parameter adjustment.
+%    \begin{macrocode}  
+        \vskip-1.07ex%
         \endgroup%
 %    \end{macrocode}
 %   Start the right logo part. Lift the logo up, relative to the end position of the left part.
