@@ -31,7 +31,7 @@
 }
 
 \usepackage{multicol}
-\usepackage{tikz}
+\usepackage{sjtuvi}
 \usepackage{hologo}
 \usepackage[colorlinks]{hyperref}
 
@@ -47,6 +47,32 @@
 \author{\sjtuglogo}
 
 \begin{document}
+\begin{titlepage}
+  \setlength{\parindent}{0em} \addtolength\marginparwidth{-30pt}
+  \addtolength\oddsidemargin{-20pt} \addtolength\evensidemargin{-20pt}
+  \bfseries\sffamily
+  \begin{tikzpicture}[remember picture, overlay]
+    \fill[sjtuBluePrimary] (current page.south west)
+    rectangle (current page.north east);
+  \end{tikzpicture}
+  \color{white}\vfill
+
+  \Huge Development Guide of \themename{}
+
+  \Large\LaTeX{} Beamer Template
+
+  \vfill
+  \resizebox{!}{2cm}
+  {\secondaryinstlogo{
+      \resizebox{!}{0.95cm}
+      {\includegraphics{sjtug.pdf}}
+    }{\sjtubadge{}}}
+
+  \vfill
+
+  \hskip-9em\resizebox{\paperwidth}{!}{\sjtugate[white]}
+\end{titlepage}
+
 \maketitle
 \begin{abstract}
   \themename{} is a modular presentation framework based on
