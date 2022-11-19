@@ -127,16 +127,48 @@ bottom=0pt, fontupper=\sffamily, colupper=white}
     \end{tcbraster}
 }{}
 
-\usepackage{sjtuvi}
-
 \usepackage{array}
 
+\usepackage{sjtuvi}
+
 \def\themename{\textsf{SJTUBeamer}}
+
+\def\sjtuglogo{
+  \parbox{4cm}{
+    \centering
+    \includegraphics[width=4cm]{sjtug.pdf}\\
+    \vspace*{5pt}
+    \includegraphics[width=3cm]{sjtug_text.pdf}
+  }
+}
 
 \begin{document}
 \title{\themename}
 \date{\today}
-% \maketitle
+
+\begin{titlepage}
+  \setlength{\parindent}{0em} \bfseries\sffamily
+  \begin{tikzpicture}[remember picture, overlay]
+    \fill[sjtuRedPrimary] (current page.south west)
+    rectangle (current page.north east);
+  \end{tikzpicture}
+  \color{white}\vfill
+
+  \Huge\themename{} 用户手册
+
+  \Large\LaTeX{} Beamer 幻灯片模板
+
+  \vfill
+  \resizebox{!}{2cm}
+  {\secondaryinstlogo{
+      \resizebox{!}{0.95cm}
+      {\includegraphics{sjtug.pdf}}
+    }{\sjtubadge{}}}
+
+  \vfill
+
+  \hskip-6em\resizebox{\paperwidth}{!}{\sjtugate[white]}
+\end{titlepage}
 
 \chapter*{\themename{} 介绍}
 
@@ -1000,12 +1032,6 @@ Snippets 的形式提供代码补全提示。
 \href{https://vi.sjtu.edu.cn/index.php/articles/bulletin/16}{版权}。
 校属各单位及个人以经营为目的使用视觉形象识别系统，须向学校申请使用许可。
 校外单位及个人未经许可，不得制作或使用载有视觉形象识别系统的物品。
-
-\def\sjtuglogo{
-  \includegraphics[height=4cm]{sjtug.pdf}\\
-  \vspace*{5pt}
-  \includegraphics[width=3cm]{sjtug_text.pdf}
-}
 
 \vfill
 {
