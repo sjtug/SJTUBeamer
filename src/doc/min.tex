@@ -8,7 +8,7 @@
 \usetheme[min]{sjtubeamer}
 % \usecolortheme[]{beaver}                 % 使用其他颜色主题
 \usepackage{biblatex}
-\addbibresource{ref.bib}	       % gbt!=bibtex
+\addbibresource{tutorial/ref.bib}	       % gbt!=bibtex
 \usepackage{multicol}
 
 \begin{document}
@@ -18,7 +18,7 @@
 %     \includegraphics{vi/zhlogo.pdf}  % 重定义 logo
 % }
 \titlegraphic{			       % 标题图像
-  \includegraphics{head.png}
+  \includegraphics{tutorial/head.png}
 }
 \title{SJTUBeamer 幻灯片模板}  % 标题
 \subtitle{SJTUBeamer Template}	       % 副标题
@@ -108,7 +108,7 @@ int main(){
   \begin{figure}
     \centering
     \begin{stampbox}
-      \includegraphics[height=0.3\textheight]{plant.jpg}
+      \includegraphics[height=0.3\textheight]{tutorial/plant.jpg}
     \end{stampbox}
     \caption{图片标题\cite{viman}}
   \end{figure}
@@ -124,11 +124,11 @@ int main(){
         columns/Cocktail/.style={dec sep align},
         column type=r,
         % fixed zerofill,
-      ]{test.csv}
+      ]{tutorial/test.csv}
     \end{table}
 
     \begin{figure}
-      \input{testgraph.tex}
+      \input{tutorial/testgraph.tex}
       \caption{统计图标题\cite{pgfplotsman}}
     \end{figure}
   \end{multicols}
@@ -138,7 +138,7 @@ int main(){
 \part{参考文献}
 \begin{frame}[allowframebreaks]
   \printbibliography[title=参考文献]    % gbt!=bibtex
-  % \bibliography{ref.bib}             % gbt=bibtex
+  % \bibliography{tutorial/ref}        % gbt=bibtex
 \end{frame}
 
 \makebottom	% 创建尾页  % 非标准命令
