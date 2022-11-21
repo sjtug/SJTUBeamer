@@ -131,6 +131,8 @@ bottom=0pt, fontupper=\sffamily, colupper=white}
 
 \usepackage{sjtuvi}
 
+\newcommand{\testclr}[1]{\fcolorbox{black}{#1}{\phantom{XX}} \texttt{#1}}
+
 \def\themename{\textsf{SJTUBeamer}}
 
 \def\sjtuglogo{
@@ -855,6 +857,22 @@ Reader}）打开演示文稿，在“视图”选单中选择“全屏模式”�
   \item 注意与 \cmd{institute} 设置上的区别，非必要情况下最好直接使用
   \cmd{institute} 生成二级机构组合（比如 \opt{min} 样式的封面页）。
 \end{commentlist}
+
+\section{内置颜色}
+
+建议在专用徽标或图表颜色上使用视觉形象系统规定的标准色，\themename{} 提供了这些内置颜色。
+
+\begin{table}[h]
+  \centering
+  \small
+  \begin{tabular}{llll}
+    \hline
+       & 主色                        & 二级色                         & 三级色                        \\
+    红色 & \testclr{sjtuRedPrimary}  & \testclr{sjtuRedSecondary}  & \testclr{sjtuRedTertiary}  \\
+    蓝色 & \testclr{sjtuBluePrimary} & \testclr{sjtuBlueSecondary} & \testclr{sjtuBlueTertiary} \\
+    \hline
+  \end{tabular}
+\end{table}
 
 \faInfoCircle{} 徽标与相关元素版权归上海交通大学所有，仅供学习交流使用。
 
