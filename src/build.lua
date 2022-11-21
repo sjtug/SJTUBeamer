@@ -22,12 +22,8 @@ else
 end
 
 typesetopts      = "-interaction=nonstopmode -shell-escape"
-typesetfiles     = {"sjtubeamerdevguide.tex","sjtubeamer.tex"}
--- typesetfiles     = {"sjtubeamer.tex"}
--- typesetruns      = 1 -- for debug. Some reference may not be linked.
--- typesetdemofiles = {"min.tex"}
-
-typesetsuppfiles = {"head.png","plant.jpg","test.csv","testgraph.tex","ref.bib","sjtug.pdf","sjtug_text.pdf","tutorial/"}
+typesetfiles     = {"sjtubeamerdevguide.tex","sjtubeamer.tex","quickstart.tex"}
+typesetsuppfiles = {"sjtug.pdf","sjtug_text.pdf","tutorial/"}
 
 -- Regression tests mainly test the decoupling properties between kernel modules.
 testfiledir      = "./testfiles"
@@ -36,6 +32,7 @@ packtdszip       = true -- recommended for "tree" layouts
 
 tagfiles = {"*.dtx","README.md","*.ins","sjtubeamermintheme.tex","sjtubeamermindevguide.tex"}
 
+-- Related to `l3build tag`
 -- Detail how to set the version automatically
 function update_tag(file,content,tagname,tagdate)
     local iso = "%d%d%d%d%/%d%d%/%d%d"
@@ -84,6 +81,7 @@ function compile_file(dir, cmd, filename)
     return errorlevel
 end
 
+-- Related to `l3build doc`
 -- Generate tutorial files before compiling the doc.
 function typeset_demo_tasks()
     local errorlevel = 0
@@ -271,6 +269,7 @@ function gen_snippets()
     snippetfile:close()
 end
 
+-- Related to `l3build check`
 function checkinit_hook()
     gen_snippets()
 

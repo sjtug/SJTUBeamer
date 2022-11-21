@@ -114,3 +114,12 @@ jobs:
           asset_path: src/build/distrib/ctan/sjtubeamer/sjtubeamer.pdf
           asset_name: sjtubeamer.pdf
           asset_content_type: application/pdf
+      - name: add quickstart
+        uses: actions/upload-release-asset@v1.0.1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          upload_url: ${{ steps.create_release.outputs.upload_url }}
+          asset_path: src/build/distrib/ctan/sjtubeamer/sjtubeamerquickstart.pdf
+          asset_name: sjtubeamerquickstart.pdf
+          asset_content_type: application/pdf
