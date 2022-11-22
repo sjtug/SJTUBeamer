@@ -1,3 +1,4 @@
+\ProvidesFile{sjtubeamerdevguide.tex}[2022/11/22 v2.9.9 Development Guide for sjtubeamer (English)]
 \documentclass{ltxdoc}
 \usepackage[scheme=plain]{ctex}
 \usepackage[style=ieee]{biblatex}
@@ -265,6 +266,15 @@ update the date in the source code.
 \fcmd{l3build ctan} This is the last step before release. Both
 \verb"l3build check" and \verb"l3build doc" will be performed. The
 generated file is \verb"src/sjtubeamer-ctan.zip".
+
+\fcmd{l3build manifest} This will refresh the repository manifest file
+\verb"MANIFEST.md". In the current version of \verb"l3build", you need
+to run the following commands to make it properly refreshed:
+\begin{verbatim}
+  l3build ctan
+  l3build manifest
+  l3build ctan
+\end{verbatim}
 
 More information about \verb"l3build", please refer to
 \begin{verbatim}

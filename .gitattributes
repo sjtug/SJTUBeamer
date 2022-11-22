@@ -22,7 +22,10 @@ sjtuvi.sty linguist-generated=true
 beamerfontthemesjtubeamer.sty linguist-generated=true
 beamerouterthemesjtubeamer.sty linguist-generated=true
 sjtucover.sty linguist-generated=true
+
+# l3build generated file
 sjtubeamer.code-snippets linguist-generated=true
+MANIFEST.md linguist-generated=true
 
 # regression test target file
 *.tlg linguist-generated=true
