@@ -46,25 +46,31 @@
 % \themename theme and route the theme options accordingly. It also
 % provides some custom commands and environments for the user.
 %
-%   \begin{macro}{\sjtubeamer@cover}
-%   This macro selects the cover theme.
-%\begin{description}
-%    \item[maxplus] The titlegraphic will be a photo.
-%    \item[max] The background will be the photo.
-%    \item[min] The design will be minimalistic.
-%    \item[my]  Reserved interface for developers for customized title page and bottom page.
-%\end{description}
-%   
-%   $\rightarrow$ The following will demostrates how to pass options between files.
+% $\rightarrow$ The following will demostrates how to pass options between files.
 %
-%   $\rightarrow$ To set up an option, use \verb"\DeclareOptionBeamer" to let beamer theme receive such an option and store the value into a variable.
+% $\rightarrow$ To set up an option, use \verb"\DeclareOptionBeamer" to let beamer
+% theme receive such an option and store the value into a variable.
 %
-%   $\rightarrow$ To make the variable easy to follow and avoid duplicates, the naming system is as follows:
-%   \begin{itemize}
-%    \item Start with the project name \verb"sjtubeamer".
-%    \item Split by \verb"@" symbol and move to the next level.
-%    \item The final level should be the variable name itself.
-%   \end{itemize}
+% $\rightarrow$ To make the variable easy to follow and avoid duplicates,
+% the naming system is as follows:
+% \begin{itemize}
+%  \item Start with the project name \verb"sjtubeamer".
+%  \item Split by \verb"@" symbol and move to the next level.
+%  \item The final level should be the variable name itself.
+% \end{itemize}
+%
+% \begin{macro}{\sjtubeamer@cover}
+% This macro selects the cover theme.
+% \verb"maxplus"
+%   The titlegraphic will be a photo.
+% \verb"max"
+%   The background will be the photo.
+% \verb"min"
+%   The design will be minimalistic.
+% \verb"my"
+%   Reserved interface for developers for
+%   customized title page and bottom page.
+% \end{description}
 %    \begin{macrocode}
 %<*maxplus>
 \DeclareOptionBeamer{maxplus}{
@@ -84,7 +90,7 @@
     % reserved for customization
 %</my>
 %    \end{macrocode}
-%   $\rightarrow$ Next, declare the initial configuration.
+% $\rightarrow$ Next, declare the initial configuration.
 %    \begin{macrocode}
 \ExecuteOptionsBeamer{
 %<*maxplus>
@@ -101,45 +107,57 @@
 %</max>
 }
 %    \end{macrocode}
-%  \end{macro}
+% \end{macro}
 %
-%  \begin{macro}{\sjtubeamer@color}
-%   Choose the main color palette.
-%   \begin{description}
-%       \item[red] The red color palatte. \verb"sjtuRed*"
-%       \item[blue] The blue color palatte. \verb"sjtuBlue*"
-%   \end{description}
+% \begin{macro}{\sjtubeamer@color}
+% Choose the main color palette.
 %
+% \verb"red". \verb"sjtuRed*"
+% \verb"blue" \verb"sjtuBlue*"
 %    \begin{macrocode}
 \DeclareOptionBeamer{red}{\def\sjtubeamer@color{red}}
 \DeclareOptionBeamer{blue}{\def\sjtubeamer@color{blue}}
 \ExecuteOptionsBeamer{red}
 %    \end{macrocode}
-%  \end{macro}
+% \end{macro}
 %
-%  \begin{macro}{\sjtubeamer@lum}
-%    Decide whether it is in light mode or dark mode. Switch the lumination.
+% \begin{macro}{\sjtubeamer@lum}
+% Decide whether it is in light mode or
+% dark mode. Switch the lumination.
 %    \begin{macrocode}
 \DeclareOptionBeamer{light}{\def\sjtubeamer@lum{light}}
 \DeclareOptionBeamer{dark}{\def\sjtubeamer@lum{dark}}
 \ExecuteOptionsBeamer{dark}
 %    \end{macrocode}
-%  \end{macro}
+% \end{macro}
 %
-%  \begin{macro}{\sjtubeamer@lang}
-%    Set the main language of this beamer. If the user is using \verb"ctexbeamer" class, the default option will be Chinese. If the user use \verb"ctex" package after using this theme, such an advanced user should specify the language to Chinese manually.
+% \begin{macro}{\sjtubeamer@lang}
+% Set the main language of this beamer.
 %
-%   TODO: may be a built in support for Chinese will be used in the future. Just taken \verb"\RequirePackage[scheme=plain]{ctex}" for basic Chinese character support.
+% If the user is using \verb"ctexbeamer"
+% class, the default option will be
+% Chinese.
+%
+% If the user use \verb"ctex" package after
+% using this theme, such an advanced user
+% should specify the language to Chinese
+% manually.
+%
+% TODO:
+% may be a built in support for Chinese
+% will be used in the future. Just taken
+% \verb"\RequirePackage[scheme=plain]{ctex}"
+% for basic Chinese character support.
 %    \begin{macrocode}
 \DeclareOptionBeamer{zh}{\def\sjtubeamer@lang{zh}}
 \DeclareOptionBeamer{en}{\def\sjtubeamer@lang{en}}
 \@ifclassloaded{ctexbeamer}{\ExecuteOptionsBeamer{zh}}{
   \ExecuteOptionsBeamer{en}}
 %    \end{macrocode}
-%  \end{macro}
+% \end{macro}
 %
-%  \begin{macro}{\sjtubeamer@nav}
-%   Choose the outer theme for this template.
+% \begin{macro}{\sjtubeamer@nav}
+% Choose the outer theme for this template.
 %    \begin{macrocode}
 \DeclareOptionBeamer{miniframes}{\def\sjtubeamer@nav{miniframes}}
 \DeclareOptionBeamer{infolines}{\def\sjtubeamer@nav{infolines}}
@@ -152,21 +170,27 @@
 \DeclareOptionBeamer{smoothtree}{\def\sjtubeamer@nav{smoothtree}}
 \ExecuteOptionsBeamer{miniframes}
 %    \end{macrocode}
-%  \end{macro}
+% \end{macro}
 %
-%  \begin{macro}{\sjtubeamer@logopos}
-%   Choose the override outer logo position. No default option will get executed since it has already been executed by the selection of \verb"\sjtubeamer@cover".
+% \begin{macro}{\sjtubeamer@logopos}
+% Choose the override outer logo position.
+%
+% No default option will get executed
+% since it has already been executed by
+% the selection of \verb"\sjtubeamer@cover".
 %    \begin{macrocode}
 \DeclareOptionBeamer{topright}{\def\sjtubeamer@logopos{topright}}
 \DeclareOptionBeamer{bottomright}{\def\sjtubeamer@logopos{bottomright}}
 %    \end{macrocode}
-%  \end{macro}
+% \end{macro}
 %
-%   $\rightarrow$ Then, the user's option will be processed after this (at the end of this subsection).
+% $\rightarrow$ Then, the user's option will be processed after this
+% (at the end of this subsection).
 %    \begin{macrocode}
 \ProcessOptionsBeamer
 %    \end{macrocode}
-%   $\rightarrow$ Finally, the option can only be one of above and pass it to the target package.
+% $\rightarrow$ Finally, the option can only be one of above and pass it to the
+% target package.
 %    \begin{macrocode}
 \PassOptionsToPackage{\sjtubeamer@cover}{beamerinnerthemesjtubeamer}
 \PassOptionsToPackage{\sjtubeamer@color}{beamercolorthemesjtubeamer}
@@ -177,11 +201,11 @@
 \PassOptionsToPackage{\sjtubeamer@logopos}{beamerouterthemesjtubeamer}
 %    \end{macrocode}
 %
-%   The following code is executed when it is in <presentation> mode.
+% The following code is executed when it is in <presentation> mode.
 %    \begin{macrocode}
 \mode<presentation>
 %    \end{macrocode}
-%   Load sub-themes.
+% Load sub-themes.
 %    \begin{macrocode}
 \usecolortheme{sjtubeamer}
 \usefonttheme{sjtubeamer}
@@ -189,11 +213,21 @@
 \useoutertheme{sjtubeamer}
 %    \end{macrocode}
 %
-%  \begin{macro}{\usesjtutheme}
-%  You could load other contrib plugin by this command. Use comma-seperated list to load multiple sub-themes in one line. The \verb"\getcontribpath" is defined in \verb"sjtuvi" package loaded in inner theme.
+% \begin{macro}{\usesjtutheme}
+% You could load other contrib plugin by
+% this command.
+% Use comma-seperated list to load
+% multiple sub-themes in one line.
+% The \verb"\getcontribpath" is defined in
+% \verb"sjtuvi" package loaded in inner
+% theme.
 %
-%  You could pass options to all the sub-themes by writing in the square brackets. Then, in your sub-theme, you could use \verb"\if\EqualOption{<themename>}{<option>}{true}" to check the condition.
-%
+% You could pass options to all the
+% sub-themes by writing in the square
+% brackets.
+% Then, in your sub-theme, you could use
+% \verb"\if\EqualOption{<themename>}{<option>}{true}"
+% to check the condition.
 %    \begin{macrocode}
 \newrobustcmd*\usesjtutheme[2][]{
   \def\sjtubeamer@mythemeoptions{#1}
@@ -215,11 +249,24 @@
   }
 }
 %    \end{macrocode}
-%  This command will also first check the root directory for dependency. If it exists, the \verb"\getcontribdir" macro will be redefined. It is never recommended for placing the ltx in the same folder.
-%  Remember the contrib directory is permantly modified and the directory for other dependency may be missing due to this debug config. You may need to modify to \verb"\renewcommand{\getcontribdir}[1]{\sjtubeamer@contribdir/#1}" manually to recover to the standard configuration. We didn't put the last command into this since we only expect you to only use the debug option for only one contrib dependency --- the one needs to be documented. And you should run \verb"l3build install" in the \verb"src" folder for making the sjtubeamer main part into your texmf path. If you want to combine multiple dependencies, you should write and compile your documentation in the root folder. And our CI will move your documentation to the root first before checking.
+% This command will also first check the root directory for dependency.
+% If it exists, the \verb"\getcontribdir" macro will be redefined.
+% It is never recommended for placing the ltx in the same folder.
 %
+% Remember the contrib directory is permantly modified and the directory for
+% other dependency may be missing due to this debug config.
+% You may need to modify to \verb"\renewcommand{\getcontribdir}[1]{\sjtubeamer@contribdir/#1}"
+% manually to recover to the standard configuration.
+% We didn't put the last command into this since we only expect you to only use
+% the debug option for only one contrib dependency --- the one needs to be documented.
 %
-%  \end{macro}
+% And you should run \verb"l3build install" in the \verb"src" folder for making the
+% sjtubeamer main part into your texmf path.
+%
+% If you want to combine multiple dependencies, you should write and compile your
+% documentation in the root folder. And our CI will move your documentation to
+% the root first before checking.
+% \end{macro}
 %
 % \iffalse
 %</package>

@@ -223,7 +223,7 @@ function gen_snippets()
                 elseif in_code == false then
                     -- Now it is just a plain description of this macro.
                     macro_desc = macro_desc ..
-                    string.gsub(string.gsub(string.gsub(string.gsub(string.sub(line,2),"\\verb\"([^\"]+)\"","%1"),"\\","\\\\"),"\"","\\\""),"%s%s+","") .. "\\n"
+                    string.gsub(string.gsub(string.gsub(string.gsub(string.sub(line,2),"\\verb\"([^\"]+)\"","%1"),"\\","\\\\"),"\"","\\\""),"%s%+","") .. "\\n"
                 end
             end
 

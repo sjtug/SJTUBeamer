@@ -40,18 +40,18 @@
 %   \item footnotes and plain text.
 % \end{itemize}
 %
-%  \subsubsection{Load Packages}
-%   Load SJTU VI Library to get the definition on color and shape.
+% \subsubsection{Load Packages}
+% Load SJTU VI Library to get the definition on color and shape.
 %    \begin{macrocode}
 \RequirePackage{sjtuvi}
 %    \end{macrocode}
-%   Load tcolorbox for creating delicate boxes.
+% Load tcolorbox for creating delicate boxes.
 %    \begin{macrocode}
 \RequirePackage{tcolorbox}
 %    \end{macrocode}
 %
-%   \subsubsection{Option Declaration}
-%  \begin{macro}{\sjtubeamer@inner@cover}
+% \subsubsection{Option Declaration}
+% \begin{macro}{\sjtubeamer@inner@cover}
 %    \begin{macrocode}
 %<*maxplus>
 \DefineOption{inner}{cover}{maxplus}
@@ -80,24 +80,24 @@
 %</max>
 }
 %    \end{macrocode}
-%  \end{macro}
+% \end{macro}
 %
-%  \begin{macro}{\sjtubeamer@inner@lang}
+% \begin{macro}{\sjtubeamer@inner@lang}
 %    \begin{macrocode}
 \DeclareOptionBeamer{zh}{\def\sjtubeamer@inner@lang{zh}}
 \DeclareOptionBeamer{en}{\def\sjtubeamer@inner@lang{en}}
 \@ifclassloaded{ctexbeamer}{\ExecuteOptionsBeamer{zh}}{
   \ExecuteOptionsBeamer{en}}
 %    \end{macrocode}
-%  \end{macro}
+% \end{macro}
 %
-%  \begin{macro}{\sjtubeamer@inner@color}
+% \begin{macro}{\sjtubeamer@inner@color}
 %    \begin{macrocode}
 \DefineOption{inner}{color}{red}
 \DefineOption{inner}{color}{blue}
 \ExecuteOptionsBeamer{red}
 %    \end{macrocode}
-%  \end{macro}
+% \end{macro}
 %
 %    \begin{macrocode}
 \ProcessOptionsBeamer
@@ -107,7 +107,7 @@
 \PassOptionsToPackage{\sjtubeamer@inner@lang}{sjtucover}
 %    \end{macrocode}
 %
-%   Hard-coded color for blocks. A replica of color theme.
+% Hard-coded color for blocks. A replica of color theme.
 %    \begin{macrocode}
 \if\EqualOption{inner}{color}{red}
   \colorlet{cprimary}{sjtuRedPrimary}
@@ -122,11 +122,11 @@
 \fi
 %    \end{macrocode}
 %
-%   \subsubsection{Load Packages}\label{sec:innerload}
+% \subsubsection{Load Packages}\label{sec:innerload}
 %
-%   Introduce the library from tcolorbox to make code blocks.
-%   \verb"listingsutf8" is used to receive UTF-8 input. 
-%   The global set on shield externalize will prevent tcolorbox from externalizing. 
+% Introduce the library from tcolorbox to make code blocks.
+% \verb"listingsutf8" is used to receive UTF-8 input. 
+% The global set on shield externalize will prevent tcolorbox from externalizing. 
 %    \begin{macrocode}
 \RequirePackage{tcolorbox}
 \tcbuselibrary{skins}
@@ -134,20 +134,21 @@
 \tcbset{shield externalize}
 %    \end{macrocode}
 %
-%   Load Cover Library to get the customized cover.
+% Load Cover Library to get the customized cover.
 %    \begin{macrocode}
 \RequirePackage{sjtucover}
 %    \end{macrocode}
 %
-%   \subsubsection{Logo \& Title Graphic}
+% \subsubsection{Logo \& Title Graphic}
 %
-%   Set up logo for this cover.
+% Set up logo for this cover.
 %    \begin{macrocode}
 \setbeamertemplate{logo}[\sjtubeamer@inner@cover]
 %    \end{macrocode}
 %
-%  \begin{macro}{\bgcenterbox}
-%   Define a command to make a centered background box easily.
+% \begin{macro}{\bgcenterbox}
+% Define a command to make a centered
+% background box easily.
 %    \begin{macrocode}
 \newcommand{\bgcenterbox}[1]{
   \parbox[c][1.1\paperheight][c]{\paperwidth}{
@@ -155,10 +156,10 @@
   }
 }
 %    \end{macrocode}
-%  \end{macro}
+% \end{macro}
 %
-%   max theme has the background.
-%   \verb"\setbeamertemplate{background}{}" after loading the theme will disable it.
+% max theme has the background.
+% \verb"\setbeamertemplate{background}{}" after loading the theme will disable it.
 %    \begin{macrocode}
 \if\EqualOption{inner}{cover}{max}
   \setbeamertemplate{background}
@@ -166,47 +167,56 @@
 \fi
 %    \end{macrocode}
 %
-%   Redefine the \verb"\titlegraphic" command in \verb"beamer" to implement it into the beamer template management system, as is been done in \verb"\logo".
-%   The original definition of \verb"\titlegraphic" is to set the command \verb"\inserttitlegraphic" as its parameter directly.
+% Redefine the \verb"\titlegraphic" command in \verb"beamer" to implement it
+% into the beamer template management system, as is been done in \verb"\logo".
+% The original definition of \verb"\titlegraphic" is to set the command
+% \verb"\inserttitlegraphic" as its parameter directly.
 %    \begin{macrocode}
 \def\titlegraphic{\setbeamertemplate{titlegraphic}}
 %    \end{macrocode}
-%   Redefine the \verb"\inserttitlegraphic" command to use the template \verb"titlegraphic" directly, using the current color setup without forming a group (not \verb"\usebeamertemplate*").
+% Redefine the \verb"\inserttitlegraphic" command to use the template
+% \verb"titlegraphic" directly, using the current color setup without
+% forming a group (not \verb"\usebeamertemplate*").
 %    \begin{macrocode}
 \def\inserttitlegraphic{\usebeamertemplate{titlegraphic}}
 %    \end{macrocode}
 %
-%   Set up titlegraphic for this cover.
-%   First set to empty in case that all definitions of this template in \verb"sjtucover" is not extracted.
+% Set up titlegraphic for this cover.
+% First set to empty in case that all definitions of this template in
+% \verb"sjtucover" is not extracted.
 %    \begin{macrocode}
 \setbeamertemplate{titlegraphic}{}
 \setbeamertemplate{titlegraphic}[\sjtubeamer@inner@cover]
 %    \end{macrocode}
 %
 % \subsubsection{Covers}
-%  This part set up title page, section page, part page, section page and subsection page for this cover based on the library \verb"sjtucover" loaded in section \ref{sec:innerload}.
+% This part set up title page, section page, part page, section page and
+% subsection page for this cover based on the library \verb"sjtucover"
+% loaded in section \ref{sec:innerload}.
 %
-%  Initialize sidebar width to 0em as no sidebar required, which will be overwritten in outer theme.
+% Initialize sidebar width to 0em as no sidebar required, which will be
+% overwritten in outer theme.
 %    \begin{macrocode}
 \newdimen\beamer@sidebarwidth
 \beamer@sidebarwidth=0em
 %    \end{macrocode}
 %
-%  \begin{macro}{\coverpage}
-%  Common command for \verb"\titlepage" and \verb"\bottompage", and more.
+% \begin{macro}{\coverpage}
+% Common command for \verb"\titlepage" and
+% \verb"\bottompage", and more.
 %    \begin{macrocode}
 \def\coverpage#1{
   {
 %    \end{macrocode}
-%  Disable externalization for generating title page and bottom page, locally.
+% Disable externalization for generating title page and bottom page, locally.
 %    \begin{macrocode}
     \tikzset{external/export=false}
 %    \end{macrocode}
-%  Set the \verb"parindent" to 0em to avoid unwanted shift if indent is set.
+% Set the \verb"parindent" to 0em to avoid unwanted shift if indent is set.
 %    \begin{macrocode}
     \setlength{\parindent}{0em}
 %    \end{macrocode}
-%   Check if it is in sidebar mode to make necessary shift for cover pages.
+% Check if it is in sidebar mode to make necessary shift for cover pages.
 %    \begin{macrocode}
     \ifdim\beamer@sidebarwidth=0em %
       \usebeamertemplate*{#1}
@@ -218,21 +228,30 @@
   }
 }
 %    \end{macrocode}
-%  \end{macro}
+% \end{macro}
 %
 % \begin{macro}{\definecover}
-%  Command generator for \verb"\maketitle" and \verb"\makebottom". Redefinition on \verb"\beamer@writeslideentrty" locally will remove the corresponding navigation dot for miniframe outer theme.
-%  This command receives one parameter for the cover type like ``title'' or ``bottom''.
+% Command generator for \verb"\maketitle"
+% and \verb"\makebottom".
+% This command receives one parameter for
+% the cover type like ``title'' or
+% ``bottom''.
 %    \begin{macrocode}
 \def\definecover#1{
 %    \end{macrocode}
-%  This command will also generate an auxilary interface like \verb"\titlepage" or \verb"\bottompage", which mainly for overriding the default definition on those macros.
+% This command will also generate an auxilary interface like \verb"\titlepage"
+% or \verb"\bottompage", which mainly for overriding the default definition on
+% those macros.
 %    \begin{macrocode}
   \expandafter\def\csname #1page\endcsname{
     \coverpage{#1 page}
   }
   \expandafter\def\csname make#1\endcsname{
     {
+%    \end{macrocode}
+% Redefinition on\verb"\beamer@writeslideentrty" locally will remove the
+% corresponding navigation dot for miniframe outer theme.
+%    \begin{macrocode}
       \def\beamer@writeslidentry{\clearpage\beamer@notesactions}
       \ifbeamer@inframe\csname #1page\endcsname\else
         \begin{frame}[plain]
@@ -242,29 +261,34 @@
   }
 }
 %    \end{macrocode}
-%  \end{macro}
+% \end{macro}
 %
-%   Set up commmand for title page and bottom page.
+% Set up commmand for title page and bottom page.
 %    \begin{macrocode}
 \definecover{title}
 \definecover{bottom}
 %    \end{macrocode}
 %
-%   Initialize the title page and bottom page.
+% Initialize the title page and bottom page.
 %    \begin{macrocode}
 \setbeamertemplate{title page}[\sjtubeamer@inner@cover]
 \setbeamertemplate{bottom page}[\sjtubeamer@inner@cover]
 %    \end{macrocode}
 %
-%   Set up commmand for part page, section page and subsection page.
+% Set up commmand for part page, section page and subsection page.
 %    \begin{macrocode}
 \definecover{part}
 \definecover{section}
 \definecover{subsection}
 %    \end{macrocode}
 %
-%  Initialize the sectioning pages. User could redefine the beamer template \verb"sectioning pages" to set up \verb"part page", \verb"section page", \verb"subsection page" in one line. User could also define them seperately as the commented code.
-%  NOTICE: no space around the comma in the children list. No par in the children list.
+% Initialize the sectioning pages. User could redefine the beamer template
+% \verb"sectioning pages" to set up \verb"part page", \verb"section page",
+% \verb"subsection page" in one line. User could also define them seperately
+% as the commented code.
+%
+% NOTICE: no space around the comma in the children list.
+% No par in the children list.
 %    \begin{macrocode}
 \defbeamertemplateparent{sectioning pages}{part page,section page,subsection page}{}
 \setbeamertemplate{sectioning pages}[\sjtubeamer@inner@cover]
@@ -273,8 +297,11 @@
  % \setbeamertemplate{subsection page}[\sjtubeamer@inner@cover]
 %    \end{macrocode}
 %
-%  Make a part page for each part by default. 
-%  For section and subsection page, we recommend to use the corresponding \verb"\sectionpage" and \verb"\subsectionpage" manually in the main file to be compatible with the syntax of beamer.
+% Make a part page for each part by default. 
+%
+% For section and subsection page, we recommend to use the corresponding
+% \verb"\sectionpage" and \verb"\subsectionpage" manually in the main file to
+% be compatible with the syntax of beamer.
 %    \begin{macrocode}
 \AtBeginPart{
   \makepart
@@ -284,12 +311,13 @@
 %
 % \subsubsection{Itemize Environments}
 %
-%   Set the item and enumerate style to circled one.
+% Set the item and enumerate style to circled one.
 %    \begin{macrocode}
 \setbeamertemplate{items}[circle]
 %    \end{macrocode}
 %
-%  Patch beamer on \verb"itemize",\verb"enumerate",\verb"description" on the left margin.
+% Patch beamer on \verb"itemize", \verb"enumerate", \verb"description" on the
+% left margin.
 %    \begin{macrocode}
 \setlength\leftmargini{1.4em}
 \setlength\leftmarginii{1.4em}
@@ -297,27 +325,56 @@
 \setbeamersize{description width=0.72em}
 %    \end{macrocode}
 %
-%   Define the \verb"stamp" TOC style for section in toc. Just use the structure color of marker to match the color like the style in \verb"circle" section in toc.
-%  This may mismatch with the definition of \verb"section page" of \verb"max" theme. But it surely the same color with \verb"part page". Reducing the number of the color used is a correct choice.
-%  Futhermore, the subsection doesn't even have a stamp marker so that the three-stage structure could not be formed to make use of all three-stage colors. Just all use one color to create a better look.
-%  At the end of this section block, a thin vspace is added to avoid the collision between the subsection and the stamptext.
-%  Some space before this section block is added, since there may be some users use \verb"multicols" environment in package \verb"multicol" to make a split list of TOC (which is not recommended by the way). this space will help to avoid the collision between the section and the previous subsection.
+% Define the \verb"stamp" TOC style for section in toc.
+% Just use the structure color of marker to match the color like the style
+% in \verb"circle" section in toc.
+%
+% This may mismatch with the definition of \verb"section page" of \verb"max" theme.
+% But it surely the same color with \verb"part page". Reducing the number of the
+% color used is a correct choice.
+%
+% Futhermore, the subsection doesn't even have a stamp marker so that the
+% three-stage structure could not be formed to make use of all three-stage colors.
+% Just all use one color to create a better look.
+%
+% At the end of this section block, a thin vspace is added to avoid the collision
+% between the subsection and the stamptext.
+%
+% Some space before this section block is added, since there may be some users
+% use \verb"multicols" environment in package \verb"multicol" to make a split
+% list of TOC (which is not recommended by the way).
+% This space will help to avoid the collision between the section and the
+% previous subsection.
 %    \begin{macrocode}
 \defbeamertemplate{section in toc}{stamp}{
   \vspace{2.5pt}\leavevmode\leftskip=8mm\stamptext[structure]{\inserttocsectionnumber}
   \hspace{0.3em}\inserttocsection\par\vspace{0.5pt}
 }
 %    \end{macrocode}
-%  Define the \verb"stamp" TOC style for subsection in toc, notice that there is no \verb"\stamptext" in subsection, in order to fit the style of \verb"circle" subsection in toc style, only with the additional left margin to align with (slightly right of) section in toc. Add thin space at the start of every subsection in toc to add some line height.
+%
+% Define the \verb"stamp" TOC style for subsection in toc.
+%
+% Notice that there is no \verb"\stamptext" in subsection, in order to fit the
+% style of \verb"circle" subsection in toc style, only with the additional left
+% margin to align with (slightly right of) section in toc. Add thin space at
+% the start of every subsection in toc to add some line height.
 %    \begin{macrocode}
 \defbeamertemplate{subsection in toc}{stamp}{
   \vspace{1.5pt}\leavevmode\hspace{36mm}\inserttocsubsection\par
 }
 %    \end{macrocode}
-%  Define the \verb"stamp" TOC style for subsubsection in toc. Like it is in section in toc, only additional left margin is added with adaptation of the font style of subsubsection in toc. And subsubsection should never be used in beamer class, since there is no configuration for subsubsection in beamer to show. To control the visibility of subsubsection in toc,
-%  \begin{verbatim}\tableofcontents[subsubsectionstyle=hide]\end{verbatim}
-%  will hide all subsubsection in toc, since there is NO \verb"hideallsubsubsections" in beamer.
-%  COPYRIGHT NOTICE: reference to beamer class code with LPPL 1.3c License.
+%
+% Define the \verb"stamp" TOC style for subsubsection in toc.
+%
+% Like it is in section in toc, only additional left margin is added with
+% adaptation of the font style of subsubsection in toc. And subsubsection
+% should never be used in beamer class, since there is no configuration for
+% subsubsection in beamer to show. To control the visibility of subsubsection in toc,
+% \begin{verbatim}\tableofcontents[subsubsectionstyle=hide]\end{verbatim}
+% will hide all subsubsection in toc, since there is NO \verb"hideallsubsubsections"
+% in beamer.
+%
+% COPYRIGHT NOTICE: reference to beamer class code with LPPL 1.3c License.
 %    \begin{macrocode}
 \defbeamertemplate{subsubsection in toc}{stamp}{
   \leavevmode\hspace{40mm}\normalsize\usebeamerfont{subsection in toc}%
@@ -325,49 +382,86 @@
   \inserttocsubsubsection\par
 }
 %    \end{macrocode}
-%   Set the marker for section and subsection in TOC (Table of Contents) to \verb"stamp" style.
-%   NOTICE: the recommended setup to use the following in full TOC
-%   \begin{verbatim}\tableofcontents[hideallsubsections]\end{verbatim}
-%   use the following in \verb"\AtBeginSection"
-%   \begin{verbatim}\tableofcontents[currentsection, subsectionstyle=show/show/hide]\end{verbatim}
-%   and use the following in \verb"\AtBeginSubsection"
-%   \begin{verbatim}\tableofcontents[currentsection, subsectionstyle=show/shaded/hide]\end{verbatim}
+%
+% Set the marker for section and subsection in TOC (Table of Contents) to
+% \verb"stamp" style.
+%
+% NOTICE: the recommended setup to use the following in full TOC
+% \begin{verbatim}\tableofcontents[hideallsubsections]\end{verbatim}
+% use the following in \verb"\AtBeginSection"
+% \begin{verbatim}\tableofcontents[currentsection, subsectionstyle=show/show/hide]\end{verbatim}
+% and use the following in \verb"\AtBeginSubsection"
+% \begin{verbatim}\tableofcontents[currentsection, subsectionstyle=show/shaded/hide]\end{verbatim}
 %    \begin{macrocode}
 \setbeamertemplate{sections/subsections in toc}[stamp]
 %    \end{macrocode}
-%  Remember, if you want to restore the theme to original TOC style, just use
-%  \begin{verbatim}\setbeamertemplate{sections/subsections in toc}[circle]\end{verbatim}
-%  or load \verb"circles" inner theme.
-%  \begin{verbatim}\useinnertheme{circles}\end{verbatim}
+% Remember, if you want to restore the theme to original TOC style, just use
+% \begin{verbatim}\setbeamertemplate{sections/subsections in toc}[circle]\end{verbatim}
+% or load \verb"circles" inner theme.
+% \begin{verbatim}\useinnertheme{circles}\end{verbatim}
 %
 % \begin{macro}{bibliolist}
-%    Create a bibliography list manually with \verb"\item" patched for \verb"\newblock". 
-%    You can just use \verb"\item" without \verb"\newblock" command, or you could use \verb"\newblock" with \verb"\articleitem", \verb"\bookitem", \verb"\onlineitem".
-%    The mandantory parameter (usually \verb"00") indicates the widest label among items, if you want to indicate the item label seperately.
+% Create a bibliography list manually with
+% \verb"\item" patched for \verb"\newblock". 
+%
+% You can just use \verb"\item" without
+% \verb"\newblock" command, or you could use
+% \verb"\newblock" with \verb"\articleitem",
+% \verb"\bookitem", \verb"\onlineitem".
+%
+% The mandantory parameter (usually \verb"00")
+% indicates the widest label among items,
+% if you want to indicate the item label
+% seperately.
 %    \begin{macrocode}
 \newenvironment{bibliolist}[1]{
 %    \end{macrocode}
-%    This environment will make use of the native \verb"thebibliography" environment redefined by \verb"beamer".
+% This environment will make use of the native \verb"thebibliography" environment
+% redefined by \verb"beamer".
 %    \begin{macrocode}
   \begin{thebibliography}{#1}
 %    \end{macrocode}
-%     Save the old definition for \verb"\item".
+% Save the old definition for \verb"\item".
 %    \begin{macrocode}
     \let\olditem\item%
 %    \end{macrocode}
-%    Now define the item with new definition of \verb"\newblock" without interrupting the scan of next char for \verb"\item". Now, you could use \verb"\newblock" normally after \verb"\item" command with the initialized \verb"\newblock" state.
-%    This will not interrupt the definition of \verb"\bibitem" since the same definition on \verb"\newblock" has been made --- just define the same thing twice. Notice that the patch is NOT available for the regular \verb"thebibliography" command for compatibility reasons with other themes.
+% Now define the item with new definition of \verb"\newblock" without interrupting
+% the scan of next char for \verb"\item". Now, you could use \verb"\newblock"
+% normally after \verb"\item" command with the initialized \verb"\newblock" state.
+%
+% This will not interrupt the definition of \verb"\bibitem" since the same
+% definition on \verb"\newblock" has been made --- just define the same thing
+% twice. Notice that the patch is NOT available for the regular
+% \verb"thebibliography" command for compatibility reasons with other themes.
 %    \begin{macrocode}
     \def\item{\def\newblock{\beamer@newblock}\olditem}
 %    \end{macrocode}
-%    User should insert items by \verb"\articleitem", \verb"\bookitem", \verb"\onlineitem" inside THIS environment, otherwise, the user should insert \verb"\newblock" after \verb"\item" manually, which breaks the use of \verb"\newblock" and not recommended. Or not to use \verb"\newblock" for \verb"\item" at all for migration from \textsc{SJTUThesis} with the same style.
-%    The commands like \verb"\articleitem" do not accept the optional parameter for a label since the first part of this command name has already indicates the label of this item. The command like \verb"\item" accepts the optional parameter for the label and will override the numeric numbering for this item without a bracket surrounding. The behavior is the same as \textsc{SJTUThesis}.
-%    The direct patch on \verb"\item" is hard since \verb"\bibitem" also depends on this command. As a matter of fact, the \verb"\item" itself cannot be cited and should not be numbered by the way otherwise user should use \verb"\bibitem" inside \verb"\thebibliography" environment directly.
-%    Set the beamer template of \verb"bibliography item" to \verb"text" locally to use the label of every item instead of the default icon outside the environment. This will also make the default behavior to make a bracket enumerate list.
+% User should insert items by \verb"\articleitem", \verb"\bookitem",
+% \verb"\onlineitem" inside THIS environment, otherwise, the user should insert
+% \verb"\newblock" after \verb"\item" manually, which breaks the use of
+% \verb"\newblock" and not recommended. Or not to use \verb"\newblock" for
+% \verb"\item" at all for migration from \textsc{SJTUThesis} with the same style.
+%
+% The commands like \verb"\articleitem" do not accept the optional parameter
+% for a label since the first part of this command name has already indicates
+% the label of this item. The command like \verb"\item" accepts the optional
+% parameter for the label and will override the numeric numbering for this item
+% without a bracket surrounding. The behavior is the same as \textsc{SJTUThesis}.
+%
+% The direct patch on \verb"\item" is hard since \verb"\bibitem" also depends on
+% this command. As a matter of fact, the \verb"\item" itself cannot be cited and
+% should not be numbered by the way otherwise user should use \verb"\bibitem"
+% inside \verb"\thebibliography" environment directly.
+%
+% Set the beamer template of \verb"bibliography item" to \verb"text" locally to
+% use the label of every item instead of the default icon outside the environment.
+% This will also make the default behavior to make a bracket enumerate list.
 %    \begin{macrocode}
     \setbeamertemplate{bibliography item}[text]
 %    \end{macrocode}
-%   Define command for creating icon bib item: \verb"article", \verb"bookitem", \verb"onlineitem". These command indicates that the user will use \verb"\newblock" for seperating fields.
+% Define command for creating icon bib item: \verb"article", \verb"bookitem",
+% \verb"onlineitem". These command indicates that the user will use \verb"\newblock"
+% for seperating fields.
 %    \begin{macrocode}
     \newcommand{\articleitem}{%
       \item[{\setbeamertemplate{bibliography item}[article]%
@@ -385,22 +479,34 @@
       \newblock%
     }
 %    \end{macrocode}
-%   Close the \verb"bibliolist" environment.
+% Close the \verb"bibliolist" environment.
 %    \begin{macrocode}
 }{
   \end{thebibliography}
 }
 %    \end{macrocode}
-%    This environment syncs with \textsc{SJTUThesis}. It is used to generate the customized look of bibliography list without the processing from \textsc{Bib}\TeX{} or \verb"biblatex", which could bring performance improvement.
-%    You can specify the style of the icon by \verb"\setbeamertemplate{bibliography item}[book]" or other predefined template provided by \verb"beamer" class like \verb"online", \verb"triangle", \verb"text" (for square bracket enumeration).
-%    And such the setting should be done INSIDE the environment and \verb"thebibliography" since \verb"beamer" will override the user setting on this template to text style at the begining of \verb"document" environment if it loads \verb"biblatex".
-%    And don't set \verb"bibliography item" style to \verb"text" in the preamble for the potential issue with \verb"biblatex-gb7714-2015ay" style, which is redundant.
+% This environment syncs with \textsc{SJTUThesis}. It is used to generate the
+% customized look of bibliography list without the processing from
+% \textsc{Bib}\TeX{} or \verb"biblatex", which could bring performance improvement.
+%
+% You can specify the style of the icon by \verb"\setbeamertemplate{bibliography item}[book]"
+% or other predefined template provided by \verb"beamer" class like \verb"online",
+% \verb"triangle", \verb"text" (for square bracket enumeration).
+%
+% And such the setting should be done INSIDE the environment and
+% \verb"thebibliography" since \verb"beamer" will override the user setting on
+% this template to text style at the begining of \verb"document" environment
+% if it loads \verb"biblatex".
+%
+% And don't set \verb"bibliography item" style to \verb"text" in the preamble
+% for the potential issue with \verb"biblatex-gb7714-2015ay" style, which is
+% redundant.
 % \end{macro}
 %
 %
 % \subsubsection{Block Environments}
 %
-%   The block in \verb"min" theme is not rounded.
+% The block in \verb"min" theme is not rounded.
 %    \begin{macrocode}
 %<*min>
 \if\EqualOption{inner}{cover}{min}\else
@@ -412,34 +518,83 @@
 %    \end{macrocode}
 %
 % \begin{macro}{\highlight}
-%   Highlight the given text. Create a \verb"structure" color background block with white text.
-%   Receives one optional paramenter to specify the background color. If you want to modify the color of the text, use \verb"\color{}" command or \verb"\textcolor{}{}" command for your text.
-%   For a general use and better control, use \verb"\colorbox{}{}" from \verb"xcolor" directly.
-%   Overlay option can be specified as well.
+% Highlight the given text.
+%
+% Create a \verb"structure" color
+% background block with white text.
+%
+% Receives one optional paramenter to
+% specify the background color.
+% If you want to modify the color of the
+% text, use \verb"\color{}" command or
+% \verb"\textcolor{}{}" command for your text.
+%
+% For a general use and better control,
+% use \verb"\colorbox{}{}" from \verb"xcolor"
+% directly.
+%
+% Overlay option can be specified as well.
 %    \begin{macrocode}
 \newcommand<>{\highlight}[2][structure]{%
   \only#3{%
     \textcolor{white}{\colorbox{#1}{#2}}}}
 %    \end{macrocode}
-%   Since \verb"structure" is globally available, we can use it to set the background color without introducing first.
-%   We decided to use a dark background rather than the traditional light highlight marker like color, since the former one is better for presentation highlighting and the later one is more like the overlay effect in \verb"beamer".
+% Since \verb"structure" is globally available, we can use it to set the
+% background color without introducing first.
+%
+% We decided to use a dark background rather than the traditional light
+% highlight marker like color, since the former one is better for presentation
+% highlighting and the later one is more like the overlay effect in \verb"beamer".
 % \end{macro}
 %
 % \begin{macro}{\paragraph}
-%   Making a new paragraph through dark background color and white forground, which confirms the visual identity system on making use of vi shapes.
-%   Since beamer has deleted \verb"\paragraph" macro in this class, this template defines a macro for that to indicate it is another point and more paragraph-like. It is useful for the migration from \verb"article" class.
-%   If it is the end of paragraph, the trailing space will be removed by \TeX{}. The additional newline after this command will be get an output rather than the original sectioning command.
+% Making a new paragraph through dark
+% background color and white forground,
+% which confirms the visual identity
+% system on making use of vi shapes.
+%
+% Since beamer has deleted \verb"\paragraph"
+% macro in this class, this template
+% defines a macro for that to indicate it
+% is another point and more
+% paragraph-like.
+%
+% It is useful for the migration from
+% \verb"article" class.
+% If it is the end of paragraph, the
+% trailing space will be removed by
+% \TeX{}.
+% The additional newline after this
+% command will get an output rather
+% than the original sectioning command.
 %    \begin{macrocode}
 \providecommand{\paragraph}[1]{\textcolor{white}{\colorbox{structure}{#1}}\space}
 %    \end{macrocode}
-%   NOTE: We could use the original \LaTeX{} macro \verb"\@startsection" on \verb"\paragraph" to make it more like a sectioning command. Though we could get benefit from removing all the trailing newline after this command, the caveats are obvious.
-%   Like a sectioning command, it will goes to the auxilary file \verb".toc". Since the \verb"beamer" class has a different mechanism on treating Table of Contents, the output contents for paragraph will be inconsistent. It is afraid that not only extra burden on processing will be made, but also unexpected behavior for beamer in \verb"\tableofcontents" will occur.
-%   And a sectioning command cannot go anywhere, especially in an environment like \verb"center" and \verb"itemize" lists. The best practice for \LaTeX{} is not using \verb"\paragraph" and \verb"\subparagraph". As mentioned, The macro here is mainly for migration compatibility to create a similar output. You could use \verb"\alert" or \verb"\highlight" (a more general one, \verb"\colorbox") for highlighting the text.
+% NOTE: We could use the original \LaTeX{} macro \verb"\@startsection" on
+% \verb"\paragraph" to make it more like a sectioning command. Though we
+% could get benefit from removing all the trailing newline after this command,
+% the caveats are obvious.
+%
+% Like a sectioning command, it will goes to the auxilary file \verb".toc".
+% Since the \verb"beamer" class has a different mechanism on treating Table
+% of Contents, the output contents for paragraph will be inconsistent.
+% It is afraid that not only extra burden on processing will be made,
+% but also unexpected behavior for beamer in \verb"\tableofcontents" will occur.
+%
+% And a sectioning command cannot go anywhere, especially in an environment like
+% \verb"center" and \verb"itemize" lists. The best practice for \LaTeX{} is not
+% using \verb"\paragraph" and \verb"\subparagraph".
+%
+% As mentioned, The macro here is mainly for migration compatibility to create
+% a similar output. You could use \verb"\alert" or \verb"\highlight"
+% (a more general one, \verb"\colorbox") for highlighting the text.
 % \end{macro}
 %
 % \begin{macro}{stampbox}
-%   Make a box with stampline border.
-%   The optional paramter indicates the color of the border line.
+% Make a box with stampline border.
+%
+% The optional paramter indicates the
+% color of the border line.
 %    \begin{macrocode}
 \newtcolorbox{stampbox}[1][cprimary]{%
   capture=hbox,
@@ -460,37 +615,59 @@
   }
 }
 %    \end{macrocode}
-%  NOTE: It is a decoration advice from SJTU VI. It has the dependency on \verb"stampline" from \verb"sjtuvi" package.
-%  SJTU VI regulates that the padding of the stampbox should be the twice the height of the stamp element. According to the definition from \verb"sjtuvi", the height of the element will be $0.2\times$segement width, or here is 0.16em, i.e., the total padding should be 0.32em. However, when using \verb"borderline" to draw the border, the base padding will be the same height of the line decoration, i.e., 0.08em. As a result, the padding should be $0.32-0.08=0.24$ em. With the \verb"boxsep" set to 0em (to avoid extra padding).
-%  The line width of the stampline has been indicated by the first paramter of the borderline and should not be put in the third paramter.
+% NOTE: It is a decoration advice from SJTU VI. It has the dependency on
+% \verb"stampline" from \verb"sjtuvi" package.
+%
+% SJTU VI regulates that the padding of the stampbox should be the twice the 
+% height of the stamp element. According to the definition from \verb"sjtuvi",
+% the height of the element will be $0.2\times$segement width, or here is 0.16em,
+% i.e., the total padding should be 0.32em. However, when using \verb"borderline"
+% to draw the border, the base padding will be the same height of the line decoration,
+% i.e., 0.08em. As a result, the padding should be $0.32-0.08=0.24$ em.
+% With the \verb"boxsep" set to 0em (to avoid extra padding).
+%
+% The line width of the stampline has been indicated by the first paramter of
+% the borderline and should not be put in the third paramter.
 % \end{macro}
 %
 % \begin{macro}{\stamphrule}
-%  Insert a stampline with the length textwidth.
-%  The optional paramter indicates the color of the stampline.
+% Insert a stampline with the length
+% textwidth.
+% 
+% The optional paramter indicates the
+% color of the stampline.
 %    \begin{macrocode}
 \newcommand{\stamphrule}[1][cprimary]{%
 %    \end{macrocode}
-%  It is not necessary to \verb"\leavevmode" here, which may cause extra space if there is a blank line before this command.
-%  Eliminate the previous depth to avoid inconsistency.
+% It is not necessary to \verb"\leavevmode" here, which may cause extra space
+% if there is a blank line before this command.
+%
+% Eliminate the previous depth to avoid inconsistency.
 %    \begin{macrocode}
   \vskip-\prevdepth%
 %    \end{macrocode}
-%  Start with 0.5 baselineskip to make the line vertically centered.
+% Start with 0.5 baselineskip to make the line vertically centered.
 %    \begin{macrocode}
   \vskip0.5\baselineskip%
 %    \end{macrocode}
-%  Disable caching within the group.
+% Disable caching within the group.
 %    \begin{macrocode}
   {%
     \tikzset{external/export=false}%
 %    \end{macrocode}
-%  Disable interlineskip for the next environment.
+% Disable interlineskip for the next environment.
 %    \begin{macrocode}
     \nointerlineskip%
 %    \end{macrocode}
-%  Draw the stamphrule based on the decoration stampline, with the same segment width as stampbox.
-%  Here, the width is reduced by the line width 0.05em for the reason that PGF will make a padding of half of the line width to the bonding box of the line, according to \url{https://tex.stackexchange.com/a/654553/253485}. It will cause a overfull hbox by the line width (0.05em). Instead of trimming the bounding box, we just reduce the overall width by the line width since there is only one line in the tikzpicture.
+% Draw the stamphrule based on the decoration stampline, with the same segment
+% width as stampbox.
+%
+% Here, the width is reduced by the line width 0.05em for the reason that PGF
+% will make a padding of half of the line width to the bonding box of the line,
+% according to \url{https://tex.stackexchange.com/a/654553/253485}.
+% It will cause a overfull hbox by the line width (0.05em).
+% Instead of trimming the bounding box, we just reduce the overall width by the
+% line width since there is only one line in the tikzpicture.
 %    \begin{macrocode}
     \begin{tikzpicture}
       \draw[
@@ -502,29 +679,69 @@
       ] (0,0) -- ({\hsize-0.05em},0);
     \end{tikzpicture}%
 %    \end{macrocode}
-%  The final par here is to avoid line height abnormality from the optional paramter. If there is no \verb"\par" and there is the optional parameter, the following text will have a larger line height.
+% The final par here is to avoid line height abnormality from the optional paramter.
+% If there is no \verb"\par" and there is the optional parameter, the following
+% text will have a larger line height.
 %    \begin{macrocode}
   }\par%
 }
 %    \end{macrocode}
-%  NOTE: As a matter of fact, the user could pass more paramters to the \verb"\draw" command other than the color.
+% NOTE: As a matter of fact, the user could pass more paramters to the \verb"\draw"
+% command other than the color.
 % \end{macro}
-%  You may wonder why there is no \verb"\stampvrule". It is because the current line width is easy to be accessed by \verb"\hsize". And \verb"\stamphrule" is just an emulation of \verb"\hrule". However, \verb"\vsize" is the page height. \verb"\vrule" is a \TeX{} primitive where the default for height is the height of the enclosing \verb"\hbox". The developer could not implement it in this macro-programming layer. The developer could only get the previous depth by \verb"\prevdepth" at best (and it is not usable in restricted horizontal mode). The user could make a vertical line in the \verb"columns" environment and between \verb"column" environments like this:
-%  \begin{verbatim}\vrule\hfill\end{verbatim}
-%  where \verb"\hfill" is to match the definition of the original \verb"column" environment to make it centered horizontally.
-%  And as a macro, it can not get the information from the previous context for futher measuring. Otherwise, the user could set the box of the previous column, and the height of the vertical line will be the height of the previous column and make a vertical shift by half of the height. In this scenario, you can not measure the height of vbox since the result will be 0 in a group.
-%  Or the user could use \verb"\usetikzlibrary{tikzmark}", use \verb"\tikzmarknode{prevb}{the content}", and draw the vertical line from \verb"(prevb.north)" to \verb"(prevb.south)", with two times of compilation, see \url{https://tex.stackexchange.com/a/651208/253485} for details. As a result, \verb"\stampvrule" could not be implemented and the user should use the plain vertical line if required.
+% You may wonder why there is no \verb"\stampvrule".
+% It is because the current line width is easy to be accessed by \verb"\hsize".
+% And \verb"\stamphrule" is just an emulation of \verb"\hrule".
+% However, \verb"\vsize" is the page height. \verb"\vrule" is a \TeX{} primitive
+% where the default for height is the height of the enclosing \verb"\hbox".
+% The developer could not implement it in this macro-programming layer.
+% The developer could only get the previous depth by \verb"\prevdepth" at best
+% (and it is not usable in restricted horizontal mode).
 %
-%  \begin{macro}{stampblock}
-%  Create a block with title decorated by the stamp shape with incremental numbering.
-%  A mandantory parameter is needed for the title.
-%  An optional parameter is for the customized numbering.
-%  Overlay could be specified. In this scenario, the optional parameter must be specified in case of the unexpected increment of the counter.
+% The user could make a vertical line in the \verb"columns" environment and
+% between \verb"column" environments like this:
+%  \begin{verbatim}\vrule\hfill\end{verbatim}
+% where \verb"\hfill" is to match the definition of the original \verb"column"
+% environment to make it centered horizontally.
+%
+% And as a macro, it can not get the information from the previous context for
+% futher measuring. Otherwise, the user could set the box of the previous column,
+% and the height of the vertical line will be the height of the previous column
+% and make a vertical shift by half of the height.
+% In this scenario, you can not measure the height of vbox since the result will
+% be 0 in a group.
+%
+% Or the user could use \verb"\usetikzlibrary{tikzmark}", use
+% \verb"\tikzmarknode{prevb}{the content}", and draw the vertical line from
+% \verb"(prevb.north)" to \verb"(prevb.south)", with two times of compilation,
+% see \url{https://tex.stackexchange.com/a/651208/253485} for details.
+%
+% As a result, \verb"\stampvrule" could not be implemented and the user should
+% use the plain vertical line if required.
+%
+% \begin{macro}{stampblock}
+% Create a block with title decorated by
+% the stamp shape with incremental
+% numbering.
+%
+% A mandantory parameter is needed for
+% the title.
+%
+% An optional parameter is for the
+% customized numbering.
+%
+% Overlay could be specified.
+% In this scenario, the optional parameter
+% must be specified in case of the
+% unexpected increment of the counter.
 %    \begin{macrocode}
 \newcounter{stampblockcnt}
 %    \end{macrocode}
-%  A stampblockcnt counter is declared for global numbering for stampblock.
-%  Next, declare the beamer template for the basic element. Notice that the visual compenstion is added for the title line to be looked centered.
+% A stampblockcnt counter is declared for global numbering for stampblock.
+%
+% Next, declare the beamer template for the basic element.
+% Notice that the visual compenstion is added for the title line to be looked
+% centered.
 %    \begin{macrocode}
 \defbeamertemplate*{block stamp begin}{sjtubeamer}{
   \par\vskip\medskipamount%
@@ -539,20 +756,23 @@
   \end{beamercolorbox}\vskip2.5ex%
 }
 %    \end{macrocode}
-%  Set the template to the defined ones.
+% Set the template to the defined ones.
 %    \begin{macrocode}
 \setbeamertemplate{block stamp begin}[sjtubeamer]
 \setbeamertemplate{block stamp end}[sjtubeamer]
 %    \end{macrocode}
-%  The stampblock is similar to the block environment declaration.
-%  If the optional paramter is empty, the counter will be stepped and shown by default.
+% The stampblock is similar to the block environment declaration.
+%
+% If the optional paramter is empty,
+% the counter will be stepped and shown by default.
 %    \begin{macrocode}
 \newenvironment<>{stampblock}[2][%
   \stepcounter{stampblockcnt}%
   \arabic{stampblockcnt}]{%
   \begin{actionenv}#3%
 %    \end{macrocode}
-%  Define \verb"\insertstampnum" just like \verb"\insertblocktitle" for passing the paramter.
+% Define \verb"\insertstampnum" just like \verb"\insertblocktitle" for passing
+% the paramter.
 %    \begin{macrocode}
     \def\insertstampnum{#1}%
     \def\insertblocktitle{#2}%
@@ -561,17 +781,23 @@
     \usebeamertemplate{block stamp end}%
   \end{actionenv}}
 %    \end{macrocode}
-%  If you want to reset the counter from the beginning of every frame, uncomment or add the following line into your preamble:
+% If you want to reset the counter from the beginning of every frame,
+% uncomment or add the following line into your preamble:
 %    \begin{macrocode}
   %% If you want to reset the counter for each frame:
   % \AtBeginEnvironment{frame}{\setcounter{stampblockcnt}{0}}
 %    \end{macrocode}
-%  We choose not to make it as a default action, since it is harder to remove this line for users if it is intended to make the counter continous among frames.
-%  This macro is orginally prepared for poster. It is also useful for side-by-side comparision in one slide.
-%  COPYRIGHT NOTICE: Reference to code from beamr class and beamerauxtheme.
-%  \end{macro}
+% We choose not to make it as a default action, since it is harder to remove
+% this line for users if it is intended to make the counter continous among frames.
 %
-%   Declare the basic listings highlighter. \verb"columns" is set to \verb"flexible" to avoid ugly grid alignment. \verb"breaklines" is set to enable line wrapping.
+% This macro is orginally prepared for poster. It is also useful for side-by-side
+% comparision in one slide.
+%
+% COPYRIGHT NOTICE: Reference to code from beamr class and beamerauxtheme.
+% \end{macro}
+%
+% Declare the basic listings highlighter. \verb"columns" is set to \verb"flexible"
+% to avoid ugly grid alignment. \verb"breaklines" is set to enable line wrapping.
 %    \begin{macrocode}
 \lstset{
   basicstyle=\ttfamily\small,
@@ -587,10 +813,25 @@
 %    \end{macrocode}
 %
 % \begin{macro}{codeblock}
-%   Code block environment is made for presenting code in an obvious way.
-%   The first optional parameter is passed to listing, which mostly sets the language to highlight, see the \verb"listings" package for more details. 
-%   The second required parameter receives the title to make.
-%   ADVANCED TIP: For longer typeset, use \verb"lstlisting" environment directly and remove the \verb"frame" environment around the code input for occupying cross the pages. No numbering is preset so you need to set the number manually for this basic command.
+% Code block environment is made for
+% presenting code in an obvious way.
+%
+% The first optional parameter is passed
+% to listing, which mostly sets the
+% language to highlight, see the
+% \verb"listings" package for more details.
+%
+% The second required parameter receives
+% the title to make.
+%
+% ADVANCED TIP:
+% For longer typeset, use \verb"lstlisting"
+% environment directly and remove the
+% \verb"frame" environment around the code
+% input for occupying cross the pages.
+% No numbering is preset so you need to
+% set the number manually for this basic
+% command.
 %    \begin{macrocode}
 \newtcblisting{codeblock}[2][]{
   listing only,
@@ -621,9 +862,20 @@
 % \end{macro}
 %
 % \begin{macro}{\highlightline}
-%    Highlight the current line with a light background. 
-%    It is useful for the codeblock environment with \verb"escapechar" option to insert the command for highlighting. For example, set the optional argument \verb"escapechar=|", and insert \verb"|\highlightline|" at the first position in the line you want to highlight.
-%    You could use overlay specification for this macro.
+% Highlight the current line with a light
+% background.
+% 
+% It is useful for the codeblock environment
+% with \verb"escapechar" option to insert the
+% command for highlighting.
+%
+% For example, set the optional argument
+% \verb"escapechar=|", and insert
+% \verb"|\highlightline|" at the first position
+% in the line you want to highlight.
+%
+% You could use overlay specification
+% for this macro.
 %    \begin{macrocode}
 \newcommand<>{\highlightline}{%
   \only#1{%
@@ -631,15 +883,33 @@
       \color{structure!25}%
       \rule[-\dp\strutbox]{\linewidth}{\baselineskip}}}}
 %    \end{macrocode}
-%    For better support in code environment, you should try out the \verb"highlightlines" in minted package, but performance drop is expected.
+% For better support in code environment, you should try out the
+% \verb"highlightlines" in minted package, but performance drop is expected.
 % \end{macro}
 %
 % \begin{macro}{\codeblockinput}
-%   Code block environment for external file input. The same style like \verb"codeblock".
-%   The first optional parameter is passed to listing.
-%   The second required parameter receives the title to make.
-%   The third required paramter receives the file to typeset.
-%   ADVANCED TIP: For longer typeset, use \verb"lstinputlisting" command directly and remove the \verb"frame" environment around the code input for occupying cross the pages. No numbering is preset so you need to set the number manually for this basic command.
+% Code block environment for external file
+% input. The same style like \verb"codeblock".
+%
+% The first optional parameter is passed
+% to listing.
+%
+% The second required parameter receives
+% the title to make.
+%
+% The third required paramter receives the
+% file to typeset.
+%
+% ADVANCED TIP:
+% For longer typeset, use
+% \verb"\lstinputlisting"
+% command directly and remove the
+% \verb"frame"
+% environment around the code input for
+% occupying cross the pages.
+% No numbering is preset so you need to
+% set the number manually for this basic
+% command.
 %    \begin{macrocode}
 \newtcbinputlisting{\codeblockinput}[3][]{
   listing only,
@@ -670,11 +940,15 @@
 %    \end{macrocode}
 % \end{macro}
 %
-%   Extra Support for pgfplots and pgfplotstable (if loaded in the main file).
+% Extra Support for pgfplots and pgfplotstable (if loaded in the main file).
 %    \begin{macrocode}
 \AtEndPreamble{%
 %    \end{macrocode}
-%   Set the default visual theme for \textsc{Pgfplots}. The cycle list is set to the current color theme. And lines on the graph is optimized to make it clear for presentation. The predefinition on the height is made to avoid the overfullbox on the vertical side.
+% Set the default visual theme for \textsc{Pgfplots}.
+%
+% The cycle list is set to the current color theme.
+% And lines on the graph is optimized to make it clear for presentation.
+% The predefinition on the height is made to avoid the overfullbox on the vertical side.
 %    \begin{macrocode}
   \@ifpackageloaded{pgfplots}{%
     \pgfplotsset{
@@ -712,13 +986,16 @@
     }
   }{}
 %    \end{macrocode}
-%   Set the style of \textsc{Pgfplotstable}. The \verb"\colorrows" macro here is used for making the header colored. The \verb"booktabs" line is used to create a professional look.
+% Set the style of \textsc{Pgfplotstable}.
+%
+% The \verb"\colorrows" macro here is used for making the header colored.
+% The \verb"booktabs" line is used to create a professional look.
 %    \begin{macrocode}
   \@ifpackageloaded{pgfplotstable}{%
     \RequirePackage{colortbl}
     \RequirePackage{booktabs}
 %    \end{macrocode}
-%   Two macros are defined to make the header colored.
+% Two macros are defined to make the header colored.
 %    \begin{macrocode}
     \def\zapcolorreset{\let\reset@color\relax\ignorespaces}
     \def\colorrows#1{\noalign{\aftergroup\zapcolorreset#1}\ignorespaces}
@@ -748,9 +1025,15 @@
             r<{\end{pgfplotstablecoltype}}}
   }{}
 %    \end{macrocode}
-%  Translate the name of ``Algorithm'' in algorithm2e if it is in \verb"zh" language. The name of procedure and function are not translated for the reason that it looks unprofessional to translate the dedicated use of the words. 
-%  \verb"\algorithmname" is translated by \verb"ctex" package or \verb"ctexbeamer" class. If you use \verb"CJK", it will not get translated.
-%  The third paramter indicates the caption of the list of algorithms, but it is not often to be used in \verb"beamer" class.
+% Translate the name of ``Algorithm'' in algorithm2e if it is in \verb"zh" language.
+% The name of procedure and function are not translated for the reason that it
+% looks unprofessional to translate the dedicated use of the words.
+%
+% \verb"\algorithmname" is translated by \verb"ctex" package or \verb"ctexbeamer" class.
+% If you use \verb"CJK", it will not get translated.
+%
+% The third paramter indicates the caption of the list of algorithms,
+% but it is not often to be used in \verb"beamer" class.
 %    \begin{macrocode}
   \if\EqualOption{inner}{lang}{zh}
     \@ifpackageloaded{algorithm2e}{%
@@ -758,7 +1041,8 @@
     }
   \fi
 %    \end{macrocode}
-% Disable the warning from \verb"hyperref" which conflicts the setting in C\TeX{} or CJK. It has to be manually disabled.
+% Disable the warning from \verb"hyperref" which conflicts the setting in C\TeX{} or CJK.
+% It has to be manually disabled.
 %    \begin{macrocode}
   \def\Hy@WarnOptionDisabled#1{
     \def\next{#1}%

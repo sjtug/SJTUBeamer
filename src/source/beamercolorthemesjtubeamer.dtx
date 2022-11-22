@@ -27,7 +27,7 @@
 %
 % \subsection{Color Theme}
 %
-%   Load SJTU VI Library to get the pre-defined color.
+% Load SJTU VI Library to get the pre-defined color.
 %    \begin{macrocode}
 \RequirePackage{sjtuvi}
 %    \end{macrocode}
@@ -52,10 +52,10 @@
 \ProcessOptionsBeamer
 %    \end{macrocode}
 %
-%   Intermediate color palette depending on the choice of color theme.
+% Intermediate color palette depending on the choice of color theme.
 %
-%   NOTICE: inner theme has a replica of the following code.
-%   To fullfill with the standfree requirements.
+% NOTICE: inner theme has a replica of the following code.
+% To fullfill with the standfree requirements.
 %    \begin{macrocode}
 \if\EqualOption{color}{color}{red}
   \colorlet{cprimary}{sjtuRedPrimary}
@@ -70,9 +70,9 @@
 \fi
 %    \end{macrocode}
 %
-%   Main color palatte depending on the choice of lumination.
-%   Especially, the \verb"structure" interface could not be derived from 
-%   any other color palette.
+% Main color palatte depending on the choice of lumination.
+% Especially, the \verb"structure" interface could not be derived from 
+% any other color palette.
 %    \begin{macrocode}
 \setbeamercolor{structure}{fg=cprimary}
 \if\EqualOption{color}{lum}{light}
@@ -86,7 +86,7 @@
 \fi
 %    \end{macrocode}
 %
-%   This part defines the color scheme of title.
+% This part defines the color scheme of title.
 %    \begin{macrocode}
 \setbeamercolor{background canvas}{bg=white}
 \setbeamercolor{normal text}{fg=black,bg=black!40}
@@ -99,13 +99,15 @@
 \setbeamercolor{date}{parent=author}
 %    \end{macrocode}
 %
-%   Logo color system is now controlled by \verb"logo.fg".
-%   If you want to use a logo with its color definition in \verb"logo", use \verb"\insertlogo". Otherwise, if you want to use a logo that matches the current text color, use \verb"\usebeamertemplate{logo}".
+% Logo color system is now controlled by \verb"logo.fg".
+% If you want to use a logo with its color definition in \verb"logo",
+% use \verb"\insertlogo". Otherwise, if you want to use a logo that matches
+% the current text color, use \verb"\usebeamertemplate{logo}".
 %    \begin{macrocode}
 \setbeamercolor{logo}{bg=,fg=cprimary}
 %    \end{macrocode}
 %
-%   This part defines the color of block title.
+% This part defines the color of block title.
 %    \begin{macrocode}
 \setbeamercolor{block title}{fg=white,bg=cprimary!90}
 \setbeamercolor{block title alerted}{use=alerted text,
@@ -114,7 +116,7 @@
   fg=cquanternary,bg=ctertiary}
 %    \end{macrocode}
 %
-%   This part defines the color of block body.
+% This part defines the color of block body.
 %    \begin{macrocode}
 \setbeamercolor{block body}{parent=normal text,use=block title,
   bg=block title.bg!15}
@@ -124,24 +126,25 @@
   use=block title example,bg=block title example.bg!15}
 %    \end{macrocode}
 %
-%  Set up the background color for stampblock. In case you want to change to something like \verb"cprimary!10".
+% Set up the background color for stampblock.
+% In case you want to change to something like \verb"cprimary!10".
 %    \begin{macrocode}
 \setbeamercolor{block body stamp}{bg=}
 %    \end{macrocode}
 %
-%   This part defines the color of footline.
+% This part defines the color of footline.
 %    \begin{macrocode}
 \setbeamercolor{footnote}{fg=cprimary,bg=}
 %    \end{macrocode}
 %
-%   This part defines the color of part page, section page, and subsection page.
+% This part defines the color of part page, section page, and subsection page.
 %    \begin{macrocode}
 \setbeamercolor{part title}{parent={palette primary}}
 \setbeamercolor{section title}{parent={palette secondary}}
 \setbeamercolor{subsection title}{parent={palette tertiary}}
 %    \end{macrocode}
 %
-%   Set the footline color.
+% Set the footline color.
 %    \begin{macrocode}
 \setbeamercolor{section in head/foot}{fg=white,bg=cprimary}
 \setbeamercolor{subsection in head/foot}{fg=cprimary,bg=cprimary!20}
@@ -149,14 +152,17 @@
 \setbeamercolor{page number in head/foot}{fg=white,bg=}
 %    \end{macrocode}
 %
-%   Color patch for sidebar, shadow, and smoothtrees.
-%   WARNING: This is a replica from outer theme, just in case if you want to use color theme seperately. But it is useless in the overall theming.
+% Color patch for sidebar, shadow, and smoothtrees.
+% WARNING: This is a replica from outer theme,
+% just in case if you want to use color theme seperately.
+% But it is useless in the overall theming.
 %    \begin{macrocode}
 \setbeamercolor{frametitle}{use=titlelike,bg=white,fg=titlelike.fg}
 \setbeamercolor{frametitle right}{parent=subsection in head/foot}
 %    \end{macrocode}
 %
-%   As is native to beamer, you could also use \verb"\alert" command to highlight the text. The color is redirected to the cprimary.
+% As is native to beamer, you could also use \verb"\alert" command
+% to highlight the text. The color is redirected to the cprimary.
 %    \begin{macrocode}
 \setbeamercolor{alerted text}{fg=cprimary}
 %    \end{macrocode}

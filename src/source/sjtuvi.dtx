@@ -23,38 +23,47 @@
 % ------------------------------------------------------------------- \fi
 %
 % \subsection{SJTU VI Library}
-%   This library provides the definition of basic elements in SJTU VI, including color, logo and some shapes. 
+% This library provides the definition of basic elements in SJTU VI,
+% including color, logo and some shapes. 
 %
-%   \subsubsection{Variable Declarations}
+% \subsubsection{Variable Declarations}
 %
-%   Special variables will be declared globally. These macros are only used internally.
+% Special variables will be declared globally.
+% These macros are only used internally.
 %
-%  \begin{macro}{\ifsjtubeamer@tempif}
-%   \verb"\ifsjtubeamer@tempif" is for customized condition tests --- \verb"\EqualOption" and \verb"\IsEmpty".
+% \begin{macro}{\ifsjtubeamer@tempif}
+% \verb"\ifsjtubeamer@tempif" is for
+% customized condition tests ---
+% \verb"\EqualOption" and \verb"\IsEmpty".
 %    \begin{macrocode}
 \newif\ifsjtubeamer@tempif%
 %    \end{macrocode}
-%  \end{macro}
+% \end{macro}
 %
-%  \begin{macro}{\sjtubeamer@tempbox}
-%   \verb"\sjtubeamer@tempbox" is for \verb"\IsEmpty" to detect the width of the paramter.
+% \begin{macro}{\sjtubeamer@tempbox}
+% \verb"\sjtubeamer@tempbox" is for
+% \verb"\IsEmpty" to detect the width of
+% the paramter.
 %    \begin{macrocode}
 \newbox\sjtubeamer@tempbox%
 %    \end{macrocode}
-%   \end{macro}
+% \end{macro}
 %
-%   \begin{macro}{\sjtubeamer@h}
-%   \verb"\sjtubeamer@h" is for \verb"\stamptext" to measure the height of the parameter.
+% \begin{macro}{\sjtubeamer@h}
+% \verb"\sjtubeamer@h" is for
+% \verb"\stamptext" to measure the height
+% of the parameter.
 %    \begin{macrocode}
 \newskip\sjtubeamer@h%
 %    \end{macrocode}
-%   \end{macro}
+% \end{macro}
 %
 %
-%   \subsubsection{Utilities}
+% \subsubsection{Utilities}
 %
-%  \begin{macro}{\DefineOption}
-%   Define the beamer option on the corresponding package, key and value.
+% \begin{macro}{\DefineOption}
+% Define the beamer option on the
+% corresponding package, key and value.
 %    \begin{macrocode}
 \def\DefineOption#1#2#3{%
   % #1: package
@@ -63,11 +72,13 @@
   \DeclareOptionBeamer{#3}{\expandafter\def\csname sjtubeamer@#1@#2\endcsname{#3}}%
 }
 %    \end{macrocode}
-%  \end{macro}
+% \end{macro}
 %
-%  \begin{macro}{\EqualOption}
-%   To check if the option on package, key is equal to value.
-%   \verb"\if\EqualOption{<package>}{<key>}{<value>}<action>\fi"
+% \begin{macro}{\EqualOption}
+% To check if the option on package,
+% key is equal to value.
+%
+% \verb"\if\EqualOption{<package>}{<key>}{<value>}<action>\fi"
 %    \begin{macrocode}
 \def\EqualOption{TT\fi\ifEqualOption}
 \def\ifEqualOption#1#2#3{%
@@ -80,17 +91,33 @@
   \ifsjtubeamer@tempif%
 }
 %    \end{macrocode}
-%   Here, a dummy trick is used to pass the if condition, inspired by \url{https://tex.stackexchange.com/a/117190/253485}. \verb"\EqualOption" is the interface to use, while \verb"\ifEqualOption" is the internal macro.
-%   Since \LaTeX\ handles \verb"\if" differently.
-%   \verb"\iftrue" will eliminate the nearest \verb"\else" and \verb"\fi" but remains other extra \verb"\fi" and throws errors.
-%   To avoid this, if the macro is expanded after \verb"\if", \verb"T=T", the condition holds and finish the current pair. And continues to process the real defined macro. This solution is somehow to combat against the \LaTeX\ compiler. In modern \LaTeX3, it is not so nasty to deal with neseted conditions. 
-%   \verb"\iffalse" doesn't need to be considered.
-%  NOTICE: the line-end \verb"%" is necessary, otherwise the eaten space or some errors could occur.
-%  \end{macro}
+% Here, a dummy trick is used to pass the if condition, inspired by
+% \url{https://tex.stackexchange.com/a/117190/253485}.
+% \verb"\EqualOption" is the interface to use, while \verb"\ifEqualOption" is
+% the internal macro.
 %
-%  \begin{macro}{\IsEmpty}
-%    To check the expanded parameter is empty based on the box width. \verb"\\" will be treated as empty.
-%    \verb"\if\IsEmpty{<test>}<action>\fi"
+% Since \LaTeX\ handles \verb"\if" differently.
+% \verb"\iftrue" will eliminate the nearest \verb"\else" and \verb"\fi"
+% but remains other extra \verb"\fi" and throws errors.
+%
+% To avoid this, if the macro is expanded after \verb"\if", \verb"T=T",
+% the condition holds and finish the current pair.
+% And continues to process the real defined macro.
+% This solution is somehow to combat against the \LaTeX\ compiler.
+% In modern \LaTeX3, it is not so nasty to deal with neseted conditions.
+%
+% \verb"\iffalse" doesn't need to be considered.
+%
+% NOTICE: the line-end \verb"%" is necessary, otherwise the eaten space or some
+% errors could occur.
+% \end{macro}
+%
+% \begin{macro}{\IsEmpty}
+% To check the expanded parameter is empty
+% based on the box width. \verb"\\" will be
+% treated as empty.
+%
+% \verb"\if\IsEmpty{<test>}<action>\fi"
 %    \begin{macrocode}
 \def\IsEmpty{TT\fi\ifIsEmpty}
 \def\ifIsEmpty#1{%
@@ -100,36 +127,68 @@
   \ifsjtubeamer@tempif%
 }
 %    \end{macrocode}
-%  Almost the same as \verb"\EqualOption" construction. You should use the macro \verb"\IsEmpty" instead of \verb"\ifIsEmpty" directly to avoid the error from nested condition tests.
-%  Even though there are \verb"\ifdefempty" and \verb"\ifdefvoid" in package \verb"etoolbox", they are not capable of judging the expanded empty macros, i.e., if you define \verb"\def\aaa{\bbb}" while \verb"\def\bbb{}", \verb"\ifdefempty{\aaa}" will return false even though its expanded version is empty.
-%  Originally, we use \verb"\ifx\insertinstitute\@empty" when the macro is not abstracted, as it has been done in beamer class. But it doesn't work here with the same issue above. Because macros like \verb"\insertinstitute" are global states: When the user set \verb"\institute[]{}", it will check if the paramter is empty, and if it is, \verb"\def\insertinstitute{}" will be manually set without any nested macros. Unfortunately, as an independent macro, the paramter should not be limited to certain scenarios.
-%  This macro is inspired by \url{https://tex.stackexchange.com/a/53091/253485}, we could typeset the macro out and determine whether it is empty by its box width. Like \verb"\beamer@setupshort" in beamer class, redefine \verb"\\" to nothing in the condition test, since it cannot show up in the horizontal mode and shoule be treated as an empty charater. \verb"\unskip" here will treat all trailing spaces as empty in case that macro forgets to insert the trailing \verb"%" and has breaklines, which is not intended.
-%  As the basic primitive for \TeX{}, \verb"\if\aaa\@empty" itself could be used instead of \verb"\ifx". But the side effect of this is that your paramter should not be expanded to \verb"\\". Macros like \verb"\insertinstitute", as mentioned, has used \verb"\beamer@setupshort" to detect the corner case \verb"\\" in the macro. We want this package to be independent from beamer class, so a manually defined macro could be better and this will treat the empty spaces to empty.
-%  \end{macro}
+% Almost the same as \verb"\EqualOption" construction.
+% You should use the macro \verb"\IsEmpty" instead of \verb"\ifIsEmpty" directly
+% to avoid the error from nested condition tests.
 %
-%  \begin{macro}{\getcontribdir}
-%  Get the contrib directory for \verb"#1" sub-theme.
-%  \verb"contrib/#1" is returned.
+% Even though there are \verb"\ifdefempty" and \verb"\ifdefvoid" in package
+% \verb"etoolbox", they are not capable of judging the expanded empty macros,
+% i.e., if you define \verb"\def\aaa{\bbb}" while \verb"\def\bbb{}",
+% \verb"\ifdefempty{\aaa}" will return false even though its expanded version is empty.
+%
+% Originally, we use \verb"\ifx\insertinstitute\@empty" when the macro is not
+% abstracted, as it has been done in beamer class. But it doesn't work here with
+% the same issue above. Because macros like \verb"\insertinstitute" are global states:
+% When the user set \verb"\institute[]{}", it will check if the paramter is empty,
+% and if it is, \verb"\def\insertinstitute{}" will be manually set without any
+% nested macros.
+% Unfortunately, as an independent macro, the paramter should not be limited to
+% certain scenarios.
+%
+% This macro is inspired by \url{https://tex.stackexchange.com/a/53091/253485},
+% we could typeset the macro out and determine whether it is empty by its box width.
+% Like \verb"\beamer@setupshort" in beamer class, redefine \verb"\\" to nothing
+% in the condition test, since it cannot show up in the horizontal mode and shoule
+% be treated as an empty charater. \verb"\unskip" here will treat all trailing
+% spaces as empty in case that macro forgets to insert the trailing \verb"%"
+% and has breaklines, which is not intended.
+%
+% As the basic primitive for \TeX{}, \verb"\if\aaa\@empty" itself could be used
+% instead of \verb"\ifx". But the side effect of this is that your paramter
+% should not be expanded to \verb"\\". Macros like \verb"\insertinstitute",
+% as mentioned, has used \verb"\beamer@setupshort" to detect the corner case
+% \verb"\\" in the macro.
+%
+% We want this package to be independent from beamer class, so a manually
+% defined macro could be better and this will treat the empty spaces to empty.
+% \end{macro}
+%
+% \begin{macro}{\getcontribdir}
+% Get the contrib directory for \verb"#1"
+% sub-theme.
+% \verb"contrib/#1" is returned.
 %    \begin{macrocode}
 \providecommand{\getcontribdir}[1]{contrib/#1}
 %    \end{macrocode}
-%  \end{macro}
+% \end{macro}
 %
-%  \begin{macro}{\getcontribpath}
-%  Get the contrib directory filepath for \verb"#1" sub-theme and \verb"#2" filename.
-%  \verb"contrib/#1/#2" is returned.
+% \begin{macro}{\getcontribpath}
+% Get the contrib directory filepath for
+% \verb"#1" sub-theme and \verb"#2" filename.
+% \verb"contrib/#1/#2" is returned.
 %    \begin{macrocode}
 \providecommand{\getcontribpath}[2]{\getcontribdir{#1}/#2}
 %    \end{macrocode}
-%  \end{macro}
+% \end{macro}
 %
 % \subsubsection{Load TikZ}
-%   Load TikZ package and its related library: 
-%   \verb"pattern.meta" provides the interface to define a pattern; 
-%   \verb"fadings" provides the method to create a fading mask; 
-%   \verb"decoration.pathmorphing" provides the interface to user-define a decoration.
-%   \verb"external" provides the way for tikz externalization, which will reduce the number of repetitive rendering with the cached pdf.
-%   \verb"backgrounds" provides the way to make a scope as a background to draw later.
+% Load TikZ package and its related library: 
+% \verb"pattern.meta" provides the interface to define a pattern; 
+% \verb"fadings" provides the method to create a fading mask; 
+% \verb"decoration.pathmorphing" provides the interface to user-define a decoration.
+% \verb"external" provides the way for tikz externalization, which will reduce the
+% number of repetitive rendering with the cached pdf.
+% \verb"backgrounds" provides the way to make a scope as a background to draw later.
 %    \begin{macrocode}
 \RequirePackage{tikz}
 \usetikzlibrary{fadings}
@@ -139,12 +198,13 @@
 %    \end{macrocode}
 %
 % \subsubsection{Color Definition}
-%   The following color is defined by SJTU VI.
-%   \begin{description}
-%       \item[primary] The primary color, which influences the color of title and the background of title page.
-%       \item[secondary] The secondary color, which influences the color of subtitle.
-%       \item[tertiary] The tertiary color, which provides the color for the blocks.
-%   \end{description}
+% The following color is defined by SJTU VI.
+% \begin{description}
+%   \item[primary] The primary color, which influences the color of title and the
+%                  background of title page.
+%   \item[secondary] The secondary color, which influences the color of subtitle.
+%   \item[tertiary] The tertiary color, which provides the color for the blocks.
+% \end{description}
 %    \begin{macrocode}
 \definecolor{sjtuRedPrimary}{RGB}{167,32,56}         % engred
 \definecolor{sjtuRedSecondary}{RGB}{240,131,0}       % orange
@@ -155,18 +215,48 @@
 %    \end{macrocode}
 %
 % \subsubsection{Declare Logo}
-%   Aquire package \verb"array" for better control on \verb"tabular".
+% Aquire package \verb"array" for better control on \verb"tabular".
 %    \begin{macrocode}
 \RequirePackage{array}
 %    \end{macrocode}
 %
 % \begin{macro}{\definelogo}
-%    Define a mask picture to make its different color variants.
-%    The first argument assigns the file name and the second sets the horizontal cropping and the third sets the vertical cropping. Notice that the cropping is symmetrical (double the length). When the horizontal cropping is greater than the vertical cropping, the mask will be placed by its height, otherwise by its width. The domain for both cropping parameters is 0 to 1.
-%    You should define a logo \verb"\definelogo{mylogo}{<hc>}{<vc>}" then use it in the contents like:
-%    \verb"\mylogo[white]", where the optional parameter could be the override color beyond the control of main logo color system or \verb"opacity=..." to identify the opacity you want or any other parameter for a TikZ node.
-%   Remember, the picture should be in the vi/ folder by default. If you want to use some other file in other folder, add an optional paramter like \verb"\definelogo[folder]{file}{0}{0}" will get the folder/file.
-%   The externalization will be disabled when using this system to generate logos, locally.
+% Define a mask picture to make its
+% different color variants.
+%
+% The first argument assigns the file name
+% and the second sets the horizontal
+% cropping and the third sets the vertical
+% cropping. Notice that the cropping is
+% symmetrical (double the length).
+% When the horizontal cropping is greater
+% than the vertical cropping, the mask
+% will be placed by its height, otherwise
+% by its width.
+% The domain for both cropping
+% parameters is 0 to 1.
+%
+% You should define a logo
+% \verb"\definelogo{mylogo}{<hc>}{<vc>}"
+% then use it in the contents like:
+% \verb"\mylogo[white]",
+% where the optional parameter could be
+% the override color beyond the control of
+% main logo color system or
+% \verb"opacity=..."
+% to identify the opacity you want or any
+% other parameter for a TikZ node.
+%
+% Remember, the picture should be in the
+% vi/ folder by default. If you want to
+% use some other file in other folder,
+% add an optional paramter like
+% \verb"\definelogo[folder]{file}{0}{0}"
+% will get the folder/file.
+%
+% The externalization will be disabled
+% when using this system to generate
+% logos, locally.
 %    \begin{macrocode}
 \newcommand{\definelogo}[4][vi]{
   % #1: folder
@@ -197,12 +287,17 @@
   }
 }
 %    \end{macrocode}
-% WARNING: When using \verb"\resizebox" or in some boxes, the end of the line will be treated as a space according to the \LaTeX{} rule, which may cause extra space when measuring the object.
-% Use \verb"%" symbol at the end of the line to avoid the unwanted space, which is recommended to all lines in the command or the start and the end of the outer environment.
+% WARNING: When using \verb"\resizebox" or in some boxes, the end of the line
+% will be treated as a space according to the \LaTeX{} rule, which may cause
+% extra space when measuring the object.
+%
+% Use \verb"%" symbol at the end of the line to avoid the unwanted space, which
+% is recommended to all lines in the command or the start and the end of the outer environment.
+%
 % TODO: add the feature to insert a logo with or without the safe spacing (1/5h).
 % \end{macro}
 %
-%    Define the required logo.
+% Define the required logo.
 %    \begin{macrocode}
 \definelogo{sjtubadge}{0}{0}
 \definelogo{zhlogo}{0.13}{0.75}
@@ -213,61 +308,93 @@
 \definelogo{sjtugate}{0.25}{0.8}
 %    \end{macrocode}
 %
-%  \begin{macro}{\secondaryinstlogo}
-%  Logo with secondary institute.
-%  The first optional parameter is typically the English name for your institute. If it exists (Chinese style), will be typesetted below the main name. THERE SHOULD BE NO \verb"\\".
-%  The second mandantory parameter is the main name for your institute. when the optional paramter is empty (English style), YOU COULD USE \verb"\\" as linebreaks.
-%  The third parameter is the logo on the left side, you could leave it as empty but it is mandantory.
-%  When it is in English style (no optional parameter), you could use a secondary logo picture as your institute, but remember to resize the height to 0.95cm.
+% \begin{macro}{\secondaryinstlogo}
+% Logo with secondary institute.
+%
+% The first optional parameter is
+% typically the English name for your
+% institute.
+% If it exists (Chinese style), will be
+% typesetted below the main name.
+% THERE SHOULD BE NO \verb"\\".
+%
+% The second mandantory parameter is the
+% main name for your institute.
+% When the optional paramter is empty
+% (English style),
+% YOU COULD USE \verb"\\" as linebreaks.
+%
+% The third parameter is the logo on the
+% left side, you could leave it as empty
+% but it is mandantory.
+%
+% When it is in English style
+% (no optional parameter),
+% you could use a secondary logo picture
+% as your institute, but remember to
+% resize the height to 0.95cm.
 %    \begin{macrocode}
 \newcommand{\secondaryinstlogo}[3][]{%
   % #1: shortinst (optional)
   % #2: longinst
   % #3: logo
 %    \end{macrocode}
-%   Start a hbox as a container. 
-%   Remember the end of the line will be treated as a space in the paramter of \verb"hbox" (which is a \TeX{} primitive). To avoid that, add a \verb"%" at the end of the line.
+% Start a hbox as a container. 
+% Remember the end of the line will be treated as a space in the paramter of \verb"hbox"
+% (which is a \TeX{} primitive). To avoid that, add a \verb"%" at the end of the line.
 %    \begin{macrocode}
   \hbox{%
 %    \end{macrocode}
-%   Make sure the content is left aligned.
+% Make sure the content is left aligned.
 %    \begin{macrocode}
     \raggedright%
 %    \end{macrocode}
-%   Insert the resized logo. The empty logo is supported as we insert \verb"\vphantom" here.
+% Insert the resized logo. The empty logo is supported as we insert \verb"\vphantom" here.
 %    \begin{macrocode}
     \resizebox{!}{1cm}{\vphantom{-}#3}%
     \if\IsEmpty{#2}%
 %    \end{macrocode}
-%   If the long institute name is empty the right part will not be typesetted.
+% If the long institute name is empty the right part will not be typesetted.
 %    \begin{macrocode}
     \else%
       \if\IsEmpty{#1}%
 %    \end{macrocode}
-%   If the short institute is empty, the English version of the combined logo will be configured.
-%   The margin around the vrule is 0.31cm in this manner.
+% If the short institute is empty, the English version of the combined logo will be configured.
+% The margin around the vrule is 0.31cm in this manner.
 %    \begin{macrocode}
         \if\IsEmpty{#3}\else%
           {\hskip0.31cm\vrule width0.5pt}\hskip0.31cm%
         \fi%
 %    \end{macrocode}
-%   You need to manually break the line for the main English name. The whole name will be typesetted centered vertically.
+% You need to manually break the line for the main English name.
+% The whole name will be typesetted centered vertically.
 %    \begin{macrocode}
         \vbox to 1cm{%
           \vfill%
 %    \end{macrocode}
-%   Start a \verb"\hbox" inside the \verb"\vbox" to make sure that the box has a width that matches the content.
+% Start a \verb"\hbox" inside the \verb"\vbox" to make sure that the box has a
+% width that matches the content.
 %    \begin{macrocode}
           \hbox{%
 %    \end{macrocode}
-%   Since \verb"\scshape" may not contain the boldface font weight, we manually set the font weight to \verb"\mdseries" to avoid the influence from the outside.
-%   And there is no explicit rule about the font size of the English institute. Choose a similar one for approporiate look.
+% Since \verb"\scshape" may not contain the boldface font weight, we manually set
+% the font weight to \verb"\mdseries" to avoid the influence from the outside.
+%
+% And there is no explicit rule about the font size of the English institute.
+% Choose a similar one for approporiate look.
 %    \begin{macrocode}
             \noindent%
             \fontsize{7pt}{0pt}\selectfont\mdseries\scshape%
 %    \end{macrocode}
-%   Since the parameter could contain the breaklines \verb"\\", which is not functional in the horizontal mode. To make the thing work, wrap it into the \verb"tabular" environment, and remove the left-right padding by \verb"@{}". Then the paramter could break lines.
-%   To increase the interlineskip in tabular, use a phantom vrule at the end of each line with the depth of 2pt. At the end of the tabular, we should decrease the vskip by 2pt since the last line should not have that depth to make sure the content is vertically centered.
+% Since the parameter could contain the breaklines \verb"\\", which is not
+% functional in the horizontal mode. To make the thing work, wrap it into the
+% \verb"tabular" environment, and remove the left-right padding by \verb"@{}".
+% Then the paramter could break lines.
+%
+% To increase the interlineskip in tabular, use a phantom vrule at the end of
+% each line with the depth of 2pt. At the end of the tabular, we should decrease
+% the vskip by 2pt since the last line should not have that depth to make sure
+% the content is vertically centered.
 %    \begin{macrocode}
             \begin{tabular}{@{}l<{\vphantom{\vrule depth2pt}}@{}}
               #2
@@ -275,40 +402,56 @@
           }%
           \vskip-2pt%
 %    \end{macrocode}
-%   In this way, the behavior like textbox in MS Word could be achieved, with the combination of \verb"\hbox" and \verb"tabular" environment, to make sure the bounding box could be measured and the content could use normal \verb"\\" for breaking lines. But \verb"\par" is not acceptable so you should use the hard-breaking in the command parameter. If \verb"p{}" is used for enabling the \verb"\par", the width can not be automatically calculated and always be the specified width.
-%   But the benefit is also obvious, the width could be controlled and no more overfull hbox when inserting the institute. Since a \verb"\vbox" without \verb"\hsize" will make a box that occupy the whole line, but the width of the box should not be limited inexplicitly (no rule in SJTU VI). Futhermore, An alternative of using \verb"\parbox" has the same issue.
+% In this way, the behavior like textbox in MS Word could be achieved, with the
+% combination of \verb"\hbox" and \verb"tabular" environment, to make sure the
+% bounding box could be measured and the content could use normal \verb"\\" for
+% breaking lines. But \verb"\par" is not acceptable so you should use the
+% hard-breaking in the command parameter.
+% If \verb"p{}" is used for enabling the \verb"\par", the width can not be
+% automatically calculated and always be the specified width.
+%
+% But the benefit is also obvious, the width could be controlled and no more
+% overfull hbox when inserting the institute.
+% Since a \verb"\vbox" without \verb"\hsize" will make a box that occupy the
+% whole line, but the width of the box should not be limited inexplicitly
+% (no rule in SJTU VI).
+% Futhermore, An alternative of using \verb"\parbox" has the same issue.
 %    \begin{macrocode}
           \vfill%
         }%
       \else%
 %    \end{macrocode}
-%   If the short institute name is not empty, the short name will be typesetted below the long name.
-%   The margin around the vrule is 0.23cm in this manner.
+% If the short institute name is not empty, the short name will be typesetted below the long name.
+% The margin around the vrule is 0.23cm in this manner.
 %    \begin{macrocode}
         \if\IsEmpty{#3}\else%
           {\hskip0.23cm\vrule width0.5pt}\hskip0.23cm%
         \fi%
         \vbox to 1cm{%
 %    \end{macrocode}
-%   Since \verb"\\" is not allowed in \verb"hbox", all the breaklines will be treated as empty in this mode. This will force the content output as a single line. The setting is mainly for some precautious reasons (it will lead some errors if not) and matching the behavior from the beamer class.
+% Since \verb"\\" is not allowed in \verb"hbox", all the breaklines will be
+% treated as empty in this mode. This will force the content output as a single line.
+% The setting is mainly for some precautious reasons (it will lead some errors if not)
+% and matching the behavior from the beamer class.
 %    \begin{macrocode}
           \def\\{}%
 %    \end{macrocode}
-%   Align the institute component to the bottom of the current vbox.
-%   And remove the interlineskip for precise measurement.
+% Align the institute component to the bottom of the current vbox.
+% And remove the interlineskip for precise measurement.
 %    \begin{macrocode}
           \vfill
           \offinterlineskip
 %    \end{macrocode}
-%   Use \verb"\hbox" to make sure the width of the box is measurable.
-%   \verb"\mdseries" will make sure that the font weight will not be influenced by the current configuration.
+% Use \verb"\hbox" to make sure the width of the box is measurable.
+% \verb"\mdseries" will make sure that the font weight will not be influenced by
+% the current configuration.
 %    \begin{macrocode}
           \hbox{%
             \fontsize{13pt}{0pt}\selectfont%
             \mdseries\sffamily #2%
           }
 %    \end{macrocode}
-%   A thin space between the line is inserted.
+% A thin space between the line is inserted.
 %    \begin{macrocode}
           \vskip0.08cm%
           \hbox{%
@@ -316,7 +459,8 @@
             \mdseries\scshape #1%
           }
 %    \end{macrocode}
-%   \verb"\prevdepth" is used to reduce the bottom padding by the depth of the previous line in case that the line has a comma.
+% \verb"\prevdepth" is used to reduce the bottom padding by the depth of the
+% previous line in case that the line has a comma.
 %    \begin{macrocode}
           \vskip-\prevdepth\vskip0.14cm%
         }%
@@ -325,33 +469,62 @@
   }%
 }
 %    \end{macrocode}
-%  NOTE: This macro is not defined in ``star'' form, but the paramter could have linebreaks \verb"\\" but no \verb"\par". When another alternative --- could accept \verb"\par" --- comes up, the macro will be redefined in ``star'' form.
-%  For the optional parameter, \verb"\insertshortinsititute" in beamer class will first call \verb"\beamer@setupshort" to locally redefine \verb"\\" to empty, then the inserted text will not contain the breaklines. To insert the version with the breaklines, \verb"\beamer@shortinstitute" should be used.
-%  It is still recommended to use \verb"\institute" directly when it will lead to this combination logo. Since the form of the paramter could be more unified in the optional paramter where you could always keep the breaklines \verb"\\". In this parameter, you could not keep breaklines \verb"\\" if you pass an optional parameter. i.e., anything that violates the SJTU VI rule in this command will turn into an error.
-%  And if you insert a picture as the secondary institute as the main parameter, resize it to a 0.95cm height one for vertical alignment. i.e., \verb"\resizebox{!}{0.95cm}{<pic>}".
-%  \end{macro}
+% NOTE: This macro is not defined in ``star'' form, but the paramter could have
+% linebreaks \verb"\\" but no \verb"\par". When another alternative --- could
+% accept \verb"\par" --- comes up, the macro will be redefined in ``star'' form.
+%
+% For the optional parameter, \verb"\insertshortinsititute" in beamer class will
+% first call \verb"\beamer@setupshort" to locally redefine \verb"\\" to empty,
+% then the inserted text will not contain the breaklines.
+% To insert the version with the breaklines, \verb"\beamer@shortinstitute" should be used.
+%
+% It is still recommended to use \verb"\institute" directly when it will lead to
+% this combination logo. Since the form of the paramter could be more unified in
+% the optional paramter where you could always keep the breaklines \verb"\\".
+% In this parameter, you could not keep breaklines \verb"\\" if you pass an
+% optional parameter. i.e., anything that violates the SJTU VI rule in this
+% command will turn into an error.
+%
+% And if you insert a picture as the secondary institute as the main parameter,
+% resize it to a 0.95cm height one for vertical alignment. i.e.,
+% \verb"\resizebox{!}{0.95cm}{<pic>}".
+% \end{macro}
 %
 % \subsubsection{Shape Declarations}
 %
 % \begin{macro}{\stamptext}
-%    Use one Chinese character or at most two English characters for the text argument.
-%    Make a stamp unit surround the text. Similar to \verb"\highlight" command in inner theme with limitations on number of characters.
-%    Use an optional argument to set the background color, default is \verb"structure" or \verb"sjtuRedPrimary".
+% Use one Chinese character or at most two
+% English characters for the text
+% argument.
+%
+% Make a stamp unit surround the text.
+% Similar to \verb"\highlight" command in
+% inner theme with limitations on number
+% of characters.
+% 
+% Use an optional argument to set the
+% background color, default is
+% \verb"structure" or \verb"sjtuRedPrimary".
 %    \begin{macrocode}
 \providecommand{\stamptext}[2][structure]{
   {
 %    \end{macrocode}
-%    If the color is not defined, it will fallback to color \verb"sjtuRedPrimary" in this pacakge. Notice if your color is not defined, it will not get an error through this manner.
+% If the color is not defined, it will fallback to color \verb"sjtuRedPrimary"
+% in this pacakge. Notice if your color is not defined, it will not get an error
+% through this manner.
 %    \begin{macrocode}
     \providecolor{#1}{named}{sjtuRedPrimary}
 %    \end{macrocode}
-%    Disable caching in this group.
+% Disable caching in this group.
 %    \begin{macrocode}
     \tikzset{external/export=false}
     \begin{tikzpicture}[baseline=(nodetext.base)]
       \node [white] (nodetext) at (0,0) {#2};
 %    \end{macrocode}
-% Get the height of a tikz node \verb"nodetext" and store it in length \verb"\s". It is similar to \verb"\tcbsetmacroheightofnode" from \verb"skins" library of \verb"tcolorbox", but for decoupling reasons, use a native pgf command to calculate that without loading \verb"tcolorbox" in this style file.
+% Get the height of a tikz node \verb"nodetext" and store it in length \verb"\s".
+% It is similar to \verb"\tcbsetmacroheightofnode" from \verb"skins" library of
+% \verb"tcolorbox", but for decoupling reasons, use a native pgf command to calculate
+% that without loading \verb"tcolorbox" in this style file.
 %    \begin{macrocode}
       \pgfextracty{\sjtubeamer@h}{\pgfpointanchor{nodetext}{north}}%
       \pgfextracty{\pgf@ya}{\pgfpointanchor{nodetext}{south}}%
@@ -375,20 +548,41 @@
   }
 }
 %    \end{macrocode}
-%    Unlike \verb"\highlight" to make use of \verb"\colorbox" from \verb"xcolor". \verb"\stamptext" has to use Ti\emph{k}Z for drawing the vi shape. And the vi rules that the shape could not be resized to a different aspect ratio. So the only available mode is scaling.
-%    The tradeof is that the text length has to be limited.
+% Unlike \verb"\highlight" to make use of \verb"\colorbox" from \verb"xcolor".
+% \verb"\stamptext" has to use Ti\emph{k}Z for drawing the vi shape. And the VI
+% rules that the shape could not be resized to a different aspect ratio.
+% So the only available mode is scaling.
+%
+%  The tradeoff is that the text length has to be limited.
 % \end{macro}
 %
 % \begin{macro}{\sjtubeamer@compatible}
-% For \TeX Live 2018 and even older, it is \emph{not} compatible to use the patterns.meta library for making user-defined patterns. And fading is not available for caching. Please consider \verb"\def\sjtubeamer@compatible{false}" to match the following condition checking. Remember to use \verb"\makeatletter" and \verb"\makeatother" in \LaTeX{}.
+% For \TeX Live 2018 and even older,
+% it is \emph{not} compatible to use the
+% patterns.meta library for making
+% user-defined patterns.
+% And fading is not available for caching.
+% Please consider
+% \verb"\def\sjtubeamer@compatible{false}"
+% to match the following condition
+% checking.
+%
+% Remember to use \verb"\makeatletter"
+% and \verb"\makeatother" in \LaTeX{}.
 %    \begin{macrocode}
 \def\sjtubeamer@compatible@false{false}
 %    \end{macrocode}
-% We didn't make it as an option since it will break the hierarchival structure of option definition. This is the bottom level of all style files, no advanced methods are provided in this layer.
+% We didn't make it as an option since it will break the hierarchival structure of
+% option definition. This is the bottom level of all style files, no advanced
+% methods are provided in this layer.
 % \end{macro}
 %
 % \begin{macro}{stamp}
-%	  Make a stamp array. Use option \verb"[pattern={stamp[size=8pt,xshift=4pt,yshift=4pt]}]" on TikZ fill element.
+%	Make a stamp array.
+%
+% Use option
+% \verb"[pattern={stamp[size=8pt,xshift=4pt,yshift=4pt]}]"
+% on TikZ fill element.
 %    \begin{macrocode}
 \ifx\sjtubeamer@compatible\sjtubeamer@compatible@false
 \else
@@ -440,15 +634,24 @@
   }
 \fi
 %    \end{macrocode}
-%   Avoid calling macros in code section for performance reasons.
-%	  The newest version of TikZ provides the interface to user-define a pattern. Obeying compatibility philosophy, use \verb"\pgfkeyvalueof" interface to get parameters in a standard way. The unit is first tested in a standalone file and previewed by TikZEdt.
+% Avoid calling macros in code section for performance reasons.
+%	The newest version of TikZ provides the interface to user-define a pattern.
+% Obeying compatibility philosophy, use \verb"\pgfkeyvalueof" interface to get
+% parameters in a standard way. The unit is first tested in a standalone file
+% and previewed by TikZEdt.
 % \end{macro}
 %
 % \begin{macro}{\stamparray}
-% Create the stamp array in the TikZ environment.
-% The first element is the pattern size.
-% The second element is the starting point. Formatted in \verb"(0,0)".
-% The third element is the ending point. Formatted in \verb"(0,0)".
+% Create the stamp array in the TikZ
+% environment.
+%
+% The first parameter is the pattern size.
+%
+% The second parameter is the starting
+% point. Formatted in \verb"(0,0)".
+%
+% The third parameter is the ending point.
+% Formatted in \verb"(0,0)".
 %    \begin{macrocode}
 \ifx\sjtubeamer@compatible\sjtubeamer@compatible@false
   \providecommand{\stamparray}[3]{}
@@ -468,11 +671,17 @@
   }
 \fi
 %    \end{macrocode}
-% NOTICE: \TeX{} is not good at handling parameters. Always remember to store it into a temporary variable. Register \verb"\pgfmathresult" will store the result of \verb"\pgfmathparse".
+% NOTICE: \TeX{} is not good at handling parameters. Always remember to store it
+% into a temporary variable. Register \verb"\pgfmathresult" will store the result
+% of \verb"\pgfmathparse".
 % \end{macro}
 %
 % \begin{macro}{stampline}
-%   A decoration to make a loop stampline. Use option to draw the stampline on  TikZ draw element \verb"[decoration=stampline, segment length=1cm, decorate]".
+% A decoration to make a loop stampline.
+%
+% Use option to draw the stampline on TikZ
+% draw element
+% \verb"[decoration=stampline, segment length=1cm, decorate]".
 %    \begin{macrocode}
 \pgfdeclaredecoration{stampline}{initial}
 {
@@ -495,7 +704,8 @@
   }
 }
 %    \end{macrocode}
-% NOTICE: that \verb"auto corner on length" is open to avoid spikes where the state hasn't meet \verb"final" yet.
+% NOTICE: that \verb"auto corner on length" is open to avoid spikes where the
+% state hasn't meet \verb"final" yet.
 % \end{macro}
 %
 %

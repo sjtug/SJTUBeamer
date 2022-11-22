@@ -23,16 +23,17 @@
 % ------------------------------------------------------------------- \fi
 %
 % \subsection{Cover Library}
-%   This library provides the template for the title page and the bottom page.
+% This library provides the template for the title page and the bottom page.
 %
-%   \subsubsection{Load Packages}
+% \subsubsection{Load Packages}
 %
-%   Load SJTU VI Library to get the definition on shapes. This will also provide \verb"\sjtubeamer@compatible" option.
+% Load SJTU VI Library to get the definition on shapes.
+% This will also provide \verb"\sjtubeamer@compatible" option.
 %    \begin{macrocode}
 \RequirePackage{sjtuvi}
 %    \end{macrocode}
 %
-%   \subsubsection{Define Option}
+% \subsubsection{Define Option}
 %
 %    \begin{macrocode}
 \DefineOption{cover}{lang}{zh}
@@ -42,8 +43,8 @@
 \ProcessOptionsBeamer
 %    \end{macrocode}
 %
-%   \subsubsection{Logo}
-%   \paragraph{max.}
+% \subsubsection{Logo}
+% \paragraph{max.}
 %    \begin{macrocode}
 %<*max>
 \defbeamertemplate*{logo}{max}{\resizebox{!}{1cm}{\sjtubadge}}
@@ -59,29 +60,29 @@
 \fi
 %    \end{macrocode}
 %
-%    \subsubsection{Title Graphic}
-%    \paragraph{maxplus.}
+% \subsubsection{Title Graphic}
+% \paragraph{maxplus.}
 %    \begin{macrocode}
 %<*maxplus>
 \defbeamertemplate*{titlegraphic}{maxplus}{\includegraphics{vi/sjtuphoto.jpg}}
 %</maxplus>
 %    \end{macrocode}
 %
-%    \paragraph{max.}
+% \paragraph{max.}
 %    \begin{macrocode}
 %<*max>
 \defbeamertemplate*{titlegraphic}{max}{\sjtubg[opacity=0.2]}
 %</max>
 %    \end{macrocode}
 %
-%    \paragraph{min.}
+% \paragraph{min.}
 %    \begin{macrocode}
 %<*min>
 \defbeamertemplate*{titlegraphic}{min}{\includegraphics{vi/sjtuphoto.jpg}}
 %</min>
 %    \end{macrocode}
 %
-%    \paragraph{my.}
+% \paragraph{my.}
 %    \begin{macrocode}
 %<*my>
 \defbeamertemplate*{titlegraphic}{my}{
@@ -92,9 +93,9 @@
 %</my>
 %    \end{macrocode}
 %
-%   \subsubsection{Title Page}
+% \subsubsection{Title Page}
 %  
-%   \paragraph{maxplus.}
+% \paragraph{maxplus.}
 %    \begin{macrocode}
 %<*maxplus>
 \defbeamertemplate*{title page}{maxplus}[1][]
@@ -138,7 +139,7 @@
 %</maxplus>
 %    \end{macrocode}
 %  
-%   \paragraph{max.}
+% \paragraph{max.}
 %    \begin{macrocode}
 %<*max>
 \defbeamertemplate*{title page}{max}[1][]
@@ -181,8 +182,10 @@
 %</max>
 %    \end{macrocode}
 %
-%   \paragraph{min.}
-%   Declare two fadings: center fade and fade right. The center fade provides a radial fading on the right side of the title page. The fade right provides a linear fading to avoid the collision on the text in the left.
+% \paragraph{min.}
+% Declare two fadings: center fade and fade right.
+% The center fade provides a radial fading on the right side of the title page.
+% The fade right provides a linear fading to avoid the collision on the text in the left.
 %    \begin{macrocode}
 %<*min>
 \tikzfading[
@@ -202,11 +205,17 @@
 {
   \vbox{}
 %    \end{macrocode}
-%   The background of the title page is implemented by a TikZ rectangle, which avoids the changing on \verb"background canvas" beamer color. 
+% The background of the title page is implemented by a TikZ rectangle,
+% which avoids the changing on \verb"background canvas" beamer color. 
 %
-%   In this definition environment, you could not change the beamer color. The older version redefines \verb"maketitle" command and switches the \verb"background canvas" color, which is harmful for decoupling. 
+% In this definition environment, you could not change the beamer color.
+% The older version redefines \verb"maketitle" command and switches the
+% \verb"background canvas" color, which is harmful for decoupling. 
 %
-%   Use TikZ rectangle also avoids the unexpected shift because the risk of redefining the internal command is avoided. If there is any text before the title page, the \verb"\maketitle" will start from a new page.
+% Use TikZ rectangle also avoids the unexpected shift because the risk of
+% redefining the internal command is avoided.
+% If there is any text before the title page, the \verb"\maketitle" will
+% start from a new page.
 %    \begin{macrocode}
   \usebeamercolor{palette primary}
   \begin{tikzpicture}[overlay]
@@ -214,10 +223,18 @@
     rectangle (1*\the\paperwidth, 0.2*\the\paperheight);
   \end{tikzpicture}
 %    \end{macrocode}
-%   WARNING: The pattern in the title page is now deprecated for the unstability of the \verb"fadings" library in TikZ. If you want to use the pattern, please uncomment the code segement manually. The interface of \verb"stamparry" is functional.
-%   If it is in draftmode or it is not compatible, no pattern will get rendered.
-%   Otherwise, the fade tile of stamp array will get covered on top of the background rectangle.
-%   \verb"stamparray" is defined in \verb"sjtuvi". Then, a fade right covers this array layer and a center fade covers the previous result.
+% WARNING: The pattern in the title page is now deprecated for the unstability
+% of the \verb"fadings" library in TikZ. If you want to use the pattern,
+% please uncomment the code segement manually.
+% The interface of \verb"stamparry" is functional.
+%
+% If it is in draft mode or it is not compatible, no pattern will get rendered.
+%
+% Otherwise, the fade tile of stamp array will get covered on top of the
+% background rectangle.
+%
+% \verb"stamparray" is defined in \verb"sjtuvi". Then, a fade right covers this
+% array layer and a center fade covers the previous result.
 %    \begin{macrocode}
   \ifx\sjtubeamer@compatible\sjtubeamer@compatible@false
   \else
@@ -236,16 +253,35 @@
     \fi%
   \fi
 %    \end{macrocode}
-%   Set a constraint in the vertical mode to make the following contents centered in the middle of the slide.
+% Set a constraint in the vertical mode to make the following contents centered
+% in the middle of the slide.
 %    \begin{macrocode}
   \vfill
   \begingroup
   \centering
 %    \end{macrocode}
-%   \verb"resizebox" is used to adapt to all size of logo into 1cm height one. And it is the same in outer theme to make a 0.7cm logo. 
-%   The institute is in \TeX{} code for typesetting. \verb"\beamer@shortinstitute" meta is used to avoid compressing on \verb"\par", while \verb"\insertinstitute" will force the input to spread on one signle line. The mode to use is depended on the \verb"language" option. Super small font could be made by \verb"fontsize".
-%   NOTE: When you use the picture as the secondary institute, make sure it is the parameter that will be displayed. For \verb"zh" option, the optional parameter should leaved as empty explicitly, i.e., \verb"\institute[]{<pic>}", otherwise the shortinstitute will be the same as the main parameter. For \verb"en" option, the optional parameter should be the picture, i.e., \verb"\institute[<pic>]{}". The picture should be 0.95cm in height, as noted in \verb"\secondaryinstlogo" in \verb"sjtuvi".
-%   FIXME: since the logo has some tiny margin, the left alignment seems not so perfect. Hence a -0.6pt visual compensation is added to address the issue. This will be fixed in the future through a better clip and safe margin control on \verb"\definelogo".
+% \verb"resizebox" is used to adapt to all size of logo into 1cm height one.
+% And it is the same in outer theme to make a 0.7cm logo.
+%
+% The institute is in \TeX{} code for typesetting. \verb"\beamer@shortinstitute"
+% meta is used to avoid compressing on \verb"\par", while \verb"\insertinstitute"
+% will force the input to spread on one signle line.
+% The mode to use is depended on the \verb"language" option.
+% Super small font could be made by \verb"fontsize".
+%
+% NOTE: When you use the picture as the secondary institute, make sure it is the
+% parameter that will be displayed.
+% For \verb"zh" option, the optional parameter should leaved as empty explicitly,
+% i.e., \verb"\institute[]{<pic>}", otherwise the shortinstitute will be the same
+% as the main parameter.
+% For \verb"en" option, the optional parameter should be the picture,
+% i.e., \verb"\institute[<pic>]{}". The picture should be 0.95cm in height,
+% as noted in \verb"\secondaryinstlogo" in \verb"sjtuvi".
+%
+% FIXME: since the logo has some tiny margin, the left alignment seems not so perfect.
+% Hence a -0.6pt visual compensation is added to address the issue.
+% This will be fixed in the future through a better clip and safe margin control
+% on \verb"\definelogo".
 %    \begin{macrocode}
   \begin{beamercolorbox}[sep=8pt,#1]{empty}
     \usebeamercolor[fg]{palette primary}%
@@ -257,7 +293,7 @@
     \fi%
   \end{beamercolorbox}
 %    \end{macrocode}
-%   Insert title, subtitle, author, and date.
+% Insert title, subtitle, author, and date.
 %    \begin{macrocode}
   \begin{beamercolorbox}[sep=8pt,#1]{title}
     \usebeamerfont{title}\inserttitle\par%
@@ -275,8 +311,12 @@
     \usebeamerfont{date}\insertdate
   \end{beamercolorbox}
 %    \end{macrocode}
-%   Here insert the titlegraphic. The node position is set to \verb"above left" to make sure the bottom of the picture is aligned to the bottom of the date line.
-%   The size specification should be the same as \verb"stampbox" in the inner theme. Since we need a finer control on the position of the picture and the inner theme is the upper layer of this style file, the whole thing should be reimplemented here.
+% Here insert the titlegraphic. The node position is set to \verb"above left" to
+% make sure the bottom of the picture is aligned to the bottom of the date line.
+%
+% The size specification should be the same as \verb"stampbox" in the inner theme.
+% Since we need a finer control on the position of the picture and the inner theme
+% is the upper layer of this style file, the whole thing should be reimplemented here.
 %    \begin{macrocode}
   \usebeamercolor{palette primary}% 
   \ifx\inserttitlegraphic\@empty%
@@ -302,7 +342,7 @@
 %</min>
 %    \end{macrocode}
 %  
-%   \paragraph{my.}
+% \paragraph{my.}
 %    \begin{macrocode}
 %<*my>
 \defbeamertemplate*{title page}{my}[1][]{
@@ -321,8 +361,10 @@
 %
 % \subsubsection{Bottom Page}
 %
-%  \begin{macro}{\bottomthanks}
-%  The "Thank You" caption in the bottom page. Redefine this command will change the bottom page caption.
+% \begin{macro}{\bottomthanks}
+% The "Thank You" caption in the bottom
+% page. Redefine this command will change
+% the bottom page caption.
 %    \begin{macrocode}
 \if\EqualOption{cover}{lang}{zh}%
   \newcommand{\bottomthanks}{谢\,谢}
@@ -330,11 +372,11 @@
   \newcommand{\bottomthanks}{Thank You}
 \fi%
 %    \end{macrocode}
-%  \end{macro}
+% \end{macro}
 %
-%   Bottom page could be generated by \verb"\makebottom" command.
+% Bottom page could be generated by \verb"\makebottom" command.
 %
-%   \paragraph{maxplus.}
+% \paragraph{maxplus.}
 %    \begin{macrocode}
 %<*maxplus>
 \tikzfading[name=fade right img,
@@ -376,7 +418,7 @@
 %</maxplus>
 %    \end{macrocode}
 %
-%   \paragraph{max.}
+% \paragraph{max.}
 %    \begin{macrocode}
 %<*max>
 \defbeamertemplate*{bottom page}{max}[1][]
@@ -415,17 +457,19 @@
 %</max>
 %    \end{macrocode}
 %
-%   \paragraph{min.}
+% \paragraph{min.}
 %    \begin{macrocode}
 %<*min>
 \defbeamertemplate*{bottom page}{min}[1][]
 {
 %    \end{macrocode}
-%   Leave vertical mode, which is equivalent to \verb"\leavevmode".
+% Leave vertical mode, which is equivalent to \verb"\leavevmode".
 %    \begin{macrocode}
   \vbox{}
 %    \end{macrocode}
-%   Create the background canvas and the three overlapping circles in the right. Use \verb"scope" to define the influence range. And use \verb"\clip" to make the clipping in the current range.
+% Create the background canvas and the three overlapping circles in the right.
+% Use \verb"scope" to define the influence range.
+% And use \verb"\clip" to make the clipping in the current range.
 %    \begin{macrocode}
   \usebeamercolor{palette primary}
   \usebeamercolor{palette secondary}
@@ -447,7 +491,7 @@
     \end{scope}
   \end{tikzpicture}
 %    \end{macrocode}
-%   Insert the logo in the crossing center of the overlapping circles.
+% Insert the logo in the crossing center of the overlapping circles.
 %    \begin{macrocode}
   \vfill
   \usebeamercolor[fg]{palette primary}
@@ -455,7 +499,9 @@
   \raggedleft
   \resizebox{!}{1cm}{\vphantom{-}\usebeamertemplate{logo}}
 %    \end{macrocode}
-%   Inset the ``thank you'' quote and the title of this beamer. Notice that three \verb"\vfill" divide the frame into three portions with final adjust using \verb"\vskip".
+% Inset the ``thank you'' quote and the title of this beamer.
+% Notice that three \verb"\vfill" divide the frame into three portions with
+% final adjust using \verb"\vskip".
 %    \begin{macrocode}
   \vfill
   \vskip6em
@@ -478,7 +524,7 @@
 %</min>
 %    \end{macrocode}
 %
-%   \paragraph{my.}
+% \paragraph{my.}
 %    \begin{macrocode}
 %<*my>
 \defbeamertemplate*{bottom page}{my}[1][]
@@ -496,62 +542,97 @@
 %</my>
 %    \end{macrocode}
 %
-%  \subsubsection{Name Translation}
+% \subsubsection{Name Translation}
 %
 %    \begin{macrocode}
 \if\EqualOption{cover}{lang}{zh}%
   \@ifclassloaded{ctexbeamer}{
 %    \end{macrocode}
-%  \begin{macro}{\sjtubeamer@cover@partnumber}
-%    Part number based on different languages and whether the \verb"ctexbeamer" class is loaded. 
-%    If \verb"ctexbeamer" is loaded, you could modify the \verb"part/number" by \verb"\ctexset" after the theme is loaded.
+% \begin{macro}{\sjtubeamer@cover@partnumber}
+% Part number based on different languages
+% and whether the \verb"ctexbeamer" class
+% is loaded.
+%
+% If \verb"ctexbeamer" is loaded, you could
+% modify the \verb"part/number" by
+% \verb"\ctexset" after the theme is loaded.
 %    \begin{macrocode}
     \def\sjtubeamer@cover@partnumber{\CTEX@thepart}
 %    \end{macrocode}
-%  \end{macro}
-%  \begin{macro}{\sjtubeamer@cover@partname}
-%    Part name based on different languages and whether the \verb"ctexbeamer" class is loaded.
-%    If \verb"ctexbeamer" is loaded, you could modify the \verb"part/name" by \verb"\ctexset" after the theme is loaded.
+% \end{macro}
+% \begin{macro}{\sjtubeamer@cover@partname}
+% Part name based on different languages
+% and whether the \verb"ctexbeamer" class
+% is loaded.
+%
+% If \verb"ctexbeamer" is loaded, you could
+% modify the \verb"part/name" by \verb"\ctexset"
+% after the theme is loaded.
 %    \begin{macrocode}
     \def\sjtubeamer@cover@partname{\CTEX@partname}
 %    \end{macrocode}
-%  \end{macro}
-%  \begin{macro}{\sjtubeamer@cover@sectionnumber}
-%    Section number based on whether the \verb"ctexbeamer" class is loaded. 
-%    If \verb"ctexbeamer" is loaded, you could modify the \verb"section/number" by \verb"\ctexset" after the theme is loaded.
+% \end{macro}
+% \begin{macro}{\sjtubeamer@cover@sectionnumber}
+% Section number based on whether the
+% \verb"ctexbeamer" class is loaded.
+%
+% If \verb"ctexbeamer" is loaded, you could
+% modify the \verb"section/number" by
+% \verb"\ctexset" after the theme is loaded.
 %    \begin{macrocode}
     \def\sjtubeamer@cover@sectionnumber{\CTEX@thesection}
 %    \end{macrocode}
-%  \end{macro}
-%  \begin{macro}{\sjtubeamer@cover@sectionname}
-%    Section name based on different languages and whether the \verb"ctexbeamer" class is loaded.
-%    If \verb"ctexbeamer" is loaded, you could modify the \verb"section/name" by \verb"\ctexset" after the theme is loaded. 
-%    The default value for \verb"section/name" is modified to the full text description version instead of pure value version.
+% \end{macro}
+% \begin{macro}{\sjtubeamer@cover@sectionname}
+% Section name based on different languages
+% and whether the \verb"ctexbeamer" class
+% is loaded.
+%
+% If \verb"ctexbeamer" is loaded, you could
+% modify the \verb"section/name" by
+% \verb"\ctexset" after the theme is loaded.
+%
+% The default value for \verb"section/name"
+% is modified to the full text description
+% version instead of pure value version.
 %    \begin{macrocode}
     \ctexset{section/name={第~,~节}}
     \def\sjtubeamer@cover@sectionname{\CTEX@sectionname}
 %    \end{macrocode}
-%  \end{macro}
-%  \begin{macro}{\sjtubeamer@cover@subsectionnumber}
-%    Subsection number based on different languages and whether the \verb"ctexbeamer" class is loaded. 
-%    If \verb"ctexbeamer" is loaded, you could modify the \verb"subsection/number" by \verb"\ctexset" after the theme is loaded.
+% \end{macro}
+% \begin{macro}{\sjtubeamer@cover@subsectionnumber}
+% Subsection number based on different
+% languages and whether the \verb"ctexbeamer"
+% class is loaded. 
+%
+% If \verb"ctexbeamer" is loaded, you could
+% modify the \verb"subsection/number" by
+% \verb"\ctexset" after the theme is loaded.
 %    \begin{macrocode}
     \def\sjtubeamer@cover@subsectionnumber{\CTEX@thesubsection}
 %    \end{macrocode}
-%  \end{macro}
-%  \begin{macro}{\sjtubeamer@cover@subsectionname}
-%    Subsection name based on whether the \verb"ctexbeamer" class is loaded.
-%    If \verb"ctexbeamer" is loaded, you could modify the \verb"subsection/name" by \verb"\ctexset" after the theme is loaded.
-%    The default value for \verb"subsection/name" is modified to the full text description version instead of pure value version.
+% \end{macro}
+% \begin{macro}{\sjtubeamer@cover@subsectionname}
+% Subsection name based on whether the
+% \verb"ctexbeamer" class is loaded.
+%
+% If \verb"ctexbeamer" is loaded, you could
+% modify the \verb"subsection/name" by
+% \verb"\ctexset" after the theme is loaded.
+%
+% The default value for \verb"subsection/name"
+% is modified to the full text description
+% version instead of pure value version.
 %    \begin{macrocode}
     \ctexset{subsection/name={第~,~小节}}
     \def\sjtubeamer@cover@subsectionname{\CTEX@subsectionname}
 %    \end{macrocode}
-%  \end{macro}
+% \end{macro}
 %    \begin{macrocode}
   }{
 %    \end{macrocode}
-%    The branch here is prepared just in case that the \verb"beamer" is loaded and \verb"ctex" package is manually loaded, with \verb"zh" option turned on.
+% The branch here is prepared just in case that the \verb"beamer" is loaded
+% and \verb"ctex" package is manually loaded, with \verb"zh" option turned on.
 %    \begin{macrocode}
     \def\sjtubeamer@cover@partnumber{\insertromanpartnumber}
     \def\sjtubeamer@cover@partname{第~\sjtubeamer@cover@partnumber~部分}
@@ -570,11 +651,19 @@
 \fi
 %    \end{macrocode}
 %
-%  \subsubsection{Sectioning Page}
+% \subsubsection{Sectioning Page}
 %
-%  \begin{macro}{\definesecpage}
-%  Define the beamer template for \verb"part page", \verb"section page", \verb"subsection page" for cover style \verb"maxplus", \verb"max", \verb"min".
-%  Use a parent template \verb"sectioning page" for the different variantions on different sectype (\#1). \verb"sectioning page" for different cover (\#2) will be defined later.
+% \begin{macro}{\definesecpage}
+% Define the beamer template for
+% \verb"part page", \verb"section page",
+% \verb"subsection page" for cover style
+% \verb"maxplus", \verb"max", \verb"min".
+%
+% Use a parent template \verb"sectioning page"
+% for the different variantions on different
+% sectype (\#1).
+% \verb"sectioning page" for different cover
+% (\#2) will be defined later.
 %    \begin{macrocode}
 \def\definesecpage#1#2{
   % #1: sectype (part, section, subsection)
@@ -587,10 +676,11 @@
   }
 }
 %    \end{macrocode}
-%  A \verb"sectioning block" helper beamer template may also be introduced for the convinience of reuse the same basic block for subsectionpage.
-%  \end{macro}
+% A \verb"sectioning block" helper beamer template may also be introduced for
+% the convinience of reuse the same basic block for subsectionpage.
+% \end{macro}
 %
-%  \paragraph{maxplus.}
+% \paragraph{maxplus.}
 %    \begin{macrocode}
 %<*maxplus>
 \defbeamertemplate*{sectioning block}{maxplus}[1]
@@ -630,7 +720,8 @@
 % \verb"\hfuzz" is locally set to ignore the overfull box.
 % \verb"\hbadness" is set to a value bigger than infinity (10000) to ignore the underfull box.
 % \verb"\hskip" is set for the compensation from the macro \verb"\insertsectionnavigation".
-% The width of section navigation is set to a small value to force the text to ``flushleft'', but with the hyperlink area maintained.
+% The width of section navigation is set to a small value to force the text to ``flushleft'',
+% but with the hyperlink area maintained.
 %    \begin{macrocode}
         \hfuzz=100pt
         \hbadness=100000
@@ -640,7 +731,8 @@
     \fi
   \endgroup
 %    \end{macrocode}
-% Add additional vertical skip for the section page, to align with the subsection page on bottom gate picture.
+% Add additional vertical skip for the section page, to align with the subsection page
+% on bottom gate picture.
 %    \begin{macrocode}
   \if\EqualOption{cover}{sectype}{section}
     \vskip8.5ex
@@ -649,7 +741,8 @@
 }
 %    \end{macrocode}
 %
-%    Overide the default beamer template of \verb"part page", \verb"section page", \verb"subsection page" for cover style \verb"maxplus".
+% Overide the default beamer template of \verb"part page", \verb"section page",
+% \verb"subsection page" for cover style \verb"maxplus".
 %    \begin{macrocode}
 \definesecpage{part}{maxplus}
 \definesecpage{section}{maxplus}
@@ -658,12 +751,16 @@
 %    \end{macrocode}
 %
 %
-%  \paragraph{max.}
+% \paragraph{max.}
 %
-%  \begin{macro}{\ifbeamercolorwhite}
-%   A helper function like \verb"\ifbeamercolorempty" to check if the color is white (only the literal layer, without any expansion). Two mandantory parameters: 
-%   The first one indicates if it is fg or bg.
-%   The second one is the beamer color name.
+% \begin{macro}{\ifbeamercolorwhite}
+% A helper function like \verb"\ifbeamercolorempty"
+% to check if the color is white (only the
+% literal layer, without any expansion).
+%
+% Two mandantory parameters: 
+% The first one indicates if it is fg or bg.
+% The second one is the beamer color name.
 %    \begin{macrocode}
 \def\ifbeamercolorwhite#1#2{%
   % #1: fg or bg
@@ -678,10 +775,12 @@
   \fi%
 }
 %    \end{macrocode}
-%  COPYRIGHT NOTICE: This macro is modified from \verb"beamer" class under LPPL 1.3c license.
+% COPYRIGHT NOTICE: This macro is modified from \verb"beamer" class under LPPL 1.3c license.
 %
-%  For decoupling reason, without passing the lum option (dark or light) to make judgement on the primary color which is not white. This might be helpful if you do not want the color to get changed by the lum option.
-%  \end{macro}
+% For decoupling reason, without passing the lum option (dark or light) to make
+% judgement on the primary color which is not white.
+% This might be helpful if you do not want the color to get changed by the lum option.
+% \end{macro}
 %
 %    \begin{macrocode}
 %<*max>
@@ -715,7 +814,8 @@
 }
 %    \end{macrocode}
 %
-%    Overide the default beamer template of \verb"part page", \verb"section page", \verb"subsection page" for cover style \verb"max".
+% Overide the default beamer template of \verb"part page", \verb"section page",
+% \verb"subsection page" for cover style \verb"max".
 %    \begin{macrocode}
 \definesecpage{part}{max}
 \definesecpage{section}{max}
@@ -723,7 +823,7 @@
 %</max>
 %    \end{macrocode}
 %
-%  \paragraph{min.}
+% \paragraph{min.}
 %    \begin{macrocode}
 %<*min>
 \defbeamertemplate*{sectioning block}{min}[1]
@@ -748,8 +848,12 @@
       \par\vskip4pt
       \usebeamerfont{part title}\insertpart\par
 %    \end{macrocode}
-%   Since navigation bar is packaged, to modify the color, you have to change the \verb"section in head/foot" beamer color. Here, use a group to make the temporary change. 
-%   Instead of using \verb"\insertnavigation" macro, use \verb"\insertsectionnavigationhorizontal" macro for a better control of long navigation bar.
+% Since navigation bar is packaged, to modify the color, you have to change the
+% \verb"section in head/foot" beamer color.
+% Here, use a group to make the temporary change.
+%
+% Instead of using \verb"\insertnavigation" macro, use \verb"\insertsectionnavigationhorizontal"
+% macro for a better control of long navigation bar.
 %    \begin{macrocode}
       \hbox to \textwidth{
         {
@@ -776,7 +880,8 @@
 }
 %    \end{macrocode}
 %
-%    Overide the default beamer template of \verb"part page", \verb"section page", \verb"subsection page" for cover style \verb"min".
+% Overide the default beamer template of \verb"part page", \verb"section page",
+% \verb"subsection page" for cover style \verb"min".
 %    \begin{macrocode}
 \definesecpage{part}{min}
 \definesecpage{section}{min}
@@ -784,7 +889,7 @@
 %</min>
 %    \end{macrocode}
 %
-%  \paragraph{my.}
+% \paragraph{my.}
 %    \begin{macrocode}
 %<*my>
 \defbeamertemplate*{part page}{my}[1][]

@@ -33,73 +33,73 @@
 		"scope": "doctex,tex,latex",
 		"prefix": "\\bgcenterbox",
 		"body": "\\bgcenterbox{$1}",
-		"description": "Define a command to make a centered background box easily.\n"
+		"description": " Define a command to make a centered\n background box easily.\n"
 	},
 	"coverpage": {
 		"scope": "doctex,tex",
 		"prefix": "\\coverpage",
 		"body": "\\coverpage{$1}",
-		"description": "Common command for \\titlepage and \\bottompage, and more.\n"
+		"description": " Common command for \\titlepage and\n \\bottompage, and more.\n"
 	},
 	"definecover": {
 		"scope": "doctex,tex",
 		"prefix": "\\definecover",
 		"body": "\\definecover{$1}",
-		"description": "Command generator for \\maketitle and \\makebottom. Redefinition on \\beamer@writeslideentrty locally will remove the corresponding navigation dot for miniframe outer theme.\nThis command receives one parameter for the cover type like ``title'' or ``bottom''.\n"
+		"description": " Command generator for \\maketitle\n and \\makebottom.\n This command receives one parameter for\n the cover type like ``title'' or\n ``bottom''.\n"
 	},
 	"bibliolist": {
 		"scope": "doctex,tex,latex",
 		"prefix": "\n\\begin{bibliolist",
 		"body": "\n\\begin{bibliolist}{$1}\n\t$2\n\\end{bibliolist}\n",
-		"description": "Create a bibliography list manually with \\item patched for \\newblock. \nYou can just use \\item without \\newblock command, or you could use \\newblock with \\articleitem, \\bookitem, \\onlineitem.\nThe mandantory parameter (usually 00) indicates the widest label among items, if you want to indicate the item label seperately.\n"
+		"description": " Create a bibliography list manually with\n \\item patched for \\newblock. \n\n You can just use \\item without\n \\newblock command, or you could use\n \\newblock with \\articleitem,\n \\bookitem, \\onlineitem.\n\n The mandantory parameter (usually 00)\n indicates the widest label among items,\n if you want to indicate the item label\n seperately.\n"
 	},
 	"highlight": {
 		"scope": "doctex,tex,latex",
 		"prefix": "\\highlight",
 		"body": "\\highlight<$3>[${1:structure}]{$2}",
-		"description": "Highlight the given text. Create a structure color background block with white text.\nReceives one optional paramenter to specify the background color. If you want to modify the color of the text, use \\color{} command or \\textcolor{}{} command for your text.\nFor a general use and better control, use \\colorbox{}{} from xcolor directly.\nOverlay option can be specified as well.\n"
+		"description": " Highlight the given text.\n\n Create a structure color\n background block with white text.\n\n Receives one optional paramenter to\n specify the background color.\n If you want to modify the color of the\n text, use \\color{} command or\n \\textcolor{}{} command for your text.\n\n For a general use and better control,\n use \\colorbox{}{} from xcolor\n directly.\n\n Overlay option can be specified as well.\n"
 	},
 	"paragraph": {
 		"scope": "doctex,tex,latex",
 		"prefix": "\\paragraph",
 		"body": "\\paragraph{$1}",
-		"description": "Making a new paragraph through dark background color and white forground, which confirms the visual identity system on making use of vi shapes.\nSince beamer has deleted \\paragraph macro in this class, this template defines a macro for that to indicate it is another point and more paragraph-like. It is useful for the migration from article class.\nIf it is the end of paragraph, the trailing space will be removed by \\TeX{}. The additional newline after this command will be get an output rather than the original sectioning command.\n"
+		"description": " Making a new paragraph through dark\n background color and white forground,\n which confirms the visual identity\n system on making use of vi shapes.\n\n Since beamer has deleted \\paragraph\n macro in this class, this template\n defines a macro for that to indicate it\n is another point and more\n paragraph-like.\n\n It is useful for the migration from\n article class.\n If it is the end of paragraph, the\n trailing space will be removed by\n \\TeX{}.\n The additional newline after this\n command will get an output rather\n than the original sectioning command.\n"
 	},
 	"stampbox": {
 		"scope": "doctex,tex,latex",
 		"prefix": "\n\\begin{stampbox",
 		"body": "\n\\begin{stampbox}[${1:cprimary}]\n\t$2\n\\end{stampbox}\n",
-		"description": "Make a box with stampline border.\nThe optional paramter indicates the color of the border line.\n"
+		"description": " Make a box with stampline border.\n\n The optional paramter indicates the\n color of the border line.\n"
 	},
 	"stamphrule": {
 		"scope": "doctex,tex,latex",
 		"prefix": "\\stamphrule",
 		"body": "\\stamphrule[${1:cprimary}]",
-		"description": "Insert a stampline with the length textwidth.\nThe optional paramter indicates the color of the stampline.\n"
+		"description": " Insert a stampline with the length\n textwidth.\n \n The optional paramter indicates the\n color of the stampline.\n"
 	},
 	"stampblock": {
 		"scope": "doctex,tex,latex",
 		"prefix": "\n\\begin{stampblock",
 		"body": "\n\\begin{stampblock}<$3>[${1:}]{$2}\n\t$3\n\\end{stampblock}\n",
-		"description": "Create a block with title decorated by the stamp shape with incremental numbering.\nA mandantory parameter is needed for the title.\nAn optional parameter is for the customized numbering.\nOverlay could be specified. In this scenario, the optional parameter must be specified in case of the unexpected increment of the counter.\n"
+		"description": " Create a block with title decorated by\n the stamp shape with incremental\n numbering.\n\n A mandantory parameter is needed for\n the title.\n\n An optional parameter is for the\n customized numbering.\n\n Overlay could be specified.\n In this scenario, the optional parameter\n must be specified in case of the\n unexpected increment of the counter.\n"
 	},
 	"codeblock": {
 		"scope": "doctex,tex,latex",
 		"prefix": "\n\\begin{codeblock",
 		"body": "\n\\begin{codeblock}[${1:}]{$2}\n\t$3\n\\end{codeblock}\n",
-		"description": "Code block environment is made for presenting code in an obvious way.\nThe first optional parameter is passed to listing, which mostly sets the language to highlight, see the listings package for more details. \nThe second required parameter receives the title to make.\nADVANCED TIP: For longer typeset, use lstlisting environment directly and remove the frame environment around the code input for occupying cross the pages. No numbering is preset so you need to set the number manually for this basic command.\n"
+		"description": " Code block environment is made for\n presenting code in an obvious way.\n\n The first optional parameter is passed\n to listing, which mostly sets the\n language to highlight, see the\n listings package for more details.\n\n The second required parameter receives\n the title to make.\n\n ADVANCED TIP:\n For longer typeset, use lstlisting\n environment directly and remove the\n frame environment around the code\n input for occupying cross the pages.\n No numbering is preset so you need to\n set the number manually for this basic\n command.\n"
 	},
 	"highlightline": {
 		"scope": "doctex,tex,latex",
 		"prefix": "\\highlightline",
 		"body": "\\highlightline<$1>",
-		"description": "Highlight the current line with a light background. \nIt is useful for the codeblock environment with escapechar option to insert the command for highlighting. For example, set the optional argument escapechar=|, and insert |\\highlightline| at the first position in the line you want to highlight.\nYou could use overlay specification for this macro.\n"
+		"description": " Highlight the current line with a light\n background.\n \n It is useful for the codeblock environment\n with escapechar option to insert the\n command for highlighting.\n\n For example, set the optional argument\n escapechar=|, and insert\n |\\highlightline| at the first position\n in the line you want to highlight.\n\n You could use overlay specification\n for this macro.\n"
 	},
 	"codeblockinput": {
 		"scope": "doctex,tex,latex",
 		"prefix": "\\codeblockinput",
 		"body": "\\codeblockinput[${1:}]{$2}{$3}",
-		"description": "Code block environment for external file input. The same style like codeblock.\nThe first optional parameter is passed to listing.\nThe second required parameter receives the title to make.\nThe third required paramter receives the file to typeset.\nADVANCED TIP: For longer typeset, use lstinputlisting command directly and remove the frame environment around the code input for occupying cross the pages. No numbering is preset so you need to set the number manually for this basic command.\n"
+		"description": " Code block environment for external file\n input. The same style like codeblock.\n\n The first optional parameter is passed\n to listing.\n\n The second required parameter receives\n the title to make.\n\n The third required paramter receives the\n file to typeset.\n\n ADVANCED TIP:\n For longer typeset, use\n \\lstinputlisting\n command directly and remove the\n frame\n environment around the code input for\n occupying cross the pages.\n No numbering is preset so you need to\n set the number manually for this basic\n command.\n"
 	},
 	"sjtubeamer@outer@nav": {
 		"scope": "doctex,tex",
@@ -117,186 +117,186 @@
 		"scope": "doctex,tex",
 		"prefix": "\\sjtubeamer@cover",
 		"body": "\\sjtubeamer@cover",
-		"description": "This macro selects the cover theme.\n\\begin{description}\n\\item[maxplus] The titlegraphic will be a photo.\n\\item[max] The background will be the photo.\n\\item[min] The design will be minimalistic.\n\\item[my]Reserved interface for developers for customized title page and bottom page.\n\\end{description}\n\n$\\rightarrow$ The following will demostrates how to pass options between files.\n\n$\\rightarrow$ To set up an option, use \\DeclareOptionBeamer to let beamer theme receive such an option and store the value into a variable.\n\n$\\rightarrow$ To make the variable easy to follow and avoid duplicates, the naming system is as follows:\n\\begin{itemize}\n\\item Start with the project name sjtubeamer.\n\\item Split by @ symbol and move to the next level.\n\\item The final level should be the variable name itself.\n\\end{itemize}\n"
+		"description": " This macro selects the cover theme.\n maxplus\n   The titlegraphic will be a photo.\n max\n   The background will be the photo.\n min\n   The design will be minimalistic.\n my\n   Reserved interface for developers for\n   customized title page and bottom page.\n \\end{description}\n"
 	},
 	"sjtubeamer@color": {
 		"scope": "doctex,tex",
 		"prefix": "\\sjtubeamer@color",
 		"body": "\\sjtubeamer@color",
-		"description": "Choose the main color palette.\n\\begin{description}\n\\item[red] The red color palatte. sjtuRed*\n\\item[blue] The blue color palatte. sjtuBlue*\n\\end{description}\n\n"
+		"description": " Choose the main color palette.\n\n red. sjtuRed*\n blue sjtuBlue*\n"
 	},
 	"sjtubeamer@lum": {
 		"scope": "doctex,tex",
 		"prefix": "\\sjtubeamer@lum",
 		"body": "\\sjtubeamer@lum",
-		"description": "Decide whether it is in light mode or dark mode. Switch the lumination.\n"
+		"description": " Decide whether it is in light mode or\n dark mode. Switch the lumination.\n"
 	},
 	"sjtubeamer@lang": {
 		"scope": "doctex,tex",
 		"prefix": "\\sjtubeamer@lang",
 		"body": "\\sjtubeamer@lang",
-		"description": "Set the main language of this beamer. If the user is using ctexbeamer class, the default option will be Chinese. If the user use ctex package after using this theme, such an advanced user should specify the language to Chinese manually.\n\nTODO: may be a built in support for Chinese will be used in the future. Just taken \\RequirePackage[scheme=plain]{ctex} for basic Chinese character support.\n"
+		"description": " Set the main language of this beamer.\n\n If the user is using ctexbeamer\n class, the default option will be\n Chinese.\n\n If the user use ctex package after\n using this theme, such an advanced user\n should specify the language to Chinese\n manually.\n\n TODO:\n may be a built in support for Chinese\n will be used in the future. Just taken\n \\RequirePackage[scheme=plain]{ctex}\n for basic Chinese character support.\n"
 	},
 	"sjtubeamer@nav": {
 		"scope": "doctex,tex",
 		"prefix": "\\sjtubeamer@nav",
 		"body": "\\sjtubeamer@nav",
-		"description": "Choose the outer theme for this template.\n"
+		"description": " Choose the outer theme for this template.\n"
 	},
 	"sjtubeamer@logopos": {
 		"scope": "doctex,tex",
 		"prefix": "\\sjtubeamer@logopos",
 		"body": "\\sjtubeamer@logopos",
-		"description": "Choose the override outer logo position. No default option will get executed since it has already been executed by the selection of \\sjtubeamer@cover.\n"
+		"description": " Choose the override outer logo position.\n\n No default option will get executed\n since it has already been executed by\n the selection of \\sjtubeamer@cover.\n"
 	},
 	"usesjtutheme": {
 		"scope": "doctex,tex,latex",
 		"prefix": "\\usesjtutheme",
 		"body": "\\usesjtutheme{$1}",
-		"description": "You could load other contrib plugin by this command. Use comma-seperated list to load multiple sub-themes in one line. The \\getcontribpath is defined in sjtuvi package loaded in inner theme.\n\nYou could pass options to all the sub-themes by writing in the square brackets. Then, in your sub-theme, you could use \\if\\EqualOption{<themename>}{<option>}{true} to check the condition.\n\n"
+		"description": " You could load other contrib plugin by\n this command.\n Use comma-seperated list to load\n multiple sub-themes in one line.\n The \\getcontribpath is defined in\n sjtuvi package loaded in inner\n theme.\n\n You could pass options to all the\n sub-themes by writing in the square\n brackets.\n Then, in your sub-theme, you could use\n \\if\\EqualOption{<themename>}{<option>}{true}\n to check the condition.\n"
 	},
 	"bottomthanks": {
 		"scope": "doctex,tex,latex",
 		"prefix": "\\bottomthanks",
 		"body": "\\bottomthanks",
-		"description": "The \"Thank You\" caption in the bottom page. Redefine this command will change the bottom page caption.\n"
+		"description": " The \"Thank You\" caption in the bottom\n page. Redefine this command will change\n the bottom page caption.\n"
 	},
 	"sjtubeamer@cover@partnumber": {
 		"scope": "doctex,tex",
 		"prefix": "\\sjtubeamer@cover@partnumber",
 		"body": "\\sjtubeamer@cover@partnumber",
-		"description": "Part number based on different languages and whether the ctexbeamer class is loaded. \nIf ctexbeamer is loaded, you could modify the part/number by \\ctexset after the theme is loaded.\n"
+		"description": " Part number based on different languages\n and whether the ctexbeamer class\n is loaded.\n\n If ctexbeamer is loaded, you could\n modify the part/number by\n \\ctexset after the theme is loaded.\n"
 	},
 	"sjtubeamer@cover@partname": {
 		"scope": "doctex,tex",
 		"prefix": "\\sjtubeamer@cover@partname",
 		"body": "\\sjtubeamer@cover@partname",
-		"description": "Part name based on different languages and whether the ctexbeamer class is loaded.\nIf ctexbeamer is loaded, you could modify the part/name by \\ctexset after the theme is loaded.\n"
+		"description": " Part name based on different languages\n and whether the ctexbeamer class\n is loaded.\n\n If ctexbeamer is loaded, you could\n modify the part/name by \\ctexset\n after the theme is loaded.\n"
 	},
 	"sjtubeamer@cover@sectionnumber": {
 		"scope": "doctex,tex",
 		"prefix": "\\sjtubeamer@cover@sectionnumber",
 		"body": "\\sjtubeamer@cover@sectionnumber",
-		"description": "Section number based on whether the ctexbeamer class is loaded. \nIf ctexbeamer is loaded, you could modify the section/number by \\ctexset after the theme is loaded.\n"
+		"description": " Section number based on whether the\n ctexbeamer class is loaded.\n\n If ctexbeamer is loaded, you could\n modify the section/number by\n \\ctexset after the theme is loaded.\n"
 	},
 	"sjtubeamer@cover@sectionname": {
 		"scope": "doctex,tex",
 		"prefix": "\\sjtubeamer@cover@sectionname",
 		"body": "\\sjtubeamer@cover@sectionname",
-		"description": "Section name based on different languages and whether the ctexbeamer class is loaded.\nIf ctexbeamer is loaded, you could modify the section/name by \\ctexset after the theme is loaded. \nThe default value for section/name is modified to the full text description version instead of pure value version.\n"
+		"description": " Section name based on different languages\n and whether the ctexbeamer class\n is loaded.\n\n If ctexbeamer is loaded, you could\n modify the section/name by\n \\ctexset after the theme is loaded.\n\n The default value for section/name\n is modified to the full text description\n version instead of pure value version.\n"
 	},
 	"sjtubeamer@cover@subsectionnumber": {
 		"scope": "doctex,tex",
 		"prefix": "\\sjtubeamer@cover@subsectionnumber",
 		"body": "\\sjtubeamer@cover@subsectionnumber",
-		"description": "Subsection number based on different languages and whether the ctexbeamer class is loaded. \nIf ctexbeamer is loaded, you could modify the subsection/number by \\ctexset after the theme is loaded.\n"
+		"description": " Subsection number based on different\n languages and whether the ctexbeamer\n class is loaded. \n\n If ctexbeamer is loaded, you could\n modify the subsection/number by\n \\ctexset after the theme is loaded.\n"
 	},
 	"sjtubeamer@cover@subsectionname": {
 		"scope": "doctex,tex",
 		"prefix": "\\sjtubeamer@cover@subsectionname",
 		"body": "\\sjtubeamer@cover@subsectionname",
-		"description": "Subsection name based on whether the ctexbeamer class is loaded.\nIf ctexbeamer is loaded, you could modify the subsection/name by \\ctexset after the theme is loaded.\nThe default value for subsection/name is modified to the full text description version instead of pure value version.\n"
+		"description": " Subsection name based on whether the\n ctexbeamer class is loaded.\n\n If ctexbeamer is loaded, you could\n modify the subsection/name by\n \\ctexset after the theme is loaded.\n\n The default value for subsection/name\n is modified to the full text description\n version instead of pure value version.\n"
 	},
 	"definesecpage": {
 		"scope": "doctex,tex",
 		"prefix": "\\definesecpage",
 		"body": "\\definesecpage{$1}{$2}",
-		"description": "Define the beamer template for part page, section page, subsection page for cover style maxplus, max, min.\nUse a parent template sectioning page for the different variantions on different sectype (\\#1). sectioning page for different cover (\\#2) will be defined later.\n"
+		"description": " Define the beamer template for\n part page, section page,\n subsection page for cover style\n maxplus, max, min.\n\n Use a parent template sectioning page\n for the different variantions on different\n sectype (\\#1).\n sectioning page for different cover\n (\\#2) will be defined later.\n"
 	},
 	"ifbeamercolorwhite": {
 		"scope": "doctex,tex",
 		"prefix": "\\ifbeamercolorwhite",
 		"body": "\\ifbeamercolorwhite{$1}{$2}",
-		"description": "A helper function like \\ifbeamercolorempty to check if the color is white (only the literal layer, without any expansion). Two mandantory parameters: \nThe first one indicates if it is fg or bg.\nThe second one is the beamer color name.\n"
+		"description": " A helper function like \\ifbeamercolorempty\n to check if the color is white (only the\n literal layer, without any expansion).\n\n Two mandantory parameters: \n The first one indicates if it is fg or bg.\n The second one is the beamer color name.\n"
 	},
 	"ifsjtubeamer@tempif": {
 		"scope": "doctex,tex",
 		"prefix": "\\ifsjtubeamer@tempif",
 		"body": "\\ifsjtubeamer@tempif",
-		"description": "\\ifsjtubeamer@tempif is for customized condition tests --- \\EqualOption and \\IsEmpty.\n"
+		"description": " \\ifsjtubeamer@tempif is for\n customized condition tests ---\n \\EqualOption and \\IsEmpty.\n"
 	},
 	"sjtubeamer@tempbox": {
 		"scope": "doctex,tex",
 		"prefix": "\\sjtubeamer@tempbox",
 		"body": "\\sjtubeamer@tempbox",
-		"description": "\\sjtubeamer@tempbox is for \\IsEmpty to detect the width of the paramter.\n"
+		"description": " \\sjtubeamer@tempbox is for\n \\IsEmpty to detect the width of\n the paramter.\n"
 	},
 	"sjtubeamer@h": {
 		"scope": "doctex,tex",
 		"prefix": "\\sjtubeamer@h",
 		"body": "\\sjtubeamer@h",
-		"description": "\\sjtubeamer@h is for \\stamptext to measure the height of the parameter.\n"
+		"description": " \\sjtubeamer@h is for\n \\stamptext to measure the height\n of the parameter.\n"
 	},
 	"DefineOption": {
 		"scope": "doctex,tex",
 		"prefix": "\\DefineOption",
 		"body": "\\DefineOption{$1}{$2}{$3}",
-		"description": "Define the beamer option on the corresponding package, key and value.\n"
+		"description": " Define the beamer option on the\n corresponding package, key and value.\n"
 	},
 	"EqualOption": {
 		"scope": "doctex,tex",
 		"prefix": "\\EqualOption",
 		"body": "\\EqualOption",
-		"description": "To check if the option on package, key is equal to value.\n\\if\\EqualOption{<package>}{<key>}{<value>}<action>\\fi\n"
+		"description": " To check if the option on package,\n key is equal to value.\n\n \\if\\EqualOption{<package>}{<key>}{<value>}<action>\\fi\n"
 	},
 	"IsEmpty": {
 		"scope": "doctex,tex",
 		"prefix": "\\IsEmpty",
 		"body": "\\IsEmpty",
-		"description": "To check the expanded parameter is empty based on the box width. \\\\ will be treated as empty.\n\\if\\IsEmpty{<test>}<action>\\fi\n"
+		"description": " To check the expanded parameter is empty\n based on the box width. \\\\ will be\n treated as empty.\n\n \\if\\IsEmpty{<test>}<action>\\fi\n"
 	},
 	"getcontribdir": {
 		"scope": "doctex,tex,latex",
 		"prefix": "\\getcontribdir",
 		"body": "\\getcontribdir{$1}",
-		"description": "Get the contrib directory for #1 sub-theme.\ncontrib/#1 is returned.\n"
+		"description": " Get the contrib directory for #1\n sub-theme.\n contrib/#1 is returned.\n"
 	},
 	"getcontribpath": {
 		"scope": "doctex,tex,latex",
 		"prefix": "\\getcontribpath",
 		"body": "\\getcontribpath{$1}{$2}",
-		"description": "Get the contrib directory filepath for #1 sub-theme and #2 filename.\ncontrib/#1/#2 is returned.\n"
+		"description": " Get the contrib directory filepath for\n #1 sub-theme and #2 filename.\n contrib/#1/#2 is returned.\n"
 	},
 	"definelogo": {
 		"scope": "doctex,tex,latex",
 		"prefix": "\\definelogo",
 		"body": "\\definelogo[${1:vi}]{$2}{$3}{$4}",
-		"description": "Define a mask picture to make its different color variants.\nThe first argument assigns the file name and the second sets the horizontal cropping and the third sets the vertical cropping. Notice that the cropping is symmetrical (double the length). When the horizontal cropping is greater than the vertical cropping, the mask will be placed by its height, otherwise by its width. The domain for both cropping parameters is 0 to 1.\nYou should define a logo \\definelogo{mylogo}{<hc>}{<vc>} then use it in the contents like:\n\\mylogo[white], where the optional parameter could be the override color beyond the control of main logo color system or opacity=... to identify the opacity you want or any other parameter for a TikZ node.\nRemember, the picture should be in the vi/ folder by default. If you want to use some other file in other folder, add an optional paramter like \\definelogo[folder]{file}{0}{0} will get the folder/file.\nThe externalization will be disabled when using this system to generate logos, locally.\n"
+		"description": " Define a mask picture to make its\n different color variants.\n\n The first argument assigns the file name\n and the second sets the horizontal\n cropping and the third sets the vertical\n cropping. Notice that the cropping is\n symmetrical (double the length).\n When the horizontal cropping is greater\n than the vertical cropping, the mask\n will be placed by its height, otherwise\n by its width.\n The domain for both cropping\n parameters is 0 to 1.\n\n You should define a logo\n \\definelogo{mylogo}{<hc>}{<vc>}\n then use it in the contents like:\n \\mylogo[white],\n where the optional parameter could be\n the override color beyond the control of\n main logo color system or\n opacity=...\n to identify the opacity you want or any\n other parameter for a TikZ node.\n\n Remember, the picture should be in the\n vi/ folder by default. If you want to\n use some other file in other folder,\n add an optional paramter like\n \\definelogo[folder]{file}{0}{0}\n will get the folder/file.\n\n The externalization will be disabled\n when using this system to generate\n logos, locally.\n"
 	},
 	"secondaryinstlogo": {
 		"scope": "doctex,tex,latex",
 		"prefix": "\\secondaryinstlogo",
 		"body": "\\secondaryinstlogo[${1:}]{$2}{$3}",
-		"description": "Logo with secondary institute.\nThe first optional parameter is typically the English name for your institute. If it exists (Chinese style), will be typesetted below the main name. THERE SHOULD BE NO \\\\.\nThe second mandantory parameter is the main name for your institute. when the optional paramter is empty (English style), YOU COULD USE \\\\ as linebreaks.\nThe third parameter is the logo on the left side, you could leave it as empty but it is mandantory.\nWhen it is in English style (no optional parameter), you could use a secondary logo picture as your institute, but remember to resize the height to 0.95cm.\n"
+		"description": " Logo with secondary institute.\n\n The first optional parameter is\n typically the English name for your\n institute.\n If it exists (Chinese style), will be\n typesetted below the main name.\n THERE SHOULD BE NO \\\\.\n\n The second mandantory parameter is the\n main name for your institute.\n When the optional paramter is empty\n (English style),\n YOU COULD USE \\\\ as linebreaks.\n\n The third parameter is the logo on the\n left side, you could leave it as empty\n but it is mandantory.\n\n When it is in English style\n (no optional parameter),\n you could use a secondary logo picture\n as your institute, but remember to\n resize the height to 0.95cm.\n"
 	},
 	"stamptext": {
 		"scope": "doctex,tex,latex",
 		"prefix": "\\stamptext",
 		"body": "\\stamptext[${1:structure}]{$2}",
-		"description": "Use one Chinese character or at most two English characters for the text argument.\nMake a stamp unit surround the text. Similar to \\highlight command in inner theme with limitations on number of characters.\nUse an optional argument to set the background color, default is structure or sjtuRedPrimary.\n"
+		"description": " Use one Chinese character or at most two\n English characters for the text\n argument.\n\n Make a stamp unit surround the text.\n Similar to \\highlight command in\n inner theme with limitations on number\n of characters.\n \n Use an optional argument to set the\n background color, default is\n structure or sjtuRedPrimary.\n"
 	},
 	"sjtubeamer@compatible": {
 		"scope": "doctex,tex",
 		"prefix": "\\sjtubeamer@compatible",
 		"body": "\\sjtubeamer@compatible",
-		"description": ""
+		"description": " For \\TeX Live 2018 and even older,\n it is \\emph{not} compatible to use the\n patterns.meta library for making\n user-defined patterns.\n And fading is not available for caching.\n Please consider\n"
 	},
 	"stamp": {
 		"scope": "doctex,tex,latex",
 		"prefix": "stamp",
 		"body": "stamp",
-		"description": "Make a stamp array. Use option [pattern={stamp[size=8pt,xshift=4pt,yshift=4pt]}] on TikZ fill element.\n"
+		"description": "	Make a stamp array.\n\n Use option\n [pattern={stamp[size=8pt,xshift=4pt,yshift=4pt]}]\n on TikZ fill element.\n"
 	},
 	"stamparray": {
 		"scope": "doctex,tex,latex",
 		"prefix": "\\stamparray",
 		"body": "\\stamparray{$1}{$2}{$3}",
-		"description": " Create the stamp array in the TikZ environment.\n The first element is the pattern size.\n The second element is the starting point. Formatted in (0,0).\n The third element is the ending point. Formatted in (0,0).\n"
+		"description": " Create the stamp array in the TikZ\n environment.\n\n The first parameter is the pattern size.\n\n The second parameter is the starting\n point. Formatted in (0,0).\n\n The third parameter is the ending point.\n Formatted in (0,0).\n"
 	},
 	"stampline": {
 		"scope": "doctex,tex,latex",
 		"prefix": "stampline",
 		"body": "stampline",
-		"description": "A decoration to make a loop stampline. Use option to draw the stampline onTikZ draw element [decoration=stampline, segment length=1cm, decorate].\n"
+		"description": " A decoration to make a loop stampline.\n\n Use option to draw the stampline on TikZ\n draw element\n [decoration=stampline, segment length=1cm, decorate].\n"
 	},
 }
