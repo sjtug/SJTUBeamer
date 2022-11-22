@@ -22,7 +22,7 @@ else
 end
 
 typesetopts      = "-interaction=nonstopmode -shell-escape"
-typesetfiles     = {"sjtubeamerdevguide.tex","sjtubeamer.tex","quickstart.tex"}
+typesetfiles     = {"sjtubeamerdevguide.tex","sjtubeamer.tex","sjtubeamerquickstart.tex"}
 typesetsuppfiles = {"sjtug.pdf","sjtug_text.pdf","tutorial/"}
 
 -- Regression tests mainly test the decoupling properties between kernel modules.
