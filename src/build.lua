@@ -50,12 +50,9 @@ function update_tag(file,content,tagname,tagdate)
         math.tointeger(year - 2) .. "-" .. year)
     end
     local now = os.date("%Y/%m/%d")
-    if string.match(file,"%.dtx$") then
-        content = string.gsub(content,
-            "\n\\Provides" .. "([^%[]+)%[" .. iso .. " v%d+%.%d+%.%d+ ([^%]]+)]",
-            "\n\\Provides%1[" .. now .. " " .. tagname .. " %2]")
-        return content
-    end
+    content = string.gsub(content,
+        "\\Provides" .. "([^%[]+)%[" .. iso .. " v%d+%.%d+%.%d+ ([^%]]+)]",
+        "\\Provides%1[" .. now .. " " .. tagname .. " %2]")
     return content
 end
 
