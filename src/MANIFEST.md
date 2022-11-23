@@ -184,7 +184,7 @@ All files included in the `sjtubeamer/tex` directory. This directory contains al
 All files included in the `sjtubeamer/doc` directory.
 
 * MANIFEST.md 
-* dev.bib 
+* ref.bib 
 * sjtubeamer.pdf 
 * sjtubeamer.tex 
 * sjtubeamerdevguide.pdf 
@@ -207,7 +207,7 @@ The following group lists the files included in the CTAN package.
 * beamerouterthemesjtubeamer.dtx 
 * beamerthemesjtubeamer.dtx 
 * beamerthemesjtubeamer.ins 
-* dev.bib 
+* ref.bib 
 * sjtubeamer.pdf 
 * sjtubeamer.tex 
 * sjtubeamerdevguide.pdf 
