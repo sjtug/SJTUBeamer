@@ -10,7 +10,7 @@ The following groups list the files included in the development repository of th
 Files listed with a ‘†’ marker are included in the TDS but not CTAN files, and files listed
 with ‘‡’ are included in both.
 
-> **Minimal workset**: All files in **Derived files** and **Graphic Resources**.
+> **Minimal workset**: All files in **Derived files** and **Graphic resources**.
 Or directly use files in **TeX files (TDS)**.
 
 ### Source files
@@ -53,7 +53,7 @@ These files are typeset using LaTeX to produce the PDF documentation for the pac
 * sjtucover.sty †
 * sjtuvi.sty †
 
-### Graphics Resources
+### Graphics resources
 
 **Installation (2/2)** These files are in `vi/` directory ‡. To provide the basic
 graphics resources for creating presentations.
@@ -98,7 +98,7 @@ different engines (pdfTeX, XeTeX, LuaTeX, etc.).
 ### Tutorial files
 
 **Unit Tests**
-Files included to demonstrate package functionality, and the demo files for the user guide.
+Files included to demonstrate package functionality. And they are also the demo files for the user guide.
 These files will be typesetted first before typesetting the documentation source files.
 They could be cached in the next round by `l3build cache-demo`.
 The cache could be cleaned by `l3build clean-demo`.
