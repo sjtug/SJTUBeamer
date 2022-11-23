@@ -156,6 +156,7 @@ int main(){
 
 ## 使用反馈与贡献代码 👷
 
+* 文件清单详见 [MANIFEST](src/MANIFEST.md)。
 * 您可以通过 GitHub Issue 反馈使用时碰到的问题。同时，也欢迎您提交 PR 帮助我们改进。
 * 所有对模版的修改应该在 `.dtx` 文件中进行，而后用 l3build 生成 sty 文件。
 * 您可以阅读发布页面中的《SJTUBeamer 开发指南》`sjtubeamerdevguide.pdf` 了解模版的实现细节与编译方法。

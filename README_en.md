@@ -151,6 +151,7 @@ Please use Chrome browser or Adobe Acrobat to open user guide, otherwise there c
 
 ## Feedback & Contribution 👷
 
+* You could get the repository manifest in [MANIFEST](src/MANIFEST.md).
 * Feel free to file an issue with GitHub Issues. At the same time, PRs are always welcomed.
 * The source code should be modified in `.dtx` files. Then use l3build to generate sty files.
 * You could get more implementation details in `sjtubeamerdevguide.pdf`.
