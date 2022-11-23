@@ -7,6 +7,7 @@ l3build ctan
 l3build cache-demo # cache demos for making the next ctan process faster
 l3build manifest
 l3build ctan
+l3build clean-demo # for a clean restart
 
 cd ..
 .github/ci/copy_resources.sh

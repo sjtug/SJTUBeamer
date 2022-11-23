@@ -45,7 +45,7 @@ build-cover: prepare
 
 # Build sjtubeamer package
 build-dev: prepare
-	cd src && l3build ctan
+	.github/ci/build_package.sh
 
 # Build `main.tex` with multiple test variants
 build-test-variants: prepare
