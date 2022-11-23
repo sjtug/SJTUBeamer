@@ -27,6 +27,8 @@ Current document `main.tex` is an example documentation of *How to Use LaTeX to 
 %   miniframes infolines  sidebar
 %   default    smoothbars split	 
 %   shadow     tree       smoothtree
+% use topright/bottomright to change the position of the logo.
+% use comma seperated list to use multiple options at the same time.
 
 % \tikzexternalize[prefix=build/]
 % To cache the tikz picture, please uncomment the previous line.
@@ -34,7 +36,7 @@ Current document `main.tex` is an example documentation of *How to Use LaTeX to 
 \usepackage{biblatex}
 \addbibresource{thesis.bib}
 
-\institute[SJTUG]{Shanghai Jiao Tong University *nix User Group}
+\institute{Linux User Group}
 
 \title{SJTUBeamer}
 \subtitle{A Beamer Template}
@@ -103,7 +105,7 @@ int main(){
 
 \part{Bibliography}
 \begin{frame}[allowframebreaks]
-  \printbibliography
+  \printbibliography[heading=none]
 \end{frame}
 
 \makebottom       % create the bottom page
@@ -132,9 +134,10 @@ Edit `main.tex` and start to use.
   * Run `latexmk -xelatex main.tex` to compile
   * VSCode LaTeX Workshop: use “Recipe: latexmk (latexmkrc)” to compile
 
-The current stable version is v2.9.0。You could visit [the release page](https://github.com/sjtug/SJTUBeamer/releases) for the changelog and more details. Generally speaking, a release of SJTUBeamer has the following content:
+The current stable version is v3.0.0。You could visit [the release page](https://github.com/sjtug/SJTUBeamer/releases) for the changelog and more details. Generally speaking, a release of SJTUBeamer has the following content:
 
-* `sjtubeamer.pdf`: SJTUBeamer User Guide。**HIGHLY RECOMMENDED TO READ BEFORE YOU START👍👍👍**
+* `sjtubeamerquickstart.pdf`：SJTUBeamer Quick Start.
+* `sjtubeamer.pdf`: SJTUBeamer User Guide.
 * `sjtubeamerdevguide.pdf`: SJTUBeamer Development Guide.
 * `sjtulib-talk-max-red.pdf`: `max,red` version of `main.tex`.
 * `sjtulib-talk-maxplus-blue.pdf`: `maxplus,blue` version of `main.tex`.
@@ -148,6 +151,7 @@ Please use Chrome browser or Adobe Acrobat to open user guide, otherwise there c
 
 ## Feedback & Contribution 👷
 
+* You could get the repository manifest in [MANIFEST](src/MANIFEST.md).
 * Feel free to file an issue with GitHub Issues. At the same time, PRs are always welcomed.
 * The source code should be modified in `.dtx` files. Then use l3build to generate sty files.
 * You could get more implementation details in `sjtubeamerdevguide.pdf`.

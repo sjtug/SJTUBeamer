@@ -53,9 +53,11 @@
     \item 命令行
 
           \begin{itemize}
-            \item \verb|pdflatex|/\verb|xelatex|/\verb|lualatex| + \verb|<文件名>[.tex]|
+            \item \verb|pdflatex|/\verb|xelatex|/
+                  \verb|lualatex| + \verb|<文件名>[.tex]|
             \item 多次编译：每次均需要读取并处理中间文件
-            \item 推荐 \pkg{latexmk}\footnote{\MiKTeX 用户需要自行安装 perl 解释器}：运行 \verb|latexmk [<选项>] <文件名>| 即可自动完成所有工作
+            \item 推荐 \pkg{latexmk}\footnote{\MiKTeX 用户需要自行安装 perl 解释器}：运行
+                  \verb|latexmk [<选项>] <文件名>| 即可自动完成所有工作
           \end{itemize}
 
     \item 编辑器
@@ -67,7 +69,6 @@
           \end{itemize}
   \end{itemize}
 \end{frame}
-
 
 \begin{frame}[fragile]{文件结构}
   \lstset{language=[LaTeX]TeX}
@@ -93,7 +94,8 @@
                   \verb|{\songti 中国人民解放军}| ~$\Rightarrow$ {\songti 中国人民解放军}
             \item \verb|\命令[可选参数]{必选参数}|\\
                   \verb|\section[精简标题]{这个题目实在太长了放到目录里面不太好看}|\\
-                  $\Rightarrow$ {\heiti 1.1 \hspace{1em} \songti 这个题目实在太长了放到目录里面不太好看}
+                  $\Rightarrow$ {\heiti 1.1 \hspace{1em} \songti
+                      这个题目实在太长了放到目录里面不太好看}
           \end{itemize}
     \item 环境
           \begin{columns}[c]
@@ -102,7 +104,7 @@
 \begin{equation*}
   a^2-b^2=(a+b)(a-b)
 \end{equation*}
-\end{lstlisting}
+              \end{lstlisting}
             \end{column}\hspace{1em}
             \begin{column}{0.45\textwidth}
               $ a^2-b^2=(a+b)(a-b)$
@@ -116,14 +118,19 @@
     \centering
     \footnotesize
     \begin{tabular}{llll}
-      \cmd{chapter}   & \cmd{section} & \cmd{subsection} & \cmd{paragraph}       \\
-      章              & 节            & 小节             & 带题头段落            \\\hline
-      \cmd{centering} & \cmd{emph}    & \cmd{verb}       & \cmd{url}             \\
-      居中对齐        & 强调          & 原样输出         & 超链接                \\\hline
-      \cmd{footnote}  & \cmd{item}    & \cmd{caption}    & \cmd{includegraphics} \\
-      脚注            & 列表条目      & 标题             & 插入图片              \\\hline
-      \cmd{label}     & \cmd{cite}    & \cmd{ref}                                \\
-      标号            & 引用参考文献  & 引用图表公式等                           \\\hline
+      \cmd{chapter}   & \cmd{section} & \cmd{subsection} & \cmd{paragraph}
+      \\
+      章               & 节             & 小节               & 带题头段落
+      \\\hline
+      \cmd{centering} & \cmd{emph}    & \cmd{verb}       & \cmd{url}
+      \\
+      居中对齐            & 强调            & 原样输出             & 超链接             \\\hline
+      \cmd{footnote}  & \cmd{item}    & \cmd{caption}    &
+      \cmd{includegraphics}                                                \\
+      脚注              & 列表条目          & 标题               & 插入图片            \\\hline
+      \cmd{label}     & \cmd{cite}    & \cmd{ref}
+      \\
+      标号              & 引用参考文献        & 引用图表公式等                            \\\hline
     \end{tabular}
   \end{block}
 \end{frame}
@@ -133,9 +140,9 @@
     \footnotesize
     \begin{tabular}{lll}
       \env{table}   & \env{figure}    & \env{equation}    \\
-      表格          & 图片            & 公式              \\\hline
+      表格            & 图片              & 公式                \\\hline
       \env{itemize} & \env{enumerate} & \env{description} \\
-      无编号列表    & 编号列表        & 描述              \\\hline
+      无编号列表         & 编号列表            & 描述                \\\hline
     \end{tabular}
   \end{block}
 \end{frame}
@@ -231,7 +238,8 @@ V = \frac{4}{3}\pi r^3
     \item 数学排版需要进入数学模式，引用 \texttt{amsmath} 宏包
           \begin{itemize}
             \item 用单个美元符号(\verb|$|) 包围起来的内容是 {\bf 行内公式}
-            \item 用两个美元符号(\verb|$$|) （不推荐）或 \verb|\[ \]| 包围起来的是 {\bf 单行公式} 或 {\bf 行间公式}
+            \item 用两个美元符号(\verb|$$|) （不推荐）或
+                  \verb|\[ \]| 包围起来的是 {\bf 单行公式} 或 {\bf 行间公式}
             \item 使用数学环境，例如 \texttt{equation} 环境内的公式会自动加上编号，
                   \texttt{align} 环境用于多行公式（例如方程组、多个并列条件等）
           \end{itemize}
@@ -320,7 +328,6 @@ V = \frac{4}{3}\pi r^3
 
 \end{frame}
 
-
 \begin{frame}[fragile]{列表与枚举}
   \begin{columns}
     \begin{column}{.6\textwidth}
@@ -360,7 +367,6 @@ V = \frac{4}{3}\pi r^3
   \end{columns}
 
 \end{frame}
-
 
 \begin{frame}[fragile]{交叉引用与插入插图}
   \begin{itemize}
@@ -415,8 +421,8 @@ V = \frac{4}{3}\pi r^3
     {\small 表~1. 编号与含义}\\[2pt]
     \begin{tabular}{cl}\toprule
       编号 & 含义 \\\midrule
-      1    & 第一 \\
-      2    & 第二 \\\bottomrule
+      1  & 第一 \\
+      2  & 第二 \\\bottomrule
     \end{tabular}\\[5pt]
 
     \normalsize 公式~(\ref{eq:vsphere})编号与含义请参见表~1。
@@ -425,14 +431,18 @@ V = \frac{4}{3}\pi r^3
 
 \begin{frame}[fragile]{浮动体}
   \begin{itemize}
-    \item 初学者最“捉摸不透”的特性之一 \link{https://liam.page/2017/03/11/floats-in-LaTeX-basic}
+    \item 初学者最“捉摸不透”的特性之一
+          \link{https://liam.page/2017/03/11/floats-in-LaTeX-basic}
     \item 图片和表格有时会很大，在插入的位置不一定放得下，因此需要浮动调整
     \item 避免在文中使用「下图」「上图」的说法，而是使用图表的编号，例如 \verb|图~\ref{fig:fig1}| 。
     \item \verb|\begin{figure}[<位置>] 图片 \end{figure}|
           \begin{itemize}
             \item 位置参数指定浮动体摆放的偏好
-            \item \verb|h| 当前位置(here), \verb|t| 顶部(top), \verb|b| 底部(bottom), \verb|p| 单独成页(p)
-            \item \verb|!h| 表示忽略一些限制，\verb|H| 表示强制\alert{（强烈不建议，除非你知道自己在做什么）}
+            \item \verb|h| 当前位置(here), \verb|t|
+                  顶部(top), \verb|b| 底部(bottom),
+                  \verb|p| 单独成页(p)
+            \item \verb|!h| 表示忽略一些限制，\verb|H|
+                  表示强制\alert{（强烈不建议，除非你知道自己在做什么）}
           \end{itemize}
     \item 温馨提示：图标题一般在下方，表标题一般在上方
   \end{itemize}
@@ -447,7 +457,8 @@ V = \frac{4}{3}\pi r^3
             \item Mathematica、MATLAB
             \item PowerPoint、Visio、Adobe Illustrator、Inkscape
             \item Python \pkg{Matplotlib} 库、\texttt{Plots.jl}、R、Plotly 等
-            \item draw.io \link{https://draw.io/}、ProcessOn \link{https://www.processon.com/} 等在线绘图网站
+            \item draw.io \link{https://draw.io/}、ProcessOn \link{https://www.processon.com/}
+                  等在线绘图网站
           \end{itemize}
 
     \item \TeX{} 内联
@@ -476,7 +487,8 @@ V = \frac{4}{3}\pi r^3
   \begin{itemize}
     \item 使用 \pkg{booktabs}、\pkg{longtables}、\pkg{multirow} 等宏包
     \item 手动绘制表格确实比较令人头疼，且较难维护
-    \item 推荐使用在线工具绘制后导出代码：\LaTeX{} Table Generator \link{https://www.tablesgenerator.com/latex_tables}
+    \item 推荐使用在线工具绘制后导出代码：\LaTeX{} Table Generator
+          \link{https://www.tablesgenerator.com/latex_tables}
   \end{itemize}
 \end{frame}
 

@@ -29,6 +29,8 @@ SJTUBeamer 是上海交通大学的非官方 Beamer 模版。您可以使用 SJT
 %   miniframes infolines  sidebar 
 %   default    smoothbars split	 
 %   shadow     tree       smoothtree
+% 使用 topright/bottomright 切换徽标位置
+% 使用逗号分隔列表以同时使用多种选项
 
 % \tikzexternalize[prefix=build/]
 % 如果您需要缓存 tikz 图像，请取消注释上一行，并在编译选项中添加 -shell-escape。
@@ -36,7 +38,7 @@ SJTUBeamer 是上海交通大学的非官方 Beamer 模版。您可以使用 SJT
 \usepackage[backend=biber,style=gb7714-2015]{biblatex}
 \addbibresource{thesis.bib}
 
-\institute[SJTUG]{上海交通大学 Linux 用户组} % 组织
+\institute[Linux User Group]{Linux 用户组} % 组织
 
 \title{SJTUBeamer 幻灯片模板}         % 标题
 \subtitle{SJTUBeamer Template}       % 副标题
@@ -108,7 +110,7 @@ int main(){
 
 \part{参考文献}
 \begin{frame}[allowframebreaks]
-  \printbibliography[title=参考文献]
+  \printbibliography[heading=none]
 \end{frame}
 
 \makebottom       % 创建结束页
@@ -137,8 +139,9 @@ int main(){
   * 之后通过 `latexmk -xelatex main.tex` 命令进行编译即可。
   * VSCode 用户可以使用 LaTeX Workshop 中的 “Recipe: latexmk (latexmkrc)” 进行编译。
 
-目前模版最新的稳定版是 v2.9.0。您可以在 [发布页](https://github.com/sjtug/SJTUBeamer/releases) 查看修改日志和更多资料。通常来说，SJTUBeamer 的一个稳定版本包括如下内容：
+目前模版最新的稳定版是 v3.0.0。您可以在 [发布页](https://github.com/sjtug/SJTUBeamer/releases) 查看修改日志和更多资料。通常来说，SJTUBeamer 的一个稳定版本包括如下内容：
 
+* `sjtubeamerquickguide.pdf`：SJTUBeamer 快速入门。
 * `sjtubeamer.pdf`: **强烈推荐在使用前阅读一遍 👍👍👍** SJTUBeamer 用户文档。
 * `sjtubeamerdevguide.pdf`: SJTUBeamer 开发指南。
 * `sjtulib-talk-max-red.pdf`: 示例文档《如何使用 LaTeX 排版论文》的 `max,red` 主题版本。
@@ -149,10 +152,11 @@ int main(){
 * `sjtubeamer-ctan.zip`: 包含所有文档和样式的压缩包。
 * SJTUBeamer 源代码。
 
-请使用 Chrome 浏览器或 Adobe Acrobat 打开 SJTUBeamer 用户文档，以避免 pdf 兼容性导致的显示问题。
+请使用 Chrome 浏览器或 Adobe Acrobat 打开 SJTUBeamer 用户文档，以避免 PDF 兼容性导致的显示问题。
 
 ## 使用反馈与贡献代码 👷
 
+* 文件清单详见 [MANIFEST](src/MANIFEST.md)。
 * 您可以通过 GitHub Issue 反馈使用时碰到的问题。同时，也欢迎您提交 PR 帮助我们改进。
 * 所有对模版的修改应该在 `.dtx` 文件中进行，而后用 l3build 生成 sty 文件。
 * 您可以阅读发布页面中的《SJTUBeamer 开发指南》`sjtubeamerdevguide.pdf` 了解模版的实现细节与编译方法。

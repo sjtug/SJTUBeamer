@@ -16,7 +16,7 @@
 % \iffalse
 %<*package>
 \NeedsTeXFormat{LaTeX2e}
-\ProvidesPackage{beamerouterthemesjtubeamer}[2022/10/19 v2.9.9 sjtubeamer outer theme]
+\ProvidesPackage{beamerouterthemesjtubeamer}[2022/11/23 v3.0.0 sjtubeamer outer theme]
 %</package>
 % \fi
 % \CheckSum{0}
@@ -27,16 +27,16 @@
 %
 % \subsection{Outer Theme}
 %
-% A |beamer| outer theme dictates the style of the frame elements traditionally
+% A \verb"beamer" outer theme dictates the style of the frame elements traditionally
 % set outside the body of each slide: the head, footline, and frame title.
 %
-%   Load SJTU VI Library to get the definition on color and shape.
+% Load SJTU VI Library to get the definition on color and shape.
 %    \begin{macrocode}
 \RequirePackage{sjtuvi}
 %    \end{macrocode}
 %
 %
-%  \begin{macro}{\sjtubeamer@outer@nav}
+% \begin{macro}{\sjtubeamer@outer@nav}
 %    \begin{macrocode}
 \DefineOption{outer}{nav}{miniframes}
 \DefineOption{outer}{nav}{infolines}
@@ -49,7 +49,7 @@
 \DefineOption{outer}{nav}{smoothtree}
 \ExecuteOptionsBeamer{miniframes}
 %    \end{macrocode}
-%  \end{macro}
+% \end{macro}
 %
 % \begin{macro}{\sjtubeamer@outer@logopos}
 %    \begin{macrocode}
@@ -71,11 +71,17 @@
 % \subsubsection{Frame Title}\label{sec:frametitle}
 %
 %
-%   Define the beamer template \verb"frametitle" to add a logo in the right of the frametitle (top right corner) for \verb"topright" option. If it is not \verb"topright" option, then the default \verb"frametitle" template is used.
+% Define the beamer template \verb"frametitle" to add a logo in the right of the
+% frametitle (top right corner) for \verb"topright" option.
+% If it is not \verb"topright" option, then the default \verb"frametitle" template is used.
 %
-%   \verb"smoothbars", \verb"smoothtree" and \verb"shadow" theme use a different frame title insertion mechanism in \verb"beamer" class so that the redefinition on \verb"frametitle" should be done just after the document starts. This overwrites the original definition of those outer theme and may cause a certain degree of style lost.
+% \verb"smoothbars", \verb"smoothtree" and \verb"shadow" theme use a different
+% frame title insertion mechanism in \verb"beamer" class so that the redefinition
+% on \verb"frametitle" should be done just after the document starts.
+% This overwrites the original definition of those outer theme and may cause a
+% certain degree of style lost.
 %
-%  COPYRIGHT NOTICE: Some codes are the same as \verb"beamer" class under LPPL 1.3c license.
+% COPYRIGHT NOTICE: Some codes are the same as \verb"beamer" class under LPPL 1.3c license.
 %    \begin{macrocode}
 \if\EqualOption{outer}{logopos}{topright}
   \AtBeginDocument{
@@ -90,7 +96,7 @@
         \usebeamerfont{frametitle}
         \vbox{}
 %    \end{macrocode}
-%   Lift the left part a little bit.
+% Lift the left part a little bit.
 %    \begin{macrocode}
         \ifx\insertframesubtitle\@empty\vskip-0.5ex%
         \else\vskip-0.7ex\fi%
@@ -106,17 +112,29 @@
           }%
           \fi
         }%
-        \vskip-1ex%
+%    \end{macrocode}
+% Move to the baseline of the text, but the adjustment is still not so perfect
+% since we made a trade-off for macnew fontset and fandol fontset,
+% where the former one is higher than the latter one.
+%
+% TODO: refactor the logo insertion, and define the baseline for the logo,
+% and then make the two columns vertically centered without any parameter adjustment.
+%    \begin{macrocode}  
+        \vskip-1.07ex%
         \endgroup%
 %    \end{macrocode}
-%   Start the right logo part. Lift the logo up, relative to the end position of the left part.
+% Start the right logo part.
+% Lift the logo up, relative to the end position of the left part.
 %    \begin{macrocode}
         \raggedleft%
         \begingroup
         \ifx\insertframesubtitle\@empty\vskip-2.2ex%
         \else\vskip-3.05ex\fi%
 %    \end{macrocode}
-% Insert the outer logo with 3ex height. \verb"\vphantom" here is to create a phantom box to make sure the \verb"\resizebox" has a non-zero height box input. The calculation is fixed for a 3ex height logo placeholder.
+% Insert the outer logo with 3ex height.
+% \verb"\vphantom" here is to create a phantom box to make sure the
+% \verb"\resizebox" has a non-zero height box input.
+% The calculation is fixed for a 3ex height logo placeholder.
 %    \begin{macrocode}
         \resizebox{!}{3ex}{\vphantom{-}\usebeamertemplate{logo}}\hspace*{10pt}%
         \endgroup%
@@ -127,8 +145,12 @@
     }
   }
 %    \end{macrocode}
-%  Make a larger height of frametitle when it is in \verb"default" navigation configuration. This could only be made when it is in \verb"topright" logo position mode.
-%  TODO: Make it more consistent when it is under \verb"bottomright" mode. The default behavior of \verb"beamer" class will make the top margin slightly larger than the bottom margin, which causes assymetry.
+% Make a larger height of frametitle when it is in \verb"default" navigation configuration.
+% This could only be made when it is in \verb"topright" logo position mode.
+%
+% TODO: Make it more consistent when it is under \verb"bottomright" mode.
+% The default behavior of \verb"beamer" class will make the top margin slightly
+% larger than the bottom margin, which causes assymetry.
 %    \begin{macrocode}
   \if\EqualOption{outer}{nav}{default}
     \AtBeginDocument{
@@ -138,9 +160,13 @@
 \fi
 %    \end{macrocode}
 %
-%  \subsubsection{Execute Outer Theme}
+% \subsubsection{Execute Outer Theme}
 %
-% Use the built-in outer templates. If you want to take special care about one outer theme, please add a condition test on that theme. Otherwise, it will use the default configuration of the corresponding built-in outer theme.
+% Use the built-in outer templates.
+% If you want to take special care about one outer theme,
+% please add a condition test on that theme.
+% Otherwise, it will use the default configuration of the corresponding
+% built-in outer theme.
 %    \begin{macrocode}
 \if\EqualOption{outer}{nav}{miniframes}
   \useoutertheme[footline=institutetitle]{miniframes}
@@ -150,15 +176,25 @@
 \else\if\EqualOption{outer}{nav}{sidebar}
     \useoutertheme{sidebar}
 %    \end{macrocode}
-% Since the logo area in the sidebar theme is square, the default configuration for \verb"\logo" will be \verb"\sjtubadge" no matter what kind of cover processed in the inner theme. If you want to modify the logo later, change the logo manually after loading the theme.
+% Since the logo area in the sidebar theme is square,
+% the default configuration for \verb"\logo" will be \verb"\sjtubadge"
+% no matter what kind of cover processed in the inner theme.
+% If you want to modify the logo later, change the logo manually after loading the theme.
 %    \begin{macrocode}
     \logo{\resizebox{!}{1cm}{\sjtubadge}}
 %    \end{macrocode}
-% And it will use the logo position configuration \verb"topright" for sidebar to remove the logo in the bottom right corner. The config will not be modified after the outer theme is loaded.
+% And it will use the logo position configuration \verb"topright" for sidebar
+% to remove the logo in the bottom right corner.
+% The config will not be modified after the outer theme is loaded.
 %    \begin{macrocode}
     \def\sjtubeamer@outer@logopos{topright}
 %    \end{macrocode}
-% Use the default template for \verb"frametitle" in sidebar, since there has already been a logo in the top left corner. The setup has to be done after document starts since the previous set of \verb"frametitle" template is also set up after document as is shown in Section \ref{sec:frametitle}. Appending on this hook will override the previous setup.
+% Use the default template for \verb"frametitle" in sidebar,
+% since there has already been a logo in the top left corner.
+% The setup has to be done after document starts since the previous set of
+% \verb"frametitle" template is also set up after document as is shown in
+% Section \ref{sec:frametitle}.
+% Appending on this hook will override the previous setup.
 %    \begin{macrocode}
     \AtBeginDocument{
       \setbeamertemplate{frametitle}[sidebar theme]
@@ -178,8 +214,12 @@
   \setbeamercolor{frametitle}{use=palette primary,
     bg=palette primary.bg,fg=palette primary.fg}
 %    \end{macrocode}
-% Since \verb"infolines" outer theme in \verb"beamer" class has redefined the beamer color below which doesn't confirm the standing-free principle, the redefined color will override after the outer theme is loaded. 
-% \verb"structure" beamer color stores the \verb"cprimary". Set the color relative to this for decoupling reasons.
+% Since \verb"infolines" outer theme in \verb"beamer" class has redefined the
+% beamer color below which doesn't confirm the standing-free principle,
+% the redefined color will override after the outer theme is loaded.
+%
+% \verb"structure" beamer color stores the \verb"cprimary".
+% Set the color relative to this for decoupling reasons.
 %    \begin{macrocode}
 \else\if\EqualOption{outer}{nav}{infolines}
   \setbeamercolor{author in head/foot}{use=structure,fg=white,bg=structure}
@@ -188,12 +228,15 @@
   \setbeamercolor{section in head/foot}{parent=author in head/foot}
   \setbeamercolor{subsection in head/foot}{parent=date in head/foot}
 %    \end{macrocode}
-% And \verb"infolines" also resize the text margin, we reset the margin to the default size in order to avoid unwanted shift in covers.
+% And \verb"infolines" also resize the text margin, we reset the margin to the
+% default size in order to avoid unwanted shift in covers.
 %    \begin{macrocode}
   \setbeamersize{text margin left=1cm,text margin right=1cm}
 %    \end{macrocode}
-%   Color patch for sidebar, shadow, and smoothtrees.
-%   WARNING: This cannot be moved to the color theme, since the color was set in the outer theme itself. And the outer theme is the last theme to be loaded.
+% Color patch for sidebar, shadow, and smoothtrees.
+%
+% WARNING: This cannot be moved to the color theme, since the color was set in
+% the outer theme itself. And the outer theme is the last theme to be loaded.
 %    \begin{macrocode}
 \else
   \setbeamercolor{frametitle}{use=titlelike,bg=white,fg=titlelike.fg}
@@ -203,7 +246,9 @@
 %
 % \subsubsection{Bottombar}
 %
-%   Clear the original definition of sidebar first. Then append the page info to the footline, which could avoid collision on footnote.
+% Clear the original definition of sidebar first.
+% Then append the page info to the footline,
+% which could avoid collision on footnote.
 %    \begin{macrocode} 
 \setbeamertemplate{sidebar right}{}
 %    \end{macrocode}
@@ -223,8 +268,12 @@
 }
 %    \end{macrocode}
 %
-%  Append the navigation to the footline to avoid the collision with the navigation symbols. This will clear the original placeholder for the logo -- place it elsewhere. However, in the \verb"bottomright" mode, the logo size is not constrainted.
-%  The code is a bit redundent since we don't want it to check the condition every time making a bottom bar.
+% Append the navigation to the footline to avoid the collision with the navigation symbols.
+% This will clear the original placeholder for the logo -- place it elsewhere.
+% However, in the \verb"bottomright" mode, the logo size is not constrainted.
+%
+% The code is a bit redundent since we don't want it to check the condition every time
+% making a bottom bar.
 %    \begin{macrocode}
 \if\EqualOption{outer}{logopos}{bottomright}
   \addtobeamertemplate{footline}{

@@ -22,20 +22,17 @@ else
 end
 
 typesetopts      = "-interaction=nonstopmode -shell-escape"
-typesetfiles     = {"sjtubeamerdevguide.tex","sjtubeamer.tex"}
--- typesetfiles     = {"sjtubeamer.tex"}
--- typesetruns      = 1 -- for debug. Some reference may not be linked.
--- typesetdemofiles = {"min.tex"}
-
-typesetsuppfiles = {"head.png","plant.jpg","test.csv","testgraph.tex","ref.bib","sjtug.pdf","sjtug_text.pdf","tutorial/"}
+typesetfiles     = {"sjtubeamer.tex","sjtubeamerdevguide.tex","sjtubeamerquickstart.tex"}
+typesetsuppfiles = {"sjtug.pdf","sjtug_text.pdf","tutorial/"}
 
 -- Regression tests mainly test the decoupling properties between kernel modules.
 testfiledir      = "./testfiles"
 
 packtdszip       = true -- recommended for "tree" layouts
 
-tagfiles = {"*.dtx","README.md","*.ins","sjtubeamermintheme.tex","sjtubeamermindevguide.tex"}
+tagfiles = {"*.dtx","*.ins","sjtubeamer*.tex"}
 
+-- Related to `l3build tag`
 -- Detail how to set the version automatically
 function update_tag(file,content,tagname,tagdate)
     local iso = "%d%d%d%d%/%d%d%/%d%d"
@@ -53,12 +50,9 @@ function update_tag(file,content,tagname,tagdate)
         math.tointeger(year - 2) .. "-" .. year)
     end
     local now = os.date("%Y/%m/%d")
-    if string.match(file,"%.dtx$") then
-        content = string.gsub(content,
-            "\n\\ProvidesPackage" .. "({%w+})%[" .. iso .. " v%d+%.%d+%.%d+ ([^%]]+)]",
-            "\n\\ProvidesPackage%1[" .. now .. " " .. tagname .. " %2]")
-        return content
-    end
+    content = string.gsub(content,
+        "\\Provides" .. "([^%[]+)%[" .. iso .. " v%d+%.%d+%.%d+ ([^%]]+)]",
+        "\\Provides%1[" .. now .. " " .. tagname .. " %2]")
     return content
 end
 
@@ -84,6 +78,7 @@ function compile_file(dir, cmd, filename)
     return errorlevel
 end
 
+-- Related to `l3build doc`
 -- Generate tutorial files before compiling the doc.
 function typeset_demo_tasks()
     local errorlevel = 0
@@ -225,7 +220,7 @@ function gen_snippets()
                 elseif in_code == false then
                     -- Now it is just a plain description of this macro.
                     macro_desc = macro_desc ..
-                    string.gsub(string.gsub(string.gsub(string.gsub(string.sub(line,2),"\\verb\"([^\"]+)\"","%1"),"\\","\\\\"),"\"","\\\""),"%s%s+","") .. "\\n"
+                    string.gsub(string.gsub(string.gsub(string.gsub(string.sub(line,2),"\\verb\"([^\"]+)\"","%1"),"\\","\\\\"),"\"","\\\""),"%s%+","") .. "\\n"
                 end
             end
 
@@ -271,6 +266,7 @@ function gen_snippets()
     snippetfile:close()
 end
 
+-- Related to `l3build check`
 function checkinit_hook()
     gen_snippets()
 
@@ -290,6 +286,169 @@ function checkinit_hook()
 
     return 0
 end
+
+-- Related to `l3build manifest`
+-- FIXME: subfolders could not be detected. Use plain text for temporary fix.
+manifest_setup = function ()
+local groups = {
+    {
+        subheading = "Repository manifest",
+        description = [[
+The following groups list the files included in the development repository of the package.
+Files listed with a ‘†’ marker are included in the TDS but not CTAN files, and files listed
+with ‘‡’ are included in both.
+
+> **Minimal workset**: All files in **Derived files** and **Graphic Resources**.
+Or directly use files in **TeX files (TDS)**.
+]],
+    },
+    {
+        name    = "Source files",
+        description = [[
+These are source files for a number of purposes, including the `unpack` process which
+generates the installation files of the package. Additional files included here will also
+be installed for processing such as testing.
+]],
+        files   = {sourcefiles},
+        dir     = sourcefiledir,
+    },
+    {
+        name    = "Typeset documentation source files",
+        description = [[
+These files are typeset using LaTeX to produce the PDF documentation for the package.
+]],
+        files   = {typesetfiles},
+        dir     = docfiledir,
+    },
+    {
+        name    = "Derived files",
+        description = [[
+**Installation (1/2)** The files created by ‘unpacking’ the package sources. This typically includes
+`.sty` and `.cls` files created from DocStrip `.dtx` files.
+]],
+        files   = {installfiles},
+        exclude = {excludefiles,sourcefiles},
+        dir     = unpackdir,
+        skipfiledescription = true,
+    },
+    {
+        name   = "Graphics Resources",
+        description = [[
+**Installation (2/2)** These files are in `vi/` directory ‡. To provide the basic
+graphics resources for creating presentations.
+]],
+        files  = {"*.*"},
+        dir    = sourcefiledir .. "/vi",
+        exclude = {{".",".."},excludefiles},
+        skipfiledescription = true,
+    },
+    {
+        name    = "Typeset documents",
+        description = [[
+The output files (PDF, essentially) from typesetting the various source, demo,
+etc., package files.
+]],
+        files   = {typesetfiles},
+        dir     = docfiledir,
+        rename  = {"%.%w+$", ".pdf"},
+        skipfiledescription = true,
+    },
+    {
+        name    = "Test files",
+        description = [[
+**Regression Tests**
+These files form the test suite for the package. `.lvt` or `.lte` files are the individual
+unit tests, and `.tlg` are the stored output for ensuring changes to the package produce
+the same output. These output files are sometimes shared and sometime specific for
+different engines (pdfTeX, XeTeX, LuaTeX, etc.).
+]],
+        files   = {"*"..lvtext,"*"..lveext,"*"..tlgext},
+        dir     = testfiledir,
+        skipfiledescription = true,
+    },
+    {
+        name    = "Tutorial files",
+        description = [[
+**Unit Tests**
+Files included to demonstrate package functionality, and the demo files for the user guide.
+These files will be typesetted first before typesetting the documentation source files.
+They could be cached in the next round by `l3build cache-demo`.
+The cache could be cleaned by `l3build clean-demo`.
+To add a demo file, use `l3build add-demo 20`.
+]],
+        files   = {"step*.tex"},
+        dir     = supportdir .. "/tutorial",
+        skipfiledescription = true,
+    },
+    {
+        subheading = "TDS manifest",
+        description = [[
+The following groups list the files included in the TeX Directory Structure used to install
+the package into a TeX distribution.
+]],
+    },
+    {
+        name    = "Source files (TDS)",
+        description = "All files included in the `"..module.."/source` directory.\n",
+        dir     = tdsdir.."/source/"..moduledir,
+        files   = {"*.*"},
+        exclude = {".",".."},
+        flag    = false,
+        skipfiledescription = true,
+    },
+    {
+        name    = "TeX files (TDS)",
+        description = "All files included in the `"..module.."/tex` directory." ..
+        " This directory contains all the files in the **Minimal workset**."
+        .. "\n\n"
+        .. "* vi/",
+        dir     = tdsdir.."/tex/"..moduledir,
+        files   = {"*.*"},
+        exclude = {".",".."},
+        flag    = false,
+        skipfiledescription = true,
+    },
+    {
+        name    = "Doc files (TDS)",
+        description = "All files included in the `"..module.."/doc` directory.\n",
+        dir     = tdsdir.."/doc/"..moduledir,
+        files   = {"*.*"},
+        exclude = {".",".."},
+        flag    = false,
+        skipfiledescription = true,
+    },
+    {
+        subheading = "CTAN manifest",
+        description = [[
+The following group lists the files included in the CTAN package.
+]],
+    },
+    {
+        name    = "CTAN files",
+        description = "* vi/",
+        dir     = ctandir.."/"..module,
+        files   = {"*.*"},
+        exclude = {".",".."},
+        flag    = false,
+        skipfiledescription = true,
+    },
+}
+return groups
+end
+
+manifest_extract_filedesc = function(filehandle)
+
+    local all_file = filehandle:read("*all")
+    local matchstr = "\\Provides[^%[]+%[%d%d%d%d/%d%d/%d%d v%d+%.%d+%.%d+ ([^%]]+)%]"
+  
+    filedesc = string.match(all_file,matchstr)
+  
+    return filedesc
+end
+
+----------------------
+-- Exclusive Commands
+----------------------
 
 -- usage: l3build cache-demo
 -- description: cache the demo pdf files after l3build doc.

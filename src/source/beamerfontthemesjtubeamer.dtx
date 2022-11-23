@@ -16,7 +16,7 @@
 % \iffalse
 %<*package>
 \NeedsTeXFormat{LaTeX2e}
-\ProvidesPackage{beamerfontthemesjtubeamer}[2022/10/19 v2.9.9 sjtubeamer font theme]
+\ProvidesPackage{beamerfontthemesjtubeamer}[2022/11/23 v3.0.0 sjtubeamer font theme]
 %</package>
 % \fi
 % \CheckSum{0}
@@ -28,13 +28,14 @@
 % \subsection{Font Theme}
 %
 %
-%   Ignore unwanted warnings.
+% Ignore unwanted warnings.
 %    \begin{macrocode}
 \RequirePackage{silence}
 \WarningFilter{latexfont}{Font shape}
 %    \end{macrocode}
 %
-%   Use \verb"professionalfonts" font theme to compress all formula environments, which is in serif font style.
+% Use \verb"professionalfonts" font theme to compress all formula environments,
+% which is in serif font style.
 %    \begin{macrocode}
 \usefonttheme{professionalfonts}
 %    \end{macrocode}
@@ -44,14 +45,15 @@
 \usefonttheme{structurebold}
 %    \end{macrocode}
 %
-%   Set the font size to normal size for the number indication in part page, section page, and subsection page.
+% Set the font size to normal size for the number indication in part page,
+% section page, and subsection page.
 %    \begin{macrocode}
 \setbeamerfont{part name}{size=\normalsize}
 \setbeamerfont{section name}{size=\normalsize}
 \setbeamerfont{subsection name}{size=\normalsize}
 %    \end{macrocode}
 %
-%  Set the font size in the footnote to footnotesize.
+% Set the font size in the footnote to footnotesize.
 %    \begin{macrocode}
 \setbeamerfont{footnote}{size=\footnotesize}
 %    \end{macrocode}

@@ -47,8 +47,8 @@
   pdfauthor = {Alexara Wu},
   pdfcopyright = {Licensed under CC-BY-SA 4.0. Some rights reserved.},
   pdflicenseurl = {http://creativecommons.org/licenses/by-sa/4.0/},
-  unicode            = true,
-  psdextra           = true,
+  unicode = true,
+  psdextra = true,
   pdfdisplaydoctitle = true
 }
 
@@ -77,15 +77,16 @@
 \newcommand{\SJTUThesisVersion}{1.1.0}
 \newcommand{\SJTUThesisDate}{2022/3/26}
 \newcommand{\SJTUBeamer}{\textsc{SJTUBeamer}}
-\newcommand{\SJTUBeamerVersion}{2.8.0}
-\newcommand{\SJTUBeamerDate}{2022/5/11}
+\newcommand{\SJTUBeamerVersion}{3.0.0}
+\newcommand{\SJTUBeamerDate}{2022/11/22}
 
 \newcommand\link[1]{\href{#1}{\faLink}}
 \newcommand\pkg[1]{\texttt{#1}}
 
 \def\cmd#1{\texttt{\color{structure}\footnotesize $\backslash$#1}}
 \def\env#1{\texttt{\color{structure}\footnotesize #1}}
-\def\cmdxmp#1#2#3{\small{\texttt{\color{structure}$\backslash$#1}\{#2\}\hspace{1em}\\ $\Rightarrow$\hspace{1em} {#3}\par\vskip1em}}
+\def\cmdxmp#1#2#3{\small{\texttt{\color{structure}$\backslash$#1}\{#2\}
+\hspace{1em}\\ $\Rightarrow$\hspace{1em} {#3}\par\vskip1em}}
 
 \lstset{
   language=[LaTeX]TeX,
@@ -106,6 +107,7 @@
 %   miniframes infolines  sidebar
 %   default    smoothbars split	 
 %   shadow     tree       smoothtree
+% 使用 topright/bottomright 切换徽标位置
 % 使用逗号分隔列表以同时使用多种选项
 
 % \tikzexternalize[prefix=build/]
@@ -134,7 +136,7 @@
 }
 
 % 使用小节目录
-\AtBeginSubsection[]{                  % 在每小节开始
+\AtBeginSubsection[]{		       % 在每小节开始
   \begin{frame}
     %% 使用传统小节目录
     \tableofcontents[currentsection,subsectionstyle=show/shaded/hide]
@@ -151,21 +153,26 @@
     \setbeamertemplate{bibliography item}[online]
     \bibitem{} Alexara Wu.
     \newblock 如何使用 \LaTeX{} 排版论文[EB/OL].
-    \newblock 2021. \url{https://github.com/sjtug/sjtulib-latex-talk/tree/alexara-2021}
+    \newblock 2021.
+    \url{https://github.com/sjtug/sjtulib-latex-talk/tree/alexara-2021}
   \end{thebibliography}
 
   \vspace*{2ex}
 
   \begin{itemize}
-    \item 本示例文档的源码结构适用于简短的单次报告，仅展示 \beamer{} 文档类的通用功能，更多地在使用 \SJTUBeamer{} 的样式信息。
-    \item 为发挥 \SJTUBeamer{} 的全部功能，参见发布区 \link{https://github.com/sjtug/SJTUBeamer/releases} 的用户手册与开发文档。
-    \item 就制作一组讲座而言，相关源码结构可以参考新讲座 \link{https://github.com/sjtug/sjtulib-latex-talk/tree/logcreative-2022}。新讲座使用了社区版主题的同时也展示了 \SJTUBeamer{} 的特殊用法。
+    \item 本示例文档的源码结构适用于简短的单次报告，仅展示 \beamer{} 文档类的通用功能，更多地在使用 \SJTUBeamer{}
+          的样式信息。
+    \item 为发挥 \SJTUBeamer{} 的全部功能，参见发布区
+          \link{https://github.com/sjtug/SJTUBeamer/releases} 的快速入门、用户手册与开发文档。
+    \item 就制作一组讲座而言，相关源码结构可以参考新讲座
+          \link{https://github.com/sjtug/sjtulib-latex-talk/tree/logcreative-2022}。新讲座使用了
+          社区版主题的同时也展示了 \SJTUBeamer{} 的特殊用法。
   \end{itemize}
 
 \end{frame}
 
 \begin{frame}{目录}
-  \tableofcontents[hideallsubsections]  % 隐藏所有小节信息
+  \tableofcontents[hideallsubsections]	% 隐藏所有小节信息
 \end{frame}
 
 \include{contents/introduction}
@@ -175,7 +182,7 @@
 
 \begin{frame}
   \frametitle{参考文献}
-  \printbibliography
+  \printbibliography[heading=none]
 \end{frame}
 
 \makebottom

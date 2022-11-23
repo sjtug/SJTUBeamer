@@ -27,7 +27,8 @@
               \item 最初由 高德纳 (Donald E.~Knuth) 于 1978 年开发的排版系统
               \item 名称源自 technology 的希腊语词根 $\tau\varepsilon\chi$ \par
                     发音接近“泰赫”，而非“泰克斯”
-              \item 最新版本为 \TeX\ 3.141592653（2021年1月）\link{https://tex.stackexchange.com/questions/581118/whats-new-in-tex-version-3-141592653}
+              \item 最新版本为 \TeX\ 3.141592653（2021年1月）
+                    \link{https://tex.stackexchange.com/questions/581118/whats-new-in-tex-version-3-141592653}
               \item 漂亮、美观、稳定、通用
               \item 尤其擅长数学公式排版
             \end{itemize}
@@ -52,17 +53,18 @@
   \begin{table}[h]
     \centering
     \begin{tabular}{c|c}
-      Microsoft\textsuperscript{\textregistered}  Word & \LaTeX                     \\
+      Microsoft\textsuperscript{\textregistered}  Word & \LaTeX
+      \\
       \hline
-      字处理工具                                       & 专业排版软件               \\
-      容易上手，简单直观                               & 容易上手                   \\
-      所见即所得                                       & 所见即所想，所想即所得     \\
-      高级功能不易掌握                                 & 进阶难，但一般用不到       \\
-      处理长文档需要丰富经验                           & 和短文档处理基本无异       \\
-      花费大量时间调格式                               & 无需担心格式，专心作者内容 \\
-      公式排版差强人意                                 & 尤其擅长公式排版           \\
-      二进制格式，兼容性差                             & 文本文件，易读、稳定       \\
-      付费商业许可                                     & 自由免费使用               \\
+      字处理工具                                            & 专业排版软件        \\
+      容易上手，简单直观                                        & 容易上手          \\
+      所见即所得                                            & 所见即所想，所想即所得   \\
+      高级功能不易掌握                                         & 进阶难，但一般用不到    \\
+      处理长文档需要丰富经验                                      & 和短文档处理基本无异    \\
+      花费大量时间调格式                                        & 无需担心格式，专心作者内容 \\
+      公式排版差强人意                                         & 尤其擅长公式排版      \\
+      二进制格式，兼容性差                                       & 文本文件，易读、稳定    \\
+      付费商业许可                                           & 自由免费使用        \\
     \end{tabular}
   \end{table}
 \end{frame}
@@ -70,7 +72,8 @@
 \begin{frame}{\TeX{}排版举例：公式}
   \begin{alertblock}{无编号公式}
     \begin{equation*}
-      \mathcal{F}(\xi)=\int_{-\infty}^{\infty} f(x)\mathrm{e}^{-\mathrm{j}2\pi \xi x}\,\mathrm{d}x
+      \mathcal{F}(\xi)=\int_{-\infty}^{\infty} f(x)\mathrm{e}^{-\mathrm{j}2\pi
+      \xi x}\,\mathrm{d}x
     \end{equation*}
   \end{alertblock}
   \begin{alertblock}{多行多列公式}
@@ -88,11 +91,13 @@
   \begin{alertblock}{编号多行公式}
     % Taken from Mathmode.tex
     \begin{multline}
-      A=\lim_{n\rightarrow\infty}\Delta x\left(a^{2}+\left(a^{2}+2a\Delta x+\left(\Delta x\right)^{2}\right)\right.\label{eq:reset}\\
+      A=\lim_{n\rightarrow\infty}\Delta x\left(a^{2}+\left(a^{2}+2a\Delta
+      x+\left(\Delta x\right)^{2}\right)\right.\label{eq:reset}\\
       +\left(a^{2}+2\cdot2a\Delta x+2^{2}\left(\Delta x\right)^{2}\right)\\
       +\left(a^{2}+2\cdot3a\Delta x+3^{2}\left(\Delta x\right)^{2}\right)\\
       +\ldots\\
-      \left.+\left(a^{2}+2\cdot(n-1)a\Delta x+(n-1)^{2}\left(\Delta x\right)^{2}\right)\right)\\
+      \left.+\left(a^{2}+2\cdot(n-1)a\Delta x+(n-1)^{2}\left(\Delta
+      x\right)^{2}\right)\right)\\
       =\frac{1}{3}\left(b^{3}-a^{3}\right)
     \end{multline}
   \end{alertblock}
@@ -154,7 +159,8 @@
       --(-.913,1.667)--cycle;
       \filldraw[ghostdraw,ghostfill](.775,1.545)--(1.162,-.283)--(.274,-.5)
       --(.183,1.4)--cycle;
-      \filldraw[fill=red,fill opacity=0.5](-.516,1.45)--(-.775,-.424)--(.274,-.5)
+      \filldraw[fill=red,fill
+        opacity=0.5](-.516,1.45)--(-.775,-.424)--(.274,-.5)
       --(.183,1.4)--cycle;
       \fill(-.775,-.424) circle (2pt);
       \fill(.274,-.5) circle (2pt);
@@ -209,8 +215,9 @@
     \begin{column}{.45\textwidth}
       \color{red}
       \heartpar{\footnotesize%
-        Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-        tempor incididunt ut labore et  dolore magna aliqua. Ut enim ad minim
+        Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do
+        eiusmod
+        tempor incididunt ut labore et	dolore magna aliqua. Ut enim ad minim
         veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea
         commodo consequat. Duis aute irure dolor in reprehenderit in voluptate
         velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint
@@ -281,9 +288,11 @@
           \end{itemize}
     \item 选择国内 CTAN 镜像
           \begin{itemize}
-            \item 上海交通大学 Linux 用户组 软件源镜像服务 \link{https://mirrors.sjtug.sjtu.edu.cn/}
+            \item 上海交通大学 Linux 用户组 软件源镜像服务
+                  \link{https://mirrors.sjtug.sjtu.edu.cn/}
             \item {\footnotesize
-                  \url{https://mirrors.sjtug.sjtu.edu.cn/ctan/systems/texlive/Images/texlive.iso}}
+                  \url{https://mirrors.sjtug.sjtu.edu.cn/ctan/systems/texlive/Images/texlive.iso}
+                  }
             \item 更多镜像 \link{http://mirror.ctan.org/README.mirrors}
           \end{itemize}
     \item 可选步骤：校验安装包
@@ -304,8 +313,10 @@
           \end{itemize}
     \item macOS
           \begin{itemize}
-            \item 推荐使用独立的 pkg 安装包 \link{https://mirrors.sjtug.sjtu.edu.cn/ctan/systems/mac/mactex/MacTeX.pkg}
-            \item 也可以使用 \TL 安装包安装 \link{http://www.tug.org/mactex/mactex-unix-download.html}
+            \item 推荐使用独立的 pkg 安装包
+                  \link{https://mirrors.sjtug.sjtu.edu.cn/ctan/systems/mac/mactex/MacTeX.pkg}
+            \item 也可以使用 \TL 安装包安装
+                  \link{http://www.tug.org/mactex/mactex-unix-download.html}
             \item 可选：Homebrew \link{https://brew.sh/}
           \end{itemize}
     \item Linux
@@ -333,15 +344,19 @@ export INFOPATH=/usr/local/texlive/2021/texmf/doc/info:$INFOPATH
           \end{lstlisting}
             \item 安装一个 dummy package，让系统的包管理器知道 \TL 已经装过了
                   \begin{itemize}
-                    \item Debian/Ubuntu 用户参照手册做一个包即可 \link{https://www.tug.org/texlive/debian.html\#vanilla}
+                    \item Debian/Ubuntu 用户参照手册做一个包即可
+                          \link{https://www.tug.org/texlive/debian.html\#vanilla}
                     \item Arch Linux 用户装 AUR 里的 \verb|texlive-dummy|
-                    \item Feodra 用户可以直接下载 \link{https://copr.fedoraproject.org/coprs/fatka/texlive-dummy/}
+                    \item Feodra 用户可以直接下载
+                          \link{https://copr.fedoraproject.org/coprs/fatka/texlive-dummy/}
                   \end{itemize}
           \end{itemize}
     \item 安装指南
           \begin{itemize}
-            \item 《一份简短的关于 \LaTeX{} 安装的介绍》\link{https://mirrors.sjtug.sjtu.edu.cn/ctan/info/install-latex-guide-zh-cn/install-latex-guide-zh-cn.pdf}
-            \item 《\TL{} 指南中文版》\link{https://www.tug.org/texlive/doc/texlive-zh-cn/texlive-zh-cn.pdf}
+            \item 《一份简短的关于 \LaTeX{} 安装的介绍》
+                  \link{https://mirrors.sjtug.sjtu.edu.cn/ctan/info/install-latex-guide-zh-cn/install-latex-guide-zh-cn.pdf}
+            \item 《\TL{} 指南中文版》
+                  \link{https://www.tug.org/texlive/doc/texlive-zh-cn/texlive-zh-cn.pdf}
             \item 更多参考：
                   \link{http://zhuanlan.zhihu.com/LaTeX/20069414}
                   \link{https://stone-zeng.github.io/2018-05-13-install-texlive-ubuntu/}

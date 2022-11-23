@@ -1,8 +1,12 @@
 #!/bin/bash
 
 cd src
-l3build ctan
+
 # This will trigger checkinit_hook() to move the files to the root directory.
+l3build ctan
+l3build cache-demo # cache demos for making the next ctan process faster
+l3build manifest
+l3build ctan
 
 cd ..
 .github/ci/copy_resources.sh
