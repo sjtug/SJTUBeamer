@@ -15,6 +15,9 @@ l3build clean-demo # for a clean restart
 cd ..
 .github/ci/copy_resources.sh
 
+# Copy to the tds dir for uploading artifacts conviniently.
+cp -v sjtubeamer-overleaf.zip src/build/distrib/tds/
+
 if [ ! -f src/sjtubeamer-ctan.zip ]; then
     echo "BUILD CTAN FAILED."
     exit 1
