@@ -1,9 +1,9 @@
 #!/bin/bash
 
-cd src
-
 # Build overleaf package first.
 .github/ci/build_overleaf.sh
+
+cd src
 
 # This will trigger checkinit_hook() to move the files to the root directory.
 l3build ctan
