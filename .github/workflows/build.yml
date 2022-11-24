@@ -28,7 +28,7 @@ jobs:
         name: build test variants with XeLaTeX
       - uses: xu-cheng/texlive-action/full@v1
         with:
-          run: .github/ci/gen_cover.sh -halt-on-error -time -quiet -xelatex
+          run: .github/ci/gen_cover.sh -halt-on-error -time -xelatex
         name: build cover with XeLaTeX
       - run: cat build/build-*.log
         name: display build log
