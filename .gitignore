@@ -258,6 +258,7 @@ build-*.tex
 
 *-ctan.zip
 *.tds.zip
+*-overleaf.zip
 *.listing
 red.pdf
 blue.pdf

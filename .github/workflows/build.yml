@@ -75,7 +75,7 @@ jobs:
             apk add zip diffutils
             tlmgr update --self
             tlmgr update l3build
-            .github/ci/build_package.sh
+            make build-dev
         name: build package with l3build
       - name: check if generated files are of latest version
         run: |
@@ -86,6 +86,7 @@ jobs:
             src/build/distrib/tds/doc
             src/build/distrib/tds/source
             src/build/distrib/tds/tex
+            sjtubeamer-overleaf.zip
           name: sjtubeamer.tds
         name: upload build artifacts
   check-format:

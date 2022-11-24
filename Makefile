@@ -44,8 +44,13 @@ build-cover: prepare
 	cp build/cover.pdf .
 
 # Build sjtubeamer package
+# This will build overleaf package automatically.
 build-dev: prepare
 	.github/ci/build_package.sh
+
+# Build overleaf distribution
+build-overleaf: prepare
+	.github/ci/build_overleaf.sh
 
 # Build `main.tex` with multiple test variants
 build-test-variants: prepare

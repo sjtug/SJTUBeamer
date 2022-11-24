@@ -432,6 +432,26 @@ The following group lists the files included in the CTAN package.
         flag    = false,
         skipfiledescription = true,
     },
+    {
+        subheading = "Overleaf manifest",
+        description = [[
+The following group lists the files included in the Overleaf distribution.
+You could generate the package by going to the root directory and
+use the command `make build-overleaf` in the terminal.
+]],
+    },
+    {
+        name    = "Overleaf files",
+        description = [[
+* contrib/
+* build/
+* vi/]],
+        dir     = "../build/overleaf",
+        files   = {"*.*"},
+        exclude = {".",".."},
+        flag    = false,
+        skipfiledescription = true,
+    },
 }
 return groups
 end

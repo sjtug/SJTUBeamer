@@ -216,3 +216,25 @@ The following group lists the files included in the CTAN package.
 * sjtubeamerquickstart.tex 
 * sjtucover.dtx 
 * sjtuvi.dtx 
+
+
+## Overleaf manifest
+
+The following group lists the files included in the Overleaf distribution.
+You could generate the package by going to the root directory and
+use the command `make build-overleaf` in the terminal.
+
+### Overleaf files
+
+* contrib/
+* build/
+* vi/
+* beamercolorthemesjtubeamer.sty 
+* beamerfontthemesjtubeamer.sty 
+* beamerinnerthemesjtubeamer.sty 
+* beamerouterthemesjtubeamer.sty 
+* beamerthemesjtubeamer.sty 
+* ref.bib 
+* sjtubeamerquickstart.tex 
+* sjtucover.sty 
+* sjtuvi.sty 
