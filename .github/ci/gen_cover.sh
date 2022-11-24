@@ -32,4 +32,4 @@ done
 echo \\end{document}>>build/cover.tex
 
 # merge covers
-latexmk $@ -outdir=build build/cover.tex
+latexmk $@ -outdir=build build/cover.tex -f
