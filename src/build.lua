@@ -437,7 +437,7 @@ The following group lists the files included in the CTAN package.
         description = [[
 The following group lists the files included in the Overleaf distribution.
 You could generate the package by going to the root directory and
-use the command `make build-overleaf` in the terminal.
+using the command `make build-overleaf` in the terminal.
 ]],
     },
     {
