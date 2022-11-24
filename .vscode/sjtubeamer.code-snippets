@@ -297,6 +297,6 @@
 		"scope": "doctex,tex,latex",
 		"prefix": "stampline",
 		"body": "stampline",
-		"description": " A decoration to make a loop stampline.\n\n Use option to draw the stampline on TikZ\n draw element\n [decoration=stampline, segment length=1cm, decorate].\n"
+		"description": " A decoration to make a loop stampline.\n\n Use option to draw the stampline on TikZ\n draw element\n\n [decoration=stampline, segment length=1cm, decorate].\n"
 	},
 }

@@ -215,9 +215,30 @@ references.
   \item[Unit test] To test each function separately by compiling documentation.
     \texttt{l3build doc}
   \item[CI] To make an overall check by compiling a real-world presentation. It is
-    often completed in GitHub Actions when you are pulling a request.
-    \texttt{l3build ctan}
+    often completed in GitHub Actions when you are pulling a request. \texttt{make
+      build-dev}
 \end{description}
+
+We use \verb"l3build" (Section \ref{sec:l3build}) mainly for coding internal
+files (or the kernel). In details,
+\begin{itemize}
+  \item Unpacking Doc\TeX{} files.
+  \item Generating documentation.
+  \item Caching and clean demos.
+  \item Generating Visual Studio Code snippets (as is in
+        \texttt{.vscode/sjtubeamer.code-snippets})
+  \item Generating \texttt{MANIFEST.md} to show the repository structure.
+  \item Zipping packages like \texttt{sjtubeamer-ctan.zip}, \texttt{sjtubeamer.tds.zip}
+\end{itemize}
+
+We use \verb"make" and related scripts (Section \ref{sec:make}) for Continuous
+Integration on GitHub Actions. In details,
+\begin{itemize}
+  \item Compiling \verb"main.tex" for users.
+  \item Building the cover collection.
+  \item Formatting codes.
+  \item Build the Overleaf distribution \texttt{sjtubeamer-overleaf.zip}.
+\end{itemize}
 
 \subsection{l3build}\label{sec:l3build}
 
@@ -398,7 +419,7 @@ extracting method in \verb"src/source":
 \end{verbatim}
 and copy the corresponding generated files to the root directory.
 
-\subsection{Continuous Integration}
+\subsection{Continuous Integration}\label{sec:make}
 
 All other scripts in the folder \verb".github/ci" could also be checked in your
 local machine to make sure you can pass the CI on GitHub Actions.
@@ -420,12 +441,18 @@ file into the installing directory of your \TeX{} distribution.
 \verb"./sjtubeamer-overleaf.zip". See \verb"MANIFEST.md" for what it contains.
 
 \fcmd{make format-dev} This command will format all the files, and clear the
-indent. In order to improve the code quality.
+indent. In order to improve the code quality. We use the following parameters
+for \verb"latexindent" \cite{latexindent}:
+\begin{verbatim}
+  latexindent *.tex -l latexindent.yaml -w -c build -m -r
+\end{verbatim}
+where \verb"latexindent.yaml" regulates the indent is formatted in spaces, no
+more than 80 characters per line and the links will not be text-wrapped.
 
 \begin{warn}
-  You could download
-  \href{https://mirrors.sjtug.sjtu.edu.cn/ctan/support/latexindent.zip}{\ttfamily latexindent} and link the executable path
-  \verb"latex-workshop.latexindent.path" in Visual Studio Code.
+  For MiK\TeX{} users, you could download
+  \href{https://mirrors.sjtug.sjtu.edu.cn/ctan/support/latexindent.zip}{\ttfamily latexindent}
+  and link the executable path \verb"latex-workshop.latexindent.path" in Visual Studio Code.
 \end{warn}
 
 \section{Coding Style}
@@ -433,7 +460,8 @@ indent. In order to improve the code quality.
 This section gives a contribution code on coding style. Every contributor
 should follow this coding style to make a pull request for this project. And
 following the coding style strictly will make the Doc\TeX{} compiler for Visual
-Studio Code snippets run properly.
+Studio Code snippets run properly. You could obtain a manifest for what the
+files are in \verb"MANIFEST.md".
 
 \subsection{Framework Code}
 
@@ -709,28 +737,33 @@ This environment must start with four spaces after \verb"%".
 
 Notably, the contents before the \emph{first} \verb"macrocode" environment in
 \verb"macro" environment will be treated as the description of this macro. When
-generating the Visual Studio Code snippets, the description will be shown. The
-searching on the command in \verb"macrocode" environments will decide the
-parameter number and the default parameter in the code snippets as well. If you
-want to add some notes to this macro, add them before the end of the
-\verb"macro" environment. You could use multiple \verb"macrocode" environments
-in order to add comments between the code lines.
+generating the Visual Studio Code snippets, the description will be shown.
+Since Visual Studio Code Snippets only support text with 40 characters per
+line, you should keep the description in the same format. The searching on the
+command in \verb"macrocode" environments will decide the parameter number and
+the default parameter in the code snippets as well. If you want to add some
+notes to this macro, add them before the end of the \verb"macro" environment.
+You could use multiple \verb"macrocode" environments in order to add comments
+between the code lines.
 
 \begin{lstlisting}[showspaces=true]
 % \begin{macro}{\foobar}
-%  <Description of this macro>
+% <Description of this macro>
 %    \begin{macrocode}
 <Macro code>
 %    \end{macrocode}
-%  <Some notes about this macro>
+% <Some notes about this macro>
 % \end{macro}
 \end{lstlisting}
 
 \section{Framework}\label{sec:framework}
 
 \themename\ is a modular presentation framework. The minimal working files are
-listed below. If you want to install \themename{} manually, add these files
-into the searching directory of \TeX{} and refresh the filename directory.
+listed below (or read \verb"MANIFEST.md" for more details).
+
+If you want to install \themename{} manually, add these files into the
+searching directory of \TeX{} and refresh the filename directory. This could be
+achieved by \verb"l3build install" mentioned in Section \ref{sec:l3build}.
 
 \begin{figure}[h]
   \framebox[\textwidth]{\ttfamily main.tex}
@@ -744,9 +777,8 @@ into the searching directory of \TeX{} and refresh the filename directory.
     innertheme.sty}\framebox[0.25\textwidth]{\ttfamily
     outertheme.sty}\framebox[0.25\textwidth]{\ttfamily fonttheme.sty}
 
-  \parbox[t]{0.25\textwidth}{\centering $\downarrow$}
-  \framebox[0.25\textwidth]{\ttfamily sjtucover.sty}
-  \parbox[t]{0.25\textwidth}{\centering $\downarrow$} \hspace*{0.25\textwidth}
+  \parbox[t]{0.25\textwidth}{\centering $\downarrow$}\framebox[0.25\textwidth]
+  {\ttfamily sjtucover.sty}\parbox[t]{0.25\textwidth}{\centering $\downarrow$}\parbox[t]{0.25\textwidth}{}
 
   \framebox[0.75\textwidth]{\ttfamily sjtuvi.sty}
 
