@@ -415,7 +415,7 @@ files and update the generated files in the root directory.
 the release zip file. You could install the generated \verb".tds"
 file into the installing directory of your \TeX{} distribution.
 
-\fcmd{make build-overleaf} This command will build the overleaf package in
+\fcmd{make build-overleaf} This command will build the overleaf distribution in
 \verb"build/overleaf" and generate the zipped file at
 \verb"./sjtubeamer-overleaf.zip". See \verb"MANIFEST.md" for what it contains.
 
@@ -684,6 +684,8 @@ Comment means that the ignored lines in the Doc\TeX{} source code.
 
 \paragraph{Start a macro environment to start to comment a macro.}
 This environment has one parameter to indicate the name of the macro.
+For tidiness, There should be only one space after the beginning of the
+environment.
 
 \begin{lstlisting}
 % \begin{macro}{\sjtubeamer@color}
@@ -715,13 +717,13 @@ want to add some notes to this macro, add them before the end of the
 in order to add comments between the code lines.
 
 \begin{lstlisting}[showspaces=true]
-%  \begin{macro}{\foobar}
+% \begin{macro}{\foobar}
 %  <Description of this macro>
 %    \begin{macrocode}
 <Macro code>
 %    \end{macrocode}
 %  <Some notes about this macro>
-%  \end{macro}
+% \end{macro}
 \end{lstlisting}
 
 \section{Framework}\label{sec:framework}
