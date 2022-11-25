@@ -36,7 +36,7 @@ Current document `main.tex` is an example documentation of *How to Use* $\LaTeX$
 \usepackage{biblatex}
 \addbibresource{thesis.bib}
 
-\institute{Linux User Group}
+\institute{SJTUG}
 
 \title{SJTUBeamer}
 \subtitle{A Beamer Template}

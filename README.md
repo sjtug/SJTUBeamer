@@ -38,7 +38,7 @@ SJTUBeamer 是上海交通大学的非官方 Beamer 模版。您可以使用 SJT
 \usepackage[backend=biber,style=gb7714-2015]{biblatex}
 \addbibresource{thesis.bib}
 
-\institute[Linux User Group]{Linux 用户组} % 组织
+\institute[SJTUG]{上海交通大学 Linux 用户组} % 组织
 
 \title{SJTUBeamer 幻灯片模板}         % 标题
 \subtitle{SJTUBeamer Template}       % 副标题
