@@ -984,7 +984,8 @@ loaded, which is only for the sake of completeness.
 \subsection{Logo System}
 
 \themename\ has its own color model on the logo. The main macro is
-\verb"\definelogo", which will generate a macro on its file name.
+\verb"\definelogo". You need to specify the control sequence name and the file
+path in the first two arguments.
 
 TikZ provides an environment to create our own path fading from picture:
 \verb"tikzfadingfrompicture", where you could define your fading in a $(-1,-1)$
@@ -1007,17 +1008,13 @@ And crop the area symmetrically.
 
     \draw (0.5,0.5) rectangle (3,-0.5);
     \node [red] at (1.75,0) {\LARGE Logo};
-    \node at (1.75,-1.5) {\verb"\def\logo"};
+    \node at (1.75,-1.5) {\verb"\definelogo"};
     \node at (4,0) {$\rightarrow$};
 
     \node [blue] at (6,0) {\LARGE Logo};
     \node at (6,-1.5) {\verb"\logo[cprimary]"};
   \end{tikzpicture}
 \end{figure}
-
-Remember, you have to store the picture in a specific folder to create a mask.
-It is by default \verb"vi". You could use the optional argument of
-\verb"\definelogo" for switching to another folder.
 
 The logo color is now controlled by the current text color. See Section
 \ref{sec:logoins} for how to modify the logo color for \verb"\insertlogo".

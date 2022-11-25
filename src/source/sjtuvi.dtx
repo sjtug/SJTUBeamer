@@ -183,12 +183,16 @@
 %
 % \subsubsection{Load TikZ}
 % Load TikZ package and its related library: 
-% \verb"pattern.meta" provides the interface to define a pattern; 
-% \verb"fadings" provides the method to create a fading mask; 
-% \verb"decoration.pathmorphing" provides the interface to user-define a decoration.
-% \verb"external" provides the way for tikz externalization, which will reduce the
-% number of repetitive rendering with the cached pdf.
-% \verb"backgrounds" provides the way to make a scope as a background to draw later.
+% \begin{itemize}
+%   \item \verb"pattern.meta" provides the interface to define a pattern; 
+%   \item \verb"fadings" provides the method to create a fading mask;
+%   \item \verb"decoration.pathmorphing" provides the interface to user-define
+%         a decoration.
+%   \item \verb"external" provides the way for tikz externalization, which will
+%         reduce the number of repetitive rendering with the cached pdf.
+%   \item \verb"backgrounds" provides the way to make a scope as a background
+%         to draw later.
+% \end{itemize}
 %    \begin{macrocode}
 \RequirePackage{tikz}
 \usetikzlibrary{fadings}
@@ -224,20 +228,28 @@
 % Define a mask picture to make its
 % different color variants.
 %
-% The first argument assigns the file name
-% and the second sets the horizontal
-% cropping and the third sets the vertical
-% cropping. Notice that the cropping is
+% The first argument is the control
+% sequence name of the generated command,
+% without the backslash.
+%
+% The second argument assigns the path to
+% the logo file.
+%
+% The third argument sets the horizontal
+% cropping. Range from 0 to 1.
+%
+% The fourth argument sets the vertical
+% cropping. Range from 0 to 1.
+%
+% Notice that the cropping is
 % symmetrical (double the length).
 % When the horizontal cropping is greater
 % than the vertical cropping, the mask
 % will be placed by its height, otherwise
 % by its width.
-% The domain for both cropping
-% parameters is 0 to 1.
 %
 % You should define a logo
-% \verb"\definelogo{mylogo}{<hc>}{<vc>}"
+% \verb"\definelogo{mylogo}{path}{<hc>}{<vc>}"
 % then use it in the contents like:
 % \verb"\mylogo[white]",
 % where the optional parameter could be
@@ -247,41 +259,34 @@
 % to identify the opacity you want or any
 % other parameter for a TikZ node.
 %
-% Remember, the picture should be in the
-% vi/ folder by default. If you want to
-% use some other file in other folder,
-% add an optional paramter like
-% \verb"\definelogo[folder]{file}{0}{0}"
-% will get the folder/file.
-%
 % The externalization will be disabled
 % when using this system to generate
 % logos, locally.
 %    \begin{macrocode}
-\newcommand{\definelogo}[4][vi]{
-  % #1: folder
-  % #2: file from #1 folder
+\newcommand{\definelogo}[4]{
+  % #1: csname
+  % #2: path
   % #3: horizontal clip (0~1)
   % #4: vertical clip (0~1)
   \pgfmathparse{notgreater(#3,#4)}
   \ifnum\pgfmathresult=1
-    \begin{tikzfadingfrompicture}[name=#2]
+    \begin{tikzfadingfrompicture}[name=#1]
       \fill[black] (-1,-1) rectangle (1,1);
-      \node {\includegraphics[width=1.5cm]{#1/#2}};
+      \node {\includegraphics[width=1.5cm]{#2}};
     \end{tikzfadingfrompicture}
   \else 
-    \begin{tikzfadingfrompicture}[name=#2]
+    \begin{tikzfadingfrompicture}[name=#1]
       \fill[black] (-1,-1) rectangle (1,1);
-      \node {\includegraphics[height=1.5cm]{#1/#2}};
+      \node {\includegraphics[height=1.5cm]{#2}};
     \end{tikzfadingfrompicture}
   \fi
-  \expandafter\providecommand\csname #2\endcsname[1][]{%
+  \expandafter\providecommand\csname #1\endcsname[1][]{%
     % ##1: override color, or opacity=... (optional)
     \tikzexternaldisable%
     \begin{tikzpicture}
       \begin{scope}
         \clip ({-1.0+#3},{-1.0+#4}) rectangle ({1.0-#3},{1.0-#4});
-        \fill [##1, path fading=#2] (-1,-1) rectangle (1,1);
+        \fill [##1, path fading=#1] (-1,-1) rectangle (1,1);
       \end{scope}
     \end{tikzpicture}%
   }
@@ -299,13 +304,13 @@
 %
 % Define the required logo.
 %    \begin{macrocode}
-\definelogo{sjtubadge}{0}{0}
-\definelogo{zhlogo}{0.13}{0.75}
-\definelogo{enlogo}{0.13}{0.75}
-\definelogo{dlogo}{0}{0}
-\definelogo{vlogo}{0.8}{0.13}
-\definelogo{sjtubg}{0.3}{0.5}
-\definelogo{sjtugate}{0.25}{0.8}
+\definelogo{sjtubadge}{vi/sjtu-vi-sjtubadge.pdf}{0}{0}
+\definelogo{zhlogo}{vi/sjtu-vi-zhlogo.pdf}{0.13}{0.75}
+\definelogo{enlogo}{vi/sjtu-vi-enlogo.pdf}{0.13}{0.75}
+\definelogo{dlogo}{vi/sjtu-vi-dlogo.pdf}{0}{0}
+\definelogo{vlogo}{vi/sjtu-vi-vlogo.pdf}{0.8}{0.13}
+\definelogo{sjtubg}{vi/sjtu-vi-sjtubg.png}{0.3}{0.5}
+\definelogo{sjtugate}{vi/sjtu-vi-sjtugate.png}{0.25}{0.8}
 %    \end{macrocode}
 %
 % \begin{macro}{\secondaryinstlogo}

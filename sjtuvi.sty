@@ -59,41 +59,41 @@
 \definecolor{sjtuBlueSecondary}{RGB}{51,141,39}      % lightgreen
 \definecolor{sjtuBlueTertiary}{RGB}{0,81,78}         % lightgray
 \RequirePackage{array}
-\newcommand{\definelogo}[4][vi]{
-  % #1: folder
-  % #2: file from #1 folder
+\newcommand{\definelogo}[4]{
+  % #1: csname
+  % #2: path
   % #3: horizontal clip (0~1)
   % #4: vertical clip (0~1)
   \pgfmathparse{notgreater(#3,#4)}
   \ifnum\pgfmathresult=1
-    \begin{tikzfadingfrompicture}[name=#2]
+    \begin{tikzfadingfrompicture}[name=#1]
       \fill[black] (-1,-1) rectangle (1,1);
-      \node {\includegraphics[width=1.5cm]{#1/#2}};
+      \node {\includegraphics[width=1.5cm]{#2}};
     \end{tikzfadingfrompicture}
   \else
-    \begin{tikzfadingfrompicture}[name=#2]
+    \begin{tikzfadingfrompicture}[name=#1]
       \fill[black] (-1,-1) rectangle (1,1);
-      \node {\includegraphics[height=1.5cm]{#1/#2}};
+      \node {\includegraphics[height=1.5cm]{#2}};
     \end{tikzfadingfrompicture}
   \fi
-  \expandafter\providecommand\csname #2\endcsname[1][]{%
+  \expandafter\providecommand\csname #1\endcsname[1][]{%
     % ##1: override color, or opacity=... (optional)
     \tikzexternaldisable%
     \begin{tikzpicture}
       \begin{scope}
         \clip ({-1.0+#3},{-1.0+#4}) rectangle ({1.0-#3},{1.0-#4});
-        \fill [##1, path fading=#2] (-1,-1) rectangle (1,1);
+        \fill [##1, path fading=#1] (-1,-1) rectangle (1,1);
       \end{scope}
     \end{tikzpicture}%
   }
 }
-\definelogo{sjtubadge}{0}{0}
-\definelogo{zhlogo}{0.13}{0.75}
-\definelogo{enlogo}{0.13}{0.75}
-\definelogo{dlogo}{0}{0}
-\definelogo{vlogo}{0.8}{0.13}
-\definelogo{sjtubg}{0.3}{0.5}
-\definelogo{sjtugate}{0.25}{0.8}
+\definelogo{sjtubadge}{vi/sjtu-vi-sjtubadge.pdf}{0}{0}
+\definelogo{zhlogo}{vi/sjtu-vi-zhlogo.pdf}{0.13}{0.75}
+\definelogo{enlogo}{vi/sjtu-vi-enlogo.pdf}{0.13}{0.75}
+\definelogo{dlogo}{vi/sjtu-vi-dlogo.pdf}{0}{0}
+\definelogo{vlogo}{vi/sjtu-vi-vlogo.pdf}{0.8}{0.13}
+\definelogo{sjtubg}{vi/sjtu-vi-sjtubg.png}{0.3}{0.5}
+\definelogo{sjtugate}{vi/sjtu-vi-sjtugate.png}{0.25}{0.8}
 \newcommand{\secondaryinstlogo}[3][]{%
   % #1: shortinst (optional)
   % #2: longinst
