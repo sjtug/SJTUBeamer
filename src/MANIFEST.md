@@ -58,14 +58,14 @@ These files are typeset using LaTeX to produce the PDF documentation for the pac
 **Installation (2/2)** These files are in `vi/` directory ‡. To provide the basic
 graphics resources for creating presentations.
 
-* dlogo.pdf 
-* enlogo.pdf 
-* sjtubadge.pdf 
-* sjtubg.png 
-* sjtugate.png 
-* sjtuphoto.jpg 
-* vlogo.pdf 
-* zhlogo.pdf 
+* sjtu-vi-dlogo.pdf 
+* sjtu-vi-enlogo.pdf 
+* sjtu-vi-sjtubadge.pdf 
+* sjtu-vi-sjtubg.png 
+* sjtu-vi-sjtugate.png 
+* sjtu-vi-sjtuphoto.jpg 
+* sjtu-vi-vlogo.pdf 
+* sjtu-vi-zhlogo.pdf 
 
 ### Typeset documents
 
