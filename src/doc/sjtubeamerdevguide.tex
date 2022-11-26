@@ -241,7 +241,7 @@ Integration on GitHub Actions. In details,
   \item Compiling \verb"main.tex" for users.
   \item Building the cover collection.
   \item Formatting codes.
-  \item Build the Overleaf distribution \texttt{sjtubeamer-overleaf.zip}.
+  \item Build the online distribution \texttt{sjtubeamer-online.zip}.
 \end{itemize}
 
 \subsection{l3build}\label{sec:l3build}
@@ -440,9 +440,9 @@ files and update the generated files in the root directory.
 the release zip file. You could install the generated \verb".tds"
 file into the installing directory of your \TeX{} distribution.
 
-\fcmd{make build-overleaf} This command will build the overleaf distribution in
-\verb"build/overleaf" and generate the zipped file at
-\verb"./sjtubeamer-overleaf.zip". See \verb"MANIFEST.md" for what it contains.
+\fcmd{make build-online} This command will build the online distribution in
+\verb"build/online" and generate the zipped file at
+\verb"./sjtubeamer-online.zip". See \verb"MANIFEST.md" for what it contains.
 
 \fcmd{make format-dev} This command will format all the files, and clear the
 indent. In order to improve the code quality. We use the following parameters

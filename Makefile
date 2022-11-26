@@ -44,13 +44,13 @@ build-cover: prepare
 	cp build/cover.pdf .
 
 # Build sjtubeamer package
-# This will build overleaf package automatically.
+# This will build online package automatically.
 build-dev: prepare
 	.github/ci/build_package.sh
 
-# Build overleaf distribution
-build-overleaf: prepare
-	.github/ci/build_overleaf.sh
+# Build online distribution
+build-online: prepare
+	.github/ci/build_online.sh
 
 # Build `main.tex` with multiple test variants
 build-test-variants: prepare

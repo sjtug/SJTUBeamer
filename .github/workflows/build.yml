@@ -86,7 +86,7 @@ jobs:
             src/build/distrib/tds/doc
             src/build/distrib/tds/source
             src/build/distrib/tds/tex
-            src/build/distrib/tds/sjtubeamer-overleaf.zip
+            src/build/distrib/tds/sjtubeamer-online.zip
           name: sjtubeamer.tds
         name: upload build artifacts
   check-format:

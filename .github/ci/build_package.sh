@@ -1,7 +1,7 @@
 #!/bin/bash
 
-# Build overleaf package first.
-.github/ci/build_overleaf.sh
+# Build online package first.
+.github/ci/build_online.sh
 
 cd src
 
@@ -16,7 +16,7 @@ cd ..
 .github/ci/copy_resources.sh
 
 # Copy to the tds dir for uploading artifacts conveniently.
-cp -v sjtubeamer-overleaf.zip src/build/distrib/tds/
+cp -v sjtubeamer-online.zip src/build/distrib/tds/
 
 if [ ! -f src/sjtubeamer-ctan.zip ]; then
     echo "BUILD CTAN FAILED."

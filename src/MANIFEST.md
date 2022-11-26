@@ -218,13 +218,15 @@ The following group lists the files included in the CTAN package.
 * sjtuvi.dtx 
 
 
-## Overleaf manifest
+## Online manifest
 
-The following group lists the files included in the Overleaf distribution.
+The following group lists the files included in the Online distribution.
+You could upload the package to any online plateforms or use it as the 
+minimal workset on the local machine.
 You could generate the package by going to the root directory and
-using the command `make build-overleaf` in the terminal.
+using the command `make build-online` in the terminal.
 
-### Overleaf files
+### Online files
 
 * contrib/
 * build/

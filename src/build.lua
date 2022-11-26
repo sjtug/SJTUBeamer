@@ -433,20 +433,22 @@ The following group lists the files included in the CTAN package.
         skipfiledescription = true,
     },
     {
-        subheading = "Overleaf manifest",
+        subheading = "Online manifest",
         description = [[
-The following group lists the files included in the Overleaf distribution.
+The following group lists the files included in the Online distribution.
+You could upload the package to any online plateforms or use it as the 
+minimal workset on the local machine.
 You could generate the package by going to the root directory and
-using the command `make build-overleaf` in the terminal.
+using the command `make build-online` in the terminal.
 ]],
     },
     {
-        name    = "Overleaf files",
+        name    = "Online files",
         description = [[
 * contrib/
 * build/
 * vi/]],
-        dir     = "../build/overleaf",
+        dir     = "../build/online",
         files   = {"*.*"},
         exclude = {".",".."},
         flag    = false,
