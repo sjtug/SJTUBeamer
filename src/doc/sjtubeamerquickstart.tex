@@ -1,5 +1,20 @@
+% !TeX encoding = UTF-8
+
+%% ------------------------------------------------------------------------
+%% Copyright (C) 2021,2022 SJTUG
+%% 
+%% SJTUBeamer 快速入门
+%% 
+%% SJTUBeamear 符合 Apache-2.0 开源许可，不提供任何担保。
+%% sjtuvi.sty 和 sjtucover.sty 库及其附属徽标、图片不符合上述开源许可，
+%% 由上海交通大学持有版权。
+%%
+%% 如果遇到使用问题，前往 Discussions 讨论：
+%% https://github.com/sjtug/SJTUBeamer/discussions
+%% -----------------------------------------------------------------------
+
 % 本行为文件元数据，可省略。
-\ProvidesFile{sjtubeamerquickstart.tex}[2022/11/23 v3.0.0 Quick Start for sjtubeamer (Chinese)]
+\ProvidesFile{sjtubeamerquickstart.tex}[2022/11/25 v3.0.0 Quick Start for sjtubeamer (Chinese)]
 
 % 加载 ctexbeamer 文档类【第一部分】
 % 如果编写英文内容，建议直接使用 beamer 文档类。
@@ -12,7 +27,7 @@
 \mode<presentation>
 
 % 加载 SJTUBeamer 主题【第二部分】
-\usetheme[min,default]{sjtubeamer}
+\usetheme[maxplus,default]{sjtubeamer}
 % 使用 maxplus/max/min 切换标题页样式
 % 使用 red/blue 切换主色调
 % 使用 light/dark 切换亮/暗色模式
@@ -31,13 +46,17 @@
 
 % 引用设置
 \usepackage[backend=biber,style=gb7714-2015]{biblatex}
-\addbibresource{dev.bib}
+\addbibresource{ref.bib}
 
 % 其他宏包
+\usepackage{fontawesome5}
 \usepackage{multicol}
 \usepackage{pgfplots}
 \usepackage{pgfplotstable}
 \usepackage[ruled, linesnumbered]{algorithm2e}
+
+% 额外命令
+\newcommand{\link}[1]{\href{#1}{\faLink}}
 
 % 使用节目录
 % 还可以通过 \AtBeginSubsection[]{} 设置小节目录
@@ -57,9 +76,16 @@
 % 作者
 \author{SJTUG}
 % 组织
-\institute[Linux User Group]{Linux 用户组}
+\institute[SJTUG]{上海交通大学 Linux 用户组}
 % 日期
 \date{\today}
+
+% 徽标
+% 可以使用 vi 文件夹中同名的可变颜色徽标，
+% 也可以使用图片 \logo{\includegraphics{图片路径}}
+% \logo{\enlogo}
+% 头图
+% \titlegraphic{\includegraphics{vi/sjtuphoto.jpg}}
 
 % 文档开始
 \begin{document}
@@ -164,7 +190,7 @@
 
   % 多栏环境，使用 T 顶部对齐
   \begin{columns}[T]
-    % 栏环境，用于手动创建不同的竖栏
+    % 栏环境，用于手动创建不同的竖栏，强制参数指定列宽
     \begin{column}{0.22\textwidth}
       \begin{alertblock}{子主题}
         \ttfamily
@@ -172,10 +198,12 @@
           \item maxplus
           \item max
           \item min
-          \item my
         \end{itemize}
       \end{alertblock}
-      \begin{block}{插件}
+      % \ref{标签} 用于交叉引用。
+      % 这里后续有一个 frame 被标记为 plugin 标签。
+      % 从而此处可以交叉引用该页码。
+      \begin{block}{插件（第 \ref{plugin} 页）}
         \ttfamily
         \begin{itemize}
           \item sjtug
@@ -252,7 +280,7 @@
   \stamphrule
 
   \begin{columns}
-    \begin{column}{0.4\textwidth}
+    \begin{column}{0.6\textwidth}
       % \begin{stampblock}<覆盖参数>[编号]{文字}
       \begin{stampblock}{印记区块标题}
         印记区块内容。
@@ -264,12 +292,12 @@
         \includegraphics[width=0.9\textwidth]{vi/sjtu-vi-sjtuphoto.jpg}
       \end{stampbox}
     \end{column}
-    \begin{column}{0.3\textwidth}
-      \begin{tikzpicture}
-        % \stamparray{单体半宽}{起始点}{终止点} 用于创建印记矩阵。
-        \stamparray{16pt}{(0,0)}{(4,3)}
-      \end{tikzpicture}
-    \end{column}
+    % \begin{column}{0.3\textwidth}
+    %   \begin{tikzpicture}
+    %     % \stamparray{单体半宽}{起始点}{终止点} 用于创建印记矩阵。
+    %     \stamparray{16pt}{(0,0)}{(4,3)}
+    %   \end{tikzpicture}
+    % \end{column}
   \end{columns}
 
 \end{frame}
@@ -301,6 +329,7 @@ int main(){
   % 引用宏包以启用之。
   \begin{columns}[T]
     \begin{column}{0.6\textwidth}
+      % 可以使用 figure 环境产生图环境，但是 beamer 中默认不对图编号。
       \begin{figure}
         \caption{平均时间趋势图}\label{fig:avgtime}
         \begin{tikzpicture}
@@ -321,6 +350,7 @@ int main(){
       \end{figure}
     \end{column}
     \begin{column}{0.4\textwidth}
+      % 可以使用 table 产生表环境，但是 beamer 中默认不对表编号。
       \begin{table}
         \caption{平均时间变化表}\label{tab:avgtime}
         % SJTUBeamer 将表格设定为三线表样式。
@@ -369,23 +399,41 @@ int main(){
 
 \part{插件扩展}
 
-\begin{frame}
+\begin{frame}[label=plugin]
+  % label 参数用于对该帧添加标签。
   \frametitle{插件}
   \framesubtitle{灵活的扩展性}
 
   \begin{itemize}
     \item 如果想直接修改源代码，可以填充 \texttt{sjtucover.sty} 中的 \texttt{my}
           模板，并在调用 SJTUBeamer 时使用 \texttt{my} 选项。
-    \item \href{https://github.com/sjtug/SJTUBeamer}{GitHub 存储库}
-          的根目录下存放着社区插件。在根目录编写文件使用 \textbackslash\texttt{usesjtutheme} 调用插件。
-    \item 插件预览存放于
-          \href{https://github.com/sjtug/SJTUBeamer/issues/81}{GitHub Issue}。
+    \item GitHub 存储库 \link{https://github.com/sjtug/SJTUBeamer} 的根目录下存放着社区插件。在根目录编写文件使用
+          \textbackslash\texttt{usesjtutheme} 调用插件。
+    \item 插件预览存放于 GitHub Issues
+          \link{https://github.com/sjtug/SJTUBeamer/issues/81}。
     \item 编写插件也很简单，在命令行键入
           \texttt{cd src \&\& l3build add-contrib test}
           即可创建名为 \texttt{test} 的插件。阅读 \texttt{CONTRIBUTING.md}
+          \link{https://github.com/sjtug/SJTUBeamer/blob/main/CONTRIBUTING.md}
           文件了解如何贡献插件。
-    \item 详细的命令说明需要阅读\href{run:sjutbeamer.pdf}{《用户文档》}。
-          对开发 SJTUBeamer 感兴趣的话，请阅读\href{run:sjtubeamerdevguide.pdf}{《开发文档》}。
+  \end{itemize}
+\end{frame}
+
+\begin{frame}
+  \frametitle{其他问题}
+  \framesubtitle{查阅文档、参与讨论与开发}
+  \begin{itemize}
+    \item 详细的命令说明需要阅读《用户文档》。对开发 SJTUBeamer 感兴趣的话，
+          请阅读《开发文档》。这些文档都在 Releases 区
+          \link{https://github.com/sjtug/SJTUBeamer/releases}。
+    \item 遇到任何使用问题，欢迎通过 Discussions 区
+          \link{https://github.com/sjtug/SJTUBeamer/discussions}
+          参与讨论。
+    \item 在开发过程中，可以通过 Issues 区
+          \link{https://github.com/sjtug/SJTUBeamer/issues}
+          提供 Bug 反馈与新功能提案，也可以直接通过 Pull Requests
+          \link{https://github.com/sjtug/SJTUBeamer/pulls}
+          提交代码修改。
   \end{itemize}
 \end{frame}
 
@@ -393,6 +441,9 @@ int main(){
 \begin{frame}[allowframebreaks]
   % allowframebreaks 参数可以自动切分过长的内容于多页上。
 
+  % 之前的页中使用
+  % \footfullcite{引用条目} 脚注引用
+  % \cite{引用条目} 编号引用
   % 如果全文无引用，但想排印所有条目，使用
   % \nocite{*}
   % 排印引用条目

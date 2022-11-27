@@ -10,7 +10,7 @@ The following groups list the files included in the development repository of th
 Files listed with a ‘†’ marker are included in the TDS but not CTAN files, and files listed
 with ‘‡’ are included in both.
 
-> **Minimal workset**: All files in **Derived files** and **Graphic Resources**.
+> **Minimal workset**: All files in **Derived files** and **Graphic resources**.
 Or directly use files in **TeX files (TDS)**.
 
 ### Source files
@@ -53,7 +53,7 @@ These files are typeset using LaTeX to produce the PDF documentation for the pac
 * sjtucover.sty †
 * sjtuvi.sty †
 
-### Graphics Resources
+### Graphics resources
 
 **Installation (2/2)** These files are in `vi/` directory ‡. To provide the basic
 graphics resources for creating presentations.
@@ -98,7 +98,7 @@ different engines (pdfTeX, XeTeX, LuaTeX, etc.).
 ### Tutorial files
 
 **Unit Tests**
-Files included to demonstrate package functionality, and the demo files for the user guide.
+Files included to demonstrate package functionality. And they are also the demo files for the user guide.
 These files will be typesetted first before typesetting the documentation source files.
 They could be cached in the next round by `l3build cache-demo`.
 The cache could be cleaned by `l3build clean-demo`.
@@ -184,7 +184,7 @@ All files included in the `sjtubeamer/tex` directory. This directory contains al
 All files included in the `sjtubeamer/doc` directory.
 
 * MANIFEST.md 
-* dev.bib 
+* ref.bib 
 * sjtubeamer.pdf 
 * sjtubeamer.tex 
 * sjtubeamerdevguide.pdf 
@@ -207,7 +207,7 @@ The following group lists the files included in the CTAN package.
 * beamerouterthemesjtubeamer.dtx 
 * beamerthemesjtubeamer.dtx 
 * beamerthemesjtubeamer.ins 
-* dev.bib 
+* ref.bib 
 * sjtubeamer.pdf 
 * sjtubeamer.tex 
 * sjtubeamerdevguide.pdf 
@@ -216,3 +216,27 @@ The following group lists the files included in the CTAN package.
 * sjtubeamerquickstart.tex 
 * sjtucover.dtx 
 * sjtuvi.dtx 
+
+
+## Online manifest
+
+The following group lists the files included in the Online distribution.
+You could upload the package to any online plateforms or use it as the 
+minimal workset on the local machine.
+You could generate the package by going to the root directory and
+using the command `make build-online` in the terminal.
+
+### Online files
+
+* contrib/
+* build/
+* vi/
+* beamercolorthemesjtubeamer.sty 
+* beamerfontthemesjtubeamer.sty 
+* beamerinnerthemesjtubeamer.sty 
+* beamerouterthemesjtubeamer.sty 
+* beamerthemesjtubeamer.sty 
+* ref.bib 
+* sjtubeamerquickstart.tex 
+* sjtucover.sty 
+* sjtuvi.sty 

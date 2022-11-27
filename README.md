@@ -8,7 +8,7 @@ SJTUBeamer 是上海交通大学的非官方 Beamer 模版。您可以使用 SJT
 
 ## 快速上手 👋
 
-目前的 `main.tex` 是一个示例文档《如何使用 LaTeX 排版论文》。您可以将里面的内容替换掉。下面是一个最简示例：
+目前的 `main.tex` 是一个示例文档《如何使用 $\rm\LaTeX$ 排版论文》。您可以将里面的内容替换掉。下面是一个最简示例：
 
 <details>
 
@@ -38,7 +38,7 @@ SJTUBeamer 是上海交通大学的非官方 Beamer 模版。您可以使用 SJT
 \usepackage[backend=biber,style=gb7714-2015]{biblatex}
 \addbibresource{thesis.bib}
 
-\institute[Linux User Group]{Linux 用户组} % 组织
+\institute[SJTUG]{上海交通大学 Linux 用户组} % 组织
 
 \title{SJTUBeamer 幻灯片模板}         % 标题
 \subtitle{SJTUBeamer Template}       % 副标题
@@ -141,7 +141,7 @@ int main(){
 
 目前模版最新的稳定版是 v3.0.0。您可以在 [发布页](https://github.com/sjtug/SJTUBeamer/releases) 查看修改日志和更多资料。通常来说，SJTUBeamer 的一个稳定版本包括如下内容：
 
-* `sjtubeamerquickguide.pdf`：SJTUBeamer 快速入门。
+* `sjtubeamerquickguide.pdf`：SJTUBeamer 快速入门，另见对应 [源代码](https://github.com/sjtug/SJTUBeamer/blob/main/src/doc/sjtubeamerquickstart.tex)。
 * `sjtubeamer.pdf`: **强烈推荐在使用前阅读一遍 👍👍👍** SJTUBeamer 用户文档。
 * `sjtubeamerdevguide.pdf`: SJTUBeamer 开发指南。
 * `sjtulib-talk-max-red.pdf`: 示例文档《如何使用 LaTeX 排版论文》的 `max,red` 主题版本。
@@ -157,7 +157,8 @@ int main(){
 ## 使用反馈与贡献代码 👷
 
 * 文件清单详见 [MANIFEST](src/MANIFEST.md)。
-* 您可以通过 GitHub Issue 反馈使用时碰到的问题。同时，也欢迎您提交 PR 帮助我们改进。
+* 在使用过程中，您可以在 [GitHub Discussions](https://github.com/sjtug/SJTUBeamer/discussions) 讨论区讨论任何使用上的问题、交流想法。
+* 在开发过程中，您可以通过 [GitHub Issues](https://github.com/sjtug/SJTUBeamer/issues) 提供 SJTUBeamer 的 Bug 反馈和新功能提案。同时，也欢迎您直接提交 [Pull Request](https://github.com/sjtug/SJTUBeamer/pulls) 代码修改帮助我们改进。
 * 所有对模版的修改应该在 `.dtx` 文件中进行，而后用 l3build 生成 sty 文件。
 * 您可以阅读发布页面中的《SJTUBeamer 开发指南》`sjtubeamerdevguide.pdf` 了解模版的实现细节与编译方法。
 
@@ -174,10 +175,15 @@ int main(){
 
 ## 展示 🧐
 
-![cover_1](https://user-images.githubusercontent.com/61653082/160813366-5c7bd98b-dc3c-43ac-9cf4-1cb375228470.jpg)
-![cover_2](https://user-images.githubusercontent.com/61653082/160813386-8cb98131-0cae-456b-af1e-cec671e5fc8e.jpg)
-![cover_3](https://user-images.githubusercontent.com/61653082/160813414-9b43c4b3-4e6d-4f51-9c63-ff7a87eafcf7.jpg)
-![cover_4](https://user-images.githubusercontent.com/61653082/160813430-1c7647d4-6346-4fd8-b43f-e156b6234b0e.jpg)
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset="https://user-images.githubusercontent.com/61653082/160813366-5c7bd98b-dc3c-43ac-9cf4-1cb375228470.jpg">
+  <img alt="Red Cover" src="https://user-images.githubusercontent.com/61653082/160813386-8cb98131-0cae-456b-af1e-cec671e5fc8e.jpg">
+</picture>
+    
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset="https://user-images.githubusercontent.com/61653082/160813414-9b43c4b3-4e6d-4f51-9c63-ff7a87eafcf7.jpg">
+  <img alt="Blue Cover" src="https://user-images.githubusercontent.com/61653082/160813430-1c7647d4-6346-4fd8-b43f-e156b6234b0e.jpg">
+</picture>
 
 ## 许可证
 

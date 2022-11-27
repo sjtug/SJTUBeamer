@@ -28,7 +28,7 @@ jobs:
         name: build test variants with XeLaTeX
       - uses: xu-cheng/texlive-action/full@v1
         with:
-          run: .github/ci/gen_cover.sh -halt-on-error -time -quiet -xelatex
+          run: .github/ci/gen_cover.sh -halt-on-error -time -xelatex
         name: build cover with XeLaTeX
       - run: cat build/build-*.log
         name: display build log
@@ -75,7 +75,7 @@ jobs:
             apk add zip diffutils
             tlmgr update --self
             tlmgr update l3build
-            .github/ci/build_package.sh
+            make build-dev
         name: build package with l3build
       - name: check if generated files are of latest version
         run: |
@@ -86,6 +86,7 @@ jobs:
             src/build/distrib/tds/doc
             src/build/distrib/tds/source
             src/build/distrib/tds/tex
+            src/build/distrib/tds/sjtubeamer-online.zip
           name: sjtubeamer.tds
         name: upload build artifacts
   check-format:

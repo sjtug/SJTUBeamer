@@ -44,8 +44,13 @@ build-cover: prepare
 	cp build/cover.pdf .
 
 # Build sjtubeamer package
+# This will build online package automatically.
 build-dev: prepare
-	cd src && l3build ctan
+	.github/ci/build_package.sh
+
+# Build online distribution
+build-online: prepare
+	.github/ci/build_online.sh
 
 # Build `main.tex` with multiple test variants
 build-test-variants: prepare

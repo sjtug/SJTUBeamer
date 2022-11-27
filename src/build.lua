@@ -298,7 +298,7 @@ The following groups list the files included in the development repository of th
 Files listed with a ‘†’ marker are included in the TDS but not CTAN files, and files listed
 with ‘‡’ are included in both.
 
-> **Minimal workset**: All files in **Derived files** and **Graphic Resources**.
+> **Minimal workset**: All files in **Derived files** and **Graphic resources**.
 Or directly use files in **TeX files (TDS)**.
 ]],
     },
@@ -332,7 +332,7 @@ These files are typeset using LaTeX to produce the PDF documentation for the pac
         skipfiledescription = true,
     },
     {
-        name   = "Graphics Resources",
+        name   = "Graphics resources",
         description = [[
 **Installation (2/2)** These files are in `vi/` directory ‡. To provide the basic
 graphics resources for creating presentations.
@@ -370,7 +370,7 @@ different engines (pdfTeX, XeTeX, LuaTeX, etc.).
         name    = "Tutorial files",
         description = [[
 **Unit Tests**
-Files included to demonstrate package functionality, and the demo files for the user guide.
+Files included to demonstrate package functionality. And they are also the demo files for the user guide.
 These files will be typesetted first before typesetting the documentation source files.
 They could be cached in the next round by `l3build cache-demo`.
 The cache could be cleaned by `l3build clean-demo`.
@@ -427,6 +427,28 @@ The following group lists the files included in the CTAN package.
         name    = "CTAN files",
         description = "* vi/",
         dir     = ctandir.."/"..module,
+        files   = {"*.*"},
+        exclude = {".",".."},
+        flag    = false,
+        skipfiledescription = true,
+    },
+    {
+        subheading = "Online manifest",
+        description = [[
+The following group lists the files included in the Online distribution.
+You could upload the package to any online plateforms or use it as the 
+minimal workset on the local machine.
+You could generate the package by going to the root directory and
+using the command `make build-online` in the terminal.
+]],
+    },
+    {
+        name    = "Online files",
+        description = [[
+* contrib/
+* build/
+* vi/]],
+        dir     = "../build/online",
         files   = {"*.*"},
         exclude = {".",".."},
         flag    = false,

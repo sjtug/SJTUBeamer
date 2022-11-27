@@ -13,7 +13,7 @@
 % \iffalse
 %<*package>
 \NeedsTeXFormat{LaTeX2e}
-\ProvidesPackage{sjtuvi}[2022/11/23 v3.0.0 Visual Identity System library for sjtubeamer]
+\ProvidesPackage{sjtuvi}[2022/11/25 v3.0.0 Visual Identity System library for sjtubeamer]
 %</package>
 % \fi
 % \CheckSum{0}
@@ -300,6 +300,9 @@
 % is recommended to all lines in the command or the start and the end of the outer environment.
 %
 % TODO: add the feature to insert a logo with or without the safe spacing (1/5h).
+%
+% \changes{v3.0.0}{2022/11/25}{changed the first two arguments from \oarg{folder}\marg{file}
+% to \marg{csname}\marg{path}.}
 % \end{macro}
 %
 % Define the required logo.
@@ -640,7 +643,8 @@
 \fi
 %    \end{macrocode}
 % Avoid calling macros in code section for performance reasons.
-%	The newest version of TikZ provides the interface to user-define a pattern.
+%
+% The newest version of TikZ provides the interface to user-define a pattern.
 % Obeying compatibility philosophy, use \verb"\pgfkeyvalueof" interface to get
 % parameters in a standard way. The unit is first tested in a standalone file
 % and previewed by TikZEdt.
@@ -686,6 +690,7 @@
 %
 % Use option to draw the stampline on TikZ
 % draw element
+%
 % \verb"[decoration=stampline, segment length=1cm, decorate]".
 %    \begin{macrocode}
 \pgfdeclaredecoration{stampline}{initial}

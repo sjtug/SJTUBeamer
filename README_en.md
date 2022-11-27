@@ -6,7 +6,7 @@ This is the beamer template exclusively for Shanghai Jiaotong University student
 
 ## Starting Up 👋
 
-Current document `main.tex` is an example documentation of *How to Use LaTeX to Typeset Thesis*. You could replace the content with the following minimum working example:
+Current document `main.tex` is an example documentation of *How to Use* $\LaTeX$ *to Typeset Thesis*. You could replace the content with the following minimum working example:
 
 <details>
 
@@ -36,7 +36,7 @@ Current document `main.tex` is an example documentation of *How to Use LaTeX to 
 \usepackage{biblatex}
 \addbibresource{thesis.bib}
 
-\institute{Linux User Group}
+\institute{SJTUG}
 
 \title{SJTUBeamer}
 \subtitle{A Beamer Template}
@@ -136,7 +136,7 @@ Edit `main.tex` and start to use.
 
 The current stable version is v3.0.0。You could visit [the release page](https://github.com/sjtug/SJTUBeamer/releases) for the changelog and more details. Generally speaking, a release of SJTUBeamer has the following content:
 
-* `sjtubeamerquickstart.pdf`：SJTUBeamer Quick Start.
+* `sjtubeamerquickstart.pdf`：SJTUBeamer Quick Start. You could also read the [source code](https://github.com/sjtug/SJTUBeamer/blob/main/src/doc/sjtubeamerquickstart.tex) of the document.
 * `sjtubeamer.pdf`: SJTUBeamer User Guide.
 * `sjtubeamerdevguide.pdf`: SJTUBeamer Development Guide.
 * `sjtulib-talk-max-red.pdf`: `max,red` version of `main.tex`.
@@ -152,7 +152,8 @@ Please use Chrome browser or Adobe Acrobat to open user guide, otherwise there c
 ## Feedback & Contribution 👷
 
 * You could get the repository manifest in [MANIFEST](src/MANIFEST.md).
-* Feel free to file an issue with GitHub Issues. At the same time, PRs are always welcomed.
+* For regular users, feel free to ask questions and share ideas in [GitHub Discussions](https://github.com/sjtug/SJTUBeamer/discussions).
+* For developers, Feel free to file an issue with [GitHub Issues](https://github.com/sjtug/SJTUBeamer/issues) to submit a bug report or a feature request. At the same time, [PRs](https://github.com/sjtug/SJTUBeamer/pulls) are always welcomed for direct code changes.
 * The source code should be modified in `.dtx` files. Then use l3build to generate sty files.
 * You could get more implementation details in `sjtubeamerdevguide.pdf`.
 
@@ -169,10 +170,15 @@ New contributors could add your name to the developer list in `sjtubeamerdevguid
 
 ## Appearance 🧐
 
-![cover_1](https://user-images.githubusercontent.com/61653082/160813366-5c7bd98b-dc3c-43ac-9cf4-1cb375228470.jpg)
-![cover_2](https://user-images.githubusercontent.com/61653082/160813386-8cb98131-0cae-456b-af1e-cec671e5fc8e.jpg)
-![cover_3](https://user-images.githubusercontent.com/61653082/160813414-9b43c4b3-4e6d-4f51-9c63-ff7a87eafcf7.jpg)
-![cover_4](https://user-images.githubusercontent.com/61653082/160813430-1c7647d4-6346-4fd8-b43f-e156b6234b0e.jpg)
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset="https://user-images.githubusercontent.com/61653082/160813366-5c7bd98b-dc3c-43ac-9cf4-1cb375228470.jpg">
+  <img alt="Red Cover" src="https://user-images.githubusercontent.com/61653082/160813386-8cb98131-0cae-456b-af1e-cec671e5fc8e.jpg">
+</picture>
+
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset="https://user-images.githubusercontent.com/61653082/160813414-9b43c4b3-4e6d-4f51-9c63-ff7a87eafcf7.jpg">
+  <img alt="Blue Cover" src="https://user-images.githubusercontent.com/61653082/160813430-1c7647d4-6346-4fd8-b43f-e156b6234b0e.jpg">
+</picture>
 
 ## License
 

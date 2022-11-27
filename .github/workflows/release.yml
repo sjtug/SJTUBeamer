@@ -19,7 +19,7 @@ jobs:
             apk add zip diffutils
             tlmgr update --self
             tlmgr update l3build
-            .github/ci/build_package.sh
+            make build-dev
         name: build package with XeLaTeX
       - uses: xu-cheng/texlive-action/full@v1
         with:
@@ -95,6 +95,15 @@ jobs:
           upload_url: ${{ steps.create_release.outputs.upload_url }}
           asset_path: src/sjtubeamer-ctan.zip
           asset_name: sjtubeamer-ctan.zip
+          asset_content_type: application/zip
+      - name: add online zip
+        uses: actions/upload-release-asset@v1.0.1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          upload_url: ${{ steps.create_release.outputs.upload_url }}
+          asset_path: sjtubeamer-online.zip
+          asset_name: sjtubeamer-online.zip
           asset_content_type: application/zip
       - name: add devguide
         uses: actions/upload-release-asset@v1.0.1
