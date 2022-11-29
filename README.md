@@ -1,5 +1,9 @@
 # SJTUBeamer 🤓
 
+[![overleaf](https://img.shields.io/badge/overleaf-sjtubeamer-green)](https://www.overleaf.com/latex/templates/sjtubeamer/dgvrnpndrtjh)
+[![discussions](https://img.shields.io/github/discussions/sjtug/SJTUBeamer)](https://github.com/sjtug/SJTUBeamer/discussions)
+[![Build](https://github.com/sjtug/SJTUBeamer/actions/workflows/build.yml/badge.svg?branch=main)](https://github.com/sjtug/SJTUBeamer/actions/workflows/build.yml)
+
 欢迎使用 SJTUBeamer! 🥳
 
 SJTUBeamer 是上海交通大学的非官方 Beamer 模版。您可以使用 SJTUBeamer 制作幻灯片，展示您的成果。
@@ -8,7 +12,7 @@ SJTUBeamer 是上海交通大学的非官方 Beamer 模版。您可以使用 SJT
 
 ## 快速上手 👋
 
-目前的 `main.tex` 是一个示例文档《如何使用 $\rm\LaTeX$ 排版论文》。您可以将里面的内容替换掉。下面是一个最简示例：
+目前的 `main.tex` 是一个示例文档《如何使用 LaTeX 排版论文》。您可以将里面的内容替换掉。下面是一个最简示例：
 
 <details>
 
@@ -127,15 +131,19 @@ int main(){
 ### 模版下载与编译
 
 * Overleaf
-  * 下载开发版压缩包。页面右上角 Code - Download Zip 即可。
-  * 或下载 [最新版](https://github.com/sjtug/SJTUBeamer/releases) 压缩包。点击 “Source Code (zip)” 即可下载。
-  * 上传至 Overleaf 使用即可。
-  * Overleaf 的设置中需要选择“XeLaTeX”编译器编译。
+  * 直接使用 [Overleaf 模板库链接](https://www.overleaf.com/latex/templates/sjtubeamer/dgvrnpndrtjh)。
+  * 或者手动上传至 Overleaf 使用：
+    * 下载开发版压缩包。页面右上角 Code - Download Zip 即可。
+    * 或下载 [最新版](https://github.com/sjtug/SJTUBeamer/releases) 压缩包，点击 “Source Code (zip)” 即可下载。
+    * 或下载 [最新版](https://github.com/sjtug/SJTUBeamer/releases) 最小依赖压缩包，点击 `sjtubeamer-online.zip` 下载。
+    * 上传至 Overleaf。
+    * Overleaf 的设置中需要选择“XeLaTeX”编译器编译。
 * 本地使用
   * 安装 TeXLive 套件。
-  * 使用 git 克隆仓库 `git clone https://github.com/sjtug/SJTUBeamer/` 或 `git clone https://mirror.sjtu.edu.cn/git/SJTUBeamer.git/`。
-  * 或下载开发版压缩包。页面右上角 Code - Download Zip 即可。
-  * 或下载 [最新版](https://github.com/sjtug/SJTUBeamer/releases) 压缩包。点击 “Source Code (zip)” 即可下载。
+  * 下载模板至本地：
+    * 使用 git 克隆仓库 `git clone https://github.com/sjtug/SJTUBeamer/` 或 `git clone https://mirror.sjtu.edu.cn/git/SJTUBeamer.git/`。
+    * 或下载开发版压缩包。页面右上角 Code - Download Zip 即可。
+    * 或下载 [最新版](https://github.com/sjtug/SJTUBeamer/releases) 压缩包。点击 “Source Code (zip)” 即可下载。
   * 之后通过 `latexmk -xelatex main.tex` 命令进行编译即可。
   * VSCode 用户可以使用 LaTeX Workshop 中的 “Recipe: latexmk (latexmkrc)” 进行编译。
 
@@ -150,6 +158,7 @@ int main(){
 * `sjtulib-talk-min-red.pdf`: 示例文档《如何使用 LaTeX 排版论文》的 `min,red` 主题版本。
 * `sample-all-covers.pdf`: 所有配色主题的封面封底。
 * `sjtubeamer-ctan.zip`: 包含所有文档和样式的压缩包。
+* `sjtubeamer-online.zip`：包含插件与最小依赖，适合于在线平台使用。
 * SJTUBeamer 源代码。
 
 请使用 Chrome 浏览器或 Adobe Acrobat 打开 SJTUBeamer 用户文档，以避免 PDF 兼容性导致的显示问题。
@@ -157,7 +166,7 @@ int main(){
 ## 使用反馈与贡献代码 👷
 
 * 文件清单详见 [MANIFEST](src/MANIFEST.md)。
-* 在使用过程中，您可以在 [GitHub Discussions](https://github.com/sjtug/SJTUBeamer/discussions) 讨论区讨论任何使用上的问题、交流想法。
+* 在使用过程中，您可以在 [GitHub Discussions](https://github.com/sjtug/SJTUBeamer/discussions) 讨论区提问任何使用上的问题、交流想法。
 * 在开发过程中，您可以通过 [GitHub Issues](https://github.com/sjtug/SJTUBeamer/issues) 提供 SJTUBeamer 的 Bug 反馈和新功能提案。同时，也欢迎您直接提交 [Pull Request](https://github.com/sjtug/SJTUBeamer/pulls) 代码修改帮助我们改进。
 * 所有对模版的修改应该在 `.dtx` 文件中进行，而后用 l3build 生成 sty 文件。
 * 您可以阅读发布页面中的《SJTUBeamer 开发指南》`sjtubeamerdevguide.pdf` 了解模版的实现细节与编译方法。
@@ -174,6 +183,8 @@ int main(){
 新贡献者可以将自己的信息加入 `src/doc/sjtubeamerdevguide.tex` 的 `Developer` 章节。
 
 ## 展示 🧐
+
+详细展示见 [样式一览](https://github.com/sjtug/SJTUBeamer/discussions/138)。
 
 <picture>
   <source media="(prefers-color-scheme: dark)" srcset="https://user-images.githubusercontent.com/61653082/160813366-5c7bd98b-dc3c-43ac-9cf4-1cb375228470.jpg">

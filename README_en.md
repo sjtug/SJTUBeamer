@@ -1,12 +1,16 @@
 # SJTUBeamer 🤓
 
+[![overleaf](https://img.shields.io/badge/overleaf-sjtubeamer-green)](https://www.overleaf.com/latex/templates/sjtubeamer/dgvrnpndrtjh)
+[![discussions](https://img.shields.io/github/discussions/sjtug/SJTUBeamer)](https://github.com/sjtug/SJTUBeamer/discussions)
+[![Build](https://github.com/sjtug/SJTUBeamer/actions/workflows/build.yml/badge.svg?branch=main)](https://github.com/sjtug/SJTUBeamer/actions/workflows/build.yml)
+
 Welcome! 🥳
 
 This is the beamer template exclusively for Shanghai Jiaotong University students to give a speech on group meeting or course project.
 
 ## Starting Up 👋
 
-Current document `main.tex` is an example documentation of *How to Use* $\LaTeX$ *to Typeset Thesis*. You could replace the content with the following minimum working example:
+Current document `main.tex` is an example documentation of *How to Use LaTeX to Typeset Thesis*. You could replace the content with the following minimum working example:
 
 <details>
 
@@ -122,15 +126,19 @@ Edit `main.tex` and start to use.
 ### Template Download & Compilation
 
 * Overleaf
-  * Download the development version by clicking "Code - Download Zip".
-  * Or download [the latest version](https://github.com/sjtug/SJTUBeamer/releases). Click "Source Code (zip)" to download.
-  * Upload to Overleaf.
-  * Set to "XeLaTeX" for compilation.
+  * You could use the [Overleaf Template Gallary link](https://www.overleaf.com/latex/templates/sjtubeamer/dgvrnpndrtjh).
+  * Or upload to Overleaf manually:
+    * Download the development version by clicking "Code - Download Zip".
+    * Or download [the latest version](https://github.com/sjtug/SJTUBeamer/releases). Click "Source Code (zip)" to download.
+    * Or download [the latest version](https://github.com/sjtug/SJTUBeamer/releases). Click `sjtubeamer-online` to download the minimal workset.
+    * Upload to Overleaf.
+    * Set to "XeLaTeX" for compilation.
 * Local Use
   * Install TeXLive.
-  * Run `git clone https://github.com/sjtug/SJTUBeamer/` or `git clone https://mirror.sjtu.edu.cn/git/SJTUBeamer.git/`.
-  * Or download the development version by clicking "Code - Download Zip".
-  * Or download [the latest version](https://github.com/sjtug/SJTUBeamer/releases). Click "Source Code (zip)" to download.
+  * Download the template to your local machine:
+    * Run `git clone https://github.com/sjtug/SJTUBeamer/` or `git clone https://mirror.sjtu.edu.cn/git/SJTUBeamer.git/`.
+    * Or download the development version by clicking "Code - Download Zip".
+    * Or download [the latest version](https://github.com/sjtug/SJTUBeamer/releases). Click "Source Code (zip)" to download.
   * Run `latexmk -xelatex main.tex` to compile
   * VSCode LaTeX Workshop: use “Recipe: latexmk (latexmkrc)” to compile
 
@@ -145,6 +153,7 @@ The current stable version is v3.0.0。You could visit [the release page](https:
 * `sjtulib-talk-min-red.pdf`: `min,red` version of `main.tex`.
 * `sample-all-covers.pdf`: all covers (title page and bottom page).
 * `sjtubeamer-ctan.zip`: the installation package.
+* `sjtubeamer-online.zip`: the minimal workset suitable for online platforms.
 * SJTUBeamer source code.
 
 Please use Chrome browser or Adobe Acrobat to open user guide, otherwise there could be display issues.
@@ -169,6 +178,8 @@ The development process is as follows:
 New contributors could add your name to the developer list in `sjtubeamerdevguide.tex`.
 
 ## Appearance 🧐
+
+You could get more details in [the discussion post](https://github.com/sjtug/SJTUBeamer/discussions/138).
 
 <picture>
   <source media="(prefers-color-scheme: dark)" srcset="https://user-images.githubusercontent.com/61653082/160813366-5c7bd98b-dc3c-43ac-9cf4-1cb375228470.jpg">
