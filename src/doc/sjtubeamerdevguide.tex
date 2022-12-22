@@ -269,13 +269,15 @@ to specify the install path, which could be obtained from Mik\TeX{} Console
 (Install)). It is often not necessary for \TeX{} Live and Mac\TeX{} users,
 unless you want to install the files in a different place other than
 \verb"TEXMFHOME" (the value could be obtained by
-\verb"kpsewhich -var-value TEXMFHOME").
-
-Then, refresh the database of filenames in your TeX{} distribution by
-\verb"texhash" or \verb"sudo texhash" to elevate the privileges if it prompts
-``directory not writable. Skipping...''. In fact, if the filenames stay the
-same, you don't need to refresh the database (no need to use the command
-\verb"texhash" after the first-time installation, basically).
+\verb"kpsewhich -var-value TEXMFHOME"). If you specify the package location by
+\verb"--texmfhome", then you need to refresh the database of filenames in your
+TeX{} distribution by \verb"texhash" or \verb"sudo texhash" to elevate the
+privileges if it prompts ``directory not writable. Skipping...''. In fact, if
+the filenames stay the same, you don't need to refresh the database (no need to
+use the command \verb"texhash" after the first-time installation, basically).
+You don't need to \verb"texhash" at all if you follow the default behavior of
+installing the package into \verb"TEXMFHOME" (which will be detected
+automatically without the database).
 
 This command is useful if you want this template to be globally available for
 all documents on your computer.
@@ -439,9 +441,9 @@ local machine to make sure you can pass the CI on GitHub Actions.
 For those who are familiar with \verb"makefile" system, the following commands
 might be helpful to build the package under the root directory:
 
-\fcmd{make install} This command will run \verb"l3build install" and
-\verb"texhash" afterwards, which installs the unpacked files to \TeX{} Live and
-Mac\TeX{} \verb"TEXMFHOME" directory according to \verb"l3build" documentation.
+\fcmd{make install} This command will run \verb"l3build install", which installs
+the unpacked files to \TeX{} Live and Mac\TeX{} \verb"TEXMFHOME" directory
+according to \verb"l3build" documentation.
 Unfortunately, it is likely to fail on MiK\TeX{} since the \verb"TEXMFHOME" is
 usually empty. Hope that MiK\TeX{} users won't use this command or try to modify
 the \verb"Makefile" to add some parameters mentioned in Section \ref{sec:l3build}

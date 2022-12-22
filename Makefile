@@ -27,8 +27,6 @@ format:
 #   For more details, see the development guide.
 install:
 	cd src && l3build install
-	texhash
-	@echo "\033[0;33mwarning: If texhash says 'directory not writable. Skipping...', then try the command 'sudo texhash'."
 
 # Clean temporary files
 clean:
