@@ -20,14 +20,6 @@ build: prepare
 format:
 	latexindent main.tex -l latexindent.yaml -w $(LATEXINDENT_ARGS)
 
-# Clean temporary files
-clean:
-	latexmk -C $(LATEXMK_ARGS)
-
-# ----------------
-# Developer commands
-# ----------------
-
 # Install the package to TeX Live / MacTeX
 #   For MiKTeX users, if you encounter `please use --texmfhome option`,
 #   I wish you could do the job manually by using
@@ -37,6 +29,14 @@ install:
 	cd src && l3build install
 	texhash
 	@echo "\033[0;33mwarning: If texhash says 'directory not writable. Skipping...', then try the command 'sudo texhash'."
+
+# Clean temporary files
+clean:
+	latexmk -C $(LATEXMK_ARGS)
+
+# ----------------
+# Developer commands
+# ----------------
 
 # Format all tex and dtx files
 format-dev:
