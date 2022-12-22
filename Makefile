@@ -31,11 +31,12 @@ clean:
 # Install the package to TeX Live / MacTeX
 #   For MiKTeX users, if you encounter `please use --texmfhome option`,
 #   I wish you could do the job manually by using
-#   `l3build install --texmfhome something/like/AppData/Local/Programs/MiKTeX/`
+#   `l3build install --texmfhome path/to/install`.
+#   For more details, see the development guide.
 install:
 	cd src && l3build install
 	texhash
-	@echo "\033[0;33mwarning: If texhash says 'directory not writable. Skipping...', try the command 'sudo texhash'."
+	@echo "\033[0;33mwarning: If texhash says 'directory not writable. Skipping...', then try the command 'sudo texhash'."
 
 # Format all tex and dtx files
 format-dev:
