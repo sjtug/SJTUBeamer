@@ -292,14 +292,27 @@ end
 manifest_setup = function ()
 local groups = {
     {
+        subheading = "Minimal manifest",
+        description = [[
+The following group lists all the necessary files that required by the runtime.
+You could install these files to your TeX distribution or distribute them with
+your main document.]]
+    },
+    {
+        name    = "Minimal workset",
+        description = "* vi/",
+        dir     = tdsdir.."/tex/"..moduledir,
+        files   = {"*.*"},
+        exclude = {".",".."},
+        flag    = false,
+        skipfiledescription = true,
+    },
+    {
         subheading = "Repository manifest",
         description = [[
 The following groups list the files included in the development repository of the package.
 Files listed with a ‘†’ marker are included in the TDS but not CTAN files, and files listed
 with ‘‡’ are included in both.
-
-> **Minimal workset**: All files in **Derived files** and **Graphic resources**.
-Or directly use files in **TeX files (TDS)**.
 ]],
     },
     {
@@ -435,9 +448,10 @@ The following group lists the files included in the CTAN package.
     {
         subheading = "Online manifest",
         description = [[
-The following group lists the files included in the Online distribution.
-You could upload the package to any online plateforms or use it as the 
-minimal workset on the local machine.
+The following group lists the files included in the online distribution.
+You could upload the package to any online plateforms. Compared with
+**Minimal workset**, this distribution comes with all the plugins and
+quick start guide as the main file.
 You could generate the package by going to the root directory and
 using the command `make build-online` in the terminal.
 ]],
