@@ -20,6 +20,14 @@ build: prepare
 format:
 	latexindent main.tex -l latexindent.yaml -w $(LATEXINDENT_ARGS)
 
+# Install the package to TeX Live / MacTeX
+#   For MiKTeX users, if you encounter `please use --texmfhome option`,
+#   I wish you could do the job manually by using
+#   `l3build install --texmfhome path/to/install`.
+#   For more details, see the development guide.
+install:
+	cd src && l3build install
+
 # Clean temporary files
 clean:
 	latexmk -C $(LATEXMK_ARGS)

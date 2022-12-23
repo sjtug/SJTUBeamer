@@ -228,7 +228,7 @@ files (or the kernel). In details,
 \begin{itemize}
   \item Unpacking Doc\TeX{} files.
   \item Generating documentation.
-  \item Caching and clean demos.
+  \item Caching and cleaning demos.
   \item Generating Visual Studio Code snippets (as is in
         \texttt{.vscode/sjtubeamer.code-snippets})
   \item Generating \texttt{MANIFEST.md} to show the repository structure.
@@ -241,7 +241,7 @@ Integration on GitHub Actions. In details,
   \item Compiling \verb"main.tex" for users.
   \item Building the cover collection.
   \item Formatting codes.
-  \item Build the online distribution \texttt{sjtubeamer-online.zip}.
+  \item Building the online distribution \texttt{sjtubeamer-online.zip}.
 \end{itemize}
 
 \subsection{l3build}\label{sec:l3build}
@@ -258,12 +258,29 @@ in \verb"build.lua".
 
 \fcmd{l3build install} This command will install current version from
 \verb"source" to your \TeX{} distribution. Remember to update the
-\verb"l3build" to the latest version to avoid misbehaving. This
-command requires an argument \verb"--texmfhome" option to specify the
-install path, which could be obtained from Mik\TeX{} Console or the
-\verb"tlmgr". Then, refresh the database of filenames in your TeX{}
-distribution. This command is useful if you want this template to be globally
-available for all documents on your computer.
+\verb"l3build" to the latest version to avoid misbehaving.
+
+For MiK\TeX{} users, this command requires an argument
+\begin{verbatim}
+  l3build install --texmfhome /path/to/install
+\end{verbatim}
+to specify the install path, which could be obtained from Mik\TeX{} Console
+(Settings $\rightarrow$ Directories $\rightarrow$ TEXMF root directories
+(Install)). It is often not necessary for \TeX{} Live and Mac\TeX{} users,
+unless you want to install the files in a different place other than
+\verb"TEXMFHOME" (the value could be obtained by
+\verb"kpsewhich -var-value TEXMFHOME"). If you specify the package location by
+\verb"--texmfhome", then you need to refresh the database of filenames in your
+TeX{} distribution by \verb"texhash" or \verb"sudo texhash" to elevate the
+privileges if it prompts ``directory not writable. Skipping...''. In fact, if
+the filenames stay the same, you don't need to refresh the database (no need to
+use the command \verb"texhash" after the first-time installation, basically).
+You don't need to \verb"texhash" at all if you follow the default behavior of
+installing the package into \verb"TEXMFHOME" (which will be detected
+automatically without the database).
+
+This command is useful if you want this template to be globally available for
+all documents on your computer.
 
 \fcmd{l3build unpack} This command will unpack the source code and create a
 sandbox environment in \verb"build/local". You can create your own test
@@ -272,9 +289,9 @@ certain feature.
 
 \fcmd{l3build check} Process a regression test, with an optional parameter to
 perform one of the following tests:
-\begin{center}
-  \ttfamily color font inner outer sjtuvi
-\end{center}
+\begin{verbatim}
+  color font inner outer sjtuvi
+\end{verbatim}
 which will show if the module is standing-free. If the compilation error
 occurs, please check if your code uses one definition from another module
 without requiring it first, or an undefined control sequence occurs.
@@ -282,16 +299,9 @@ without requiring it first, or an undefined control sequence occurs.
 This command will also move the generated style files to the root directory.
 
 \fcmd{l3build doc} This command will generate the documentation of this
-package.
-% We set an overall testing file \verb"doc/min.tex" to test all features of \themename.
-% \begin{center}
-%     unpack $\rightarrow$ \verb"min.tex" $\rightarrow$ documentations
-% \end{center}
-Since the doc has a lot of dependencies (or unit tests), you can cache the demo
+package. Since the doc has a lot of dependencies (or unit tests), you can cache the demo
 files to \verb"support/tutorial" directory. This could be done by the exclusive
 \verb"l3build cache-demo" in Section \ref{sec:exclcmd}.
-% Change the variable in \verb"build.lua": \verb"cachedemo=true" to cache the demo automatically, and remove the variable to clean the cached files.
-% We highly recommend that using *nix to compile the doc.
 
 \fcmd{l3build save color} If you make some modification to the framework
 (except \verb"sjtucover") and change the result. To save the current
@@ -430,6 +440,14 @@ local machine to make sure you can pass the CI on GitHub Actions.
 
 For those who are familiar with \verb"makefile" system, the following commands
 might be helpful to build the package under the root directory:
+
+\fcmd{make install} This command will run \verb"l3build install", which installs
+the unpacked files to \TeX{} Live and Mac\TeX{} \verb"TEXMFHOME" directory
+according to \verb"l3build" documentation.
+Unfortunately, it is likely to fail on MiK\TeX{} since the \verb"TEXMFHOME" is
+usually empty. Hope that MiK\TeX{} users won't use this command or try to modify
+the \verb"Makefile" to add some parameters mentioned in Section \ref{sec:l3build}
+to meet your need.
 
 \fcmd{make generate} This command will unpack the Doc\TeX{} files into style
 files and update the generated files in the root directory.
@@ -1050,7 +1068,7 @@ brief overview. And this part is only focusing on the implementation of
         package \cite{beamerman}. You can acquire the doc by the terminal
         command:
         \begin{verbatim}
-          texdoc beame
+          texdoc beamer
         \end{verbatim}
         Then, you could choose to use some preset theme, or call the macro to control
         the appearance of each component.
