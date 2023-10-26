@@ -90,7 +90,12 @@
 % 底栏为空时不会出现
 \setbeamercolor{footline}{parent=palette primary}
 \setbeamertemplate{footline}{%
-  \resizebox{\paperwidth}{!}{\sjtugate[cprimary]}\vskip-6cm\par
+  \resizebox{\paperwidth}{!}{\sjtugate[cprimary]}%
+  \if\EqualOption{poster}{landscape}{true}%
+    \vskip-12cm%
+  \else%
+    \vskip-6cm%
+  \fi\par
   \posterfootlinetrue
   \ifx\posterleftfootline\relax
     \ifx\posterrightfootline\relax
