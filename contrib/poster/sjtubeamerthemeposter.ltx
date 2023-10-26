@@ -27,6 +27,19 @@
   % 修改 headline，需要在文档起始处覆盖，防止 default 的行为
   \setbeamertemplate{headline}{
     \begin{beamercolorbox}[wd=\paperwidth,sep=0.02\paperwidth]{headline}
+      \if\EqualOption{poster}{sepinst}{true}\else
+        \begin{tikzpicture}[overlay]
+          \def\stampsize{60pt}
+          \if\EqualOption{poster}{landscape}{true}
+            \def\stampheight{0.08}
+          \else
+            \def\stampheight{0.05}
+          \fi
+          \usebeamercolor{palette primary}
+          \stamparray{\stampsize}{(0.75\paperwidth,-\stampheight\paperheight)}{(\paperwidth,\stampheight\paperheight)}
+          \fill[bg, path fading=fade right] (0.74\paperwidth, -\stampheight\paperheight) rectangle (1.35\paperwidth, \stampheight\paperheight);
+        \end{tikzpicture}
+      \fi
       \begin{columns}
         \begin{column}{0.25\textwidth}
           \hspace*{0.02\paperwidth}
@@ -60,19 +73,6 @@
               \resizebox{!}{4cm}{\vphantom{-}\secondaryinstlogo[\insertshortinstitute]{\insertinstitute}{}}
             \fi
             \hspace*{0.03\paperwidth}
-          \else
-            \begin{tikzpicture}[overlay]
-              \if\EqualOption{poster}{landscape}{true}
-                \def\stampheight{0.05}
-                \def\stampsize{60pt}
-              \else
-                \def\stampheight{0.03}
-                \def\stampsize{50pt}
-              \fi
-              \usebeamercolor{palette primary}
-              \stamparray{\stampsize}{(-0.05\paperwidth,-\stampheight\paperheight)}{(\paperwidth,\stampheight\paperheight)}
-              \fill[bg, path fading=fade right] (-0.05\paperwidth, -\stampheight\paperheight) rectangle (\paperwidth, \stampheight\paperheight);
-            \end{tikzpicture}
           \fi
         \end{column}
       \end{columns}
