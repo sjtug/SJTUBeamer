@@ -20,7 +20,7 @@ jobs:
   build-xelatex:
     runs-on: ubuntu-latest
     steps: 
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v4
         name: checkout code
       - uses: xu-cheng/texlive-action/full@v1
         with:
@@ -33,7 +33,7 @@ jobs:
       - run: cat build/build-*.log
         name: display build log
         if: ${{ failure() || success() }}
-      - uses: actions/upload-artifact@v2
+      - uses: actions/upload-artifact@v3
         with:
           path: |
             build/build-*.pdf
@@ -43,7 +43,7 @@ jobs:
   build-lualatex:
     runs-on: ubuntu-latest
     steps: 
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v4
         name: checkout code
       - uses: xu-cheng/texlive-action/full@v1
         with:
@@ -56,7 +56,7 @@ jobs:
       - run: cat build/*.log
         name: display build log
         if: ${{ failure() || success() }}
-      - uses: actions/upload-artifact@v2
+      - uses: actions/upload-artifact@v3
         with:
           path: |
             build/build-*.pdf
@@ -66,7 +66,7 @@ jobs:
   build-package:
     runs-on: ubuntu-latest
     steps: 
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v4
         name: checkout code
       - uses: xu-cheng/texlive-action/full@v1
         with:
@@ -80,7 +80,7 @@ jobs:
       - name: check if generated files are of latest version
         run: |
           git diff --exit-code
-      - uses: actions/upload-artifact@v2
+      - uses: actions/upload-artifact@v3
         with:
           path: |
             src/build/distrib/tds/doc
@@ -92,7 +92,7 @@ jobs:
   check-format:
     runs-on: ubuntu-latest
     steps: 
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v4
         name: checkout code
       - uses: xu-cheng/texlive-action/full@v1
         with:
