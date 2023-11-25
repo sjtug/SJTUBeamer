@@ -319,8 +319,7 @@
 % is the upper layer of this style file, the whole thing should be reimplemented here.
 %    \begin{macrocode}
   \usebeamercolor{palette primary}% 
-  \ifx\inserttitlegraphic\@empty%
-  \else
+  \ifbeamertemplateempty{titlegraphic}{}{%
     \begin{tikzpicture}[overlay, yshift=1.2em]
       \node (pic) [fg, above left, inner sep=0.32em] at (0.86\paperwidth,0)
       {\resizebox{0.3\paperwidth}{!}{\inserttitlegraphic}};
@@ -334,7 +333,7 @@
       (pic.south east) --
       (pic.south west) -- cycle;
     \end{tikzpicture}
-  \fi
+  }
   \endgroup
   \vskip0.5em
   \vfill
