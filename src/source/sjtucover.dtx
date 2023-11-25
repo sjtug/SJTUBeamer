@@ -151,7 +151,7 @@
     rectangle (1*\the\paperwidth, 0.3*\the\paperheight);
     \node [palette primary.fg, inner sep=0pt]
     at (0.45\paperwidth-6pt,-0.4*\the\paperheight)
-    {\resizebox{1.3\paperwidth}{!}{\inserttitlegraphic}};
+    {\resizebox{1.3\paperwidth}{!}{\vphantom{-}\inserttitlegraphic}};
   \end{tikzpicture}
   \vfill
   \begingroup
@@ -397,7 +397,7 @@
         \clip (-0.66\paperwidth,0.06\paperheight)
         rectangle (0.43\paperwidth,0.53\paperheight);
         \node [anchor=north] at (0,0.645\paperheight) {
-          \resizebox{1.33\paperwidth}{!}{\inserttitlegraphic}};
+          \resizebox{1.33\paperwidth}{!}{\vphantom{-}\inserttitlegraphic}};
         \fill[structure.fg!50!black,path fading=fade right img]
         (-0.66\paperwidth,0.06\paperheight)
         rectangle (0.43\paperwidth,0.53\paperheight);
@@ -444,7 +444,7 @@
       -- (\rightw,-0.53\paperheight)
       -- (\midw,-0.68\paperheight) -- cycle;
       \node[black] at (\midw,-0.65\paperheight) {
-        \resizebox{1.25\paperwidth}{!}{\inserttitlegraphic}};
+        \resizebox{1.25\paperwidth}{!}{\vphantom{-}\inserttitlegraphic}};
       \node[palette primary.bg] at (\midw,-0.2\paperheight) 
         {\resizebox{!}{2.5cm}{\vphantom{-}\usebeamertemplate{logo}}};
       \node at (\midw,-0.45\paperheight) {
