@@ -149,7 +149,7 @@ int main(){
 
 目前模版最新的稳定版是 v3.0.0。您可以在 [发布页](https://github.com/sjtug/SJTUBeamer/releases) 查看修改日志和更多资料。通常来说，SJTUBeamer 的一个稳定版本包括如下内容：
 
-* `sjtubeamerquickguide.pdf`：SJTUBeamer 快速入门，另见对应 [源代码](https://github.com/sjtug/SJTUBeamer/blob/main/src/doc/sjtubeamerquickstart.tex)。
+* `sjtubeamerquickstart.pdf`：SJTUBeamer 快速入门，另见对应 [源代码](https://github.com/sjtug/SJTUBeamer/blob/main/src/doc/sjtubeamerquickstart.tex)。
 * `sjtubeamer.pdf`: **强烈推荐在使用前阅读一遍 👍👍👍** SJTUBeamer 用户文档。
 * `sjtubeamerdevguide.pdf`: SJTUBeamer 开发指南。
 * `sjtulib-talk-max-red.pdf`: 示例文档《如何使用 LaTeX 排版论文》的 `max,red` 主题版本。
