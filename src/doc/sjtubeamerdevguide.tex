@@ -1,5 +1,5 @@
 %% ------------------------------------------------------------------------
-%% Copyright (C) 2021,2022 SJTUG
+%% Copyright (C) 2021-2023 SJTUG
 %% 
 %% Licensed under the Apache License, Version 2.0 (the "License");
 %% you may not use this file except in compliance with the License.
@@ -14,7 +14,7 @@
 %% limitations under the License.
 %% ------------------------------------------------------------------------
 
-\ProvidesFile{sjtubeamerdevguide.tex}[2022/11/25 v3.0.0 Development Guide for sjtubeamer (English)]
+\ProvidesFile{sjtubeamerdevguide.tex}[2023/11/25 v3.0.1 Development Guide for sjtubeamer (English)]
 \documentclass{ltxdoc}
 \usepackage[scheme=plain]{ctex}
 \usepackage[style=ieee]{biblatex}
@@ -215,12 +215,12 @@ references.
 \themename\ has three different types of checking:
 \begin{description}
   \item[Regression test] To test the decoupling properties of the modules.
-    \texttt{l3build check}
+        \texttt{l3build check}
   \item[Unit test] To test each function separately by compiling documentation.
-    \texttt{l3build doc}
+        \texttt{l3build doc}
   \item[CI] To make an overall check by compiling a real-world presentation. It is
-    often completed in GitHub Actions when you are pulling a request. \texttt{make
-      build-dev}
+        often completed in GitHub Actions when you are pulling a request. \texttt{make
+          build-dev}
 \end{description}
 
 We use \verb"l3build" (Section \ref{sec:l3build}) mainly for coding internal
@@ -1263,13 +1263,13 @@ loaded.
   \makeatother
 \end{verbatim}
 
-\begin{tabular}{c|ccccccccc}
-  \TeX\ Live & 2022    & 2021    & 2020    & 2019    & 2018    & 2017    & 2016
-             & 2015    & 2014
+\begin{tabular}{c|cccccccccc}
+  \TeX\ Live & 2023    & 2022    & 2021    & 2020    & 2019    & 2018    & 2017
+             & 2016    & 2015    & 2014
   \\
   \hline
-  Test       & $\surd$ & $\surd$ & $\surd$ & $\surd$ & $\circ$ & $\circ$ &
-  $\circ$    & $\circ$ &
+  Test       & $\surd$ & $\surd$ & $\surd$ & $\surd$ & $\surd$ & $\circ$ &
+  $\circ$    & $\circ$ & $\circ$ &
   \\
 \end{tabular}
 
@@ -1327,7 +1327,7 @@ see \texttt{build.lua}.
 \begin{quotation}
   \scriptsize
 
-  Copyright (C) 2021,2022 SJTUG
+  Copyright (C) 2021-2023 SJTUG
 
   Licensed under the Apache License, Version 2.0 (the "License"); you may not use
   this file except in compliance with the License. You may obtain a copy of the

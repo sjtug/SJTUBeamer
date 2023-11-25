@@ -1,5 +1,5 @@
 % \iffalse meta-comment --------------------------------------------------
-% Copyright (C) 2021,2022 SJTUG
+% Copyright (C) 2021-2023 SJTUG
 %
 % Licensed under the Apache License, Version 2.0 (the "License");
 % you may not use this file except in compliance with the License.
@@ -16,7 +16,7 @@
 % \iffalse
 %<*package>
 \NeedsTeXFormat{LaTeX2e}
-\ProvidesPackage{beamerinnerthemesjtubeamer}[2022/11/25 v3.0.0 sjtubeamer inner theme]
+\ProvidesPackage{beamerinnerthemesjtubeamer}[2023/11/25 v3.0.1 sjtubeamer inner theme]
 %</package>
 % \fi
 % \CheckSum{0}
@@ -180,6 +180,9 @@
 %    \begin{macrocode}
 \def\inserttitlegraphic{\usebeamertemplate{titlegraphic}}
 %    \end{macrocode}
+% This redefinition makes \verb"\inserttitlegraphic" never be \verb"\@empty".
+% If we need to check if the title graphic is empty now, use
+% \verb"\ifbeamertemplateempty{titlegraphic}{}{}" instead.
 %
 % Set up titlegraphic for this cover.
 % First set to empty in case that all definitions of this template in

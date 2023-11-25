@@ -1,5 +1,5 @@
 %% ------------------------------------------------------------------------
-%% Copyright (C) 2021,2022 SJTUG
+%% Copyright (C) 2021-2023 SJTUG
 %% 
 %% Licensed under the Apache License, Version 2.0 (the "License");
 %% you may not use this file except in compliance with the License.
@@ -14,7 +14,7 @@
 %% limitations under the License.
 %% ------------------------------------------------------------------------
 
-\ProvidesFile{sjtubeamer.tex}[2022/11/25 v3.0.0 User Manual for sjtubeamer (Chinese)]
+\ProvidesFile{sjtubeamer.tex}[2023/11/25 v3.0.1 User Manual for sjtubeamer (Chinese)]
 \documentclass[
     UTF8,
     heading=true,
@@ -264,11 +264,11 @@ bottom=0pt, fontupper=\sffamily, colupper=white}
 
 \begin{enumerate}
   \item[\faApple{} \faLinux] *nix 系统采用
-    \hologo{XeLaTeX} 编译以获得中文支持。
+        \hologo{XeLaTeX} 编译以获得中文支持。
   \item[\faWindows] Windows 系统采用
-    \hologo{pdfLaTeX} 编译以获得更快的编译速度。
+        \hologo{pdfLaTeX} 编译以获得更快的编译速度。
   \item[\faWrench] 也可以直接使用 \textsf{latexmk
-      (latexmkrc)} 编译示例的主文档。
+          (latexmkrc)} 编译示例的主文档。
 \end{enumerate}
 
 下面的代码可以用于测试 \themename{} 是否可以正常使用。
@@ -487,24 +487,24 @@ Reader}）打开演示文稿，在“视图”选单中选择“全屏模式”�
 
 \begin{enumerate}
   \item[\faChrome] Chrome 浏览器以及 *nix
-    内置的阅读器支持“演示”功能。
-    \begin{figure}[h]
-      \centering
-      \begin{tcolorbox}[enhanced,
-          title={$\vdots$}, attach boxed
-          title to top
-          right, boxed title style={
-              circular arc, top=0mm,
-              bottom=2mm,
-              left=3.25mm, right=3.25mm
-            },
-          sharp corners, tile, width=6cm]
-        演示
-      \end{tcolorbox}
-    \end{figure}
+        内置的阅读器支持“演示”功能。
+        \begin{figure}[h]
+          \centering
+          \begin{tcolorbox}[enhanced,
+              title={$\vdots$}, attach boxed
+              title to top
+              right, boxed title style={
+                  circular arc, top=0mm,
+                  bottom=2mm,
+                  left=3.25mm, right=3.25mm
+                },
+              sharp corners, tile, width=6cm]
+            演示
+          \end{tcolorbox}
+        \end{figure}
   \item[\faInternetExplorer] Edge
-    浏览器需要调整为“适应宽度”\fbox{\faArrowsAltH}，并使用
-    \fbox{\sffamily PageDown} 翻页。尽量不要使用该播放方法。
+        浏览器需要调整为“适应宽度”\fbox{\faArrowsAltH}，并使用
+        \fbox{\sffamily PageDown} 翻页。尽量不要使用该播放方法。
 \end{enumerate}
 
 \section{Pympress}
