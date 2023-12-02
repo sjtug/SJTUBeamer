@@ -1,7 +1,7 @@
 % !TeX encoding = UTF-8
 
 %% ------------------------------------------------------------------------
-%% Copyright (C) 2021,2022 SJTUG
+%% Copyright (C) 2021-2023 SJTUG
 %% 
 %% SJTUBeamer Example Document by SJTUG
 %% 
@@ -16,21 +16,20 @@
 %% -----------------------------------------------------------------------
 
 \documentclass[xcolor=table,dvipsnames,svgnames,aspectratio=169]{ctexbeamer}
-% 可以通过 fontset=macnew / fontset=ubuntu / fontset=windows 选项切换字体集
+% 可以通过 fontset=macnew / fontset=ubuntu / fontset=windows 选项切换字体集；
+% 如遇无法显示的数学符号，尝试对 ctexbeamer 文档类添加 no-math 选项；
+% 写纯英文幻灯片可以改用 beamer 文档类。
 
 \usepackage{tikz}
 \usepackage[normalem]{ulem}
 \usetikzlibrary{arrows}
 \usepackage{amsmath}
-\usepackage{mflogo}
 \usepackage{graphicx}
-\usepackage{ccicons}
 \usepackage{hologo}
 \usepackage{colortbl}
 \usepackage{shapepar}
 \usepackage{hyperxmp}
 \usepackage{booktabs}
-\usepackage{qrcode}
 \usepackage{listings}
 \usepackage{tipa}
 \usepackage{multicol}
@@ -41,13 +40,11 @@
 % 参考文献设置，使用 style=gb7714-2015 样式为标准顺序编码制，
 % 使用 style=gb7714-2015ay 样式可以改为著者-出版年制。
 \usepackage[backend=biber,style=gb7714-2015]{biblatex}
-\addbibresource{thesis.bib}
+\addbibresource{ref.bib}
 
 \graphicspath{{figures/}}
 
 \hypersetup{
-  pdfsubject = {上海交通大学图书馆专题培训讲座},
-  pdfauthor = {Alexara Wu},
   pdfcopyright = {Licensed under CC-BY-SA 4.0. Some rights reserved.},
   pdflicenseurl = {http://creativecommons.org/licenses/by-sa/4.0/},
   unicode = true,
@@ -77,8 +74,8 @@
 \def\TeXLive{\TeX{} Live}
 \let\TL=\TeXLive
 \newcommand{\SJTUThesis}{\textsc{SJTUThesis}}
-\newcommand{\SJTUThesisVersion}{1.1.0}
-\newcommand{\SJTUThesisDate}{2022/3/26}
+\newcommand{\SJTUThesisVersion}{2.0.3}
+\newcommand{\SJTUThesisDate}{2023/9/25}
 \newcommand{\SJTUBeamer}{\textsc{SJTUBeamer}}
 \newcommand{\SJTUBeamerVersion}{3.0.0}
 \newcommand{\SJTUBeamerDate}{2022/11/22}
@@ -91,17 +88,6 @@
 \def\cmdxmp#1#2#3{\small{\texttt{\color{structure}$\backslash$#1}\{#2\}
 \hspace{1em}\\ $\Rightarrow$\hspace{1em} {#3}\par\vskip1em}}
 
-\lstset{
-  language=[LaTeX]TeX,
-  basicstyle=\ttfamily\footnotesize,
-  tabsize=2,
-  keywordstyle=\bfseries\ttfamily\color{cprimary},
-  commentstyle=\sl\ttfamily\color[RGB]{100,100,100},
-  stringstyle=\ttfamily\color[RGB]{50,50,50},
-  extendedchars=true,
-  breaklines=true,
-}
-
 \usetheme[maxplus]{sjtubeamer}
 % 使用 maxplus/max/min 切换标题页样式
 % 使用 red/blue 切换主色调
@@ -113,8 +99,22 @@
 % 使用 topright/bottomright 切换徽标位置
 % 使用逗号分隔列表以同时使用多种选项
 
+% \setbeamertemplate{background}{}
+% 对于 max 主题，如果需要关闭正文背景图，请取消注释上一行。
+
 % \tikzexternalize[prefix=build/]
 % 如果您需要缓存 tikz 图像，请取消注释上一行，并在编译选项中添加 -shell-escape。
+
+\lstset{
+  language=[LaTeX]TeX,           % 更改高亮语言
+  texcsstyle=*\color{cprimary},  % 只在高亮 LaTeX 语言时必须
+  tabsize=2,
+  basicstyle=\ttfamily\small,%
+  keywordstyle=\color{cprimary},%
+  stringstyle=\color{csecondary},%
+  commentstyle=\color{ctertiary!50!gray},%
+  breaklines,%
+}
 
 \author{Alexara Wu}
 \institute[SJTUG]{上海交通大学 Linux 用户组}
@@ -163,13 +163,14 @@
   \vspace*{2ex}
 
   \begin{itemize}
-    \item 本示例文档的源码结构适用于简短的单次报告，仅展示 \beamer{} 文档类的通用功能，更多地在使用 \SJTUBeamer{}
-          的样式信息。
+    \item 本示例文档的源码结构适用于简短的单次报告，仅展示 \beamer{} 文档类的通
+          用功能，更多地在使用 \SJTUBeamer{} 的样式信息。
     \item 为发挥 \SJTUBeamer{} 的全部功能，参见发布区
-          \link{https://github.com/sjtug/SJTUBeamer/releases} 的快速入门、用户手册与开发文档。
+          \link{https://github.com/sjtug/SJTUBeamer/releases} 的快速入门、用户手
+          册与开发文档。
     \item 就制作一组讲座而言，相关源码结构可以参考新讲座
-          \link{https://github.com/sjtug/sjtulib-latex-talk/tree/logcreative-2022}。新讲座使用了
-          社区版主题的同时也展示了 \SJTUBeamer{} 的特殊用法。
+          \link{https://github.com/sjtug/sjtulib-latex-talk/tree/logcreative-2022}。
+          新讲座使用了社区版主题的同时也展示了 \SJTUBeamer{} 的特殊用法。
   \end{itemize}
 
 \end{frame}

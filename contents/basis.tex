@@ -2,7 +2,7 @@
 % !TeX root = ../main.tex
 
 %% ------------------------------------------------------------------------
-%% Copyright (C) 2021,2022 SJTUG
+%% Copyright (C) 2021-2023 SJTUG
 %% 
 %% SJTUBeamer Example Document by SJTUG
 %% 
@@ -304,7 +304,9 @@ V = \frac{4}{3}\pi r^3
   \begin{columns}
     \begin{column}{.6\textwidth}
 
-      \begin{lstlisting}[basicstyle=\ttfamily\small]
+      \begin{lstlisting}[basicstyle=\ttfamily\small,morekeywords={
+        tableofcontents, part, chapter, section, subsection, subsubsection,
+        paragraph, subparagraph}]
 \tableofcontents % 这里是目录
 \part{有监督学习}
 \chapter{支持向量机}
@@ -383,7 +385,7 @@ V = \frac{4}{3}\pi r^3
 \begin{figure}[htbp]
   \centering
   \includegraphics[height=.2\textheight]%
-  {libicon.pdf}
+  {sjtu-badge-blue.pdf}
   \caption{交大校徽。}
   \label{fig:badge}
 \end{figure}
@@ -397,6 +399,7 @@ V = \frac{4}{3}\pi r^3
 \end{frame}
 
 \begin{frame}[fragile]{交叉引用与插入表格}
+  \vspace{-1.5em}
   \begin{columns}
     \column{.6\textwidth}
     \begin{lstlisting}
@@ -628,7 +631,7 @@ V = \frac{4}{3}\pi r^3
     \begin{itemize}
       \item 获取模板：已随发行版自带
             \begin{itemize}
-              \item 在安装目录 \verb|<prefix>\texlive\2021\texmf-dist\doc\latex\IEEEtran|
+              \item 在安装目录 \verb|<prefix>/texlive/2023/texmf-dist/doc/latex/IEEEtran|
                     下找到 \verb|bare_jrnl.tex|
               \item 复制到某个文件夹(比如个人存论文的目录)
             \end{itemize}

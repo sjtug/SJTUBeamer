@@ -17,6 +17,7 @@
 \ProvidesFile{sjtubeamerquickstart.tex}[2023/11/25 v3.0.1 Quick Start for sjtubeamer (Chinese)]
 
 % 加载 ctexbeamer 文档类【第一部分】
+% 如遇无法显示的数学符号，尝试对 ctexbeamer 文档类添加 no-math 选项；
 % 如果编写英文内容，建议直接使用 beamer 文档类。
 \documentclass[
     % draft,          % 草稿模式
@@ -40,6 +41,9 @@
 % 加载插件（可选）【第三部分】
 % 当前目录下需要有 contrib 文件夹。
 % \usesjtutheme{sjtug}
+
+% \setbeamertemplate{background}{}
+% 对于 max 主题，如果需要关闭正文背景图，请取消注释上一行。
 
 % \tikzexternalize[prefix=build/]
 % 如果您需要缓存 tikz 图像，请取消注释上一行，并在编译选项中添加 -shell-escape。
