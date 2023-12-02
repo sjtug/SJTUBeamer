@@ -258,7 +258,7 @@
     \item \TL
           \begin{itemize}
             \item 跨平台：Windows, Linux, macOS (\MacTeX{} $\approx$ \TL)
-            \item 每年四月左右发布以年份命名的新版本，当前为 \TL 2021
+            \item 每年四月左右发布以年份命名的新版本，当前为 \TL{} 2023
             \item 官方维护，入门首选
           \end{itemize}
     \item \MiKTeX
@@ -281,7 +281,7 @@
   \begin{itemize}
     \item 注意!
           \begin{itemize}
-            \item 新手建议安装完整版 \TL (\MacTeX)
+            \item 新手建议安装完整版 \TL{} (\MacTeX)
             \item 建议使用 ISO 镜像离线安装
             \item 在线安装要求网络稳定
             \item Windows 下不要放在带有中文的路径中
@@ -338,9 +338,9 @@ sudo ./install-tl -gui=perltk
           \begin{itemize}
             \item 添加环境变量到 \nolinkurl{~/.bashrc} 文件：
                   \begin{lstlisting}[language=bash]
-export PATH=/usr/local/texlive/2021/bin/x86_64-linux:$PATH
-export MANPATH=/usr/local/texlive/2021/texmf/doc/man:$MANPATH
-export INFOPATH=/usr/local/texlive/2021/texmf/doc/info:$INFOPATH
+export PATH=/usr/local/texlive/2023/bin/x86_64-linux:$PATH
+export MANPATH=/usr/local/texlive/2023/texmf/doc/man:$MANPATH
+export INFOPATH=/usr/local/texlive/2023/texmf/doc/info:$INFOPATH
           \end{lstlisting}
             \item 安装一个 dummy package，让系统的包管理器知道 \TL 已经装过了
                   \begin{itemize}
@@ -368,7 +368,7 @@ export INFOPATH=/usr/local/texlive/2021/texmf/doc/info:$INFOPATH
   \begin{itemize}
     \item 专用编辑器
           \begin{itemize}
-            \item TeXworks、TeXShop、\alert{TeXStudio}、TeXmaker、WinEdt 等
+            \item TeXworks、TeXShop、\alert{TeXstudio}、TeXmaker、WinEdt 等
           \end{itemize}
     \item 通用编辑器（安装 \LaTeX{} 插件）
           \begin{itemize}
@@ -376,7 +376,8 @@ export INFOPATH=/usr/local/texlive/2021/texmf/doc/info:$INFOPATH
           \end{itemize}
     \item 在线协作平台
           \begin{itemize}
-            \item OverLeaf \link{https://www.overleaf.com/}, \sout{ShareLaTeX}（已经与前者合并）
+            \item OverLeaf \link{https://www.overleaf.com/}, 
+                  \TeX{} Page \link{https://www.texpage.com}
             \item 交大 LaTeX 文档助手 \link{https://latex.sjtu.edu.cn/}（基于 OverLeaf）
           \end{itemize}
     \item 编辑器对比：\link{https://tex.stackexchange.com/q/339}
