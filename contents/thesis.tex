@@ -18,22 +18,24 @@
 
 \begin{frame}{\SJTUThesis}
   \framesubtitle{上海交通大学学位论文 \LaTeX{} 模板}
-  \begin{itemize}
-    \item 最早由韦建文于 2009 年 11 月发布 0.1a 版，2018 年起由 SJTUG 接手维护
-    \item 最新版：\SJTUThesisVersion{} (\SJTUThesisDate)
-    \item 支持本科、硕士、博士学位论文以及课程论文的排版
-  \end{itemize}
-  \begin{figure}[htbp]
-    \centering
-    \includegraphics[height=.4\textheight]
-    {sjtuthesis-bachelor-crop.pdf}\hspace{6pt}
-    \includegraphics[height=.4\textheight]
-    {sjtuthesis-master-crop.pdf}\hspace{6pt}
-    \includegraphics[height=.4\textheight]
-    {sjtuthesis-doctor-crop.pdf}\hspace{6pt}
-    \includegraphics[height=.4\textheight]
-    {sjtuthesis-course-crop.pdf}
-  \end{figure}
+  \begin{columns}
+    \begin{column}{.7\textwidth}
+      \begin{itemize}
+        \item 最早由韦建文于 2009 年 11 月发布 0.1a 版，2018 年起由 SJTUG 接手维护
+        \item 最新版：\SJTUThesisVersion{} (\SJTUThesisDate)
+        \item 支持本科、硕士、博士学位论文以及课程论文的排版
+      \end{itemize}
+    \end{column}
+    \begin{column}{.2\textwidth}
+      \begin{figure}[htbp]
+        \centering
+        {
+          \setlength{\fboxsep}{0pt}
+          \framebox{\includegraphics[height=.5\textheight]{sjtuthesis-cover.pdf}}
+        }
+      \end{figure}
+    \end{column}
+  \end{columns}
 \end{frame}
 
 \begin{frame}[fragile]{获取\SJTUThesis{}}
@@ -49,7 +51,7 @@
         \item 下载最新开发版（高级 / 想尝鲜 / 着急的用户）
               \begin{itemize}
                 \item \url{https://github.com/sjtug/SJTUThesis}
-                \item 切换到 \verb|develop| 分支，点右边栏
+                \item 点右边栏
                       \href{https://github.com/sjtug/SJTUThesis/archive/dev.zip}{Download ZIP} 按钮
               \end{itemize}
         \item 编译
@@ -73,7 +75,7 @@
 
 \begin{frame}[fragile]{模板选项}
   \begin{description}
-    \item[type] 指定论文类型（本科/硕士/博士/课程）
+    \item[type] 指定论文类型（本科/硕士/博士）
           \begin{lstlisting}[basicstyle=\ttfamily]
 \documentclass[type=bachelor]{sjtuthesis}
   \end{lstlisting}
@@ -93,16 +95,16 @@
   \begin{lstlisting}
 \sjtusetup{
   info = {
-    title             = {上海交通大学学位论文 \LaTeX{} 模板示例文档},
-    title*            = {A Sample for \LaTeX-based SJTU Thesis Template},
-    author            = {某\quad{}某},
-    author*           = {Mo Mo},
+    zh/title  = {上海交通大学学位论文 \LaTeX{} 模板示例文档},
+    en/title  = {A Sample for \LaTeX-based SJTU Thesis Template},
+    zh/author = {某\quad{}某},
+    en/author = {Mo Mo},
   },
   style = {
-    header-logo-color = red,
+    title-logo-color = red,
   },
   name = {
-    publications      = {攻读学位期间完成的论文},
+    achv = {攻读学位期间完成的论文},
   },
 }
   \end{lstlisting}
@@ -114,30 +116,26 @@
     \centering
     \footnotesize
     \begin{tabular}{lll} \toprule
-      命令作用   & 中文对应选项                            & 英文对应选项                 \\ \midrule
-      论文标题   & \verb|title|                      & \verb|title*|
-      \\
-      关键字列表  & \verb|keywords|                   & \verb|keywords*|       \\
-      作者姓名   & \verb|author|                     & \verb|author*|         \\
-      申请学位名称 & \verb|degree|                     & \verb|degree*|         \\
-      院系名称   & \verb|department|                 & \verb|department*|     \\
-      专业名称   & \verb|major|                      & \verb|major*|          \\
-      导师     & \verb|supervisor|                 & \verb|supervisor*|
-      \\
-      副导师    & \verb|assisupervisor|             & \verb|assisupervisor*|
-      \\
-      日期     & \multicolumn{2}{c}{\texttt{date}}
-      \\
-      学号     & \multicolumn{2}{c}{\texttt{id}}
-      \\
-      \bottomrule
+      命令作用   & 中文对应选项                            & 英文对应选项                       \\ \midrule
+      论文标题   & \texttt{zh/title}                 & \texttt{en/title}            \\
+      关键字列表  & \texttt{zh/keywords}              & \texttt{en/keywords}         \\
+      作者姓名   & \texttt{zh/author}                & \texttt{en/author}           \\
+      申请学位名称 & \texttt{zh/degree}                & \texttt{en/degree}           \\
+      院系名称   & \texttt{zh/department}            & \texttt{en/department}       \\
+      专业名称   & \texttt{zh/major}                 & \texttt{en/major}            \\
+      导师     & \texttt{zh/supervisor}            & \texttt{en/supervisor}       \\
+      副导师    & \texttt{zh/assoc-supervisor}      & \texttt{en/assoc-supervisor} \\
+      联培导师   & \texttt{zh/co-supervisor}         & \texttt{en/co-supervisor}    \\
+      日期     & \multicolumn{2}{c}{\texttt{date}}                                \\
+      学号     & \multicolumn{2}{c}{\texttt{id}}                                  \\ \bottomrule
     \end{tabular}
   \end{table}
 \end{frame}
 
 \begin{frame}[fragile]{数学}
   \begin{itemize}
-    \item 公式示例：\nolinkurl{contents/math_and_citations.tex}
+    \item 公式示例：\verb|contents/math_and_citations.tex|
+          \link{https://github.com/sjtug/SJTUThesis/blob/master/contents/math_and_citations.tex}
     \item \SJTUThesis{} 定义了常用的数学环境（需要手工引入 \verb|amsthm| 宏包）：
           \begin{table}[h]
             \centering
@@ -206,7 +204,8 @@
     \item 常见问题
           \begin{itemize}
             \item 参考文献列表出错、缺少字体、无法编译、格式不对……
-            \item 阅读模板文档 \verb|sjtuthesis.pdf| 和 SJTUThesis 示例文档代码
+            \item 阅读模板文档 \verb|sjtutex.pdf| \link{https://github.com/sjtug/SJTUTeX/releases}
+                  和 SJTUThesis 示例文档代码
             \item 查看 Wiki \link{https://github.com/sjtug/SJTUThesis/wiki}
           \end{itemize}
 
