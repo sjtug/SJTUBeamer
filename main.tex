@@ -42,13 +42,14 @@
 \usepackage[backend=biber,style=gb7714-2015]{biblatex}
 \addbibresource{ref.bib}
 
+% 该行指定了图像的额外搜索路径
 \graphicspath{{figures/}}
 
 \hypersetup{
-  pdfcopyright = {Licensed under CC-BY-SA 4.0. Some rights reserved.},
-  pdflicenseurl = {http://creativecommons.org/licenses/by-sa/4.0/},
-  unicode = true,
-  psdextra = true,
+  pdfcopyright       = {Licensed under CC-BY-SA 4.0. Some rights reserved.},
+  pdflicenseurl      = {http://creativecommons.org/licenses/by-sa/4.0/},
+  unicode            = true,
+  psdextra           = true,
   pdfdisplaydoctitle = true
 }
 
@@ -70,9 +71,9 @@
 \newcommand{\XeLaTeX}{\hologo{Xe}\kern-.13em\LaTeX{}}
 \newcommand{\pdfLaTeX}{pdf\LaTeX{}}
 \newcommand{\LuaLaTeX}{Lua\LaTeX{}}
-
 \def\TeXLive{\TeX{} Live}
 \let\TL=\TeXLive
+
 \newcommand{\SJTUThesis}{\textsc{SJTUThesis}}
 \newcommand{\SJTUThesisVersion}{2.0.3}
 \newcommand{\SJTUThesisDate}{2023/9/25}
@@ -119,7 +120,8 @@
 \author{Alexara Wu}
 \institute[SJTUG]{上海交通大学 Linux 用户组}
 \date{\the\year 年 \the\month 月}
-\subject{LaTeX, 论文排版, SJTUThesis}
+\subject{上海交通大学图书馆专题培训讲座}
+\keywords{LaTeX, 论文排版, SJTUThesis}
 
 \title[\SJTUBeamer 示例文档] % 页脚显示标题
 {\textbf{如何使用 \LaTeX{} 排版论文}} % 首页标题

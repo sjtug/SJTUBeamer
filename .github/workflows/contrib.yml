@@ -39,8 +39,9 @@ jobs:
         uses: juliangruber/read-file-action@v1.0.0
         with:
           path: ./contrib.txt
-      - uses: xu-cheng/texlive-action/full@v1
+      - uses: xu-cheng/texlive-action@v2
         with:
+          scheme: full
           run: |
             apk add ghostscript imagemagick gnupg
             sed -i "s|<policy domain=\"coder\" rights=\"none\" pattern=\"PDF\" />|<policy domain=\"coder\" rights=\"read\|write\" pattern=\"PDF\" />|g" /etc/ImageMagick-*/policy.xml

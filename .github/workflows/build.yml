@@ -22,12 +22,14 @@ jobs:
     steps: 
       - uses: actions/checkout@v4
         name: checkout code
-      - uses: xu-cheng/texlive-action/full@v1
+      - uses: xu-cheng/texlive-action@v2
         with:
+          scheme: full
           run: .github/ci/build_test_variants.sh -halt-on-error -time -quiet -xelatex
         name: build test variants with XeLaTeX
-      - uses: xu-cheng/texlive-action/full@v1
+      - uses: xu-cheng/texlive-action@v2
         with:
+          scheme: full
           run: .github/ci/gen_cover.sh -halt-on-error -time -xelatex
         name: build cover with XeLaTeX
       - run: cat build/build-*.log
@@ -45,12 +47,14 @@ jobs:
     steps: 
       - uses: actions/checkout@v4
         name: checkout code
-      - uses: xu-cheng/texlive-action/full@v1
+      - uses: xu-cheng/texlive-action@v2
         with:
+          scheme: full
           run: .github/ci/build_test_variants.sh -halt-on-error -time -quiet -lualatex
         name: build test variants with LuaLaTeX
-      - uses: xu-cheng/texlive-action/full@v1
+      - uses: xu-cheng/texlive-action@v2
         with:
+          scheme: full
           run: .github/ci/gen_cover.sh -halt-on-error -time -quiet -lualatex
         name: build cover with LuaLaTeX
       - run: cat build/*.log
@@ -68,8 +72,9 @@ jobs:
     steps: 
       - uses: actions/checkout@v4
         name: checkout code
-      - uses: xu-cheng/texlive-action/full@v1
+      - uses: xu-cheng/texlive-action@v2
         with:
+          scheme: full
           run: |
             export diffexe="diff -U 3"
             apk add zip diffutils
@@ -94,11 +99,12 @@ jobs:
     steps: 
       - uses: actions/checkout@v4
         name: checkout code
-      - uses: xu-cheng/texlive-action/full@v1
+      - uses: xu-cheng/texlive-action@v2
         with:
+          scheme: full
           run: |
             apk add diffutils findutils git make
-            git config --global --add safe.directory /github/workspace
+            git config --global --add safe.directory /home/runner/work/SJTUBeamer/SJTUBeamer
             make format-dev
       - name: check if generated files are of latest version
         run: |
