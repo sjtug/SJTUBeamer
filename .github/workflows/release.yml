@@ -13,20 +13,23 @@ jobs:
     steps: 
       - uses: actions/checkout@v4
         name: checkout code
-      - uses: xu-cheng/texlive-action/full@v1
+      - uses: xu-cheng/texlive-action@v2
         with:
+          scheme: full
           run: |
             apk add zip diffutils
             tlmgr update --self
             tlmgr update l3build
             make build-dev
         name: build package with XeLaTeX
-      - uses: xu-cheng/texlive-action/full@v1
+      - uses: xu-cheng/texlive-action@v2
         with:
+          scheme: full
           run: .github/ci/build_all_variants.sh -halt-on-error -time -quiet -xelatex
         name: build all variants with XeLaTeX
-      - uses: xu-cheng/texlive-action/full@v1
+      - uses: xu-cheng/texlive-action@v2
         with:
+          scheme: full
           run: .github/ci/gen_cover.sh -halt-on-error -time -quiet -xelatex
         name: build cover with XeLaTeX
       - run: cat build/*.log
