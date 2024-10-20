@@ -1,5 +1,5 @@
 %% ------------------------------------------------------------------------
-%% Copyright (C) 2022 LogCreative <logcreative@outlook.com>
+%% Copyright (C) 2022-2024 LogCreative <logcreative@outlook.com>
 %% 
 %% Licensed under the Apache License, Version 2.0 (the "License");
 %% you may not use this file except in compliance with the License.
@@ -24,6 +24,8 @@
 % 设置 headline 颜色跟随亮色/暗色
 \setbeamercolor{headline}{parent=palette primary}
 \AtBeginDocument{
+  \newsavebox{\maintitle}  % 标题盒子变量
+  \newlength{\titlebottom} % 标题盒子的高度
   % 修改 headline，需要在文档起始处覆盖，防止 default 的行为
   \setbeamertemplate{headline}{
     \begin{beamercolorbox}[wd=\paperwidth,sep=0.02\paperwidth]{headline}
@@ -40,17 +42,20 @@
             \fi%
           \fi%
         \end{column}
+        \savebox{\maintitle}{%
         \begin{column}{0.5\textwidth}
           \vfill
           \centering
           \usebeamercolor{title in headline}{%
-            \color{fg}\textbf{\LARGE{\inserttitle}}\vskip2.5ex
+            \color{fg}\textbf{\LARGE{\inserttitle}}\vskip2.5ex%
           }
           \usebeamercolor{author in headline}{%
-            \color{fg}\large{\insertauthor}
+            \color{fg}\large{\insertauthor}%
           }
           \vfill
         \end{column}
+        }
+        \usebox{\maintitle}
         \begin{column}{0.25\textwidth}
           \if\EqualOption{poster}{sepinst}{true}
             \hfill
@@ -60,22 +65,23 @@
               \resizebox{!}{4cm}{\vphantom{-}\secondaryinstlogo[\insertshortinstitute]{\insertinstitute}{}}
             \fi
             \hspace*{0.03\paperwidth}
-          \else
-            \begin{tikzpicture}[overlay]
-              \if\EqualOption{poster}{landscape}{true}
-                \def\stampheight{0.05}
-                \def\stampsize{60pt}
-              \else
-                \def\stampheight{0.03}
-                \def\stampsize{50pt}
-              \fi
-              \usebeamercolor{palette primary}
-              \stamparray{\stampsize}{(-0.05\paperwidth,-\stampheight\paperheight)}{(\paperwidth,\stampheight\paperheight)}
-              \fill[bg, path fading=fade right] (-0.05\paperwidth, -\stampheight\paperheight) rectangle (\paperwidth, \stampheight\paperheight);
-            \end{tikzpicture}
           \fi
         \end{column}
       \end{columns}
+      \if\EqualOption{poster}{sepinst}{true}\else
+      \begin{tikzpicture}[overlay, remember picture]
+        \def\stampsize{60pt}
+        \if\EqualOption{poster}{landscape}{true}
+          \def\stampheight{0.08}
+        \else
+          \def\stampheight{0.05}
+        \fi
+        \usebeamercolor{palette primary}
+        \setlength{\titlebottom}{\dimexpr\ht\maintitle-0.02\paperwidth\relax}
+        \stamparray{\stampsize}{(0.75\paperwidth,0.2\paperwidth)}{(\paperwidth,\titlebottom)}
+        \fill[bg, path fading=fade right] (0.75\paperwidth,0.2\paperwidth) rectangle (1.35\paperwidth, \titlebottom);
+      \end{tikzpicture}
+    \fi
     \end{beamercolorbox}
   }
 }
@@ -90,7 +96,12 @@
 % 底栏为空时不会出现
 \setbeamercolor{footline}{parent=palette primary}
 \setbeamertemplate{footline}{%
-  \resizebox{\paperwidth}{!}{\sjtugate[cprimary]}\vskip-6cm\par
+  \resizebox{\paperwidth}{!}{\sjtugate[cprimary]}%
+  \if\EqualOption{poster}{landscape}{true}%
+    \vskip-12cm%
+  \else%
+    \vskip-6cm%
+  \fi\par
   \posterfootlinetrue
   \ifx\posterleftfootline\relax
     \ifx\posterrightfootline\relax

@@ -98,7 +98,7 @@ jobs:
               format(
                 env.MESSAGE,
                 steps.contrib_name.outputs.content,
-                github.event.push.commits[0].author[0],
+                github.actor,
                 join(fromJSON(steps.contrib_png.outputs.markdown_urls), '  ')
               )
             }}
