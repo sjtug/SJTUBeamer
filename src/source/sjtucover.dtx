@@ -313,6 +313,9 @@
 % The size specification should be the same as \verb"stampbox" in the inner theme.
 % Since we need a finer control on the position of the picture and the inner theme
 % is the upper layer of this style file, the whole thing should be reimplemented here.
+%
+% \changes{v3.1.0}{2024/10/21}{Fix the condition of empty titlegraphic in
+% \texttt{min} theme.}
 %    \begin{macrocode}
   \usebeamercolor{palette primary}% 
   \ifbeamertemplateempty{titlegraphic}{}{%
