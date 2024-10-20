@@ -24,22 +24,11 @@
 % 设置 headline 颜色跟随亮色/暗色
 \setbeamercolor{headline}{parent=palette primary}
 \AtBeginDocument{
+  \newsavebox{\maintitle}  % 标题盒子变量
+  \newlength{\titlebottom} % 标题盒子的高度
   % 修改 headline，需要在文档起始处覆盖，防止 default 的行为
   \setbeamertemplate{headline}{
     \begin{beamercolorbox}[wd=\paperwidth,sep=0.02\paperwidth]{headline}
-      \if\EqualOption{poster}{sepinst}{true}\else
-        \begin{tikzpicture}[overlay]
-          \def\stampsize{60pt}
-          \if\EqualOption{poster}{landscape}{true}
-            \def\stampheight{0.08}
-          \else
-            \def\stampheight{0.05}
-          \fi
-          \usebeamercolor{palette primary}
-          \stamparray{\stampsize}{(0.75\paperwidth,-\stampheight\paperheight)}{(\paperwidth,\stampheight\paperheight)}
-          \fill[bg, path fading=fade right] (0.74\paperwidth, -\stampheight\paperheight) rectangle (1.35\paperwidth, \stampheight\paperheight);
-        \end{tikzpicture}
-      \fi
       \begin{columns}
         \begin{column}{0.25\textwidth}
           \hspace*{0.02\paperwidth}
@@ -53,6 +42,7 @@
             \fi%
           \fi%
         \end{column}
+        \savebox{\maintitle}{%
         \begin{column}{0.5\textwidth}
           \vfill
           \centering
@@ -60,10 +50,12 @@
             \color{fg}\textbf{\LARGE{\inserttitle}}\vskip2.5ex
           }
           \usebeamercolor{author in headline}{%
-            \color{fg}\large{\insertauthor}
+            \color{fg}\large{\insertauthor}%
           }
           \vfill
         \end{column}
+        }
+        \usebox{\maintitle}
         \begin{column}{0.25\textwidth}
           \if\EqualOption{poster}{sepinst}{true}
             \hfill
@@ -76,6 +68,20 @@
           \fi
         \end{column}
       \end{columns}
+      \if\EqualOption{poster}{sepinst}{true}\else
+      \begin{tikzpicture}[overlay, remember picture]
+        \def\stampsize{60pt}
+        \if\EqualOption{poster}{landscape}{true}
+          \def\stampheight{0.08}
+        \else
+          \def\stampheight{0.05}
+        \fi
+        \usebeamercolor{palette primary}
+        \setlength{\titlebottom}{\dimexpr\ht\maintitle-0.02\paperwidth\relax}
+        \stamparray{\stampsize}{(0.75\paperwidth,0.2\paperwidth)}{(\paperwidth,\titlebottom)}
+        \fill[bg, path fading=fade right] (0.75\paperwidth,0.2\paperwidth) rectangle (1.35\paperwidth, \titlebottom);
+      \end{tikzpicture}
+    \fi
     \end{beamercolorbox}
   }
 }
