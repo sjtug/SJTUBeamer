@@ -142,7 +142,7 @@ Edit `main.tex` and start to use.
   * Run `latexmk -xelatex main.tex` to compile
   * VSCode LaTeX Workshop: use “Recipe: latexmk (latexmkrc)” to compile
 
-The current stable version is v3.0.0。You could visit [the release page](https://github.com/sjtug/SJTUBeamer/releases) for the changelog and more details. Generally speaking, a release of SJTUBeamer has the following content:
+The current stable version is v3.1.0。You could visit [the release page](https://github.com/sjtug/SJTUBeamer/releases) for the changelog and more details. Generally speaking, a release of SJTUBeamer has the following content:
 
 * `sjtubeamerquickstart.pdf`：SJTUBeamer Quick Start. You could also read the [source code](https://github.com/sjtug/SJTUBeamer/blob/main/src/doc/sjtubeamerquickstart.tex) of the document.
 * `sjtubeamer.pdf`: SJTUBeamer User Guide.
