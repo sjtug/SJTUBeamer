@@ -33,26 +33,22 @@ These are source files for a number of purposes, including the `unpack` process 
 generates the installation files of the package. Additional files included here will also
 be installed for processing such as testing.
 
- | File                           | Flag | Description                                   |
- | ---                            | ---  | ---                                           |
- | beamerthemesjtubeamer.ins      | ‡    |                                               |
- | beamercolorthemesjtubeamer.dtx | ‡    | sjtubeamer color theme                        |
- | beamerfontthemesjtubeamer.dtx  | ‡    | sjtubeamer font theme                         |
- | beamerinnerthemesjtubeamer.dtx | ‡    | sjtubeamer inner theme                        |
- | beamerouterthemesjtubeamer.dtx | ‡    | sjtubeamer outer theme                        |
- | beamerthemesjtubeamer.dtx      | ‡    | sjtubeamer parent theme                       |
- | sjtucover.dtx                  | ‡    | cover library for sjtubeamer                  |
- | sjtuvi.dtx                     | ‡    | Visual Identity System library for sjtubeamer |
+* beamerthemesjtubeamer.ins ‡
+* beamercolorthemesjtubeamer.dtx ‡
+* beamerfontthemesjtubeamer.dtx ‡
+* beamerinnerthemesjtubeamer.dtx ‡
+* beamerouterthemesjtubeamer.dtx ‡
+* beamerthemesjtubeamer.dtx ‡
+* sjtucover.dtx ‡
+* sjtuvi.dtx ‡
 
 ### Typeset documentation source files
 
 These files are typeset using LaTeX to produce the PDF documentation for the package.
 
- | File                     | Flag | Description                                |
- | ---                      | ---  | ---                                        |
- | sjtubeamer.tex           | ‡    | User Manual for sjtubeamer (Chinese)       |
- | sjtubeamerdevguide.tex   | ‡    | Development Guide for sjtubeamer (English) |
- | sjtubeamerquickstart.tex | ‡    | Quick Start for sjtubeamer (Chinese)       |
+* sjtubeamer.tex ‡
+* sjtubeamerdevguide.tex ‡
+* sjtubeamerquickstart.tex ‡
 
 ### Derived files
 
