@@ -1,6 +1,7 @@
 # SJTUBeamer 🤓
 
-[![overleaf](https://img.shields.io/badge/overleaf-sjtubeamer-green)](https://www.overleaf.com/latex/templates/sjtubeamer/dgvrnpndrtjh)
+[![TeXPage](https://img.shields.io/badge/SJTUBeamer-TeXPage-495A80)](https://www.texpage.com/template/c0decdfd-ca66-4f4a-807d-5217f729dcfa)
+[![Overleaf](https://img.shields.io/badge/SJTUBeamer-Overleaf-098842)](https://www.overleaf.com/latex/templates/sjtubeamer/dgvrnpndrtjh)
 [![discussions](https://img.shields.io/github/discussions/sjtug/SJTUBeamer)](https://github.com/sjtug/SJTUBeamer/discussions)
 [![Build](https://github.com/sjtug/SJTUBeamer/actions/workflows/build.yml/badge.svg?branch=main)](https://github.com/sjtug/SJTUBeamer/actions/workflows/build.yml)
 
@@ -130,14 +131,14 @@ int main(){
 
 ### 模版下载与编译
 
-* Overleaf
-  * 直接使用 [Overleaf 模板库链接](https://www.overleaf.com/latex/templates/sjtubeamer/dgvrnpndrtjh)。
-  * 或者手动上传至 Overleaf 使用：
+* TeXPage/Overleaf
+  * 直接使用 [TeXPage 模板库链接](https://www.texpage.com/template/c0decdfd-ca66-4f4a-807d-5217f729dcfa)/[Overleaf 模板库链接](https://www.overleaf.com/latex/templates/sjtubeamer/dgvrnpndrtjh)。
+  * 或者手动上传至 TeXPage/Overleaf 使用：
     * 下载开发版压缩包。页面右上角 Code - Download Zip 即可。
     * 或下载 [最新版](https://github.com/sjtug/SJTUBeamer/releases) 压缩包，点击 “Source Code (zip)” 即可下载。
     * 或下载 [最新版](https://github.com/sjtug/SJTUBeamer/releases) 最小依赖压缩包，点击 `sjtubeamer-online.zip` 下载。
-    * 上传至 Overleaf。
-    * Overleaf 的设置中需要选择“XeLaTeX”编译器编译。
+    * 上传至 TeXPage/Overleaf。
+    * TeXPage/Overleaf 的设置中需要选择“XeLaTeX”编译器编译。
 * 本地使用
   * 安装 TeXLive 套件。
   * 下载模板至本地：
