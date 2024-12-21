@@ -35,6 +35,12 @@
 		"body": "\\bgcenterbox{$1}",
 		"description": " Define a command to make a centered\n background box easily.\n"
 	},
+	"setsjtutitlegraphic": {
+		"scope": "doctex,tex",
+		"prefix": "\\setsjtutitlegraphic",
+		"body": "\\setsjtutitlegraphic{$1}",
+		"description": " Set up titlegraphic for the native\n SJTUBeamer theme cover.\n"
+	},
 	"coverpage": {
 		"scope": "doctex,tex",
 		"prefix": "\\coverpage",

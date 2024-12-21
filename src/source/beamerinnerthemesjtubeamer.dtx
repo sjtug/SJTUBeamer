@@ -16,7 +16,7 @@
 % \iffalse
 %<*package>
 \NeedsTeXFormat{LaTeX2e}
-\ProvidesPackage{beamerinnerthemesjtubeamer}[2024/10/21 3.1.0 sjtubeamer inner theme]
+\ProvidesPackage{beamerinnerthemesjtubeamer}[2024/12/21 v3.1.1 sjtubeamer inner theme]
 %</package>
 % \fi
 % \CheckSum{0}
@@ -167,29 +167,32 @@
 \fi
 %    \end{macrocode}
 %
-% Redefine the \verb"\titlegraphic" command in \verb"beamer" to implement it
-% into the beamer template management system, as is been done in \verb"\logo".
-% The original definition of \verb"\titlegraphic" is to set the command
-% \verb"\inserttitlegraphic" as its parameter directly.
+% \begin{macro}{\setsjtutitlegraphic}
+% Set up titlegraphic for the native
+% SJTUBeamer theme cover.
 %    \begin{macrocode}
-\def\titlegraphic{\setbeamertemplate{titlegraphic}}
+\def\setsjtutitlegraphic#1{
+  \setbeamertemplate{sjtutitlegraphic}[#1]
+  \titlegraphic{\usebeamertemplate{sjtutitlegraphic}}
+}
 %    \end{macrocode}
-% Redefine the \verb"\inserttitlegraphic" command to use the template
-% \verb"titlegraphic" directly, using the current color setup without
-% forming a group (not \verb"\usebeamertemplate*").
-%    \begin{macrocode}
-\def\inserttitlegraphic{\usebeamertemplate{titlegraphic}}
-%    \end{macrocode}
-% This redefinition makes \verb"\inserttitlegraphic" never be \verb"\@empty".
-% If we need to check if the title graphic is empty now, use
-% \verb"\ifbeamertemplateempty{titlegraphic}{}{}" instead.
+% From version v2.5.2 to v3.1.0, the command \verb"\inserttitlegraphic" is
+% overrided to the custom mechanism of using the beamer template
+% \verb"titlegraphic" directly, but it was soon discovered that this could lead
+% to circular references (\TeX{} capacity exceeded) when the user tries to set
+% the title page to the default template where it will
+% \verb"\usebeamertemplate{titlegraphic}" to use \verb"\inserttitlegraphic"
+% where it will call \verb"\usebeamertemplate{titlegraphic}" again.
+% This has already been solved by reverting to the original definition where
+% \verb"\titlegraphic" will set the \verb"\inserttitlegraphic" directly.
+% 
+% \changes{v3.1.1}{2024/12/21}{add the command to set the native titlegraphic,
+% and remove the original way of overriding \cs{inserttitlegraphic}.}
+% \end{macro}
 %
 % Set up titlegraphic for this cover.
-% First set to empty in case that all definitions of this template in
-% \verb"sjtucover" is not extracted.
 %    \begin{macrocode}
-\setbeamertemplate{titlegraphic}{}
-\setbeamertemplate{titlegraphic}[\sjtubeamer@inner@cover]
+\setsjtutitlegraphic{\sjtubeamer@inner@cover}
 %    \end{macrocode}
 %
 % \subsubsection{Covers}

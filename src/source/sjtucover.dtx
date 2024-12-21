@@ -13,7 +13,7 @@
 % \iffalse
 %<*package>
 \NeedsTeXFormat{LaTeX2e}
-\ProvidesPackage{sjtucover}[2024/10/21 3.1.0 cover library for sjtubeamer]
+\ProvidesPackage{sjtucover}[2024/12/21 v3.1.1 cover library for sjtubeamer]
 %</package>
 % \fi
 % \CheckSum{0}
@@ -64,28 +64,28 @@
 % \paragraph{maxplus.}
 %    \begin{macrocode}
 %<*maxplus>
-\defbeamertemplate*{titlegraphic}{maxplus}{\includegraphics{vi/sjtu-vi-sjtuphoto.jpg}}
+\defbeamertemplate*{sjtutitlegraphic}{maxplus}{\includegraphics{vi/sjtu-vi-sjtuphoto.jpg}}
 %</maxplus>
 %    \end{macrocode}
 %
 % \paragraph{max.}
 %    \begin{macrocode}
 %<*max>
-\defbeamertemplate*{titlegraphic}{max}{\sjtubg[opacity=0.2]}
+\defbeamertemplate*{sjtutitlegraphic}{max}{\sjtubg[opacity=0.2]}
 %</max>
 %    \end{macrocode}
 %
 % \paragraph{min.}
 %    \begin{macrocode}
 %<*min>
-\defbeamertemplate*{titlegraphic}{min}{\includegraphics{vi/sjtu-vi-sjtuphoto.jpg}}
+\defbeamertemplate*{sjtutitlegraphic}{min}{\includegraphics{vi/sjtu-vi-sjtuphoto.jpg}}
 %</min>
 %    \end{macrocode}
 %
 % \paragraph{my.}
 %    \begin{macrocode}
 %<*my>
-\defbeamertemplate*{titlegraphic}{my}{
+\defbeamertemplate*{sjtutitlegraphic}{my}{
   %
   % Developer could define your title graphic here for "my"...
   %
@@ -316,9 +316,12 @@
 %
 % \changes{v3.1.0}{2024/10/21}{Fix the condition of empty titlegraphic in
 % \texttt{min} theme.}
+% \changes{v3.1.1}{2024/12/21}{Revert to the original condition of empty titlegraphic in
+% \texttt{min} theme.}
 %    \begin{macrocode}
   \usebeamercolor{palette primary}% 
-  \ifbeamertemplateempty{titlegraphic}{}{%
+  \ifx\inserttitlegraphic\@empty%
+  \else
     \begin{tikzpicture}[overlay, yshift=1.2em]
       \node (pic) [fg, above left, inner sep=0.32em] at (0.86\paperwidth,0)
       {\resizebox{0.3\paperwidth}{!}{\inserttitlegraphic}};
@@ -332,7 +335,7 @@
       (pic.south east) --
       (pic.south west) -- cycle;
     \end{tikzpicture}
-  }
+  \fi
   \endgroup
   \vskip0.5em
   \vfill

@@ -21,7 +21,7 @@
 %% limitations under the License.
 %% ------------------------------------------------------------------------
 \NeedsTeXFormat{LaTeX2e}
-\ProvidesPackage{beamerinnerthemesjtubeamer}[2024/10/21 3.1.0 sjtubeamer inner theme]
+\ProvidesPackage{beamerinnerthemesjtubeamer}[2024/12/21 v3.1.1 sjtubeamer inner theme]
 \RequirePackage{sjtuvi}
 \RequirePackage{tcolorbox}
 \DefineOption{inner}{cover}{maxplus}
@@ -69,10 +69,11 @@
   \setbeamertemplate{background}
     {\bgcenterbox{\sjtubg[cprimary!50,opacity=0.2]}}
 \fi
-\def\titlegraphic{\setbeamertemplate{titlegraphic}}
-\def\inserttitlegraphic{\usebeamertemplate{titlegraphic}}
-\setbeamertemplate{titlegraphic}{}
-\setbeamertemplate{titlegraphic}[\sjtubeamer@inner@cover]
+\def\setsjtutitlegraphic#1{
+  \setbeamertemplate{sjtutitlegraphic}[#1]
+  \titlegraphic{\usebeamertemplate{sjtutitlegraphic}}
+}
+\setsjtutitlegraphic{\sjtubeamer@inner@cover}
 \newdimen\beamer@sidebarwidth
 \beamer@sidebarwidth=0em
 \def\coverpage#1{
