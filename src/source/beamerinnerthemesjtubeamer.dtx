@@ -180,10 +180,11 @@
 % overrided to the custom mechanism of using the beamer template
 % \verb"titlegraphic" directly, but it was soon discovered that this could lead
 % to circular references (\TeX{} capacity exceeded) when the user tries to set
-% the titlepage to the default template where it will use the "titlegraphic"
-% template to use \verb"\inserttitlegraphic" again. This has already been solved
-% by reverting to the original definition where \verb"\titlegraphic" will set
-% the \verb"\inserttitlegraphic" directly.
+% the title page to the default template where it will
+% \verb"\usebeamertemplate{titlegraphic}" to use \verb"\inserttitlegraphic"
+% where it will call \verb"\usebeamertemplate{titlegraphic}" again.
+% This has already been solved by reverting to the original definition where
+% \verb"\titlegraphic" will set the \verb"\inserttitlegraphic" directly.
 % 
 % \changes{v3.1.1}{2024/12/21}{add the command to set the native titlegraphic,
 % and remove the original way of overriding \cs{inserttitlegraphic}.}
