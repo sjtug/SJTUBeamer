@@ -69,10 +69,11 @@
   \setbeamertemplate{background}
     {\bgcenterbox{\sjtubg[cprimary!50,opacity=0.2]}}
 \fi
-\def\titlegraphic{\setbeamertemplate{titlegraphic}}
-\def\inserttitlegraphic{\usebeamertemplate{titlegraphic}}
-\setbeamertemplate{titlegraphic}{}
-\setbeamertemplate{titlegraphic}[\sjtubeamer@inner@cover]
+\def\setsjtutitlegraphic#1{
+  \setbeamertemplate{sjtutitlegraphic}[#1]
+  \titlegraphic{\usebeamertemplate{sjtutitlegraphic}}
+}
+\setsjtutitlegraphic{\sjtubeamer@inner@cover}
 \newdimen\beamer@sidebarwidth
 \beamer@sidebarwidth=0em
 \def\coverpage#1{

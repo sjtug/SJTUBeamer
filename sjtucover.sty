@@ -31,10 +31,10 @@
 \else
   \defbeamertemplate*{logo}{default}{\resizebox{!}{0.7cm}{\enlogo}}
 \fi
-\defbeamertemplate*{titlegraphic}{maxplus}{\includegraphics{vi/sjtu-vi-sjtuphoto.jpg}}
-\defbeamertemplate*{titlegraphic}{max}{\sjtubg[opacity=0.2]}
-\defbeamertemplate*{titlegraphic}{min}{\includegraphics{vi/sjtu-vi-sjtuphoto.jpg}}
-\defbeamertemplate*{titlegraphic}{my}{
+\defbeamertemplate*{sjtutitlegraphic}{maxplus}{\includegraphics{vi/sjtu-vi-sjtuphoto.jpg}}
+\defbeamertemplate*{sjtutitlegraphic}{max}{\sjtubg[opacity=0.2]}
+\defbeamertemplate*{sjtutitlegraphic}{min}{\includegraphics{vi/sjtu-vi-sjtuphoto.jpg}}
+\defbeamertemplate*{sjtutitlegraphic}{my}{
   %
   % Developer could define your title graphic here for "my"...
   %
@@ -176,7 +176,8 @@
     \usebeamerfont{date}\insertdate
   \end{beamercolorbox}
   \usebeamercolor{palette primary}%
-  \ifbeamertemplateempty{titlegraphic}{}{%
+  \ifx\inserttitlegraphic\@empty%
+  \else
     \begin{tikzpicture}[overlay, yshift=1.2em]
       \node (pic) [fg, above left, inner sep=0.32em] at (0.86\paperwidth,0)
       {\resizebox{0.3\paperwidth}{!}{\inserttitlegraphic}};
@@ -190,7 +191,7 @@
       (pic.south east) --
       (pic.south west) -- cycle;
     \end{tikzpicture}
-  }
+  \fi
   \endgroup
   \vskip0.5em
   \vfill
