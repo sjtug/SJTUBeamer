@@ -1,9 +1,15 @@
 \documentclass[
   aspectratio=169,
-  fontset=ubuntu
+  fontset=ubuntu, % 使用 Noto Sans CJK 字体，需要先安装字体
 ]{ctexbeamer}
-\usetheme[red,light]{sjtubeamer}
-\usesjtutheme{touying}
+\usetheme[
+  max, % 可以替换成 maxplus, min 等以更换封面
+  red,
+  light, % 可以更换成 dark 使用深色主题
+]{sjtubeamer}
+\usesjtutheme{touying} % 使用 touying 子主题
+
+% \usepackage{lua-visual-debug}
 
 \usepackage{fontawesome5}
 
@@ -13,6 +19,7 @@
 \author{作者}
 \institute[SJTU]{上海交通大学}
 \maketitle
+\logo{} % 清空每页的 logo
 
 \part{第一部分}
 

@@ -23,9 +23,6 @@
 % 设定主色
 \setbeamercolor{section in head/foot}{bg=white,fg=cprimary}
 
-% 清空每页的 logo
-\logo{}
-
 % 清空背景
 \setbeamertemplate{background}{}
 
@@ -39,7 +36,7 @@
     \vskip2.5ex
     \vskip-\baselineskip
     \let\headlinewidth\paperwidth
-    \advance\headlinewidth by -0.6cm
+    \advance\headlinewidth by -0.7cm
     \hbox{\hspace{0.4cm}\insertnavigation{\headlinewidth}}%%
     \vskip1.125ex
   \end{beamercolorbox}%
@@ -51,42 +48,44 @@
 \definelogo{sjtugateslim}{vi/sjtu-vi-sjtugate.png}{0.25}{0.95}
 
 % 自定义标题栏，只保留校门图形
-\defbeamertemplate*{frametitle}{touying}[1][]
-{%
-  \begingroup
-  \usebeamerfont{frametitle}
-  \vbox{}
-  \ifx\insertframesubtitle\@empty\vskip-2.0ex%
-  \else\vskip-2.5ex\fi%
-  \if@tempswa\else\csname beamer@fte#1\endcsname\fi%
-  \strut\insertframetitle\strut\par%
+\AtBeginDocument{
+  \defbeamertemplate*{frametitle}{touying}[1][]
   {%
-    \ifx\insertframesubtitle\@empty%
-    \else%
-    {
-      \usebeamerfont{framesubtitle}
-      \usebeamercolor[fg]{framesubtitle}
-      \strut\insertframesubtitle\strut\par
+    \begingroup
+    \usebeamerfont{frametitle}
+    \vbox{}
+    \ifx\insertframesubtitle\@empty\vskip-2.0ex%
+    \else\vskip-2.5ex\fi%
+    \if@tempswa\else\csname beamer@fte#1\endcsname\fi%
+    \strut\insertframetitle\strut\par%
+    {%
+      \ifx\insertframesubtitle\@empty%
+      \else%
+      {
+        \usebeamerfont{framesubtitle}
+        \usebeamercolor[fg]{framesubtitle}
+        \strut\insertframesubtitle\strut\par
+      }%
+      \fi
     }%
-    \fi
-  }%
-  \vskip-1.07ex%
-  \endgroup%
-  \raggedleft%
-  \begingroup
-  \ifx\insertframesubtitle\@empty\vskip-2.4ex%
-  \else\vskip-2.3ex\fi%
-  {
-    \hfuzz=100pt
-    \hbadness=100000
-    \let\gateheadlinewidth\paperwidth
-    \advance\gateheadlinewidth by -1.22cm
-    \resizebox{\gateheadlinewidth}{!}{\sjtugateslim}\hfill%%
+    \vskip-1.07ex%
+    \endgroup%
+    \raggedleft%
+    \begingroup
+    \ifx\insertframesubtitle\@empty\vskip-2.4ex%
+    \else\vskip-2.3ex\fi%
+    {
+      \hfuzz=100pt
+      \hbadness=100000
+      \let\gateheadlinewidth\paperwidth
+      \advance\gateheadlinewidth by -1.3cm
+      \resizebox{\gateheadlinewidth}{!}{\sjtugateslim}\hfill%%
+    }
+    \endgroup%
+    \ifx\insertframesubtitle\@empty%
+    \else\vskip0.75ex\fi%
+    \if@tempswa\else\vskip-.3cm\fi%
   }
-  \endgroup%
-  \ifx\insertframesubtitle\@empty%
-  \else\vskip0.75ex\fi%
-  \if@tempswa\else\vskip-.3cm\fi%
 }
 
 % 设置底部信息的前景色
@@ -104,7 +103,7 @@
   \begin{beamercolorbox}[colsep=1.5pt]{upper separation line foot}
   \end{beamercolorbox}
   \begin{beamercolorbox}[ht=2.5ex,dp=1.125ex,%
-    leftskip=.7cm,rightskip=.6cm plus1fil]{title in head/foot}%
+    leftskip=.7cm,rightskip=.7cm plus1fil]{title in head/foot}%
     {\usebeamerfont{institute in head/foot}\usebeamercolor[fg]{institute in head/foot}\insertshortinstitute%
     \hfill%
     \ifbeamertemplateempty{page number in head/foot}{}{\qquad}%
@@ -116,6 +115,14 @@
   \vspace*{0.2cm}
 }
 
+% 重定义 sectioning block
+\defbeamertemplate*{sectioning block}{touying}[1]
+{
+  \usebeamercolor[fg]{#1 title}
+  \usebeamerfont{#1 name}
+  {\usebeamerfont{#1 title}\csname insert#1\endcsname\par}
+}
+
 % 重定义 part page
 \defbeamertemplate*{part page}{touying}[1][]
 {%
@@ -124,13 +131,14 @@
   \begin{tikzpicture}[overlay]
     \fill [bg] (-0.2*\the\paperwidth,-1*\the\paperheight)
     rectangle (1*\the\paperwidth, 0.4*\the\paperheight);
-    \node [right, fg] at (-0.2*\the\paperwidth, -0.5*\the\paperheight)
-    {\resizebox{1.15\paperwidth}{!}{\sjtugateslim}};
   \end{tikzpicture}
   \vfil
   \begingroup
-    \setbeamertemplate{sectioning block}[maxplus]{part}
+    \setbeamertemplate{sectioning block}[touying]{part}
     \usebeamertemplate{sectioning block}
+    \let\gateheadlinewidth\paperwidth
+    \advance\gateheadlinewidth by -1.3cm
+    \vskip-3.5ex\resizebox{\gateheadlinewidth}{!}{\sjtugateslim}
     \vskip10pt
     {
       \scriptsize
