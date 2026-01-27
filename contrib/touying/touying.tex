@@ -1,0 +1,58 @@
+\documentclass[
+  aspectratio=169,
+  fontset=ubuntu, % 使用 Noto Sans CJK SC 字体，需要先安装字体
+]{ctexbeamer}
+\usetheme[
+  max, % 可以替换成 maxplus, min 等以更换封面
+  red, % 可以更换为 blue 颜色主题
+  light, % 可以更换成 dark 使用深色主题
+]{sjtubeamer}
+\usesjtutheme{touying} % 使用 touying 子主题
+
+\usepackage{zhlipsum}
+\usepackage{fontawesome5}
+
+\begin{document}
+\title{touying子主题}
+\subtitle{仿touying-sjtu的上海交通大学幻灯片模板}
+\author{作者}
+\institute[SJTU]{上海交通大学}
+\date{2026-01-27}
+\maketitle
+
+\begin{frame}{目录}
+  \tableofcontents
+\end{frame}
+
+\section{第一小节}
+
+\subsection{第一小小节}
+
+\begin{frame}[t]{主题说明}
+  本主题仿照 touying-sjtu \href{https://github.com/sjtug/touying-sjtu}{\faLink} 制作。
+
+  这里使用了 Noto Sans CJK SC 及 Libertinus 系列字体，编译前需要安装相关字体。
+
+  在 \texttt{frame} 环境上添加 \texttt{[t]} 选项可以让内容顶端对齐，这样就和原作比较像了。
+
+  封面可以使用 \texttt{maxplus}/\texttt{max}/\texttt{min} 切换，颜色主题可以使用 \texttt{red}/\texttt{blue} 切换，明暗模式可以使用 \texttt{light}/\texttt{dark} 切换。
+\end{frame}
+
+\subsection{第二小小节}
+
+\begin{frame}[t]
+  \frametitle{标题}
+  \framesubtitle{子标题}
+  这一页是含有子标题的幻灯片。$a+b=c$\footnote{这是一个脚注。}
+\end{frame}
+
+\section{第二小节}
+
+\begin{frame}[t,allowframebreaks] % 允许内容跨页
+  \frametitle{内容跨页}
+  \zhlipsum[1-2]
+\end{frame}
+
+\makebottom
+
+\end{document}

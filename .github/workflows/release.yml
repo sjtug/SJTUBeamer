@@ -30,7 +30,9 @@ jobs:
       - uses: xu-cheng/texlive-action@v2
         with:
           scheme: full
-          run: .github/ci/gen_cover.sh -halt-on-error -time -quiet -xelatex
+          run: |
+            apk add font-noto-cjk
+            .github/ci/gen_cover.sh -halt-on-error -time -quiet -xelatex
         name: build cover with XeLaTeX
       - run: cat build/*.log
         name: display build log

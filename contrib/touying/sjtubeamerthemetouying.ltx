@@ -1,0 +1,236 @@
+%% ------------------------------------------------------------------------
+%% Copyright (C) 2026 LogCreative <logcreative@outlook.com>
+%% 
+%% Licensed under the Apache License, Version 2.0 (the "License");
+%% you may not use this file except in compliance with the License.
+%% You may obtain a copy of the License at
+%% 
+%%     http://www.apache.org/licenses/LICENSE-2.0
+%% 
+%% Unless required by applicable law or agreed to in writing, software
+%% distributed under the License is distributed on an "AS IS" BASIS,
+%% WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+%% See the License for the specific language governing permissions and
+%% limitations under the License.
+%% ------------------------------------------------------------------------
+% 设置文件元数据
+\ProvidesFile{sjtubeamerthemetouying.ltx}[2026/01/27 touying-sjtu subtheme for SJTUBeamer]
+\makeatletter
+
+% 设定页边距，左边多一点去补偿全局调整的问题
+% 并且考虑到版心的视觉平衡问题，会相对收紧
+\setbeamersize{text margin left=0.9cm,text margin right=0.7cm}
+
+% 设定主色
+\setbeamercolor{section in head/foot}{bg=white,fg=cprimary}
+
+% 清空背景
+\setbeamertemplate{background}{}
+
+% 自定义顶部导航栏，使得顶部更窄
+\defbeamertemplate*{headline}{touying}
+{%
+  \vspace*{0.2cm}
+  \begin{beamercolorbox}[colsep=1.5pt]{upper separation line head}
+  \end{beamercolorbox}
+  \begin{beamercolorbox}{section in head/foot}
+    \vskip2.5ex
+    \vskip-\baselineskip
+    \let\headlinewidth\paperwidth
+    \advance\headlinewidth by -0.95cm
+    \hbox{\hspace{0.5cm}\insertnavigation{\headlinewidth}}%%
+    \vskip1.125ex
+  \end{beamercolorbox}%
+  \begin{beamercolorbox}[colsep=1.5pt]{lower separation line head}
+  \end{beamercolorbox}
+}
+
+% 定义顶部校门形状
+\definelogo{sjtugateslim}{vi/sjtu-vi-sjtugate.png}{0.25}{0.96}
+
+% 自定义标题栏，只保留校门图形，设置为最终定义
+\AtBeginDocument{
+  \defbeamertemplate*{frametitle}{touying}[1][]
+  {%
+    \begingroup
+    \usebeamerfont{frametitle}
+    \vbox{}
+    \ifx\insertframesubtitle\@empty\vskip-2.0ex%
+    \else\vskip-2.5ex\fi%
+    \if@tempswa\else\csname beamer@fte#1\endcsname\fi%
+    \strut\hskip-0.1cm\insertframetitle\strut\par%
+    {%
+      \ifx\insertframesubtitle\@empty%
+      \else%
+      {
+        \usebeamerfont{framesubtitle}
+        \usebeamercolor[fg]{framesubtitle}
+        \strut\hskip-0.1cm\insertframesubtitle\strut\par
+      }%
+      \fi
+    }%
+    \vskip-1.07ex%
+    \endgroup%
+    \raggedleft%
+    \begingroup
+    \ifx\insertframesubtitle\@empty\vskip-2.3ex%
+    \else\vskip-2.0ex\fi%
+    {
+      \hfuzz=100pt
+      \hbadness=100000
+      \let\gateheadlinewidth\paperwidth
+      \advance\gateheadlinewidth by -1.55cm
+      \hskip-0.1cm\resizebox{\gateheadlinewidth}{!}{\sjtugateslim}\hfill%%
+    }
+    \endgroup%
+    \ifx\insertframesubtitle\@empty%
+    \else\vskip0.35ex\fi%
+    \if@tempswa\else\vskip-.3cm\fi%
+  }
+}
+
+% 设置底部信息的前景色
+\setbeamercolor{institute in head/foot}{fg=cprimary,bg=}
+\setbeamercolor{page number in head/foot}{fg=cprimary,bg=}
+
+% 清空导航工具
+\setbeamertemplate{navigation symbols}{}{}
+
+% 使用页码
+\setbeamertemplate{page number in head/foot}[totalpagenumber]
+
+% 自定义底部信息栏，保留校名和页码
+\defbeamertemplate*{footline}{touying}[1][]{
+  \begin{beamercolorbox}[colsep=1.5pt]{upper separation line foot}
+  \end{beamercolorbox}
+  \begin{beamercolorbox}[ht=2.5ex,dp=1.125ex,%
+    leftskip=.7cm,rightskip=.7cm plus1fil]{title in head/foot}%
+    {%
+      \usebeamerfont{institute in head/foot}%
+      \usebeamercolor[fg]{institute in head/foot}%
+      \insertshortinstitute%
+      \hfill%
+      \ifbeamertemplateempty{page number in head/foot}{}{\qquad}%
+      \usebeamercolor[fg]{page number in head/foot}%
+      \usebeamerfont{page number in head/foot}%
+      \usebeamertemplate{page number in head/foot}%      
+    }%
+  \end{beamercolorbox}%
+  \begin{beamercolorbox}[colsep=1.5pt]{lower separation line foot}
+  \end{beamercolorbox}
+  \vspace*{0.2cm}
+}
+
+% 重定义 sectioning block
+\defbeamertemplate*{sectioning block}{touying}[1]
+{
+  \def\sjtubeamer@cover@secblocktype{#1}%
+  \usebeamercolor[fg]{#1 title}
+  \usebeamerfont{#1 name}
+  {\usebeamerfont{#1 title}%
+  \if\EqualOption{cover}{secblocktype}{part}%
+    \insertsection%
+  \else\if\EqualOption{cover}{secblocktype}{section}%
+    \insertsection%
+  \else\if\EqualOption{cover}{secblocktype}{subsection}%
+    \insertsubsection%
+  \fi\fi\fi%
+  \par}
+}
+
+% 重定义 sectioning page
+\defbeamertemplate*{sectioning page}{touying}[1]
+{%
+  \vbox{}
+  \def\sjtubeamer@cover@sectype{#1}%
+  \usebeamercolor{#1 title}
+  \begin{tikzpicture}[overlay]
+    \fill [bg] (-0.2*\the\paperwidth,-1*\the\paperheight)
+    rectangle (1*\the\paperwidth, 0.4*\the\paperheight);
+  \end{tikzpicture}
+  \vfill
+  \begingroup%
+    \setbeamertemplate{sectioning block}[touying]{#1}%
+    \hskip-0.3cm\usebeamertemplate{sectioning block}%
+    \let\gateheadlinewidth\paperwidth%
+    \advance\gateheadlinewidth by -1.55cm%
+    \vskip-3.1ex\strut\hskip-0.1cm\resizebox{\gateheadlinewidth}{!}{\sjtugateslim}\strut%
+    \vskip10pt%
+    {%
+      \scriptsize%
+      \hfuzz=100pt%
+      \hbadness=100000%
+      \hskip-0.45cm%
+      \if\EqualOption{cover}{sectype}{part}%
+        \if\EqualOption{color}{lum}{light}%
+          \setbeamercolor{section in head/foot}{bg=,fg=cprimary}%
+        \else%
+          \setbeamercolor{section in head/foot}{bg=,fg=white}%
+        \fi%
+        \insertsectionnavigationhorizontal{\gateheadlinewidth}{}{}%
+      \else\if\EqualOption{cover}{sectype}{section}%
+        \if\EqualOption{color}{lum}{light}%
+          \setbeamercolor{subsection in head/foot}{bg=,fg=cprimary!50!csecondary}%
+        \else%
+          \setbeamercolor{subsection in head/foot}{bg=,fg=white}%
+        \fi%
+        \insertsubsectionnavigationhorizontal{\gateheadlinewidth}{}{}%
+      \fi\fi%
+    }%
+  \endgroup%
+  \vfill
+}
+
+% 定义部分、节页和小节页样式
+\definesecpage{part}{touying}
+\definesecpage{section}{touying}
+\definesecpage{subsection}{touying}
+
+%% 使用与 touying-sjtu 一致的节页设计，part 名将不会被显示
+\AtBeginPart{}
+\AtBeginSection{\makepart}
+
+% 使用衬线字体
+\usefonttheme{serif}
+
+% 借鉴自 SJTUTeX 的字体设置
+\ExplSyntaxOn
+\sys_if_engine_opentype:TF
+  {
+    \setmainfont
+    { LibertinusSerif }
+    [
+      Extension           = .otf,
+      UprightFont         = *-Regular,
+      BoldFont            = *-Bold,
+      ItalicFont          = *-Italic,
+      BoldItalicFont      = *-BoldItalic,
+      SlantedFont         = *-Regular,
+      BoldSlantedFont     = *-Bold,
+      SlantedFeatures     = { FakeSlant = 0.2 },
+      BoldSlantedFeatures = { FakeSlant = 0.2 }
+    ]
+  \setsansfont
+    { LibertinusSans }
+    [
+      Extension           = .otf,
+      UprightFont         = *-Regular,
+      BoldFont            = *-Bold,
+      ItalicFont          = *-Italic,
+      BoldItalicFont      = *-Italic,
+      BoldItalicFeatures  = { FakeBold  = 3   },
+      SlantedFont         = *-Regular,
+      BoldSlantedFont     = *-Bold,
+      SlantedFeatures     = { FakeSlant = 0.2 },
+      BoldSlantedFeatures = { FakeSlant = 0.2 }
+    ]
+  }
+  {
+    \tl_set:Nn \encodingdefault { T1 }
+    \tl_set:Nn \rmdefault { LibertinusSerif-TLF }
+    \tl_set:Nn \sfdefault { LibertinusSans-TLF  }
+    \tl_set:Nn \ttdefault { lmtt }
+  }
+\ExplSyntaxOff
+
+\makeatother
