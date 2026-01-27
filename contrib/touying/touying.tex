@@ -9,6 +9,8 @@
 ]{sjtubeamer}
 \usesjtutheme{touying} % 使用 touying 子主题
 
+% \usepackage{lua-visual-debug}
+
 \usepackage{zhlipsum}
 \usepackage{fontawesome5}
 
@@ -38,7 +40,7 @@
 
 \subsection{第二小小节}
 
-\begin{frame}
+\begin{frame}[t]
   \frametitle{标题}
   \framesubtitle{子标题}
   这一页是含有子标题的幻灯片。$a+b=c$
@@ -46,12 +48,12 @@
 
 \section{第二小节}
 \begin{frame}
-这一页是没有标题的幻灯片。
+这一页是没有标题居中的幻灯片。
 \end{frame}
 
 \section{第三小节}
 
-\begin{frame}[allowframebreaks] % 允许内容跨页
+\begin{frame}[t,allowframebreaks] % 允许内容跨页
   \frametitle{内容跨页}
   \zhlipsum[1-2]
 \end{frame}

@@ -18,7 +18,8 @@
 \makeatletter
 
 % 设定页边距，左边多一点去补偿全局调整的问题
-\setbeamersize{text margin left=0.7cm,text margin right=0.5cm}
+% 并且考虑到版心的视觉平衡问题，会相对收紧
+\setbeamersize{text margin left=0.9cm,text margin right=0.7cm}
 
 % 设定主色
 \setbeamercolor{section in head/foot}{bg=white,fg=cprimary}
@@ -36,8 +37,8 @@
     \vskip2.5ex
     \vskip-\baselineskip
     \let\headlinewidth\paperwidth
-    \advance\headlinewidth by -0.7cm
-    \hbox{\hspace{0.4cm}\insertnavigation{\headlinewidth}}%%
+    \advance\headlinewidth by -0.95cm
+    \hbox{\hspace{0.5cm}\insertnavigation{\headlinewidth}}%%
     \vskip1.125ex
   \end{beamercolorbox}%
   \begin{beamercolorbox}[colsep=1.5pt]{lower separation line head}
@@ -45,7 +46,7 @@
 }
 
 % 定义顶部校门形状
-\definelogo{sjtugateslim}{vi/sjtu-vi-sjtugate.png}{0.25}{0.95}
+\definelogo{sjtugateslim}{vi/sjtu-vi-sjtugate.png}{0.25}{0.96}
 
 % 自定义标题栏，只保留校门图形，设置为最终定义
 \AtBeginDocument{
@@ -57,14 +58,14 @@
     \ifx\insertframesubtitle\@empty\vskip-2.0ex%
     \else\vskip-2.5ex\fi%
     \if@tempswa\else\csname beamer@fte#1\endcsname\fi%
-    \strut\insertframetitle\strut\par%
+    \strut\hskip-0.1cm\insertframetitle\strut\par%
     {%
       \ifx\insertframesubtitle\@empty%
       \else%
       {
         \usebeamerfont{framesubtitle}
         \usebeamercolor[fg]{framesubtitle}
-        \strut\insertframesubtitle\strut\par
+        \strut\hskip-0.1cm\insertframesubtitle\strut\par
       }%
       \fi
     }%
@@ -72,18 +73,18 @@
     \endgroup%
     \raggedleft%
     \begingroup
-    \ifx\insertframesubtitle\@empty\vskip-2.4ex%
-    \else\vskip-2.3ex\fi%
+    \ifx\insertframesubtitle\@empty\vskip-2.3ex%
+    \else\vskip-2.0ex\fi%
     {
       \hfuzz=100pt
       \hbadness=100000
       \let\gateheadlinewidth\paperwidth
-      \advance\gateheadlinewidth by -1.3cm
-      \resizebox{\gateheadlinewidth}{!}{\sjtugateslim}\hfill%%
+      \advance\gateheadlinewidth by -1.55cm
+      \hskip-0.1cm\resizebox{\gateheadlinewidth}{!}{\sjtugateslim}\hfill%%
     }
     \endgroup%
     \ifx\insertframesubtitle\@empty%
-    \else\vskip0.75ex\fi%
+    \else\vskip0.35ex\fi%
     \if@tempswa\else\vskip-.3cm\fi%
   }
 }
@@ -157,16 +158,16 @@
   \vfill
   \begingroup%
     \setbeamertemplate{sectioning block}[touying]{#1}%
-    \usebeamertemplate{sectioning block}%
+    \hskip-0.3cm\usebeamertemplate{sectioning block}%
     \let\gateheadlinewidth\paperwidth%
-    \advance\gateheadlinewidth by -1.3cm%
-    \vskip-3.5ex\resizebox{\gateheadlinewidth}{!}{\sjtugateslim}%
+    \advance\gateheadlinewidth by -1.55cm%
+    \vskip-3.1ex\strut\hskip-0.1cm\resizebox{\gateheadlinewidth}{!}{\sjtugateslim}\strut%
     \vskip10pt%
     {%
       \scriptsize%
       \hfuzz=100pt%
       \hbadness=100000%
-      \hskip-0.3cm%
+      \hskip-0.45cm%
       \if\EqualOption{cover}{sectype}{part}%
         \insertsectionnavigationhorizontal{\gateheadlinewidth}{}{}%
       \else\if\EqualOption{cover}{sectype}{section}%
