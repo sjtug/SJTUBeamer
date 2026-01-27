@@ -14,7 +14,7 @@
 %% limitations under the License.
 %% ------------------------------------------------------------------------
 % 设置文件元数据
-\ProvidesFile{sjtubeamerthemetouying.ltx}[2026/01/21 touying-sjtu subtheme for SJTUBeamer]
+\ProvidesFile{sjtubeamerthemetouying.ltx}[2026/01/27 touying-sjtu subtheme for SJTUBeamer]
 \makeatletter
 
 % 设定页边距，左边多一点去补偿全局调整的问题
@@ -138,13 +138,6 @@
   \par}
 }
 
-% 根据暗色模式设置小节导航栏前景色
-\if\EqualOption{color}{lum}{light}
-  \setbeamercolor{subsection in head/foot}{bg=,fg=cprimary!50!csecondary}
-\else
-  \setbeamercolor{subsection in head/foot}{bg=,fg=white}
-\fi
-
 % 重定义 sectioning page
 \defbeamertemplate*{sectioning page}{touying}[1]
 {%
@@ -169,8 +162,18 @@
       \hbadness=100000%
       \hskip-0.45cm%
       \if\EqualOption{cover}{sectype}{part}%
+        \if\EqualOption{color}{lum}{light}%
+          \setbeamercolor{section in head/foot}{bg=,fg=cprimary}%
+        \else%
+          \setbeamercolor{section in head/foot}{bg=,fg=white}%
+        \fi%
         \insertsectionnavigationhorizontal{\gateheadlinewidth}{}{}%
       \else\if\EqualOption{cover}{sectype}{section}%
+        \if\EqualOption{color}{lum}{light}%
+          \setbeamercolor{subsection in head/foot}{bg=,fg=cprimary!50!csecondary}%
+        \else%
+          \setbeamercolor{subsection in head/foot}{bg=,fg=white}%
+        \fi%
         \insertsubsectionnavigationhorizontal{\gateheadlinewidth}{}{}%
       \fi\fi%
     }%
