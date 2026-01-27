@@ -9,8 +9,7 @@
 ]{sjtubeamer}
 \usesjtutheme{touying} % 使用 touying 子主题
 
-% \usepackage{lua-visual-debug}
-
+\usepackage{zhlipsum}
 \usepackage{fontawesome5}
 
 \begin{document}
@@ -21,10 +20,8 @@
 \maketitle
 \logo{} % 清空每页的 logo
 
-\part{第一部分}
-
 \begin{frame}{目录}
-\tableofcontents
+  \tableofcontents
 \end{frame}
 
 \section{第一小节}
@@ -32,22 +29,32 @@
 \subsection{第一小小节}
 
 \begin{frame}[t]{主题说明}
-本主题仿照 touying-sjtu \href{https://github.com/sjtug/touying-sjtu}{\faLink} 制作。在 \texttt{frame} 环境上添加 \texttt{[t]} 选项可以让内容顶端对齐，这样就和原作比较像了。
+  本主题仿照 touying-sjtu \href{https://github.com/sjtug/touying-sjtu}{\faLink} 制作。
+
+  这里使用了 \texttt{ubuntu} 字体集及 Libertinus 系列字体，编译前需要安装相关字体。
+
+  在 \texttt{frame} 环境上添加 \texttt{[t]} 选项可以让内容顶端对齐，这样就和原作比较像了。
 \end{frame}
 
 \subsection{第二小小节}
 
-\begin{frame}{标题}
-\framesubtitle{子标题}
-这一页是含有子标题的幻灯片。$a+b=c$
+\begin{frame}
+  \frametitle{标题}
+  \framesubtitle{子标题}
+  这一页是含有子标题的幻灯片。$a+b=c$
 \end{frame}
 
 \section{第二小节}
 \begin{frame}
-这一页没有标题的幻灯片。
+这一页是没有标题的幻灯片。
 \end{frame}
 
 \section{第三小节}
+
+\begin{frame}[allowframebreaks] % 允许内容跨页
+  \frametitle{内容跨页}
+  \zhlipsum[1-2]
+\end{frame}
 
 \makebottom
 

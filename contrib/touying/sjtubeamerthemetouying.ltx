@@ -47,7 +47,7 @@
 % 定义顶部校门形状
 \definelogo{sjtugateslim}{vi/sjtu-vi-sjtugate.png}{0.25}{0.95}
 
-% 自定义标题栏，只保留校门图形
+% 自定义标题栏，只保留校门图形，设置为最终定义
 \AtBeginDocument{
   \defbeamertemplate*{frametitle}{touying}[1][]
   {%
@@ -104,10 +104,15 @@
   \end{beamercolorbox}
   \begin{beamercolorbox}[ht=2.5ex,dp=1.125ex,%
     leftskip=.7cm,rightskip=.7cm plus1fil]{title in head/foot}%
-    {\usebeamerfont{institute in head/foot}\usebeamercolor[fg]{institute in head/foot}\insertshortinstitute%
-    \hfill%
-    \ifbeamertemplateempty{page number in head/foot}{}{\qquad}%
-    \usebeamercolor[fg]{page number in head/foot}\usebeamerfont{page number in head/foot}\usebeamertemplate{page number in head/foot}%      
+    {%
+      \usebeamerfont{institute in head/foot}%
+      \usebeamercolor[fg]{institute in head/foot}%
+      \insertshortinstitute%
+      \hfill%
+      \ifbeamertemplateempty{page number in head/foot}{}{\qquad}%
+      \usebeamercolor[fg]{page number in head/foot}%
+      \usebeamerfont{page number in head/foot}%
+      \usebeamertemplate{page number in head/foot}%      
     }%
   \end{beamercolorbox}%
   \begin{beamercolorbox}[colsep=1.5pt]{lower separation line foot}
@@ -118,42 +123,68 @@
 % 重定义 sectioning block
 \defbeamertemplate*{sectioning block}{touying}[1]
 {
+  \def\sjtubeamer@cover@secblocktype{#1}%
   \usebeamercolor[fg]{#1 title}
   \usebeamerfont{#1 name}
-  {\usebeamerfont{#1 title}\csname insert#1\endcsname\par}
+  {\usebeamerfont{#1 title}%
+  \if\EqualOption{cover}{secblocktype}{part}%
+    \insertsection%
+  \else\if\EqualOption{cover}{secblocktype}{section}%
+    \insertsection%
+  \else\if\EqualOption{cover}{secblocktype}{subsection}%
+    \insertsubsection%
+  \fi\fi\fi%
+  \par}
 }
 
-% 重定义 part page
-\defbeamertemplate*{part page}{touying}[1][]
+% 根据暗色模式设置小节导航栏前景色
+\if\EqualOption{color}{lum}{light}
+  \setbeamercolor{subsection in head/foot}{bg=,fg=cprimary!50!csecondary}
+\else
+  \setbeamercolor{subsection in head/foot}{bg=,fg=white}
+\fi
+
+% 重定义 sectioning page
+\defbeamertemplate*{sectioning page}{touying}[1]
 {%
   \vbox{}
-  \usebeamercolor{part title}
+  \def\sjtubeamer@cover@sectype{#1}%
+  \usebeamercolor{#1 title}
   \begin{tikzpicture}[overlay]
     \fill [bg] (-0.2*\the\paperwidth,-1*\the\paperheight)
     rectangle (1*\the\paperwidth, 0.4*\the\paperheight);
   \end{tikzpicture}
-  \vfil
-  \begingroup
-    \setbeamertemplate{sectioning block}[touying]{part}
-    \usebeamertemplate{sectioning block}
-    \let\gateheadlinewidth\paperwidth
-    \advance\gateheadlinewidth by -1.3cm
-    \vskip-3.5ex\resizebox{\gateheadlinewidth}{!}{\sjtugateslim}
-    \vskip10pt
-    {
-      \scriptsize
-      \hfuzz=100pt
-      \hbadness=100000
-      \hskip-0.3cm
-      \insertsectionnavigation{0.5cm}
-    }
-  \endgroup
+  \vfill
+  \begingroup%
+    \setbeamertemplate{sectioning block}[touying]{#1}%
+    \usebeamertemplate{sectioning block}%
+    \let\gateheadlinewidth\paperwidth%
+    \advance\gateheadlinewidth by -1.3cm%
+    \vskip-3.5ex\resizebox{\gateheadlinewidth}{!}{\sjtugateslim}%
+    \vskip10pt%
+    {%
+      \scriptsize%
+      \hfuzz=100pt%
+      \hbadness=100000%
+      \hskip-0.3cm%
+      \if\EqualOption{cover}{sectype}{part}%
+        \insertsectionnavigationhorizontal{\gateheadlinewidth}{}{}%
+      \else\if\EqualOption{cover}{sectype}{section}%
+        \insertsubsectionnavigationhorizontal{\gateheadlinewidth}{}{}%
+      \fi\fi%
+    }%
+  \endgroup%
   \vfill
 }
 
-% 设置节页和小节页样式，使用 maxplus 样式以保持一致
-\setbeamertemplate{section page}[maxplus]
-\setbeamertemplate{subsection page}[maxplus]
+% 定义部分、节页和小节页样式
+\definesecpage{part}{touying}
+\definesecpage{section}{touying}
+\definesecpage{subsection}{touying}
+
+%% 使用与 touying-sjtu 一致的节页设计，part 名将不会被显示
+\AtBeginPart{}
+\AtBeginSection{\makepart}
 
 % 使用衬线字体
 \usefonttheme{serif}
