@@ -43,7 +43,7 @@ jobs:
         with:
           scheme: full
           run: |
-            apk add ghostscript imagemagick gnupg
+            apk add ghostscript imagemagick gnupg font-noto-cjk
             sed -i "s|<policy domain=\"coder\" rights=\"none\" pattern=\"PDF\" />|<policy domain=\"coder\" rights=\"read\|write\" pattern=\"PDF\" />|g" /etc/ImageMagick-*/policy.xml
             .github/ci/build_contrib.sh -halt-on-error -time -xelatex
         name: build contrib doc with XeLaTeX
