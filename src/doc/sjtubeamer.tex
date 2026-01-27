@@ -727,7 +727,7 @@ Reader}）打开演示文稿，在“视图”选单中选择“全屏模式”�
 
 考虑到许多专业数据是直接存储在逗号分隔符（\texttt{.csv}）文件中的，便于数据内容的后续
 更改，用户可以采用 \pkg{pgfplotstable} 宏包从文件插入表格（中文表格需要使用
-\hologo{XeLaTeX} 编译）。
+\hologo{XeLaTeX} 编译，表头不要有 \texttt{\$} 符号并去除冗余空格）。
 
 \beamerdemo[1]{step19.tex}
 
