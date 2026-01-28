@@ -19,7 +19,11 @@ SJTUBeamer 是上海交通大学的非官方 Beamer 模版。您可以使用 SJT
 
 <summary>点击展开代码片段</summary>
 
+> Prism 需要首行的魔术注释来变更编译程序，使用 beamer 文档类不编写中文的情况下可以省略该行以使用默认的 pdfLaTeX 编译程序。
+
 ```latex
+% !TeX program = xelatex
+
 \documentclass[
     % draft,          % 草稿模式
     aspectratio=169,  % 使用 16:9 比例
