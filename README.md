@@ -23,6 +23,7 @@ SJTUBeamer 是上海交通大学的非官方 Beamer 模版。您可以使用 SJT
 \documentclass[
     % draft,          % 草稿模式
     aspectratio=169,  % 使用 16:9 比例
+    % fontset=ubuntu, % 在 Prism 平台需要添加该字体选项
 ]{ctexbeamer}
 \mode<presentation>
 
@@ -131,14 +132,14 @@ int main(){
 
 ### 模版下载与编译
 
-* TeXPage/Overleaf
+* Prism/TeXPage/Overleaf
   * 直接使用 [TeXPage 模板库链接](https://www.texpage.com/template/c0decdfd-ca66-4f4a-807d-5217f729dcfa)/[Overleaf 模板库链接](https://www.overleaf.com/latex/templates/sjtubeamer/dgvrnpndrtjh)。
-  * 或者手动上传至 TeXPage/Overleaf 使用：
+  * 或者手动上传至 Prism/TeXPage/Overleaf 使用：
     * 下载开发版压缩包。页面右上角 Code - Download Zip 即可。
     * 或下载 [最新版](https://github.com/sjtug/SJTUBeamer/releases) 压缩包，点击 “Source Code (zip)” 即可下载。
     * 或下载 [最新版](https://github.com/sjtug/SJTUBeamer/releases) 最小依赖压缩包，点击 `sjtubeamer-online.zip` 下载。
-    * 上传至 TeXPage/Overleaf。
-    * TeXPage/Overleaf 的设置中需要选择“XeLaTeX”编译器编译。
+    * 上传至 Prism/TeXPage/Overleaf。
+    * TeXPage/Overleaf 的设置中需要选择“XeLaTeX”编译器编译；Prism 平台需要使用 `fontset=ubuntu` 字体选项。
 * 本地使用
   * 安装 TeXLive 套件。
   * 下载模板至本地：
