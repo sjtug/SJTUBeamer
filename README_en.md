@@ -21,7 +21,6 @@ Current document `main.tex` is an example documentation of *How to Use LaTeX to 
 \documentclass[
     % draft,          % draft mode
     aspectratio=169,  % use 16:9 ratio
-    % fontset=ubuntu, % enable this option to display CJK fonts on Prism
 ]{beamer}
 \mode<presentation>
 
