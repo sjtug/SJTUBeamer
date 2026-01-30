@@ -14,7 +14,7 @@
 %% limitations under the License.
 %% ------------------------------------------------------------------------
 % 设置文件元数据
-\ProvidesFile{sjtubeamerthemetouying.ltx}[2026/01/27 touying-sjtu subtheme for SJTUBeamer]
+\ProvidesFile{sjtubeamerthemetouying.ltx}[2026/01/30 touying-sjtu subtheme for SJTUBeamer]
 \makeatletter
 
 % 设定页边距，左边多一点去补偿全局调整的问题
@@ -44,9 +44,6 @@
   \begin{beamercolorbox}[colsep=1.5pt]{lower separation line head}
   \end{beamercolorbox}
 }
-
-% 定义顶部校门形状
-\definelogo{sjtugateslim}{vi/sjtu-vi-sjtugate.png}{0.25}{0.96}
 
 % 自定义标题栏，只保留校门图形，设置为最终定义
 \AtBeginDocument{
@@ -80,7 +77,7 @@
       \hbadness=100000
       \let\gateheadlinewidth\paperwidth
       \advance\gateheadlinewidth by -1.55cm
-      \hskip-0.1cm\resizebox{\gateheadlinewidth}{!}{\sjtugateslim}\hfill%%
+      \hskip-0.1cm\resizebox{\gateheadlinewidth}{!}{\sjtugate}\hfill%%
     }
     \endgroup%
     \ifx\insertframesubtitle\@empty%
@@ -154,7 +151,7 @@
     \hskip-0.3cm\usebeamertemplate{sectioning block}%
     \let\gateheadlinewidth\paperwidth%
     \advance\gateheadlinewidth by -1.55cm%
-    \vskip-3.1ex\strut\hskip-0.1cm\resizebox{\gateheadlinewidth}{!}{\sjtugateslim}\strut%
+    \vskip-3.1ex\strut\hskip-0.1cm\resizebox{\gateheadlinewidth}{!}{\sjtugate}\strut%
     \vskip10pt%
     {%
       \scriptsize%
