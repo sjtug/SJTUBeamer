@@ -1,5 +1,5 @@
 %% ------------------------------------------------------------------------
-%% Copyright (C) 2022-2024 LogCreative <logcreative@outlook.com>
+%% Copyright (C) 2022-2026 LogCreative <logcreative@outlook.com>
 %% 
 %% Licensed under the Apache License, Version 2.0 (the "License");
 %% you may not use this file except in compliance with the License.
@@ -14,7 +14,7 @@
 %% limitations under the License.
 %% ------------------------------------------------------------------------
 % 设置文件元数据
-\ProvidesFile{sjtubeamerthemeposter.ltx}[2022/10/18 Beamerposter adapter for SJTUBeamer]
+\ProvidesFile{sjtubeamerthemeposter.ltx}[2026/01/30 Beamerposter adapter for SJTUBeamer]
 \PassOptionsToPackage{orientation=portrait}{beamerposter}
 \if\EqualOption{poster}{landscape}{true}
   \PassOptionsToPackage{orientation=landscape}{beamerposter}
@@ -85,11 +85,11 @@
     \end{beamercolorbox}
   }
 }
-% 新的命令 设置底栏 \footline[左脚注]{右脚注}
+% 新的命令 设置底栏 \footline{左脚注}{右脚注}
 \newif\ifposterfootline
 \def\posterrightfootline{}
 \def\posterleftfootline{}
-\providecommand{\footline}[2][]{
+\providecommand{\footline}[2]{
   \def\posterleftfootline{#1}
   \def\posterrightfootline{#2}
 }
@@ -97,11 +97,7 @@
 \setbeamercolor{footline}{parent=palette primary}
 \setbeamertemplate{footline}{%
   \resizebox{\paperwidth}{!}{\sjtugate[cprimary]}%
-  \if\EqualOption{poster}{landscape}{true}%
-    \vskip-12cm%
-  \else%
-    \vskip-6cm%
-  \fi\par
+  \vskip3cm\par%
   \posterfootlinetrue
   \ifx\posterleftfootline\relax
     \ifx\posterrightfootline\relax
