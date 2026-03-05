@@ -30,6 +30,13 @@
 \setbeamertemplate{section page}[default]
 \setbeamertemplate{subsection page}[default]
 
+% 部分页带徽标
+\AtBeginPart{
+  \begin{frame}
+    \partpage
+  \end{frame}
+}
+
 %% 清空背景
 \setbeamertemplate{background}{}
 

@@ -3,12 +3,20 @@
 \usesjtutheme{default}      % 引入本插件，来进一步恢复默认主题
 \AtBeginSection{
     \begin{frame}
+        % 使用节页
         \sectionpage
+        % 或者使用传统目录：
+        % \frametitle{目录}
+        % \tableofcontents[currentsection,subsectionstyle=show/show/hide]
     \end{frame}
 }
 \AtBeginSubsection{
     \begin{frame}
+        % 使用小节页
         \subsectionpage
+        % 或者使用传统目录：
+        % \frametitle{目录}
+        % \tableofcontents[currentsection,subsectionstyle=show/shaded/hide]
     \end{frame}
 }
 
