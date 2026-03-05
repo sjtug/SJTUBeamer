@@ -1,0 +1,33 @@
+\documentclass[aspectratio=169]{ctexbeamer}
+\usetheme[light,default]{sjtubeamer} % 你需要向 sjtubeamer 传递 default 选项，dark 将不会影响标题页，标题页和节次页的样式会被清空
+\usesjtutheme{default}      % 引入本插件，来进一步恢复默认主题
+\AtBeginSection{
+    \begin{frame}
+        \sectionpage
+    \end{frame}
+}
+\AtBeginSubsection{
+    \begin{frame}
+        \subsectionpage
+    \end{frame}
+}
+
+\title{恢复至默认 \texttt{beamer} 主题}
+\author{LogCreative}
+\begin{document}
+\maketitle
+\part{测试}
+\section{测试}
+\subsection{测试}
+\begin{frame}[fragile] % 具有代码块的页需要添加 fragile 选项
+    \frametitle{默认主题}
+    \framesubtitle{恢复至 beamer 默认}
+    这是更加符合 \texttt{beamer} 默认主题的演示文稿，极大地简化页面元素但尽可能保留 SJTUBeamer 提供的工具，以符合极简主义的需求，设置如下：
+    \begin{codeblock}[language={[LaTeX]TeX}]{代码块}
+\documentclass[aspectratio=169]{ctexbeamer}
+\usetheme[light,default]{sjtubeamer} % 你需要向 sjtubeamer 传递 default 选项，dark 将不会影响标题页，标题页和节次页的样式会被清空
+\usesjtutheme{default}      % 引入本插件，来进一步恢复默认主题
+    \end{codeblock}
+\end{frame}
+\makebottom
+\end{document}
