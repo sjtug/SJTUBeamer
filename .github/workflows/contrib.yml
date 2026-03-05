@@ -39,7 +39,7 @@ jobs:
         uses: juliangruber/read-file-action@v1.0.0
         with:
           path: ./contrib.txt
-      - uses: xu-cheng/texlive-action@v2
+      - uses: xu-cheng/texlive-action@v3
         with:
           scheme: full
           run: |

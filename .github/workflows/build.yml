@@ -22,12 +22,12 @@ jobs:
     steps: 
       - uses: actions/checkout@v4
         name: checkout code
-      - uses: xu-cheng/texlive-action@v2
+      - uses: xu-cheng/texlive-action@v3
         with:
           scheme: full
           run: .github/ci/build_test_variants.sh -halt-on-error -time -quiet -xelatex
         name: build test variants with XeLaTeX
-      - uses: xu-cheng/texlive-action@v2
+      - uses: xu-cheng/texlive-action@v3
         with:
           scheme: full
           run: |
@@ -49,12 +49,12 @@ jobs:
     steps: 
       - uses: actions/checkout@v4
         name: checkout code
-      - uses: xu-cheng/texlive-action@v2
+      - uses: xu-cheng/texlive-action@v3
         with:
           scheme: full
           run: .github/ci/build_test_variants.sh -halt-on-error -time -quiet -lualatex
         name: build test variants with LuaLaTeX
-      - uses: xu-cheng/texlive-action@v2
+      - uses: xu-cheng/texlive-action@v3
         with:
           scheme: full
           run: |
@@ -76,14 +76,14 @@ jobs:
     steps: 
       - uses: actions/checkout@v4
         name: checkout code
-      - uses: xu-cheng/texlive-action@v2
+      - uses: xu-cheng/texlive-action@v3
         with:
           scheme: full
           run: |
             export diffexe="diff -U 3"
             apk add zip diffutils
-            tlmgr update --self
-            tlmgr update l3build
+            # tlmgr update --self
+            # tlmgr update l3build
             make build-dev
         name: build package with l3build
       - name: check if generated files are of latest version
@@ -103,7 +103,7 @@ jobs:
     steps: 
       - uses: actions/checkout@v4
         name: checkout code
-      - uses: xu-cheng/texlive-action@v2
+      - uses: xu-cheng/texlive-action@v3
         with:
           scheme: full
           run: |
