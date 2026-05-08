@@ -130,7 +130,7 @@
     };
     \node[anchor=south east, inner sep=0, outer sep=0] at ({\outslant-5pt},0.5){
       \usebeamercolor[fg]{palatte primary}
-      \resizebox{!}{1cm}{\vphantom{-}\usebeamertemplate{logo}}
+      \resizebox{!}{6ex}{\vphantom{-}\usebeamertemplate{logo}}
     };
   \end{tikzpicture}
   \endgroup
@@ -256,8 +256,9 @@
   \begingroup
   \centering
 %    \end{macrocode}
-% \verb"resizebox" is used to adapt to all size of logo into 1cm height one.
-% And it is the same in outer theme to make a 0.7cm logo.
+% \verb"resizebox" is used to adapt to all size of logo into 6ex height one,
+% which adapts to the size of the beamer font size.
+% And it is the same in outer theme to make a 3ex height logo.
 %
 % The institute is in \TeX{} code for typesetting. \verb"\beamer@shortinstitute"
 % meta is used to avoid compressing on \verb"\par", while \verb"\insertinstitute"
@@ -283,9 +284,9 @@
     \usebeamercolor[fg]{palette primary}%
     \hspace*{-0.6pt}%
     \if\EqualOption{cover}{lang}{en}%
-      \secondaryinstlogo{\beamer@shortinstitute}{\usebeamertemplate{logo}}
+      \resizebox{!}{6ex}{\secondaryinstlogo{\beamer@shortinstitute}{\usebeamertemplate{logo}}}
     \else%
-      \secondaryinstlogo[\insertshortinstitute]{\insertinstitute}{\usebeamertemplate{logo}}
+      \resizebox{!}{6ex}{\secondaryinstlogo[\insertshortinstitute]{\insertinstitute}{\usebeamertemplate{logo}}}
     \fi%
   \end{beamercolorbox}
 %    \end{macrocode}
