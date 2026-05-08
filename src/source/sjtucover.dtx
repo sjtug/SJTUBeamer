@@ -286,9 +286,12 @@
     \usebeamercolor[fg]{palette primary}%
     \hspace*{-0.6pt}%
     \if\EqualOption{cover}{lang}{en}%
-      \resizebox{!}{6ex}{\secondaryinstlogo{\beamer@shortinstitute}{\usebeamertemplate{logo}}}
+      \resizebox{!}{6ex}{%
+        \secondaryinstlogo{\beamer@shortinstitute}{\usebeamertemplate{logo}}}
     \else%
-      \resizebox{!}{6ex}{\secondaryinstlogo[\insertshortinstitute]{\insertinstitute}{\usebeamertemplate{logo}}}
+      \resizebox{!}{6ex}{%
+        \secondaryinstlogo[\insertshortinstitute]%
+          {\insertinstitute}{\usebeamertemplate{logo}}}
     \fi%
   \end{beamercolorbox}
 %    \end{macrocode}
