@@ -27,5 +27,6 @@ sjtucover.sty linguist-generated=true
 sjtubeamer.code-snippets linguist-generated=true
 MANIFEST.md linguist-generated=true
 
-# regression test target file
+# regression test file
+*.lvt linguist-language=tex
 *.tlg linguist-generated=true
