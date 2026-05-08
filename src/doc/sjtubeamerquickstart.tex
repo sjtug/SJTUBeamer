@@ -14,7 +14,7 @@
 %% -----------------------------------------------------------------------
 
 % 本行为文件元数据，可省略。
-\ProvidesFile{sjtubeamerquickstart.tex}[2026/02/02 v3.1.2 Quick Start for sjtubeamer (Chinese)]
+\ProvidesFile{sjtubeamerquickstart.tex}[2026/05/08 v3.1.3 Quick Start for sjtubeamer (Chinese)]
 
 % 加载 ctexbeamer 文档类【第一部分】
 % 如遇无法显示的数学符号，尝试对 ctexbeamer 文档类添加 no-math 选项；
@@ -362,17 +362,17 @@ int main(){
         % 使用文件时，请不要设定 col sep 和 row sep 参数。
         % 比如：\pgfplotstabletypeset[]{test.csv}
         \pgfplotstabletypeset[
-        col sep=&, row sep=\\,
-        columns/average time (s)/.style={
-        fixed, dec sep align, fixed zerofill, precision=3
-        }
+          col sep=&, row sep=\\,
+          columns/average time (s)/.style={
+              fixed, dec sep align, fixed zerofill, precision=3
+            }
         ]{
-        iteration & average time (s)\\
-        0         & 9.701           \\
-        1         & 9.854           \\
-        2         & 10.118          \\
-        3         & 10.301          \\
-        4         & 10.301          \\
+          iteration & average time (s)\\
+          0         & 9.701           \\
+          1         & 9.854           \\
+          2         & 10.118          \\
+          3         & 10.301          \\
+          4         & 10.301          \\
         }
       \end{table}
     \end{column}
@@ -391,11 +391,11 @@ int main(){
     \KwOut{升序排列的数组}
     \BlankLine
     \For{$i=1$ to $A\mathit{.length}-1$}{
-    \For{$j=A\mathit{.length}$ downto $i+1$}{
-    \If{$A[j]<A[j+1]$}{
-    交换 $A[j]$ 与 $A[j+1]$\;
-    }
-    }
+      \For{$j=A\mathit{.length}$ downto $i+1$}{
+        \If{$A[j]<A[j+1]$}{
+          交换 $A[j]$ 与 $A[j+1]$\;
+        }
+      }
     }
     \Return{$A$}\;
   \end{algorithm}
