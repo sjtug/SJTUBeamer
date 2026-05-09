@@ -1,17 +1,18 @@
 on:
   push:
-    branches:
-    - release
     tags:
     - "v*"
 
 name: Release
 
+permissions:
+  contents: write
+
 jobs:
   release-xelatex:
     runs-on: ubuntu-latest
     steps: 
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v6
         name: checkout code
       - uses: xu-cheng/texlive-action@v3
         with:
@@ -37,103 +38,22 @@ jobs:
       - run: cat build/*.log
         name: display build log
         if: ${{ failure() || success() }}
-      - uses: actions/create-release@latest
-        id: create_release
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      - name: Release
+        uses: softprops/action-gh-release@v3
         with:
           tag_name: ${{ github.ref }}
-          release_name: Release ${{ github.ref }}
+          name: Release ${{ github.ref }}
           body: ${{ github.event.head_commit.message }}
           draft: true
           prerelease: true
-      - name: add build-maxplus-blue
-        uses: actions/upload-release-asset@v1.0.1
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        with:
-          upload_url: ${{ steps.create_release.outputs.upload_url }}
-          asset_path: build/build-maxplus-blue.pdf
-          asset_name: sjtulib-talk-maxplus-blue.pdf
-          asset_content_type: application/pdf
-      - name: add build-maxplus-red
-        uses: actions/upload-release-asset@v1.0.1
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        with:
-          upload_url: ${{ steps.create_release.outputs.upload_url }}
-          asset_path: build/build-maxplus-red.pdf
-          asset_name: sjtulib-talk-maxplus-red.pdf
-          asset_content_type: application/pdf
-      - name: add build-max-red
-        uses: actions/upload-release-asset@v1.0.1
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        with:
-          upload_url: ${{ steps.create_release.outputs.upload_url }}
-          asset_path: build/build-max-red.pdf
-          asset_name: sjtulib-talk-max-red.pdf
-          asset_content_type: application/pdf
-      - name: add build-min-red
-        uses: actions/upload-release-asset@v1.0.1
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        with:
-          upload_url: ${{ steps.create_release.outputs.upload_url }}
-          asset_path: build/build-min-red.pdf
-          asset_name: sjtulib-talk-min-red.pdf
-          asset_content_type: application/pdf
-      - name: add covers
-        uses: actions/upload-release-asset@v1.0.1
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        with:
-          upload_url: ${{ steps.create_release.outputs.upload_url }}
-          asset_path: build/cover.pdf
-          asset_name: sample-all-covers.pdf
-          asset_content_type: application/pdf
-      - name: add ctan zip
-        uses: actions/upload-release-asset@v1.0.1
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        with:
-          upload_url: ${{ steps.create_release.outputs.upload_url }}
-          asset_path: src/sjtubeamer-ctan.zip
-          asset_name: sjtubeamer-ctan.zip
-          asset_content_type: application/zip
-      - name: add online zip
-        uses: actions/upload-release-asset@v1.0.1
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        with:
-          upload_url: ${{ steps.create_release.outputs.upload_url }}
-          asset_path: sjtubeamer-online.zip
-          asset_name: sjtubeamer-online.zip
-          asset_content_type: application/zip
-      - name: add devguide
-        uses: actions/upload-release-asset@v1.0.1
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        with:
-          upload_url: ${{ steps.create_release.outputs.upload_url }}
-          asset_path: src/build/distrib/ctan/sjtubeamer/sjtubeamerdevguide.pdf
-          asset_name: sjtubeamerdevguide.pdf
-          asset_content_type: application/pdf
-      - name: add intro
-        uses: actions/upload-release-asset@v1.0.1
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        with:
-          upload_url: ${{ steps.create_release.outputs.upload_url }}
-          asset_path: src/build/distrib/ctan/sjtubeamer/sjtubeamer.pdf
-          asset_name: sjtubeamer.pdf
-          asset_content_type: application/pdf
-      - name: add quickstart
-        uses: actions/upload-release-asset@v1.0.1
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        with:
-          upload_url: ${{ steps.create_release.outputs.upload_url }}
-          asset_path: src/build/distrib/ctan/sjtubeamer/sjtubeamerquickstart.pdf
-          asset_name: sjtubeamerquickstart.pdf
-          asset_content_type: application/pdf
+          files: |
+            build/sjtulib-talk-maxplus-blue.pdf
+            build/sjtulib-talk-maxplus-red.pdf
+            build/sjtulib-talk-max-red.pdf
+            build/sjtulib-talk-min-red.pdf
+            build/cover.pdf
+            src/sjtubeamer-ctan.zip
+            sjtubeamer-online.zip
+            src/build/distrib/ctan/sjtubeamer/sjtubeamerdevguide.pdf
+            src/build/distrib/ctan/sjtubeamer/sjtubeamer.pdf
+            src/build/distrib/ctan/sjtubeamer/sjtubeamerquickstart.pdf
