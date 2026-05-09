@@ -46,10 +46,10 @@ jobs:
           draft: true
           prerelease: true
           files: |
-            build/build-maxplus-blue.pdf
-            build/build-maxplus-red.pdf
-            build/build-max-red.pdf
-            build/build-min-red.pdf
+            build/sjtulib-talk-maxplus-blue.pdf
+            build/sjtulib-talk-maxplus-red.pdf
+            build/sjtulib-talk-max-red.pdf
+            build/sjtulib-talk-min-red.pdf
             build/cover.pdf
             src/sjtubeamer-ctan.zip
             sjtubeamer-online.zip
