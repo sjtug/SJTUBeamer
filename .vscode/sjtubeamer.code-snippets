@@ -51,7 +51,7 @@
 		"scope": "doctex,tex",
 		"prefix": "\\definecover",
 		"body": "\\definecover{$1}",
-		"description": " Command generator for \\maketitle\n , \\makebottom and section pages.\n This command receives one parameter for\n the cover type like ``title'' or\n ``bottom''.\n"
+		"description": " Command generator for \\maketitle\n , \\makebottom, and section pages.\n This command receives one parameter for\n the cover type like ``title'' or\n ``bottom''.\n"
 	},
 	"bibliolist": {
 		"scope": "doctex,tex,latex",
