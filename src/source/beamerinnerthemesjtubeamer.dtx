@@ -16,7 +16,7 @@
 % \iffalse
 %<*package>
 \NeedsTeXFormat{LaTeX2e}
-\ProvidesPackage{beamerinnerthemesjtubeamer}[2026/05/20 v3.1.4 sjtubeamer inner theme]
+\ProvidesPackage{beamerinnerthemesjtubeamer}[2026/05/20 v3.2.0 sjtubeamer inner theme]
 %</package>
 % \fi
 % \CheckSum{0}
@@ -257,9 +257,10 @@
 %    \end{macrocode}
 % Redefinition on \verb"\beamer@writeslidentry" locally will remove the
 % corresponding navigation dot for miniframe outer theme.
-% The frame for the covers is specified as \verb"c" to avoid the unwanted shift
+% The cover frame is specified as \verb"c" to avoid the unwanted shift
 % caused by the global \verb"t" or \verb"b" option
 % (where \verb"b" may be deprecated) on \verb"beamer" class.
+% \changes{v3.1.4}{2026/05/20}{make the cover frame always centered.}
 % The \verb"plain" option is used to remove the header and footer 
 % for the cover page.
 %    \begin{macrocode}
