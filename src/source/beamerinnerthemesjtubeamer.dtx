@@ -238,7 +238,7 @@
 %
 % \begin{macro}{\definecover}
 % Command generator for \verb"\maketitle"
-% and \verb"\makebottom".
+% , \verb"\makebottom" and section pages.
 % This command receives one parameter for
 % the cover type like ``title'' or
 % ``bottom''.
@@ -255,12 +255,17 @@
   \expandafter\def\csname make#1\endcsname{
     {
 %    \end{macrocode}
-% Redefinition on\verb"\beamer@writeslideentrty" locally will remove the
+% Redefinition on \verb"\beamer@writeslideentrty" locally will remove the
 % corresponding navigation dot for miniframe outer theme.
+% The frame for the covers is specified as \verb"c" to avoid the unwanted shift
+% caused by the global \verb"t" or \verb"b" option
+% (where \verb"b" may be deprecated) on \verb"beamer" class.
+% The \verb"plain" option is used to remove the header and footer 
+% for the cover page.
 %    \begin{macrocode}
       \def\beamer@writeslidentry{\clearpage\beamer@notesactions}
       \ifbeamer@inframe\csname #1page\endcsname\else
-        \begin{frame}[plain]
+        \begin{frame}[c,plain]
           \csname #1page\endcsname
         \end{frame}\fi
     }
