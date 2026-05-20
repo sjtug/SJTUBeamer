@@ -34,6 +34,7 @@ jobs:
           run: |
             apk add font-noto-cjk
             .github/ci/gen_cover.sh -halt-on-error -time -quiet -xelatex
+            mv build/cover.pdf build/sample-all-covers.pdf
         name: build cover with XeLaTeX
       - run: cat build/*.log
         name: display build log
@@ -42,16 +43,15 @@ jobs:
         uses: softprops/action-gh-release@v3
         with:
           tag_name: ${{ github.ref }}
-          name: Release ${{ github.ref }}
           body: ${{ github.event.head_commit.message }}
           draft: true
-          prerelease: true
+          prerelease: false
           files: |
             build/sjtulib-talk-maxplus-blue.pdf
             build/sjtulib-talk-maxplus-red.pdf
             build/sjtulib-talk-max-red.pdf
             build/sjtulib-talk-min-red.pdf
-            build/cover.pdf
+            build/sample-all-covers.pdf
             src/sjtubeamer-ctan.zip
             sjtubeamer-online.zip
             src/build/distrib/ctan/sjtubeamer/sjtubeamerdevguide.pdf
