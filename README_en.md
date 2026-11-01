@@ -126,14 +126,14 @@ Edit `main.tex` and start to use.
 
 ### Template Download & Compilation
 
-* Prism/Overleaf/TeXPage
+* Overleaf/TeXPage
   * You could use the [Overleaf Template Gallery link](https://www.overleaf.com/latex/templates/sjtubeamer/dgvrnpndrtjh)/[TeXPage Template Gallery link](https://www.texpage.com/template/c0decdfd-ca66-4f4a-807d-5217f729dcfa).
-  * Or upload to Prism/Overleaf/TeXPage manually:
+  * Or upload to Overleaf/TeXPage manually:
     * Download the development version by clicking "Code - Download Zip".
     * Or download [the latest version](https://github.com/sjtug/SJTUBeamer/releases). Click "Source Code (zip)" to download.
     * Or download [the latest version](https://github.com/sjtug/SJTUBeamer/releases). Click `sjtubeamer-online` to download the minimal workset.
-    * Upload to Prism/Overleaf/TeXPage.
-    * Set to "XeLaTeX" for compilation on Overleaf/TeXPage; enable `fontset=ubuntu` option for Prism to display CJK fonts correctly.
+    * Upload to Overleaf/TeXPage.
+    * Set to "XeLaTeX" for compilation on Overleaf/TeXPage to display CJK fonts correctly.
 * Local Use
   * Install TeXLive.
   * Download the template to your local machine:
