@@ -37,7 +37,7 @@
 % ------------------------------------------------------------------- \fi
 % \iffalse
 \NeedsTeXFormat{LaTeX2e}
-\ProvidesPackage{beamerthemesjtubeamer}[2026/05/20 v3.2.0 sjtubeamer parent theme]
+\ProvidesPackage{beamerthemesjtubeamer}[2026/11/01 v3.2.1 sjtubeamer parent theme]
 % \fi
 %
 % \subsection{Parent Theme}
@@ -248,7 +248,8 @@
   }
 }
 %    \end{macrocode}
-% This command will also first check the root directory for dependency.
+% This command will also first check the root directory for dependency,
+% where \verb"./" is required to avoid regarding a distribution file as a debug mode file.
 % If it exists, the \verb"\getcontribdir" macro will be redefined.
 % It is never recommended for placing the ltx in the same folder.
 %
@@ -267,6 +268,7 @@
 % the root first before checking.
 %
 % \changes{v3.0.0}{2022/11/25}{rename \cs{usemytheme} to \cs{usesjtutheme}.}
+% \changes{v3.2.1}{2026/11/01}{avoid a distribution contrib file being regarded as a debug mode file.}
 % \end{macro}
 %
 % \iffalse
